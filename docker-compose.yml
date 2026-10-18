@@ -1,0 +1,61 @@
+services:
+  # Ollama Service - Local LLM Server
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0:11434
+      - OLLAMA_ALLOW_ORIGINS=*
+    restart: unless-stopped
+    networks:
+      - rag-network
+
+  # ChromaDB Service - Vector Database (using your existing data)
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: chromadb
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount your existing ChromaDB data directly
+      - C:\Users\hp\Chunker\hierarchical_chroma_db:/chroma/chroma
+    environment:
+      - IS_PERSISTENT=TRUE
+      - PERSIST_DIRECTORY=/chroma/chroma
+      - ANONYMIZED_TELEMETRY=FALSE
+      - CHROMA_SERVER_HOST=0.0.0.0
+      - CHROMA_SERVER_HTTP_PORT=8000
+    restart: unless-stopped
+    networks:
+      - rag-network
+
+  # AnythingLLM - Web UI for Document Management
+  anythingllm:
+    image: mintplexlabs/anythingllm:latest
+    container_name: anythingllm
+    ports:
+      - "3001:3001"
+    volumes:
+      - anythingllm_data:/app/server/storage
+    environment:
+      - STORAGE_DIR=/app/server/storage
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - CHROMA_ENDPOINT=http://chromadb:8000
+    restart: unless-stopped
+    networks:
+      - rag-network
+    depends_on:
+      - ollama
+      - chromadb
+
+networks:
+  rag-network:
+    driver: bridge
+
+volumes:
+  ollama_data:
+  anythingllm_data:

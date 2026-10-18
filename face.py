@@ -7,35 +7,45 @@ import json
 import os
 import sys
 
-# Import backend from mk3.py
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+
+# Import backend from main.py
 try:
-    from mk3 import HierarchicalClusterSummarizer
+    from main import HierarchicalClusterSummarizer
 except ImportError:
-    print("❌ Error: Could not import from mk3.py")
-    print("   Make sure mk3.py is in the same directory")
+    print("❌ Error: Could not import HierarchicalClusterSummarizer from main.py")
+    print("   Make sure main.py is in the same directory")
     sys.exit(1)
 
 
 class RAGInterface:
     """
-    Conversational RAG Interface using mk3.py for retrieval and Ollama for generation
+    Conversational RAG Interface using main.py for retrieval and Ollama for generation
+    Runs locally using ChromaDB PersistentClient and native Ollama
     """
     
     def __init__(self, 
-                 chroma_path: str = "./hierarchical_chroma_db",  # FIXED: matches mk3.py
                  ollama_model: str = "gemma3:1b",
-                 ollama_url: str = "http://localhost:11434/api/generate",
+                 ollama_embedding_model: str = "nomic-embed-text",
+                 ollama_url: str = "http://localhost:11434",
+                 chroma_path: Optional[str] = "./hierarchical_chroma_db",
+                 chroma_host: Optional[str] = None,
+                 chroma_port: Optional[int] = None,
                  max_context_chunks: int = 5,
                  include_summaries: bool = True,
                  temperature: float = 0.3,
                  verbose: bool = True):
         """
-        Initialize the RAG Interface
+        Initialize the RAG Interface with local services
         
         Args:
-            chroma_path: Path to ChromaDB storage (must match mk3.py)
-            ollama_model: Ollama model name
-            ollama_url: Ollama API endpoint
+            ollama_model: Ollama model name for generation
+            ollama_embedding_model: Ollama model for embeddings
+            ollama_url: Ollama API endpoint (base URL)
+            chroma_path: Path to local ChromaDB directory
+            chroma_host: ChromaDB host (optional, for remote server)
+            chroma_port: ChromaDB port (optional, for remote server)
             max_context_chunks: Number of chunks to retrieve
             include_summaries: Whether to include cluster summaries
             temperature: LLM temperature (0-1)
@@ -43,15 +53,18 @@ class RAGInterface:
         """
         self.verbose = verbose
         
-        # Initialize the mk3 processor (this gives us all the retrieval capabilities)
+        # Initialize the processor with local ChromaDB & Ollama
         self.processor = HierarchicalClusterSummarizer(
-            chroma_path=chroma_path,
             ollama_model=ollama_model,
-            ollama_url=ollama_url
+            ollama_embedding_model=ollama_embedding_model,
+            ollama_url=ollama_url,
+            chroma_path=chroma_path,
+            chroma_host=chroma_host,
+            chroma_port=chroma_port
         )
         
         self.ollama_model = ollama_model
-        self.ollama_url = ollama_url
+        self.ollama_url = f"{ollama_url}/api/generate"  # Full API endpoint
         self.max_context_chunks = max_context_chunks
         self.include_summaries = include_summaries
         self.temperature = temperature
@@ -63,7 +76,7 @@ class RAGInterface:
         self._show_database_info()
     
     def _check_ollama(self) -> bool:
-        """Check if Ollama is running"""
+        """Check if Ollama is running locally"""
         try:
             response = requests.get("http://localhost:11434/api/tags", timeout=5)
             if response.status_code == 200:
@@ -80,17 +93,17 @@ class RAGInterface:
             return False
         except Exception as e:
             print(f"❌ Cannot connect to Ollama: {e}")
-            print("   Please start Ollama with: ollama serve")
+            print("   Please start Ollama with: ollama serve (or launch Ollama from the Start Menu)")
             return False
     
     def _show_database_info(self):
-        """Show information about the database"""
+        """Show information about the database from local ChromaDB"""
         try:
             total_chunks = self.processor.chunks_collection.count()
             total_summaries = self.processor.summaries_collection.count()
             
             if self.verbose:
-                print(f"📚 Database: {total_chunks} chunks, {total_summaries} summaries")
+                print(f"📚 ChromaDB (local): {total_chunks} chunks, {total_summaries} summaries")
                 
                 # Show source distribution
                 if total_chunks > 0:
@@ -104,14 +117,14 @@ class RAGInterface:
                     for source, count in sources.items():
                         print(f"   • {source}: {count} chunks")
                 else:
-                    print("   ⚠️ Database is empty! Run mk3.py first to add documents.")
+                    print("   ⚠️ Database is empty! Run main.py first to add documents.")
                     
         except Exception as e:
             print(f"⚠️ Could not get database info: {e}")
     
     def retrieve_context(self, query: str) -> Dict:
         """
-        Retrieve relevant context from ChromaDB using the mk3 processor's collections
+        Retrieve relevant context from local ChromaDB using HNSW search
         
         Args:
             query: User question
@@ -119,13 +132,20 @@ class RAGInterface:
         Returns:
             Dictionary with retrieved chunks, metadata, and scores
         """
+        if not query or not query.strip():
+            return {'success': False, 'message': 'Empty or blank query provided'}
+
         if self.verbose:
             print(f"\n🔍 Retrieving context for: {query[:80]}...")
         
         try:
-            # Use mk3's chunks_collection directly for HNSW search
+            # Check if collection is empty
+            if self.processor.chunks_collection.count() == 0:
+                return {'success': False, 'message': 'Database is empty. Please ingest documents with main.py first.'}
+
+            # Query chunks_collection for HNSW search
             results = self.processor.chunks_collection.query(
-                query_texts=[query],
+                query_texts=[query.strip()],
                 n_results=self.max_context_chunks,
                 include=["documents", "metadatas", "distances"]
             )
@@ -137,37 +157,39 @@ class RAGInterface:
             retrieved_metadatas = results['metadatas'][0]
             retrieved_distances = results['distances'][0]
             
-            # Calculate relevance scores (cosine distance to similarity)
-            relevance_scores = [1 - d for d in retrieved_distances]
+            # Calculate relevance scores (cosine distance to similarity, clipped [0, 1])
+            relevance_scores = [max(0.0, min(1.0, 1.0 - float(d))) for d in retrieved_distances]
+            low_confidence = all(s < 0.25 for s in relevance_scores) if relevance_scores else True
             
-            # Get cluster summaries if requested (using mk3's summaries_collection)
+            # Separately retrieve thematic cluster summaries if requested (Collection Separation)
             cluster_summaries = []
-            if self.include_summaries:
-                clusters = set()
-                for meta in retrieved_metadatas:
-                    if meta and 'cluster_id' in meta:
-                        clusters.add(meta['cluster_id'])
-                
-                for cluster_id in clusters:
-                    try:
-                        # Use mk3's summaries_collection directly
-                        summary_results = self.processor.summaries_collection.get(
-                            where={"cluster_id": cluster_id},
-                            limit=1,
-                            include=["documents", "metadatas"]
-                        )
-                        if summary_results['documents']:
-                            summary_text = summary_results['documents'][0]
-                            summary_meta = summary_results['metadatas'][0]
-                            cluster_summaries.append({
-                                'cluster_id': cluster_id,
-                                'level': summary_meta.get('level', 0),
-                                'chunks_count': summary_meta.get('chunks_count', 0),
-                                'summary': summary_text[:500]
-                            })
-                    except Exception as e:
-                        if self.verbose:
-                            print(f"  Could not fetch summary for cluster {cluster_id}: {e}")
+            if self.include_summaries and self.processor.summaries_collection.count() > 0:
+                try:
+                    summary_results = self.processor.summaries_collection.query(
+                        query_texts=[query.strip()],
+                        n_results=1,
+                        include=["documents", "metadatas", "distances"]
+                    )
+                    if summary_results and summary_results.get('documents') and summary_results['documents'][0]:
+                        for s_doc, s_meta, s_dist in zip(
+                            summary_results['documents'][0],
+                            summary_results['metadatas'][0],
+                            summary_results['distances'][0]
+                        ):
+                            s_score = max(0.0, min(1.0, 1.0 - float(s_dist)))
+                            # Only include summary if it has meaningful topical relevance (>= 25%)
+                            if s_score >= 0.25:
+                                cluster_summaries.append({
+                                    'cluster_id': s_meta.get('cluster_id', 'unknown'),
+                                    'level': s_meta.get('level', 0),
+                                    'chunks_count': s_meta.get('chunks_count', 0),
+                                    'score': s_score,
+                                    'sources': s_meta.get('source_files', []),
+                                    'summary': s_doc[:600]
+                                })
+                except Exception as e:
+                    if self.verbose:
+                        print(f"  Could not fetch cluster summary: {e}")
             
             # Extract unique sources
             sources = []
@@ -183,7 +205,8 @@ class RAGInterface:
                 'scores': relevance_scores,
                 'cluster_summaries': cluster_summaries,
                 'sources': sources,
-                'query': query
+                'query': query,
+                'low_confidence': low_confidence
             }
             
         except Exception as e:
@@ -201,30 +224,30 @@ class RAGInterface:
         """
         prompt_parts = []
         
-        # System instruction
         prompt_parts.append("""You are a knowledgeable assistant. Answer the question based ONLY on the provided context.
 
 INSTRUCTIONS:
-- Answer based only on the information in the context
+- Ground your answer in the PRIMARY SOURCE EVIDENCE below.
+- Use THEMATIC BACKGROUND SUMMARY only for high-level macro context.
 - If the context doesn't contain the answer, say "I don't have enough information to answer that"
-- Be concise but thorough
-- When quoting sources, mention the document name
-- Use a helpful, friendly tone
+- Be concise, accurate, and thorough.
+- When quoting or citing, mention the document name.
+- Use a helpful, professional tone.
 """)
         
-        # Add source information
         if context.get('sources'):
             prompt_parts.append(f"\n📚 SOURCES: {', '.join(context['sources'])}")
         
-        # Add cluster summaries if available
         if context.get('cluster_summaries'):
-            prompt_parts.append("\n📊 HIGH-LEVEL TOPIC SUMMARIES:")
+            prompt_parts.append("\n📊 THEMATIC BACKGROUND SUMMARY (Macro Context):")
             for summary_info in context['cluster_summaries']:
-                prompt_parts.append(f"\nTopic {summary_info['cluster_id']} (Level {summary_info['level']}, {summary_info['chunks_count']} chunks):")
+                level = summary_info.get('level', 0)
+                cid = summary_info.get('cluster_id', 'unknown')
+                chunks_cnt = summary_info.get('chunks_count', 0)
+                prompt_parts.append(f"\n[Level {level} Topic {cid} - {chunks_cnt} chunks]:")
                 prompt_parts.append(f"{summary_info['summary']}")
         
-        # Add relevant chunks with metadata
-        prompt_parts.append("\n📄 RELEVANT CONTENT:")
+        prompt_parts.append("\n📄 PRIMARY SOURCE EVIDENCE (Specific Details):")
         for i, (chunk, score, meta) in enumerate(zip(
             context['chunks'], 
             context['scores'], 
@@ -232,17 +255,15 @@ INSTRUCTIONS:
         )):
             source = meta.get('source_file', 'Unknown') if meta else 'Unknown'
             chunk_id = meta.get('chunk_id', 'Unknown') if meta else 'Unknown'
-            prompt_parts.append(f"\n[{i+1}] (Source: {source}, Relevance: {score:.2%})")
+            prompt_parts.append(f"\n[{i+1}] (Source: {source}, Chunk: {chunk_id}, Relevance: {score:.2%})")
             prompt_parts.append(f"{chunk}")
         
-        # Add conversation history (last 3 exchanges)
         if self.conversation_history:
             prompt_parts.append("\n💬 CONVERSATION HISTORY:")
             for turn in self.conversation_history[-3:]:
                 prompt_parts.append(f"Q: {turn['question']}")
                 prompt_parts.append(f"A: {turn['answer'][:200]}...")
         
-        # Add the current question
         prompt_parts.append(f"\n❓ QUESTION: {context['query']}")
         prompt_parts.append("\n✅ ANSWER:")
         
@@ -250,7 +271,7 @@ INSTRUCTIONS:
     
     def generate_response(self, prompt: str) -> Dict:
         """
-        Generate response using Ollama
+        Generate response using native Ollama LLM
         
         Args:
             prompt: Formatted prompt
@@ -259,8 +280,8 @@ INSTRUCTIONS:
             Dictionary with response and metadata
         """
         if self.verbose:
-            print("🤖 Generating response...")
-        
+            print(" Generating response...")
+            
         try:
             response = requests.post(
                 self.ollama_url,
@@ -270,12 +291,12 @@ INSTRUCTIONS:
                     "stream": False,
                     "options": {
                         "temperature": self.temperature,
-                        "num_predict": -1,
+                        "num_predict": 300,
                         "top_k": 40,
                         "top_p": 0.9
                     }
                 },
-                timeout=60
+                timeout=120
             )
             
             if response.status_code == 200:
@@ -291,17 +312,19 @@ INSTRUCTIONS:
             else:
                 return {
                     'success': False,
-                    'error': f"API error: {response.status_code}"
+                    'error': f"Ollama API returned status: {response.status_code}"
                 }
                 
         except requests.exceptions.Timeout:
-            return {'success': False, 'error': "Request timeout"}
+            return {'success': False, 'error': "Ollama request timed out after 90s. The local model may still be loading."}
+        except requests.exceptions.ConnectionError:
+            return {'success': False, 'error': "Cannot connect to Ollama on http://localhost:11434. Make sure 'ollama serve' is running."}
         except Exception as e:
             return {'success': False, 'error': str(e)}
     
     def query(self, question: str) -> Dict:
         """
-        Complete RAG query: Retrieve using mk3, Augment, Generate
+        Complete RAG query: Retrieve using main.py, Augment, Generate
         
         Args:
             question: User question
@@ -315,7 +338,18 @@ INSTRUCTIONS:
         print(f"📝 Question: {question}")
         print("="*80)
         
-        # Step 1: Retrieve context using mk3's HNSW search
+        # Caution check: empty or whitespace question
+        if not question or not str(question).strip():
+            msg = "⚠️ Caution: Empty question provided. Please provide a non-empty question."
+            print(f"\n{msg}")
+            return {
+                'question': question,
+                'answer': msg,
+                'sources': [],
+                'context_chunks': 0,
+                'response_time': 0.0
+            }
+        
         context = self.retrieve_context(question)
         
         if not context.get('success'):
@@ -327,10 +361,10 @@ INSTRUCTIONS:
                 'response_time': time.time() - start_time
             }
         
-        # Step 2: Build prompt with context
-        prompt = self.build_prompt(context)
+        if context.get('low_confidence'):
+            print("\n⚠️ Caution: Low similarity confidence (< 25%). Context may not directly answer this question.")
         
-        # Step 3: Generate response
+        prompt = self.build_prompt(context)
         response = self.generate_response(prompt)
         
         elapsed_time = time.time() - start_time
@@ -338,7 +372,6 @@ INSTRUCTIONS:
         if response.get('success'):
             answer = response['answer']
             
-            # Save to conversation history
             self.conversation_history.append({
                 'question': question,
                 'answer': answer,
@@ -346,7 +379,6 @@ INSTRUCTIONS:
                 'sources': context.get('sources', [])
             })
             
-            # Display results
             print(f"\n✅ Response ({elapsed_time:.2f}s, {response.get('tokens', 0)} tokens):")
             print("-"*80)
             print(answer)
@@ -358,9 +390,9 @@ INSTRUCTIONS:
             if self.verbose:
                 print(f"\n📊 Retrieved {len(context.get('chunks', []))} chunks with scores:")
                 for i, (chunk, score, meta) in enumerate(zip(
-                    context.get('chunks', [])[:3],
-                    context.get('scores', [])[:3],
-                    context.get('metadatas', [])[:3]
+                    context.get('chunks', [])[:10],
+                    context.get('scores', [])[:10],
+                    context.get('metadatas', [])[:10]
                 )):
                     print(f"   [{i+1}] {score:.2%} - {meta.get('source_file', 'Unknown')[:40]}")
             
@@ -388,8 +420,8 @@ INSTRUCTIONS:
         print("\n" + "="*80)
         print("🎯 FACE - RAG Interface (Frontend for Hierarchical Knowledge Base)")
         print("="*80)
-        print(f"📚 Database: {self.processor.chunks_collection.count()} chunks total")
-        print(f"🤖 Model: {self.ollama_model}")
+        print(f"📚 ChromaDB: {self.processor.chunks_collection.count()} chunks total")
+        print(f"🤖 Ollama Model: {self.ollama_model}")
         print(f"📊 Context: {self.max_context_chunks} chunks, Summaries: {self.include_summaries}")
         print("\nCommands:")
         print("  /clear    - Clear conversation history")
@@ -407,7 +439,6 @@ INSTRUCTIONS:
                 if not user_input:
                     continue
                 
-                # Handle commands
                 if user_input.lower() == '/quit':
                     print("\n👋 Goodbye!")
                     break
@@ -433,7 +464,6 @@ INSTRUCTIONS:
                     self.show_help()
                     continue
                 
-                # Process query
                 result = self.query(user_input)
                 
             except KeyboardInterrupt:
@@ -443,18 +473,17 @@ INSTRUCTIONS:
                 print(f"\n❌ Error: {e}")
     
     def show_stats(self):
-        """Show database statistics"""
+        """Show database statistics from local ChromaDB"""
         try:
             total_chunks = self.processor.chunks_collection.count()
             total_summaries = self.processor.summaries_collection.count()
             
-            print("\n📊 DATABASE STATISTICS")
+            print("\n📊 DATABASE STATISTICS (ChromaDB)")
             print("="*60)
             print(f"Total chunks: {total_chunks}")
             print(f"Total summaries: {total_summaries}")
             print(f"Session queries: {len(self.conversation_history)}")
             
-            # Show source distribution
             if total_chunks > 0:
                 result = self.processor.chunks_collection.get(include=["metadatas"], limit=10000)
                 sources = {}
@@ -478,7 +507,7 @@ INSTRUCTIONS:
                 source = meta.get('source_file', 'Unknown')
                 sources[source] = sources.get(source, 0) + 1
             
-            print("\n📚 DOCUMENTS IN DATABASE")
+            print("\n📚 DOCUMENTS IN DATABASE (ChromaDB)")
             print("="*60)
             for source, count in sorted(sources.items()):
                 print(f"  • {source}: {count} chunks")
@@ -495,7 +524,7 @@ INSTRUCTIONS:
                 return
             
             print("\n📊 CLUSTER SUMMARIES")
-            print("="*60)
+            print("="*60)   
             
             for level in sorted(df['level'].unique()):
                 level_df = df[df['level'] == level]
@@ -544,8 +573,6 @@ INSTRUCTIONS:
             print(f"\n[{i+1}/{len(questions)}] Processing...")
             result = self.query(question)
             results.append(result)
-            
-            # Small delay to avoid overwhelming the system
             time.sleep(0.5)
         
         if output_file:
@@ -583,11 +610,13 @@ def main():
     """Main entry point"""
     import argparse
     
-    parser = argparse.ArgumentParser(description='FACE - RAG Interface for Hierarchical Knowledge Base')
-    parser.add_argument('--db-path', 
-                       default='./hierarchical_chroma_db',  # FIXED: matches mk3.py
-                       help='Path to ChromaDB (must match mk3.py - default: ./hierarchical_chroma_db)')
+    parser = argparse.ArgumentParser(description='FACE - RAG Interface for Hierarchical Knowledge Base (Local Version)')
     parser.add_argument('--model', default='gemma3:1b', help='Ollama model name')
+    parser.add_argument('--embedding-model', default='nomic-embed-text', help='Ollama embedding model')
+    parser.add_argument('--ollama-url', default='http://localhost:11434', help='Ollama API URL')
+    parser.add_argument('--chroma-path', default='./hierarchical_chroma_db', help='Local ChromaDB directory path')
+    parser.add_argument('--chroma-host', default=None, help='ChromaDB host (optional, for remote server)')
+    parser.add_argument('--chroma-port', type=int, default=None, help='ChromaDB port (optional, for remote server)')
     parser.add_argument('--chunks', type=int, default=5, help='Number of chunks to retrieve')
     parser.add_argument('--no-summaries', action='store_true', help='Disable cluster summaries')
     parser.add_argument('--temperature', type=float, default=0.3, help='LLM temperature')
@@ -598,18 +627,14 @@ def main():
     
     args = parser.parse_args()
     
-    # Check if database path exists
-    if not os.path.exists(args.db_path):
-        print(f"\n⚠️ Database path does not exist: {args.db_path}")
-        print("   Please run mk3.py first to create the database:")
-        print("   python mk3.py")
-        print(f"\n   Or specify a different path with --db-path")
-        sys.exit(1)
-    
-    # Initialize interface
+    # Initialize interface with local services
     interface = RAGInterface(
-        chroma_path=args.db_path,
         ollama_model=args.model,
+        ollama_embedding_model=args.embedding_model,
+        ollama_url=args.ollama_url,
+        chroma_path=args.chroma_path,
+        chroma_host=args.chroma_host,
+        chroma_port=args.chroma_port,
         max_context_chunks=args.chunks,
         include_summaries=not args.no_summaries,
         temperature=args.temperature,
@@ -620,18 +645,16 @@ def main():
     total_chunks = interface.processor.chunks_collection.count()
     if total_chunks == 0:
         print("\n⚠️ Database is empty!")
-        print("Please add documents first using mk3.py")
-        print("Example: python mk3.py")
+        print("Please add documents first using main.py")
+        print("Example: python main.py")
         return
     
     # Handle different modes
     if args.query:
-        # Single query mode
         result = interface.query(args.query)
         print(f"\n{result['answer']}")
         
     elif args.batch:
-        # Batch query mode
         if not os.path.exists(args.batch):
             print(f"\n❌ Batch file not found: {args.batch}")
             return
@@ -640,17 +663,12 @@ def main():
             questions = [line.strip() for line in f if line.strip()]
         
         print(f"Processing {len(questions)} questions...")
-        results = interface.batch_query(questions)
-        
-        # Export results
         output_file = f"batch_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-        interface.batch_query(questions, output_file)
+        results = interface.batch_query(questions, output_file)
         
     else:
-        # Interactive mode
         interface.interactive_mode()
         
-        # Export conversation if requested
         if args.export:
             interface.export_conversation(args.export)
 
