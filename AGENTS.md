@@ -4,16 +4,23 @@ Flat Python research repo for a hierarchical-clustering RAG pipeline ("APEX") ov
 
 ## Architecture (what's actually active)
 
-- **`main.py`** — current backend & coordinator. Coordinates the modular pipeline via `HierarchicalClusterSummarizer` and provides the execution pipeline (`main()`).
-- **`document_loader.py`** — PDF text extraction (`read_pdf`) and text chunking (`create_chunks`).
-- **`clustering.py`** — PCA dimensionality reduction, StandardScaler normalization, and GMM clustering (`perform_clustering`).
-- **`summarizer.py`** — Local Ollama LLM summarization and keyword frequency fallback (`OllamaSummarizer`).
-- **`vector_store.py`** — ChromaDB `PersistentClient` collection management, batch chunk insertion, and hierarchy retrieval (`ChromaStore`).
-- **`face.py`** — frontend/CLI. Imports `HierarchicalClusterSummarizer` from `main.py`. Connects to local ChromaDB and native Ollama. Run interactively (`python face.py`) or `--query "..."` / `--batch file.txt`.
-- **Legacy experiments** (don't confuse with the active path): `mk2.py`, `mk2_max.py` use `chromadb.PersistentClient` with **legacy dirs** (`./pdf_chroma_db`, `./document_db`). `chunk.py` / `ecs.py` use `sentence_transformers`. `fixed_chunk.py` is pure text chunking. `chroma.py`, `inspector.py` are smoke tests.
-- **`docker-compose.yml`** — legacy container orchestration file (Docker is no longer required; the stack runs 100% locally on native Python and native Ollama).
+- **`main.py`** — current backend & coordinator. Coordinates the modular pipeline via `HierarchicalClusterSummarizer` and provides the execution CLI (`main()`).
+- **`face.py`** — frontend/CLI. Imports backend components. Connects to local ChromaDB and native Ollama. Run interactively (`python face.py`) or `--query "..."` / `--batch file.txt`.
+- **`inspector.py`** — Environment smoke-test checking local ChromaDB and native Ollama connectivity.
+- **`modules/`** — Dedicated package directory for core pipeline components:
+  - **`modules/__init__.py`** — Package initializer exporting core classes and functions.
+  - **`modules/document_loader.py`** — PDF text extraction (`read_pdf`, `read_pdf_pages`) and page/token-aware chunking (`create_chunks_from_pages`).
+  - **`modules/clustering.py`** — PCA dimensionality reduction, StandardScaler normalization, GMM clustering, and silhouette evaluation (`perform_clustering`).
+  - **`modules/summarizer.py`** — Local Ollama LLM summarization with exponential backoff and keyword frequency fallback (`OllamaSummarizer`).
+  - **`modules/vector_store.py`** — ChromaDB `PersistentClient` collection management, batch chunk insertion with citation metadata, and hierarchy retrieval (`ChromaStore`).
+  - **`modules/retrieval.py`** — Hybrid retrieval (`BM25Scorer`), Reciprocal Rank Fusion (`reciprocal_rank_fusion`), composite reranking (`rerank_hybrid_candidates`), and chunk deduplication (`deduplicate_retrieved_chunks`).
+  - **`modules/config.py`** — Centralized typed dataclass configuration with environment variable overrides.
+  - **`modules/logger.py`** — Standardized timestamped logging infrastructure.
+
 
 ## Running (100% Local / No Docker)
+
+> See **[`run.md`](run.md)** for the complete guide to all ingestion, querying, ablation, and testing commands.
 
 ```powershell
 # 1. Start Ollama locally (if not already running from Windows Start Menu)

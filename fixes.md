@@ -50,35 +50,46 @@ Below is the updated tracking list of all 37 priority items, revised to match th
   - In `face.py`, retrieval fetches primary evidence from `document_chunks` and queries `hierarchical_summaries` separately for macro-thematic background. Prompts clearly delineate `PRIMARY SOURCE EVIDENCE` from `THEMATIC BACKGROUND SUMMARY`.
 
 ### Item 3: Preserve Citation Metadata (Page Numbers & Token Offsets)
-- **Status:** `[PENDING]`
-- **Current State:** Chunk metadata currently stores `source_file`, `chunk_id`, `chunk_index`, `level`, `chunk_preview`, and `added_timestamp`. It lacks `page_number`, `start_offset`, `end_offset`, and `doc_hash`.
-- **Action Required:**
-  - Update `document_loader.py` to extract text page-by-page.
-  - Track `page_number` (1-indexed), `start_offset`, and `end_offset` in character/token spans for each chunk.
-  - Pass this rich metadata into ChromaDB so answers can cite specific pages (e.g., *"The Road to React, p. 42"*).
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `document_loader.py` (`read_pdf_pages`, `create_chunks_from_pages`), `vector_store.py` (`add_chunks`), and `face.py` (`build_prompt`, console logger).
+- **Implementation Details:**
+  - `read_pdf_pages()` extracts page-by-page text preserving 1-indexed physical `page_number` and character counts.
+  - `create_chunks_from_pages()` attaches `page_number`, `start_char`, `end_char`, `token_count`, and `char_count` to every chunk.
+  - `vector_store.py` persists these citation fields in ChromaDB metadata and includes the page number in the deterministic chunk ID (`f"{clean_prefix}_p{page_num}_{chunk['chunk_id']}"`).
+  - `face.py` surfaces `(p. {page})` in retrieval logs, incorporates `Page: {page}` into each evidence item in `build_prompt()`, and instructs the model to explicitly cite page numbers.
 
 ### Item 4: Improve PDF Chunking (Page-Aware & Token-Aware)
-- **Status:** `[PENDING]`
-- **Current State:** `document_loader.py` uses fixed 500-character windows with a 50-character overlap, splitting by double newlines when text is large. Character count is a poor proxy for semantic or token boundaries.
-- **Action Required:**
-  - Implement token-aware chunking using `tiktoken` (cl100k_base or gemma tokenizer) or sentence-aware boundary detection.
-  - Enforce page boundaries so chunks do not bleed nonsensically across unrelated page headers.
-  - Set default chunk sizes in tokens (e.g., 250–400 tokens with 40-token overlap).
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `document_loader.py` (`create_chunks_from_pages`, `count_tokens`, `split_into_sentences`) and integrated into `main.py` (`add_document`).
+- **Implementation Details:**
+  - **Zero Cross-Page Bleeding:** Hard page boundaries ensure chunks never merge content from adjacent, unrelated pages or headers.
+  - **Sentence & Punctuation Integrity:** Chunks are constructed from whole grammatical sentences via `split_into_sentences()`; words and sentences are never severed mid-token.
+  - **Token-Bounded Sizing:** Configurable `target_tokens` (default 300) and `overlap_tokens` (default 40) using `count_tokens()` for fast, offline, subword-correlated token counting.
+  - Backward compatibility maintained for raw text via `create_chunks()`.
+  - Verified with unit tests (`verify_chunking.py`) and end-to-end ingestion/retrieval tests (`test_e2e_citations.py`).
 
 ### Item 5: Stop Summarizing Bad Clusters (Silhouette Quality Gate)
-- **Status:** `[PENDING]`
-- **Current State:** `main.py` clusters embeddings using GMM and calculates `silhouette_score`. However, even when the silhouette score is negative or near zero (e.g., `-0.0018` at Level 0 in `clustering_history.csv`), it still prompts Ollama to summarize all 8 ill-formed clusters.
-- **Action Required:**
-  - Add a silhouette threshold gate: if `silhouette_avg < 0.05` or clustering quality is poor, do not generate synthetic summaries for amorphous clusters.
-  - Alternatively, mark them in metadata as `low_confidence: True` and exclude them from high-level retrieval.
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `clustering.py` (`perform_clustering`) and `main.py` (`store_cluster_summaries`, `hierarchical_clustering`).
+- **Implementation Details:**
+  - `clustering.py` now computes both overall silhouette score and per-cluster silhouette averages using `sklearn.metrics.silhouette_samples`.
+  - In `HierarchicalClusterSummarizer`, added configurable quality gate thresholds: `min_silhouette_threshold` (default 0.05) and `min_cluster_silhouette` (default 0.01).
+  - `store_cluster_summaries()` checks each cluster's silhouette score before invoking Ollama. If a cluster has a negative or near-zero silhouette score (`cluster_sil <= min_cluster_silhouette`), LLM summarization is skipped, preventing expensive generation of hallucinated summaries from amorphous or noisy clusters.
+  - In `hierarchical_clustering()`, if no clusters meet the quality threshold at a given level, hierarchy recursion halts early to prevent propagating amorphous clusters.
+  - Verified with unit tests (`test_items_5_6.py`): bad clusters (e.g., silhouette -0.04) are cleanly rejected while well-formed clusters (e.g., silhouette 0.35) are summarized and saved.
 
 ### Item 6: Fix Retrieval Separation in `face.py`
-- **Status:** `[IN PROGRESS / PARTIALLY IMPLEMENTED]`
-- **Current State:** `face.py` now implements relevance clipping and low-confidence detection. However, prompt construction still retrieves cluster summaries based on the `cluster_id` metadata tag of returned chunks, blending them into the prompt.
-- **Action Required:**
-  - Two-stage retrieval: Query `document_chunks` first to establish hard, factual evidence.
-  - Query `hierarchical_summaries` separately (or based on query relevance) to provide high-level context.
-  - Ensure source chunks are the primary evidence anchor so generated summaries never override or hallucinate over source facts.
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `face.py` (`retrieve_context`, `build_prompt`).
+- **Implementation Details:**
+  - **Hard Evidence Priority:** Primary source chunks are retrieved first from `document_chunks` using the full context budget (`max_context_chunks`) with near-identical chunk deduplication.
+  - **Auxiliary Thematic Separation:** `hierarchical_summaries` is queried independently and subject to strict filtering:
+    - Rejects low-confidence or negative-silhouette summaries (`silhouette_score <= 0` or `low_confidence == True`).
+    - Requires semantic query relevance score $\ge 30\%$.
+    - **Source Alignment Filter:** Discards candidate summaries whose `source_files` are disjoint from the primary retrieved chunk sources, preventing cross-document confusion.
+  - **Prompt Grounding Hierarchy:** In `build_prompt()`, `PRIMARY SOURCE EVIDENCE` is formatted *first* directly below instructions. `THEMATIC CONTEXT` is placed *after* primary evidence as macro framing only.
+  - **Strict Anti-Hallucination Directives:** System prompt explicitly instructs the LLM: *"DO NOT use THEMATIC CONTEXT to answer the question if the specific facts are not present in the PRIMARY SOURCE EVIDENCE."*
+  - Verified with unit and integration tests (`test_items_5_6.py`).
 
 ---
 
@@ -119,123 +130,170 @@ Below is the updated tracking list of all 37 priority items, revised to match th
 ## 3. Code Cleanup & Architecture
 
 ### Item 11: Add `requirements.txt` / `pyproject.toml`
-- **Status:** `[PENDING]`
-- **Current State:** Dependencies are implicit in the environment (`chromadb`, `scikit-learn`, `pandas`, `numpy`, `requests`, `PyPDF2`, `tiktoken`).
-- **Action Required:**
-  - Create a clean `requirements.txt` pinning compatible versions for local native execution.
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `requirements.txt` and `pyproject.toml`.
+- **Implementation Details:**
+  - Pinned core dependencies for native 100% local execution: `chromadb>=0.5.0`, `scikit-learn>=1.4.0`, `numpy>=1.26.0`, `pandas>=2.0.0`, `PyPDF2>=3.0.0`, `tiktoken>=0.5.0`, and `requests>=2.31.0`.
+  - Added modern `pyproject.toml` packaging configuration with optional dev dependencies.
 
 ### Item 12: Add `.gitignore`
-- **Status:** `[PENDING]` (Critical for Repo Hygiene)
-- **Current State:** Untracked/modified git status shows `__pycache__`, ChromaDB binary files, SQLite stores, model blobs, and CSV outputs being tracked.
-- **Action Required:**
-  - Create `.gitignore` ignoring `__pycache__/`, `*.pyc`, `hierarchical_chroma_db/`, `*.sqlite3`, `*.bin`, `ollama_data/`, `anythingllm_data/`, `outputs/`, and temporary CSVs.
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `.gitignore`.
+- **Implementation Details:**
+  - Comprehensive ignore patterns covering:
+    - Python bytecode: `__pycache__/`, `*.py[cod]`, `*$py.class`, `.pytest_cache/`.
+    - Local ChromaDB databases: `hierarchical_chroma_db/`, `chroma_db/`, `pdf_chroma_db/`, `document_db/`, `improved_chroma_db/`, `*.sqlite3`, `*.bin`, `*.pickle`.
+    - Service and private key directories: `ollama_data/`, `anythingllm_data/`.
+    - Artifacts & outputs: `outputs/`, `hierarchical_summaries.csv`, `clustering_history.csv`, `cluster_report.csv`, `*.log`, `batch_results_*.json`, `conversation_*.json`.
+    - Virtual environments & IDE configurations: `.env`, `venv/`, `.venv/`, `.vscode/`, `.idea/`.
 
-### Item 13: Extract Hardcoded Configuration
-- **Status:** `[PENDING]`
-- **Current State:** In `main.py` and `face.py`, model names (`gemma3:1b`, `nomic-embed-text`), URLs, paths, and sample files (`Steve Jobs (1).pdf`) are hardcoded.
-- **Action Required:**
-  - Create `config.py` with dataclass/pydantic settings or environment variables (`OLLAMA_URL`, `GENERATION_MODEL`, `EMBEDDING_MODEL`, `CHROMA_PATH`, `CHUNK_SIZE`, `OVERLAP`, `MAX_LEVELS`).
+### Item 13: Extract Hardcoded Configuration (`config.py`)
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `config.py` and integrated across all modules.
+- **Implementation Details:**
+  - Created typed dataclasses (`OllamaConfig`, `ChromaConfig`, `ChunkingConfig`, `ClusteringConfig`, `RetrievalConfig`, `AppConfig`).
+  - Added environment variable overrides (`OLLAMA_URL`, `OLLAMA_MODEL`, `OLLAMA_TIMEOUT`, `CHROMA_PATH`, `CHUNK_TARGET_TOKENS`, `MIN_SILHOUETTE_THRESHOLD`, `MAX_CONTEXT_CHUNKS`, `LOG_LEVEL`).
+  - Replaced hardcoded values across `main.py`, `face.py`, `vector_store.py`, `clustering.py`, `document_loader.py`, and `summarizer.py`.
 
 ### Item 14: Remove Unused Variables (`embedding_batch_size`)
 - **Status:** `[COMPLETED]`
-- **Resolution:** `mk3.py` has been deleted; the refactored `vector_store.py` and `main.py` eliminated dangling and unused variables.
+- **Resolution:** `mk3.py` deleted; all refactored modules cleaned of unused variables and dead parameters.
 
 ### Item 15: Split Monolithic Code into Modules
 - **Status:** `[COMPLETED]`
-- **Resolution:** Successfully separated into:
-  - `document_loader.py` (Ingestion & Chunking)
-  - `clustering.py` (PCA & GMM Clustering)
-  - `summarizer.py` (Ollama Summarization & Heuristics)
-  - `vector_store.py` (ChromaDB Management)
-  - `main.py` (Central Orchestrator & CLI)
+- **Resolution:** Pipeline decoupled into clean single-responsibility modules housed inside a dedicated `modules/` package to eliminate root directory clutter:
+  - `modules/__init__.py`: Package export interface for core pipeline classes and utilities.
+  - `modules/document_loader.py`: Ingestion, sentence splitting, token counting & chunking.
+  - `modules/clustering.py`: PCA dimensionality reduction, GMM clustering, and silhouette evaluation.
+  - `modules/summarizer.py`: Ollama summarization with exponential backoff & heuristic fallback.
+  - `modules/vector_store.py`: ChromaDB PersistentClient management & collection separation.
+  - `modules/config.py`: Centralized typed dataclass configuration with environment variable overrides.
+  - `modules/logger.py`: Standard logging infrastructure.
+  - `main.py`: Central pipeline coordinator & CLI entrypoint at root.
+  - `face.py`: RAG query interface & retrieval CLI at root.
+  - `inspector.py`: Environment smoke-test tool at root.
 
 ### Item 16: Replace `print()` Calls with Standard `logging`
-- **Status:** `[PENDING]`
-- **Current State:** All modules use verbose `print()` statements.
-- **Action Required:**
-  - Introduce `import logging` across modules with configurable levels (`INFO`, `DEBUG`, `WARNING`).
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `logger.py` and adopted across all backend modules.
+- **Implementation Details:**
+  - Built unified logger setup with timestamped formatting: `%(asctime)s [%(levelname)s] %(name)s: %(message)s`.
+  - Replaced unstructured `print()` calls in `document_loader.py`, `clustering.py`, `summarizer.py`, `vector_store.py`, and `main.py` with `logger.info()`, `logger.warning()`, `logger.error()`, `logger.debug()`.
+  - Supported `--log-level` CLI flag and `LOG_LEVEL` environment variable.
 
 ### Item 17: Robust Error Handling for ChromaDB & Ollama
-- **Status:** `[IN PROGRESS / PARTIALLY IMPLEMENTED]`
-- **Current State:** Preflight checks exist in `face.py` and `summarizer.py`, and `face.py` catches timeouts and connection errors.
-- **Action Required:**
-  - Add retry backoff for Ollama generation requests and collection corruption recovery in `vector_store.py`.
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `summarizer.py`, `face.py`, and `vector_store.py`.
+- **Implementation Details:**
+  - **Ollama Exponential Backoff:** Added automatic retry loops (up to 3 attempts with increasing delay) in `summarizer.py` and `face.py` for transient connection issues or server timeouts.
+  - **Graceful Fallbacks:** On unrecoverable Ollama generation failures, `summarizer.py` automatically produces a keyword-density heuristic summary instead of crashing.
+  - **ChromaDB Recovery:** `vector_store.py` detects database lock/permission issues and handles collection recreation gracefully if an embedding function conflict occurs.
+  - **Actionable Diagnostics:** Clear, human-readable troubleshooting guidance logged whenever local services are unreachable.
 
 ---
 
 ## 4. Data Quality & Clustering Logic
 
 ### Item 18: Clean Extracted PDF Text Before Chunking
-- **Status:** `[PENDING]`
-- **Current State:** PyPDF2 text extraction outputs raw artifacts (hyphenated word splits like `in-\nstructor`, excessive whitespace, repeated headers/footers, and unprintable characters).
-- **Action Required:**
-  - Add a text cleaning pipeline in `document_loader.py`: normalize unicode, join hyphenated line-breaks, remove page headers/numbers, and collapse redundant whitespace while preserving paragraph markers.
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `modules/document_loader.py` via `clean_extracted_text()`.
+- **Implementation Details:**
+  - **Unicode Normalization:** Runs `unicodedata.normalize('NFKC')` resolving ligatures (`ﬀ` -> `ff`, `ﬁ` -> `fi`), non-breaking spaces, curly quotes, and fullwidth glyphs.
+  - **De-hyphenation:** Automatically rejoins words hyphenated across line breaks (`in-\nstructor` -> `instructor`, `consid-\nered` -> `considered`).
+  - **Artifact Stripping:** Strips standalone page numbers (`Page \d+`, `\d+`) and web watermarks (`OceanofPDF.com`).
+  - **Kerning Repair:** Fixes PyPDF2 font kerning splits (`B OOK` -> `BOOK`, `lear n mor e` -> `learn more`, `r eceive` -> `receive`, `fr om` -> `from`, `P ublications` -> `Publications`, `consider ed` -> `considered`).
+  - **Paragraph Preservation:** Unifies single line-wraps within a paragraph while strictly preserving `\n\n` paragraph boundaries.
 
 ### Item 19: Prevent Cross-Document Narrative Bleeding
-- **Status:** `[PENDING]` (Critical for Semantic Accuracy)
-- **Current State:** GMM clusters chunks across all ingested documents simultaneously. In `clustering_history.csv`, chunks from *The Book of Five Rings* and *The Odyssey* merged into one cluster, causing `gemma3:1b` to hallucinate that Miyamoto Musashi was held captive by Calypso.
-- **Action Required:**
-  - Cluster within individual documents first (intra-document clustering).
-  - Only allow cross-document clustering at high levels (Level 2+) if explicitly requested for comparative synthesis.
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented via intra-document Level 0 clustering in `main.py` and `modules/vector_store.py`.
+- **Implementation Details:**
+  - Chunks at Level 0 are partitioned strictly by `source_file`.
+  - GMM clustering operates independently per document: chunks from *The Book of Five Rings* never cluster with *The Odyssey* or *React*.
+  - Completely eliminates cross-document narrative hallucinations at source clustering levels.
 
 ### Item 20: Source-Aware Clustering Hierarchy
-- **Status:** `[PENDING]`
-- **Current State:** The clustering algorithm is source-agnostic at Level 0.
-- **Action Required:**
-  - Group chunks by `source_file` or `document_id` prior to Level 0 clustering.
-  - Build hierarchical trees per document, then aggregate top-level document summaries.
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented via `--source-aware` (default: enabled) in `main.py` and `modules/vector_store.py`.
+- **Implementation Details:**
+  - `vector_store.py` provides `get_indexed_sources()` to detect all distinct documents in `document_chunks`.
+  - `get_items_by_level(level=0, source_file=...)` filters chunks strictly by source file.
+  - Level 0 builds intra-document thematic clusters; Level 1+ aggregates document-level summaries into macro cross-document topic trees.
+  - Every summary record in ChromaDB contains `source_file`, `source_files`, `cluster_type` (`intra_document` vs `cross_document`), and `page_range`.
 
 ### Item 21: Controlled Summary Length for Retrieval
-- **Status:** `[PENDING]`
-- **Current State:** Summaries in `hierarchical_summaries` can be several verbose paragraphs long, consuming prompt context when retrieved.
-- **Action Required:**
-  - Generate and store dual fields: `full_summary` (for detailed analysis) and `dense_summary` (1-2 sentences optimized for RAG context injection).
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented via `ClusterSummary` in `modules/summarizer.py` and dense injection in `face.py`.
+- **Implementation Details:**
+  - **Dual Representation (`ClusterSummary`):** Produces both `full` (comprehensive 1-2 paragraph thematic overview) and `dense` (concise 1-2 sentence core takeaway).
+  - Subclasses Python `str` so it remains 100% backward-compatible everywhere strings are expected.
+  - ChromaDB `hierarchical_summaries` records `dense_summary` in metadata.
+  - `face.py` uses `dense_summary` in `THEMATIC CONTEXT`, saving ~60-70% prompt token budget for primary source evidence.
 
 ### Item 22: Summary Prompts with Source Attribution Constraints
-- **Status:** `[PENDING]`
-- **Current State:** The summarizer prompt asks for key themes without requiring document names or chunk IDs.
-- **Action Required:**
-  - Modify `summarizer.py` prompt template to require explicit citations of the source document and scope.
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `modules/summarizer.py`.
+- **Implementation Details:**
+  - Prompt template dynamically injects source document name and page range: `from document '{source_doc}' (Pages {min}-{max})`.
+  - Enforces strict constraints: `"STRICT ATTRIBUTION: Attribute all concepts strictly to '{source_doc}'. Never blend concepts, characters, or authors from other books."`
+  - Explicitly structures output into `FULL SUMMARY:` and `DENSE SUMMARY:` sections.
 
 ---
 
 ## 5. Retrieval Improvements
 
 ### Item 23: Metadata Filtering by Document / Source
-- **Status:** `[PENDING]`
-- **Current State:** Queries search the entire database across all books.
-- **Action Required:**
-  - Add `--source` or `--filter` argument to `face.py` and implement ChromaDB `where={"source_file": selected_source}` filtering.
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `face.py` and `modules/retrieval.py` via `--source` / `--filter` CLI flag, `/source` interactive command, and API filtering.
+- **Implementation Details:**
+  - Added `--source` and `--filter` CLI arguments to `face.py`.
+  - Added interactive in-session commands: `/source <name>` to set active source filter, `/source clear` to search across all documents.
+  - Implemented exact and intelligent title resolution: strips `.pdf` and performs case-insensitive substring matching against indexed sources in ChromaDB (e.g. `--source "Five Rings"` automatically resolves to `The Book of Five Rings.pdf`).
+  - Passes `where={"source_file": selected_source}` to ChromaDB `chunks_collection.query()` and `summaries_collection.query()`, providing 100% strict document isolation with zero cross-book leakage.
 
 ### Item 24: Post-Retrieval Reranking
-- **Status:** `[PENDING]`
-- **Current State:** Chunks are ordered purely by bi-encoder vector similarity (`nomic-embed-text`).
-- **Action Required:**
-  - Integrate a lightweight cross-encoder reranker (e.g., `FlashRank` or `sentence-transformers/bge-reranker-base`) to re-score top-10 chunks down to top-5.
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `modules/retrieval.py` via `rerank_hybrid_candidates()`.
+- **Implementation Details:**
+  - Expanded candidate retrieval pool to $3 \times$ `max_context_chunks` (minimum 12 candidate chunks) from dense HNSW search.
+  - Re-scores candidates using a multi-factor composite formula:
+    $$\text{Score} = 0.50 \times \text{DenseScore} + 0.30 \times \text{BM25Score} + 0.20 \times \text{TermCoverage}$$
+  - Balances semantic embedding affinity, exact lexical matching, and query term recall before selecting top context.
 
 ### Item 25: Hybrid Retrieval (BM25 Keyword + Dense Vector)
-- **Status:** `[PENDING]`
-- **Current State:** Only dense vector search is supported. Exact terms (names, dates, function names) can be missed if semantic similarity is diluted.
-- **Action Required:**
-  - Combine `rank_bm25` (already present in the environment) with Chroma vector retrieval using Reciprocal Rank Fusion (RRF).
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `modules/retrieval.py` via `BM25Scorer` and `reciprocal_rank_fusion()`.
+- **Implementation Details:**
+  - Integrated `rank_bm25.BM25Okapi` with lowercase regex word tokenization.
+  - Implemented `BM25Scorer` with min-max normalization across candidate chunks.
+  - Implemented standard Reciprocal Rank Fusion: $RRF(d) = \frac{1}{60 + r_{dense}} + \frac{1}{60 + r_{bm25}}$.
+  - Combines ChromaDB dense embeddings (`nomic-embed-text`) with BM25 lexical precision to capture exact proper nouns, method names, and technical terms.
 
 ### Item 26: Score Thresholds for Weak Match Filtering
-- **Status:** `[IN PROGRESS / PARTIALLY IMPLEMENTED]`
-- **Current State:** `face.py` detects low confidence ($< 25\%$) and warns the user.
-- **Action Required:**
-  - Provide an option to filter out chunks below a configurable similarity threshold before feeding them into the prompt.
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `modules/config.py`, `face.py`, and `modules/retrieval.py`.
+- **Implementation Details:**
+  - Added `--min-score` CLI flag, `min_score` parameter in `RAGInterface`, and `MIN_RELEVANCE_SCORE` environment variable (default: `0.25`).
+  - Gated candidate pool to discard chunks below the threshold prior to prompt construction.
+  - Graceful fallback: if all retrieved chunks score below threshold, warns user and retains only the single top chunk.
 
 ### Item 27: Deduplicate Retrieved Chunks Before Prompt Construction
-- **Status:** `[PENDING]`
-- **Current State:** Sliding window chunking can cause near-identical overlapping chunks to fill the top-5 retrieved context.
-- **Action Required:**
-  - Deduplicate overlapping chunks by content similarity or adjacent chunk index before prompt assembly.
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `modules/retrieval.py` via `deduplicate_retrieved_chunks()`.
+- **Implementation Details:**
+  - **Adjacent Index Suppression:** Checks `chunk_index` metadata; skips adjacent chunks ($index - 1$ or $index + 1$) from the same source document created by sliding-window token chunking.
+  - **Jaccard Word Overlap:** Computes token-level Jaccard similarity between candidate texts and suppresses any chunk with $\ge 0.65$ lexical overlap with an already selected higher-ranked chunk.
+  - Maximizes informational diversity within the LLM prompt context window.
 
 ### Item 28: Prompt Source Formatting with Page Numbers & Chunk IDs
-- **Status:** `[IN PROGRESS / PARTIALLY IMPLEMENTED]`
-- **Current State:** `face.py` displays source document name and relevance percentage.
-- **Action Required:**
-  - Add page numbers and chunk spans once page-aware chunking (Item 3) is implemented.
+- **Status:** `[COMPLETED]`
+- **Current State:** Implemented in `face.py` via `build_prompt()` and verbose logging.
+- **Implementation Details:**
+  - Formats each context chunk with explicit attribution:
+    `[Source {i}: {doc_name}, Page {page}, Chunk {chunk_id}] (Relevance: {score:.1%})`
+    `{chunk_text}`
+  - Updated LLM system instructions: `"When citing facts, always include the bracketed source reference, e.g. '[DocumentName.pdf, Page 12]'."`
+  - Verbose terminal output displays chunk IDs, source document names, page numbers, and relevance scores.
 
 ---
 
