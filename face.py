@@ -277,6 +277,63 @@ class RAGInterface:
                 except Exception as e:
                     if self.verbose:
                         print(f"  Note fetching cluster summary: {e}")
+
+            # 6. Conversational Memory Retrieval: Recall relevant past chat turns
+            conversation_memories = []
+            if config.retrieval.include_conversation_memory and hasattr(self.processor, 'conv_chunks_collection') and self.processor.conv_chunks_collection.count() > 0:
+                try:
+                    mem_results = self.processor.conv_chunks_collection.query(
+                        query_texts=[query.strip()],
+                        n_results=min(config.retrieval.max_memory_chunks, self.processor.conv_chunks_collection.count()),
+                        include=["documents", "metadatas", "distances"]
+                    )
+                    if mem_results and mem_results.get('documents') and mem_results['documents'][0]:
+                        for m_doc, m_meta, m_dist in zip(
+                            mem_results['documents'][0],
+                            mem_results['metadatas'][0],
+                            mem_results['distances'][0]
+                        ):
+                            m_score = max(0.0, min(1.0, 1.0 - float(m_dist)))
+                            if m_score >= 0.20:
+                                conversation_memories.append({
+                                    'text': m_doc,
+                                    'chat_id': m_meta.get('chat_id'),
+                                    'chat_title': m_meta.get('chat_title', 'Previous Chat'),
+                                    'turn_index': m_meta.get('turn_index', 0),
+                                    'timestamp': m_meta.get('timestamp', ''),
+                                    'score': m_score
+                                })
+                except Exception as e:
+                    if self.verbose:
+                        print(f"  Note fetching conversation memories: {e}")
+
+            # 7. Conversational Topic Theme Retrieval: Recall macro themes of past discussions
+            conv_cluster_summaries = []
+            if hasattr(self.processor, 'conv_summaries_collection') and self.processor.conv_summaries_collection.count() > 0:
+                try:
+                    csum_results = self.processor.conv_summaries_collection.query(
+                        query_texts=[query.strip()],
+                        n_results=min(2, self.processor.conv_summaries_collection.count()),
+                        include=["documents", "metadatas", "distances"]
+                    )
+                    if csum_results and csum_results.get('documents') and csum_results['documents'][0]:
+                        for cs_doc, cs_meta, cs_dist in zip(
+                            csum_results['documents'][0],
+                            csum_results['metadatas'][0],
+                            csum_results['distances'][0]
+                        ):
+                            cs_score = max(0.0, min(1.0, 1.0 - float(cs_dist)))
+                            if cs_score >= 0.25:
+                                conv_cluster_summaries.append({
+                                    'summary': cs_doc,
+                                    'dense_summary': cs_meta.get('dense_summary', ''),
+                                    'chats_represented': cs_meta.get('chats_represented', 'Chats'),
+                                    'score': cs_score,
+                                    'level': cs_meta.get('level', 0)
+                                })
+                except Exception as e:
+                    if self.verbose:
+                        print(f"  Note fetching conversation cluster summary: {e}")
             
             return {
                 'success': True,
@@ -284,6 +341,8 @@ class RAGInterface:
                 'metadatas': retrieved_metadatas,
                 'scores': relevance_scores,
                 'cluster_summaries': cluster_summaries,
+                'conversation_memories': conversation_memories,
+                'conversation_cluster_summaries': conv_cluster_summaries,
                 'sources': sources,
                 'query': query,
                 'source_filter': effective_source,
@@ -296,7 +355,7 @@ class RAGInterface:
     
     def build_prompt(self, context: Dict) -> str:
         """
-        Build a prompt for the LLM prioritizing primary source evidence
+        Build a prompt for the LLM prioritizing primary source evidence and conversational memory
         
         Args:
             context: Retrieved context dictionary from retrieve_context()
@@ -306,13 +365,13 @@ class RAGInterface:
         """
         prompt_parts = []
         
-        prompt_parts.append("""You are a knowledgeable assistant. Answer the question based ONLY on the provided context.
+        prompt_parts.append("""You are a knowledgeable assistant. Answer the question based on the provided context.
 
 INSTRUCTIONS:
-1. Ground your answer strictly in the PRIMARY SOURCE EVIDENCE below.
-2. When citing facts, always include the bracketed source reference, e.g. '[DocumentName.pdf, Page 12]'.
-3. DO NOT use THEMATIC CONTEXT to answer the question if the specific facts are not present in the PRIMARY SOURCE EVIDENCE.
-4. If the PRIMARY SOURCE EVIDENCE does not contain enough information to answer the question, say "I don't have enough information to answer that based on the provided documents."
+1. Ground your answer strictly in the PRIMARY SOURCE EVIDENCE and PREVIOUS CONVERSATIONS & USER MEMORY below.
+2. If the user asks about previous chats, personal preferences, user projects, or topics previously discussed, ground your answer in PREVIOUS CONVERSATIONS & USER MEMORY.
+3. When citing facts from books/PDFs, always include the bracketed source reference, e.g. '[DocumentName.pdf, Page 12]'.
+4. If neither the documents nor the previous conversations contain enough information to answer the question, say "I don't have enough information to answer that based on the provided documents and past conversations."
 5. Be concise, accurate, and thorough.
 """)
         
@@ -342,8 +401,24 @@ INSTRUCTIONS:
                 summary_text = summary_info.get('dense_summary') or summary_info.get('summary', '')
                 prompt_parts.append(f"\n[Level {level} Cluster {cid} ({chunks_cnt} chunks)]: {summary_text}")
         
+        # Conversational memory of past chats & personal context
+        if context.get('conversation_memories'):
+            prompt_parts.append("\n💬 PREVIOUS CONVERSATIONS & USER MEMORY (Personal Context, User Statements & Past Chats):")
+            for i, mem in enumerate(context['conversation_memories']):
+                title = mem.get('chat_title', 'Previous Chat')
+                score = mem.get('score', 0.0)
+                prompt_parts.append(f"\n[Memory {i+1}: {title}] (Relevance: {score:.1%})\n{mem['text']}")
+
+        # Conversational cluster themes (Macro topics from user's chat history)
+        if context.get('conversation_cluster_summaries'):
+            prompt_parts.append("\n🧠 CONVERSATION TOPIC THEMES (Macro Themes of Past User Chats):")
+            for cs in context['conversation_cluster_summaries']:
+                chats = cs.get('chats_represented', 'Chats')
+                summary_text = cs.get('dense_summary') or cs.get('summary', '')
+                prompt_parts.append(f"\n[Theme ({chats})]: {summary_text}")
+
         if self.conversation_history:
-            prompt_parts.append("\n💬 CONVERSATION HISTORY:")
+            prompt_parts.append("\n💬 CURRENT SESSION HISTORY:")
             for turn in self.conversation_history[-3:]:
                 prompt_parts.append(f"Q: {turn['question']}")
                 prompt_parts.append(f"A: {turn['answer'][:200]}...")

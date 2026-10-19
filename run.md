@@ -12,7 +12,8 @@ All commands run **100% locally** on Windows / PowerShell (or bash) with zero ex
 3. [Document Ingestion & Hierarchical Clustering (`main.py`)](#3-document-ingestion--hierarchical-clustering-mainpy)
 4. [Querying & RAG Retrieval Interface (`face.py`)](#4-querying--rag-retrieval-interface-facepy)
 5. [Evaluation & Verification Test Suites](#5-evaluation--verification-test-suites)
-6. [Environment Variables Reference](#6-environment-variables-reference)
+6. [Mobile Telegram Bot Interface (`telegram_bot.py`)](#6-mobile-telegram-bot-interface-telegram_botpy)
+7. [Environment Variables Reference](#7-environment-variables-reference)
 
 ---
 
@@ -228,6 +229,20 @@ python face.py --min-score 0.40 --query "What is the doctrine of Void?"
 
 ---
 
+### 4.8 Conversational Episodic Memory & Hierarchical Chat Clustering
+APEX automatically retains conversational exchanges across chat sessions (irrespective of PDF knowledge base) and builds hierarchical topic clusters over user conversations:
+- **Turn Recording**: Every question-and-answer exchange is automatically indexed into ChromaDB's `conversation_chunks` collection.
+- **Hierarchical Chat Clustering**: Groups conversation turns into Level 0 topic clusters and Level 1+ macro themes using GMM + PCA and generates dual dense/full topic summaries with Ollama.
+- **Unified RAG Recall**: When you ask questions about past discussions, preferences, or personal projects, APEX simultaneously retrieves both PDF ground-truth facts and relevant conversation memories.
+- **Web UI Controls**: Click **"Cluster Memory"** in the sidebar footer to run clustering on demand; inspect recalled turns in the **"🧠 Recalled Conversational Memory"** evidence drawer.
+
+Run the test suite verifying memory persistence, clustering, and recall:
+```powershell
+python scratch/test_conversation_clustering.py
+```
+
+---
+
 ## 5. Evaluation & Verification Test Suites
 
 ### 5.1 Multi-Domain RAG Benchmark Test
@@ -268,7 +283,38 @@ python -u "C:\Users\hp\.gemini\antigravity\brain\a369e0f2-b110-458c-9aaa-169c55a
 
 ---
 
-## 6. Environment Variables Reference
+## 6. Mobile Telegram Bot Interface (`telegram_bot.py`)
+
+Run your laptop as a local APEX server and interact with your entire RAG pipeline from your phone via Telegram.
+
+### 6.1 Setup Credentials
+1. Create a bot via [@BotFather](https://t.me/BotFather) on Telegram and copy the API token.
+2. (Recommended) Get your numeric Telegram User ID from [@userinfobot](https://t.me/userinfobot) to restrict access to only you.
+3. Add credentials to `.env`:
+```ini
+TELEGRAM_BOT_TOKEN=your_token_here
+TELEGRAM_ALLOWED_USERS=your_user_id
+```
+
+### 6.2 Launch Bot Server
+Launch using the one-click batch script or directly with python:
+```powershell
+# Option A: One-click runner
+.\run_bot.bat
+
+# Option B: Direct Python execution
+python telegram_bot.py
+```
+
+### 6.3 Mobile Phone Capabilities
+- **Chat & Query:** Send any text message from your phone; receive grounded answers with exact source citations and latency metrics.
+- **Upload PDFs:** Forward or attach any `.pdf` in the chat $\rightarrow$ the server downloads, token-chunks, and indexes it into ChromaDB.
+- **Filter Sources:** Tap `[📚 Documents]` or `/sources` to toggle interactive inline buttons filtering search to specific books.
+- **Inspect Clusters & Stats:** Tap `[📊 Stats]` or `[🧩 Clusters]` or run `/cluster_run` on-demand.
+
+---
+
+## 7. Environment Variables Reference
 
 You can customize system parameters without modifying code by setting environment variables in your terminal session before execution.
 
@@ -294,6 +340,8 @@ python main.py
 | `CHROMA_PATH` | `./hierarchical_chroma_db` | Path to persistent ChromaDB folder |
 | `CHROMA_CHUNKS_COL` | `document_chunks` | Collection for raw PDF text chunks |
 | `CHROMA_SUMMARIES_COL` | `hierarchical_summaries` | Collection for cluster summaries |
+| `CHROMA_CONV_CHUNKS_COL` | `conversation_chunks` | Collection for raw conversational exchanges |
+| `CHROMA_CONV_SUMMARIES_COL` | `conversation_summaries` | Collection for hierarchical conversation cluster summaries |
 | `CHUNK_TARGET_TOKENS` | `300` | Target tokens per chunk |
 | `CHUNK_OVERLAP_TOKENS` | `40` | Overlap tokens between chunks |
 | `CLUSTERING_MAX_LEVELS` | `3` | Maximum clustering hierarchy levels |

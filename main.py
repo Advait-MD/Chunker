@@ -69,10 +69,120 @@ class HierarchicalClusterSummarizer:
         self.embedding_fn = self.store.embedding_fn
         self.chunks_collection = self.store.chunks_collection
         self.summaries_collection = self.store.summaries_collection
+        self.conv_chunks_collection = self.store.conv_chunks_collection
+        self.conv_summaries_collection = self.store.conv_summaries_collection
 
     def get_indexed_sources(self) -> List[str]:
         """Return list of distinct source document filenames indexed in ChromaDB."""
         return self.store.get_indexed_sources()
+
+    def add_conversation_turn(self, chat_id: str, user_text: str, assistant_text: str,
+                              turn_index: int = 0, chat_title: Optional[str] = None) -> str:
+        """Store a conversation turn into ChromaDB conversation memory."""
+        return self.store.add_conversation_turn(
+            chat_id=chat_id,
+            user_text=user_text,
+            assistant_text=assistant_text,
+            turn_index=turn_index,
+            chat_title=chat_title
+        )
+
+    def count_conversation_chunks(self) -> int:
+        return self.store.count_conversation_chunks()
+
+    def count_conversation_summaries(self) -> int:
+        return self.store.count_conversation_summaries()
+
+    def get_conversation_summary_tree(self) -> pd.DataFrame:
+        return self.store.get_conversation_summary_tree()
+
+    def cluster_conversations(self, max_levels: int = 2, skip_bad_clusters: bool = True) -> Dict:
+        """
+        Perform hierarchical clustering over saved conversation turns.
+        Clusters conversation exchanges using GMM, calculates silhouette quality scores,
+        and generates dual full/dense topic summaries using Ollama.
+        """
+        logger.info("Starting hierarchical clustering over conversation history...")
+        count = self.store.count_conversation_chunks()
+        if count < 2:
+            msg = f"Insufficient conversation turns for clustering (found {count}, need >= 2)."
+            logger.warning(msg)
+            return {'success': False, 'message': msg, 'clusters': {}}
+
+        all_summaries = {}
+        for level in range(max_levels):
+            logger.info(f"Clustering conversation memory at Level {level}...")
+            embeddings, documents, metadatas, ids = self.store.get_conversation_items(level=level)
+            
+            if len(documents) < 2:
+                logger.info(f"Stopping conversation clustering at Level {level}: fewer than 2 items.")
+                break
+                
+            clustering_results = self.perform_clustering(embeddings)
+            if not clustering_results:
+                logger.warning(f"Clustering returned no valid clusters at Level {level}.")
+                break
+                
+            labels = clustering_results['labels']
+            n_clusters = clustering_results['n_clusters']
+            overall_silhouette = clustering_results.get('silhouette_score', 0.0)
+            cluster_silhouettes = clustering_results.get('cluster_silhouettes', {})
+            
+            logger.info(f"Level {level} conversation clustering: {n_clusters} clusters (Silhouette: {overall_silhouette:.3f})")
+            
+            level_summaries = {}
+            for cluster_id in range(n_clusters):
+                cluster_indices = np.where(labels == cluster_id)[0]
+                cluster_texts = [documents[i] for i in cluster_indices]
+                cluster_metas = [metadatas[i] for i in cluster_indices]
+                cluster_sil = cluster_silhouettes.get(cluster_id, overall_silhouette)
+                
+                # Check quality gate
+                if cluster_sil <= self.min_cluster_silhouette and skip_bad_clusters:
+                    logger.warning(f"Skipping low-silhouette conversation cluster {cluster_id} (sil: {cluster_sil:.3f})")
+                    continue
+                    
+                # Summarize conversation cluster
+                summary = self.summarizer.generate_summary(
+                    cluster_texts,
+                    source_doc="User Conversations and Discussions",
+                    max_chunks=10
+                )
+                dense_summary = getattr(summary, 'dense', '') or str(summary)[:200]
+                summary_id = f"conv_summary_level_{level}_c{cluster_id}_{uuid.uuid4().hex[:6]}"
+                
+                chat_titles = list(set([m.get('chat_title', 'Chat') for m in cluster_metas if m.get('chat_title')]))
+                
+                summary_meta = {
+                    'type': 'conversation_cluster_summary',
+                    'level': level,
+                    'cluster_id': cluster_id,
+                    'chunks_count': len(cluster_texts),
+                    'chats_represented': ", ".join(chat_titles[:5]),
+                    'silhouette_score': float(cluster_sil),
+                    'overall_silhouette': float(overall_silhouette),
+                    'dense_summary': dense_summary,
+                    'summary_preview': str(summary)[:120],
+                    'created_at': pd.Timestamp.now().isoformat()
+                }
+                
+                self.store.save_conversation_summary_record(
+                    summary_id=summary_id,
+                    summary=str(summary),
+                    summary_metadata=summary_meta
+                )
+                level_summaries[cluster_id] = {
+                    'summary': str(summary),
+                    'dense_summary': dense_summary,
+                    'chunks_count': len(cluster_texts),
+                    'silhouette_score': cluster_sil,
+                    'chats': chat_titles
+                }
+                
+            all_summaries[level] = level_summaries
+            
+        logger.info("Hierarchical conversation clustering completed successfully!")
+        return {'success': True, 'levels': all_summaries}
 
     def read_pdf(self, file_path: str) -> str:
         """Extract text from PDF file."""

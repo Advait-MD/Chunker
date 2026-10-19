@@ -37,6 +37,8 @@ class ChromaStore:
         self.chroma_port = chroma_port or config.chroma.port
         self.chunks_col_name = config.chroma.chunks_collection
         self.summaries_col_name = config.chroma.summaries_collection
+        self.conv_chunks_col_name = config.chroma.conversation_chunks_collection
+        self.conv_summaries_col_name = config.chroma.conversation_summaries_collection
         
         # Configure embedding function
         self.embedding_fn = embedding_functions.OllamaEmbeddingFunction(
@@ -62,8 +64,28 @@ class ChromaStore:
         # Initialize collections
         self._init_collections()
 
+    def _get_or_create_col(self, col_name: str, existing_cols: List[str]):
+        """Helper to get or create collection with automatic conflict resolution."""
+        if col_name in existing_cols:
+            try:
+                col = self.client.get_collection(col_name)
+                logger.info(f"Using existing '{col_name}' collection")
+                return col
+            except ValueError as e:
+                if "embedding function conflict" in str(e):
+                    logger.warning(f"Embedding function conflict in '{col_name}'. Recreating collection...")
+                    self.client.delete_collection(col_name)
+                    col = self.client.create_collection(name=col_name, embedding_function=self.embedding_fn)
+                    logger.info(f"Created new '{col_name}' collection with embedding function")
+                    return col
+                raise
+        else:
+            col = self.client.create_collection(name=col_name, embedding_function=self.embedding_fn)
+            logger.info(f"Created new '{col_name}' collection with embedding function")
+            return col
+
     def _init_collections(self):
-        """Get or initialize document_chunks and hierarchical_summaries collections."""
+        """Get or initialize document_chunks, hierarchical_summaries, and conversation collections."""
         try:
             existing_collections = [col.name for col in self.client.list_collections()]
             logger.debug(f"Existing Chroma collections: {existing_collections}")
@@ -71,51 +93,13 @@ class ChromaStore:
             logger.error(f"Error listing ChromaDB collections: {e}")
             raise
         
-        # 1. document_chunks collection
-        if self.chunks_col_name in existing_collections:
-            try:
-                self.chunks_collection = self.client.get_collection(self.chunks_col_name)
-                logger.info(f"Using existing '{self.chunks_col_name}' collection")
-            except ValueError as e:
-                if "embedding function conflict" in str(e):
-                    logger.warning(f"Embedding function conflict in '{self.chunks_col_name}'. Recreating collection...")
-                    self.client.delete_collection(self.chunks_col_name)
-                    self.chunks_collection = self.client.create_collection(
-                        name=self.chunks_col_name,
-                        embedding_function=self.embedding_fn
-                    )
-                    logger.info(f"Created new '{self.chunks_col_name}' collection with embedding function")
-                else:
-                    raise
-        else:
-            self.chunks_collection = self.client.create_collection(
-                name=self.chunks_col_name,
-                embedding_function=self.embedding_fn
-            )
-            logger.info(f"Created new '{self.chunks_col_name}' collection with embedding function")
+        # 1. Document collections (PDF knowledge base)
+        self.chunks_collection = self._get_or_create_col(self.chunks_col_name, existing_collections)
+        self.summaries_collection = self._get_or_create_col(self.summaries_col_name, existing_collections)
         
-        # 2. hierarchical_summaries collection
-        if self.summaries_col_name in existing_collections:
-            try:
-                self.summaries_collection = self.client.get_collection(self.summaries_col_name)
-                logger.info(f"Using existing '{self.summaries_col_name}' collection")
-            except ValueError as e:
-                if "embedding function conflict" in str(e):
-                    logger.warning(f"Embedding function conflict in '{self.summaries_col_name}'. Recreating collection...")
-                    self.client.delete_collection(self.summaries_col_name)
-                    self.summaries_collection = self.client.create_collection(
-                        name=self.summaries_col_name,
-                        embedding_function=self.embedding_fn
-                    )
-                    logger.info(f"Created new '{self.summaries_col_name}' collection with embedding function")
-                else:
-                    raise
-        else:
-            self.summaries_collection = self.client.create_collection(
-                name=self.summaries_col_name,
-                embedding_function=self.embedding_fn
-            )
-            logger.info(f"Created new '{self.summaries_col_name}' collection with embedding function")
+        # 2. Conversational Memory collections (chat exchanges & conversation topic clusters)
+        self.conv_chunks_collection = self._get_or_create_col(self.conv_chunks_col_name, existing_collections)
+        self.conv_summaries_collection = self._get_or_create_col(self.conv_summaries_col_name, existing_collections)
 
     def count_chunks(self) -> int:
         """Return total number of chunks in database."""
@@ -362,4 +346,122 @@ class ChromaStore:
             return df.sort_values(['level', 'cluster_id'])
         except Exception as e:
             logger.error(f"Error fetching summary tree: {e}")
+            return pd.DataFrame()
+
+    def add_conversation_turn(self, chat_id: str, user_text: str, assistant_text: str, 
+                              turn_index: int = 0, chat_title: Optional[str] = None) -> str:
+        """
+        Index a conversation turn into the conversation_chunks collection.
+        Enables the system to recall past user conversations, preferences, and personal details.
+        """
+        turn_id = f"conv_{chat_id}_turn_{turn_index}"
+        text_content = f"User: {user_text.strip()}\nAssistant: {assistant_text.strip()}"
+        
+        metadata = {
+            "chat_id": chat_id,
+            "chat_title": chat_title or "Conversation",
+            "turn_index": turn_index,
+            "timestamp": pd.Timestamp.now().isoformat(),
+            "level": 0,
+            "type": "conversation_turn",
+            "source_file": f"chat_{chat_id}",
+            "user_preview": user_text[:120],
+            "assistant_preview": assistant_text[:120]
+        }
+        
+        # Check if already present to prevent duplicate accumulation
+        existing = self.conv_chunks_collection.get(ids=[turn_id])
+        if existing and existing.get('ids'):
+            self.conv_chunks_collection.update(
+                ids=[turn_id],
+                documents=[text_content],
+                metadatas=[metadata]
+            )
+            logger.info(f"Updated conversation memory: {turn_id}")
+        else:
+            self.conv_chunks_collection.add(
+                ids=[turn_id],
+                documents=[text_content],
+                metadatas=[metadata]
+            )
+            logger.info(f"Stored conversation memory: {turn_id}")
+            
+        return turn_id
+
+    def get_conversation_items(self, level: int = 0) -> Tuple[np.ndarray, List[str], List[Dict], List[str]]:
+        """Retrieve conversation items with embeddings for clustering."""
+        target_col = self.conv_chunks_collection if level == 0 else self.conv_summaries_collection
+        
+        count = target_col.count()
+        if count == 0:
+            return np.array([]), [], [], []
+            
+        result = target_col.get(
+            include=["documents", "metadatas", "embeddings"],
+            limit=10000
+        )
+        
+        embeddings = []
+        documents = []
+        metadatas = []
+        ids = []
+        
+        for i, (cid, doc, meta) in enumerate(zip(result['ids'], result['documents'], result['metadatas'])):
+            if level > 0 and meta.get('level', 0) != level:
+                continue
+                
+            emb = result['embeddings'][i] if result.get('embeddings') is not None and len(result['embeddings']) > i else None
+            if emb is None:
+                # Generate embedding on the fly if missing
+                emb = self.embedding_fn([doc])[0]
+                
+            embeddings.append(emb)
+            documents.append(doc)
+            metadatas.append(meta or {})
+            ids.append(cid)
+            
+        logger.info(f"Retrieved {len(embeddings)} conversation items for level {level}")
+        return np.array(embeddings), documents, metadatas, ids
+
+    def save_conversation_summary_record(self, summary_id: str, summary: str, summary_metadata: Dict):
+        """Save a hierarchical summary of conversation clusters."""
+        try:
+            self.conv_summaries_collection.upsert(
+                ids=[summary_id],
+                documents=[summary],
+                metadatas=[summary_metadata]
+            )
+            logger.info(f"Saved conversation cluster summary {summary_id}")
+        except Exception as e:
+            logger.error(f"Error saving conversation summary {summary_id}: {e}")
+            raise
+
+    def count_conversation_chunks(self) -> int:
+        """Return total number of conversation turns in memory."""
+        return self.conv_chunks_collection.count()
+
+    def count_conversation_summaries(self) -> int:
+        """Return total number of conversation cluster summaries."""
+        return self.conv_summaries_collection.count()
+
+    def get_conversation_summary_tree(self) -> pd.DataFrame:
+        """Get all conversation summaries organized as a tree dataframe."""
+        try:
+            result = self.conv_summaries_collection.get(include=["documents", "metadatas"])
+            if not result['ids']:
+                return pd.DataFrame()
+            
+            df = pd.DataFrame({
+                'summary_id': result['ids'],
+                'level': [m.get('level', -1) for m in result['metadatas']],
+                'cluster_id': [m.get('cluster_id', -1) for m in result['metadatas']],
+                'chunks_count': [m.get('chunks_count', 0) for m in result['metadatas']],
+                'silhouette_score': [m.get('silhouette_score', 0) for m in result['metadatas']],
+                'dense_summary': [m.get('dense_summary', '') for m in result['metadatas']],
+                'summary_preview': [doc[:100] for doc in result['documents']],
+                'created_at': [m.get('created_at', '') for m in result['metadatas']]
+            })
+            return df.sort_values(['level', 'cluster_id'])
+        except Exception as e:
+            logger.error(f"Error fetching conversation summary tree: {e}")
             return pd.DataFrame()

@@ -4,16 +4,17 @@ Flat Python research repo for a hierarchical-clustering RAG pipeline ("APEX") ov
 
 ## Architecture (what's actually active)
 
-- **`main.py`** — current backend & coordinator. Coordinates the modular pipeline via `HierarchicalClusterSummarizer` and provides the execution CLI (`main()`).
-- **`app.py`** — modern AI Chat Web UI application (FastAPI + HTML5/CSS3). Features sidebar chat history, "+ New Chat", session persistence, document source filters, and interactive evidence drawers (`http://localhost:7860`).
-- **`face.py`** — terminal/CLI frontend. Imports backend components. Connects to local ChromaDB and native Ollama. Run interactively (`python face.py`) or `--query "..."` / `--batch file.txt`.
+- **`main.py`** — current backend & coordinator. Coordinates the modular pipeline via `HierarchicalClusterSummarizer` for document ingestion, hierarchical clustering, and conversation memory clustering (`cluster_conversations()`).
+- **`app.py`** — modern AI Chat Web UI application (FastAPI + HTML5/CSS3). Features sidebar chat history, "+ New Chat", session persistence, document source filters, episodic memory persistence, on-demand conversation clustering, and interactive evidence drawers (`http://localhost:7860`).
+- **`telegram_bot.py`** — Telegram Bot mobile interface server. Provides remote conversational RAG, live source filtering, mobile PDF document upload/ingestion, and cluster inspection via phone (`python telegram_bot.py` or `run_bot.bat`).
+- **`face.py`** — terminal/CLI frontend. Imports backend components. Connects to local ChromaDB and native Ollama. Run interactively (`python face.py`) or `--query "..."` / `--batch file.txt`. Retrieves both ground-truth PDF evidence and episodic conversation memories.
 - **`inspector.py`** — Environment smoke-test checking local ChromaDB and native Ollama connectivity.
 - **`modules/`** — Dedicated package directory for core pipeline components:
   - **`modules/__init__.py`** — Package initializer exporting core classes and functions.
   - **`modules/document_loader.py`** — PDF text extraction (`read_pdf`, `read_pdf_pages`) and page/token-aware chunking (`create_chunks_from_pages`).
   - **`modules/clustering.py`** — PCA dimensionality reduction, StandardScaler normalization, GMM clustering, and silhouette evaluation (`perform_clustering`).
   - **`modules/summarizer.py`** — Local Ollama LLM summarization with exponential backoff and keyword frequency fallback (`OllamaSummarizer`).
-  - **`modules/vector_store.py`** — ChromaDB `PersistentClient` collection management, batch chunk insertion with citation metadata, and hierarchy retrieval (`ChromaStore`).
+  - **`modules/vector_store.py`** — ChromaDB `PersistentClient` collection management (`document_chunks`, `hierarchical_summaries`, `conversation_chunks`, `conversation_summaries`), batch chunk insertion with citation metadata, and hierarchy retrieval (`ChromaStore`).
   - **`modules/retrieval.py`** — Hybrid retrieval (`BM25Scorer`), Reciprocal Rank Fusion (`reciprocal_rank_fusion`), composite reranking (`rerank_hybrid_candidates`), and chunk deduplication (`deduplicate_retrieved_chunks`).
   - **`modules/config.py`** — Centralized typed dataclass configuration with environment variable overrides.
   - **`modules/logger.py`** — Standardized timestamped logging infrastructure.

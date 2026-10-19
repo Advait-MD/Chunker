@@ -1087,7 +1087,18 @@
                 </div>
                 <span id="kb-stats-pill" style="font-weight:600; color:var(--primary);">6,198 chunks</span>
             </div>
-            <div class="footer-tools">
+            <div class="status-pill" style="margin-top:6px; background:rgba(129,140,248,0.06); border:1px solid rgba(129,140,248,0.18);">
+                <span style="font-size:11px; color:#A78BFA; display:flex; align-items:center; gap:4px;">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    Memory:
+                </span>
+                <span id="memory-stats-pill" style="font-size:11px; font-weight:600; color:#C4B5FD;">0 turns • 0 clusters</span>
+            </div>
+            <div class="footer-tools" style="margin-top:8px;">
+                <button class="tool-btn" id="cluster-memories-btn" title="Run hierarchical clustering on conversation history">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 0-4 4c0 .8.24 1.54.66 2.16L4.54 11A4 4 0 0 0 2 14.5 4.5 4.5 0 0 0 6.5 19h11a4.5 4.5 0 0 0 4.5-4.5 4 4 0 0 0-2.54-3.5l-4.12-2.84A4 4 0 0 0 16 6a4 4 0 0 0-4-4z"/></svg>
+                    Cluster Memory
+                </button>
                 <button class="tool-btn" id="open-settings-btn">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                     Settings
@@ -1341,6 +1352,31 @@
                 localStorage.setItem('apex_rag_config', JSON.stringify(systemConfig));
                 settingsModal.classList.remove('open');
             });
+
+            // Cluster Memories Button
+            const clusterMemoriesBtn = document.getElementById('cluster-memories-btn');
+            if (clusterMemoriesBtn) {
+                clusterMemoriesBtn.addEventListener('click', async () => {
+                    clusterMemoriesBtn.disabled = true;
+                    const originalHtml = clusterMemoriesBtn.innerHTML;
+                    clusterMemoriesBtn.innerHTML = `<span>⏳ Clustering...</span>`;
+                    try {
+                        const res = await fetch('/api/cluster-conversations', { method: 'POST' });
+                        const data = await res.json();
+                        if (data.success) {
+                            alert(`✨ Conversation Clustering Complete!\n\nTurns Analyzed: ${data.conv_chunks}\nTopic Clusters: ${data.conv_summaries}`);
+                            await fetchSystemInfo();
+                        } else {
+                            alert(`Note: ${data.message || data.error || 'Clustering could not complete.'}`);
+                        }
+                    } catch(e) {
+                        alert(`Error clustering conversations: ${e.message}`);
+                    } finally {
+                        clusterMemoriesBtn.disabled = false;
+                        clusterMemoriesBtn.innerHTML = originalHtml;
+                    }
+                });
+            }
         }
 
         function loadSavedPreferences() {
@@ -1367,6 +1403,11 @@
                 if (data.success) {
                     document.getElementById('kb-stats-pill').textContent = `${data.total_chunks} chunks`;
                     document.getElementById('ollama-status-text').textContent = `${data.model} Ready`;
+
+                    const memPill = document.getElementById('memory-stats-pill');
+                    if (memPill) {
+                        memPill.textContent = `${data.conv_chunks || 0} turns • ${data.conv_summaries || 0} clusters`;
+                    }
 
                     // Populate source documents dropdown
                     sourceFilterSelect.innerHTML = '<option value="">All Documents (Cross-Doc Search)</option>';
@@ -1593,12 +1634,82 @@
                     `;
                 }
 
+                // Conversational Episodic Memory Drawer
+                let memoryHtml = '';
+                if (msg.conversation_memories && msg.conversation_memories.length > 0) {
+                    const memCards = msg.conversation_memories.map(m => {
+                        const title = m.chat_title || 'Past Conversation';
+                        const score = (m.score * 100).toFixed(1) + '%';
+                        const turn = m.turn_index !== undefined ? `Turn #${m.turn_index}` : 'Turn';
+                        return `
+                            <div class="chunk-card" style="border-left: 3px solid #818CF8;">
+                                <div class="chunk-card-header">
+                                    <div class="chunk-tag-group">
+                                        <span class="chunk-badge" style="color:#A78BFA; background:rgba(167,139,250,0.15);">💬 ${escapeHtml(title)}</span>
+                                        <span class="chunk-badge">${escapeHtml(turn)}</span>
+                                    </div>
+                                    <span class="chunk-badge" style="color:#C4B5FD;">Memory Relevance: ${score}</span>
+                                </div>
+                                <div class="chunk-text" style="color:#E2E8F0;">${escapeHtml(m.text)}</div>
+                            </div>
+                        `;
+                    }).join('');
+
+                    memoryHtml = `
+                        <div class="evidence-drawer" style="border-color: rgba(167, 139, 250, 0.35); margin-top: 8px;">
+                            <div class="evidence-toggle" style="color:#C4B5FD; background: rgba(129, 140, 248, 0.12);" onclick="toggleEvidence(this)">
+                                <span>🧠 Recalled Conversational Memory (${msg.conversation_memories.length} Exchanges)</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="evidence-body">
+                                ${memCards}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Conversational Topic Theme Drawer
+                let convSummaryHtml = '';
+                if (msg.conversation_cluster_summaries && msg.conversation_cluster_summaries.length > 0) {
+                    const csumCards = msg.conversation_cluster_summaries.map(cs => {
+                        const dense = cs.dense_summary || cs.summary;
+                        const chats = cs.chats_represented || 'Past Chats';
+                        const score = (cs.score * 100).toFixed(1) + '%';
+                        return `
+                            <div class="chunk-card" style="border-left: 3px solid #38BDF8;">
+                                <div class="chunk-card-header">
+                                    <div class="chunk-tag-group">
+                                        <span class="chunk-badge" style="color:#38BDF8; background:rgba(56,189,248,0.15);">🌐 Topic: Level ${cs.level || 0}</span>
+                                        <span class="chunk-badge">${escapeHtml(chats)}</span>
+                                    </div>
+                                    <span class="chunk-badge" style="color:#38BDF8;">Thematic Match: ${score}</span>
+                                </div>
+                                <div class="chunk-text" style="color:#E2E8F0;">${escapeHtml(dense)}</div>
+                            </div>
+                        `;
+                    }).join('');
+
+                    convSummaryHtml = `
+                        <div class="evidence-drawer" style="border-color: rgba(56, 189, 248, 0.35); margin-top: 8px;">
+                            <div class="evidence-toggle" style="color:#38BDF8; background: rgba(56, 189, 248, 0.12);" onclick="toggleEvidence(this)">
+                                <span>💡 Conversational Topic Theme</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="evidence-body">
+                                ${csumCards}
+                            </div>
+                        </div>
+                    `;
+                }
+
                 row.innerHTML = `
                     <div class="message-avatar assistant">
                         <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                     </div>
                     <div class="message-body">
                         <div class="message-bubble">${formattedHtml}</div>
+                        ${memoryHtml}
+                        ${convSummaryHtml}
                         ${evidenceHtml}
                         <div class="message-meta">
                             ${responseTime ? `<span class="meta-pill">⚡ ${responseTime}</span>` : ''}

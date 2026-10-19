@@ -160,12 +160,16 @@ async def get_system_info():
         sources = rag.processor.get_indexed_sources()
         total_chunks = rag.processor.chunks_collection.count()
         total_summaries = rag.processor.summaries_collection.count()
+        conv_chunks = rag.processor.count_conversation_chunks()
+        conv_summaries = rag.processor.count_conversation_summaries()
         return {
             "success": True,
             "model": rag.ollama_model,
             "embedding_model": config.ollama.embedding_model,
             "total_chunks": total_chunks,
             "total_summaries": total_summaries,
+            "conv_chunks": conv_chunks,
+            "conv_summaries": conv_summaries,
             "sources": sources
         }
     except Exception as e:
@@ -324,6 +328,8 @@ async def process_chat_message(req: ChatQueryRequest):
                 "scores": context.get("scores", []),
                 "metadatas": context.get("metadatas", []),
                 "cluster_summaries": context.get("cluster_summaries", []),
+                "conversation_memories": context.get("conversation_memories", []),
+                "conversation_cluster_summaries": context.get("conversation_cluster_summaries", []),
                 "response_time": elapsed,
                 "tokens": tokens,
                 "low_confidence": context.get("low_confidence", False)
@@ -331,6 +337,19 @@ async def process_chat_message(req: ChatQueryRequest):
 
         # Append assistant message
         session["messages"].append(assistant_msg)
+
+        # Auto-index conversation turn into episodic memory
+        try:
+            turn_idx = len([m for m in session["messages"] if m.get("role") == "user"])
+            rag.processor.add_conversation_turn(
+                chat_id=chat_id,
+                user_text=question,
+                assistant_text=answer,
+                turn_index=turn_idx,
+                chat_title=session.get("title", "Conversation")
+            )
+        except Exception as mem_err:
+            logger.warning(f"Failed to auto-index conversation memory turn: {mem_err}")
 
         # Auto-generate title if default
         if session.get("title") in ("New Conversation", "Untitled Chat"):
@@ -359,6 +378,48 @@ async def process_chat_message(req: ChatQueryRequest):
         rag.min_score = original_min_score
         rag.temperature = original_temp
         rag.include_summaries = original_summaries
+
+
+# ================= CONVERSATION CLUSTERING ROUTES =================
+
+@app.post("/api/cluster-conversations")
+async def cluster_conversations_endpoint():
+    """
+    Trigger hierarchical clustering over all stored conversation turns.
+    Clusters chat exchanges, runs silhouette quality gating, and stores topic summaries.
+    """
+    rag = get_rag()
+    try:
+        result = rag.processor.cluster_conversations()
+        conv_chunks = rag.processor.count_conversation_chunks()
+        conv_summaries = rag.processor.count_conversation_summaries()
+        return {
+            "success": result.get("success", True),
+            "message": result.get("message", "Clustering completed successfully"),
+            "conv_chunks": conv_chunks,
+            "conv_summaries": conv_summaries,
+            "levels": result.get("levels", [])
+        }
+    except Exception as e:
+        logger.error(f"Error clustering conversations: {e}", exc_info=True)
+        return {"success": False, "error": str(e)}
+
+
+@app.get("/api/conversation-clusters")
+async def get_conversation_clusters_endpoint():
+    """Return summary tree of conversational clusters organized by hierarchy level."""
+    rag = get_rag()
+    try:
+        tree_df = rag.processor.get_conversation_summary_tree()
+        records = tree_df.to_dict(orient="records") if not tree_df.empty else []
+        return {
+            "success": True,
+            "count": len(records),
+            "clusters": records
+        }
+    except Exception as e:
+        logger.error(f"Error fetching conversation clusters: {e}", exc_info=True)
+        return {"success": False, "error": str(e), "clusters": []}
 
 
 # ================= ENTRYPOINT =================
