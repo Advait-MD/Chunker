@@ -115,11 +115,30 @@ python main.py --no-source-aware
 
 ---
 
-## 4. Querying & RAG Retrieval Interface (`face.py`)
+## 4. Querying & RAG Retrieval Interface
 
-`face.py` is the conversational frontend and query engine. It executes separated retrieval (primary source chunks first, auxiliary thematic summaries second), constructs an evidence-grounded prompt, and generates responses via Ollama.
+You can query your knowledge base using either the **Modern Web UI** (recommended for browser-based interactive chat) or the **CLI Interface** (`face.py`).
 
-### 4.1 Interactive Conversational Mode
+---
+
+### 4.0 Modern Web Chat UI Interface (`app.py`) — Recommended!
+Launches a modern, full-featured AI chat web application (like ChatGPT / Claude) with persistent conversation history, previous chats sidebar, document filter selector, and expandable citation drawers:
+
+```powershell
+python app.py
+```
+*Access the interface locally at: **`http://localhost:7860`***
+
+**Key Web UI Features:**
+- **+ New Chat**: Start a fresh conversation with clean context anytime.
+- **Previous Chats Sidebar**: View, search, load, rename, or delete past conversations. All sessions are saved automatically to the `chats/` directory.
+- **Document Source Filter**: Filter queries across *All Documents* or restrict search strictly to an individual book (e.g. *The Road to React*, *The Book of Five Rings*, *The Odyssey*, *Steve Jobs*).
+- **Interactive Evidence Drawer**: Click on any assistant message to expand the exact retrieved chunks, page numbers, chunk IDs, and composite relevance scores.
+- **Settings Modal**: Dynamically adjust context chunks ($1 - 10$), score threshold, LLM temperature, and thematic summaries toggle.
+
+---
+
+### 4.1 Interactive Terminal Mode (`face.py`)
 Starts an interactive terminal session where you can ask questions continuously:
 ```powershell
 python face.py

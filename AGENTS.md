@@ -5,7 +5,8 @@ Flat Python research repo for a hierarchical-clustering RAG pipeline ("APEX") ov
 ## Architecture (what's actually active)
 
 - **`main.py`** — current backend & coordinator. Coordinates the modular pipeline via `HierarchicalClusterSummarizer` and provides the execution CLI (`main()`).
-- **`face.py`** — frontend/CLI. Imports backend components. Connects to local ChromaDB and native Ollama. Run interactively (`python face.py`) or `--query "..."` / `--batch file.txt`.
+- **`app.py`** — modern AI Chat Web UI application (FastAPI + HTML5/CSS3). Features sidebar chat history, "+ New Chat", session persistence, document source filters, and interactive evidence drawers (`http://localhost:7860`).
+- **`face.py`** — terminal/CLI frontend. Imports backend components. Connects to local ChromaDB and native Ollama. Run interactively (`python face.py`) or `--query "..."` / `--batch file.txt`.
 - **`inspector.py`** — Environment smoke-test checking local ChromaDB and native Ollama connectivity.
 - **`modules/`** — Dedicated package directory for core pipeline components:
   - **`modules/__init__.py`** — Package initializer exporting core classes and functions.
