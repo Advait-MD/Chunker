@@ -439,18 +439,18 @@ class RAGInterface:
             if history_to_use:
                 prompt_parts.append("\nRecent chat:")
                 if any('role' in m for m in history_to_use if isinstance(m, dict)):
-                    for msg in history_to_use[-4:]:
+                    for msg in history_to_use[-2:]:
                         role = "User" if msg.get('role') == 'user' else "APEX"
                         c = msg.get('content', '').strip()
                         if c and c != context['query']:
-                            prompt_parts.append(f"{role}: {c[:150]}")
+                            prompt_parts.append(f"{role}: {c[:75]}")
                 else:
-                    for turn in history_to_use[-2:]:
+                    for turn in history_to_use[-1:]:
                         q = turn.get('question', '')
                         a = turn.get('answer', '')
                         if q and a:
-                            prompt_parts.append(f"User: {q}")
-                            prompt_parts.append(f"APEX: {a[:150]}")
+                            prompt_parts.append(f"User: {q[:75]}")
+                            prompt_parts.append(f"APEX: {a[:75]}")
 
             prompt_parts.append(f"\nUser: {context['query']}")
             prompt_parts.append("APEX:")
@@ -634,6 +634,18 @@ class RAGInterface:
                 'timestamp': datetime.now().isoformat(),
                 'sources': context.get('sources', [])
             })
+            
+            if hasattr(self.processor, 'add_conversation_turn'):
+                try:
+                    self.processor.add_conversation_turn(
+                        chat_id=self.current_session,
+                        user_text=question,
+                        assistant_text=answer,
+                        turn_index=len(self.conversation_history),
+                        chat_title='Session Chat'
+                    )
+                except Exception as e:
+                    logger.debug(f'Could not index turn to memory: {e}')
             
             print(f"\n✅ Response ({elapsed_time:.2f}s, {response.get('tokens', 0)} tokens):")
             print("-"*80)
