@@ -163,6 +163,25 @@ class RAGInterface:
             }
 
         effective_source = source_filter if source_filter is not None else self.source_filter
+
+        # Pure Conversation Mode: bypass document chunks when user specifies 'none' or 'chat'
+        if effective_source and effective_source.strip().lower() in ('none', 'chat', 'general', 'direct', 'normal', 'off'):
+            return {
+                'success': True,
+                'is_chitchat': True,
+                'chunks': [],
+                'metadatas': [],
+                'scores': [],
+                'cluster_summaries': [],
+                'conversation_memories': [],
+                'conversation_cluster_summaries': [],
+                'sources': [],
+                'query': clean_q,
+                'source_filter': 'none',
+                'low_confidence': False,
+                'retrieval_time': time.perf_counter() - t_start
+            }
+
         if effective_source:
             indexed_sources = self.processor.get_indexed_sources()
             if effective_source not in indexed_sources:
@@ -265,7 +284,12 @@ class RAGInterface:
             passed_candidates = [c for c in reranked_candidates if c['rerank_score'] >= threshold]
             low_confidence = (len(passed_candidates) == 0)
             if low_confidence:
-                passed_candidates = reranked_candidates[:1] if reranked_candidates else []
+                # If top candidate is at least moderately related (>= 0.18), keep with low_confidence flag.
+                # If completely unrelated (< 0.18), leave empty to enable seamless natural conversation.
+                if reranked_candidates and reranked_candidates[0]['rerank_score'] >= 0.18:
+                    passed_candidates = reranked_candidates[:1]
+                else:
+                    passed_candidates = []
 
             # Chunk Deduplication
             cand_docs = [c['document'] for c in passed_candidates]
@@ -379,18 +403,43 @@ class RAGInterface:
             logger.error(f"Error retrieving context: {e}", exc_info=True)
             return {'success': False, 'message': f'Error retrieving context: {str(e)}'}
 
-    def build_prompt(self, context: Dict) -> str:
+    def build_prompt(self, context: Dict, session_history: Optional[List[Dict]] = None) -> str:
         """
         Build a prompt for the LLM prioritizing primary source evidence and conversational memory.
-        Fast-paths conversational chit-chat queries (Item 2.3).
+        Seamlessly supports both document-grounded RAG and natural human dialogue.
         """
-        if context.get('is_chitchat'):
-            return (
-                "You are APEX, a knowledgeable and friendly AI research assistant. "
-                "Respond warmly, naturally, and concisely to the user's conversational message.\n\n"
-                f"User: {context['query']}\n"
-                "Assistant:"
-            )
+        # Pure conversation branch: chit-chat or general dialogue with no matching document chunks
+        if context.get('is_chitchat') or (not context.get('chunks') and not context.get('cluster_summaries')):
+            prompt_parts = [
+                "You are APEX, a thoughtful, articulate, and friendly AI conversational companion.",
+                "Chat warmly, naturally, and knowledgeably with the user like an empathetic, intelligent human partner.",
+                "Engage deeply with the user's thoughts, answer questions thoroughly, and maintain conversational flow naturally without mentioning PDF or document constraints."
+            ]
+            if context.get('conversation_memories'):
+                prompt_parts.append("\n💬 RELEVANT USER MEMORIES FROM PAST CHATS:")
+                for mem in context['conversation_memories']:
+                    prompt_parts.append(f"- {mem.get('text', '')}")
+
+            history_to_use = session_history if session_history is not None else self.conversation_history
+            if history_to_use:
+                prompt_parts.append("\n💬 CONVERSATION HISTORY:")
+                if any('role' in m for m in history_to_use if isinstance(m, dict)):
+                    for msg in history_to_use[-8:]:
+                        role = "User" if msg.get('role') == 'user' else "APEX"
+                        c = msg.get('content', '').strip()
+                        if c and c != context['query']:
+                            prompt_parts.append(f"{role}: {c[:300]}")
+                else:
+                    for turn in history_to_use[-4:]:
+                        q = turn.get('question', '')
+                        a = turn.get('answer', '')
+                        if q and a:
+                            prompt_parts.append(f"User: {q}")
+                            prompt_parts.append(f"APEX: {a[:300]}")
+
+            prompt_parts.append(f"\nUser: {context['query']}")
+            prompt_parts.append("APEX:")
+            return "\n".join(prompt_parts)
 
         prompt_parts = []
         

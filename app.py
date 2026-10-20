@@ -308,7 +308,7 @@ async def process_chat_message(req: ChatQueryRequest):
             }
         else:
             # 4. Generate Response
-            prompt = rag.build_prompt(context)
+            prompt = rag.build_prompt(context, session_history=session.get("messages", []))
             gen_res = rag.generate_response(prompt)
             elapsed = time.time() - start_time
 
@@ -462,7 +462,7 @@ async def process_chat_message_stream(req: ChatQueryRequest):
             yield f"data: {json.dumps(meta_event)}\n\n"
 
             # 2. Build prompt
-            prompt = rag.build_prompt(context)
+            prompt = rag.build_prompt(context, session_history=session.get("messages", []))
 
             # 3. Stream tokens
             full_answer = []
