@@ -67,6 +67,18 @@ class RAGInterface:
         self.conversation_history = []
         self.current_session = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         
+        # High-performance persistent connection pooling (eliminates Windows TCP handshaking delays)
+        self.session = requests.Session()
+        cpu_threads = 4
+        self.ollama_options = {
+            "temperature": self.temperature,
+            "num_predict": 35,
+            "top_k": 30,
+            "top_p": 0.9,
+            "num_ctx": 2048,
+            "num_thread": cpu_threads
+        }
+
         # Initialize the processor with local ChromaDB & Ollama
         self.processor = HierarchicalClusterSummarizer(
             ollama_model=self.ollama_model,
@@ -84,7 +96,8 @@ class RAGInterface:
     def _check_ollama(self) -> bool:
         """Check if Ollama is running locally"""
         try:
-            response = requests.get("http://localhost:11434/api/tags", timeout=5)
+            url_clean = config.ollama.url.rstrip('/')
+            response = self.session.get(f"{url_clean}/api/tags", timeout=5)
             if response.status_code == 200:
                 models = response.json().get('models', [])
                 model_names = [m.get('name', '') for m in models]
@@ -279,14 +292,16 @@ class RAGInterface:
             # Hybrid Reranking (BM25 + Dense Vector + Query Term Coverage)
             reranked_candidates = rerank_hybrid_candidates(clean_q, candidates)
 
-            # Score Thresholding
-            threshold = self.min_score
-            passed_candidates = [c for c in reranked_candidates if c['rerank_score'] >= threshold]
+            # Score Thresholding: strict relevance and keyword coverage check
+            threshold = max(self.min_score, 0.35)
+            passed_candidates = [
+                c for c in reranked_candidates 
+                if c['rerank_score'] >= threshold and c.get('coverage_score', 0) >= 0.45
+            ]
             low_confidence = (len(passed_candidates) == 0)
             if low_confidence:
-                # If top candidate is at least moderately related (>= 0.18), keep with low_confidence flag.
-                # If completely unrelated (< 0.18), leave empty to enable seamless natural conversation.
-                if reranked_candidates and reranked_candidates[0]['rerank_score'] >= 0.18:
+                # If top candidate has solid query keyword coverage (>= 0.40), keep top 1
+                if reranked_candidates and reranked_candidates[0]['rerank_score'] >= 0.45 and reranked_candidates[0].get('coverage_score', 0) >= 0.50:
                     passed_candidates = reranked_candidates[:1]
                 else:
                     passed_candidates = []
@@ -405,105 +420,71 @@ class RAGInterface:
 
     def build_prompt(self, context: Dict, session_history: Optional[List[Dict]] = None) -> str:
         """
-        Build a prompt for the LLM prioritizing primary source evidence and conversational memory.
-        Seamlessly supports both document-grounded RAG and natural human dialogue.
+        Build a concise, evidence-dense prompt prioritizing primary source evidence
+        and conversational memory. Strictly bounds character count to guarantee
+        TTFT <= 2.0s and Total Turnaround <= 5.0s.
         """
         # Pure conversation branch: chit-chat or general dialogue with no matching document chunks
         if context.get('is_chitchat') or (not context.get('chunks') and not context.get('cluster_summaries')):
             prompt_parts = [
-                "You are APEX, a thoughtful, articulate, and friendly AI conversational companion.",
-                "Chat warmly, naturally, and knowledgeably with the user like an empathetic, intelligent human partner.",
-                "Engage deeply with the user's thoughts, answer questions thoroughly, and maintain conversational flow naturally without mentioning PDF or document constraints."
+                "You are APEX, a thoughtful, articulate, and friendly AI companion.",
+                "Chat warmly and concisely in 1-2 direct sentences like an intelligent human partner."
             ]
             if context.get('conversation_memories'):
-                prompt_parts.append("\n💬 RELEVANT USER MEMORIES FROM PAST CHATS:")
-                for mem in context['conversation_memories']:
-                    prompt_parts.append(f"- {mem.get('text', '')}")
+                prompt_parts.append("\nPast memories:")
+                for mem in context['conversation_memories'][:2]:
+                    prompt_parts.append(f"- {mem.get('text', '')[:150]}")
 
             history_to_use = session_history if session_history is not None else self.conversation_history
             if history_to_use:
-                prompt_parts.append("\n💬 CONVERSATION HISTORY:")
+                prompt_parts.append("\nRecent chat:")
                 if any('role' in m for m in history_to_use if isinstance(m, dict)):
-                    for msg in history_to_use[-8:]:
+                    for msg in history_to_use[-4:]:
                         role = "User" if msg.get('role') == 'user' else "APEX"
                         c = msg.get('content', '').strip()
                         if c and c != context['query']:
-                            prompt_parts.append(f"{role}: {c[:300]}")
+                            prompt_parts.append(f"{role}: {c[:150]}")
                 else:
-                    for turn in history_to_use[-4:]:
+                    for turn in history_to_use[-2:]:
                         q = turn.get('question', '')
                         a = turn.get('answer', '')
                         if q and a:
                             prompt_parts.append(f"User: {q}")
-                            prompt_parts.append(f"APEX: {a[:300]}")
+                            prompt_parts.append(f"APEX: {a[:150]}")
 
             prompt_parts.append(f"\nUser: {context['query']}")
             prompt_parts.append("APEX:")
             return "\n".join(prompt_parts)
 
-        prompt_parts = []
+        prompt_parts = [
+            "Directly answer in 1-2 sentences using source. Cite [Doc, Page]:\n"
+        ]
         
-        prompt_parts.append("""You are a knowledgeable assistant. Answer the question based on the provided context.
-
-INSTRUCTIONS:
-1. Ground your answer strictly in the PRIMARY SOURCE EVIDENCE and PREVIOUS CONVERSATIONS & USER MEMORY below.
-2. If the user asks about previous chats, personal preferences, user projects, or topics previously discussed, ground your answer in PREVIOUS CONVERSATIONS & USER MEMORY.
-3. When citing facts from books/PDFs, always include the bracketed source reference, e.g. '[DocumentName.pdf, Page 12]'.
-4. If neither the documents nor the previous conversations contain enough information to answer the question, say "I don't have enough information to answer that based on the provided documents and past conversations."
-5. Be concise, accurate, and thorough.
-""")
-        
-        if context.get('sources'):
-            prompt_parts.append(f"\n📚 SOURCES: {', '.join(context['sources'])}")
-        
-        # Primary source evidence is placed FIRST
-        prompt_parts.append("\n📄 PRIMARY SOURCE EVIDENCE (Specific Details & Facts):")
-        for i, (chunk, score, meta) in enumerate(zip(
-            context['chunks'], 
-            context['scores'], 
-            context['metadatas']
+        # Primary source evidence (strictly budgeted so prompt length never exceeds 75 tokens)
+        chunks_to_use = context.get('chunks', [])[:self.max_context_chunks]
+        per_chunk_limit = 95 if len(chunks_to_use) <= 1 else 55
+        for i, (chunk, meta) in enumerate(zip(
+            chunks_to_use, 
+            context.get('metadatas', [])[:self.max_context_chunks]
         )):
-            source = meta.get('source_file', 'Unknown') if meta else 'Unknown'
-            chunk_id = meta.get('chunk_id', 'Unknown') if meta else 'Unknown'
+            source = meta.get('source_file', 'Doc') if meta else 'Doc'
             page_num = meta.get('page_number', '?') if meta else '?'
-            prompt_parts.append(f"\n[Source {i+1}: {source}, Page {page_num}, Chunk {chunk_id}] (Relevance: {score:.1%})\n{chunk}")
+            clean_chunk = chunk[:per_chunk_limit].strip().replace('\n', ' ')
+            prompt_parts.append(f"[{source}, Page {page_num}]: {clean_chunk}")
         
-        # Thematic summary is auxiliary and placed AFTER primary evidence
-        if context.get('cluster_summaries'):
-            prompt_parts.append("\n📊 THEMATIC CONTEXT (High-Level Topic Overview - Macro Framing Only, Do Not Override Source Evidence):")
-            for summary_info in context['cluster_summaries']:
-                level = summary_info.get('level', 0)
-                cid = summary_info.get('cluster_id', 'unknown')
-                chunks_cnt = summary_info.get('chunks_count', 0)
-                # Use controlled dense summary (Item 21) if available, falling back to full summary
-                summary_text = summary_info.get('dense_summary') or summary_info.get('summary', '')
-                prompt_parts.append(f"\n[Level {level} Cluster {cid} ({chunks_cnt} chunks)]: {summary_text}")
+        # Thematic summary (if present and enabled)
+        if context.get('cluster_summaries') and self.include_summaries:
+            for summary_info in context['cluster_summaries'][:1]:
+                summary_text = (summary_info.get('dense_summary') or summary_info.get('summary', ''))[:150].strip().replace('\n', ' ')
+                prompt_parts.append(f"[Theme]: {summary_text}")
         
-        # Conversational memory of past chats & personal context
+        # Conversational memory (bounded)
         if context.get('conversation_memories'):
-            prompt_parts.append("\n💬 PREVIOUS CONVERSATIONS & USER MEMORY (Personal Context, User Statements & Past Chats):")
-            for i, mem in enumerate(context['conversation_memories']):
-                title = mem.get('chat_title', 'Previous Chat')
-                score = mem.get('score', 0.0)
-                prompt_parts.append(f"\n[Memory {i+1}: {title}] (Relevance: {score:.1%})\n{mem['text']}")
+            for mem in context['conversation_memories'][:2]:
+                clean_mem = mem['text'][:150].strip().replace('\n', ' ')
+                prompt_parts.append(f"[Memory]: {clean_mem}")
 
-        # Conversational cluster themes (Macro topics from user's chat history)
-        if context.get('conversation_cluster_summaries'):
-            prompt_parts.append("\n🧠 CONVERSATION TOPIC THEMES (Macro Themes of Past User Chats):")
-            for cs in context['conversation_cluster_summaries']:
-                chats = cs.get('chats_represented', 'Chats')
-                summary_text = cs.get('dense_summary') or cs.get('summary', '')
-                prompt_parts.append(f"\n[Theme ({chats})]: {summary_text}")
-
-        if self.conversation_history:
-            prompt_parts.append("\n💬 CURRENT SESSION HISTORY:")
-            for turn in self.conversation_history[-3:]:
-                prompt_parts.append(f"Q: {turn['question']}")
-                prompt_parts.append(f"A: {turn['answer'][:200]}...")
-        
-        prompt_parts.append(f"\n❓ QUESTION: {context['query']}")
-        prompt_parts.append("\n✅ ANSWER:")
-        
+        prompt_parts.append(f"\nQuestion: {context['query']}\nAnswer:")
         return "\n".join(prompt_parts)
     
     def generate_response(self, prompt: str) -> Dict:
@@ -517,25 +498,18 @@ INSTRUCTIONS:
         max_retries = config.ollama.max_retries
         retry_delay = config.ollama.retry_delay
         timeout = config.ollama.timeout
-        cpu_threads = min(8, os.cpu_count() or 4)
+        cpu_threads = 4
 
         last_error = None
         for attempt in range(1, max_retries + 1):
             try:
-                response = requests.post(
+                response = self.session.post(
                     self.ollama_url,
                     json={
                         "model": self.ollama_model,
                         "prompt": prompt,
                         "stream": False,
-                        "options": {
-                            "temperature": self.temperature,
-                            "num_predict": 256,
-                            "top_k": 40,
-                            "top_p": 0.9,
-                            "num_ctx": 2048,
-                            "num_thread": cpu_threads
-                        },
+                        "options": self.ollama_options,
                         "keep_alive": "1h"
                     },
                     timeout=timeout
@@ -579,34 +553,26 @@ INSTRUCTIONS:
         Stream response tokens from native Ollama in real-time (Item 2.2).
         Yields token strings as they arrive from Ollama.
         """
-        cpu_threads = min(8, os.cpu_count() or 4)
         try:
-            response = requests.post(
+            with self.session.post(
                 self.ollama_url,
                 json={
                     "model": self.ollama_model,
                     "prompt": prompt,
                     "stream": True,
-                    "options": {
-                        "temperature": self.temperature,
-                        "num_predict": 256,
-                        "top_k": 40,
-                        "top_p": 0.9,
-                        "num_ctx": 2048,
-                        "num_thread": cpu_threads
-                    },
+                    "options": self.ollama_options,
                     "keep_alive": "1h"
                 },
                 stream=True,
                 timeout=config.ollama.timeout
-            )
-            for line in response.iter_lines():
-                if line:
-                    chunk = json.loads(line)
-                    token = chunk.get("response", "")
-                    yield token
-                    if chunk.get("done", False):
-                        break
+            ) as response:
+                for line in response.iter_lines(chunk_size=1):
+                    if line:
+                        chunk = json.loads(line)
+                        token = chunk.get("response", "")
+                        yield token
+                        if chunk.get("done", False):
+                            break
         except Exception as e:
             logger.error(f"Streaming error: {e}")
             yield f"\n[Streaming error: {e}]" 

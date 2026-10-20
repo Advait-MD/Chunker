@@ -10,7 +10,7 @@ except ImportError:
 
 @dataclass
 class OllamaConfig:
-    url: str = field(default_factory=lambda: os.getenv("OLLAMA_URL", "http://localhost:11434"))
+    url: str = field(default_factory=lambda: os.getenv("OLLAMA_URL", "http://127.0.0.1:11434"))
     generation_model: str = field(default_factory=lambda: os.getenv("OLLAMA_MODEL", "gemma3:1b"))
     embedding_model: str = field(default_factory=lambda: os.getenv("OLLAMA_EMBEDDING_MODEL", "nomic-embed-text"))
     timeout: int = field(default_factory=lambda: int(os.getenv("OLLAMA_TIMEOUT", "120")))
@@ -48,13 +48,13 @@ class ClusteringConfig:
 
 @dataclass
 class RetrievalConfig:
-    max_context_chunks: int = field(default_factory=lambda: int(os.getenv("MAX_CONTEXT_CHUNKS", "5")))
-    include_summaries: bool = field(default_factory=lambda: os.getenv("INCLUDE_SUMMARIES", "true").lower() in ("true", "1", "yes"))
-    temperature: float = field(default_factory=lambda: float(os.getenv("LLM_TEMPERATURE", "0.3")))
+    max_context_chunks: int = field(default_factory=lambda: int(os.getenv("MAX_CONTEXT_CHUNKS", "2")))
+    include_summaries: bool = field(default_factory=lambda: os.getenv("INCLUDE_SUMMARIES", "false").lower() in ("true", "1", "yes"))
+    temperature: float = field(default_factory=lambda: float(os.getenv("LLM_TEMPERATURE", "0.2")))
     min_relevance_score: float = field(default_factory=lambda: float(os.getenv("MIN_RELEVANCE_SCORE", "0.25")))
     min_summary_score: float = field(default_factory=lambda: float(os.getenv("MIN_SUMMARY_SCORE", "0.30")))
     include_conversation_memory: bool = field(default_factory=lambda: os.getenv("INCLUDE_CONV_MEMORY", "true").lower() in ("true", "1", "yes"))
-    max_memory_chunks: int = field(default_factory=lambda: int(os.getenv("MAX_MEMORY_CHUNKS", "3")))
+    max_memory_chunks: int = field(default_factory=lambda: int(os.getenv("MAX_MEMORY_CHUNKS", "2")))
 
 
 @dataclass

@@ -232,9 +232,22 @@ def deduplicate_retrieved_chunks(chunks: List[str],
     return deduped_chunks, deduped_metas, deduped_scores
 
 
+COMMON_STOPWORDS = {
+    "the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for", "of", "with",
+    "by", "from", "up", "about", "into", "over", "after", "is", "are", "was", "were",
+    "be", "been", "being", "have", "has", "had", "do", "does", "did", "can", "could",
+    "shall", "should", "will", "would", "may", "might", "must", "how", "what", "which",
+    "who", "when", "where", "why", "this", "that", "these", "those", "i", "you", "he",
+    "she", "it", "we", "they", "my", "your", "his", "her", "its", "our", "their"
+}
+
+
 def compute_query_coverage(query: str, text: str) -> float:
     """Calculate the fraction of non-trivial query keywords present in document."""
-    q_tokens = [w for w in tokenize_bm25(query) if len(w) > 2]
+    tokens = tokenize_bm25(query)
+    q_tokens = [w for w in tokens if len(w) > 2 and w not in COMMON_STOPWORDS]
+    if not q_tokens:
+        q_tokens = [w for w in tokens if len(w) > 2]
     if not q_tokens:
         return 0.5
     doc_tokens = set(tokenize_bm25(text))
