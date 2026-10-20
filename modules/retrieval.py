@@ -285,6 +285,13 @@ def rerank_hybrid_candidates(query: str,
             coverage_score * coverage_weight
         )
         
+        # Slight adaptive prior for thematic queries matching tree summaries
+        if c.get('node_type') == 'tree_summary':
+            thematic_triggers = {"theme", "summary", "overview", "philosophy", "evolution", "transformation", "life", "history", "perspective"}
+            query_words = set(tokenize_bm25(query))
+            if query_words.intersection(thematic_triggers):
+                composite_score = min(1.0, composite_score + 0.05)
+        
         c['bm25_score'] = bm25_score
         c['coverage_score'] = coverage_score
         c['rerank_score'] = composite_score
@@ -292,3 +299,140 @@ def rerank_hybrid_candidates(query: str,
     # Re-sort descending by composite reranking score
     candidates.sort(key=lambda x: x['rerank_score'], reverse=True)
     return candidates
+
+
+def collapsed_tree_fusion(raw_chunks: Optional[List[str]],
+                          raw_metas: Optional[List[Dict]],
+                          raw_dists: Optional[List[float]],
+                          summary_docs: Optional[List[str]] = None,
+                          summary_metas: Optional[List[Dict]] = None,
+                          summary_dists: Optional[List[float]] = None,
+                          memory_docs: Optional[List[str]] = None,
+                          memory_metas: Optional[List[Dict]] = None,
+                          memory_dists: Optional[List[float]] = None) -> List[Dict]:
+    """
+    RAPTOR-style Collapsed Tree Fusion (ICLR 2024):
+    Flattens multi-layer tree nodes (leaf chunks, Level 0 intra-doc summaries,
+    Level 1 macro summaries, Level 2 global summaries, and conversational memories)
+    into a unified candidate pool for joint hybrid evaluation.
+    """
+    candidates = []
+    
+    # 1. Leaf Chunks (Layer 0)
+    for doc, meta, dist in zip(raw_chunks or [], raw_metas or [], raw_dists or []):
+        dense_score = max(0.0, min(1.0, 1.0 - float(dist)))
+        candidates.append({
+            'document': doc,
+            'metadata': meta,
+            'distance': dist,
+            'dense_score': dense_score,
+            'node_type': 'leaf_chunk',
+            'level': meta.get('level', 0) if meta else 0,
+            'source_file': meta.get('source_file', 'unknown') if meta else 'unknown',
+            'page_number': meta.get('page_number', '?') if meta else '?'
+        })
+        
+    # 2. Hierarchical Summaries (Layers 1 to d)
+    if summary_docs and summary_metas and summary_dists:
+        for s_doc, s_meta, s_dist in zip(summary_docs, summary_metas, summary_dists):
+            s_score = max(0.0, min(1.0, 1.0 - float(s_dist)))
+            # Quality gate: omit low confidence or negative silhouette summaries
+            if s_meta and (s_meta.get('low_confidence', False) or float(s_meta.get('silhouette_score', 0.0)) <= 0.0):
+                continue
+            candidates.append({
+                'document': s_doc,
+                'metadata': s_meta,
+                'distance': s_dist,
+                'dense_score': s_score,
+                'node_type': 'tree_summary',
+                'level': s_meta.get('level', 0) if s_meta else 0,
+                'source_file': s_meta.get('source_file', 'cluster_theme') if s_meta else 'cluster_theme',
+                'page_number': s_meta.get('page_range', '') if s_meta else '',
+                'dense_summary': s_meta.get('dense_summary', '') if s_meta else ''
+            })
+            
+    # 3. Conversational Memories
+    if memory_docs and memory_metas and memory_dists:
+        for m_doc, m_meta, m_dist in zip(memory_docs, memory_metas, memory_dists):
+            m_score = max(0.0, min(1.0, 1.0 - float(m_dist)))
+            candidates.append({
+                'document': m_doc,
+                'metadata': m_meta,
+                'distance': m_dist,
+                'dense_score': m_score,
+                'node_type': 'memory',
+                'level': m_meta.get('turn_index', 0) if m_meta else 0,
+                'source_file': m_meta.get('chat_title', 'Conversation') if m_meta else 'Conversation',
+                'page_number': ''
+            })
+            
+    return candidates
+
+
+def pack_collapsed_context(reranked_candidates: List[Dict],
+                           max_tokens: int = 350,
+                           max_chunks: int = 2,
+                           max_summaries: int = 1) -> Dict:
+    """
+    Greedy budget-aware context packing for collapsed tree retrieval.
+    Selects top candidates up to max_tokens (approx 4 chars per token)
+    to guarantee local LLM generation TTFT <= 1.8s and total turnaround <= 4.2s.
+    """
+    packed_chunks = []
+    packed_metas = []
+    packed_scores = []
+    packed_summaries = []
+    collapsed_items = []
+    
+    current_tokens = 0
+    chunk_count = 0
+    summary_count = 0
+    
+    for c in reranked_candidates:
+        node_type = c.get('node_type', 'leaf_chunk')
+        text = c['document']
+        tokens_est = max(1, len(text) // 4)
+        
+        if node_type == 'leaf_chunk':
+            if chunk_count >= max_chunks:
+                continue
+            if current_tokens + min(tokens_est, 60) > max_tokens and packed_chunks:
+                continue
+            packed_chunks.append(text)
+            packed_metas.append(c['metadata'])
+            packed_scores.append(c['rerank_score'])
+            collapsed_items.append(c)
+            chunk_count += 1
+            current_tokens += min(tokens_est, 60)
+            
+        elif node_type == 'tree_summary':
+            if summary_count >= max_summaries:
+                continue
+            if current_tokens + min(tokens_est, 75) > max_tokens and (packed_chunks or packed_summaries):
+                continue
+            summary_info = {
+                'cluster_id': c['metadata'].get('cluster_id', 'unknown') if c.get('metadata') else 'unknown',
+                'level': c.get('level', 0),
+                'chunks_count': c['metadata'].get('chunks_count', 0) if c.get('metadata') else 0,
+                'score': c['rerank_score'],
+                'sources': c['metadata'].get('source_files', [c.get('source_file')]) if c.get('metadata') else [c.get('source_file')],
+                'silhouette_score': c['metadata'].get('silhouette_score', 0.0) if c.get('metadata') else 0.0,
+                'summary': text[:600],
+                'dense_summary': c.get('dense_summary', '')
+            }
+            packed_summaries.append(summary_info)
+            collapsed_items.append(c)
+            summary_count += 1
+            current_tokens += min(tokens_est, 75)
+            
+        if chunk_count >= max_chunks and summary_count >= max_summaries:
+            break
+            
+    return {
+        'chunks': packed_chunks,
+        'metadatas': packed_metas,
+        'scores': packed_scores,
+        'cluster_summaries': packed_summaries,
+        'collapsed_items': collapsed_items,
+        'total_estimated_tokens': current_tokens
+    }

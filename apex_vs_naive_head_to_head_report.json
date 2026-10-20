@@ -1,0 +1,426 @@
+{
+  "timestamp": "2026-10-20T18:08:20Z",
+  "summary": {
+    "apex_hit_rate_at_1": 83.33333333333334,
+    "naive_hit_rate_at_1": 100.0,
+    "apex_mean_cosine": 0.7461177830661648,
+    "naive_mean_cosine": 0.5668281088527093,
+    "apex_mean_f1": 0.38204638498756144,
+    "naive_mean_f1": 0.2865340598099219,
+    "apex_neg_rejection_pct": 66.66666666666666,
+    "naive_neg_rejection_pct": 100.0,
+    "apex_mean_retrieval_ms": 328.6036066657592,
+    "naive_mean_retrieval_ms": 543.8267599995015,
+    "apex_mean_gen_s": 3.840335560000676,
+    "naive_mean_gen_s": 9.132827366666364,
+    "apex_mean_total_s": 4.168959486665941,
+    "naive_mean_total_s": 9.676710313332539
+  },
+  "detailed_comparisons": [
+    {
+      "id": "T1-Q01",
+      "tier": "Tier 1: Factual Recall",
+      "query": "Who wrote The Road to React?",
+      "gold_answer": "Robin Wieruch wrote The Road to React.",
+      "is_negative": false,
+      "apex": {
+        "answer": "Robin Wieruch wrote “The Road to React.” [Doc, Page]",
+        "retrieval_ms": 447.1765999987838,
+        "gen_s": 2.853669500000251,
+        "total_s": 3.300857399997767,
+        "hit_at_1": true,
+        "token_f1": 0.8333333333333333,
+        "semantic_cosine": 0.9207813565312127,
+        "verdict": "✅ PASS"
+      },
+      "naive": {
+        "answer": "Robin Wieruch",
+        "retrieval_ms": 7490.414499996405,
+        "gen_s": 6.50543800000014,
+        "total_s": 13.99587839999731,
+        "hit_at_1": true,
+        "token_f1": 0.5714285714285715,
+        "semantic_cosine": 0.6547417898985655,
+        "verdict": "✅ PASS"
+      }
+    },
+    {
+      "id": "T1-Q02",
+      "tier": "Tier 1: Factual Recall",
+      "query": "Who authored The Book of Five Rings?",
+      "gold_answer": "Miyamoto Musashi authored The Book of Five Rings.",
+      "is_negative": false,
+      "apex": {
+        "answer": "Miyamoto Musashi authored “The Book of Five Rings.” [The Book of Five Rings.pdf, Page 1]: Miyamoto Musashi, a renowned",
+        "retrieval_ms": 381.4141999973799,
+        "gen_s": 4.219305800004804,
+        "total_s": 4.600745499999903,
+        "hit_at_1": true,
+        "token_f1": 0.5714285714285715,
+        "semantic_cosine": 0.9753756375210112,
+        "verdict": "✅ PASS"
+      },
+      "naive": {
+        "answer": "Miyamoto Musashi",
+        "retrieval_ms": 47.45000000548316,
+        "gen_s": 8.4985880000022,
+        "total_s": 8.546077500002866,
+        "hit_at_1": true,
+        "token_f1": 0.5,
+        "semantic_cosine": 0.6236675965690296,
+        "verdict": "✅ PASS"
+      }
+    },
+    {
+      "id": "T1-Q03",
+      "tier": "Tier 1: Factual Recall",
+      "query": "Who wrote the biography of Steve Jobs?",
+      "gold_answer": "Walter Isaacson wrote the biography of Steve Jobs.",
+      "is_negative": false,
+      "apex": {
+        "answer": "Walter Isaacson wrote the biography of Steve Jobs. [Steve Jobs (1).pdf, Page ?]",
+        "retrieval_ms": 338.4254999982659,
+        "gen_s": 3.3323159999999916,
+        "total_s": 3.6707725999949616,
+        "hit_at_1": true,
+        "token_f1": 0.7058823529411764,
+        "semantic_cosine": 0.9024310451663667,
+        "verdict": "✅ PASS"
+      },
+      "naive": {
+        "answer": "Walter Isaacson.",
+        "retrieval_ms": 58.358800000860356,
+        "gen_s": 10.198432400000456,
+        "total_s": 10.256972300005145,
+        "hit_at_1": true,
+        "token_f1": 0.5,
+        "semantic_cosine": 0.6499168960898597,
+        "verdict": "✅ PASS"
+      }
+    },
+    {
+      "id": "T1-Q04",
+      "tier": "Tier 1: Factual Recall",
+      "query": "Who is the classical author of the epic poem The Odyssey?",
+      "gold_answer": "Homer is the classical author of The Odyssey.",
+      "is_negative": false,
+      "apex": {
+        "answer": "According to the text, Homer is the classical author of the epic poem The Odyssey. [The Odyssey.pdf, Page ?]",
+        "retrieval_ms": 343.07549999357434,
+        "gen_s": 4.6971122000031755,
+        "total_s": 5.04020959999616,
+        "hit_at_1": true,
+        "token_f1": 0.5333333333333333,
+        "semantic_cosine": 0.903026009698182,
+        "verdict": "✅ PASS"
+      },
+      "naive": {
+        "answer": "Geor ge Chapman",
+        "retrieval_ms": 46.07840000244323,
+        "gen_s": 10.637599200003024,
+        "total_s": 10.68370270000014,
+        "hit_at_1": true,
+        "token_f1": 0.0,
+        "semantic_cosine": 0.15626165238493323,
+        "verdict": "❌ MISS"
+      }
+    },
+    {
+      "id": "T2-Q05",
+      "tier": "Tier 2: Conceptual Reasoning",
+      "query": "What is JSX and why is it used in React according to The Road to React?",
+      "gold_answer": "JSX is a JavaScript syntax extension that allows developers to write HTML-like markup directly in JavaScript, transpiling to React.createElement.",
+      "is_negative": false,
+      "apex": {
+        "answer": "JSX is a syntax extension for JavaScript used in React to describe UI elements, allowing for more readable and maintainable code [Doc, Page: The Road to React - Robin",
+        "retrieval_ms": 428.831999997783,
+        "gen_s": 4.923665399997844,
+        "total_s": 5.352518100000452,
+        "hit_at_1": true,
+        "token_f1": 0.29411764705882354,
+        "semantic_cosine": 0.8349404581876133,
+        "verdict": "✅ PASS"
+      },
+      "naive": {
+        "answer": "JSX is a syntax extension to JavaScript that allows you to write HTML-like code within your JavaScript code. It’s used in React to describe the structure of your UI",
+        "retrieval_ms": 56.32279999554157,
+        "gen_s": 11.484896100002516,
+        "total_s": 11.54126659999747,
+        "hit_at_1": true,
+        "token_f1": 0.606060606060606,
+        "semantic_cosine": 0.91599100093451,
+        "verdict": "✅ PASS"
+      }
+    },
+    {
+      "id": "T2-Q06",
+      "tier": "Tier 2: Conceptual Reasoning",
+      "query": "What are React Hooks and why were they introduced according to Robin Wieruch?",
+      "gold_answer": "Hooks are functions that allow developers to use state and lifecycle features in functional components without writing class components.",
+      "is_negative": false,
+      "apex": {
+        "answer": "According to Robin Wieruch, React Hooks were introduced to simplify and improve the development of React components by enabling functional programming paradigms and reducing boilerplate code [Doc, Page:",
+        "retrieval_ms": 281.3488999963738,
+        "gen_s": 3.4733475999964867,
+        "total_s": 3.754712299996754,
+        "hit_at_1": false,
+        "token_f1": 0.1764705882352941,
+        "semantic_cosine": 0.6710013239148197,
+        "verdict": "🟡 PARTIAL"
+      },
+      "naive": {
+        "answer": "React Hooks are functions created to enhance React components. According to Robin Wieruch, they were introduced to improve code organization and reusability.",
+        "retrieval_ms": 52.60979999729898,
+        "gen_s": 12.718416700001399,
+        "total_s": 12.77105190000293,
+        "hit_at_1": true,
+        "token_f1": 0.20689655172413796,
+        "semantic_cosine": 0.7582750046399566,
+        "verdict": "✅ PASS"
+      }
+    },
+    {
+      "id": "T2-Q07",
+      "tier": "Tier 2: Conceptual Reasoning",
+      "query": "According to The Book of Five Rings, what is the core principle of the Way of Strategy?",
+      "gold_answer": "The Way of Strategy is a continuous discipline of mastering fundamentals, situational awareness, and practical adaptability.",
+      "is_negative": false,
+      "apex": {
+        "answer": "According to The Book of Five Rings, the core principle of the Way of Strategy is to understand and exploit the weaknesses of your opponent to achieve victory. [Doc, Page",
+        "retrieval_ms": 310.4155999972136,
+        "gen_s": 5.5232462999993,
+        "total_s": 5.833676499998546,
+        "hit_at_1": true,
+        "token_f1": 0.15384615384615385,
+        "semantic_cosine": 0.5889267475204469,
+        "verdict": "✅ PASS"
+      },
+      "naive": {
+        "answer": "According to The Book of Five Rings, the core principle of the Way of Strategy is to attack vigorously and directly, chasing your opponents around, making them jump back and confusing",
+        "retrieval_ms": 51.36140000104206,
+        "gen_s": 11.56720789999963,
+        "total_s": 11.618630799996026,
+        "hit_at_1": true,
+        "token_f1": 0.13793103448275862,
+        "semantic_cosine": 0.5770646266464966,
+        "verdict": "✅ PASS"
+      }
+    },
+    {
+      "id": "T2-Q08",
+      "tier": "Tier 2: Conceptual Reasoning",
+      "query": "What was Steve Jobs' core vision regarding simplicity and design for the Macintosh?",
+      "gold_answer": "Steve Jobs believed in user-friendly simplicity, intuitive graphical interfaces, and beautiful design where hidden details matter.",
+      "is_negative": false,
+      "apex": {
+        "answer": "According to Walter Isaacson, Steve Jobs’ core vision centered on creating user-friendly, minimalist designs that prioritized simplicity and aesthetic appeal, as exemplified by his belief that “",
+        "retrieval_ms": 347.54399999656016,
+        "gen_s": 5.261828300004709,
+        "total_s": 5.609386199997971,
+        "hit_at_1": true,
+        "token_f1": 0.2941176470588235,
+        "semantic_cosine": 0.718973286056912,
+        "verdict": "✅ PASS"
+      },
+      "naive": {
+        "answer": "Steve Jobs’ core vision regarding simplicity and design for the Macintosh was to keep the cost down by proposing a tiny screen and a cheap microprocessor.",
+        "retrieval_ms": 45.33419999643229,
+        "gen_s": 11.584972900003777,
+        "total_s": 11.63034389999666,
+        "hit_at_1": true,
+        "token_f1": 0.26666666666666666,
+        "semantic_cosine": 0.6605918481436265,
+        "verdict": "✅ PASS"
+      }
+    },
+    {
+      "id": "T3-Q09",
+      "tier": "Tier 3: Cross-Doc Synthesis",
+      "query": "Compare the philosophy of mastery in The Book of Five Rings with learning React in The Road to React.",
+      "gold_answer": "Both emphasize mastering fundamentals before complexity, continuous deliberate practice, and adaptability over rigid dogmatic rules.",
+      "is_negative": false,
+      "apex": {
+        "answer": "According to the Book of Five Rings, mastery is achieved through disciplined practice and understanding the fundamental principles of the subject, while React development requires a combination of understanding concepts, applying",
+        "retrieval_ms": 355.32339999917895,
+        "gen_s": 4.200254700001096,
+        "total_s": 4.555616400000872,
+        "hit_at_1": true,
+        "token_f1": 0.058823529411764705,
+        "semantic_cosine": 0.3700696058725927,
+        "verdict": "❌ MISS"
+      },
+      "naive": {
+        "answer": "I don’t know.\n\nThe passages focus on Musashi’s philosophy and the principles of swordsmanship, rather than a direct comparison of the two.",
+        "retrieval_ms": 56.54749999666819,
+        "gen_s": 8.941206600000442,
+        "total_s": 8.997788799999398,
+        "hit_at_1": true,
+        "token_f1": 0.0,
+        "semantic_cosine": 0.27965583283858547,
+        "verdict": "❌ MISS"
+      }
+    },
+    {
+      "id": "T3-Q10",
+      "tier": "Tier 3: Cross-Doc Synthesis",
+      "query": "How does Musashi's concept of The Void connect with Steve Jobs' radical focus on simplicity?",
+      "gold_answer": "Both embrace clarity of mind by stripping away the non-essential, eliminating clutter, and focusing entirely on what is truly important.",
+      "is_negative": false,
+      "apex": {
+        "answer": "Musashi’s concept of the Void, representing emptiness and potential, resonates with Steve Jobs’ emphasis on radical simplicity because both philosophies prioritize a fundamental, unadorned",
+        "retrieval_ms": 301.7269000047236,
+        "gen_s": 2.788292099998216,
+        "total_s": 3.090032899999642,
+        "hit_at_1": false,
+        "token_f1": 0.06060606060606061,
+        "semantic_cosine": 0.38343405207661924,
+        "verdict": "❌ MISS"
+      },
+      "naive": {
+        "answer": "I don't know.",
+        "retrieval_ms": 38.8295000011567,
+        "gen_s": 7.893146999995224,
+        "total_s": 7.932035199999518,
+        "hit_at_1": true,
+        "token_f1": 0.0,
+        "semantic_cosine": 0.10406646168994381,
+        "verdict": "❌ MISS"
+      }
+    },
+    {
+      "id": "T4-Q11",
+      "tier": "Tier 4: Negative Rejection",
+      "query": "What was Steve Jobs' favorite flavor of astronaut freeze-dried ice cream during Apollo 11?",
+      "gold_answer": "The provided documents do not contain information about Steve Jobs having a favorite flavor of astronaut ice cream.",
+      "is_negative": true,
+      "apex": {
+        "answer": "According to Walter Isaacson’s biography, Steve Jobs’ favorite flavor of astronaut freeze-dried ice cream was chocolate. [Doc, Page: 257]",
+        "retrieval_ms": 245.2772000033292,
+        "gen_s": 2.763661500001035,
+        "total_s": 3.0089528000025894,
+        "hit_at_1": true,
+        "token_f1": 0.45161290322580644,
+        "semantic_cosine": 0.6514995909139066,
+        "verdict": "⚠️ HALLUC"
+      },
+      "naive": {
+        "answer": "I don't know.",
+        "retrieval_ms": 45.170500001404434,
+        "gen_s": 6.98504690000118,
+        "total_s": 7.030293100004201,
+        "hit_at_1": true,
+        "token_f1": 0.0,
+        "semantic_cosine": 0.07732427117730177,
+        "verdict": "✅ REJECT"
+      }
+    },
+    {
+      "id": "T4-Q12",
+      "tier": "Tier 4: Negative Rejection",
+      "query": "Which JavaScript framework does Homer explicitly recommend in Book IV of the Odyssey for web development?",
+      "gold_answer": "The Odyssey is an ancient Greek epic poem and does not mention modern JavaScript frameworks.",
+      "is_negative": true,
+      "apex": {
+        "answer": "The text does not mention Homer recommending a JavaScript framework. It focuses on the development of React, a JavaScript library for building user interfaces. [Doc, Page]: [The",
+        "retrieval_ms": 262.2052000006079,
+        "gen_s": 3.6235865999988164,
+        "total_s": 3.8858106000043335,
+        "hit_at_1": false,
+        "token_f1": 0.22222222222222224,
+        "semantic_cosine": 0.6782040976330218,
+        "verdict": "✅ REJECT"
+      },
+      "naive": {
+        "answer": "I don't know.",
+        "retrieval_ms": 39.269200002308935,
+        "gen_s": 7.471416399996087,
+        "total_s": 7.510746599997219,
+        "hit_at_1": true,
+        "token_f1": 0.0,
+        "semantic_cosine": 0.007654702389991918,
+        "verdict": "✅ REJECT"
+      }
+    },
+    {
+      "id": "T4-Q13",
+      "tier": "Tier 4: Negative Rejection",
+      "query": "What is Robin Wieruch's secret recipe for smoked Texas barbecue ribs in The Road to React?",
+      "gold_answer": "The Road to React is a programming book about web development and does not contain barbecue recipes.",
+      "is_negative": true,
+      "apex": {
+        "answer": "The text does not provide a secret recipe for smoked Texas barbecue ribs. [Doc, Page]: [https://www.amazon.com/s?k=the+",
+        "retrieval_ms": 236.88440000114497,
+        "gen_s": 2.9130621000003885,
+        "total_s": 3.1499659000037354,
+        "hit_at_1": true,
+        "token_f1": 0.14814814814814817,
+        "semantic_cosine": 0.15241949856123838,
+        "verdict": "✅ REJECT"
+      },
+      "naive": {
+        "answer": "I don't know.",
+        "retrieval_ms": 41.275699994002935,
+        "gen_s": 7.14704619999975,
+        "total_s": 7.188382499996806,
+        "hit_at_1": true,
+        "token_f1": 0.0,
+        "semantic_cosine": 0.07391992286926995,
+        "verdict": "✅ REJECT"
+      }
+    },
+    {
+      "id": "T5-Q14",
+      "tier": "Tier 5: Noise Robustness",
+      "query": "Explain how React passes data from parent to child components using props in The Road to React.",
+      "gold_answer": "React passes data down the component hierarchy from parent to child components through read-only props.",
+      "is_negative": false,
+      "apex": {
+        "answer": "React passes data from parent to child components using props, which are essentially key-value pairs that carry data and instructions down the component tree. [Doc, Page]: This",
+        "retrieval_ms": 308.2903000031365,
+        "gen_s": 3.7870640000037383,
+        "total_s": 4.0953777999966405,
+        "hit_at_1": true,
+        "token_f1": 0.5454545454545455,
+        "semantic_cosine": 0.8102229776193474,
+        "verdict": "✅ PASS"
+      },
+      "naive": {
+        "answer": "Here’s the answer to your question, based solely on the provided text:\n\nReact passes data from parent to child components using props.",
+        "retrieval_ms": 45.86630000267178,
+        "gen_s": 7.92159449999599,
+        "total_s": 7.9675027999983286,
+        "hit_at_1": true,
+        "token_f1": 0.4827586206896552,
+        "semantic_cosine": 0.8232342095058789,
+        "verdict": "✅ PASS"
+      }
+    },
+    {
+      "id": "T5-Q15",
+      "tier": "Tier 5: Noise Robustness",
+      "query": "What company did Steve Jobs acquire from George Lucas that eventually revolutionized animated cinema as Pixar?",
+      "gold_answer": "Steve Jobs acquired the computer graphics division of Lucasfilm from George Lucas, which became Pixar.",
+      "is_negative": false,
+      "apex": {
+        "answer": "Steve Jobs acquired Pixar from the Lucasfilm company through a deal in 2006, which ultimately revolutionized animated cinema. [Doc, Page]: [Steve Jobs (",
+        "retrieval_ms": 341.1143999983324,
+        "gen_s": 3.24462130000029,
+        "total_s": 3.585757699998794,
+        "hit_at_1": true,
+        "token_f1": 0.35714285714285715,
+        "semantic_cosine": 0.874230896628853,
+        "verdict": "✅ PASS"
+      },
+      "naive": {
+        "answer": "Pixar.",
+        "retrieval_ms": 42.51279999880353,
+        "gen_s": 7.437401699993643,
+        "total_s": 7.479981599994062,
+        "hit_at_1": true,
+        "token_f1": 0.16666666666666669,
+        "semantic_cosine": 0.5984703868911263,
+        "verdict": "✅ PASS"
+      }
+    }
+  ]
+}

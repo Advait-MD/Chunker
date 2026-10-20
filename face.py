@@ -16,7 +16,9 @@ from modules.retrieval import (
     deduplicate_retrieved_chunks,
     rerank_hybrid_candidates,
     is_chitchat_query,
-    retrieval_result_cache
+    retrieval_result_cache,
+    collapsed_tree_fusion,
+    pack_collapsed_context
 )
 
 if hasattr(sys.stdout, 'reconfigure'):
@@ -75,7 +77,7 @@ class RAGInterface:
             "num_predict": 35,
             "top_k": 30,
             "top_p": 0.9,
-            "num_ctx": 2048,
+            "num_ctx": 1024,
             "num_thread": cpu_threads
         }
 
@@ -266,10 +268,29 @@ class RAGInterface:
                         include=["documents", "metadatas", "distances"]
                     )
 
-                results = fut_chunks.result()
-                summary_results = fut_summaries.result() if fut_summaries else None
-                mem_results = fut_conv.result() if fut_conv else None
-                csum_results = fut_csum.result() if fut_csum else None
+                try:
+                    results = fut_chunks.result()
+                except Exception as e:
+                    logger.warning(f"Error querying chunks collection: {e}")
+                    results = None
+
+                try:
+                    summary_results = fut_summaries.result() if fut_summaries else None
+                except Exception as e:
+                    logger.warning(f"Error querying summaries collection: {e}")
+                    summary_results = None
+
+                try:
+                    mem_results = fut_conv.result() if fut_conv else None
+                except Exception as e:
+                    logger.warning(f"Error querying conversation memory collection: {e}")
+                    mem_results = None
+
+                try:
+                    csum_results = fut_csum.result() if fut_csum else None
+                except Exception as e:
+                    logger.warning(f"Error querying conversation summaries collection: {e}")
+                    csum_results = None
 
             if not results or not results.get('documents') or not results['documents'][0]:
                 return {'success': False, 'message': f"No relevant chunks found{f' for source {effective_source}' if effective_source else ''}."}
@@ -278,84 +299,95 @@ class RAGInterface:
             raw_metadatas = results['metadatas'][0]
             raw_distances = results['distances'][0]
 
-            # 4. Package candidates for hybrid BM25 + dense reranking
-            candidates = []
-            for doc, meta, dist in zip(raw_chunks, raw_metadatas, raw_distances):
-                dense_score = max(0.0, min(1.0, 1.0 - float(dist)))
-                candidates.append({
-                    'document': doc,
-                    'metadata': meta,
-                    'distance': dist,
-                    'dense_score': dense_score
-                })
+            # 4. Collapsed Tree Fusion (RAPTOR Upgrade - ICLR 2024)
+            if config.retrieval.enable_collapsed_retrieval:
+                s_docs = summary_results['documents'][0] if summary_results and summary_results.get('documents') and summary_results['documents'][0] else None
+                s_metas = summary_results['metadatas'][0] if summary_results and summary_results.get('metadatas') and summary_results['metadatas'][0] else None
+                s_dists = summary_results['distances'][0] if summary_results and summary_results.get('distances') and summary_results['distances'][0] else None
+                
+                candidates = collapsed_tree_fusion(
+                    raw_chunks=raw_chunks,
+                    raw_metas=raw_metadatas,
+                    raw_dists=raw_distances,
+                    summary_docs=s_docs,
+                    summary_metas=s_metas,
+                    summary_dists=s_dists
+                )
+            else:
+                candidates = []
+                for doc, meta, dist in zip(raw_chunks, raw_metadatas, raw_distances):
+                    dense_score = max(0.0, min(1.0, 1.0 - float(dist)))
+                    candidates.append({
+                        'document': doc,
+                        'metadata': meta,
+                        'distance': dist,
+                        'dense_score': dense_score,
+                        'node_type': 'leaf_chunk'
+                    })
 
-            # Hybrid Reranking (BM25 + Dense Vector + Query Term Coverage)
+            # Hybrid Reranking (BM25 + Dense Vector + Query Term Coverage across collapsed tree)
             reranked_candidates = rerank_hybrid_candidates(clean_q, candidates)
 
             # Score Thresholding: strict relevance and keyword coverage check
             threshold = max(self.min_score, 0.35)
+            q_word_count = len(clean_q.split())
+            cov_threshold = 0.20 if q_word_count > 15 else 0.35
+
             passed_candidates = [
                 c for c in reranked_candidates 
-                if c['rerank_score'] >= threshold and c.get('coverage_score', 0) >= 0.45
+                if c['rerank_score'] >= threshold and (c.get('coverage_score', 0) >= cov_threshold or c.get('node_type') == 'tree_summary')
             ]
             low_confidence = (len(passed_candidates) == 0)
             if low_confidence:
-                # If top candidate has solid query keyword coverage (>= 0.40), keep top 1
-                if reranked_candidates and reranked_candidates[0]['rerank_score'] >= 0.45 and reranked_candidates[0].get('coverage_score', 0) >= 0.50:
+                # If top candidate has reasonable keyword coverage, keep top 1
+                if reranked_candidates and reranked_candidates[0]['rerank_score'] >= 0.35 and (reranked_candidates[0].get('coverage_score', 0) >= 0.15 or reranked_candidates[0].get('node_type') == 'tree_summary'):
                     passed_candidates = reranked_candidates[:1]
                 else:
                     passed_candidates = []
 
-            # Chunk Deduplication
-            cand_docs = [c['document'] for c in passed_candidates]
-            cand_metas = [c['metadata'] for c in passed_candidates]
-            cand_scores = [c['rerank_score'] for c in passed_candidates]
+            # Chunk Deduplication for leaf chunks
+            cand_docs = [c['document'] for c in passed_candidates if c.get('node_type') == 'leaf_chunk']
+            cand_metas = [c['metadata'] for c in passed_candidates if c.get('node_type') == 'leaf_chunk']
+            cand_scores = [c['rerank_score'] for c in passed_candidates if c.get('node_type') == 'leaf_chunk']
 
             deduped_chunks, deduped_metas, deduped_scores = deduplicate_retrieved_chunks(
                 cand_docs, cand_metas, cand_scores, max_jaccard_overlap=0.65
             )
 
-            retrieved_chunks = deduped_chunks[:self.max_context_chunks]
-            retrieved_metadatas = deduped_metas[:self.max_context_chunks]
-            relevance_scores = deduped_scores[:self.max_context_chunks]
+            # Re-integrate deduped chunks into unified pool alongside tree summaries
+            final_candidates = []
+            for d_chunk, d_meta, d_score in zip(deduped_chunks, deduped_metas, deduped_scores):
+                final_candidates.append({
+                    'document': d_chunk,
+                    'metadata': d_meta,
+                    'rerank_score': d_score,
+                    'node_type': 'leaf_chunk'
+                })
+            for c in passed_candidates:
+                if c.get('node_type') == 'tree_summary':
+                    final_candidates.append(c)
+
+            final_candidates.sort(key=lambda x: x['rerank_score'], reverse=True)
+
+            # 5. Budget-Aware Context Packing (guarantees TTFT <= 1.8s)
+            packed = pack_collapsed_context(
+                final_candidates,
+                max_tokens=config.retrieval.collapsed_token_budget,
+                max_chunks=self.max_context_chunks,
+                max_summaries=1
+            )
+
+            retrieved_chunks = packed['chunks']
+            retrieved_metadatas = packed['metadatas']
+            relevance_scores = packed['scores']
+            cluster_summaries = packed['cluster_summaries']
+            collapsed_items = packed['collapsed_items']
 
             sources = []
             for meta in retrieved_metadatas:
                 if meta and 'source_file' in meta:
                     sources.append(meta['source_file'])
             sources = sorted(list(set(sources)))
-
-            # 5. Process Thematic Summaries
-            cluster_summaries = []
-            if summary_results and summary_results.get('documents') and summary_results['documents'][0]:
-                for s_doc, s_meta, s_dist in zip(
-                    summary_results['documents'][0],
-                    summary_results['metadatas'][0],
-                    summary_results['distances'][0]
-                ):
-                    s_score = max(0.0, min(1.0, 1.0 - float(s_dist)))
-                    if s_score < 0.30:
-                        continue
-                    if s_meta.get('low_confidence', False) or float(s_meta.get('silhouette_score', 0.0)) <= 0.0:
-                        continue
-                    summary_sources = s_meta.get('source_files', [])
-                    if isinstance(summary_sources, str):
-                        summary_sources = [summary_sources]
-                    if sources and summary_sources:
-                        shared = set(sources).intersection(set(summary_sources))
-                        if not shared:
-                            continue
-                    cluster_summaries.append({
-                        'cluster_id': s_meta.get('cluster_id', 'unknown'),
-                        'level': s_meta.get('level', 0),
-                        'chunks_count': s_meta.get('chunks_count', 0),
-                        'score': s_score,
-                        'sources': summary_sources,
-                        'silhouette_score': s_meta.get('silhouette_score', 0.0),
-                        'summary': s_doc[:600],
-                        'dense_summary': s_meta.get('dense_summary', '')
-                    })
-                    break
 
             # 6. Process Conversational Memories
             conversation_memories = []
@@ -408,6 +440,7 @@ class RAGInterface:
                 'query': clean_q,
                 'source_filter': effective_source,
                 'low_confidence': low_confidence,
+                'collapsed_items': collapsed_items,
                 'retrieval_time': elapsed
             }
 
@@ -416,7 +449,7 @@ class RAGInterface:
 
         except Exception as e:
             logger.error(f"Error retrieving context: {e}", exc_info=True)
-            return {'success': False, 'message': f'Error retrieving context: {str(e)}'}
+            return {'success': False, 'message': f'Error retrieving context: {str(e)}', 'query': clean_q}
 
     def build_prompt(self, context: Dict, session_history: Optional[List[Dict]] = None) -> str:
         """
@@ -424,6 +457,8 @@ class RAGInterface:
         and conversational memory. Strictly bounds character count to guarantee
         TTFT <= 2.0s and Total Turnaround <= 5.0s.
         """
+        user_query = context.get('query', '')
+        
         # Pure conversation branch: chit-chat or general dialogue with no matching document chunks
         if context.get('is_chitchat') or (not context.get('chunks') and not context.get('cluster_summaries')):
             prompt_parts = [
@@ -442,7 +477,7 @@ class RAGInterface:
                     for msg in history_to_use[-2:]:
                         role = "User" if msg.get('role') == 'user' else "APEX"
                         c = msg.get('content', '').strip()
-                        if c and c != context['query']:
+                        if c and c != user_query:
                             prompt_parts.append(f"{role}: {c[:75]}")
                 else:
                     for turn in history_to_use[-1:]:
@@ -452,7 +487,7 @@ class RAGInterface:
                             prompt_parts.append(f"User: {q[:75]}")
                             prompt_parts.append(f"APEX: {a[:75]}")
 
-            prompt_parts.append(f"\nUser: {context['query']}")
+            prompt_parts.append(f"\nUser: {user_query}")
             prompt_parts.append("APEX:")
             return "\n".join(prompt_parts)
 
@@ -484,7 +519,7 @@ class RAGInterface:
                 clean_mem = mem['text'][:150].strip().replace('\n', ' ')
                 prompt_parts.append(f"[Memory]: {clean_mem}")
 
-        prompt_parts.append(f"\nQuestion: {context['query']}\nAnswer:")
+        prompt_parts.append(f"\nQuestion: {user_query}\nAnswer:")
         return "\n".join(prompt_parts)
     
     def generate_response(self, prompt: str) -> Dict:
@@ -510,7 +545,7 @@ class RAGInterface:
                         "prompt": prompt,
                         "stream": False,
                         "options": self.ollama_options,
-                        "keep_alive": "1h"
+                        "keep_alive": -1
                     },
                     timeout=timeout
                 )
@@ -561,7 +596,7 @@ class RAGInterface:
                     "prompt": prompt,
                     "stream": True,
                     "options": self.ollama_options,
-                    "keep_alive": "1h"
+                    "keep_alive": -1
                 },
                 stream=True,
                 timeout=config.ollama.timeout

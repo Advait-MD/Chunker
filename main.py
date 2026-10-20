@@ -131,8 +131,13 @@ class HierarchicalClusterSummarizer:
             logger.info(f"Level {level} conversation clustering: {n_clusters} clusters (Silhouette: {overall_silhouette:.3f})")
             
             level_summaries = {}
+            cluster_members = clustering_results.get('cluster_members')
             for cluster_id in range(n_clusters):
-                cluster_indices = np.where(labels == cluster_id)[0]
+                if cluster_members and cluster_id in cluster_members and len(cluster_members[cluster_id]) > 0:
+                    cluster_indices = cluster_members[cluster_id]
+                else:
+                    cluster_indices = np.where(labels == cluster_id)[0]
+                    
                 cluster_texts = [documents[i] for i in cluster_indices]
                 cluster_metas = [metadatas[i] for i in cluster_indices]
                 cluster_sil = cluster_silhouettes.get(cluster_id, overall_silhouette)
@@ -267,13 +272,20 @@ class HierarchicalClusterSummarizer:
         source_label = f" for '{source_doc}'" if source_doc else ""
         logger.info(f"Evaluating and storing summaries for Level {level}{source_label} (Overall Silhouette: {overall_silhouette:.3f}, Gate Threshold: {min_sil:.3f})")
         
+        cluster_members = clustering_results.get('cluster_members')
+        bic_score = clustering_results.get('bic_score', 0.0)
+        
         for cluster_id in range(n_clusters):
-            cluster_indices = np.where(labels == cluster_id)[0]
+            if cluster_members and cluster_id in cluster_members and len(cluster_members[cluster_id]) > 0:
+                cluster_indices = cluster_members[cluster_id]
+            else:
+                cluster_indices = np.where(labels == cluster_id)[0]
+                
             cluster_texts = [documents[i] for i in cluster_indices]
             cluster_metas = [metadatas[i] for i in cluster_indices]
             cluster_sil = cluster_silhouettes.get(cluster_id, overall_silhouette)
             
-            logger.info(f"Cluster {cluster_id} at Level {level}: {len(cluster_texts)} chunks | Cluster Silhouette: {cluster_sil:.3f}")
+            logger.info(f"Cluster {cluster_id} at Level {level}: {len(cluster_texts)} chunks (Soft-membership: {len(cluster_indices)}) | Cluster Silhouette: {cluster_sil:.3f}")
             
             # Quality Gate: stop summarizing bad clusters (silhouette near zero or negative)
             is_bad_cluster = (cluster_sil <= min_sil)
@@ -301,15 +313,19 @@ class HierarchicalClusterSummarizer:
             avg_confidence = float(np.mean([max(clustering_results['probabilities'][i]) 
                                            for i in cluster_indices]))
             
+            tree_role = 'intra_document_summary' if level == 0 else ('global_root_summary' if level >= 2 else 'macro_thematic_summary')
+            
             summary_metadata = {
                 'type': 'cluster_summary',
                 'level': level,
+                'tree_role': tree_role,
                 'cluster_id': cluster_id,
                 'chunks_count': len(cluster_texts),
                 'source_file': effective_source or 'multiple',
                 'source_files': [effective_source] if effective_source else sources,
                 'cluster_type': 'intra_document' if effective_source else 'cross_document',
                 'avg_confidence': avg_confidence,
+                'bic_score': float(bic_score),
                 'silhouette_score': cluster_sil,
                 'overall_silhouette': overall_silhouette,
                 'low_confidence': is_bad_cluster,
@@ -383,7 +399,7 @@ class HierarchicalClusterSummarizer:
                     continue
                 
                 total_items_level_0 += len(embeddings)
-                n_clusters = max(2, min(6, len(embeddings) // 40))
+                n_clusters = None if config.clustering.bic_selection else max(2, min(6, len(embeddings) // 40))
                 clustering_results = self.perform_clustering(embeddings, n_clusters)
                 
                 if clustering_results is None:
@@ -428,7 +444,7 @@ class HierarchicalClusterSummarizer:
             
             logger.info(f"Found {len(embeddings)} items at level {current_level}")
             
-            n_clusters = max(2, min(8, len(embeddings) // 4))
+            n_clusters = None if config.clustering.bic_selection else max(2, min(8, len(embeddings) // 4))
             clustering_results = self.perform_clustering(embeddings, n_clusters)
             
             if clustering_results is None:
