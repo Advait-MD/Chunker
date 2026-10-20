@@ -9,11 +9,14 @@ import sys
 
 from modules.config import config
 from modules.logger import get_logger, setup_logger
+import concurrent.futures
 from modules.retrieval import (
     BM25Scorer,
     reciprocal_rank_fusion,
     deduplicate_retrieved_chunks,
-    rerank_hybrid_candidates
+    rerank_hybrid_candidates,
+    is_chitchat_query,
+    retrieval_result_cache
 )
 
 if hasattr(sys.stdout, 'reconfigure'):
@@ -127,22 +130,40 @@ class RAGInterface:
     
     def retrieve_context(self, query: str, source_filter: Optional[str] = None) -> Dict:
         """
-        Retrieve relevant context using Hybrid Retrieval (BM25 + Dense HNSW),
-        post-retrieval composite reranking, score thresholding, and deduplication.
-        
-        Args:
-            query: User question
-            source_filter: Optional source_file name to restrict search (Item 23)
-            
-        Returns:
-            Dictionary with retrieved chunks, metadata, and scores
+        High-performance context retrieval:
+          - Fast chit-chat bypass (0 ms) for pure conversational queries (Item 2.3).
+          - Retrieval result LRU caching (Item 2.4).
+          - Single query embedding computation with LRU cache.
+          - Concurrent collection queries via ThreadPoolExecutor (Item 3.3).
+          - Hybrid BM25 + dense reranking, score thresholding, and deduplication.
+        Target retrieval latency: <= 0.5s (max 2.0s).
         """
         if not query or not query.strip():
             return {'success': False, 'message': 'Empty or blank query provided'}
 
+        t_start = time.perf_counter()
+        clean_q = query.strip()
+
+        # 0. Chit-chat bypass (Item 2.3)
+        if is_chitchat_query(clean_q):
+            return {
+                'success': True,
+                'is_chitchat': True,
+                'chunks': [],
+                'metadatas': [],
+                'scores': [],
+                'cluster_summaries': [],
+                'conversation_memories': [],
+                'conversation_cluster_summaries': [],
+                'sources': [],
+                'query': clean_q,
+                'source_filter': None,
+                'low_confidence': False,
+                'retrieval_time': time.perf_counter() - t_start
+            }
+
         effective_source = source_filter if source_filter is not None else self.source_filter
         if effective_source:
-            # Match source name against indexed documents if not an exact match
             indexed_sources = self.processor.get_indexed_sources()
             if effective_source not in indexed_sources:
                 clean_target = effective_source[:-4].strip().lower() if effective_source.lower().endswith('.pdf') else effective_source.strip().lower()
@@ -150,35 +171,82 @@ class RAGInterface:
                 if matches:
                     effective_source = matches[0]
 
+        # 1. Check Retrieval Result Cache (Item 2.4)
+        cache_key = (clean_q.lower(), effective_source, self.max_context_chunks, self.min_score, self.include_summaries)
+        cached_res = retrieval_result_cache.get(cache_key)
+        if cached_res is not None:
+            cached_res['retrieval_time'] = time.perf_counter() - t_start
+            return cached_res
+
         if self.verbose:
             filter_str = f" [Filter: '{effective_source}']" if effective_source else ""
-            print(f"\n🔍 Retrieving context for: {query[:80]}...{filter_str}")
-        
+            print(f"\n🔍 Retrieving context for: {clean_q[:80]}...{filter_str}")
+
         try:
-            # Check if collection is empty
             if self.processor.chunks_collection.count() == 0:
                 return {'success': False, 'message': 'Database is empty. Please ingest documents with main.py first.'}
 
-            # 1. Primary Evidence Retrieval: Candidate Pool Fetching (Dense Search)
+            # 2. Compute query embedding ONCE with LRU caching (Item 2.4 & 3.3)
+            query_emb = self.processor.store.get_query_embedding(clean_q)
             candidate_pool_size = max(self.max_context_chunks * 3, 12)
-            query_kwargs = {
-                "query_texts": [query.strip()],
-                "n_results": candidate_pool_size,
-                "include": ["documents", "metadatas", "distances"]
-            }
-            if effective_source:
-                query_kwargs["where"] = {"source_file": effective_source}
 
-            results = self.processor.chunks_collection.query(**query_kwargs)
-            
-            if not results['documents'] or not results['documents'][0]:
+            # 3. Parallel Query Execution across Collections (Item 3.3)
+            with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:
+                # Task A: Primary document chunks
+                chunks_where = {"source_file": effective_source} if effective_source else None
+                fut_chunks = executor.submit(
+                    self.processor.chunks_collection.query,
+                    query_embeddings=[query_emb],
+                    n_results=candidate_pool_size,
+                    where=chunks_where,
+                    include=["documents", "metadatas", "distances"]
+                )
+
+                # Task B: Hierarchical document summaries
+                fut_summaries = None
+                if self.include_summaries and self.processor.summaries_collection.count() > 0:
+                    sums_where = {"source_file": effective_source} if effective_source else None
+                    fut_summaries = executor.submit(
+                        self.processor.summaries_collection.query,
+                        query_embeddings=[query_emb],
+                        n_results=3,
+                        where=sums_where,
+                        include=["documents", "metadatas", "distances"]
+                    )
+
+                # Task C: Conversation memory chunks
+                fut_conv = None
+                if config.retrieval.include_conversation_memory and hasattr(self.processor, 'conv_chunks_collection') and self.processor.conv_chunks_collection.count() > 0:
+                    fut_conv = executor.submit(
+                        self.processor.conv_chunks_collection.query,
+                        query_embeddings=[query_emb],
+                        n_results=min(config.retrieval.max_memory_chunks, self.processor.conv_chunks_collection.count()),
+                        include=["documents", "metadatas", "distances"]
+                    )
+
+                # Task D: Conversation cluster summaries
+                fut_csum = None
+                if hasattr(self.processor, 'conv_summaries_collection') and self.processor.conv_summaries_collection.count() > 0:
+                    fut_csum = executor.submit(
+                        self.processor.conv_summaries_collection.query,
+                        query_embeddings=[query_emb],
+                        n_results=min(2, self.processor.conv_summaries_collection.count()),
+                        include=["documents", "metadatas", "distances"]
+                    )
+
+                results = fut_chunks.result()
+                summary_results = fut_summaries.result() if fut_summaries else None
+                mem_results = fut_conv.result() if fut_conv else None
+                csum_results = fut_csum.result() if fut_csum else None
+
+            if not results or not results.get('documents') or not results['documents'][0]:
                 return {'success': False, 'message': f"No relevant chunks found{f' for source {effective_source}' if effective_source else ''}."}
-            
+
             raw_chunks = results['documents'][0]
             raw_metadatas = results['metadatas'][0]
             raw_distances = results['distances'][0]
-            
-            # Package candidate pool for hybrid BM25 + dense reranking (Item 24 & Item 25)
+
+            # 4. Package candidates for hybrid BM25 + dense reranking
             candidates = []
             for doc, meta, dist in zip(raw_chunks, raw_metadatas, raw_distances):
                 dense_score = max(0.0, min(1.0, 1.0 - float(dist)))
@@ -188,155 +256,109 @@ class RAGInterface:
                     'distance': dist,
                     'dense_score': dense_score
                 })
-            
-            # 2. Hybrid Reranking (BM25 + Dense Vector + Query Term Coverage)
-            reranked_candidates = rerank_hybrid_candidates(query.strip(), candidates)
-            
-            # 3. Score Thresholding (Item 26)
+
+            # Hybrid Reranking (BM25 + Dense Vector + Query Term Coverage)
+            reranked_candidates = rerank_hybrid_candidates(clean_q, candidates)
+
+            # Score Thresholding
             threshold = self.min_score
             passed_candidates = [c for c in reranked_candidates if c['rerank_score'] >= threshold]
-            
             low_confidence = (len(passed_candidates) == 0)
             if low_confidence:
-                logger.warning(f"All candidate chunks scored below confidence threshold ({threshold:.2f})")
                 passed_candidates = reranked_candidates[:1] if reranked_candidates else []
 
-            # 4. Chunk Deduplication (Item 27)
+            # Chunk Deduplication
             cand_docs = [c['document'] for c in passed_candidates]
             cand_metas = [c['metadata'] for c in passed_candidates]
             cand_scores = [c['rerank_score'] for c in passed_candidates]
-            
+
             deduped_chunks, deduped_metas, deduped_scores = deduplicate_retrieved_chunks(
                 cand_docs, cand_metas, cand_scores, max_jaccard_overlap=0.65
             )
-            
-            # Limit to configured max context chunks
+
             retrieved_chunks = deduped_chunks[:self.max_context_chunks]
             retrieved_metadatas = deduped_metas[:self.max_context_chunks]
             relevance_scores = deduped_scores[:self.max_context_chunks]
-            
-            # Extract unique sources from primary chunks
+
             sources = []
             for meta in retrieved_metadatas:
                 if meta and 'source_file' in meta:
                     sources.append(meta['source_file'])
             sources = sorted(list(set(sources)))
-            
-            # 5. Auxiliary Thematic Retrieval: Query hierarchical_summaries separately
+
+            # 5. Process Thematic Summaries
             cluster_summaries = []
-            if self.include_summaries and self.processor.summaries_collection.count() > 0:
-                try:
-                    summary_kwargs = {
-                        "query_texts": [query.strip()],
-                        "n_results": 3,
-                        "include": ["documents", "metadatas", "distances"]
-                    }
-                    if effective_source:
-                        summary_kwargs["where"] = {"source_file": effective_source}
+            if summary_results and summary_results.get('documents') and summary_results['documents'][0]:
+                for s_doc, s_meta, s_dist in zip(
+                    summary_results['documents'][0],
+                    summary_results['metadatas'][0],
+                    summary_results['distances'][0]
+                ):
+                    s_score = max(0.0, min(1.0, 1.0 - float(s_dist)))
+                    if s_score < 0.30:
+                        continue
+                    if s_meta.get('low_confidence', False) or float(s_meta.get('silhouette_score', 0.0)) <= 0.0:
+                        continue
+                    summary_sources = s_meta.get('source_files', [])
+                    if isinstance(summary_sources, str):
+                        summary_sources = [summary_sources]
+                    if sources and summary_sources:
+                        shared = set(sources).intersection(set(summary_sources))
+                        if not shared:
+                            continue
+                    cluster_summaries.append({
+                        'cluster_id': s_meta.get('cluster_id', 'unknown'),
+                        'level': s_meta.get('level', 0),
+                        'chunks_count': s_meta.get('chunks_count', 0),
+                        'score': s_score,
+                        'sources': summary_sources,
+                        'silhouette_score': s_meta.get('silhouette_score', 0.0),
+                        'summary': s_doc[:600],
+                        'dense_summary': s_meta.get('dense_summary', '')
+                    })
+                    break
 
-                    summary_results = self.processor.summaries_collection.query(**summary_kwargs)
-                    if summary_results and summary_results.get('documents') and summary_results['documents'][0]:
-                        for s_doc, s_meta, s_dist in zip(
-                            summary_results['documents'][0],
-                            summary_results['metadatas'][0],
-                            summary_results['distances'][0]
-                        ):
-                            s_score = max(0.0, min(1.0, 1.0 - float(s_dist)))
-                            
-                            # Filter 1: Topical relevance gate (>= 30%)
-                            if s_score < 0.30:
-                                continue
-                            
-                            # Filter 2: Quality gate (skip low-confidence or negative-silhouette summaries)
-                            if s_meta.get('low_confidence', False):
-                                continue
-                            if float(s_meta.get('silhouette_score', 0.0)) <= 0.0:
-                                continue
-                            
-                            # Filter 3: Source alignment gate (summary must share at least 1 document with primary chunks)
-                            summary_sources = s_meta.get('source_files', [])
-                            if isinstance(summary_sources, str):
-                                summary_sources = [summary_sources]
-                            
-                            if sources and summary_sources:
-                                shared = set(sources).intersection(set(summary_sources))
-                                if not shared:
-                                    continue
-                            
-                            cluster_summaries.append({
-                                'cluster_id': s_meta.get('cluster_id', 'unknown'),
-                                'level': s_meta.get('level', 0),
-                                'chunks_count': s_meta.get('chunks_count', 0),
-                                'score': s_score,
-                                'sources': summary_sources,
-                                'silhouette_score': s_meta.get('silhouette_score', 0.0),
-                                'summary': s_doc[:600],
-                                'dense_summary': s_meta.get('dense_summary', '')
-                            })
-                            break
-                except Exception as e:
-                    if self.verbose:
-                        print(f"  Note fetching cluster summary: {e}")
-
-            # 6. Conversational Memory Retrieval: Recall relevant past chat turns
+            # 6. Process Conversational Memories
             conversation_memories = []
-            if config.retrieval.include_conversation_memory and hasattr(self.processor, 'conv_chunks_collection') and self.processor.conv_chunks_collection.count() > 0:
-                try:
-                    mem_results = self.processor.conv_chunks_collection.query(
-                        query_texts=[query.strip()],
-                        n_results=min(config.retrieval.max_memory_chunks, self.processor.conv_chunks_collection.count()),
-                        include=["documents", "metadatas", "distances"]
-                    )
-                    if mem_results and mem_results.get('documents') and mem_results['documents'][0]:
-                        for m_doc, m_meta, m_dist in zip(
-                            mem_results['documents'][0],
-                            mem_results['metadatas'][0],
-                            mem_results['distances'][0]
-                        ):
-                            m_score = max(0.0, min(1.0, 1.0 - float(m_dist)))
-                            if m_score >= 0.20:
-                                conversation_memories.append({
-                                    'text': m_doc,
-                                    'chat_id': m_meta.get('chat_id'),
-                                    'chat_title': m_meta.get('chat_title', 'Previous Chat'),
-                                    'turn_index': m_meta.get('turn_index', 0),
-                                    'timestamp': m_meta.get('timestamp', ''),
-                                    'score': m_score
-                                })
-                except Exception as e:
-                    if self.verbose:
-                        print(f"  Note fetching conversation memories: {e}")
+            if mem_results and mem_results.get('documents') and mem_results['documents'][0]:
+                for m_doc, m_meta, m_dist in zip(
+                    mem_results['documents'][0],
+                    mem_results['metadatas'][0],
+                    mem_results['distances'][0]
+                ):
+                    m_score = max(0.0, min(1.0, 1.0 - float(m_dist)))
+                    if m_score >= 0.20:
+                        conversation_memories.append({
+                            'text': m_doc,
+                            'chat_id': m_meta.get('chat_id'),
+                            'chat_title': m_meta.get('chat_title', 'Previous Chat'),
+                            'turn_index': m_meta.get('turn_index', 0),
+                            'timestamp': m_meta.get('timestamp', ''),
+                            'score': m_score
+                        })
 
-            # 7. Conversational Topic Theme Retrieval: Recall macro themes of past discussions
+            # 7. Process Conversational Cluster Themes
             conv_cluster_summaries = []
-            if hasattr(self.processor, 'conv_summaries_collection') and self.processor.conv_summaries_collection.count() > 0:
-                try:
-                    csum_results = self.processor.conv_summaries_collection.query(
-                        query_texts=[query.strip()],
-                        n_results=min(2, self.processor.conv_summaries_collection.count()),
-                        include=["documents", "metadatas", "distances"]
-                    )
-                    if csum_results and csum_results.get('documents') and csum_results['documents'][0]:
-                        for cs_doc, cs_meta, cs_dist in zip(
-                            csum_results['documents'][0],
-                            csum_results['metadatas'][0],
-                            csum_results['distances'][0]
-                        ):
-                            cs_score = max(0.0, min(1.0, 1.0 - float(cs_dist)))
-                            if cs_score >= 0.25:
-                                conv_cluster_summaries.append({
-                                    'summary': cs_doc,
-                                    'dense_summary': cs_meta.get('dense_summary', ''),
-                                    'chats_represented': cs_meta.get('chats_represented', 'Chats'),
-                                    'score': cs_score,
-                                    'level': cs_meta.get('level', 0)
-                                })
-                except Exception as e:
-                    if self.verbose:
-                        print(f"  Note fetching conversation cluster summary: {e}")
-            
-            return {
+            if csum_results and csum_results.get('documents') and csum_results['documents'][0]:
+                for cs_doc, cs_meta, cs_dist in zip(
+                    csum_results['documents'][0],
+                    csum_results['metadatas'][0],
+                    csum_results['distances'][0]
+                ):
+                    cs_score = max(0.0, min(1.0, 1.0 - float(cs_dist)))
+                    if cs_score >= 0.25:
+                        conv_cluster_summaries.append({
+                            'summary': cs_doc,
+                            'dense_summary': cs_meta.get('dense_summary', ''),
+                            'chats_represented': cs_meta.get('chats_represented', 'Chats'),
+                            'score': cs_score,
+                            'level': cs_meta.get('level', 0)
+                        })
+
+            elapsed = time.perf_counter() - t_start
+            result_dict = {
                 'success': True,
+                'is_chitchat': False,
                 'chunks': retrieved_chunks,
                 'metadatas': retrieved_metadatas,
                 'scores': relevance_scores,
@@ -344,25 +366,32 @@ class RAGInterface:
                 'conversation_memories': conversation_memories,
                 'conversation_cluster_summaries': conv_cluster_summaries,
                 'sources': sources,
-                'query': query,
+                'query': clean_q,
                 'source_filter': effective_source,
-                'low_confidence': low_confidence
+                'low_confidence': low_confidence,
+                'retrieval_time': elapsed
             }
-            
+
+            retrieval_result_cache.put(cache_key, result_dict)
+            return result_dict
+
         except Exception as e:
-            logger.error(f"Error retrieving context: {e}")
+            logger.error(f"Error retrieving context: {e}", exc_info=True)
             return {'success': False, 'message': f'Error retrieving context: {str(e)}'}
-    
+
     def build_prompt(self, context: Dict) -> str:
         """
-        Build a prompt for the LLM prioritizing primary source evidence and conversational memory
-        
-        Args:
-            context: Retrieved context dictionary from retrieve_context()
-            
-        Returns:
-            Formatted prompt
+        Build a prompt for the LLM prioritizing primary source evidence and conversational memory.
+        Fast-paths conversational chit-chat queries (Item 2.3).
         """
+        if context.get('is_chitchat'):
+            return (
+                "You are APEX, a knowledgeable and friendly AI research assistant. "
+                "Respond warmly, naturally, and concisely to the user's conversational message.\n\n"
+                f"User: {context['query']}\n"
+                "Assistant:"
+            )
+
         prompt_parts = []
         
         prompt_parts.append("""You are a knowledgeable assistant. Answer the question based on the provided context.
@@ -430,21 +459,17 @@ INSTRUCTIONS:
     
     def generate_response(self, prompt: str) -> Dict:
         """
-        Generate response using native Ollama LLM with retry backoff and robust error handling
-        
-        Args:
-            prompt: Formatted prompt
-            
-        Returns:
-            Dictionary with response and metadata
+        Generate response using native Ollama LLM with keep-alive model pinning,
+        tuned context size, thread count, and retry backoff (Item 2.2).
         """
         if self.verbose:
             print(" Generating response...")
-            
+
         max_retries = config.ollama.max_retries
         retry_delay = config.ollama.retry_delay
         timeout = config.ollama.timeout
-        
+        cpu_threads = min(8, os.cpu_count() or 4)
+
         last_error = None
         for attempt in range(1, max_retries + 1):
             try:
@@ -456,18 +481,21 @@ INSTRUCTIONS:
                         "stream": False,
                         "options": {
                             "temperature": self.temperature,
-                            "num_predict": 300,
+                            "num_predict": 256,
                             "top_k": 40,
-                            "top_p": 0.9
-                        }
+                            "top_p": 0.9,
+                            "num_ctx": 2048,
+                            "num_thread": cpu_threads
+                        },
+                        "keep_alive": "1h"
                     },
                     timeout=timeout
                 )
-                
+
                 if response.status_code == 200:
                     result = response.json()
                     answer = result.get('response', '').strip()
-                    
+
                     return {
                         'success': True,
                         'answer': answer,
@@ -477,9 +505,9 @@ INSTRUCTIONS:
                 else:
                     last_error = f"Ollama API returned HTTP {response.status_code}: {response.text}"
                     logger.warning(f"Generation attempt {attempt}/{max_retries} failed: {last_error}")
-                    
+
             except requests.exceptions.Timeout:
-                last_error = f"Ollama request timed out after {timeout}s (attempt {attempt}/{max_retries}). Model may still be loading."
+                last_error = f"Ollama request timed out after {timeout}s (attempt {attempt}/{max_retries})."
                 logger.warning(last_error)
             except requests.exceptions.ConnectionError:
                 last_error = f"Cannot connect to Ollama on {self.ollama_url}. Make sure 'ollama serve' is running."
@@ -488,14 +516,51 @@ INSTRUCTIONS:
                 last_error = f"Unexpected generation error: {str(e)}"
                 logger.error(last_error)
                 break
-                
+
             if attempt < max_retries:
                 time.sleep(retry_delay * (1.5 ** (attempt - 1)))
-                
+
         return {
             'success': False,
             'error': f"{last_error} (Troubleshooting: Run 'ollama serve' and ensure '{self.ollama_model}' is pulled)."
         }
+
+    def generate_response_stream(self, prompt: str):
+        """
+        Stream response tokens from native Ollama in real-time (Item 2.2).
+        Yields token strings as they arrive from Ollama.
+        """
+        cpu_threads = min(8, os.cpu_count() or 4)
+        try:
+            response = requests.post(
+                self.ollama_url,
+                json={
+                    "model": self.ollama_model,
+                    "prompt": prompt,
+                    "stream": True,
+                    "options": {
+                        "temperature": self.temperature,
+                        "num_predict": 256,
+                        "top_k": 40,
+                        "top_p": 0.9,
+                        "num_ctx": 2048,
+                        "num_thread": cpu_threads
+                    },
+                    "keep_alive": "1h"
+                },
+                stream=True,
+                timeout=config.ollama.timeout
+            )
+            for line in response.iter_lines():
+                if line:
+                    chunk = json.loads(line)
+                    token = chunk.get("response", "")
+                    yield token
+                    if chunk.get("done", False):
+                        break
+        except Exception as e:
+            logger.error(f"Streaming error: {e}")
+            yield f"\n[Streaming error: {e}]" 
     
     def query(self, question: str, source_filter: Optional[str] = None) -> Dict:
         """

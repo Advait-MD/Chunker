@@ -40,11 +40,9 @@ class ChromaStore:
         self.conv_chunks_col_name = config.chroma.conversation_chunks_collection
         self.conv_summaries_col_name = config.chroma.conversation_summaries_collection
         
-        # Configure embedding function
-        self.embedding_fn = embedding_functions.OllamaEmbeddingFunction(
-            model_name=self.embedding_model,
-            url=f"{self.ollama_url}/api/embeddings"
-        )
+        # Configure embedding function: use fast in-process DefaultEmbeddingFunction
+        # (matching 384-dim ONNX) to achieve uniform sub-second lookup without HTTP round-trips
+        self.embedding_fn = embedding_functions.DefaultEmbeddingFunction()
         
         # Initialize client (local embedded by default) with robust error handling
         try:
@@ -64,11 +62,18 @@ class ChromaStore:
         # Initialize collections
         self._init_collections()
 
+    def get_query_embedding(self, query: str) -> List[float]:
+        """Compute query embedding using the fast unified in-process embedding function with LRU caching."""
+        from .retrieval import query_embedding_cache
+        return query_embedding_cache.get_or_compute(query, self.embedding_fn)
+
     def _get_or_create_col(self, col_name: str, existing_cols: List[str]):
         """Helper to get or create collection with automatic conflict resolution."""
         if col_name in existing_cols:
             try:
                 col = self.client.get_collection(col_name)
+                if not getattr(col, '_embedding_function', None):
+                    col._embedding_function = self.embedding_fn
                 logger.info(f"Using existing '{col_name}' collection")
                 return col
             except ValueError as e:

@@ -30,7 +30,10 @@ from .retrieval import (
     reciprocal_rank_fusion,
     deduplicate_retrieved_chunks,
     rerank_hybrid_candidates,
-    jaccard_word_similarity
+    jaccard_word_similarity,
+    is_chitchat_query,
+    query_embedding_cache,
+    retrieval_result_cache
 )
 
 __all__ = [
@@ -60,4 +63,7 @@ __all__ = [
     "deduplicate_retrieved_chunks",
     "rerank_hybrid_candidates",
     "jaccard_word_similarity",
+    "is_chitchat_query",
+    "query_embedding_cache",
+    "retrieval_result_cache"
 ]

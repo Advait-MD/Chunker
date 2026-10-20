@@ -14,7 +14,8 @@ from datetime import datetime
 from typing import Dict, List, Optional, Any
 
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, StreamingResponse
+import asyncio
 from pydantic import BaseModel
 import uvicorn
 
@@ -332,6 +333,7 @@ async def process_chat_message(req: ChatQueryRequest):
                 "conversation_cluster_summaries": context.get("conversation_cluster_summaries", []),
                 "response_time": elapsed,
                 "tokens": tokens,
+                "retrieval_time": context.get("retrieval_time", 0.0),
                 "low_confidence": context.get("low_confidence", False)
             }
 
@@ -378,6 +380,162 @@ async def process_chat_message(req: ChatQueryRequest):
         rag.min_score = original_min_score
         rag.temperature = original_temp
         rag.include_summaries = original_summaries
+
+
+
+@app.post("/api/chat/stream")
+async def process_chat_message_stream(req: ChatQueryRequest):
+    """
+    Streaming RAG chat endpoint using Server-Sent Events (SSE) (Item 2.2):
+      - Sends retrieval metadata first (sources, chunks, memories, retrieval_time, is_chitchat).
+      - Streams tokens in real-time as they arrive from Ollama.
+      - Saves session and indexes conversation turn asynchronously on completion.
+    """
+    question = req.question.strip()
+    if not question:
+        raise HTTPException(status_code=400, detail="Empty question provided.")
+
+    chat_id = req.chat_id
+    session = None
+    if chat_id:
+        session = load_session(chat_id)
+
+    if not session:
+        chat_id = f"chat_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{uuid.uuid4().hex[:6]}"
+        now = datetime.now().isoformat()
+        session = {
+            "id": chat_id,
+            "title": "New Conversation",
+            "created_at": now,
+            "updated_at": now,
+            "source_filter": req.source_filter,
+            "messages": []
+        }
+
+    user_msg_id = f"msg_{uuid.uuid4().hex[:8]}"
+    session["messages"].append({
+        "id": user_msg_id,
+        "role": "user",
+        "content": question,
+        "timestamp": datetime.now().isoformat()
+    })
+
+    rag = get_rag()
+    original_chunks = rag.max_context_chunks
+    original_min_score = rag.min_score
+    original_temp = rag.temperature
+    original_summaries = rag.include_summaries
+
+    if req.max_chunks is not None:
+        rag.max_context_chunks = req.max_chunks
+    if req.min_score is not None:
+        rag.min_score = req.min_score
+    if req.temperature is not None:
+        rag.temperature = req.temperature
+    if req.include_summaries is not None:
+        rag.include_summaries = req.include_summaries
+
+    effective_filter = req.source_filter or session.get("source_filter")
+
+    async def event_generator():
+        start_time = time.time()
+        try:
+            # 1. Retrieve Context
+            context = await asyncio.to_thread(rag.retrieve_context, question, effective_filter)
+
+            # Send initial metadata event
+            meta_event = {
+                "type": "metadata",
+                "chat_id": chat_id,
+                "chat_title": session["title"],
+                "sources": context.get("sources", []),
+                "chunks": context.get("chunks", []),
+                "scores": context.get("scores", []),
+                "metadatas": context.get("metadatas", []),
+                "cluster_summaries": context.get("cluster_summaries", []),
+                "conversation_memories": context.get("conversation_memories", []),
+                "conversation_cluster_summaries": context.get("conversation_cluster_summaries", []),
+                "retrieval_time": context.get("retrieval_time", 0.0),
+                "is_chitchat": context.get("is_chitchat", False),
+                "low_confidence": context.get("low_confidence", False)
+            }
+            yield f"data: {json.dumps(meta_event)}\n\n"
+
+            # 2. Build prompt
+            prompt = rag.build_prompt(context)
+
+            # 3. Stream tokens
+            full_answer = []
+            token_count = 0
+
+            for token in rag.generate_response_stream(prompt):
+                full_answer.append(token)
+                token_count += 1
+                yield f"data: {json.dumps({'type': 'token', 'text': token})}\n\n"
+
+            answer_text = "".join(full_answer).strip()
+            elapsed = time.time() - start_time
+
+            # 4. Save assistant message
+            assistant_msg = {
+                "id": f"msg_{uuid.uuid4().hex[:8]}",
+                "role": "assistant",
+                "content": answer_text,
+                "timestamp": datetime.now().isoformat(),
+                "sources": context.get("sources", []),
+                "chunks": context.get("chunks", []),
+                "scores": context.get("scores", []),
+                "metadatas": context.get("metadatas", []),
+                "cluster_summaries": context.get("cluster_summaries", []),
+                "conversation_memories": context.get("conversation_memories", []),
+                "conversation_cluster_summaries": context.get("conversation_cluster_summaries", []),
+                "response_time": elapsed,
+                "retrieval_time": context.get("retrieval_time", 0.0),
+                "tokens": token_count,
+                "low_confidence": context.get("low_confidence", False)
+            }
+            session["messages"].append(assistant_msg)
+
+            # Auto-title
+            if session.get("title") in ("New Conversation", "Untitled Chat"):
+                words = question.split()
+                session["title"] = " ".join(words[:6]) + ("..." if len(words) > 6 else "")
+
+            save_session(session)
+
+            # Index conversation turn
+            try:
+                turn_idx = len([m for m in session["messages"] if m.get("role") == "user"])
+                rag.processor.add_conversation_turn(
+                    chat_id=chat_id,
+                    user_text=question,
+                    assistant_text=answer_text,
+                    turn_index=turn_idx,
+                    chat_title=session.get("title", "Conversation")
+                )
+            except Exception as mem_err:
+                logger.warning(f"Error auto-indexing conversation turn: {mem_err}")
+
+            # Send done event
+            done_event = {
+                "type": "done",
+                "chat_id": chat_id,
+                "chat_title": session["title"],
+                "response_time": elapsed,
+                "tokens": token_count
+            }
+            yield f"data: {json.dumps(done_event)}\n\n"
+
+        except Exception as e:
+            logger.error(f"Streaming error: {e}", exc_info=True)
+            yield f"data: {json.dumps({'type': 'error', 'message': str(e)})}\n\n"
+        finally:
+            rag.max_context_chunks = original_chunks
+            rag.min_score = original_min_score
+            rag.temperature = original_temp
+            rag.include_summaries = original_summaries
+
+    return StreamingResponse(event_generator(), media_type="text/event-stream")
 
 
 # ================= CONVERSATION CLUSTERING ROUTES =================

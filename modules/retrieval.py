@@ -5,7 +5,9 @@ composite post-retrieval reranking, and Jaccard chunk deduplication.
 """
 
 import re
-from typing import List, Dict, Tuple, Optional
+import threading
+from collections import OrderedDict
+from typing import List, Dict, Tuple, Optional, Any
 import numpy as np
 from rank_bm25 import BM25Okapi
 
@@ -13,6 +15,108 @@ from .config import config
 from .logger import get_logger
 
 logger = get_logger("retrieval")
+
+
+# ================= HIGH-SPEED CACHING INFRASTRUCTURE =================
+
+class QueryEmbeddingCache:
+    """Thread-safe LRU cache for query vector embeddings (Item 2.4 & 3.3)."""
+    def __init__(self, maxsize: int = 1024):
+        self.maxsize = maxsize
+        self._cache: OrderedDict = OrderedDict()
+        self._lock = threading.Lock()
+
+    def get(self, query: str) -> Optional[List[float]]:
+        key = query.strip().lower()
+        with self._lock:
+            if key in self._cache:
+                self._cache.move_to_end(key)
+                return self._cache[key]
+            return None
+
+    def put(self, query: str, embedding: List[float]):
+        key = query.strip().lower()
+        with self._lock:
+            if key in self._cache:
+                self._cache.move_to_end(key)
+            self._cache[key] = embedding
+            if len(self._cache) > self.maxsize:
+                self._cache.popitem(last=False)
+
+    def get_or_compute(self, query: str, embedding_fn) -> List[float]:
+        cached = self.get(query)
+        if cached is not None:
+            return cached
+        emb = embedding_fn([query.strip()])[0]
+        if hasattr(emb, 'tolist'):
+            emb = emb.tolist()
+        elif not isinstance(emb, list):
+            emb = list(emb)
+        self.put(query, emb)
+        return emb
+
+
+class RetrievalResultCache:
+    """Thread-safe LRU cache for retrieved context dictionaries (Item 2.4)."""
+    def __init__(self, maxsize: int = 512):
+        self.maxsize = maxsize
+        self._cache: OrderedDict = OrderedDict()
+        self._lock = threading.Lock()
+
+    def get(self, key: Tuple) -> Optional[Dict]:
+        with self._lock:
+            if key in self._cache:
+                self._cache.move_to_end(key)
+                res = dict(self._cache[key])
+                res['from_cache'] = True
+                return res
+            return None
+
+    def put(self, key: Tuple, result: Dict):
+        with self._lock:
+            if key in self._cache:
+                self._cache.move_to_end(key)
+            self._cache[key] = result
+            if len(self._cache) > self.maxsize:
+                self._cache.popitem(last=False)
+
+    def clear(self):
+        with self._lock:
+            self._cache.clear()
+
+
+# Singletons
+query_embedding_cache = QueryEmbeddingCache(maxsize=1024)
+retrieval_result_cache = RetrievalResultCache(maxsize=512)
+
+
+# ================= CHIT-CHAT & INTENT CLASSIFICATION =================
+
+CHITCHAT_PATTERNS = [
+    r"^(hi|hello|hey|heya|howdy|sup|yo|hola)\b",
+    r"^(good\s+(morning|afternoon|evening|day|night))\b",
+    r"^(how\s+are\s+you|how\'s\s+it\s+going|how\s+do\s+you\s+do|what\'s\s+up|how\s+are\s+things)\b",
+    r"^(who\s+are\s+you|what\s+is\s+your\s+name|what\s+can\s+you\s+do|introduce\s+yourself|tell\s+me\s+about\s+yourself)\b",
+    r"^(thank\s+you|thanks|thanks\s+a\s+lot|thx|much\s+appreciated|cheers)\b",
+    r"^(bye|goodbye|see\s+you|cya|take\s+care|farewell|see\s+ya)\b",
+    r"^(ok|okay|cool|awesome|great|nice|perfect|got\s+it|understood|yes|no|yep|nope)\b"
+]
+CHITCHAT_REGEX = re.compile("|".join(CHITCHAT_PATTERNS), re.IGNORECASE)
+
+def is_chitchat_query(query: str) -> bool:
+    """
+    Detect whether a query is pure conversational chit-chat / pleasantry (Item 2.3).
+    Bypasses expensive vector search and BM25 candidate retrieval when no documents are needed.
+    """
+    q = query.strip()
+    words = q.split()
+    if len(words) > 8:
+        return False
+    doc_keywords = ["steve", "jobs", "musashi", "book", "ring", "rings", "odyssey", "odysseus", "react", "jsx", "state", "props", "hook", "pdf", "page", "chapter"]
+    if any(k in q.lower() for k in doc_keywords):
+        return False
+    return bool(CHITCHAT_REGEX.search(q))
+
 
 
 def tokenize_bm25(text: str) -> List[str]:
