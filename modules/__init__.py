@@ -33,6 +33,7 @@ from .retrieval import (
     jaccard_word_similarity,
     is_chitchat_query,
     is_common_chat_query,
+    detect_document_intent,
     retrieve_conversation_memories,
     query_embedding_cache,
     retrieval_result_cache
@@ -67,6 +68,7 @@ __all__ = [
     "jaccard_word_similarity",
     "is_chitchat_query",
     "is_common_chat_query",
+    "detect_document_intent",
     "retrieve_conversation_memories",
     "query_embedding_cache",
     "retrieval_result_cache"

@@ -338,7 +338,7 @@ async def process_chat_message(req: ChatQueryRequest):
                 "retrieval_time": context.get("retrieval_time", 0.0),
                 "is_chitchat": is_common_chat,
                 "is_common_chat": is_common_chat,
-                "chat_mode": "conversational_memory" if bool(context.get("conversation_memories")) else ("common_chat" if is_common_chat else "document_rag"),
+                "chat_mode": "document_rag" if (context.get("chunks") or context.get("cluster_summaries")) else ("conversational_memory" if bool(context.get("conversation_memories")) else "common_chat"),
                 "unrelated_to_documents": context.get("unrelated_to_documents", False),
                 "low_confidence": context.get("low_confidence", False) and not is_common_chat
             }
@@ -466,7 +466,7 @@ async def process_chat_message_stream(req: ChatQueryRequest):
                 "retrieval_time": context.get("retrieval_time", 0.0),
                 "is_chitchat": is_common_chat,
                 "is_common_chat": is_common_chat,
-                "chat_mode": "conversational_memory" if bool(context.get("conversation_memories")) else ("common_chat" if is_common_chat else "document_rag"),
+                "chat_mode": "document_rag" if (context.get("chunks") or context.get("cluster_summaries")) else ("conversational_memory" if bool(context.get("conversation_memories")) else "common_chat"),
                 "unrelated_to_documents": context.get("unrelated_to_documents", False),
                 "low_confidence": context.get("low_confidence", False) and not is_common_chat
             }
@@ -506,7 +506,7 @@ async def process_chat_message_stream(req: ChatQueryRequest):
                 "tokens": token_count,
                 "is_chitchat": is_common_chat,
                 "is_common_chat": is_common_chat,
-                "chat_mode": "conversational_memory" if bool(context.get("conversation_memories")) else ("common_chat" if is_common_chat else "document_rag"),
+                "chat_mode": "document_rag" if (context.get("chunks") or context.get("cluster_summaries")) else ("conversational_memory" if bool(context.get("conversation_memories")) else "common_chat"),
                 "unrelated_to_documents": context.get("unrelated_to_documents", False),
                 "low_confidence": context.get("low_confidence", False) and not is_common_chat
             }

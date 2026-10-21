@@ -18,6 +18,7 @@ from modules.retrieval import (
     rerank_hybrid_candidates,
     is_chitchat_query,
     is_common_chat_query,
+    detect_document_intent,
     retrieve_conversation_memories,
     retrieval_result_cache,
     collapsed_tree_fusion,
@@ -158,9 +159,23 @@ class RAGInterface:
             effective_source and effective_source.strip().lower() not in ('none', 'chat', 'general', 'direct', 'normal', 'off', 'common', 'all')
         )
 
+        has_docs = hasattr(self.processor, 'chunks_collection') and self.processor.chunks_collection.count() > 0
+        indexed_sources = self.processor.get_indexed_sources() if has_docs else []
+
+        auto_activate_doc_rag = False
+        if has_docs and not is_explicit_document_search:
+            needs_doc, detected_src = detect_document_intent(clean_q, indexed_sources=indexed_sources)
+            if needs_doc:
+                auto_activate_doc_rag = True
+                if detected_src:
+                    effective_source = detected_src
+                if self.verbose:
+                    src_info = f" (matched: '{effective_source}')" if effective_source else " (all indexed documents)"
+                    print(f"📚 Prompt requires document retrieval: automatically activating Document RAG{src_info}.")
+
         # 0. DEFAULT MODE: Conversational AI with Episodic Memory Retrieval
-        # (Zero dependency on embedded documents)
-        if not is_explicit_document_search:
+        # Used when the query does not require document retrieval (pure chat or episodic past memory)
+        if not is_explicit_document_search and not auto_activate_doc_rag:
             conv_memories, conv_summaries = retrieve_conversation_memories(
                 query=clean_q,
                 conv_chunks_col=self.processor.conv_chunks_collection if hasattr(self.processor, 'conv_chunks_collection') else None,
@@ -340,9 +355,9 @@ class RAGInterface:
                 top_cov = reranked_candidates[0].get('coverage_score', 0.0) if reranked_candidates else 0.0
 
                 # Unrelated query detection:
-                # If no source was explicitly filtered by user, and top candidate has poor semantic relevance / coverage,
+                # If no source was explicitly manually filtered by user, and top candidate has poor semantic relevance / coverage,
                 # then this query is UNRELATED to the memory documents! Transition cleanly to Common Chat mode.
-                if not effective_source and (top_score < 0.40 or top_cov < 0.25):
+                if not is_explicit_document_search and (top_score < 0.35 or top_cov < 0.20):
                     if self.verbose:
                         print(f"💬 Query has low document grounding (top_score={top_score:.1%}, cov={top_cov:.1%}). Transitioning to Common Chat.")
                     return {
@@ -524,9 +539,9 @@ class RAGInterface:
             "Directly answer in 1-2 sentences using source. Cite [Doc, Page]:\n"
         ]
         
-        # Primary source evidence (strictly budgeted so prompt length never exceeds 75 tokens)
+        # Primary source evidence (budgeted per chunk)
         chunks_to_use = context.get('chunks', [])[:self.max_context_chunks]
-        per_chunk_limit = 95 if len(chunks_to_use) <= 1 else 55
+        per_chunk_limit = 350 if len(chunks_to_use) <= 1 else 250
         for i, (chunk, meta) in enumerate(zip(
             chunks_to_use, 
             context.get('metadatas', [])[:self.max_context_chunks]
@@ -583,7 +598,7 @@ class RAGInterface:
                 options["num_predict"] = 35
                 options["temperature"] = 0.4
         else:
-            options["num_predict"] = 65
+            options["num_predict"] = 80
             options["temperature"] = self.temperature
 
         last_error = None
@@ -658,7 +673,7 @@ class RAGInterface:
                 options["num_predict"] = 35
                 options["temperature"] = 0.4
         else:
-            options["num_predict"] = 65
+            options["num_predict"] = 80
             options["temperature"] = self.temperature
 
         try:
@@ -798,12 +813,13 @@ class RAGInterface:
                 'question': question,
                 'answer': answer,
                 'sources': context.get('sources', []),
+                'chunks': context.get('chunks', []),
                 'context_chunks': len(context.get('chunks', [])),
                 'relevance_scores': context.get('scores', []),
                 'conversation_memories': context.get('conversation_memories', []),
                 'has_recalled_memory': has_recalled_memory,
                 'is_common_chat': is_common_chat,
-                'chat_mode': 'conversational_memory' if has_recalled_memory else ('common_chat' if is_common_chat else 'document_rag'),
+                'chat_mode': 'document_rag' if (context.get('chunks') or context.get('cluster_summaries')) else ('conversational_memory' if has_recalled_memory else 'common_chat'),
                 'unrelated_to_documents': context.get('unrelated_to_documents', False),
                 'response_time': elapsed_time,
                 'tokens_generated': response.get('tokens', 0),

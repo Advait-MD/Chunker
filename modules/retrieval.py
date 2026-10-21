@@ -208,6 +208,116 @@ def is_chitchat_query(query: str, indexed_sources: Optional[List[str]] = None) -
     return is_common_chat_query(query, indexed_sources=indexed_sources)
 
 
+EXPLICIT_DOC_PATTERNS = [
+    r"\b(in|from|according to|based on|per|within)\s+(the\s+)?(document|documents|pdf|paper|papers|book|books|text|texts|chapter|chapters|page|pages|source|sources|file|files|reading|manual|guide)\b",
+    r"\b(what does the\s+(document|pdf|paper|book|text|author)\s+(say|state|mention|explain|describe|tell))\b",
+    r"\b(summarize\s+(the\s+)?(document|pdf|paper|book|chapter|text|file))\b",
+    r"\b(look up|find|search for)\s+.*?\s+(in\s+the\s+(document|pdf|book|paper|text|files))\b",
+    r"\b(chapter\s+\d+|page\s+\d+)\b",
+    r"\b(the\s+author\s+(argues|states|claims|writes|concludes|mentions))\b",
+    r"\b(cite|citation|quote from|passage from|excerpt from)\b",
+    r"\b(in this (paper|pdf|book|document|text))\b"
+]
+EXPLICIT_DOC_REGEX = re.compile("|".join(EXPLICIT_DOC_PATTERNS), re.IGNORECASE)
+
+DOMAIN_ANCHOR_MAP = {
+    "Steve Jobs": [
+        "steve jobs", "wozniak", "steve wozniak", "xerox parc", "macintosh", 
+        "next computer", "pixar", "john sculley", "sculley", "stanford commencement", 
+        "apple ii", "lisa computer", "cupertino", "jony ive"
+    ],
+    "The Book of Five Rings": [
+        "musashi", "miyamoto", "miyamoto musashi", "five rings", "gorin no sho", 
+        "kenjutsu", "way of strategy", "water scroll", "void scroll", "earth scroll", 
+        "fire scroll", "wind scroll", "school of two swords", "niten ichi-ryu"
+    ],
+    "The Odyssey": [
+        "odyssey", "odysseus", "telemachus", "penelope", "ithaca", "athena", 
+        "poseidon", "zeus", "cyclops", "polyphemus", "circe", "calypso", 
+        "scylla", "charybdis", "lotus eaters", "suitors", "homer", "nausicaa",
+        "teiresias", "tiresias"
+    ],
+    "The Road to React": [
+        "robin wieruch", "wieruch", "react", "jsx", "usestate", "useeffect", 
+        "usecallback", "usememo", "usereducer", "react hooks", "custom hook",
+        "react components", "props"
+    ],
+    "RAPTOR": [
+        "raptor", "recursive abstractive processing", "tree rag", "collapsed tree"
+    ],
+    "QASPER": [
+        "qasper"
+    ]
+}
+
+
+def detect_document_intent(query: str, indexed_sources: Optional[List[str]] = None) -> Tuple[bool, Optional[str]]:
+    """
+    Automatically detect whether a user query requires Document RAG retrieval from ingested PDF files.
+    Returns:
+        (needs_document_rag: bool, detected_source_file: Optional[str])
+    """
+    q = query.strip()
+    if not q:
+        return False, None
+
+    lower_q = q.lower()
+    words = set(re.findall(r'\b\w+\b', lower_q))
+
+    def find_matching_source(hint: str) -> Optional[str]:
+        if not indexed_sources:
+            return None
+        hint_clean = hint.lower().replace(".pdf", "")
+        for src in indexed_sources:
+            src_clean = src.lower().replace(".pdf", "")
+            if hint_clean in src_clean or src_clean in hint_clean:
+                return src
+            src_words = set(re.findall(r'\b\w+\b', src_clean)) - {"the", "of", "and", "a", "an", "to", "in", "for", "1"}
+            hint_words = set(re.findall(r'\b\w+\b', hint_clean)) - {"the", "of", "and", "a", "an", "to", "in", "for", "1"}
+            if src_words and hint_words and len(src_words.intersection(hint_words)) >= min(len(src_words), len(hint_words)):
+                return src
+        return None
+
+    # 1. Regex check for explicit document phrasing
+    if EXPLICIT_DOC_REGEX.search(q):
+        if indexed_sources:
+            for src in indexed_sources:
+                clean = os.path.splitext(os.path.basename(src))[0].lower()
+                src_words = set(re.findall(r'\b\w+\b', clean)) - {"the", "of", "and", "a", "an", "to", "in", "for", "1"}
+                if src_words and len(words.intersection(src_words)) >= min(2, len(src_words)):
+                    return True, src
+        return True, None
+
+    # 2. Check for explicit document keywords
+    if words.intersection(GENERIC_DOC_KEYWORDS):
+        if indexed_sources:
+            for src in indexed_sources:
+                clean = os.path.splitext(os.path.basename(src))[0].lower()
+                src_words = set(re.findall(r'\b\w+\b', clean)) - {"the", "of", "and", "a", "an", "to", "in", "for", "1"}
+                if src_words and len(words.intersection(src_words)) >= min(2, len(src_words)):
+                    return True, src
+        return True, None
+
+    # 3. Direct match against indexed source file titles
+    if indexed_sources:
+        for src in indexed_sources:
+            clean = os.path.splitext(os.path.basename(src))[0].lower()
+            src_words = set(re.findall(r'\b\w+\b', clean)) - {"the", "of", "and", "a", "an", "to", "in", "for", "1"}
+            if src_words:
+                matched = words.intersection(src_words)
+                if len(matched) >= min(2, len(src_words)) or (len(matched) == 1 and any(len(w) >= 7 for w in matched)):
+                    return True, src
+
+    # 4. Check domain anchors tied to indexed document content
+    for topic, anchors in DOMAIN_ANCHOR_MAP.items():
+        for anchor in anchors:
+            if anchor in lower_q:
+                matching_src = find_matching_source(topic)
+                return True, matching_src
+
+    return False, None
+
+
 
 def tokenize_bm25(text: str) -> List[str]:
     """Tokenize text into lowercase words for lexical analysis."""
@@ -382,7 +492,20 @@ def retrieve_conversation_memories(query: str,
         return [], []
         
     q = query.strip()
-    if len(q.split()) <= 1 and q.lower() in ("hi", "hello", "hey", "yo", "sup", "bye"):
+    lower_q = q.lower()
+    if len(q.split()) <= 1 and lower_q in ("hi", "hello", "hey", "yo", "sup", "bye"):
+        return [], []
+
+    # Ephemeral pleasantries and joke requests without past references shouldn't recall prior memories
+    past_reference_words = {"remember", "earlier", "before", "previously", "last time", "again", "yesterday", "we talked", "you said", "i told", "my name", "my dog", "my project", "my pet", "did we", "what was"}
+    has_past_reference = any(ref in lower_q for ref in past_reference_words)
+    generic_chitchat_requests = [
+        r"^(can\s+you\s+)?(tell\s+me\s+)?(a\s+)?(funny\s+)?(joke|riddle|pun|story)\b",
+        r"^(make\s+me\s+laugh|say\s+something\s+funny)\b",
+        r"^(hi|hello|hey|yo|howdy|sup|good\s+(morning|afternoon|evening|night))\b",
+        r"^(how\s+are\s+you|how\'s\s+it\s+going|how\s+are\s+things)\b"
+    ]
+    if not has_past_reference and any(re.search(pat, lower_q) for pat in generic_chitchat_requests):
         return [], []
 
     try:
