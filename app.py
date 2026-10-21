@@ -308,8 +308,9 @@ async def process_chat_message(req: ChatQueryRequest):
             }
         else:
             # 4. Generate Response
+            is_common_chat = context.get("is_common_chat", False) or context.get("is_chitchat", False) or (not context.get("chunks") and not context.get("cluster_summaries"))
             prompt = rag.build_prompt(context, session_history=session.get("messages", []))
-            gen_res = rag.generate_response(prompt)
+            gen_res = rag.generate_response(prompt, is_common_chat=is_common_chat)
             elapsed = time.time() - start_time
 
             if gen_res.get("success"):
@@ -334,7 +335,11 @@ async def process_chat_message(req: ChatQueryRequest):
                 "response_time": elapsed,
                 "tokens": tokens,
                 "retrieval_time": context.get("retrieval_time", 0.0),
-                "low_confidence": context.get("low_confidence", False)
+                "is_chitchat": is_common_chat,
+                "is_common_chat": is_common_chat,
+                "chat_mode": "common_chat" if is_common_chat else "document_rag",
+                "unrelated_to_documents": context.get("unrelated_to_documents", False),
+                "low_confidence": context.get("low_confidence", False) and not is_common_chat
             }
 
         # Append assistant message
@@ -442,6 +447,7 @@ async def process_chat_message_stream(req: ChatQueryRequest):
         try:
             # 1. Retrieve Context
             context = await asyncio.to_thread(rag.retrieve_context, question, effective_filter)
+            is_common_chat = context.get("is_common_chat", False) or context.get("is_chitchat", False) or (not context.get("chunks") and not context.get("cluster_summaries"))
 
             # Send initial metadata event
             meta_event = {
@@ -456,8 +462,11 @@ async def process_chat_message_stream(req: ChatQueryRequest):
                 "conversation_memories": context.get("conversation_memories", []),
                 "conversation_cluster_summaries": context.get("conversation_cluster_summaries", []),
                 "retrieval_time": context.get("retrieval_time", 0.0),
-                "is_chitchat": context.get("is_chitchat", False),
-                "low_confidence": context.get("low_confidence", False)
+                "is_chitchat": is_common_chat,
+                "is_common_chat": is_common_chat,
+                "chat_mode": "common_chat" if is_common_chat else "document_rag",
+                "unrelated_to_documents": context.get("unrelated_to_documents", False),
+                "low_confidence": context.get("low_confidence", False) and not is_common_chat
             }
             yield f"data: {json.dumps(meta_event)}\n\n"
 
@@ -468,7 +477,7 @@ async def process_chat_message_stream(req: ChatQueryRequest):
             full_answer = []
             token_count = 0
 
-            for token in rag.generate_response_stream(prompt):
+            for token in rag.generate_response_stream(prompt, is_common_chat=is_common_chat):
                 full_answer.append(token)
                 token_count += 1
                 yield f"data: {json.dumps({'type': 'token', 'text': token})}\n\n"
@@ -492,7 +501,11 @@ async def process_chat_message_stream(req: ChatQueryRequest):
                 "response_time": elapsed,
                 "retrieval_time": context.get("retrieval_time", 0.0),
                 "tokens": token_count,
-                "low_confidence": context.get("low_confidence", False)
+                "is_chitchat": is_common_chat,
+                "is_common_chat": is_common_chat,
+                "chat_mode": "common_chat" if is_common_chat else "document_rag",
+                "unrelated_to_documents": context.get("unrelated_to_documents", False),
+                "low_confidence": context.get("low_confidence", False) and not is_common_chat
             }
             session["messages"].append(assistant_msg)
 

@@ -90,10 +90,11 @@ def format_rag_response(result: Dict[str, Any]) -> str:
     response_time = result.get("response_time", 0.0)
     tokens = result.get("tokens_generated", 0)
     low_confidence = result.get("low_confidence", False)
+    is_common_chat = result.get("is_common_chat", False)
     
     parts = []
     
-    if low_confidence:
+    if low_confidence and not is_common_chat:
         parts.append("⚠️ <b>Notice:</b> Low confidence score (&lt;25%). The retrieved context may only partially address this query.\n")
     
     # Escape HTML in the answer text, but keep readable formatting
@@ -102,14 +103,19 @@ def format_rag_response(result: Dict[str, Any]) -> str:
     
     parts.append("\n\n─────────────────────")
     
-    # Add source citations
-    if sources:
+    # Add mode / source citations
+    if is_common_chat:
+        parts.append("💬 <b>Mode:</b> Common Chat (Conversational)")
+    elif sources:
         parts.append(f"📚 <b>Sources Cited:</b> {', '.join([f'<code>{html.escape(s)}</code>' for s in sources])}")
     else:
         parts.append("📚 <b>Sources:</b> None directly cited")
         
     chunks_count = result.get("context_chunks", 0)
-    parts.append(f"⏱️ <i>{response_time:.2f}s | {chunks_count} context chunk(s) | {tokens} tokens</i>")
+    if is_common_chat:
+        parts.append(f"⏱️ <i>{response_time:.2f}s | {tokens} tokens</i>")
+    else:
+        parts.append(f"⏱️ <i>{response_time:.2f}s | {chunks_count} context chunk(s) | {tokens} tokens</i>")
     
     return "\n".join(parts)
 

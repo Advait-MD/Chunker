@@ -16,6 +16,7 @@ from modules.retrieval import (
     deduplicate_retrieved_chunks,
     rerank_hybrid_candidates,
     is_chitchat_query,
+    is_common_chat_query,
     retrieval_result_cache,
     collapsed_tree_fusion,
     pack_collapsed_context
@@ -159,11 +160,17 @@ class RAGInterface:
         t_start = time.perf_counter()
         clean_q = query.strip()
 
-        # 0. Chit-chat bypass (Item 2.3)
-        if is_chitchat_query(clean_q):
+        # 0. Common Chat & Chit-chat bypass (Fast Intent Gate)
+        # Avoids document search entirely for greetings, small talk, meta-questions, and general conversational tasks
+        indexed_sources = self.processor.get_indexed_sources() if hasattr(self.processor, 'get_indexed_sources') else []
+        if is_common_chat_query(clean_q, indexed_sources=indexed_sources):
+            if self.verbose:
+                print(f"💬 Common chat query detected ('{clean_q[:50]}...'). Bypassing document retrieval.")
             return {
                 'success': True,
                 'is_chitchat': True,
+                'is_common_chat': True,
+                'chat_mode': 'common_chat',
                 'chunks': [],
                 'metadatas': [],
                 'scores': [],
@@ -179,11 +186,13 @@ class RAGInterface:
 
         effective_source = source_filter if source_filter is not None else self.source_filter
 
-        # Pure Conversation Mode: bypass document chunks when user specifies 'none' or 'chat'
-        if effective_source and effective_source.strip().lower() in ('none', 'chat', 'general', 'direct', 'normal', 'off'):
+        # Pure Conversation Mode: bypass document chunks when user specifies 'none' or 'chat' or 'common'
+        if effective_source and effective_source.strip().lower() in ('none', 'chat', 'general', 'direct', 'normal', 'off', 'common'):
             return {
                 'success': True,
                 'is_chitchat': True,
+                'is_common_chat': True,
+                'chat_mode': 'common_chat',
                 'chunks': [],
                 'metadatas': [],
                 'scores': [],
@@ -335,12 +344,38 @@ class RAGInterface:
 
             passed_candidates = [
                 c for c in reranked_candidates 
-                if c['rerank_score'] >= threshold and (c.get('coverage_score', 0) >= cov_threshold or c.get('node_type') == 'tree_summary')
+                if c['rerank_score'] >= threshold and (c.get('coverage_score', 0) >= cov_threshold or (c.get('node_type') == 'tree_summary' and c.get('coverage_score', 0) >= 0.15))
             ]
             low_confidence = (len(passed_candidates) == 0)
             if low_confidence:
-                # If top candidate has reasonable keyword coverage, keep top 1
-                if reranked_candidates and reranked_candidates[0]['rerank_score'] >= 0.35 and (reranked_candidates[0].get('coverage_score', 0) >= 0.15 or reranked_candidates[0].get('node_type') == 'tree_summary'):
+                top_score = reranked_candidates[0]['rerank_score'] if reranked_candidates else 0.0
+                top_cov = reranked_candidates[0].get('coverage_score', 0.0) if reranked_candidates else 0.0
+
+                # Unrelated query detection:
+                # If no source was explicitly filtered by user, and top candidate has poor semantic relevance / coverage,
+                # then this query is UNRELATED to the memory documents! Transition cleanly to Common Chat mode.
+                if not effective_source and (top_score < 0.40 or top_cov < 0.25):
+                    if self.verbose:
+                        print(f"💬 Query has low document grounding (top_score={top_score:.1%}, cov={top_cov:.1%}). Transitioning to Common Chat.")
+                    return {
+                        'success': True,
+                        'is_chitchat': True,
+                        'is_common_chat': True,
+                        'chat_mode': 'common_chat',
+                        'chunks': [],
+                        'metadatas': [],
+                        'scores': [],
+                        'cluster_summaries': [],
+                        'conversation_memories': [],
+                        'conversation_cluster_summaries': [],
+                        'sources': [],
+                        'query': clean_q,
+                        'source_filter': None,
+                        'low_confidence': False,
+                        'unrelated_to_documents': True,
+                        'retrieval_time': time.perf_counter() - t_start
+                    }
+                elif reranked_candidates and top_score >= 0.35 and top_cov >= 0.25:
                     passed_candidates = reranked_candidates[:1]
                 else:
                     passed_candidates = []
@@ -459,11 +494,12 @@ class RAGInterface:
         """
         user_query = context.get('query', '')
         
-        # Pure conversation branch: chit-chat or general dialogue with no matching document chunks
-        if context.get('is_chitchat') or (not context.get('chunks') and not context.get('cluster_summaries')):
+        # Common Chat / Pure conversation branch: chit-chat, general dialogue, or queries unrelated to memory documents
+        if context.get('is_common_chat') or context.get('is_chitchat') or (not context.get('chunks') and not context.get('cluster_summaries')):
             prompt_parts = [
                 "You are APEX, a thoughtful, articulate, and friendly AI companion.",
-                "Chat warmly and concisely in 1-2 direct sentences like an intelligent human partner."
+                "Answer the user's question directly, conversationally, and helpfully using your broad general knowledge.",
+                "Speak naturally like an intelligent human partner. Do not mention any document restrictions or say 'the context does not contain'—just answer naturally."
             ]
             if context.get('conversation_memories'):
                 prompt_parts.append("\nPast memories:")
@@ -474,18 +510,18 @@ class RAGInterface:
             if history_to_use:
                 prompt_parts.append("\nRecent chat:")
                 if any('role' in m for m in history_to_use if isinstance(m, dict)):
-                    for msg in history_to_use[-2:]:
+                    for msg in history_to_use[-3:]:
                         role = "User" if msg.get('role') == 'user' else "APEX"
                         c = msg.get('content', '').strip()
                         if c and c != user_query:
-                            prompt_parts.append(f"{role}: {c[:75]}")
+                            prompt_parts.append(f"{role}: {c[:120]}")
                 else:
-                    for turn in history_to_use[-1:]:
+                    for turn in history_to_use[-2:]:
                         q = turn.get('question', '')
                         a = turn.get('answer', '')
                         if q and a:
-                            prompt_parts.append(f"User: {q[:75]}")
-                            prompt_parts.append(f"APEX: {a[:75]}")
+                            prompt_parts.append(f"User: {q[:120]}")
+                            prompt_parts.append(f"APEX: {a[:120]}")
 
             prompt_parts.append(f"\nUser: {user_query}")
             prompt_parts.append("APEX:")
@@ -522,7 +558,7 @@ class RAGInterface:
         prompt_parts.append(f"\nQuestion: {user_query}\nAnswer:")
         return "\n".join(prompt_parts)
     
-    def generate_response(self, prompt: str) -> Dict:
+    def generate_response(self, prompt: str, is_common_chat: bool = False) -> Dict:
         """
         Generate response using native Ollama LLM with keep-alive model pinning,
         tuned context size, thread count, and retry backoff (Item 2.2).
@@ -533,7 +569,15 @@ class RAGInterface:
         max_retries = config.ollama.max_retries
         retry_delay = config.ollama.retry_delay
         timeout = config.ollama.timeout
-        cpu_threads = 4
+
+        # Adaptive options based on mode: Common Chat allows natural, complete conversation without cutoffs
+        options = dict(self.ollama_options)
+        if is_common_chat:
+            options["num_predict"] = 200
+            options["temperature"] = 0.6
+        else:
+            options["num_predict"] = 65
+            options["temperature"] = self.temperature
 
         last_error = None
         for attempt in range(1, max_retries + 1):
@@ -544,7 +588,7 @@ class RAGInterface:
                         "model": self.ollama_model,
                         "prompt": prompt,
                         "stream": False,
-                        "options": self.ollama_options,
+                        "options": options,
                         "keep_alive": -1
                     },
                     timeout=timeout
@@ -583,11 +627,19 @@ class RAGInterface:
             'error': f"{last_error} (Troubleshooting: Run 'ollama serve' and ensure '{self.ollama_model}' is pulled)."
         }
 
-    def generate_response_stream(self, prompt: str):
+    def generate_response_stream(self, prompt: str, is_common_chat: bool = False):
         """
         Stream response tokens from native Ollama in real-time (Item 2.2).
         Yields token strings as they arrive from Ollama.
         """
+        options = dict(self.ollama_options)
+        if is_common_chat:
+            options["num_predict"] = 200
+            options["temperature"] = 0.6
+        else:
+            options["num_predict"] = 65
+            options["temperature"] = self.temperature
+
         try:
             with self.session.post(
                 self.ollama_url,
@@ -595,7 +647,7 @@ class RAGInterface:
                     "model": self.ollama_model,
                     "prompt": prompt,
                     "stream": True,
-                    "options": self.ollama_options,
+                    "options": options,
                     "keep_alive": -1
                 },
                 stream=True,
@@ -652,11 +704,18 @@ class RAGInterface:
                 'response_time': time.time() - start_time
             }
         
-        if context.get('low_confidence'):
+        is_common_chat = context.get('is_common_chat', False) or context.get('is_chitchat', False) or (not context.get('chunks') and not context.get('cluster_summaries'))
+
+        if is_common_chat:
+            if context.get('unrelated_to_documents'):
+                print("💬 Mode: Common Chat (Query unrelated to memory documents — answering conversationally)")
+            else:
+                print("💬 Mode: Common Chat (Conversational / General Knowledge)")
+        elif context.get('low_confidence'):
             print("\n⚠️ Caution: Low similarity confidence (< 25%). Context may not directly answer this question.")
         
         prompt = self.build_prompt(context)
-        response = self.generate_response(prompt)
+        response = self.generate_response(prompt, is_common_chat=is_common_chat)
         
         elapsed_time = time.time() - start_time
         
@@ -690,7 +749,7 @@ class RAGInterface:
             if context.get('sources'):
                 print(f"\n📚 Sources: {', '.join(context['sources'])}")
             
-            if self.verbose:
+            if self.verbose and not is_common_chat:
                 print(f"\n📊 Retrieved {len(context.get('chunks', []))} primary chunks:")
                 for i, (chunk, score, meta) in enumerate(zip(
                     context.get('chunks', [])[:10],
@@ -713,6 +772,9 @@ class RAGInterface:
                 'sources': context.get('sources', []),
                 'context_chunks': len(context.get('chunks', [])),
                 'relevance_scores': context.get('scores', []),
+                'is_common_chat': is_common_chat,
+                'chat_mode': 'common_chat' if is_common_chat else 'document_rag',
+                'unrelated_to_documents': context.get('unrelated_to_documents', False),
                 'response_time': elapsed_time,
                 'tokens_generated': response.get('tokens', 0),
                 'conversation_turns': len(self.conversation_history)

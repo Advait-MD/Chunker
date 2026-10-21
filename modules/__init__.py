@@ -32,6 +32,7 @@ from .retrieval import (
     rerank_hybrid_candidates,
     jaccard_word_similarity,
     is_chitchat_query,
+    is_common_chat_query,
     query_embedding_cache,
     retrieval_result_cache
 )
@@ -64,6 +65,7 @@ __all__ = [
     "rerank_hybrid_candidates",
     "jaccard_word_similarity",
     "is_chitchat_query",
+    "is_common_chat_query",
     "query_embedding_cache",
     "retrieval_result_cache"
 ]

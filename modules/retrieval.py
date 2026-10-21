@@ -4,6 +4,7 @@ Provides BM25Okapi lexical retrieval, Reciprocal Rank Fusion (RRF),
 composite post-retrieval reranking, and Jaccard chunk deduplication.
 """
 
+import os
 import re
 import threading
 from collections import OrderedDict
@@ -90,32 +91,115 @@ query_embedding_cache = QueryEmbeddingCache(maxsize=1024)
 retrieval_result_cache = RetrievalResultCache(maxsize=512)
 
 
-# ================= CHIT-CHAT & INTENT CLASSIFICATION =================
+# ================= CHIT-CHAT, COMMON CHAT & INTENT CLASSIFICATION =================
 
-CHITCHAT_PATTERNS = [
-    r"^(hi|hello|hey|heya|howdy|sup|yo|hola)\b",
+COMMON_CHAT_PATTERNS = [
+    # 1. Greetings, pleasantries, small talk
+    r"^(hi|hello|hey|heya|howdy|sup|yo|hola|greetings)\b",
     r"^(good\s+(morning|afternoon|evening|day|night))\b",
-    r"^(how\s+are\s+you|how\'s\s+it\s+going|how\s+do\s+you\s+do|what\'s\s+up|how\s+are\s+things)\b",
-    r"^(who\s+are\s+you|what\s+is\s+your\s+name|what\s+can\s+you\s+do|introduce\s+yourself|tell\s+me\s+about\s+yourself)\b",
+    r"^(how\s+are\s+you|how\'s\s+it\s+going|how\s+do\s+you\s+do|what\'s\s+up|how\s+are\s+things|how\s+is\s+your\s+day)\b",
+    r"^(nice\s+to\s+meet\s+you|pleased\s+to\s+meet\s+you)\b",
     r"^(thank\s+you|thanks|thanks\s+a\s+lot|thx|much\s+appreciated|cheers)\b",
-    r"^(bye|goodbye|see\s+you|cya|take\s+care|farewell|see\s+ya)\b",
-    r"^(ok|okay|cool|awesome|great|nice|perfect|got\s+it|understood|yes|no|yep|nope)\b"
-]
-CHITCHAT_REGEX = re.compile("|".join(CHITCHAT_PATTERNS), re.IGNORECASE)
+    r"^(bye|goodbye|see\s+you|cya|take\s+care|farewell|see\s+ya|have\s+a\s+good\s+day)\b",
+    r"^(ok|okay|cool|awesome|great|nice|perfect|got\s+it|understood|yes|no|yep|nope|sure|alright)\b",
 
-def is_chitchat_query(query: str) -> bool:
+    # 2. Identity, capabilities, bot meta-questions
+    r"^(who\s+are\s+you|what\s+is\s+your\s+name|what\s+can\s+you\s+do|introduce\s+yourself|tell\s+me\s+about\s+yourself)\b",
+    r"^(are\s+you\s+(an?\s+)?(ai|robot|bot|human|llm|model|machine))\b",
+    r"^(what\s+are\s+you|how\s+were\s+you\s+(made|built|created)|who\s+(made|created|built)\s+you)\b",
+    r"^(can\s+we\s+chat|can\s+we\s+talk|let\'s\s+talk|let\'s\s+chat)\b",
+
+    # 3. Casual conversational requests, humor, creative writing
+    r"^(tell\s+me\s+(a\s+)?(joke|riddle|pun|story|fun\s+fact))\b",
+    r"^(make\s+me\s+laugh|say\s+something\s+(funny|interesting|cool))\b",
+    r"^(write\s+(a\s+)?(poem|haiku|limerick|song|rap|story|essay|email|letter|speech))\b",
+    r"^(give\s+me\s+(some\s+)?(advice|tips|ideas|suggestions|recommendations))\b",
+    r"^(i\'m\s+(bored|sad|happy|tired|stressed|angry|curious))\b",
+    r"^(what\s+do\s+you\s+think\s+about\s+(life|love|happiness|friendship|future|humans))\b",
+
+    # 4. General open-domain tasks (coding, math, general world facts not related to documents)
+    r"^(write\s+(a\s+)?(python|javascript|c\+\+|java|html|css|bash|sql|code|script|function|program))\b",
+    r"^(calculate|what\s+is\s+\d+[\s\+\-\*\/])\b",
+    r"^(translate\s+.*to\s+(french|spanish|german|hindi|chinese|japanese|italian|russian))\b",
+    r"^(why\s+(is|are|do|does|did|was|were))\b",
+    r"^(how\s+(do|does|did|can|could|to|come|is|are|was|were))\b",
+    r"^(can|could|do|does|did)\s+.*?\s+(fly|swim|walk|run|talk|speak|sing|breathe|think|feel|survive|live|exist|sleep|eat|grow|work)\b",
+    r"^(what\s+is\s+the\s+(capital|difference|meaning|definition|purpose|formula|recipe|speed|distance|temperature|weather|time|date)\b)",
+    r"^(who\s+(invented|discovered|wrote|directed|founded|painted|created)\s+([a-zA-Z\s]+))\b",
+    r"^(explain\s+(how|why|what|the\s+concept\s+of|the\s+theory\s+of|the\s+process\s+of)\b)",
+    r"^(tell\s+me\s+(about|more\s+about|the\s+story\s+of|a\s+story\s+about)\b)"
+]
+COMMON_CHAT_REGEX = re.compile("|".join(COMMON_CHAT_PATTERNS), re.IGNORECASE)
+
+GENERIC_DOC_KEYWORDS = {
+    "pdf", "page", "chapter", "document", "documents", "source", "sources",
+    "text", "book", "author", "cite", "citation", "excerpt", "context",
+    "quote", "passage", "paragraph", "reference", "manual", "guide"
+}
+
+
+def is_common_chat_query(query: str, indexed_sources: Optional[List[str]] = None) -> bool:
+    """
+    Detect whether a query is a general common conversation / chit-chat / open-domain request
+    that does NOT require document search from indexed memory.
+    
+    Returns True if:
+      1. Query matches common conversational / open-domain patterns AND does not mention indexed documents.
+      2. Or query is a brief greeting / polite remark without document keywords.
+    """
+    q = query.strip()
+    if not q:
+        return True
+        
+    lower_q = q.lower()
+    words = set(re.findall(r'\b\w+\b', lower_q))
+    
+    # 1. Check for explicit document terms
+    if words.intersection(GENERIC_DOC_KEYWORDS):
+        return False
+        
+    # 2. Check for terms from indexed sources (e.g. Steve Jobs, Odyssey, Book of Five Rings, React)
+    if indexed_sources:
+        for src in indexed_sources:
+            clean_name = os.path.splitext(os.path.basename(src))[0].lower()
+            name_words = set(re.findall(r'\b\w+\b', clean_name)) - {"the", "of", "and", "a", "an", "to", "in", "for"}
+            if name_words and len(words.intersection(name_words)) > 0:
+                return False
+                
+    # Also check known domain anchors if not explicitly in indexed_sources
+    domain_anchors = {
+        "steve", "jobs", "wozniak", "apple", "macintosh", "next", "pixar", "iphone", "ipad", "ipod", "cupertino",
+        "musashi", "miyamoto", "five rings", "gorin", "kenjutsu", "samurai",
+        "odyssey", "odysseus", "telemachus", "penelope", "ithaca", "athena", "poseidon", "zeus", "cyclops", "polyphemus", "circe", "calypso", "homer",
+        "react", "jsx", "props", "state", "usestate", "useeffect", "usereducer", "redux", "wieruch"
+    }
+    if any(k in lower_q for k in domain_anchors):
+        return False
+        
+    # 3. If query matches common chat patterns, route to common chat!
+    if COMMON_CHAT_REGEX.search(q):
+        return True
+        
+    # 4. Short casual remarks under 5 words without domain keywords
+    if len(q.split()) <= 4:
+        conversational_words = {
+            "hi", "hello", "hey", "sup", "yo", "thanks", "thank", "bye", "goodbye",
+            "cool", "nice", "awesome", "great", "ok", "okay", "yes", "no", "yep", "nope",
+            "sure", "who", "what", "how", "why", "help", "me", "you", "i", "can", "tell",
+            "joke", "fun", "bored", "chat", "talk", "morning", "night", "day"
+        }
+        if words.issubset(conversational_words) or words.intersection(conversational_words):
+            return True
+            
+    return False
+
+
+def is_chitchat_query(query: str, indexed_sources: Optional[List[str]] = None) -> bool:
     """
     Detect whether a query is pure conversational chit-chat / pleasantry (Item 2.3).
     Bypasses expensive vector search and BM25 candidate retrieval when no documents are needed.
     """
-    q = query.strip()
-    words = q.split()
-    if len(words) > 8:
-        return False
-    doc_keywords = ["steve", "jobs", "musashi", "book", "ring", "rings", "odyssey", "odysseus", "react", "jsx", "state", "props", "hook", "pdf", "page", "chapter"]
-    if any(k in q.lower() for k in doc_keywords):
-        return False
-    return bool(CHITCHAT_REGEX.search(q))
+    return is_common_chat_query(query, indexed_sources=indexed_sources)
 
 
 
@@ -238,7 +322,15 @@ COMMON_STOPWORDS = {
     "be", "been", "being", "have", "has", "had", "do", "does", "did", "can", "could",
     "shall", "should", "will", "would", "may", "might", "must", "how", "what", "which",
     "who", "when", "where", "why", "this", "that", "these", "those", "i", "you", "he",
-    "she", "it", "we", "they", "my", "your", "his", "her", "its", "our", "their"
+    "she", "it", "we", "they", "my", "your", "his", "her", "its", "our", "their",
+    # Prepositions & connective function words
+    "across", "through", "between", "among", "along", "against", "around", "behind",
+    "below", "beneath", "beside", "beyond", "during", "inside", "outside", "under",
+    "upon", "without", "within", "toward", "towards", "onto", "off", "out",
+    # High-frequency functional adverbs/qualifiers
+    "also", "just", "very", "really", "much", "many", "more", "most", "some", "any",
+    "each", "every", "all", "both", "either", "neither", "one", "two", "such", "than",
+    "then", "there", "here"
 }
 
 

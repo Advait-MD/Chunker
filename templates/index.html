@@ -1715,7 +1715,8 @@
                         ${convSummaryHtml}
                         ${evidenceHtml}
                         <div class="message-meta">
-                            ${msg.retrieval_time !== undefined ? `<span class="meta-pill" style="color:#10B981; font-weight:600;">⚡ ${(msg.retrieval_time).toFixed(2)}s retrieval</span>` : ''}
+                            ${msg.is_common_chat ? `<span class="meta-pill" style="color:#A78BFA; background:rgba(167,139,250,0.12); border:1px solid rgba(167,139,250,0.25);">💬 Common Chat</span>` : ''}
+                            ${msg.retrieval_time !== undefined && !msg.is_common_chat ? `<span class="meta-pill" style="color:#10B981; font-weight:600;">⚡ ${(msg.retrieval_time).toFixed(2)}s retrieval</span>` : ''}
                             ${responseTime ? `<span class="meta-pill">⏱️ ${responseTime}</span>` : ''}
                             ${tokens ? `<span class="meta-pill">🔤 ${tokens}</span>` : ''}
                             <button class="copy-btn" onclick="copyText('${escapeQuotes(msg.content)}', this)">
