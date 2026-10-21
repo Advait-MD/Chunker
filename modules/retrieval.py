@@ -127,7 +127,13 @@ COMMON_CHAT_PATTERNS = [
     r"^(what\s+is\s+the\s+(capital|difference|meaning|definition|purpose|formula|recipe|speed|distance|temperature|weather|time|date)\b)",
     r"^(who\s+(invented|discovered|wrote|directed|founded|painted|created)\s+([a-zA-Z\s]+))\b",
     r"^(explain\s+(how|why|what|the\s+concept\s+of|the\s+theory\s+of|the\s+process\s+of)\b)",
-    r"^(tell\s+me\s+(about|more\s+about|the\s+story\s+of|a\s+story\s+about)\b)"
+    r"^(tell\s+me\s+(about|more\s+about|the\s+story\s+of|a\s+story\s+about)\b)",
+
+    # 5. Personal reflections, life situations, feelings, emotional sharing, and advice
+    r"\b(lately\s+i|recently\s+i|sometimes\s+i|i('ve| have)? been feeling|i feel like|i'm feeling)\b",
+    r"\b(how do (i|people|we)|how (can|should) (i|we|people)|what should i do|any advice (on|for)|how to deal with)\b",
+    r"\b(burnout|overwhelmed|imposter syndrome|procrastinat|work-life balance|exhausted and|vicious cycle)\b",
+    r"\b(career (path|transition|choice|change)|long-term career|workplace dilemma|life advice)\b"
 ]
 COMMON_CHAT_REGEX = re.compile("|".join(COMMON_CHAT_PATTERNS), re.IGNORECASE)
 

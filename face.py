@@ -1,4 +1,5 @@
 import requests
+import re
 import pandas as pd
 from typing import List, Dict, Optional
 import time
@@ -72,13 +73,13 @@ class RAGInterface:
         
         # High-performance persistent connection pooling (eliminates Windows TCP handshaking delays)
         self.session = requests.Session()
-        cpu_threads = 4
+        cpu_threads = min(12, os.cpu_count() or 4)
         self.ollama_options = {
             "temperature": self.temperature,
-            "num_predict": 35,
+            "num_predict": 28,
             "top_k": 30,
             "top_p": 0.9,
-            "num_ctx": 1024,
+            "num_ctx": 512,
             "num_thread": cpu_threads
         }
 
@@ -497,31 +498,20 @@ class RAGInterface:
         # Common Chat / Pure conversation branch: chit-chat, general dialogue, or queries unrelated to memory documents
         if context.get('is_common_chat') or context.get('is_chitchat') or (not context.get('chunks') and not context.get('cluster_summaries')):
             prompt_parts = [
-                "You are APEX, a thoughtful, articulate, and friendly AI companion.",
-                "Answer the user's question directly, conversationally, and helpfully using your broad general knowledge.",
-                "Speak naturally like an intelligent human partner. Do not mention any document restrictions or say 'the context does not contain'—just answer naturally."
+                "You are APEX, an empathetic AI companion. Directly answer in 1-2 focused sentences:"
             ]
-            if context.get('conversation_memories'):
-                prompt_parts.append("\nPast memories:")
-                for mem in context['conversation_memories'][:2]:
-                    prompt_parts.append(f"- {mem.get('text', '')[:150]}")
-
-            history_to_use = session_history if session_history is not None else self.conversation_history
-            if history_to_use:
-                prompt_parts.append("\nRecent chat:")
-                if any('role' in m for m in history_to_use if isinstance(m, dict)):
-                    for msg in history_to_use[-3:]:
-                        role = "User" if msg.get('role') == 'user' else "APEX"
-                        c = msg.get('content', '').strip()
-                        if c and c != user_query:
-                            prompt_parts.append(f"{role}: {c[:120]}")
-                else:
+            # Only append previous history if query is a short follow-up needing context
+            if len(user_query.split()) <= 30:
+                history_to_use = session_history if session_history is not None else self.conversation_history
+                if history_to_use:
+                    prompt_parts.append("\nRecent chat:")
                     for turn in history_to_use[-2:]:
-                        q = turn.get('question', '')
-                        a = turn.get('answer', '')
-                        if q and a:
-                            prompt_parts.append(f"User: {q[:120]}")
-                            prompt_parts.append(f"APEX: {a[:120]}")
+                        if isinstance(turn, dict):
+                            q = turn.get('question') or turn.get('content', '')
+                            a = turn.get('answer', '')
+                            if q and a:
+                                prompt_parts.append(f"User: {q[:80]}")
+                                prompt_parts.append(f"APEX: {a[:80]}")
 
             prompt_parts.append(f"\nUser: {user_query}")
             prompt_parts.append("APEX:")
@@ -570,11 +560,12 @@ class RAGInterface:
         retry_delay = config.ollama.retry_delay
         timeout = config.ollama.timeout
 
-        # Adaptive options based on mode: Common Chat allows natural, complete conversation without cutoffs
+        # Adaptive options based on mode: Common Chat balances speed and completeness
         options = dict(self.ollama_options)
         if is_common_chat:
-            options["num_predict"] = 200
-            options["temperature"] = 0.6
+            is_coding = bool(re.search(r'\b(code|function|script|python|javascript|program|algorithm|class|def|import)\b', prompt, re.IGNORECASE))
+            options["num_predict"] = 160 if is_coding else 28
+            options["temperature"] = 0.3
         else:
             options["num_predict"] = 65
             options["temperature"] = self.temperature
@@ -634,8 +625,9 @@ class RAGInterface:
         """
         options = dict(self.ollama_options)
         if is_common_chat:
-            options["num_predict"] = 200
-            options["temperature"] = 0.6
+            is_coding = bool(re.search(r'\b(code|function|script|python|javascript|program|algorithm|class|def|import)\b', prompt, re.IGNORECASE))
+            options["num_predict"] = 160 if is_coding else 28
+            options["temperature"] = 0.3
         else:
             options["num_predict"] = 65
             options["temperature"] = self.temperature
@@ -730,16 +722,18 @@ class RAGInterface:
             })
             
             if hasattr(self.processor, 'add_conversation_turn'):
-                try:
-                    self.processor.add_conversation_turn(
-                        chat_id=self.current_session,
-                        user_text=question,
-                        assistant_text=answer,
-                        turn_index=len(self.conversation_history),
-                        chat_title='Session Chat'
-                    )
-                except Exception as e:
-                    logger.debug(f'Could not index turn to memory: {e}')
+                import threading
+                threading.Thread(
+                    target=self.processor.add_conversation_turn,
+                    kwargs={
+                        'chat_id': self.current_session,
+                        'user_text': question,
+                        'assistant_text': answer,
+                        'turn_index': len(self.conversation_history),
+                        'chat_title': 'Session Chat'
+                    },
+                    daemon=True
+                ).start()
             
             print(f"\n✅ Response ({elapsed_time:.2f}s, {response.get('tokens', 0)} tokens):")
             print("-"*80)
