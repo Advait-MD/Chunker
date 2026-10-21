@@ -341,7 +341,7 @@ COMMON_STOPWORDS = {
 
 
 def compute_query_coverage(query: str, text: str) -> float:
-    """Calculate the fraction of non-trivial query keywords present in document."""
+    """Calculate the fraction of non-trivial query keywords present in document (with stem/prefix matching)."""
     tokens = tokenize_bm25(query)
     q_tokens = [w for w in tokens if len(w) > 2 and w not in COMMON_STOPWORDS]
     if not q_tokens:
@@ -349,8 +349,108 @@ def compute_query_coverage(query: str, text: str) -> float:
     if not q_tokens:
         return 0.5
     doc_tokens = set(tokenize_bm25(text))
-    matched = sum(1 for q in q_tokens if q in doc_tokens)
+    matched = 0
+    for qw in q_tokens:
+        for dw in doc_tokens:
+            if qw == dw or (len(qw) >= 3 and len(dw) >= 3 and (dw.startswith(qw) or qw.startswith(dw))):
+                matched += 1
+                break
     return matched / len(q_tokens)
+
+
+def retrieve_conversation_memories(query: str,
+                                   conv_chunks_col,
+                                   conv_summaries_col=None,
+                                   query_emb: Optional[List[float]] = None,
+                                   store=None,
+                                   max_memories: int = 2,
+                                   dist_threshold: float = 1.22,
+                                   cov_threshold: float = 0.15) -> Tuple[List[Dict], List[Dict]]:
+    """
+    High-speed episodic conversation memory retrieval.
+    Searches ChromaDB's conversation collections for past turns relevant to the user query.
+    Returns:
+      (recalled_turn_memories, recalled_cluster_summaries)
+    """
+    if conv_chunks_col is None:
+        return [], []
+        
+    try:
+        if conv_chunks_col.count() == 0:
+            return [], []
+    except Exception:
+        return [], []
+        
+    q = query.strip()
+    if len(q.split()) <= 1 and q.lower() in ("hi", "hello", "hey", "yo", "sup", "bye"):
+        return [], []
+
+    try:
+        if query_emb is None and store is not None and hasattr(store, 'get_query_embedding'):
+            query_emb = store.get_query_embedding(q)
+
+        total_turns = conv_chunks_col.count()
+        n_results = min(max_memories * 3, total_turns)
+        query_args = {"n_results": n_results, "include": ["documents", "metadatas", "distances"]}
+        if query_emb is not None:
+            query_args["query_embeddings"] = [query_emb]
+        else:
+            query_args["query_texts"] = [q]
+
+        raw_res = conv_chunks_col.query(**query_args)
+        if not raw_res or not raw_res.get("documents") or not raw_res["documents"][0]:
+            return [], []
+
+        memories = []
+        for doc, meta, dist in zip(raw_res["documents"][0], raw_res["metadatas"][0], raw_res["distances"][0]):
+            d = float(dist)
+            cov = compute_query_coverage(q, doc)
+            # Relevance test: close embedding distance OR strong keyword coverage
+            is_relevant = (d <= dist_threshold and cov >= cov_threshold) or (d <= 0.88) or (cov >= 0.40 and d <= 1.35)
+            if is_relevant:
+                score = max(0.0, min(1.0, 1.0 - (d / 2.0)))
+                memories.append({
+                    "text": doc,
+                    "chat_id": meta.get("chat_id"),
+                    "chat_title": meta.get("chat_title", "Previous Chat"),
+                    "turn_index": meta.get("turn_index", 0),
+                    "timestamp": meta.get("timestamp", ""),
+                    "score": score,
+                    "coverage_score": cov,
+                    "distance": d
+                })
+                if len(memories) >= max_memories:
+                    break
+
+        summaries = []
+        if conv_summaries_col is not None:
+            try:
+                if conv_summaries_col.count() > 0:
+                    s_args = {"n_results": min(2, conv_summaries_col.count()), "include": ["documents", "metadatas", "distances"]}
+                    if query_emb is not None:
+                        s_args["query_embeddings"] = [query_emb]
+                    else:
+                        s_args["query_texts"] = [q]
+                    s_res = conv_summaries_col.query(**s_args)
+                    if s_res and s_res.get("documents") and s_res["documents"][0]:
+                        for s_doc, s_meta, s_dist in zip(s_res["documents"][0], s_res["metadatas"][0], s_res["distances"][0]):
+                            sd = float(s_dist)
+                            if sd <= 1.20:
+                                summaries.append({
+                                    "summary": s_doc,
+                                    "dense_summary": s_meta.get("dense_summary", ""),
+                                    "chats_represented": s_meta.get("chats_represented", "Chats"),
+                                    "score": max(0.0, 1.0 - (sd / 2.0)),
+                                    "level": s_meta.get("level", 0)
+                                })
+            except Exception as e:
+                logger.debug(f"Error querying conversation summaries: {e}")
+
+        return memories, summaries
+
+    except Exception as e:
+        logger.warning(f"Error retrieving conversation memories: {e}")
+        return [], []
 
 
 def rerank_hybrid_candidates(query: str,

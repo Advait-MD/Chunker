@@ -18,6 +18,7 @@ from modules.retrieval import (
     rerank_hybrid_candidates,
     is_chitchat_query,
     is_common_chat_query,
+    retrieve_conversation_memories,
     retrieval_result_cache,
     collapsed_tree_fusion,
     pack_collapsed_context
@@ -120,29 +121,19 @@ class RAGInterface:
             return False
     
     def _show_database_info(self):
-        """Show information about the database from local ChromaDB"""
+        """Show information about conversational memory and ChromaDB"""
         try:
-            total_chunks = self.processor.chunks_collection.count()
-            total_summaries = self.processor.summaries_collection.count()
+            conv_count = self.processor.conv_chunks_collection.count() if hasattr(self.processor, 'conv_chunks_collection') else 0
+            conv_sum_count = self.processor.conv_summaries_collection.count() if hasattr(self.processor, 'conv_summaries_collection') else 0
+            total_chunks = self.processor.chunks_collection.count() if hasattr(self.processor, 'chunks_collection') else 0
+            total_summaries = self.processor.summaries_collection.count() if hasattr(self.processor, 'summaries_collection') else 0
             
             if self.verbose:
-                print(f"📚 ChromaDB (local): {total_chunks} chunks, {total_summaries} summaries")
-                
-                # Show source distribution
+                print(f"🧠 Conversational Memory: {conv_count} past turn(s) indexed, {conv_sum_count} memory cluster(s)")
                 if total_chunks > 0:
-                    result = self.processor.chunks_collection.get(include=["metadatas"], limit=10000)
-                    sources = {}
-                    for meta in result['metadatas']:
-                        source = meta.get('source_file', 'Unknown')
-                        sources[source] = sources.get(source, 0) + 1
-                    
-                    print(f"📄 Sources: {len(sources)} document(s)")
-                    for source, count in sources.items():
-                        print(f"   • {source}: {count} chunks")
-                else:
-                    print("   ⚠️ Database is empty! Run main.py first to add documents.")
-                    
+                    print(f"📚 Auxiliary Documents: {total_chunks} chunks, {total_summaries} summaries")
         except Exception as e:
+            print(f"Database info error: {e}")
             print(f"⚠️ Could not get database info: {e}")
     
     def retrieve_context(self, query: str, source_filter: Optional[str] = None) -> Dict:
@@ -160,49 +151,45 @@ class RAGInterface:
 
         t_start = time.perf_counter()
         clean_q = query.strip()
+        effective_source = source_filter if source_filter is not None else self.source_filter
 
-        # 0. Common Chat & Chit-chat bypass (Fast Intent Gate)
-        # Avoids document search entirely for greetings, small talk, meta-questions, and general conversational tasks
-        indexed_sources = self.processor.get_indexed_sources() if hasattr(self.processor, 'get_indexed_sources') else []
-        if is_common_chat_query(clean_q, indexed_sources=indexed_sources):
+        # Check if user explicitly requested a specific document source filter (e.g. /source Steve Jobs.pdf):
+        is_explicit_document_search = bool(
+            effective_source and effective_source.strip().lower() not in ('none', 'chat', 'general', 'direct', 'normal', 'off', 'common', 'all')
+        )
+
+        # 0. DEFAULT MODE: Conversational AI with Episodic Memory Retrieval
+        # (Zero dependency on embedded documents)
+        if not is_explicit_document_search:
+            conv_memories, conv_summaries = retrieve_conversation_memories(
+                query=clean_q,
+                conv_chunks_col=self.processor.conv_chunks_collection if hasattr(self.processor, 'conv_chunks_collection') else None,
+                conv_summaries_col=self.processor.conv_summaries_collection if hasattr(self.processor, 'conv_summaries_collection') else None,
+                store=self.processor.store
+            )
+
+            has_recalled_memory = bool(conv_memories)
             if self.verbose:
-                print(f"💬 Common chat query detected ('{clean_q[:50]}...'). Bypassing document retrieval.")
+                if has_recalled_memory:
+                    print(f"🧠 Recalled {len(conv_memories)} relevant past conversation turn(s) from memory.")
+                else:
+                    print(f"💬 Conversational mode (no past chat memory needed).")
+
             return {
                 'success': True,
                 'is_chitchat': True,
                 'is_common_chat': True,
-                'chat_mode': 'common_chat',
+                'has_recalled_memory': has_recalled_memory,
+                'chat_mode': 'conversational_memory' if has_recalled_memory else 'common_chat',
                 'chunks': [],
                 'metadatas': [],
                 'scores': [],
                 'cluster_summaries': [],
-                'conversation_memories': [],
-                'conversation_cluster_summaries': [],
+                'conversation_memories': conv_memories,
+                'conversation_cluster_summaries': conv_summaries,
                 'sources': [],
                 'query': clean_q,
                 'source_filter': None,
-                'low_confidence': False,
-                'retrieval_time': time.perf_counter() - t_start
-            }
-
-        effective_source = source_filter if source_filter is not None else self.source_filter
-
-        # Pure Conversation Mode: bypass document chunks when user specifies 'none' or 'chat' or 'common'
-        if effective_source and effective_source.strip().lower() in ('none', 'chat', 'general', 'direct', 'normal', 'off', 'common'):
-            return {
-                'success': True,
-                'is_chitchat': True,
-                'is_common_chat': True,
-                'chat_mode': 'common_chat',
-                'chunks': [],
-                'metadatas': [],
-                'scores': [],
-                'cluster_summaries': [],
-                'conversation_memories': [],
-                'conversation_cluster_summaries': [],
-                'sources': [],
-                'query': clean_q,
-                'source_filter': 'none',
                 'low_confidence': False,
                 'retrieval_time': time.perf_counter() - t_start
             }
@@ -495,23 +482,39 @@ class RAGInterface:
         """
         user_query = context.get('query', '')
         
-        # Common Chat / Pure conversation branch: chit-chat, general dialogue, or queries unrelated to memory documents
+        # Conversational Mode (Default): Pure conversation or conversational memory recall
         if context.get('is_common_chat') or context.get('is_chitchat') or (not context.get('chunks') and not context.get('cluster_summaries')):
-            prompt_parts = [
-                "You are APEX, an empathetic AI companion. Directly answer in 1-2 focused sentences:"
-            ]
-            # Only append previous history if query is a short follow-up needing context
-            if len(user_query.split()) <= 30:
-                history_to_use = session_history if session_history is not None else self.conversation_history
-                if history_to_use:
-                    prompt_parts.append("\nRecent chat:")
-                    for turn in history_to_use[-2:]:
-                        if isinstance(turn, dict):
-                            q = turn.get('question') or turn.get('content', '')
-                            a = turn.get('answer', '')
-                            if q and a:
-                                prompt_parts.append(f"User: {q[:80]}")
-                                prompt_parts.append(f"APEX: {a[:80]}")
+            prompt_parts = []
+            conv_memories = context.get('conversation_memories', [])
+            if conv_memories:
+                prompt_parts.append("You are APEX, a thoughtful, articulate, and friendly AI companion with memory of past conversations.")
+                prompt_parts.append("Relevant memory recalled from your previous discussions with the user is provided below:")
+                prompt_parts.append("\n[Recalled Memory from Previous Conversation]:")
+                for mem in conv_memories[:2]:
+                    doc_text = mem.get('text', '').strip()
+                    prompt_parts.append(f"{doc_text}")
+                prompt_parts.append("\nInstructions:")
+                prompt_parts.append("- Directly and warmly answer the user's question using this recalled memory.")
+                prompt_parts.append("- Speak naturally like a friend remembering prior chats (e.g., 'As you mentioned earlier...', 'You told me before that...').")
+                prompt_parts.append("- Keep your answer direct, warm, and concise (under 2-3 sentences).")
+                prompt_parts.append("- Do not mention document restrictions or say 'the context does not contain'.")
+            else:
+                prompt_parts.append("You are APEX, a thoughtful, articulate, and friendly AI companion.")
+                prompt_parts.append("Answer directly, conversationally, and helpfully using broad general knowledge.")
+                prompt_parts.append("Keep your answer concise and engaging (under 2-3 sentences).")
+                prompt_parts.append("Speak naturally like an intelligent partner. Do not mention document restrictions or say 'the context does not contain'.")
+
+            # Recent in-session chat
+            history_to_use = session_history if session_history is not None else self.conversation_history
+            if history_to_use and len(user_query.split()) <= 35:
+                prompt_parts.append("\nRecent chat in this session:")
+                for turn in history_to_use[-2:]:
+                    if isinstance(turn, dict):
+                        q = turn.get('question') or turn.get('content', '')
+                        a = turn.get('answer', '')
+                        if q and a:
+                            prompt_parts.append(f"User: {q[:100]}")
+                            prompt_parts.append(f"APEX: {a[:100]}")
 
             prompt_parts.append(f"\nUser: {user_query}")
             prompt_parts.append("APEX:")
@@ -548,7 +551,7 @@ class RAGInterface:
         prompt_parts.append(f"\nQuestion: {user_query}\nAnswer:")
         return "\n".join(prompt_parts)
     
-    def generate_response(self, prompt: str, is_common_chat: bool = False) -> Dict:
+    def generate_response(self, prompt: str, is_common_chat: bool = False, user_query: Optional[str] = None) -> Dict:
         """
         Generate response using native Ollama LLM with keep-alive model pinning,
         tuned context size, thread count, and retry backoff (Item 2.2).
@@ -563,9 +566,22 @@ class RAGInterface:
         # Adaptive options based on mode: Common Chat balances speed and completeness
         options = dict(self.ollama_options)
         if is_common_chat:
-            is_coding = bool(re.search(r'\b(code|function|script|python|javascript|program|algorithm|class|def|import)\b', prompt, re.IGNORECASE))
-            options["num_predict"] = 160 if is_coding else 28
-            options["temperature"] = 0.3
+            if user_query:
+                q_text = user_query
+            else:
+                m = re.search(r'(?:User|Question):\s*(.+)', prompt)
+                q_text = m.group(1) if m else prompt
+            is_coding = bool(re.search(r'\b(code|function|script|python|javascript|program|algorithm|class|def|import)\b', q_text, re.IGNORECASE))
+            has_memory = "[Recalled Memory from Previous Conversation]" in prompt
+            if is_coding:
+                options["num_predict"] = 120
+                options["temperature"] = 0.3
+            elif has_memory:
+                options["num_predict"] = 45
+                options["temperature"] = 0.3
+            else:
+                options["num_predict"] = 35
+                options["temperature"] = 0.4
         else:
             options["num_predict"] = 65
             options["temperature"] = self.temperature
@@ -618,16 +634,29 @@ class RAGInterface:
             'error': f"{last_error} (Troubleshooting: Run 'ollama serve' and ensure '{self.ollama_model}' is pulled)."
         }
 
-    def generate_response_stream(self, prompt: str, is_common_chat: bool = False):
+    def generate_response_stream(self, prompt: str, is_common_chat: bool = False, user_query: Optional[str] = None):
         """
         Stream response tokens from native Ollama in real-time (Item 2.2).
         Yields token strings as they arrive from Ollama.
         """
         options = dict(self.ollama_options)
         if is_common_chat:
-            is_coding = bool(re.search(r'\b(code|function|script|python|javascript|program|algorithm|class|def|import)\b', prompt, re.IGNORECASE))
-            options["num_predict"] = 160 if is_coding else 28
-            options["temperature"] = 0.3
+            if user_query:
+                q_text = user_query
+            else:
+                m = re.search(r'(?:User|Question):\s*(.+)', prompt)
+                q_text = m.group(1) if m else prompt
+            is_coding = bool(re.search(r'\b(code|function|script|python|javascript|program|algorithm|class|def|import)\b', q_text, re.IGNORECASE))
+            has_memory = "[Recalled Memory from Previous Conversation]" in prompt
+            if is_coding:
+                options["num_predict"] = 120
+                options["temperature"] = 0.3
+            elif has_memory:
+                options["num_predict"] = 45
+                options["temperature"] = 0.3
+            else:
+                options["num_predict"] = 35
+                options["temperature"] = 0.4
         else:
             options["num_predict"] = 65
             options["temperature"] = self.temperature
@@ -696,18 +725,23 @@ class RAGInterface:
                 'response_time': time.time() - start_time
             }
         
+        has_recalled_memory = bool(context.get('conversation_memories'))
         is_common_chat = context.get('is_common_chat', False) or context.get('is_chitchat', False) or (not context.get('chunks') and not context.get('cluster_summaries'))
 
-        if is_common_chat:
-            if context.get('unrelated_to_documents'):
-                print("💬 Mode: Common Chat (Query unrelated to memory documents — answering conversationally)")
-            else:
-                print("💬 Mode: Common Chat (Conversational / General Knowledge)")
+        if has_recalled_memory:
+            mem_count = len(context['conversation_memories'])
+            print(f"🧠 Mode: Conversational Memory (Recalled {mem_count} relevant past turn{'s' if mem_count > 1 else ''})")
+            if self.verbose:
+                for idx, m in enumerate(context['conversation_memories']):
+                    text_prev = m.get('text', '').replace('\n', ' ')[:90]
+                    print(f"   • Memory {idx+1}: \"{text_prev}...\" (Sim: {m.get('score', 0):.1%})")
+        elif is_common_chat:
+            print("💬 Mode: Conversational (General Knowledge / Dialogue)")
         elif context.get('low_confidence'):
             print("\n⚠️ Caution: Low similarity confidence (< 25%). Context may not directly answer this question.")
         
         prompt = self.build_prompt(context)
-        response = self.generate_response(prompt, is_common_chat=is_common_chat)
+        response = self.generate_response(prompt, is_common_chat=is_common_chat, user_query=question)
         
         elapsed_time = time.time() - start_time
         
@@ -766,8 +800,10 @@ class RAGInterface:
                 'sources': context.get('sources', []),
                 'context_chunks': len(context.get('chunks', [])),
                 'relevance_scores': context.get('scores', []),
+                'conversation_memories': context.get('conversation_memories', []),
+                'has_recalled_memory': has_recalled_memory,
                 'is_common_chat': is_common_chat,
-                'chat_mode': 'common_chat' if is_common_chat else 'document_rag',
+                'chat_mode': 'conversational_memory' if has_recalled_memory else ('common_chat' if is_common_chat else 'document_rag'),
                 'unrelated_to_documents': context.get('unrelated_to_documents', False),
                 'response_time': elapsed_time,
                 'tokens_generated': response.get('tokens', 0),
@@ -779,24 +815,25 @@ class RAGInterface:
                 'answer': f"Error: {response.get('error', 'Unknown error')}",
                 'sources': [],
                 'context_chunks': 0,
+                'has_recalled_memory': has_recalled_memory,
+                'chat_mode': 'conversational_memory' if has_recalled_memory else ('common_chat' if is_common_chat else 'document_rag'),
                 'response_time': elapsed_time
             }
     
     def interactive_mode(self):
         """Run interactive conversation mode"""
         print("\n" + "="*80)
-        print("🎯 FACE - RAG Interface (Frontend for Hierarchical Knowledge Base)")
+        print("🤖 APEX - Conversational AI with Episodic Memory")
         print("="*80)
-        print(f"📚 ChromaDB: {self.processor.chunks_collection.count()} chunks total")
+        conv_c = self.processor.conv_chunks_collection.count() if hasattr(self.processor, 'conv_chunks_collection') else 0
+        print(f"🧠 Memory: {conv_c} past turns remembered across sessions")
+        print(f"💬 Conversational Mode: Active (No document dependencies)")
         print(f"🤖 Ollama Model: {self.ollama_model}")
-        print(f"📊 Context: {self.max_context_chunks} chunks, Summaries: {self.include_summaries}")
         print("\nCommands:")
-        print("  /source <name>  - Filter queries to a specific source document")
-        print("  /source clear   - Clear active source filter (search all)")
-        print("  /clear          - Clear conversation history")
-        print("  /stats          - Show database statistics")
-        print("  /sources        - Show all documents in database")
-        print("  /clusters       - Show cluster summaries")
+        print("  /memories       - Show recent conversation memories remembered in ChromaDB")
+        print("  /clear          - Clear current session memory")
+        print("  /stats          - Show memory statistics")
+        print("  /source <name>  - (Optional) Filter queries to a specific source document")
         print("  /help           - Show this help")
         print("  /quit           - Exit")
         print("="*80)
@@ -812,18 +849,22 @@ class RAGInterface:
                     print("\n👋 Goodbye!")
                     break
                     
+                elif user_input.lower() == '/memories':
+                    self.show_memories()
+                    continue
+
                 elif user_input.lower().startswith('/source'):
                     parts = user_input.split(maxsplit=1)
                     if len(parts) == 1:
                         if self.source_filter:
                             print(f"📌 Active source filter: '{self.source_filter}'")
                         else:
-                            print("📌 No source filter active (searching all documents).")
+                            print("📌 No source filter active (conversational mode).")
                     else:
                         sub = parts[1].strip()
                         if sub.lower() in ('clear', 'none', 'reset', 'all'):
                             self.source_filter = None
-                            print("✅ Source filter cleared. Searching across all documents.")
+                            print("✅ Source filter cleared. Conversational mode active.")
                         else:
                             self.source_filter = sub
                             print(f"✅ Source filter set to: '{self.source_filter}'")
@@ -883,6 +924,26 @@ class RAGInterface:
                 
         except Exception as e:
             print(f"Error getting stats: {e}")
+    
+    def show_memories(self):
+        """Show recent conversation memories remembered in ChromaDB"""
+        try:
+            col = self.processor.conv_chunks_collection
+            count = col.count()
+            print("\n🧠 CONVERSATIONAL MEMORY (ChromaDB)")
+            print("="*60)
+            print(f"Total turns remembered: {count}")
+            if count > 0:
+                res = col.get(limit=10, include=["documents", "metadatas"])
+                for i, (cid, doc, meta) in enumerate(zip(res['ids'], res['documents'], res['metadatas'])):
+                    title = meta.get('chat_title', 'Chat')
+                    ts = meta.get('timestamp', '')[:19]
+                    print(f"\n  [{i+1}] Session: {title} ({ts})")
+                    for line in doc.split('\n')[:2]:
+                        print(f"      {line[:85]}")
+            print("="*60)
+        except Exception as e:
+            print(f"Error fetching memories: {e}")
     
     def show_sources(self):
         """Show all documents in the database"""
