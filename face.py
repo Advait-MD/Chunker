@@ -24,6 +24,10 @@ from modules.retrieval import (
     collapsed_tree_fusion,
     pack_collapsed_context
 )
+from modules.web_search import (
+    search_web,
+    needs_web_search
+)
 
 if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8')
@@ -173,8 +177,8 @@ class RAGInterface:
                     src_info = f" (matched: '{effective_source}')" if effective_source else " (all indexed documents)"
                     print(f"📚 Prompt requires document retrieval: automatically activating Document RAG{src_info}.")
 
-        # 0. DEFAULT MODE: Conversational AI with Episodic Memory Retrieval
-        # Used when the query does not require document retrieval (pure chat or episodic past memory)
+        # 0. DEFAULT MODE: Conversational AI with Episodic Memory & Web Search Fact Grounding
+        # Used when the query does not require local document retrieval
         if not is_explicit_document_search and not auto_activate_doc_rag:
             conv_memories, conv_summaries = retrieve_conversation_memories(
                 query=clean_q,
@@ -184,25 +188,45 @@ class RAGInterface:
             )
 
             has_recalled_memory = bool(conv_memories)
+
+            # Web Search Fact Grounding: If no episodic memory was recalled, check if query requires real-time web search for factual correctness
+            web_results = []
+            if not has_recalled_memory and needs_web_search(clean_q, has_doc_intent=False, has_memory_intent=False):
+                if self.verbose:
+                    print(f"🌐 Factual query detected: searching web/internet for verified facts...")
+                try:
+                    web_results = search_web(clean_q, max_results=3)
+                except Exception as w_err:
+                    logger.warning(f"Error during web search: {w_err}")
+                    web_results = []
+
+            has_web = bool(web_results)
             if self.verbose:
-                if has_recalled_memory:
+                if has_web:
+                    print(f"🌐 Web Search retrieved {len(web_results)} verified web sources.")
+                elif has_recalled_memory:
                     print(f"🧠 Recalled {len(conv_memories)} relevant past conversation turn(s) from memory.")
                 else:
-                    print(f"💬 Conversational mode (no past chat memory needed).")
+                    print(f"💬 Conversational mode (no past chat memory or web search needed).")
+
+            mode = 'web_search' if has_web else ('conversational_memory' if has_recalled_memory else 'common_chat')
+            web_sources = [r.get('domain') or r.get('url') for r in web_results] if has_web else []
 
             return {
                 'success': True,
-                'is_chitchat': True,
+                'is_chitchat': not has_web,
                 'is_common_chat': True,
+                'is_web_search': has_web,
                 'has_recalled_memory': has_recalled_memory,
-                'chat_mode': 'conversational_memory' if has_recalled_memory else 'common_chat',
+                'chat_mode': mode,
                 'chunks': [],
                 'metadatas': [],
                 'scores': [],
                 'cluster_summaries': [],
                 'conversation_memories': conv_memories,
                 'conversation_cluster_summaries': conv_summaries,
-                'sources': [],
+                'web_results': web_results,
+                'sources': web_sources,
                 'query': clean_q,
                 'source_filter': None,
                 'low_confidence': False,
@@ -491,13 +515,37 @@ class RAGInterface:
 
     def build_prompt(self, context: Dict, session_history: Optional[List[Dict]] = None) -> str:
         """
-        Build a concise, evidence-dense prompt prioritizing primary source evidence
-        and conversational memory. Strictly bounds character count to guarantee
-        TTFT <= 2.0s and Total Turnaround <= 5.0s.
+        Build a concise, evidence-dense prompt prioritizing primary source evidence,
+        verified web search facts, and conversational memory.
         """
         user_query = context.get('query', '')
         
-        # Conversational Mode (Default): Pure conversation or conversational memory recall
+        # 1. Real-Time Web Search Mode: Strict Factual Correctness
+        web_results = context.get('web_results', [])
+        if web_results:
+            prompt_parts = [
+                "You are APEX, a factually precise, authoritative, and concise AI assistant.",
+                "Verified real-time web search results from the internet are provided below:\n",
+                "[Verified Web Search Evidence]:"
+            ]
+            for idx, r in enumerate(web_results[:3], 1):
+                title = r.get('title', 'Web Source')
+                domain = r.get('domain', 'internet')
+                snippet = r.get('snippet', '')[:280].strip()
+                prompt_parts.append(f"[{idx}] Source: {title} ({domain})")
+                prompt_parts.append(f"    Evidence: {snippet}")
+
+            prompt_parts.extend([
+                "\nInstructions for 100% Factual Correctness:",
+                "- Answer the user's question directly and accurately using ONLY the verified web search evidence above.",
+                "- Ensure complete factual accuracy. Do not guess, speculate, or state claims not verified by the evidence.",
+                "- Keep your answer direct, clear, and concise (under 2-3 sentences).",
+                f"\nQuestion: {user_query}",
+                "Answer:"
+            ])
+            return "\n".join(prompt_parts)
+
+        # 2. Conversational Mode (Default): Pure conversation or conversational memory recall
         if context.get('is_common_chat') or context.get('is_chitchat') or (not context.get('chunks') and not context.get('cluster_summaries')):
             prompt_parts = []
             conv_memories = context.get('conversation_memories', [])
@@ -588,9 +636,13 @@ class RAGInterface:
                 q_text = m.group(1) if m else prompt
             is_coding = bool(re.search(r'\b(code|function|script|python|javascript|program|algorithm|class|def|import)\b', q_text, re.IGNORECASE))
             has_memory = "[Recalled Memory from Previous Conversation]" in prompt
+            has_web = "[Verified Web Search Evidence]" in prompt
             if is_coding:
                 options["num_predict"] = 120
                 options["temperature"] = 0.3
+            elif has_web:
+                options["num_predict"] = 90
+                options["temperature"] = 0.1
             elif has_memory:
                 options["num_predict"] = 45
                 options["temperature"] = 0.3
@@ -663,9 +715,13 @@ class RAGInterface:
                 q_text = m.group(1) if m else prompt
             is_coding = bool(re.search(r'\b(code|function|script|python|javascript|program|algorithm|class|def|import)\b', q_text, re.IGNORECASE))
             has_memory = "[Recalled Memory from Previous Conversation]" in prompt
+            has_web = "[Verified Web Search Evidence]" in prompt
             if is_coding:
                 options["num_predict"] = 120
                 options["temperature"] = 0.3
+            elif has_web:
+                options["num_predict"] = 90
+                options["temperature"] = 0.1
             elif has_memory:
                 options["num_predict"] = 45
                 options["temperature"] = 0.3
@@ -741,9 +797,16 @@ class RAGInterface:
             }
         
         has_recalled_memory = bool(context.get('conversation_memories'))
+        has_web_results = bool(context.get('web_results'))
         is_common_chat = context.get('is_common_chat', False) or context.get('is_chitchat', False) or (not context.get('chunks') and not context.get('cluster_summaries'))
 
-        if has_recalled_memory:
+        if has_web_results:
+            web_count = len(context['web_results'])
+            print(f"🌐 Mode: Web Search Fact Grounding (Retrieved {web_count} verified web sources)")
+            if self.verbose:
+                for idx, w in enumerate(context['web_results']):
+                    print(f"   • [{idx+1}] {w.get('title')} ({w.get('domain')})")
+        elif has_recalled_memory:
             mem_count = len(context['conversation_memories'])
             print(f"🧠 Mode: Conversational Memory (Recalled {mem_count} relevant past turn{'s' if mem_count > 1 else ''})")
             if self.verbose:
@@ -790,7 +853,8 @@ class RAGInterface:
             print("-"*80)
             
             if context.get('sources'):
-                print(f"\n📚 Sources: {', '.join(context['sources'])}")
+                src_label = "🌐 Web Sources" if has_web_results else "📚 Sources"
+                print(f"\n{src_label}: {', '.join(context['sources'])}")
             
             if self.verbose and not is_common_chat:
                 print(f"\n📊 Retrieved {len(context.get('chunks', []))} primary chunks:")
@@ -817,9 +881,11 @@ class RAGInterface:
                 'context_chunks': len(context.get('chunks', [])),
                 'relevance_scores': context.get('scores', []),
                 'conversation_memories': context.get('conversation_memories', []),
+                'web_results': context.get('web_results', []),
                 'has_recalled_memory': has_recalled_memory,
+                'has_web_results': has_web_results,
                 'is_common_chat': is_common_chat,
-                'chat_mode': 'document_rag' if (context.get('chunks') or context.get('cluster_summaries')) else ('conversational_memory' if has_recalled_memory else 'common_chat'),
+                'chat_mode': 'document_rag' if (context.get('chunks') or context.get('cluster_summaries')) else ('conversational_memory' if has_recalled_memory else ('web_search' if has_web_results else 'common_chat')),
                 'unrelated_to_documents': context.get('unrelated_to_documents', False),
                 'response_time': elapsed_time,
                 'tokens_generated': response.get('tokens', 0),

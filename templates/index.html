@@ -1705,17 +1705,52 @@
                     `;
                 }
 
+                // Real-Time Web Search Evidence Drawer
+                let webHtml = '';
+                if (msg.web_results && msg.web_results.length > 0) {
+                    const webCards = msg.web_results.map(w => {
+                        const title = w.title || 'Web Source';
+                        const domain = w.domain || 'Internet';
+                        const url = w.url || '#';
+                        return `
+                            <div class="chunk-card" style="border-left: 3px solid #10B981;">
+                                <div class="chunk-card-header">
+                                    <div class="chunk-tag-group">
+                                        <span class="chunk-badge" style="color:#10B981; background:rgba(16,185,129,0.15);">🌐 ${escapeHtml(domain)}</span>
+                                        <a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer" class="chunk-badge" style="color:#6EE7B7; text-decoration:underline;">🔗 Open Source</a>
+                                    </div>
+                                </div>
+                                <div style="font-weight:600; color:#F1F5F9; margin-bottom:4px; font-size:12px;">${escapeHtml(title)}</div>
+                                <div class="chunk-text" style="color:#E2E8F0;">${escapeHtml(w.snippet)}</div>
+                            </div>
+                        `;
+                    }).join('');
+
+                    webHtml = `
+                        <div class="evidence-drawer" style="border-color: rgba(16, 185, 129, 0.35); margin-top: 8px;">
+                            <div class="evidence-toggle" style="color:#6EE7B7; background: rgba(16, 185, 129, 0.12);" onclick="toggleEvidence(this)">
+                                <span>🌐 Verified Web Search Evidence (${msg.web_results.length} Sources)</span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                            <div class="evidence-body">
+                                ${webCards}
+                            </div>
+                        </div>
+                    `;
+                }
+
                 row.innerHTML = `
                     <div class="message-avatar assistant">
                         <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
                     </div>
                     <div class="message-body">
                         <div class="message-bubble">${formattedHtml}</div>
+                        ${webHtml}
                         ${memoryHtml}
                         ${convSummaryHtml}
                         ${evidenceHtml}
                         <div class="message-meta">
-                            ${(msg.chunks && msg.chunks.length > 0) ? `<span class="meta-pill" style="color:#38BDF8; background:rgba(56,189,248,0.15); border:1px solid rgba(56,189,248,0.30); font-weight:600;">📚 Document Grounded (${msg.chunks.length})</span>` : (msg.has_recalled_memory || (msg.conversation_memories && msg.conversation_memories.length > 0) ? `<span class="meta-pill" style="color:#C084FC; background:rgba(192,132,252,0.15); border:1px solid rgba(192,132,252,0.30); font-weight:600;">🧠 Recalled Memory (${msg.conversation_memories.length})</span>` : `<span class="meta-pill" style="color:#A78BFA; background:rgba(167,139,250,0.12); border:1px solid rgba(167,139,250,0.25);">💬 Conversational</span>`)}
+                            ${(msg.chunks && msg.chunks.length > 0) ? `<span class="meta-pill" style="color:#38BDF8; background:rgba(56,189,248,0.15); border:1px solid rgba(56,189,248,0.30); font-weight:600;">📚 Document Grounded (${msg.chunks.length})</span>` : ((msg.web_results && msg.web_results.length > 0) ? `<span class="meta-pill" style="color:#10B981; background:rgba(16,185,129,0.15); border:1px solid rgba(16,185,129,0.30); font-weight:600;">🌐 Web Grounded (${msg.web_results.length})</span>` : (msg.has_recalled_memory || (msg.conversation_memories && msg.conversation_memories.length > 0) ? `<span class="meta-pill" style="color:#C084FC; background:rgba(192,132,252,0.15); border:1px solid rgba(192,132,252,0.30); font-weight:600;">🧠 Recalled Memory (${msg.conversation_memories.length})</span>` : `<span class="meta-pill" style="color:#A78BFA; background:rgba(167,139,250,0.12); border:1px solid rgba(167,139,250,0.25);">💬 Conversational</span>`))}
                             ${msg.retrieval_time !== undefined && !msg.is_common_chat ? `<span class="meta-pill" style="color:#10B981; font-weight:600;">⚡ ${(msg.retrieval_time).toFixed(2)}s retrieval</span>` : ''}
                             ${responseTime ? `<span class="meta-pill">⏱️ ${responseTime}</span>` : ''}
                             ${tokens ? `<span class="meta-pill">🔤 ${tokens}</span>` : ''}

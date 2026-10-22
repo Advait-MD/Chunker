@@ -38,6 +38,10 @@ from .retrieval import (
     query_embedding_cache,
     retrieval_result_cache
 )
+from .web_search import (
+    search_web,
+    needs_web_search
+)
 
 __all__ = [
     "config",
@@ -70,6 +74,8 @@ __all__ = [
     "is_common_chat_query",
     "detect_document_intent",
     "retrieve_conversation_memories",
+    "search_web",
+    "needs_web_search",
     "query_embedding_cache",
     "retrieval_result_cache"
 ]

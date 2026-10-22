@@ -332,13 +332,14 @@ async def process_chat_message(req: ChatQueryRequest):
                 "cluster_summaries": context.get("cluster_summaries", []),
                 "conversation_memories": context.get("conversation_memories", []),
                 "conversation_cluster_summaries": context.get("conversation_cluster_summaries", []),
+                "web_results": context.get("web_results", []),
                 "has_recalled_memory": bool(context.get("conversation_memories")),
                 "response_time": elapsed,
                 "tokens": tokens,
                 "retrieval_time": context.get("retrieval_time", 0.0),
                 "is_chitchat": is_common_chat,
                 "is_common_chat": is_common_chat,
-                "chat_mode": "document_rag" if (context.get("chunks") or context.get("cluster_summaries")) else ("conversational_memory" if bool(context.get("conversation_memories")) else "common_chat"),
+                "chat_mode": "document_rag" if (context.get("chunks") or context.get("cluster_summaries")) else ("conversational_memory" if bool(context.get("conversation_memories")) else ("web_search" if bool(context.get("web_results")) else "common_chat")),
                 "unrelated_to_documents": context.get("unrelated_to_documents", False),
                 "low_confidence": context.get("low_confidence", False) and not is_common_chat
             }
@@ -462,11 +463,12 @@ async def process_chat_message_stream(req: ChatQueryRequest):
                 "cluster_summaries": context.get("cluster_summaries", []),
                 "conversation_memories": context.get("conversation_memories", []),
                 "conversation_cluster_summaries": context.get("conversation_cluster_summaries", []),
+                "web_results": context.get("web_results", []),
                 "has_recalled_memory": bool(context.get("conversation_memories")),
                 "retrieval_time": context.get("retrieval_time", 0.0),
                 "is_chitchat": is_common_chat,
                 "is_common_chat": is_common_chat,
-                "chat_mode": "document_rag" if (context.get("chunks") or context.get("cluster_summaries")) else ("conversational_memory" if bool(context.get("conversation_memories")) else "common_chat"),
+                "chat_mode": "document_rag" if (context.get("chunks") or context.get("cluster_summaries")) else ("conversational_memory" if bool(context.get("conversation_memories")) else ("web_search" if bool(context.get("web_results")) else "common_chat")),
                 "unrelated_to_documents": context.get("unrelated_to_documents", False),
                 "low_confidence": context.get("low_confidence", False) and not is_common_chat
             }
@@ -500,13 +502,14 @@ async def process_chat_message_stream(req: ChatQueryRequest):
                 "cluster_summaries": context.get("cluster_summaries", []),
                 "conversation_memories": context.get("conversation_memories", []),
                 "conversation_cluster_summaries": context.get("conversation_cluster_summaries", []),
+                "web_results": context.get("web_results", []),
                 "has_recalled_memory": bool(context.get("conversation_memories")),
                 "response_time": elapsed,
                 "retrieval_time": context.get("retrieval_time", 0.0),
                 "tokens": token_count,
                 "is_chitchat": is_common_chat,
                 "is_common_chat": is_common_chat,
-                "chat_mode": "document_rag" if (context.get("chunks") or context.get("cluster_summaries")) else ("conversational_memory" if bool(context.get("conversation_memories")) else "common_chat"),
+                "chat_mode": "document_rag" if (context.get("chunks") or context.get("cluster_summaries")) else ("conversational_memory" if bool(context.get("conversation_memories")) else ("web_search" if bool(context.get("web_results")) else "common_chat")),
                 "unrelated_to_documents": context.get("unrelated_to_documents", False),
                 "low_confidence": context.get("low_confidence", False) and not is_common_chat
             }
