@@ -180,18 +180,10 @@ class RAGInterface:
         # 0. DEFAULT MODE: Conversational AI with Episodic Memory & Web Search Fact Grounding
         # Used when the query does not require local document retrieval
         if not is_explicit_document_search and not auto_activate_doc_rag:
-            conv_memories, conv_summaries = retrieve_conversation_memories(
-                query=clean_q,
-                conv_chunks_col=self.processor.conv_chunks_collection if hasattr(self.processor, 'conv_chunks_collection') else None,
-                conv_summaries_col=self.processor.conv_summaries_collection if hasattr(self.processor, 'conv_summaries_collection') else None,
-                store=self.processor.store
-            )
-
-            has_recalled_memory = bool(conv_memories)
-
-            # Web Search Fact Grounding: If no episodic memory was recalled, check if query requires real-time web search for factual correctness
+            # Check if query is a factual / world knowledge question requiring real-time web search
+            should_search_web = needs_web_search(clean_q, has_doc_intent=False, has_memory_intent=False)
             web_results = []
-            if not has_recalled_memory and needs_web_search(clean_q, has_doc_intent=False, has_memory_intent=False):
+            if should_search_web:
                 if self.verbose:
                     print(f"🌐 Factual query detected: searching web/internet for verified facts...")
                 try:
@@ -201,6 +193,20 @@ class RAGInterface:
                     web_results = []
 
             has_web = bool(web_results)
+
+            conv_memories = []
+            conv_summaries = []
+            # Only check episodic memory if query is NOT grounded by real-time web search
+            if not has_web:
+                conv_memories, conv_summaries = retrieve_conversation_memories(
+                    query=clean_q,
+                    conv_chunks_col=self.processor.conv_chunks_collection if hasattr(self.processor, 'conv_chunks_collection') else None,
+                    conv_summaries_col=self.processor.conv_summaries_collection if hasattr(self.processor, 'conv_summaries_collection') else None,
+                    store=self.processor.store
+                )
+
+            has_recalled_memory = bool(conv_memories)
+
             if self.verbose:
                 if has_web:
                     print(f"🌐 Web Search retrieved {len(web_results)} verified web sources.")
