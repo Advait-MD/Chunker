@@ -1,7 +1,7 @@
 import requests
 import re
 import pandas as pd
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Any
 import time
 from datetime import datetime
 import json
@@ -76,6 +76,7 @@ class RAGInterface:
         self.source_filter = source_filter
         self.conversation_history = []
         self.current_session = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.last_llm_calls = 0
         
         # High-performance persistent connection pooling (eliminates Windows TCP handshaking delays)
         self.session = requests.Session()
@@ -340,12 +341,21 @@ class RAGInterface:
             raw_chunks = results['documents'][0]
             raw_metadatas = results['metadatas'][0]
             raw_distances = results['distances'][0]
+            raw_ids = results.get('ids', [[]])[0] if results and results.get('ids') else []
+            for idx, meta in enumerate(raw_metadatas):
+                if meta is not None and idx < len(raw_ids):
+                    meta['chroma_id'] = raw_ids[idx]
 
             # 4. Collapsed Tree Fusion (RAPTOR Upgrade - ICLR 2024)
             if config.retrieval.enable_collapsed_retrieval:
                 s_docs = summary_results['documents'][0] if summary_results and summary_results.get('documents') and summary_results['documents'][0] else None
                 s_metas = summary_results['metadatas'][0] if summary_results and summary_results.get('metadatas') and summary_results['metadatas'][0] else None
                 s_dists = summary_results['distances'][0] if summary_results and summary_results.get('distances') and summary_results['distances'][0] else None
+                s_ids = summary_results.get('ids', [[]])[0] if summary_results and summary_results.get('ids') else []
+                if s_metas:
+                    for idx, smeta in enumerate(s_metas):
+                        if smeta is not None and idx < len(s_ids):
+                            smeta['chroma_id'] = s_ids[idx]
                 
                 candidates = collapsed_tree_fusion(
                     raw_chunks=raw_chunks,
@@ -450,6 +460,9 @@ class RAGInterface:
             relevance_scores = packed['scores']
             cluster_summaries = packed['cluster_summaries']
             collapsed_items = packed['collapsed_items']
+            retrieved_ids = [m.get('chroma_id') for m in retrieved_metadatas if m and m.get('chroma_id')]
+            if not retrieved_ids:
+                retrieved_ids = [m.get('chroma_id') for m in raw_metadatas if m and m.get('chroma_id')]
 
             sources = []
             for meta in retrieved_metadatas:
@@ -498,6 +511,7 @@ class RAGInterface:
             result_dict = {
                 'success': True,
                 'is_chitchat': False,
+                'retrieved_ids': retrieved_ids,
                 'chunks': retrieved_chunks,
                 'metadatas': retrieved_metadatas,
                 'scores': relevance_scores,
@@ -662,6 +676,7 @@ class RAGInterface:
         last_error = None
         for attempt in range(1, max_retries + 1):
             try:
+                self.last_llm_calls = getattr(self, 'last_llm_calls', 0) + 1
                 response = self.session.post(
                     self.ollama_url,
                     json={
@@ -884,6 +899,7 @@ class RAGInterface:
                 'answer': answer,
                 'sources': context.get('sources', []),
                 'chunks': context.get('chunks', []),
+                'retrieved_ids': context.get('retrieved_ids', []),
                 'context_chunks': len(context.get('chunks', [])),
                 'relevance_scores': context.get('scores', []),
                 'conversation_memories': context.get('conversation_memories', []),
@@ -902,11 +918,31 @@ class RAGInterface:
                 'question': question,
                 'answer': f"Error: {response.get('error', 'Unknown error')}",
                 'sources': [],
+                'chunks': [],
+                'retrieved_ids': context.get('retrieved_ids', []),
                 'context_chunks': 0,
                 'has_recalled_memory': has_recalled_memory,
                 'chat_mode': 'conversational_memory' if has_recalled_memory else ('common_chat' if is_common_chat else 'document_rag'),
                 'response_time': elapsed_time
             }
+
+    def answer(self, question: str) -> Dict[str, Any]:
+        """
+        Evaluation harness interface per HARNESS.md Section 4:
+        result = pipeline.answer(question: str) -> dict
+        
+        Returns:
+            answer: str (final generated answer)
+            retrieved_ids: list[str] (chunk IDs in ranked order, as returned to generation)
+            llm_calls: int (number of LLM invocations for this query)
+        """
+        self.last_llm_calls = 0
+        res = self.query(question)
+        return {
+            'answer': res.get('answer', ''),
+            'retrieved_ids': res.get('retrieved_ids', []),
+            'llm_calls': getattr(self, 'last_llm_calls', 0)
+        }
     
     def interactive_mode(self):
         """Run interactive conversation mode"""
