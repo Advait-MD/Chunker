@@ -333,17 +333,23 @@ def token_f1(gold: str, pred: str) -> float:
 # ---- CLI & Indexing Entrypoint -----------------------------------------------
 
 def index_corpus(docs_dir: str = SCRIPT_DIR, force: bool = False) -> NaiveRAG:
-    """Index all PDFs found in docs_dir."""
+    """Index all PDFs found in docs_dir (or parent repo root if none found in docs_dir)."""
     rag = NaiveRAG()
 
     if not force and rag.load_index():
         return rag
 
-    # Discover PDFs
+    # Discover PDFs - check docs_dir, fallback to parent directory if not found
     pdf_files = [
         f for f in os.listdir(docs_dir)
         if f.lower().endswith(".pdf")
     ]
+    if not pdf_files:
+        parent_dir = os.path.dirname(docs_dir)
+        parent_pdfs = [f for f in os.listdir(parent_dir) if f.lower().endswith(".pdf")]
+        if parent_pdfs:
+            docs_dir = parent_dir
+            pdf_files = parent_pdfs
 
     if not pdf_files:
         raise FileNotFoundError(f"No PDF documents found in {docs_dir}")

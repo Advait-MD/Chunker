@@ -1,13 +1,13 @@
 # AGENTS.md
 
-Flat Python research repo for a hierarchical-clustering RAG pipeline ("APEX") over PDFs. No package layout, no README, no requirements.txt, no tests, no lint/CI — don't go looking for them.
+Flat Python research repository for a hierarchical-clustering RAG pipeline ("APEX") over dense PDF corpora.
 
 ## Architecture (what's actually active)
 
-- **`main.py`** — current backend & coordinator. Coordinates the modular pipeline via `HierarchicalClusterSummarizer` for document ingestion, hierarchical clustering, and conversation memory clustering (`cluster_conversations()`).
-- **`app.py`** — modern AI Chat Web UI application (FastAPI + HTML5/CSS3). Features sidebar chat history, "+ New Chat", session persistence, document source filters, episodic memory persistence, on-demand conversation clustering, and interactive evidence drawers (`http://localhost:7860`).
+- **`main.py`** — Backend & pipeline coordinator. Coordinates the modular pipeline via `HierarchicalClusterSummarizer` for document ingestion, hierarchical clustering, and conversation memory clustering (`cluster_conversations()`).
+- **`app.py`** — Modern AI Chat Web UI application (FastAPI + HTML5/CSS3). Features sidebar chat history, "+ New Chat", session persistence, document source filters, episodic memory persistence, on-demand conversation clustering, and interactive evidence drawers (`http://localhost:7860`).
 - **`telegram_bot.py`** — Telegram Bot mobile interface server. Provides remote conversational RAG, live source filtering, mobile PDF document upload/ingestion, and cluster inspection via phone (`python telegram_bot.py` or `run_bot.bat`).
-- **`face.py`** — terminal/CLI frontend. Imports backend components. Connects to local ChromaDB and native Ollama. Run interactively (`python face.py`) or `--query "..."` / `--batch file.txt`. Retrieves both ground-truth PDF evidence and episodic conversation memories.
+- **`face.py`** — Terminal/CLI frontend. Imports backend components. Connects to local ChromaDB and native Ollama. Run interactively (`python face.py`) or `--query "..."` / `--batch file.txt`. Retrieves both ground-truth PDF evidence and episodic conversation memories.
 - **`inspector.py`** — Environment smoke-test checking local ChromaDB and native Ollama connectivity.
 - **`modules/`** — Dedicated package directory for core pipeline components:
   - **`modules/__init__.py`** — Package initializer exporting core classes and functions.
@@ -18,9 +18,11 @@ Flat Python research repo for a hierarchical-clustering RAG pipeline ("APEX") ov
   - **`modules/retrieval.py`** — Hybrid retrieval (`BM25Scorer`), Reciprocal Rank Fusion (`reciprocal_rank_fusion`), composite reranking (`rerank_hybrid_candidates`), and chunk deduplication (`deduplicate_retrieved_chunks`).
   - **`modules/config.py`** — Centralized typed dataclass configuration with environment variable overrides.
   - **`modules/logger.py`** — Standardized timestamped logging infrastructure.
+- **`eval/`** — Rigorous evaluation harness with LLM-as-a-judge (`judge.py`), golden dataset (`dataset/gold.jsonl`), automated metrics (`metrics.py`), and test runners.
+- **`naive rag/`** — Strict reproduction baseline of Lewis et al. (2020) DPR + FAISS IndexFlatIP for head-to-head benchmarking.
+- **`raptor/`** — RAPTOR (Sarthi et al., ICLR 2024) tree clustering reference implementation for comparative analysis.
 
-
-## Running (100% Local / No Docker)
+## Running (100% Local / Zero Docker)
 
 > See **[`run.md`](run.md)** for the complete guide to all ingestion, querying, ablation, and testing commands.
 
@@ -40,16 +42,17 @@ python main.py
 
 # 5. Interactive RAG query (or --query "..." / --batch file.txt)
 python face.py
+
+# 6. Launch Web UI
+python app.py
 ```
 
 Both `main.py` and `face.py` preflight Ollama (`/api/tags`) and print the exact pull command if a model is missing.
 
-## Gotchas
+## Key Considerations
 
-- **Two ChromaDBs coexist**: the local store in `hierarchical_chroma_db/` is what `main.py`/`face.py` use. The on-disk dirs (`chroma_db/`, `pdf_chroma_db/`, `document_db/`, `improved_chroma_db/`, `my_chroma_data/`) are legacy stores from mk2-era scripts.
-- **Re-running `main.py` duplicates chunks**: ingest IDs include `uuid4().hex[:8]`, so every run re-adds the same PDF's chunks. Collections are also silently **deleted and recreated** on an "embedding function conflict" error — data loss is intentional there.
-- **Embeddings** are generated server-side by Chroma using Ollama's `nomic-embed-text` (768-dim). Never pass raw `embeddings=` to `chunks_collection.add()` or you get a conflict.
-- **No dependency lockfile**. Implicit deps: `chromadb`, `scikit-learn`, `pandas`, `numpy`, `requests`, `PyPDF2` (+ `sentence_transformers` only for `chunk.py`/`ecs.py`).
-- **Git tracks artifacts**: `__pycache__/*.pyc`, Chroma sqlite/binaries, Ollama model blobs, `anythingllm_data/` (contains private keys), and generated CSVs (`hierarchical_summaries.csv`, `clustering_history.csv`, `cluster_report.csv`) are all committed; there is no `.gitignore`. Avoid needlessly staging binary/data churn.
-- **`test docs/Test Questions.md`** is the evaluation question bank (3 Bloom's-taxonomy levels, Token F1 / Context Relevance targets) — prose, not runnable tests. Feed similar questions to `face.py --batch`.
-- `mk2.py` sets `LOKY_MAX_CPU_COUNT=4` before sklearn work; other scripts don't.
+- **Single Active Database**: The sole active local store is `hierarchical_chroma_db/`. All legacy Chroma stores (`chroma_db/`, `pdf_chroma_db/`, `document_db/`, etc.) have been pruned and cleaned.
+- **Duplicate Protection**: File SHA-256 hashes prevent duplicate ingestion, and deterministic chunk IDs enable idempotent upserts.
+- **Strict Separation of Truth vs. Summary**: `document_chunks` strictly contains primary PDF text. `hierarchical_summaries` holds synthetic cluster summaries.
+- **Dependencies**: Listed in `requirements.txt` and `pyproject.toml`. Run `pip install -r requirements.txt`.
+- **Environment Overrides**: All pipeline hyperparameters (chunk size, GMM parameters, retrieval weights, models) can be configured via `.env` without modifying source code.

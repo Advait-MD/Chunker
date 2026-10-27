@@ -76,6 +76,7 @@ class RAGInterface:
         self.source_filter = source_filter
         self.conversation_history = []
         self.current_session = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.record_conversation_memory = False
         self.last_llm_calls = 0
         
         # High-performance persistent connection pooling (eliminates Windows TCP handshaking delays)
@@ -378,7 +379,9 @@ class RAGInterface:
                     })
 
             # Hybrid Reranking (BM25 + Dense Vector + Query Term Coverage across collapsed tree)
-            reranked_candidates = rerank_hybrid_candidates(clean_q, candidates)
+            dense_w = getattr(self, 'dense_weight', 0.50)
+            bm25_w = getattr(self, 'bm25_weight', 0.30)
+            reranked_candidates = rerank_hybrid_candidates(clean_q, candidates, dense_weight=dense_w, bm25_weight=bm25_w)
 
             # Score Thresholding: strict relevance and keyword coverage check
             threshold = max(self.min_score, 0.35)
@@ -854,7 +857,7 @@ class RAGInterface:
                 'sources': context.get('sources', [])
             })
             
-            if hasattr(self.processor, 'add_conversation_turn'):
+            if getattr(self, 'record_conversation_memory', True) and hasattr(self.processor, 'add_conversation_turn'):
                 import threading
                 threading.Thread(
                     target=self.processor.add_conversation_turn,
@@ -936,11 +939,14 @@ class RAGInterface:
             retrieved_ids: list[str] (chunk IDs in ranked order, as returned to generation)
             llm_calls: int (number of LLM invocations for this query)
         """
+        self.record_conversation_memory = False
         self.last_llm_calls = 0
         res = self.query(question)
+        self._last_retrieved_chunks = res.get('chunks', [])
         return {
             'answer': res.get('answer', ''),
             'retrieved_ids': res.get('retrieved_ids', []),
+            'retrieved_chunks': res.get('chunks', []),
             'llm_calls': getattr(self, 'last_llm_calls', 0)
         }
     
