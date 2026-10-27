@@ -73,7 +73,8 @@ def find_optimal_k_bic(embeddings: np.ndarray, min_k: int = 2, max_k: int = 8) -
 def perform_clustering(embeddings: np.ndarray, 
                        n_clusters: Optional[int] = None,
                        enable_soft: Optional[bool] = None,
-                       soft_threshold: Optional[float] = None) -> Optional[Dict]:
+                       soft_threshold: Optional[float] = None,
+                       bic_selection: Optional[bool] = None) -> Optional[Dict]:
     """
     Perform Gaussian Mixture Model (GMM) clustering on vector embeddings with:
       1. Dimensionality reduction via PCA (if >100 dimensions and >50 samples)
@@ -103,9 +104,10 @@ def perform_clustering(embeddings: np.ndarray,
     embeddings_scaled = scaler.fit_transform(embeddings_reduced)
     
     # 3. Determine number of clusters (Dynamic BIC or explicit override)
+    use_bic = bic_selection if bic_selection is not None else config.clustering.bic_selection
     bic_val = 0.0
     if n_clusters is None:
-        if config.clustering.bic_selection:
+        if use_bic:
             n_clusters, bic_val = find_optimal_k_bic(
                 embeddings_scaled,
                 min_k=config.clustering.min_k,

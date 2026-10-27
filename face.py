@@ -61,6 +61,11 @@ class RAGInterface:
                  temperature: Optional[float] = None,
                  min_score: Optional[float] = None,
                  source_filter: Optional[str] = None,
+                 dense_weight: Optional[float] = None,
+                 bm25_weight: Optional[float] = None,
+                 coverage_weight: Optional[float] = None,
+                 enable_jaccard_dedup: Optional[bool] = None,
+                 max_jaccard_overlap: Optional[float] = None,
                  verbose: bool = True):
         """
         Initialize the RAG Interface with local services
@@ -74,6 +79,11 @@ class RAGInterface:
         self.temperature = temperature if temperature is not None else config.retrieval.temperature
         self.min_score = min_score if min_score is not None else config.retrieval.min_relevance_score
         self.source_filter = source_filter
+        self.dense_weight = dense_weight if dense_weight is not None else config.retrieval.dense_weight
+        self.bm25_weight = bm25_weight if bm25_weight is not None else config.retrieval.bm25_weight
+        self.coverage_weight = coverage_weight if coverage_weight is not None else config.retrieval.coverage_weight
+        self.enable_jaccard_dedup = enable_jaccard_dedup if enable_jaccard_dedup is not None else config.retrieval.enable_jaccard_dedup
+        self.max_jaccard_overlap = max_jaccard_overlap if max_jaccard_overlap is not None else config.retrieval.max_jaccard_overlap
         self.conversation_history = []
         self.current_session = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.record_conversation_memory = False
@@ -379,9 +389,12 @@ class RAGInterface:
                     })
 
             # Hybrid Reranking (BM25 + Dense Vector + Query Term Coverage across collapsed tree)
-            dense_w = getattr(self, 'dense_weight', 0.50)
-            bm25_w = getattr(self, 'bm25_weight', 0.30)
-            reranked_candidates = rerank_hybrid_candidates(clean_q, candidates, dense_weight=dense_w, bm25_weight=bm25_w)
+            dense_w = getattr(self, 'dense_weight', config.retrieval.dense_weight)
+            bm25_w = getattr(self, 'bm25_weight', config.retrieval.bm25_weight)
+            cov_w = getattr(self, 'coverage_weight', config.retrieval.coverage_weight)
+            reranked_candidates = rerank_hybrid_candidates(
+                clean_q, candidates, dense_weight=dense_w, bm25_weight=bm25_w, coverage_weight=cov_w
+            )
 
             # Score Thresholding: strict relevance and keyword coverage check
             threshold = max(self.min_score, 0.35)
@@ -431,9 +444,15 @@ class RAGInterface:
             cand_metas = [c['metadata'] for c in passed_candidates if c.get('node_type') == 'leaf_chunk']
             cand_scores = [c['rerank_score'] for c in passed_candidates if c.get('node_type') == 'leaf_chunk']
 
-            deduped_chunks, deduped_metas, deduped_scores = deduplicate_retrieved_chunks(
-                cand_docs, cand_metas, cand_scores, max_jaccard_overlap=0.65
-            )
+            enable_dedup = getattr(self, 'enable_jaccard_dedup', config.retrieval.enable_jaccard_dedup)
+            max_jaccard = getattr(self, 'max_jaccard_overlap', config.retrieval.max_jaccard_overlap)
+
+            if enable_dedup:
+                deduped_chunks, deduped_metas, deduped_scores = deduplicate_retrieved_chunks(
+                    cand_docs, cand_metas, cand_scores, max_jaccard_overlap=max_jaccard
+                )
+            else:
+                deduped_chunks, deduped_metas, deduped_scores = cand_docs, cand_metas, cand_scores
 
             # Re-integrate deduped chunks into unified pool alongside tree summaries
             final_candidates = []

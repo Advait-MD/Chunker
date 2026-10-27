@@ -63,6 +63,11 @@ class RetrievalConfig:
     min_summary_score: float = field(default_factory=lambda: float(os.getenv("MIN_SUMMARY_SCORE", "0.30")))
     include_conversation_memory: bool = field(default_factory=lambda: os.getenv("INCLUDE_CONV_MEMORY", "true").lower() in ("true", "1", "yes"))
     max_memory_chunks: int = field(default_factory=lambda: int(os.getenv("MAX_MEMORY_CHUNKS", "2")))
+    dense_weight: float = field(default_factory=lambda: float(os.getenv("DENSE_WEIGHT", "0.50")))
+    bm25_weight: float = field(default_factory=lambda: float(os.getenv("BM25_WEIGHT", "0.30")))
+    coverage_weight: float = field(default_factory=lambda: float(os.getenv("COVERAGE_WEIGHT", "0.20")))
+    enable_jaccard_dedup: bool = field(default_factory=lambda: os.getenv("ENABLE_JACCARD_DEDUP", "true").lower() in ("true", "1", "yes"))
+    max_jaccard_overlap: float = field(default_factory=lambda: float(os.getenv("MAX_JACCARD_OVERLAP", "0.65")))
 
 
 @dataclass

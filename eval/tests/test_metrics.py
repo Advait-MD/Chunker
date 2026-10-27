@@ -157,3 +157,63 @@ def test_generation_and_cost_metrics():
     assert cost["mean_llm_calls"] == pytest.approx(0.75)
     assert cost["p50_latency"] > 0
     assert cost["p95_latency"] >= cost["p50_latency"]
+
+
+def test_academic_metrics_hand_computed():
+    from eval.metrics import (
+        compute_token_f1,
+        compute_rouge_l,
+        compute_bleu_4,
+        compute_bootstrap_ci,
+        compute_paired_significance,
+        compute_claim_faithfulness,
+        compute_system_efficiency,
+    )
+
+    # 1. Token F1
+    # Overlap: "steve", "jobs", "founded", "apple" (4 tokens identical)
+    pred = "Steve Jobs founded Apple Computer in California"
+    gold = "Steve Jobs founded Apple"
+    # pred len: 7, gold len: 4, overlap: 4 -> prec: 4/7, rec: 4/4=1 -> F1: 2*(4/7*1)/(4/7+1) = 8/11 = 0.72727
+    f1 = compute_token_f1(pred, gold)
+    assert f1 == pytest.approx(8 / 11)
+
+    # Completely disjoint
+    assert compute_token_f1("hello world", "foo bar") == 0.0
+    # Exact match
+    assert compute_token_f1("exact match text", "exact match text") == 1.0
+
+    # 2. ROUGE-L
+    rouge = compute_rouge_l("the quick brown fox", "the brown fox jumps")
+    assert rouge > 0.5
+
+    # 3. BLEU-4
+    bleu = compute_bleu_4("the cat sat on the mat", "the cat sat on the mat")
+    assert bleu == pytest.approx(1.0, abs=1e-3)
+
+    # 4. Bootstrap CI
+    sample_scores = [0.8, 0.82, 0.79, 0.85, 0.81, 0.83]
+    ci = compute_bootstrap_ci(sample_scores, n_bootstrap=200)
+    assert ci["ci_lower"] <= ci["mean"] <= ci["ci_upper"]
+    assert ci["ci_lower"] > 0.75
+
+    # 5. Paired Significance Testing
+    model_a = [0.90, 0.92, 0.88, 0.95, 0.91, 0.94]
+    model_b = [0.60, 0.62, 0.58, 0.65, 0.61, 0.64]
+    sig = compute_paired_significance(model_a, model_b)
+    assert sig["is_significant_p01"] is True
+    assert sig["mean_diff"] > 0.25
+
+    # 6. Claim Faithfulness
+    context = ["Steve Jobs founded Apple in Cupertino with Steve Wozniak."]
+    supported_ans = "Steve Jobs founded Apple."
+    unsupported_ans = "Steve Jobs traveled to Mars on a rocket."
+    assert compute_claim_faithfulness(supported_ans, context) == 1.0
+    assert compute_claim_faithfulness(unsupported_ans, context) == 0.0
+
+    # 7. System Efficiency
+    case_dummies = [{"context_tokens": 400}, {"context_tokens": 600}]
+    eff = compute_system_efficiency(case_dummies, model_params_b=1.0)
+    assert eff["mean_context_tokens"] == 500.0
+    assert eff["mean_gflops_per_query"] == 1000.0
+
