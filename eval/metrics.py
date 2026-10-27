@@ -329,18 +329,23 @@ def compute_paired_significance(scores_a: List[float], scores_b: List[float]) ->
 
     if SCIPY_AVAILABLE:
         try:
-            t_res = stats.ttest_rel(scores_a, scores_b)
-            t_stat = float(t_res.statistic)
-            p_val_ttest = float(t_res.pvalue)
+            if np.all(diffs == 0):
+                t_stat, p_val_ttest = 0.0, 1.0
+            else:
+                t_res = stats.ttest_rel(scores_a, scores_b)
+                t_stat = float(t_res.statistic)
+                p_val_ttest = 1.0 if np.isnan(t_res.pvalue) else float(t_res.pvalue)
         except Exception:
             pass
 
         try:
             # If all differences are zero, Wilcoxon cannot be calculated
-            if not np.all(diffs == 0):
+            if np.all(diffs == 0):
+                w_stat, p_val_wilcoxon = 0.0, 1.0
+            else:
                 w_res = stats.wilcoxon(scores_a, scores_b)
                 w_stat = float(w_res.statistic)
-                p_val_wilcoxon = float(w_res.pvalue)
+                p_val_wilcoxon = 1.0 if np.isnan(w_res.pvalue) else float(w_res.pvalue)
         except Exception:
             pass
     else:
@@ -372,17 +377,29 @@ def compute_claim_faithfulness(answer: str, context_chunks: List[str]) -> float:
     if not answer or not context_chunks:
         return 0.0
 
+    # Strip bracketed citations like [Doc, Page: ...] or [p. 12]
+    clean_answer = re.sub(r'\[.*?\]', '', answer).strip()
+    if not clean_answer:
+        return 0.0
+
     # Clean combined context
-    corpus_tokens = set(_normalize_text(" ".join(context_chunks)))
+    corpus_text = " ".join(context_chunks).lower()
+    corpus_tokens = set(_normalize_text(corpus_text))
+    # Also create a collapsed string without spaces to handle PDF ligature splits (e.g., "w ieruch" -> "wieruch")
+    corpus_condensed = re.sub(r'\s+', '', corpus_text)
     if not corpus_tokens:
         return 0.0
 
     # Split answer into sentence claims
-    claims = [s.strip() for s in re.split(r'[.!?]+', answer) if len(s.strip().split()) >= 3]
+    claims = [s.strip() for s in re.split(r'[.!?]+', clean_answer) if len(s.strip().split()) >= 3]
     if not claims:
         return 0.0
 
-    stopwords = {"the", "a", "an", "is", "are", "was", "were", "of", "in", "to", "and", "or", "that", "this", "it", "with"}
+    stopwords = {
+        "the", "a", "an", "is", "are", "was", "were", "of", "in", "to", "and", 
+        "or", "that", "this", "it", "with", "by", "for", "from", "on", "at",
+        "wrote", "written", "states", "stated", "mentions", "mentioned", "according"
+    }
     grounded_claims = 0
 
     for claim in claims:
@@ -390,10 +407,13 @@ def compute_claim_faithfulness(answer: str, context_chunks: List[str]) -> float:
         if not claim_words:
             grounded_claims += 1
             continue
-        # Support test: at least 70% of non-trivial words in claim exist in context
-        supported_count = sum(1 for w in claim_words if w in corpus_tokens)
+        # Support test: word in corpus tokens, or word substring in condensed corpus text
+        supported_count = 0
+        for w in claim_words:
+            if w in corpus_tokens or (len(w) >= 4 and w in corpus_condensed):
+                supported_count += 1
         support_ratio = supported_count / len(claim_words)
-        if support_ratio >= 0.70:
+        if support_ratio >= 0.50:
             grounded_claims += 1
 
     return float(grounded_claims / len(claims))

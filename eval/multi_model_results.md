@@ -1,17 +1,14 @@
 # APEX Multi-Model Scaling Benchmark Results
 
-> Generated: 2026-10-27 15:02:53
+> Generated: 2026-10-27 17:14:24
 
 | Model Backbone | Tier | System | Token F1 | 95% CI | ROUGE-L | Faithfulness | Latency (s) | Gain (Δ F1) |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **gemma3:1b** | 1B Edge | Naive RAG | 37.4 | [36.6, 38.3] | 35.2 | 65.0% | 16.0s | Baseline |
-| | | **APEX (Ours)** | **46.6** | [45.7, 47.5] | **43.8** | **85.0%** | **9.5s** | **+9.1** |
+| **gemma3:1b** | 1B Edge | Naive RAG | 41.2 | [29.2, 56.3] | 40.0 | 100.0% | 4.3s | Baseline |
+| | | **APEX (Ours)** | **41.5** | [29.8, 55.2] | **40.7** | **100.0%** | **4.4s** | **+0.3** |
 | | | | | | | | | |
-| **llama3.2:3b** | 3B Edge | Naive RAG | 40.8 | [39.9, 41.6] | 38.3 | 65.0% | 22.0s | Baseline |
-| | | **APEX (Ours)** | **51.9** | [51.0, 52.8] | **48.8** | **85.0%** | **14.0s** | **+11.1** |
-| | | | | | | | | |
-| **llama3.1:8b** | 8B Mid-Tier | Naive RAG | 45.9 | [45.1, 46.7] | 43.1 | 65.0% | 22.0s | Baseline |
-| | | **APEX (Ours)** | **58.5** | [57.7, 59.3] | **55.0** | **85.0%** | **14.0s** | **+12.6** |
+| **llama3.2:1b** | 1B Edge | Naive RAG | 42.0 | [35.1, 50.1] | 37.4 | 90.0% | 5.0s | Baseline |
+| | | **APEX (Ours)** | **44.4** | [32.8, 60.9] | **41.0** | **80.0%** | **4.9s** | **+2.5** |
 | | | | | | | | | |
 
 ---
@@ -26,14 +23,11 @@
 \toprule
 \textbf{Backbone Model} & \textbf{System} & \textbf{Token F1} & \textbf{95\% CI} & \textbf{ROUGE-L} & \textbf{Faithfulness} & \textbf{Latency (s)} & \textbf{$\Delta$ F1} \\
 \midrule
-\multirow{2}{*}{gemma3:1b} & Naive RAG & 37.4 & [36.6, 38.3] & 35.2 & 65.0\% & 16.0s & --- \\
- & \textbf{APEX (Ours)} & \textbf{46.6} & [45.7, 47.5] & \textbf{43.8} & \textbf{85.0\%} & \textbf{9.5s} & \textbf{+9.1} \\
+\multirow{2}{*}{gemma3:1b} & Naive RAG & 41.2 & [29.2, 56.3] & 40.0 & 100.0\% & 4.3s & --- \\
+ & \textbf{APEX (Ours)} & \textbf{41.5} & [29.8, 55.2] & \textbf{40.7} & \textbf{100.0\%} & \textbf{4.4s} & \textbf{+0.3} \\
 \cline{2-8}
-\multirow{2}{*}{llama3.2:3b} & Naive RAG & 40.8 & [39.9, 41.6] & 38.3 & 65.0\% & 22.0s & --- \\
- & \textbf{APEX (Ours)} & \textbf{51.9} & [51.0, 52.8] & \textbf{48.8} & \textbf{85.0\%} & \textbf{14.0s} & \textbf{+11.1} \\
-\cline{2-8}
-\multirow{2}{*}{llama3.1:8b} & Naive RAG & 45.9 & [45.1, 46.7] & 43.1 & 65.0\% & 22.0s & --- \\
- & \textbf{APEX (Ours)} & \textbf{58.5} & [57.7, 59.3] & \textbf{55.0} & \textbf{85.0\%} & \textbf{14.0s} & \textbf{+12.6} \\
+\multirow{2}{*}{llama3.2:1b} & Naive RAG & 42.0 & [35.1, 50.1] & 37.4 & 90.0\% & 5.0s & --- \\
+ & \textbf{APEX (Ours)} & \textbf{44.4} & [32.8, 60.9] & \textbf{41.0} & \textbf{80.0\%} & \textbf{4.9s} & \textbf{+2.5} \\
 \cline{2-8}
 \bottomrule
 \end{tabular}

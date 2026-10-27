@@ -241,6 +241,7 @@ def run_variant_eval(variant: Dict[str, Any],
         }
 
     # Live Execution via RAGInterface
+    config.retrieval.include_conversation_memory = False
     rag = RAGInterface(
         ollama_model=model_name,
         include_summaries=settings["include_summaries"],
@@ -251,6 +252,7 @@ def run_variant_eval(variant: Dict[str, Any],
         max_jaccard_overlap=settings["max_jaccard_overlap"],
         verbose=False
     )
+    rag.record_conversation_memory = False
     # Configure clustering settings on processor if available
     if hasattr(rag, 'processor'):
         rag.processor.min_cluster_silhouette = settings["min_cluster_silhouette"]
@@ -355,6 +357,8 @@ def generate_markdown_table(results: List[Dict[str, Any]], full_apex_scores: Lis
         else:
             sig = compute_paired_significance(full_apex_scores, r["f1_scores"])
             p_val = sig.get("p_value_ttest", 1.0)
+            if np.isnan(p_val) or np.isneginf(p_val) or np.isposinf(p_val):
+                p_val = 1.0
             star = "**" if p_val < 0.01 else ("*" if p_val < 0.05 else "")
             p_str = f"p={p_val:.3f}{star}"
 
@@ -390,6 +394,8 @@ def generate_latex_table(results: List[Dict[str, Any]], full_apex_scores: List[f
         else:
             sig = compute_paired_significance(full_apex_scores, r["f1_scores"])
             p_val = sig.get("p_value_ttest", 1.0)
+            if np.isnan(p_val) or np.isneginf(p_val) or np.isposinf(p_val):
+                p_val = 1.0
             star = "$^{**}$" if p_val < 0.01 else ("$^{*}$" if p_val < 0.05 else "")
             p_str = f"${p_val:.3f}${star}"
 

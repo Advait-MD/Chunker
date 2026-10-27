@@ -43,10 +43,21 @@ from eval.metrics import (
 
 
 DEFAULT_MODELS = [
-    {"name": "gemma3:1b", "tier": "1B Edge", "params_b": 1.0},
-    {"name": "llama3.2:3b", "tier": "3B Edge", "params_b": 3.2},
-    {"name": "llama3.1:8b", "tier": "8B Mid-Tier", "params_b": 8.0},
+    {"name": "gemma3:1b", "tier": "1B Edge (Google)", "params_b": 1.0},
+    {"name": "llama3.2:1b", "tier": "1B Edge (Meta)", "params_b": 1.0},
 ]
+
+
+def get_installed_ollama_models(ollama_url: str = "http://localhost:11434") -> List[str]:
+    """Retrieve list of locally installed Ollama models without triggering pulls."""
+    import requests
+    try:
+        resp = requests.get(f"{ollama_url.rstrip('/')}/api/tags", timeout=5)
+        if resp.status_code == 200:
+            return [m.get("name", "").split(":")[0] for m in resp.json().get("models", [])] + [m.get("name", "") for m in resp.json().get("models", [])]
+    except Exception:
+        pass
+    return ["gemma3:1b", "llama3.2:1b"]
 
 
 def load_cases(dataset_path: str, limit: Optional[int] = None) -> List[Dict[str, Any]]:
@@ -89,12 +100,14 @@ def evaluate_model_on_system(model_name: str,
             "f1_scores": f1_scores
         }
 
+    config.retrieval.include_conversation_memory = False
     rag = RAGInterface(
         ollama_model=model_name,
         include_summaries=is_apex,
         enable_jaccard_dedup=is_apex,
         verbose=False
     )
+    rag.record_conversation_memory = False
 
     f1_scores = []
     rouge_scores = []
@@ -188,17 +201,30 @@ def main():
     parser = argparse.ArgumentParser(description="APEX Multi-Model Scaling Benchmark Runner")
     parser.add_argument("--dataset", default="eval/dataset/gold.jsonl", help="Dataset path")
     parser.add_argument("--limit", type=int, default=None, help="Limit number of test queries")
-    parser.add_argument("--models", nargs="+", default=["gemma3:1b", "llama3.2:3b", "llama3.1:8b"], help="Model backbones to test")
+    parser.add_argument("--models", nargs="+", default=["gemma3:1b", "llama3.2:1b"], help="Model backbones to test")
     parser.add_argument("--dry-run", action="store_true", help="Simulate execution without live inference")
     parser.add_argument("--out-dir", default="eval/runs", help="Output directory")
     args = parser.parse_args()
 
     os.makedirs(args.out_dir, exist_ok=True)
     cases = load_cases(args.dataset, limit=args.limit)
-    print(f"Loaded {len(cases)} cases for multi-model evaluation across: {args.models}")
+
+    # Filter out models that are not installed to strictly avoid downloading anything
+    installed = get_installed_ollama_models()
+    valid_models = []
+    for m in args.models:
+        if any(m == inst or m.split(":")[0] == inst.split(":")[0] for inst in installed):
+            valid_models.append(m)
+        else:
+            print(f"⚠️ Skipping '{m}': not pre-installed in Ollama (avoiding unwanted downloads).")
+
+    if not valid_models:
+        valid_models = ["gemma3:1b"]
+
+    print(f"Loaded {len(cases)} cases for multi-model evaluation across: {valid_models}")
 
     all_results = []
-    for m in args.models:
+    for m in valid_models:
         # Run Naive RAG
         r_naive = evaluate_model_on_system(m, cases, is_apex=False, dry_run=args.dry_run)
         all_results.append(r_naive)

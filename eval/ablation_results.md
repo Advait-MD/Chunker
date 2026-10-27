@@ -1,16 +1,16 @@
 # APEX Component Ablation Matrix Results
 
-> Generated: 2026-10-27 15:01:42 | Model: `gemma3:1b`
+> Generated: 2026-10-27 17:10:54 | Model: `gemma3:1b`
 
 | Variant | Token F1 | 95% CI | ROUGE-L | Faithfulness | Context Toks | Latency (s) | Rejection Acc | vs. Full (p) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Full APEX** | 47.4 | [46.2, 48.6] | 45.0 | 85.0% | 360 | 9.50 | 100.0% | - |
-| **w/o Silhouette Gate** | 42.8 | [41.8, 43.8] | 40.7 | 65.0% | 360 | 12.00 | 0.0% | p=0.000** |
-| **w/o Dynamic BIC** | 45.2 | [44.1, 46.2] | 42.9 | 65.0% | 360 | 12.00 | 100.0% | p=0.013* |
-| **w/o Soft Clustering** | 45.5 | [44.7, 46.3] | 43.2 | 65.0% | 360 | 12.00 | 100.0% | p=0.016* |
-| **w/o BM25 RRF** | 45.3 | [44.3, 46.3] | 43.0 | 65.0% | 360 | 12.00 | 100.0% | p=0.006** |
-| **w/o Jaccard Dedup** | 45.2 | [44.2, 46.3] | 43.0 | 65.0% | 780 | 12.00 | 100.0% | p=0.019* |
-| **Baseline: Naive RAG** | 45.0 | [43.8, 46.3] | 42.8 | 65.0% | 780 | 12.00 | 100.0% | p=0.011* |
+| **Full APEX** | 41.8 | [29.6, 56.7] | 41.0 | 100.0% | 286 | 3.76 | 100.0% | - |
+| **w/o Silhouette Gate** | 41.8 | [29.6, 56.7] | 41.0 | 100.0% | 286 | 4.12 | 100.0% | p=1.000 |
+| **w/o Dynamic BIC** | 41.1 | [29.3, 54.7] | 40.0 | 100.0% | 286 | 4.26 | 100.0% | p=0.199 |
+| **w/o Soft Clustering** | 41.8 | [29.6, 56.7] | 41.0 | 100.0% | 286 | 4.10 | 100.0% | p=1.000 |
+| **w/o BM25 RRF** | 41.6 | [29.4, 56.7] | 40.7 | 100.0% | 286 | 4.18 | 100.0% | p=0.665 |
+| **w/o Jaccard Dedup** | 41.5 | [29.7, 55.2] | 40.8 | 100.0% | 286 | 4.31 | 100.0% | p=0.753 |
+| **Baseline: Naive RAG** | 40.9 | [27.7, 55.1] | 40.2 | 95.0% | 286 | 4.33 | 100.0% | p=0.838 |
 
 ---
 
@@ -24,13 +24,13 @@
 \toprule
 \textbf{Ablation Variant} & \textbf{Token F1} & \textbf{95\% CI} & \textbf{ROUGE-L} & \textbf{Faithfulness} & \textbf{Tokens} & \textbf{Latency (s)} & \textbf{$p$-value} \\
 \midrule
-\textbf{Full APEX (Ours)} & \textbf{47.4} & [46.2, 48.6] & 45.0 & 85.0\% & 360 & 9.50 & --- \\
-w/o Silhouette Gate & 42.8 & [41.8, 43.8] & 40.7 & 65.0\% & 360 & 12.00 & $0.000$$^{**}$ \\
-w/o Dynamic BIC & 45.2 & [44.1, 46.2] & 42.9 & 65.0\% & 360 & 12.00 & $0.013$$^{*}$ \\
-w/o Soft Clustering & 45.5 & [44.7, 46.3] & 43.2 & 65.0\% & 360 & 12.00 & $0.016$$^{*}$ \\
-w/o BM25 RRF & 45.3 & [44.3, 46.3] & 43.0 & 65.0\% & 360 & 12.00 & $0.006$$^{**}$ \\
-w/o Jaccard Dedup & 45.2 & [44.2, 46.3] & 43.0 & 65.0\% & 780 & 12.00 & $0.019$$^{*}$ \\
-Baseline: Naive RAG & 45.0 & [43.8, 46.3] & 42.8 & 65.0\% & 780 & 12.00 & $0.011$$^{*}$ \\
+\textbf{Full APEX (Ours)} & \textbf{41.8} & [29.6, 56.7] & 41.0 & 100.0\% & 286 & 3.76 & --- \\
+w/o Silhouette Gate & 41.8 & [29.6, 56.7] & 41.0 & 100.0\% & 286 & 4.12 & $1.000$ \\
+w/o Dynamic BIC & 41.1 & [29.3, 54.7] & 40.0 & 100.0\% & 286 & 4.26 & $0.199$ \\
+w/o Soft Clustering & 41.8 & [29.6, 56.7] & 41.0 & 100.0\% & 286 & 4.10 & $1.000$ \\
+w/o BM25 RRF & 41.6 & [29.4, 56.7] & 40.7 & 100.0\% & 286 & 4.18 & $0.665$ \\
+w/o Jaccard Dedup & 41.5 & [29.7, 55.2] & 40.8 & 100.0\% & 286 & 4.31 & $0.753$ \\
+Baseline: Naive RAG & 40.9 & [27.7, 55.1] & 40.2 & 95.0\% & 286 & 4.33 & $0.838$ \\
 \bottomrule
 \end{tabular}
 \caption{Component ablation matrix evaluating the impact of individual architectural choices in APEX. $^{**}p < 0.01$, $^{*}p < 0.05$ against Full APEX via paired $t$-test.}

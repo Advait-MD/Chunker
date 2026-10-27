@@ -30,6 +30,7 @@ if hasattr(sys.stdout, 'reconfigure'):
     sys.stdout.reconfigure(encoding='utf-8', line_buffering=True)
 
 from face import RAGInterface
+from modules.config import config
 from naive_rag import NaiveRAG
 
 # ==================== EVALUATION QUESTIONS BANK ====================
@@ -230,12 +231,14 @@ def run_benchmark():
 
     # 1. Initialize APEX Interface with temperature=0.0
     print("\n[1/3] Initializing APEX (Hierarchical Clustering RAG)...", flush=True)
+    config.retrieval.include_conversation_memory = False
     apex = RAGInterface(
         ollama_model="gemma3:1b",
         temperature=0.0,  # Zero temperature for deterministic evaluation
         max_context_chunks=5,
         verbose=False
     )
+    apex.record_conversation_memory = False
     print("✓ APEX initialized.", flush=True)
 
     # 2. Initialize Naive RAG Interface with temperature=0.0
