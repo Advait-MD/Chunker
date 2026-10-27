@@ -36,8 +36,7 @@
   - [3. Ingestion & Hierarchical Clustering](#3-ingestion--hierarchical-clustering)
   - [4. Interactive Querying (CLI Frontend)](#4-interactive-querying-cli-frontend)
   - [5. Modern Web UI (FastAPI + Token Streaming)](#5-modern-web-ui-fastapi--token-streaming)
-  - [6. Mobile Telegram Bot Interface](#6-mobile-telegram-bot-interface)
-  - [7. Running Benchmarks & Tests](#7-running-benchmarks--tests)
+  - [6. Running Benchmarks & Tests](#6-running-benchmarks--tests)
 - [Configuration Reference](#-configuration-reference)
 - [Extending & Modifying APEX](#-extending--modifying-apex)
 
@@ -304,12 +303,9 @@ Chunker/
 ├── main.py                       # Pipeline orchestrator: PDF ingestion & hierarchical clustering
 ├── face.py                       # CLI frontend & core retrieval/generation engine
 ├── app.py                        # Modern AI Chat Web UI server (FastAPI + HTML5/CSS3)
-├── telegram_bot.py               # Mobile Telegram Bot interface server
 ├── inspector.py                  # Local environment smoke test (ChromaDB + Ollama)
 ├── compare_apex_vs_naive.py      # Rigorous head-to-head benchmark (APEX vs Naive RAG)
 ├── run_raptor_benchmarks.py      # RAPTOR benchmark recreation script
-├── run.md                        # Complete operational execution guide
-├── Telegram.md                   # Telegram mobile interface guide
 ├── AGENTS.md                     # Technical architecture reference for AI coding agents
 ├── requirements.txt              # Standardized pip dependencies
 ├── pyproject.toml                # Project packaging metadata
@@ -323,7 +319,6 @@ Chunker/
 │   ├── vector_store.py           # ChromaDB collection management & batch insertion
 │   ├── retrieval.py              # BM25Okapi, RRF, composite reranking & Jaccard dedup
 │   ├── web_search.py             # Real-time web retrieval fallback module
-│   ├── telegram_helpers.py       # Telegram keyboards and message formatters
 │   └── logger.py                 # Standardized timestamped logging infrastructure
 │
 ├── eval/                         # Automated evaluation framework
@@ -428,21 +423,7 @@ Open your browser to:
 - Interactive document source filter dropdown.
 - On-demand conversation memory clustering.
 
-### 6. Mobile Telegram Bot Interface
-
-Turn your local laptop into a private mobile assistant accessible from your phone anywhere:
-
-```powershell
-# Option A: One-click launcher
-.\run_bot.bat
-
-# Option B: Direct Python
-python telegram_bot.py
-```
-
-*(See **[`Telegram.md`](Telegram.md)** for initial `@BotFather` token setup and user ID whitelisting).*
-
-### 7. Running Benchmarks & Tests
+### 6. Running Benchmarks & Tests
 
 ```powershell
 # Run the head-to-head benchmark against Naive RAG (Lewis et al.)
@@ -477,8 +458,6 @@ All settings can be customized via `.env` or system environment variables withou
 | `INCLUDE_SUMMARIES` | `true` | Include hierarchical cluster summaries in prompt context |
 | `COLLAPSED_TOKEN_BUDGET` | `350` | Maximum token ceiling for packed retrieval prompt |
 | `LLM_TEMPERATURE` | `0.2` | Generation randomness parameter |
-| `TELEGRAM_BOT_TOKEN` | `""` | Telegram Bot API token from `@BotFather` |
-| `TELEGRAM_ALLOWED_USERS` | `""` | Comma-separated list of authorized numeric Telegram User IDs |
 
 ---
 

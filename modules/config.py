@@ -66,23 +66,12 @@ class RetrievalConfig:
 
 
 @dataclass
-class TelegramConfig:
-    token: str = field(default_factory=lambda: os.getenv("TELEGRAM_BOT_TOKEN", ""))
-    allowed_user_ids: List[int] = field(default_factory=lambda: [
-        int(uid.strip()) for uid in os.getenv("TELEGRAM_ALLOWED_USERS", "").split(",") if uid.strip().isdigit()
-    ])
-    auto_cluster_on_upload: bool = field(default_factory=lambda: os.getenv("TELEGRAM_AUTO_CLUSTER", "false").lower() in ("true", "1", "yes"))
-    max_message_length: int = field(default_factory=lambda: int(os.getenv("TELEGRAM_MAX_MSG_LEN", "4000")))
-
-
-@dataclass
 class AppConfig:
     ollama: OllamaConfig = field(default_factory=OllamaConfig)
     chroma: ChromaConfig = field(default_factory=ChromaConfig)
     chunking: ChunkingConfig = field(default_factory=ChunkingConfig)
     clustering: ClusteringConfig = field(default_factory=ClusteringConfig)
     retrieval: RetrievalConfig = field(default_factory=RetrievalConfig)
-    telegram: TelegramConfig = field(default_factory=TelegramConfig)
     log_level: str = field(default_factory=lambda: os.getenv("LOG_LEVEL", "INFO"))
 
 

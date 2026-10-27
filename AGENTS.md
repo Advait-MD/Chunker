@@ -6,7 +6,6 @@ Flat Python research repository for a hierarchical-clustering RAG pipeline ("APE
 
 - **`main.py`** — Backend & pipeline coordinator. Coordinates the modular pipeline via `HierarchicalClusterSummarizer` for document ingestion, hierarchical clustering, and conversation memory clustering (`cluster_conversations()`).
 - **`app.py`** — Modern AI Chat Web UI application (FastAPI + HTML5/CSS3). Features sidebar chat history, "+ New Chat", session persistence, document source filters, episodic memory persistence, on-demand conversation clustering, and interactive evidence drawers (`http://localhost:7860`).
-- **`telegram_bot.py`** — Telegram Bot mobile interface server. Provides remote conversational RAG, live source filtering, mobile PDF document upload/ingestion, and cluster inspection via phone (`python telegram_bot.py` or `run_bot.bat`).
 - **`face.py`** — Terminal/CLI frontend. Imports backend components. Connects to local ChromaDB and native Ollama. Run interactively (`python face.py`) or `--query "..."` / `--batch file.txt`. Retrieves both ground-truth PDF evidence and episodic conversation memories.
 - **`inspector.py`** — Environment smoke-test checking local ChromaDB and native Ollama connectivity.
 - **`modules/`** — Dedicated package directory for core pipeline components:
@@ -24,7 +23,7 @@ Flat Python research repository for a hierarchical-clustering RAG pipeline ("APE
 
 ## Running (100% Local / Zero Docker)
 
-> See **[`run.md`](run.md)** for the complete guide to all ingestion, querying, ablation, and testing commands.
+> See **[`README.md`](README.md)** for the complete guide to all ingestion, querying, ablation, and testing commands.
 
 ```powershell
 # 1. Start Ollama locally (if not already running from Windows Start Menu)
