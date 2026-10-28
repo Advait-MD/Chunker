@@ -17,7 +17,18 @@ Flat Python research repository for a hierarchical-clustering RAG pipeline ("APE
   - **`modules/retrieval.py`** — Hybrid retrieval (`BM25Scorer`), Reciprocal Rank Fusion (`reciprocal_rank_fusion`), composite reranking (`rerank_hybrid_candidates`), and chunk deduplication (`deduplicate_retrieved_chunks`).
   - **`modules/config.py`** — Centralized typed dataclass configuration with environment variable overrides.
   - **`modules/logger.py`** — Standardized timestamped logging infrastructure.
-- **`eval/`** — Rigorous evaluation harness with LLM-as-a-judge (`judge.py`), golden dataset (`dataset/gold.jsonl`), automated metrics (`metrics.py`), and test runners.
+- **`eval/`** — Comprehensive academic evaluation suite:
+  - **`eval/metrics.py`** — Formal metrics (Token F1, ROUGE-L, BLEU-4, 95% bootstrap CIs via $1,000\times$ resampling, paired Student's $t$-test & Wilcoxon signed-rank tests, RAGAS claim faithfulness).
+  - **`eval/run_ablation_matrix.py`** — Programmatic 7-row architectural ablation matrix runner generating Markdown and camera-ready LaTeX tables.
+  - **`eval/run_multi_model_benchmark.py`** — Cross-model scaling evaluator (Google Gemma 3 vs. Meta Llama 3.2).
+  - **`eval/systems_profiling.py`** — Systems, theoretical forward FLOPs ($2 \times N_{\text{params}} \times T_{\text{total}}$), and inference dollar cost profiler.
+  - **`eval/THEORETICAL_PROOFS.md`** — Mathematical proofs for Theorem 1 (Hallucination Suppression), Theorem 2 (BIC Consistency), and Theorem 3 (Bounded Regret of Collapsed Tree RRF).
+  - **`eval/judge.py`** & **`eval/harness.py`** — LLM-as-a-judge harness and response cache.
+  - **`eval/dataset/gold.jsonl`** — Standardized evaluation dataset with verified ground truth citations.
+- **`paper/`** — Camera-ready academic conference manuscript package targeting ACL / EMNLP / ICLR / NeurIPS / MLSys:
+  - **`paper/main.tex`** — Complete two-column LaTeX paper with TikZ vector architecture diagrams, theoretical proofs, and empirical tables.
+  - **`paper/references.bib`** — Comprehensive BibTeX bibliography.
+  - **`paper/README.md`** — Compilation instructions for `pdflatex`, `latexmk`, and Overleaf.
 - **`naive rag/`** — Strict reproduction baseline of Lewis et al. (2020) DPR + FAISS IndexFlatIP for head-to-head benchmarking.
 - **`raptor/`** — RAPTOR (Sarthi et al., ICLR 2024) tree clustering reference implementation for comparative analysis.
 

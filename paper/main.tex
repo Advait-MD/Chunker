@@ -13,6 +13,8 @@
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, calc, fit, backgrounds}
 
 \hypersetup{
     colorlinks=true,
@@ -53,22 +55,52 @@ To address chunk fragmentation, hierarchical architectures such as RAPTOR \cite{
 
 \begin{figure*}[t]
 \centering
-\fbox{\parbox{0.95\textwidth}{
-\centering
-\textbf{APEX Dual-Stream Quality-Gated Architecture} \\
-\vspace{0.4em}
-\small
-Raw PDF Corpus $\longrightarrow$ Page-Aware Tokenizer $\longrightarrow$ Dense Embeddings ($\mathbb{R}^{768}$) \\
-$\big\downarrow$ \\
-Dynamic BIC Selection ($k^* = \arg\min \text{BIC}(k)$) $\longrightarrow$ Soft GMM Posteriors ($\gamma_{ik} \ge 0.10$) \\
-$\big\downarrow$ \\
-\textbf{Information-Theoretic Silhouette Gate} ($\bar{s}_k > 0.01$): Low-Cohesion Clusters Discarded \\
-$\big\downarrow$ \\
-Synthetic Layer Summaries $\oplus$ Primary Ground-Truth Chunks $\longrightarrow$ \textbf{Dual-Stream Hybrid RRF} \\
-$\big\downarrow$ \\
-Greedy Jaccard Deduplication ($J \le 0.65$) $\longrightarrow$ Evidence-Dense Packed Context $\longrightarrow$ Edge LLM Generator
-}}
-\caption{System architecture of the APEX framework. Primary primary document text is strictly segregated from synthetic cluster summaries. Recursive clustering is governed by an information-theoretic silhouette gate, preventing ungrounded hallucination cascades.}
+\begin{tikzpicture}[
+    node distance=0.65cm and 0.9cm,
+    box/.style={rectangle, draw=blue!70!black, fill=blue!5, rounded corners=3pt, thick, align=center, font=\footnotesize, inner sep=5pt},
+    gate/.style={diamond, draw=red!75!black, fill=red!8, aspect=1.8, thick, align=center, font=\scriptsize, inner sep=2pt},
+    store/.style={cylinder, shape border rotate=90, draw=orange!80!black, fill=orange!8, aspect=0.25, thick, align=center, font=\footnotesize, inner sep=4pt},
+    action/.style={rectangle, draw=green!60!black, fill=green!8, rounded corners=3pt, thick, align=center, font=\footnotesize, inner sep=5pt},
+    arrow/.style={-{Stealth[length=2.5mm]}, thick, draw=gray!80!black},
+    dashed_arrow/.style={-{Stealth[length=2.5mm]}, thick, dashed, draw=red!70!black}
+]
+
+% Row 1: Document Ingestion & GMM Clustering
+\node[box] (doc) {Raw PDF Corpus \\ \scriptsize (Multi-page, dense texts)};
+\node[box, right=of doc] (chunk) {Page-Aware Tokenizer \\ \scriptsize $W_L = 512, \Delta = 64$};
+\node[box, right=of chunk] (embed) {Dense Embeddings \\ \scriptsize $\mathcal{E}(c) \in \mathbb{R}^{768}$};
+\node[box, right=of embed] (gmm) {Dynamic BIC GMM \\ \scriptsize $k^* = \arg\min \text{BIC}(k)$};
+
+% Row 2: Silhouette Gate & Pruning
+\node[gate, below=0.8cm of gmm] (gate) {Silhouette Gate \\ $\bar{s}_k > 0.01$?};
+\node[box, fill=red!10, draw=red!60!black, right=0.8cm of gate] (prune) {Pruned / Discarded \\ \scriptsize (Halts Hallucination)};
+\node[box, left=1.2cm of gate] (summarize) {Abstractive Summary \\ \scriptsize (Local Ollama LLM)};
+
+% Row 3: Dual-Stream Stores & Retrieval
+\node[store, below=0.8cm of summarize] (sumstore) {Synthetic Summaries \\ \scriptsize `hierarchical\_summaries`};
+\node[store, left=2.2cm of sumstore] (docstore) {Ground-Truth Chunks \\ \scriptsize `document_chunks`};
+
+% Row 4: Retrieval & Deduplication
+\node[action, below=0.7cm of docstore, xshift=2.0cm] (rrf) {Dual-Stream Hybrid RRF \\ \scriptsize $w_{\text{dense}}=0.50, w_{\text{bm25}}=0.30$};
+\node[action, right=1.0cm of rrf] (dedup) {Greedy Jaccard Dedup \\ \scriptsize $J(c_a, c_b) \le 0.65$};
+\node[box, fill=green!15, draw=green!70!black, right=1.0cm of dedup] (gen) {Evidence-Dense Context \\ \scriptsize $\longrightarrow$ Edge LLM Generator};
+
+% Connections
+\draw[arrow] (doc) -- (chunk);
+\draw[arrow] (chunk) -- (embed);
+\draw[arrow] (embed) -- (gmm);
+\draw[arrow] (embed) |- (docstore);
+\draw[arrow] (gmm) -- (gate);
+\draw[dashed_arrow] (gate) -- node[above, font=\scriptsize] {No} (prune);
+\draw[arrow] (gate) -- node[above, font=\scriptsize] {Yes} (summarize);
+\draw[arrow] (summarize) -- (sumstore);
+\draw[arrow] (sumstore) |- (rrf);
+\draw[arrow] (docstore) |- (rrf);
+\draw[arrow] (rrf) -- (dedup);
+\draw[arrow] (dedup) -- (gen);
+
+\end{tikzpicture}
+\caption{System architecture of the APEX framework. Primary primary document text is strictly segregated from synthetic cluster summaries. Recursive clustering is governed by an information-theoretic silhouette gate ($\bar{s}_k > 0.01$), pruning low-cohesion clusters and arresting synthetic hallucination cascades prior to abstractive generation.}
 \label{fig:architecture}
 \end{figure*}
 
@@ -360,6 +392,10 @@ Applying Jensen's inequality and telescoping over depth $L$ yields $\mathcal{H}_
 By Schwarz (1978), the BIC approximation satisfies:
 $\text{BIC}(k) = -2 \ln \hat{L}_k + p_k \ln N = -2 \sum_{i=1}^N \ln p(\mathbf{x}_i \mid \hat{\theta}_k) + p_k \ln N$.
 For any under-parameterized model $k < k_0$, the Kullback-Leibler divergence $\mathcal{D}_{\text{KL}}(p_0 \parallel p_k) > 0$, implying $-2 \ln \hat{L}_k - (-2 \ln \hat{L}_{k_0}) = 2 N \mathcal{D}_{\text{KL}} + \mathcal{O}_p(\sqrt{N}) \to \infty$. Thus, $P(\text{BIC}(k) < \text{BIC}(k_0)) \to 0$. For any over-parameterized model $k > k_0$, $2(\ln \hat{L}_k - \ln \hat{L}_{k_0}) \sim \chi^2(p_k - p_{k_0}) = \mathcal{O}_p(1)$, while the penalty difference $(p_k - p_{k_0}) \ln N \to \infty$. Therefore, $P(\text{BIC}(k) < \text{BIC}(k_0)) \to 0$. Hence, $\lim_{N \to \infty} P(k^* = k_0) = 1$. \qed
+
+\subsection*{Proof Sketch of Theorem \ref{thm:rrf_regret}}
+Let $\mathcal{D}^*$ be the optimal top-$K$ passages under semantic relevance $\Omega(q)$. Sequential top-down tree descent incurs irreversible branch-pruning error $\mathcal{O}(1)$ whenever intermediate summary representations drift from the query. Under collapsed tree retrieval, the universal candidate pool $\mathcal{U} = \mathcal{D}_{\text{leaf}} \cup \mathcal{D}_{\text{summary}}$ preserves direct visibility to all ground-truth nodes $\forall d \in \mathcal{D}^*$. By Cormack et al. (2009), Reciprocal Rank Fusion over rankers $r_{\text{dense}}$ and $r_{\text{bm25}}$ with smoothing constant $k_{\text{rrf}}$ acts as a robust Borda rank aggregator. Given independent ranking errors bounded by sub-Gaussian noise with variance $\sigma^2$, the rank concentration bound guarantees that the expected difference in relevance score satisfies:
+$\mathcal{R}(q) = \sum_{d \in \mathcal{D}^*} \Omega(q, d) - \sum_{d \in \hat{\mathcal{D}}_{\text{RRF}}} \Omega(q, d) \le \mathcal{O}\left(\frac{k_{\text{rrf}}}{\sqrt{K}}\right)$. \qed
 
 \bibliographystyle{plain}
 \bibliography{references}

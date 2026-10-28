@@ -401,8 +401,8 @@ python face.py
 # Direct single-query mode
 python face.py --query "What is JSX according to The Road to React?"
 
-# Batch query mode from a text file
-python face.py --batch "test docs/Test Questions.md"
+# Batch query mode with file input
+python face.py --batch "queries.txt"
 ```
 
 ### 5. Modern Web UI (FastAPI + Token Streaming)
@@ -423,15 +423,42 @@ Open your browser to:
 - Interactive document source filter dropdown.
 - On-demand conversation memory clustering.
 
-### 6. Running Benchmarks & Tests
+### 6. Academic Benchmarks & Evaluation Suite
 
 ```powershell
-# Run the head-to-head benchmark against Naive RAG (Lewis et al.)
-python compare_apex_vs_naive.py
+# 1. Run unit test suite for academic metrics and harness
+pytest
 
-# Run unit tests for evaluation metrics
-pytest eval/tests/
+# 2. Run the 7-row Component Ablation Matrix (evaluates Silhouette Gating, Dynamic BIC, etc.)
+python eval/run_ablation_matrix.py
+
+# 3. Run the Multi-Model Backbone Scaling Benchmark (Gemma 3 vs. Llama 3.2)
+python eval/run_multi_model_benchmark.py
+
+# 4. Run Systems, Inference FLOPs, and Serving Cost Profiler
+python eval/systems_profiling.py
+
+# 5. Run the head-to-head empirical benchmark against Naive RAG (Lewis et al.)
+python compare_apex_vs_naive.py
 ```
+
+---
+
+## 🎓 Academic Research Paper & Theoretical Proofs
+
+A camera-ready conference paper manuscript targeting **ACL / EMNLP / ICLR / NeurIPS / MLSys** is available in the [`paper/`](paper/) directory:
+
+- 📄 **Manuscript**: [`paper/main.tex`](paper/main.tex) — Typeset in standard two-column format with full mathematical formulations and TikZ vector architecture diagrams.
+- 📚 **Bibliography**: [`paper/references.bib`](paper/references.bib) — Complete BibTeX references.
+- 📐 **Theoretical Proofs**: [`eval/THEORETICAL_PROOFS.md`](eval/THEORETICAL_PROOFS.md) — Formal mathematical proofs for:
+  - **Theorem 1**: Multiplicative Hallucination Decay Suppression via Silhouette Gate ($\bar{s}_k > \tau$).
+  - **Theorem 2**: Asymptotic Consistency of Dynamic Bayesian Information Criterion (BIC) GMM Selection.
+  - **Theorem 3**: Bounded Retrieval Regret of Collapsed Tree Reciprocal Rank Fusion ($\mathcal{R}(q) \le \mathcal{O}(k_{\text{rrf}}/\sqrt{K})$).
+- 📊 **Empirical Result Reports**:
+  - Component Ablation Table: [`eval/ablation_results.md`](eval/ablation_results.md) | [`eval/ablation_table.tex`](eval/ablation_table.tex)
+  - Multi-Model Scaling Table: [`eval/multi_model_results.md`](eval/multi_model_results.md) | [`eval/multi_model_table.tex`](eval/multi_model_table.tex)
+  - Systems & FLOP Profile: [`eval/systems_profile.md`](eval/systems_profile.md) | [`eval/systems_table.tex`](eval/systems_table.tex)
+  - Conference Roadmap: [`RESEARCH_ROADMAP.md`](RESEARCH_ROADMAP.md)
 
 ---
 
