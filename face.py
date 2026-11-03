@@ -293,7 +293,8 @@ class RAGInterface:
                 # Task B: Hierarchical document summaries
                 fut_summaries = None
                 if self.include_summaries and self.processor.summaries_collection.count() > 0:
-                    sums_where = {"source_file": effective_source} if effective_source else None
+                    # Keep cross-document summaries (source_file='multiple') visible under a source filter
+                    sums_where = {"source_file": {"$in": [effective_source, "multiple"]}} if effective_source else None
                     fut_summaries = executor.submit(
                         self.processor.summaries_collection.query,
                         query_embeddings=[query_emb],
@@ -647,11 +648,29 @@ class RAGInterface:
                 summary_text = (summary_info.get('dense_summary') or summary_info.get('summary', ''))[:150].strip().replace('\n', ' ')
                 prompt_parts.append(f"[Theme]: {summary_text}")
         
-        # Conversational memory (bounded)
-        if context.get('conversation_memories'):
-            for mem in context['conversation_memories'][:2]:
-                clean_mem = mem['text'][:150].strip().replace('\n', ' ')
-                prompt_parts.append(f"[Memory]: {clean_mem}")
+        # Episodic memory is deliberately NOT injected here: recalled turns contain the
+        # system's own past answers, and a small generator copies them over the
+        # document evidence (a wrong answer, once stored, gets repeated forever).
+        # Only the user's earlier questions from this session are kept, so follow-ups
+        # ("what did she give him?") can still be resolved.
+        history_to_use = session_history if session_history is not None else self.conversation_history
+        prior_questions = []
+        for turn in history_to_use or []:
+            if not isinstance(turn, dict):
+                continue
+            if 'question' in turn:
+                q = turn.get('question', '')
+            elif turn.get('role') == 'user':
+                q = turn.get('content', '')
+            else:
+                continue
+            q = (q or '').strip()
+            if q and q != user_query.strip():
+                prior_questions.append(q)
+        if prior_questions:
+            prompt_parts.append("\nEarlier questions in this chat (for resolving references only, not evidence):")
+            for q in prior_questions[-2:]:
+                prompt_parts.append(f"- {q[:150]}")
 
         prompt_parts.append(f"\nQuestion: {user_query}\nAnswer:")
         return "\n".join(prompt_parts)

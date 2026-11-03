@@ -289,13 +289,15 @@ class ChromaStore:
                 embs = result.get('embeddings')
                 
                 for i in range(len(ids)):
+                    # Skip items without a stored embedding rather than padding with a
+                    # fixed-size zero vector that may not match the collection's dimension
+                    if embs is None or len(embs) <= i or embs[i] is None:
+                        logger.warning(f"Skipping item {ids[i]} with no stored embedding")
+                        continue
                     all_ids.append(ids[i])
                     all_documents.append(docs[i] if i < len(docs) else "")
                     all_metadatas.append(metas[i] if i < len(metas) else {})
-                    if embs is not None and len(embs) > i and embs[i] is not None:
-                        all_embeddings.append(embs[i])
-                    else:
-                        all_embeddings.append(np.zeros(768))
+                    all_embeddings.append(embs[i])
                 
                 if len(ids) < batch_size:
                     break
@@ -412,7 +414,8 @@ class ChromaStore:
         ids = []
         
         for i, (cid, doc, meta) in enumerate(zip(result['ids'], result['documents'], result['metadatas'])):
-            if level > 0 and meta.get('level', 0) != level:
+            # Level N clustering consumes summaries produced at level N-1 (mirrors get_items_by_level)
+            if level > 0 and meta.get('level', 0) != level - 1:
                 continue
                 
             emb = result['embeddings'][i] if result.get('embeddings') is not None and len(result['embeddings']) > i else None
