@@ -1,0 +1,120 @@
+{
+  "trace_id": "1a608cf31e234b26",
+  "created_at": "2026-11-12T12:27:57.301251+00:00",
+  "query": "Where are the Grdznth from?\n\nOptions:\n(A) A different \n(B) Florida\n(C) A parallel universe\n(D) Another planet\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 112.84
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 112.89
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19499.16
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 112.79
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1850,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19386.16
+    }
+  },
+  "retrieved_ids": [
+    "d19395c3be40143e:L0:000007",
+    "d19395c3be40143e:L0:000006",
+    "d19395c3be40143e:L0:000008",
+    "d19395c3be40143e:L0:000017",
+    "d19395c3be40143e:L0:000018"
+  ],
+  "filtered_ids": [
+    "d19395c3be40143e:L0:000007",
+    "d19395c3be40143e:L0:000006",
+    "d19395c3be40143e:L0:000008",
+    "d19395c3be40143e:L0:000017",
+    "d19395c3be40143e:L0:000018"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:27:57.357073+00:00",
+      "call_id": "f0f925f301eb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "56362587c88ad725",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 62,
+      "completion_tokens": 0,
+      "latency_ms": 55.46,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "1a608cf31e234b26"
+    },
+    {
+      "ts": "2026-11-12T12:28:16.799229+00:00",
+      "call_id": "9e9ee6901b2a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0c64582096b56e4f",
+      "prompt_tokens": 2367,
+      "completion_tokens": 51,
+      "latency_ms": 19385.24,
+      "server_ms": 19359.77,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "1a608cf31e234b26"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2367,
+    "completion_tokens": 51,
+    "total_ms": 19501.63
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

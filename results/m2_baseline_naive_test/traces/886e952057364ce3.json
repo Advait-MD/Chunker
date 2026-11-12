@@ -1,0 +1,119 @@
+{
+  "trace_id": "886e952057364ce3",
+  "created_at": "2026-11-12T10:53:46.621457+00:00",
+  "query": "How many games does the team play that had the most champion league wins between 1992 and 2013?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 220.28
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 220.34
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 28232.16
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 220.23
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 633,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 28011.68
+    }
+  },
+  "retrieved_ids": [
+    "66f5caec1369ebaf:L0:000078",
+    "cc1bdb3bf430bd0d:L0:000012",
+    "e182527d2b1ecac3:L0:000039",
+    "6683bfc7dec06e2a:L0:000196",
+    "ad11b6e85f908fb3:L0:000023"
+  ],
+  "filtered_ids": [
+    "66f5caec1369ebaf:L0:000078",
+    "cc1bdb3bf430bd0d:L0:000012",
+    "e182527d2b1ecac3:L0:000039",
+    "6683bfc7dec06e2a:L0:000196",
+    "ad11b6e85f908fb3:L0:000023"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T10:53:46.707780+00:00",
+      "call_id": "4cd3daa0ad65",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f583e73264b62cd5",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 25,
+      "completion_tokens": 0,
+      "latency_ms": 85.81,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "886e952057364ce3"
+    },
+    {
+      "ts": "2026-11-12T10:54:14.851187+00:00",
+      "call_id": "03c29f065633",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a67211396d2fb876",
+      "prompt_tokens": 1259,
+      "completion_tokens": 45,
+      "latency_ms": 28009.18,
+      "server_ms": 27977.68,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "886e952057364ce3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1259,
+    "completion_tokens": 45,
+    "total_ms": 28235.16
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

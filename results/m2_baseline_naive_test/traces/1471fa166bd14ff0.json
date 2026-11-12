@@ -1,0 +1,120 @@
+{
+  "trace_id": "1471fa166bd14ff0",
+  "created_at": "2026-11-12T13:52:12.206665+00:00",
+  "query": "Where was the singer born who performs Pon de Replay and was born Robyn Fenty?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 139.81
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 139.88
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15414.69
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 139.76
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 695,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15274.68
+    }
+  },
+  "retrieved_ids": [
+    "cc2399aca11eb631:L0:000097",
+    "ba3cd068cf9ac2e4:L0:000083",
+    "b120b09075017d08:L0:000177",
+    "cb96563b0747a6ba:L0:000059",
+    "ba3cd068cf9ac2e4:L0:000180"
+  ],
+  "filtered_ids": [
+    "cc2399aca11eb631:L0:000097",
+    "ba3cd068cf9ac2e4:L0:000083",
+    "b120b09075017d08:L0:000177",
+    "cb96563b0747a6ba:L0:000059",
+    "ba3cd068cf9ac2e4:L0:000180"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:52:12.271400+00:00",
+      "call_id": "b83ca9c55761",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d4e0496a0374f8d5",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 24,
+      "completion_tokens": 0,
+      "latency_ms": 64.32,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "1471fa166bd14ff0"
+    },
+    {
+      "ts": "2026-11-12T13:52:27.620813+00:00",
+      "call_id": "2c2fdfd557cd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9b73419036cd3957",
+      "prompt_tokens": 1348,
+      "completion_tokens": 76,
+      "latency_ms": 15273.64,
+      "server_ms": 15255.91,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "1471fa166bd14ff0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1348,
+    "completion_tokens": 76,
+    "total_ms": 15416.25
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "trace_id": "8667d954013340a7",
+  "created_at": "2026-11-12T12:55:04.341546+00:00",
+  "query": "The public believes the person most responsible for the scandal is\n\nOptions:\n(A) Clinton\n(B) Hillary\n(C) Monica\n(D) The media\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 80.56
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 80.59
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23837.26
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 80.52
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1784,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23756.58
+    }
+  },
+  "retrieved_ids": [
+    "8ae96e39396635aa:L0:000005",
+    "8ae96e39396635aa:L0:000008",
+    "8ae96e39396635aa:L0:000007",
+    "8ae96e39396635aa:L0:000000",
+    "8ae96e39396635aa:L0:000009"
+  ],
+  "filtered_ids": [
+    "8ae96e39396635aa:L0:000005",
+    "8ae96e39396635aa:L0:000008",
+    "8ae96e39396635aa:L0:000007",
+    "8ae96e39396635aa:L0:000000",
+    "8ae96e39396635aa:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:55:04.388615+00:00",
+      "call_id": "cd739398ba1e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4d39e0c77e159ceb",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 60,
+      "completion_tokens": 0,
+      "latency_ms": 46.58,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "8667d954013340a7"
+    },
+    {
+      "ts": "2026-11-12T12:55:28.177991+00:00",
+      "call_id": "91a5ff7d2545",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d9adf7387bfbd621",
+      "prompt_tokens": 2501,
+      "completion_tokens": 85,
+      "latency_ms": 23755.71,
+      "server_ms": 23732.76,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "8667d954013340a7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2501,
+    "completion_tokens": 85,
+    "total_ms": 23839.82
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        3
+      ],
+      "uncited_sentences": [
+        "(C) Monica Lewinsky, for example, has fantastically low approval ratings, much lower than Clinton's.",
+        "One poll I saw pegged her favorability rating at 5 percent (even Newt Gingrich manages at least 25 percent)."
+      ]
+    }
+  }
+}

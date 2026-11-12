@@ -1,0 +1,119 @@
+{
+  "trace_id": "895a672e9063444e",
+  "created_at": "2026-11-12T14:17:36.383570+00:00",
+  "query": "Which film has the director died later, The Big Cube or Rangila Ratan?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 141.82
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 141.87
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 17358.95
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 141.75
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1045,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17216.52
+    }
+  },
+  "retrieved_ids": [
+    "99628090500247e3:L0:000128",
+    "99628090500247e3:L0:000087",
+    "6af2db6cb86d77e2:L0:000137",
+    "4a757779abfb4ba1:L0:000176",
+    "abe982d210232c3f:L0:000125"
+  ],
+  "filtered_ids": [
+    "99628090500247e3:L0:000128",
+    "99628090500247e3:L0:000087",
+    "6af2db6cb86d77e2:L0:000137",
+    "4a757779abfb4ba1:L0:000176",
+    "abe982d210232c3f:L0:000125"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:17:36.452070+00:00",
+      "call_id": "32bd8ad6e6e4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "70725156ed099630",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 23,
+      "completion_tokens": 0,
+      "latency_ms": 68.16,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "895a672e9063444e"
+    },
+    {
+      "ts": "2026-11-12T14:17:53.741250+00:00",
+      "call_id": "df0b8326824c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a806b36dd98c4ee7",
+      "prompt_tokens": 1786,
+      "completion_tokens": 69,
+      "latency_ms": 17215.45,
+      "server_ms": 17191.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "895a672e9063444e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1786,
+    "completion_tokens": 69,
+    "total_ms": 17361.09
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Neither 'The Big Cube' nor 'Rangila Ratan' are mentioned in the provided passages, so there is insufficient evidence to determine which film's director died later."
+      ]
+    }
+  }
+}

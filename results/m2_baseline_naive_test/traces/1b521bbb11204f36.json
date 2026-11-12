@@ -1,0 +1,120 @@
+{
+  "trace_id": "1b521bbb11204f36",
+  "created_at": "2026-11-12T13:48:15.433920+00:00",
+  "query": "The song \"Chim Chim Cher-ee\" can be heard  in the \"Mary Poppins\" scene of a Disney ride that debuted in what year?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 150.15
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 150.2
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16826.7
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 150.1
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 677,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16676.38
+    }
+  },
+  "retrieved_ids": [
+    "cb96563b0747a6ba:L0:000166",
+    "ec3410ef955c5c93:L0:000125",
+    "634431bb1e27714f:L0:000097",
+    "cc2399aca11eb631:L0:000150",
+    "634431bb1e27714f:L0:000047"
+  ],
+  "filtered_ids": [
+    "cb96563b0747a6ba:L0:000166",
+    "ec3410ef955c5c93:L0:000125",
+    "634431bb1e27714f:L0:000097",
+    "cc2399aca11eb631:L0:000150",
+    "634431bb1e27714f:L0:000047"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:48:15.498056+00:00",
+      "call_id": "1a824b3d72cf",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bac182b3985f92c9",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 38,
+      "completion_tokens": 0,
+      "latency_ms": 63.62,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "1b521bbb11204f36"
+    },
+    {
+      "ts": "2026-11-12T13:48:32.259801+00:00",
+      "call_id": "853a999fde5e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "977beeac7bd5704b",
+      "prompt_tokens": 1311,
+      "completion_tokens": 93,
+      "latency_ms": 16675.44,
+      "server_ms": 16618.42,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "1b521bbb11204f36"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1311,
+    "completion_tokens": 93,
+    "total_ms": 16827.78
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

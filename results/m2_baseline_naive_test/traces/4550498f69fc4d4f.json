@@ -1,0 +1,124 @@
+{
+  "trace_id": "4550498f69fc4d4f",
+  "created_at": "2026-11-12T12:11:02.118315+00:00",
+  "query": "Which planets have living populations on them from descriptions in the story?\n\nOptions:\n(A) Mars, Venus, Earth\n(B) Mars, Earth\n(C) Mars, Venus\n(D) Earth, Kal-Jmar, Venus\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 147.5
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 147.56
+    },
+    {
+      "state": "DONE",
+      "t_ms": 26511.13
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 147.43
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1926,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 26362.5
+    }
+  },
+  "retrieved_ids": [
+    "041c7ab2b3369dd4:L0:000014",
+    "041c7ab2b3369dd4:L0:000006",
+    "041c7ab2b3369dd4:L0:000008",
+    "041c7ab2b3369dd4:L0:000007",
+    "041c7ab2b3369dd4:L0:000000"
+  ],
+  "filtered_ids": [
+    "041c7ab2b3369dd4:L0:000014",
+    "041c7ab2b3369dd4:L0:000006",
+    "041c7ab2b3369dd4:L0:000008",
+    "041c7ab2b3369dd4:L0:000007",
+    "041c7ab2b3369dd4:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:11:02.199039+00:00",
+      "call_id": "b94671951aab",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6684499bb5808a05",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 77,
+      "completion_tokens": 0,
+      "latency_ms": 80.01,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "4550498f69fc4d4f"
+    },
+    {
+      "ts": "2026-11-12T12:11:28.627634+00:00",
+      "call_id": "26c6b408db4a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7de96cb2810d6fff",
+      "prompt_tokens": 2550,
+      "completion_tokens": 82,
+      "latency_ms": 26361.41,
+      "server_ms": 26334.74,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "4550498f69fc4d4f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2550,
+    "completion_tokens": 82,
+    "total_ms": 26513.43
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, the correct option is (A) Mars, Venus, Earth."
+      ]
+    }
+  }
+}

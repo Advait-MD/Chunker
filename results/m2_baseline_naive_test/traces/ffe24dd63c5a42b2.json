@@ -1,0 +1,119 @@
+{
+  "trace_id": "ffe24dd63c5a42b2",
+  "created_at": "2026-11-12T11:17:13.349318+00:00",
+  "query": "What is the capital of the county that shares a border with the county that contains the birthplace of Erik Jensen?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 145.09
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 145.15
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10274.26
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 145.03
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 511,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10129.05
+    }
+  },
+  "retrieved_ids": [
+    "ce57fdde2baaba9c:L0:000177",
+    "dbcbda865eee9c7b:L0:000027",
+    "cc1bdb3bf430bd0d:L0:000161",
+    "178c7e3e6ef6ae87:L0:000154",
+    "f109b032e24ab27a:L0:000159"
+  ],
+  "filtered_ids": [
+    "ce57fdde2baaba9c:L0:000177",
+    "dbcbda865eee9c7b:L0:000027",
+    "cc1bdb3bf430bd0d:L0:000161",
+    "178c7e3e6ef6ae87:L0:000154",
+    "f109b032e24ab27a:L0:000159"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:17:13.414128+00:00",
+      "call_id": "112e4f565635",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fd99f85d7cad12dc",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 28,
+      "completion_tokens": 0,
+      "latency_ms": 64.1,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "ffe24dd63c5a42b2"
+    },
+    {
+      "ts": "2026-11-12T11:17:23.622690+00:00",
+      "call_id": "1cc64a66e746",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "cf143d2bcc6b6909",
+      "prompt_tokens": 1143,
+      "completion_tokens": 43,
+      "latency_ms": 10128.1,
+      "server_ms": 10107.95,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ffe24dd63c5a42b2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1143,
+    "completion_tokens": 43,
+    "total_ms": 10277.29
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

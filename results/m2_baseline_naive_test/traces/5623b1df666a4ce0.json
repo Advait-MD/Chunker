@@ -1,0 +1,125 @@
+{
+  "trace_id": "5623b1df666a4ce0",
+  "created_at": "2026-11-12T13:04:06.960820+00:00",
+  "query": "What did Nichols reminisce about?\n\nOptions:\n(A) Being with his family\n(B) Playing baseball\n(C) Breathing fresh air on earth\n(D) Shooting the monster with a sun blaster\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 147.35
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 147.4
+    },
+    {
+      "state": "DONE",
+      "t_ms": 26944.95
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 147.29
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1834,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 26797.42
+    }
+  },
+  "retrieved_ids": [
+    "cdac54a394a2e3f9:L0:000009",
+    "cdac54a394a2e3f9:L0:000010",
+    "cdac54a394a2e3f9:L0:000002",
+    "cdac54a394a2e3f9:L0:000015",
+    "cdac54a394a2e3f9:L0:000016"
+  ],
+  "filtered_ids": [
+    "cdac54a394a2e3f9:L0:000009",
+    "cdac54a394a2e3f9:L0:000010",
+    "cdac54a394a2e3f9:L0:000002",
+    "cdac54a394a2e3f9:L0:000015",
+    "cdac54a394a2e3f9:L0:000016"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:04:07.041895+00:00",
+      "call_id": "311d81c285fe",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "afa83acd35c0e1f6",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 72,
+      "completion_tokens": 0,
+      "latency_ms": 80.59,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "5623b1df666a4ce0"
+    },
+    {
+      "ts": "2026-11-12T13:04:33.901131+00:00",
+      "call_id": "7d728a119545",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "97b3a777b60e2daf",
+      "prompt_tokens": 2387,
+      "completion_tokens": 102,
+      "latency_ms": 26792.54,
+      "server_ms": 26768.89,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "5623b1df666a4ce0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2387,
+    "completion_tokens": 102,
+    "total_ms": 26946.24
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "Nichols reminisced about breathing fresh air on Earth, feeling like a kid again on a Spring day with a ball and a glove under his arm, with the sun beating down on him, swinging a bat and whistling.",
+        "You felt good.",
+        "You were young.",
+        "Young!",
+        "I feel like that now."
+      ]
+    }
+  }
+}

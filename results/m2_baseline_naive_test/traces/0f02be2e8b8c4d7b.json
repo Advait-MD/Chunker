@@ -1,0 +1,119 @@
+{
+  "trace_id": "0f02be2e8b8c4d7b",
+  "created_at": "2026-11-12T14:08:41.803874+00:00",
+  "query": "Who is Sultan Hatun's mother-in-law?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 143.69
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 143.74
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 9235.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 143.65
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 281,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9092.13
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000073",
+    "b04ce6dd2d95fb80:L0:000190",
+    "c73b757f0eb66f37:L0:000047",
+    "c73b757f0eb66f37:L0:000136",
+    "b04ce6dd2d95fb80:L0:000078"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000073",
+    "b04ce6dd2d95fb80:L0:000190",
+    "c73b757f0eb66f37:L0:000047",
+    "c73b757f0eb66f37:L0:000136",
+    "b04ce6dd2d95fb80:L0:000078"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:08:41.875558+00:00",
+      "call_id": "9714982c6a27",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "73411e14cd0b0ee3",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 19,
+      "completion_tokens": 0,
+      "latency_ms": 71.38,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "0f02be2e8b8c4d7b"
+    },
+    {
+      "ts": "2026-11-12T14:08:51.039058+00:00",
+      "call_id": "3f810c949e3c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "df8eb2a42103d6b4",
+      "prompt_tokens": 879,
+      "completion_tokens": 39,
+      "latency_ms": 9091.1,
+      "server_ms": 9071.57,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0f02be2e8b8c4d7b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 879,
+    "completion_tokens": 39,
+    "total_ms": 9237.54
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

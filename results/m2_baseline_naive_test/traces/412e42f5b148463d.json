@@ -1,0 +1,123 @@
+{
+  "trace_id": "412e42f5b148463d",
+  "created_at": "2026-11-12T13:50:21.731617+00:00",
+  "query": "Which is farther north, Wynantskill, New York or Hannaford Brothers Company?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 141.82
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 141.93
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14024.78
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 141.76
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 452,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13882.71
+    }
+  },
+  "retrieved_ids": [
+    "cc2399aca11eb631:L0:000099",
+    "ba3cd068cf9ac2e4:L0:000144",
+    "90976421f3f2bea2:L0:000104",
+    "5d0f6cf59ee42566:L0:000112",
+    "81fc433d55d23b4c:L0:000025"
+  ],
+  "filtered_ids": [
+    "cc2399aca11eb631:L0:000099",
+    "ba3cd068cf9ac2e4:L0:000144",
+    "90976421f3f2bea2:L0:000104",
+    "5d0f6cf59ee42566:L0:000112",
+    "81fc433d55d23b4c:L0:000025"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:50:21.789374+00:00",
+      "call_id": "9e1476cab86b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bca40ad3a9435ad7",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 24,
+      "completion_tokens": 0,
+      "latency_ms": 57.16,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "412e42f5b148463d"
+    },
+    {
+      "ts": "2026-11-12T13:50:35.755640+00:00",
+      "call_id": "1c259cb8737e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bbc91f2ae3f522f5",
+      "prompt_tokens": 1069,
+      "completion_tokens": 98,
+      "latency_ms": 13881.73,
+      "server_ms": 13858.56,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "412e42f5b148463d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1069,
+    "completion_tokens": 98,
+    "total_ms": 14025.84
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        1,
+        2,
+        3,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

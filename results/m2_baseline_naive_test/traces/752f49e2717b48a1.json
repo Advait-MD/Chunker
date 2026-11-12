@@ -1,0 +1,121 @@
+{
+  "trace_id": "752f49e2717b48a1",
+  "created_at": "2026-11-12T13:40:05.793739+00:00",
+  "query": "Professor A. Selvanathan is a professor at a university that is public or private ?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 140.36
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 140.41
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11729.21
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 140.31
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 786,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11588.69
+    }
+  },
+  "retrieved_ids": [
+    "cc2399aca11eb631:L0:000012",
+    "8e50522b7cb636d8:L0:000187",
+    "634431bb1e27714f:L0:000034",
+    "90976421f3f2bea2:L0:000041",
+    "b120b09075017d08:L0:000055"
+  ],
+  "filtered_ids": [
+    "cc2399aca11eb631:L0:000012",
+    "8e50522b7cb636d8:L0:000187",
+    "634431bb1e27714f:L0:000034",
+    "90976421f3f2bea2:L0:000041",
+    "b120b09075017d08:L0:000055"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:40:05.857767+00:00",
+      "call_id": "53feda53599e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "faa82f4120b5d58d",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 25,
+      "completion_tokens": 0,
+      "latency_ms": 62.65,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "752f49e2717b48a1"
+    },
+    {
+      "ts": "2026-11-12T13:40:17.522363+00:00",
+      "call_id": "edc4c63832f9",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "849dae708874e3a9",
+      "prompt_tokens": 1443,
+      "completion_tokens": 56,
+      "latency_ms": 11587.75,
+      "server_ms": 11567.87,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "752f49e2717b48a1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1443,
+    "completion_tokens": 56,
+    "total_ms": 11730.39
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Professor A."
+      ]
+    }
+  }
+}

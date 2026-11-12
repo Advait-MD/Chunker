@@ -1,0 +1,119 @@
+{
+  "trace_id": "ced262be48d84b49",
+  "created_at": "2026-11-12T11:20:56.457298+00:00",
+  "query": "Who is the spouse of the author of Queen of the Elephants?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 144.65
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 144.72
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 8469.0
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 144.6
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 303,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8323.4
+    }
+  },
+  "retrieved_ids": [
+    "f3503d3d186f0f90:L0:000141",
+    "f3503d3d186f0f90:L0:000130",
+    "cc1bdb3bf430bd0d:L0:000181",
+    "66f5caec1369ebaf:L0:000008",
+    "e182527d2b1ecac3:L0:000062"
+  ],
+  "filtered_ids": [
+    "f3503d3d186f0f90:L0:000141",
+    "f3503d3d186f0f90:L0:000130",
+    "cc1bdb3bf430bd0d:L0:000181",
+    "66f5caec1369ebaf:L0:000008",
+    "e182527d2b1ecac3:L0:000062"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:20:56.522746+00:00",
+      "call_id": "70054baaac46",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8918c53709167d08",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 19,
+      "completion_tokens": 0,
+      "latency_ms": 64.86,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "ced262be48d84b49"
+    },
+    {
+      "ts": "2026-11-12T11:21:04.923875+00:00",
+      "call_id": "2026d520d331",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "fe110e6b651fd4b3",
+      "prompt_tokens": 900,
+      "completion_tokens": 45,
+      "latency_ms": 8321.62,
+      "server_ms": 8302.09,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ced262be48d84b49"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 900,
+    "completion_tokens": 45,
+    "total_ms": 8470.98
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

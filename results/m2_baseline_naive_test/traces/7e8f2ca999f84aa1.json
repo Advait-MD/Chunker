@@ -1,0 +1,119 @@
+{
+  "trace_id": "7e8f2ca999f84aa1",
+  "created_at": "2026-11-12T14:13:06.116098+00:00",
+  "query": "Where was the director of film Mark (Film) born?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 129.14
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 129.19
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10081.72
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 129.09
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 548,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9952.45
+    }
+  },
+  "retrieved_ids": [
+    "317e12ccd417c0d7:L0:000138",
+    "b04ce6dd2d95fb80:L0:000013",
+    "317e12ccd417c0d7:L0:000034",
+    "abe982d210232c3f:L0:000185",
+    "b04ce6dd2d95fb80:L0:000152"
+  ],
+  "filtered_ids": [
+    "317e12ccd417c0d7:L0:000138",
+    "b04ce6dd2d95fb80:L0:000013",
+    "317e12ccd417c0d7:L0:000034",
+    "abe982d210232c3f:L0:000185",
+    "b04ce6dd2d95fb80:L0:000152"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:13:06.173906+00:00",
+      "call_id": "91f3e0743e20",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "eac7f6d379da7a95",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 18,
+      "completion_tokens": 0,
+      "latency_ms": 56.84,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "7e8f2ca999f84aa1"
+    },
+    {
+      "ts": "2026-11-12T14:13:16.196776+00:00",
+      "call_id": "48666a7560db",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d5fe054faf9b69f0",
+      "prompt_tokens": 1206,
+      "completion_tokens": 45,
+      "latency_ms": 9951.26,
+      "server_ms": 9926.84,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "7e8f2ca999f84aa1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1206,
+    "completion_tokens": 45,
+    "total_ms": 10082.92
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

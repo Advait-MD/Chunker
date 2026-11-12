@@ -1,0 +1,119 @@
+{
+  "trace_id": "3d44d2ccfbf64e26",
+  "created_at": "2026-11-12T13:53:25.576318+00:00",
+  "query": "What county is Ron Teachworth from?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 133.84
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 133.91
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11109.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 133.78
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 811,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10975.47
+    }
+  },
+  "retrieved_ids": [
+    "cb96563b0747a6ba:L0:000120",
+    "90976421f3f2bea2:L0:000077",
+    "8e50522b7cb636d8:L0:000031",
+    "81fc433d55d23b4c:L0:000117",
+    "838c0e0106e6f015:L0:000033"
+  ],
+  "filtered_ids": [
+    "cb96563b0747a6ba:L0:000120",
+    "90976421f3f2bea2:L0:000077",
+    "8e50522b7cb636d8:L0:000031",
+    "81fc433d55d23b4c:L0:000117",
+    "838c0e0106e6f015:L0:000033"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:53:25.633114+00:00",
+      "call_id": "00268c1eed95",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "26ed153778c44da8",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 14,
+      "completion_tokens": 0,
+      "latency_ms": 56.2,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "3d44d2ccfbf64e26"
+    },
+    {
+      "ts": "2026-11-12T13:53:36.685108+00:00",
+      "call_id": "5577ada64b93",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d70e9eebe095385e",
+      "prompt_tokens": 1411,
+      "completion_tokens": 45,
+      "latency_ms": 10974.47,
+      "server_ms": 10914.72,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "3d44d2ccfbf64e26"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1411,
+    "completion_tokens": 45,
+    "total_ms": 11111.03
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

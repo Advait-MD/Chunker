@@ -1,0 +1,119 @@
+{
+  "trace_id": "ed1d1f901dcc4296",
+  "created_at": "2026-11-12T13:43:36.805623+00:00",
+  "query": "What is the global rank by population of the city that Daewoong Pharmaceutical Co., Ltd is based in?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 168.91
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 168.98
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10227.44
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 168.86
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 424,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10058.38
+    }
+  },
+  "retrieved_ids": [
+    "bc1dba3471045f02:L0:000184",
+    "90976421f3f2bea2:L0:000153",
+    "cb96563b0747a6ba:L0:000183",
+    "634431bb1e27714f:L0:000107",
+    "838c0e0106e6f015:L0:000079"
+  ],
+  "filtered_ids": [
+    "bc1dba3471045f02:L0:000184",
+    "90976421f3f2bea2:L0:000153",
+    "cb96563b0747a6ba:L0:000183",
+    "634431bb1e27714f:L0:000107",
+    "838c0e0106e6f015:L0:000079"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:43:36.879510+00:00",
+      "call_id": "92baed123ce2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4e742605dac403cb",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 30,
+      "completion_tokens": 0,
+      "latency_ms": 73.16,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "ed1d1f901dcc4296"
+    },
+    {
+      "ts": "2026-11-12T13:43:47.032029+00:00",
+      "call_id": "545ea7fe0d32",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7ab84ec6b7eb5bac",
+      "prompt_tokens": 1054,
+      "completion_tokens": 45,
+      "latency_ms": 10057.39,
+      "server_ms": 10032.63,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ed1d1f901dcc4296"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1054,
+    "completion_tokens": 45,
+    "total_ms": 10228.92
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

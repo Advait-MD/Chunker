@@ -1,0 +1,119 @@
+{
+  "trace_id": "c493b6c323ff4ac9",
+  "created_at": "2026-11-12T13:33:57.834832+00:00",
+  "query": "Carrie Coon plays Margo Dunne in a 2014 film set in what state?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 137.44
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 137.5
+    },
+    {
+      "state": "DONE",
+      "t_ms": 8621.92
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 137.38
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 566,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8484.32
+    }
+  },
+  "retrieved_ids": [
+    "bc1dba3471045f02:L0:000161",
+    "5d0f6cf59ee42566:L0:000089",
+    "81fc433d55d23b4c:L0:000050",
+    "838c0e0106e6f015:L0:000100",
+    "ba3cd068cf9ac2e4:L0:000039"
+  ],
+  "filtered_ids": [
+    "bc1dba3471045f02:L0:000161",
+    "5d0f6cf59ee42566:L0:000089",
+    "81fc433d55d23b4c:L0:000050",
+    "838c0e0106e6f015:L0:000100",
+    "ba3cd068cf9ac2e4:L0:000039"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:33:57.896127+00:00",
+      "call_id": "44d2aa612615",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f2de60d7723d4a91",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 22,
+      "completion_tokens": 0,
+      "latency_ms": 60.87,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "c493b6c323ff4ac9"
+    },
+    {
+      "ts": "2026-11-12T13:34:06.456051+00:00",
+      "call_id": "de64b7d89edd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d5eb443cb54a389e",
+      "prompt_tokens": 1169,
+      "completion_tokens": 39,
+      "latency_ms": 8483.34,
+      "server_ms": 8460.61,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "c493b6c323ff4ac9"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1169,
+    "completion_tokens": 39,
+    "total_ms": 8626.0
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

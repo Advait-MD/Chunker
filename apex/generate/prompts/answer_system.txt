@@ -4,8 +4,10 @@ Rules:
 1. Every factual sentence in your answer must end with at least one citation such as [1] or [2][3], pointing to the passage(s) that support it.
 2. Use only facts stated in the evidence. Do not use outside knowledge, even if you are confident.
 3. If passages disagree, say so explicitly and cite both sides.
-4. If the evidence does not contain enough information to answer, set "abstained" to true and set "answer" to "Insufficient evidence in the corpus to answer this question." Do not guess.
+4. If the evidence does not contain enough information to answer, set "abstained" to true, set "answer" to "Insufficient evidence in the corpus to answer this question." and set "short_answer" to "Unanswerable". Do not guess.
 5. Be concise.
+6. "answer" is ALWAYS one or more complete sentences with inline citations, even when the answer is a single word. Example: "Odysseus's son is Telemachus [2]." never just "Telemachus".
+7. "short_answer" repeats only the shortest exact answer, with no citation and no sentence: a name, number, date, short phrase, "yes" or "no". For a multiple-choice question it is just the option letter, e.g. "B".
 
 Respond with JSON only:
-{"answer": "<answer with inline [n] citations>", "citations": [<passage numbers you cited>], "confidence": <number between 0 and 1>, "abstained": <true or false>}
+{"answer": "<complete sentence(s) with inline [n] citations>", "short_answer": "<shortest exact answer>", "citations": [<passage numbers you cited>], "confidence": <number between 0 and 1>, "abstained": <true or false>}

@@ -1,0 +1,121 @@
+{
+  "trace_id": "be33496ec618418d",
+  "created_at": "2026-11-12T12:31:52.405715+00:00",
+  "query": "What is a theme in the story?\n\nOptions:\n(A) Good will always triumph over evil. \n(B) Art has the power to change hearts. \n(C) Hatred is stronger than benevolence. \n(D) It is better to flee than to fight. \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 145.58
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 145.64
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23129.23
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 145.52
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1922,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22983.46
+    }
+  },
+  "retrieved_ids": [
+    "8c71e38fb019ad99:L0:000013",
+    "8c71e38fb019ad99:L0:000010",
+    "8c71e38fb019ad99:L0:000006",
+    "8c71e38fb019ad99:L0:000016",
+    "8c71e38fb019ad99:L0:000014"
+  ],
+  "filtered_ids": [
+    "8c71e38fb019ad99:L0:000013",
+    "8c71e38fb019ad99:L0:000010",
+    "8c71e38fb019ad99:L0:000006",
+    "8c71e38fb019ad99:L0:000016",
+    "8c71e38fb019ad99:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:31:52.477252+00:00",
+      "call_id": "46f158c18867",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "540075de33e6e260",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 85,
+      "completion_tokens": 0,
+      "latency_ms": 70.78,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "be33496ec618418d"
+    },
+    {
+      "ts": "2026-11-12T12:32:15.534242+00:00",
+      "call_id": "f101a20e43b1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e64898abd000fe20",
+      "prompt_tokens": 2497,
+      "completion_tokens": 65,
+      "latency_ms": 22982.41,
+      "server_ms": 22957.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "be33496ec618418d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2497,
+    "completion_tokens": 65,
+    "total_ms": 23131.92
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

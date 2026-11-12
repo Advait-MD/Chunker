@@ -1,0 +1,121 @@
+{
+  "trace_id": "47e166c8067f46b3",
+  "created_at": "2026-11-12T12:02:59.633030+00:00",
+  "query": "How did Yasak feel towards Robert upon their meeting?\n\nOptions:\n(A) Shocked by his appearance\n(B) A friendly camaraderie\n(C) Threatened by his presence\n(D) Angry he had carried Koroby\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 149.64
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 149.7
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23383.19
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 149.58
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1965,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23233.37
+    }
+  },
+  "retrieved_ids": [
+    "3c1dafeffd094309:L0:000013",
+    "3c1dafeffd094309:L0:000014",
+    "3c1dafeffd094309:L0:000008",
+    "3c1dafeffd094309:L0:000010",
+    "3c1dafeffd094309:L0:000009"
+  ],
+  "filtered_ids": [
+    "3c1dafeffd094309:L0:000013",
+    "3c1dafeffd094309:L0:000014",
+    "3c1dafeffd094309:L0:000008",
+    "3c1dafeffd094309:L0:000010",
+    "3c1dafeffd094309:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:02:59.718074+00:00",
+      "call_id": "931f6530cd37",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ddecb95f63ff2ae1",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 77,
+      "completion_tokens": 0,
+      "latency_ms": 84.25,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "47e166c8067f46b3"
+    },
+    {
+      "ts": "2026-11-12T12:03:23.015189+00:00",
+      "call_id": "8dc7e1e82935",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "82a13cc30db03245",
+      "prompt_tokens": 2476,
+      "completion_tokens": 44,
+      "latency_ms": 23231.75,
+      "server_ms": 23186.54,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "47e166c8067f46b3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2476,
+    "completion_tokens": 44,
+    "total_ms": 23385.32
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "(C) Angry he had carried Koroby"
+      ]
+    }
+  }
+}

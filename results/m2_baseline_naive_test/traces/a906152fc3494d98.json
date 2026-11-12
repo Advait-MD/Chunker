@@ -1,0 +1,122 @@
+{
+  "trace_id": "a906152fc3494d98",
+  "created_at": "2026-11-12T13:47:44.886435+00:00",
+  "query": "What song was number 4 on the charts when a song from FutureSex/LoveSounds was number 1?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 147.08
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 147.15
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12918.41
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 147.03
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 833,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12771.11
+    }
+  },
+  "retrieved_ids": [
+    "c8fd2b3ea47eb07f:L0:000082",
+    "20496f59538deb41:L0:000182",
+    "ba3cd068cf9ac2e4:L0:000094",
+    "cc2399aca11eb631:L0:000009",
+    "ba3cd068cf9ac2e4:L0:000156"
+  ],
+  "filtered_ids": [
+    "c8fd2b3ea47eb07f:L0:000082",
+    "20496f59538deb41:L0:000182",
+    "ba3cd068cf9ac2e4:L0:000094",
+    "cc2399aca11eb631:L0:000009",
+    "ba3cd068cf9ac2e4:L0:000156"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:47:44.953556+00:00",
+      "call_id": "6245ca28d318",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "017800cd5b6a29ff",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 28,
+      "completion_tokens": 0,
+      "latency_ms": 66.16,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "a906152fc3494d98"
+    },
+    {
+      "ts": "2026-11-12T13:47:57.803958+00:00",
+      "call_id": "ef32d1695929",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "98de22f3bc9feabc",
+      "prompt_tokens": 1477,
+      "completion_tokens": 51,
+      "latency_ms": 12769.84,
+      "server_ms": 12743.82,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a906152fc3494d98"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1477,
+    "completion_tokens": 51,
+    "total_ms": 12920.83
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2,
+        5
+      ],
+      "uncited_sentences": [
+        "Galveston was number 4 on the charts when"
+      ]
+    }
+  }
+}

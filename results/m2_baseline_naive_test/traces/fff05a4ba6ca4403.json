@@ -1,0 +1,122 @@
+{
+  "trace_id": "fff05a4ba6ca4403",
+  "created_at": "2026-11-12T13:26:39.896472+00:00",
+  "query": "Which was built first Woolworth Building or 1 New York Plaza?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 135.74
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 135.79
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13739.39
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 135.69
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 474,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13603.47
+    }
+  },
+  "retrieved_ids": [
+    "20496f59538deb41:L0:000061",
+    "8e50522b7cb636d8:L0:000139",
+    "cb96563b0747a6ba:L0:000063",
+    "90976421f3f2bea2:L0:000157",
+    "20496f59538deb41:L0:000082"
+  ],
+  "filtered_ids": [
+    "20496f59538deb41:L0:000061",
+    "8e50522b7cb636d8:L0:000139",
+    "cb96563b0747a6ba:L0:000063",
+    "90976421f3f2bea2:L0:000157",
+    "20496f59538deb41:L0:000082"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:26:39.956613+00:00",
+      "call_id": "ea405ddc8321",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2e68f50b77d4fd85",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 19,
+      "completion_tokens": 0,
+      "latency_ms": 59.76,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "fff05a4ba6ca4403"
+    },
+    {
+      "ts": "2026-11-12T13:26:53.634693+00:00",
+      "call_id": "77da29969ac8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d7337a6127fce897",
+      "prompt_tokens": 1079,
+      "completion_tokens": 101,
+      "latency_ms": 13602.51,
+      "server_ms": 13583.36,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "fff05a4ba6ca4403"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1079,
+    "completion_tokens": 101,
+    "total_ms": 13740.78
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, 1 New York Plaza was built later than the Woolworth Building."
+      ]
+    }
+  }
+}

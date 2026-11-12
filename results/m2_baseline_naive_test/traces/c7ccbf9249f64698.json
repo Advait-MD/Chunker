@@ -1,0 +1,119 @@
+{
+  "trace_id": "c7ccbf9249f64698",
+  "created_at": "2026-11-12T13:27:27.982094+00:00",
+  "query": "The Nike Mercurial Vapor is endorsed by a Stoke City football player who also plays for what national team?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 132.09
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 132.15
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10753.71
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 132.04
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 352,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10621.32
+    }
+  },
+  "retrieved_ids": [
+    "bc1dba3471045f02:L0:000046",
+    "20496f59538deb41:L0:000093",
+    "ba3cd068cf9ac2e4:L0:000173",
+    "ec3410ef955c5c93:L0:000174",
+    "90976421f3f2bea2:L0:000190"
+  ],
+  "filtered_ids": [
+    "bc1dba3471045f02:L0:000046",
+    "20496f59538deb41:L0:000093",
+    "ba3cd068cf9ac2e4:L0:000173",
+    "ec3410ef955c5c93:L0:000174",
+    "90976421f3f2bea2:L0:000190"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:27:28.042495+00:00",
+      "call_id": "30068380b743",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "94b7dc7db583e441",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 28,
+      "completion_tokens": 0,
+      "latency_ms": 59.82,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "c7ccbf9249f64698"
+    },
+    {
+      "ts": "2026-11-12T13:27:38.734601+00:00",
+      "call_id": "b9c9c505feb9",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4e4d9338eef0da4d",
+      "prompt_tokens": 1007,
+      "completion_tokens": 67,
+      "latency_ms": 10620.14,
+      "server_ms": 10598.03,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "c7ccbf9249f64698"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1007,
+    "completion_tokens": 67,
+    "total_ms": 10755.94
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

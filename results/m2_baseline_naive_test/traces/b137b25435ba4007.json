@@ -1,0 +1,120 @@
+{
+  "trace_id": "b137b25435ba4007",
+  "created_at": "2026-11-12T13:30:39.367776+00:00",
+  "query": "Which year was the more recent engine series, the Honda K or Honda H, introduced?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 144.38
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 144.45
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15549.41
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 144.33
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 809,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15404.72
+    }
+  },
+  "retrieved_ids": [
+    "ec3410ef955c5c93:L0:000121",
+    "9794e842cc9565f0:L0:000043",
+    "c8fd2b3ea47eb07f:L0:000140",
+    "634431bb1e27714f:L0:000013",
+    "8e50522b7cb636d8:L0:000050"
+  ],
+  "filtered_ids": [
+    "ec3410ef955c5c93:L0:000121",
+    "9794e842cc9565f0:L0:000043",
+    "c8fd2b3ea47eb07f:L0:000140",
+    "634431bb1e27714f:L0:000013",
+    "8e50522b7cb636d8:L0:000050"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:30:39.437172+00:00",
+      "call_id": "377016f14d6a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2d11ae47a2daff72",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 24,
+      "completion_tokens": 0,
+      "latency_ms": 69.15,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "b137b25435ba4007"
+    },
+    {
+      "ts": "2026-11-12T13:30:54.915996+00:00",
+      "call_id": "71d174aecd9b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "40a1fcfa07013479",
+      "prompt_tokens": 1427,
+      "completion_tokens": 84,
+      "latency_ms": 15403.63,
+      "server_ms": 15381.32,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "b137b25435ba4007"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1427,
+    "completion_tokens": 84,
+    "total_ms": 15550.41
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

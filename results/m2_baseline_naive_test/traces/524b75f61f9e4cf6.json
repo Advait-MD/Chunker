@@ -1,0 +1,125 @@
+{
+  "trace_id": "524b75f61f9e4cf6",
+  "created_at": "2026-11-12T12:56:08.271766+00:00",
+  "query": "Which of the following is shared between Topsy-Turvy and Mr. Death?\n\nOptions:\n(A) Plot structure\n(B) Character behavior\n(C) Cultural insensitivity\n(D) Primary theme\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 151.64
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 151.71
+    },
+    {
+      "state": "DONE",
+      "t_ms": 26453.01
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 151.59
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1947,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 26300.57
+    }
+  },
+  "retrieved_ids": [
+    "33f3974d6e263a41:L0:000002",
+    "33f3974d6e263a41:L0:000000",
+    "33f3974d6e263a41:L0:000001",
+    "33f3974d6e263a41:L0:000004",
+    "33f3974d6e263a41:L0:000003"
+  ],
+  "filtered_ids": [
+    "33f3974d6e263a41:L0:000002",
+    "33f3974d6e263a41:L0:000000",
+    "33f3974d6e263a41:L0:000001",
+    "33f3974d6e263a41:L0:000004",
+    "33f3974d6e263a41:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:56:08.356783+00:00",
+      "call_id": "a6fd0e028a61",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e050b15f1e7dc936",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 73,
+      "completion_tokens": 0,
+      "latency_ms": 84.18,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "524b75f61f9e4cf6"
+    },
+    {
+      "ts": "2026-11-12T12:56:34.722935+00:00",
+      "call_id": "c97116be00ec",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b90ac4ed05da8405",
+      "prompt_tokens": 2628,
+      "completion_tokens": 94,
+      "latency_ms": 26299.18,
+      "server_ms": 26272.52,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "524b75f61f9e4cf6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2628,
+    "completion_tokens": 94,
+    "total_ms": 26455.79
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        3,
+        4
+      ],
+      "uncited_sentences": [
+        "(C) Cultural insensitivity is shared between Topsy-Turvy and Mr.",
+        "Death.",
+        "Topsy-Turvy portrays Gilbert and Sullivan's Japanese characters as culturally incapable of playing Japanese, while Mr.",
+        "Death involves Leuchter's examination of alleged gas chambers at Auschwitz."
+      ]
+    }
+  }
+}

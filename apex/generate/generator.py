@@ -16,11 +16,12 @@ ANSWER_SCHEMA: Dict[str, Any] = {
     "type": "object",
     "properties": {
         "answer": {"type": "string"},
+        "short_answer": {"type": "string"},
         "citations": {"type": "array", "items": {"type": "integer"}},
         "confidence": {"type": "number"},
         "abstained": {"type": "boolean"},
     },
-    "required": ["answer", "citations", "confidence", "abstained"],
+    "required": ["answer", "short_answer", "citations", "confidence", "abstained"],
 }
 
 
@@ -70,6 +71,10 @@ def build_user_prompt(query: str, evidence: EvidenceSet) -> str:
     return f"Evidence passages:\n\n{blocks}\n\nQuestion: {query}\n\nAnswer in JSON:"
 
 
+class GenerationError(OllamaError):
+    """The generator produced no usable answer (truncated at max_tokens, invalid JSON, missing keys)."""
+
+
 class Generator:
     def __init__(self, cfg: Dict[str, Any], client: OllamaClient):
         g = cfg["generation"]
@@ -84,9 +89,15 @@ class Generator:
         res = self.client.generate(build_user_prompt(query, evidence), model=self.model, caller="generate.answer",
                                    system=self.system, temperature=self.temperature, max_tokens=self.max_tokens,
                                    num_ctx=self.num_ctx, json_schema=ANSWER_SCHEMA, state="GENERATING")
-        out = res.json()
+        if res.raw.get("done_reason") == "length":
+            raise GenerationError(f"Generator output truncated at max_tokens={self.max_tokens} "
+                                  f"(call {res.call_id}): {res.text[:200]!r}")
+        try:
+            out = res.json()
+        except OllamaError as e:
+            raise GenerationError(str(e)) from e
         missing = [k for k in ANSWER_SCHEMA["required"] if k not in out]
         if missing:
-            raise OllamaError(f"Generator output missing keys {missing}: {res.text[:200]!r}")
+            raise GenerationError(f"Generator output missing keys {missing}: {res.text[:200]!r}")
         out["_call_id"] = res.call_id
         return out

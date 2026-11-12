@@ -1,0 +1,119 @@
+{
+  "trace_id": "79922a1a56794ede",
+  "created_at": "2026-11-12T14:15:16.743272+00:00",
+  "query": "Which film has the director died earlier, Crime Against Joe or Vagabonderne På Bakkegården?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 136.69
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 136.75
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12272.06
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 136.63
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 961,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12135.26
+    }
+  },
+  "retrieved_ids": [
+    "b04ce6dd2d95fb80:L0:000152",
+    "99628090500247e3:L0:000081",
+    "99628090500247e3:L0:000087",
+    "43d5059060d4defa:L0:000003",
+    "0eac870d43736f51:L0:000089"
+  ],
+  "filtered_ids": [
+    "b04ce6dd2d95fb80:L0:000152",
+    "99628090500247e3:L0:000081",
+    "99628090500247e3:L0:000087",
+    "43d5059060d4defa:L0:000003",
+    "0eac870d43736f51:L0:000089"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:15:16.810209+00:00",
+      "call_id": "1ec760b24782",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "520d2f953ae8cf8b",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 29,
+      "completion_tokens": 0,
+      "latency_ms": 66.36,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "79922a1a56794ede"
+    },
+    {
+      "ts": "2026-11-12T14:15:29.014640+00:00",
+      "call_id": "1fe555e9b382",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5881d2def21344f2",
+      "prompt_tokens": 1703,
+      "completion_tokens": 77,
+      "latency_ms": 12134.6,
+      "server_ms": 12110.74,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "79922a1a56794ede"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1703,
+    "completion_tokens": 77,
+    "total_ms": 12272.98
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The evidence does not provide the death dates of the directors of 'Crime Against Joe' or 'Vagabonderne På Bakkegården', so this question cannot be answered based on the given information."
+      ]
+    }
+  }
+}

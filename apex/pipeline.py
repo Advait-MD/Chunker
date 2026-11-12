@@ -39,6 +39,10 @@ class NaivePipeline:
         self.generator = Generator(comps.cfg, comps.client)
         self.budget = int(comps.cfg["generation"]["context_token_budget"])
 
+    def retrieve_ranked(self, query: str, k: int, source: Optional[str] = None):
+        """Ranked retrieval at an arbitrary depth, for retrieval metrics (Recall@k, MRR, nDCG). Untraced."""
+        return self.retriever.retrieve(query, k=k, source=source)
+
     def answer(self, query: str, source: Optional[str] = None, save_trace: bool = True) -> Dict[str, Any]:
         trace = self.c.tracer.new(query)
         trace.route, trace.routing_tier = "SINGLE_HOP", "none"  # no router in the naive baseline
@@ -60,7 +64,7 @@ class NaivePipeline:
             if not evidence.items:
                 trace.enter("ABSTAIN")
                 gen = {"answer": "Insufficient evidence in the corpus to answer this question.",
-                       "citations": [], "confidence": 0.0, "abstained": True}
+                       "short_answer": "Unanswerable", "citations": [], "confidence": 0.0, "abstained": True}
             else:
                 trace.enter("GENERATING")
                 with trace.stage("generate", model=self.generator.model):
@@ -77,7 +81,7 @@ class NaivePipeline:
             self.c.client.bind_trace(None)
 
         result = {
-            "query": query, "answer": gen["answer"], "citations": citations,
+            "query": query, "answer": gen["answer"], "short_answer": gen.get("short_answer"), "citations": citations,
             "confidence": gen.get("confidence"), "abstained": bool(gen.get("abstained")),
             "invalid_citations": cites["invalid"], "uncited_sentences": cites["uncited_sentences"],
             "evidence": [asdict(it) for it in evidence.items],

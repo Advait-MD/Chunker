@@ -1,0 +1,121 @@
+{
+  "trace_id": "960833b9e41c4ca2",
+  "created_at": "2026-11-12T12:35:56.725644+00:00",
+  "query": "What was different about the Kung Fu class?\n\nOptions:\n(A) Participants sparred with each other. \n(B) The author was not allowed to participate, but was only allowed to watch. \n(C) The participants wore uniforms. \n(D) The class was done in the park. \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 191.56
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 191.7
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22735.75
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 191.48
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1936,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22543.97
+    }
+  },
+  "retrieved_ids": [
+    "e69f506283d8e1fc:L0:000002",
+    "e69f506283d8e1fc:L0:000003",
+    "e69f506283d8e1fc:L0:000001",
+    "e69f506283d8e1fc:L0:000000",
+    "e69f506283d8e1fc:L0:000005"
+  ],
+  "filtered_ids": [
+    "e69f506283d8e1fc:L0:000002",
+    "e69f506283d8e1fc:L0:000003",
+    "e69f506283d8e1fc:L0:000001",
+    "e69f506283d8e1fc:L0:000000",
+    "e69f506283d8e1fc:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:35:56.811589+00:00",
+      "call_id": "98148c961521",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4488c50b925ea1a8",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 88,
+      "completion_tokens": 0,
+      "latency_ms": 85.59,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "960833b9e41c4ca2"
+    },
+    {
+      "ts": "2026-11-12T12:36:19.460656+00:00",
+      "call_id": "cc65a214ed30",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ca69feed8ddbef75",
+      "prompt_tokens": 2621,
+      "completion_tokens": 49,
+      "latency_ms": 22542.85,
+      "server_ms": 22515.71,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "960833b9e41c4ca2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2621,
+    "completion_tokens": 49,
+    "total_ms": 22740.74
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        3
+      ],
+      "uncited_sentences": [
+        "(B) The author was not allowed to participate, but was only allowed to watch."
+      ]
+    }
+  }
+}

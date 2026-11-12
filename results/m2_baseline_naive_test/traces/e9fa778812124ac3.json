@@ -1,0 +1,119 @@
+{
+  "trace_id": "e9fa778812124ac3",
+  "created_at": "2026-11-12T14:41:49.720526+00:00",
+  "query": "Where was the place of death of the founder of Western Auto?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 137.06
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 137.13
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12789.08
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 137.01
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 776,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12651.84
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000009",
+    "abe982d210232c3f:L0:000141",
+    "4a757779abfb4ba1:L0:000016",
+    "99628090500247e3:L0:000005",
+    "6af2db6cb86d77e2:L0:000129"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000009",
+    "abe982d210232c3f:L0:000141",
+    "4a757779abfb4ba1:L0:000016",
+    "99628090500247e3:L0:000005",
+    "6af2db6cb86d77e2:L0:000129"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:41:49.785463+00:00",
+      "call_id": "b1f5db7fb558",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e181e6e6d3164c76",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 19,
+      "completion_tokens": 0,
+      "latency_ms": 64.28,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "e9fa778812124ac3"
+    },
+    {
+      "ts": "2026-11-12T14:42:02.508700+00:00",
+      "call_id": "351ffb458706",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4cf3d41825876962",
+      "prompt_tokens": 1476,
+      "completion_tokens": 45,
+      "latency_ms": 12650.72,
+      "server_ms": 12626.73,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "e9fa778812124ac3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1476,
+    "completion_tokens": 45,
+    "total_ms": 12792.85
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

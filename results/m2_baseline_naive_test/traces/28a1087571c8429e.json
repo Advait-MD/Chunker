@@ -1,0 +1,119 @@
+{
+  "trace_id": "28a1087571c8429e",
+  "created_at": "2026-11-12T14:12:24.413309+00:00",
+  "query": "Which film came out first, João Da Mata or Beautiful Girls (Film)?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 149.16
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 149.21
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10711.5
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 149.11
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1019,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10562.21
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000173",
+    "c73b757f0eb66f37:L0:000014",
+    "6af2db6cb86d77e2:L0:000195",
+    "c73b757f0eb66f37:L0:000092",
+    "b04ce6dd2d95fb80:L0:000058"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000173",
+    "c73b757f0eb66f37:L0:000014",
+    "6af2db6cb86d77e2:L0:000195",
+    "c73b757f0eb66f37:L0:000092",
+    "b04ce6dd2d95fb80:L0:000058"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:12:24.488158+00:00",
+      "call_id": "d78208e9fcfa",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c9a63c032700f916",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 22,
+      "completion_tokens": 0,
+      "latency_ms": 74.1,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "28a1087571c8429e"
+    },
+    {
+      "ts": "2026-11-12T14:12:35.124325+00:00",
+      "call_id": "f7849f820811",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "51b03e254c3e3e91",
+      "prompt_tokens": 1761,
+      "completion_tokens": 45,
+      "latency_ms": 10561.21,
+      "server_ms": 10536.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "28a1087571c8429e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1761,
+    "completion_tokens": 45,
+    "total_ms": 10712.8
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

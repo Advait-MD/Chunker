@@ -1,0 +1,119 @@
+{
+  "trace_id": "0d716e8152324ad4",
+  "created_at": "2026-11-12T13:58:12.551069+00:00",
+  "query": "Who is older, Bertalan Farkas or Hans Schlegel?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 143.17
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 143.23
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12280.28
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 143.11
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 670,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12136.97
+    }
+  },
+  "retrieved_ids": [
+    "cb96563b0747a6ba:L0:000160",
+    "90976421f3f2bea2:L0:000183",
+    "ec3410ef955c5c93:L0:000174",
+    "81fc433d55d23b4c:L0:000037",
+    "ba3cd068cf9ac2e4:L0:000180"
+  ],
+  "filtered_ids": [
+    "cb96563b0747a6ba:L0:000160",
+    "90976421f3f2bea2:L0:000183",
+    "ec3410ef955c5c93:L0:000174",
+    "81fc433d55d23b4c:L0:000037",
+    "ba3cd068cf9ac2e4:L0:000180"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:58:12.620196+00:00",
+      "call_id": "207929afc4e7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0d5615c381c20eee",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 22,
+      "completion_tokens": 0,
+      "latency_ms": 68.65,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "0d716e8152324ad4"
+    },
+    {
+      "ts": "2026-11-12T13:58:24.830466+00:00",
+      "call_id": "6481362ebe40",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bd13a88bdd407dc1",
+      "prompt_tokens": 1365,
+      "completion_tokens": 45,
+      "latency_ms": 12135.89,
+      "server_ms": 12108.62,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0d716e8152324ad4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1365,
+    "completion_tokens": 45,
+    "total_ms": 12281.92
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

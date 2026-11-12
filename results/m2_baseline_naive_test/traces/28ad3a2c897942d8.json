@@ -1,0 +1,121 @@
+{
+  "trace_id": "28ad3a2c897942d8",
+  "created_at": "2026-11-12T09:40:16.702044+00:00",
+  "query": "What is the training objective in the method introduced in this paper?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 70.24
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 70.3
+    },
+    {
+      "state": "DONE",
+      "t_ms": 27009.52
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 70.14
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1450,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 26938.27
+    }
+  },
+  "retrieved_ids": [
+    "abcbc67736d9ecb3:L0:000017",
+    "abcbc67736d9ecb3:L0:000004",
+    "abcbc67736d9ecb3:L0:000022",
+    "abcbc67736d9ecb3:L0:000007",
+    "abcbc67736d9ecb3:L0:000019"
+  ],
+  "filtered_ids": [
+    "abcbc67736d9ecb3:L0:000017",
+    "abcbc67736d9ecb3:L0:000004",
+    "abcbc67736d9ecb3:L0:000022",
+    "abcbc67736d9ecb3:L0:000007",
+    "abcbc67736d9ecb3:L0:000019"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T09:40:16.703625+00:00",
+      "call_id": "b9da27459649",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1f1b55703bb850d0",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "28ad3a2c897942d8"
+    },
+    {
+      "ts": "2026-11-12T09:40:43.709735+00:00",
+      "call_id": "c2c3eb6eba05",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "97ee500ba19e9efd",
+      "prompt_tokens": 2063,
+      "completion_tokens": 120,
+      "latency_ms": 26937.22,
+      "server_ms": 26911.17,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "28ad3a2c897942d8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2063,
+    "completion_tokens": 120,
+    "total_ms": 27011.72
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The training objective in the method introduced in this paper is to minimize the cross-entropy loss, and optionally add an auxiliary penalty term to regularize the fine-tuning process."
+      ]
+    }
+  }
+}

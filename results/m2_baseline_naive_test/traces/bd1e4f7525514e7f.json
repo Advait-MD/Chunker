@@ -1,0 +1,119 @@
+{
+  "trace_id": "bd1e4f7525514e7f",
+  "created_at": "2026-11-12T13:32:35.179925+00:00",
+  "query": "Do Lush and P.O.D. both consist of four band members?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 82.54
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 82.57
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10018.08
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 82.51
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 652,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9935.41
+    }
+  },
+  "retrieved_ids": [
+    "8e50522b7cb636d8:L0:000178",
+    "ec3410ef955c5c93:L0:000141",
+    "c8fd2b3ea47eb07f:L0:000131",
+    "8e50522b7cb636d8:L0:000086",
+    "ec3410ef955c5c93:L0:000163"
+  ],
+  "filtered_ids": [
+    "8e50522b7cb636d8:L0:000178",
+    "ec3410ef955c5c93:L0:000141",
+    "c8fd2b3ea47eb07f:L0:000131",
+    "8e50522b7cb636d8:L0:000086",
+    "ec3410ef955c5c93:L0:000163"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:32:35.227117+00:00",
+      "call_id": "b4b51a0d4e9f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "364e65ead0f9a277",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 22,
+      "completion_tokens": 0,
+      "latency_ms": 46.65,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "bd1e4f7525514e7f"
+    },
+    {
+      "ts": "2026-11-12T13:32:45.196983+00:00",
+      "call_id": "24d1094c5f0c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "472c3fbe5a69f7a2",
+      "prompt_tokens": 1310,
+      "completion_tokens": 45,
+      "latency_ms": 9934.33,
+      "server_ms": 9870.34,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "bd1e4f7525514e7f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1310,
+    "completion_tokens": 45,
+    "total_ms": 10021.18
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

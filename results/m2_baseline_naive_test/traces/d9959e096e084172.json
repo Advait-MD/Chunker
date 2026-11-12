@@ -1,0 +1,122 @@
+{
+  "trace_id": "d9959e096e084172",
+  "created_at": "2026-11-12T14:14:19.594785+00:00",
+  "query": "Are the directors of both films Captain Calamity (Film) and Heaven Only Knows (Film) from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 130.95
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 131.01
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23651.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 130.89
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1452,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23520.3
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000151",
+    "abe982d210232c3f:L0:000125",
+    "6af2db6cb86d77e2:L0:000106",
+    "b04ce6dd2d95fb80:L0:000153",
+    "b04ce6dd2d95fb80:L0:000054"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000151",
+    "abe982d210232c3f:L0:000125",
+    "6af2db6cb86d77e2:L0:000106",
+    "b04ce6dd2d95fb80:L0:000153",
+    "b04ce6dd2d95fb80:L0:000054"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:14:19.654828+00:00",
+      "call_id": "a3eccb164ffd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b316cfae54e69d28",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 31,
+      "completion_tokens": 0,
+      "latency_ms": 59.74,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "d9959e096e084172"
+    },
+    {
+      "ts": "2026-11-12T14:14:43.245146+00:00",
+      "call_id": "c727f28d96d3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "19c75cd6da7d895c",
+      "prompt_tokens": 2285,
+      "completion_tokens": 86,
+      "latency_ms": 23519.14,
+      "server_ms": 23481.77,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d9959e096e084172"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2285,
+    "completion_tokens": 86,
+    "total_ms": 23653.78
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "No, the directors of both films are not from the same country."
+      ]
+    }
+  }
+}

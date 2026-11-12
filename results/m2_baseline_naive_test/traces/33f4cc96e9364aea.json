@@ -1,0 +1,119 @@
+{
+  "trace_id": "33f4cc96e9364aea",
+  "created_at": "2026-11-12T13:21:48.557847+00:00",
+  "query": "Susanna Thompson appeared in the courtroom drama film Ghosts of Mississippi, directed by who?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 139.63
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 139.7
+    },
+    {
+      "state": "DONE",
+      "t_ms": 9263.76
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 139.58
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 457,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9123.97
+    }
+  },
+  "retrieved_ids": [
+    "634431bb1e27714f:L0:000039",
+    "634431bb1e27714f:L0:000138",
+    "20496f59538deb41:L0:000111",
+    "ec3410ef955c5c93:L0:000036",
+    "bc1dba3471045f02:L0:000076"
+  ],
+  "filtered_ids": [
+    "634431bb1e27714f:L0:000039",
+    "634431bb1e27714f:L0:000138",
+    "20496f59538deb41:L0:000111",
+    "ec3410ef955c5c93:L0:000036",
+    "bc1dba3471045f02:L0:000076"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:21:48.621139+00:00",
+      "call_id": "8ace7c628d0e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d6c1becd8127845e",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 22,
+      "completion_tokens": 0,
+      "latency_ms": 62.56,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "33f4cc96e9364aea"
+    },
+    {
+      "ts": "2026-11-12T13:21:57.820961+00:00",
+      "call_id": "ef0e08513795",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "53597fe8cbc9a9a7",
+      "prompt_tokens": 1054,
+      "completion_tokens": 48,
+      "latency_ms": 9123.03,
+      "server_ms": 9061.73,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "33f4cc96e9364aea"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1054,
+    "completion_tokens": 48,
+    "total_ms": 9265.85
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

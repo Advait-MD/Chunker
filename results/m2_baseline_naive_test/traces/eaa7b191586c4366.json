@@ -1,0 +1,123 @@
+{
+  "trace_id": "eaa7b191586c4366",
+  "created_at": "2026-11-12T09:11:17.806942+00:00",
+  "query": "Does the query-bag matching model use a neural network?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 140.24
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 140.32
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23237.14
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 140.18
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1322,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23096.69
+    }
+  },
+  "retrieved_ids": [
+    "e224741dbc7dbcc7:L0:000001",
+    "e224741dbc7dbcc7:L0:000003",
+    "e224741dbc7dbcc7:L0:000015",
+    "e224741dbc7dbcc7:L0:000012",
+    "e224741dbc7dbcc7:L0:000004"
+  ],
+  "filtered_ids": [
+    "e224741dbc7dbcc7:L0:000001",
+    "e224741dbc7dbcc7:L0:000003",
+    "e224741dbc7dbcc7:L0:000015",
+    "e224741dbc7dbcc7:L0:000012",
+    "e224741dbc7dbcc7:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T09:11:17.808442+00:00",
+      "call_id": "7a8f8c18ffda",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0016eb0cebc51b9b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "eaa7b191586c4366"
+    },
+    {
+      "ts": "2026-11-12T09:11:41.042900+00:00",
+      "call_id": "5c08106cb2b2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "24cd26ef65518af6",
+      "prompt_tokens": 1887,
+      "completion_tokens": 90,
+      "latency_ms": 23095.24,
+      "server_ms": 23069.71,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "eaa7b191586c4366"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1887,
+    "completion_tokens": 90,
+    "total_ms": 23238.34
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Yes, the query-bag matching model uses a neural network."
+      ]
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "trace_id": "60d996521c084366",
+  "created_at": "2026-11-12T14:43:01.516578+00:00",
+  "query": "What nationality is the director of film Agent X44?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 79.3
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 79.33
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13582.28
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 79.26
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 862,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13502.67
+    }
+  },
+  "retrieved_ids": [
+    "43d5059060d4defa:L0:000001",
+    "b04ce6dd2d95fb80:L0:000152",
+    "43d5059060d4defa:L0:000003",
+    "6af2db6cb86d77e2:L0:000106",
+    "b04ce6dd2d95fb80:L0:000013"
+  ],
+  "filtered_ids": [
+    "43d5059060d4defa:L0:000001",
+    "b04ce6dd2d95fb80:L0:000152",
+    "43d5059060d4defa:L0:000003",
+    "6af2db6cb86d77e2:L0:000106",
+    "b04ce6dd2d95fb80:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:43:01.561296+00:00",
+      "call_id": "862d6240e2de",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "032dd59bb25f849e",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 17,
+      "completion_tokens": 0,
+      "latency_ms": 43.97,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "60d996521c084366"
+    },
+    {
+      "ts": "2026-11-12T14:43:15.097492+00:00",
+      "call_id": "3835a82629cc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "53cf5d1be4c950bf",
+      "prompt_tokens": 1563,
+      "completion_tokens": 78,
+      "latency_ms": 13501.22,
+      "server_ms": 13474.27,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "60d996521c084366"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1563,
+    "completion_tokens": 78,
+    "total_ms": 13584.88
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

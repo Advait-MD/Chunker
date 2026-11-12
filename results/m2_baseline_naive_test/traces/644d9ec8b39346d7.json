@@ -1,0 +1,123 @@
+{
+  "trace_id": "644d9ec8b39346d7",
+  "created_at": "2026-11-12T11:47:17.936166+00:00",
+  "query": "What is Pashkov’s assignment?\n\nOptions:\n(A) To kill Colonel James. \n(B) To take Colonel James to Stockholm. \n(C) To kidnap Boris Knackenpast and impersonate him. \n(D) To kidnap Colonel James and then impersonate him. \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 166.28
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 166.34
+    },
+    {
+      "state": "DONE",
+      "t_ms": 28331.85
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 166.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1956,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 28165.28
+    }
+  },
+  "retrieved_ids": [
+    "1347e212fd21afeb:L0:000011",
+    "1347e212fd21afeb:L0:000018",
+    "1347e212fd21afeb:L0:000002",
+    "1347e212fd21afeb:L0:000012",
+    "1347e212fd21afeb:L0:000009"
+  ],
+  "filtered_ids": [
+    "1347e212fd21afeb:L0:000011",
+    "1347e212fd21afeb:L0:000018",
+    "1347e212fd21afeb:L0:000002",
+    "1347e212fd21afeb:L0:000012",
+    "1347e212fd21afeb:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:47:18.036326+00:00",
+      "call_id": "cbb3599d3efb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "85059c5142f8f640",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 90,
+      "completion_tokens": 0,
+      "latency_ms": 99.62,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "644d9ec8b39346d7"
+    },
+    {
+      "ts": "2026-11-12T11:47:46.266747+00:00",
+      "call_id": "6f86481704cc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "30fbe8a537c60926",
+      "prompt_tokens": 2713,
+      "completion_tokens": 83,
+      "latency_ms": 28164.02,
+      "server_ms": 28139.07,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "644d9ec8b39346d7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2713,
+    "completion_tokens": 83,
+    "total_ms": 28334.92
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -37,7 +37,7 @@ class FakeOllama:
 
     @staticmethod
     def default_answer(payload: Dict[str, Any]) -> Dict[str, Any]:
-        return {"answer": "The capital of Freedonia is Fredville [1].", "citations": [1],
+        return {"answer": "The capital of Freedonia is Fredville [1].", "short_answer": "Fredville", "citations": [1],
                 "confidence": 0.9, "abstained": False}
 
     def __call__(self, endpoint: str, payload: Dict[str, Any], timeout: float) -> Dict[str, Any]:

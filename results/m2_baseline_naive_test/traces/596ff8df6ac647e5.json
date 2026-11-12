@@ -1,0 +1,119 @@
+{
+  "trace_id": "596ff8df6ac647e5",
+  "created_at": "2026-11-12T11:05:41.993608+00:00",
+  "query": "How many miles of highways are in the city where the Yongle emperor greeted the person to whom the edict was addressed?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 151.64
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 151.7
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15039.73
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 151.58
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 733,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14887.86
+    }
+  },
+  "retrieved_ids": [
+    "73dfa6a9bfcab050:L0:000130",
+    "ad4ace752e719bab:L0:000141",
+    "8b31d5859eb3d77a:L0:000122",
+    "f109b032e24ab27a:L0:000102",
+    "f3503d3d186f0f90:L0:000192"
+  ],
+  "filtered_ids": [
+    "73dfa6a9bfcab050:L0:000130",
+    "ad4ace752e719bab:L0:000141",
+    "8b31d5859eb3d77a:L0:000122",
+    "f109b032e24ab27a:L0:000102",
+    "f3503d3d186f0f90:L0:000192"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:05:42.062162+00:00",
+      "call_id": "28598d067b72",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4d79a4746f4264e8",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 30,
+      "completion_tokens": 0,
+      "latency_ms": 68.06,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "596ff8df6ac647e5"
+    },
+    {
+      "ts": "2026-11-12T11:05:57.031839+00:00",
+      "call_id": "3909833f2fdb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "735e5359da67aad1",
+      "prompt_tokens": 1472,
+      "completion_tokens": 75,
+      "latency_ms": 14886.42,
+      "server_ms": 14862.35,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "596ff8df6ac647e5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1472,
+    "completion_tokens": 75,
+    "total_ms": 15041.18
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

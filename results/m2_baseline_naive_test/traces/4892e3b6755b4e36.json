@@ -1,0 +1,125 @@
+{
+  "trace_id": "4892e3b6755b4e36",
+  "created_at": "2026-11-12T12:08:53.649217+00:00",
+  "query": "What was the passage of time over the course of the story?\n\nOptions:\n(A) Days\n(B) Months\n(C) Hours\n(D) Weeks\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 146.15
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 146.21
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18020.82
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 146.1
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1773,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17874.48
+    }
+  },
+  "retrieved_ids": [
+    "ef846b5c8602cdfe:L0:000016",
+    "ef846b5c8602cdfe:L0:000017",
+    "ef846b5c8602cdfe:L0:000010",
+    "ef846b5c8602cdfe:L0:000019",
+    "ef846b5c8602cdfe:L0:000009"
+  ],
+  "filtered_ids": [
+    "ef846b5c8602cdfe:L0:000016",
+    "ef846b5c8602cdfe:L0:000017",
+    "ef846b5c8602cdfe:L0:000010",
+    "ef846b5c8602cdfe:L0:000019",
+    "ef846b5c8602cdfe:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:08:53.709390+00:00",
+      "call_id": "d38b2777dda3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b20a8d608902e0e7",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 61,
+      "completion_tokens": 0,
+      "latency_ms": 59.31,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "4892e3b6755b4e36"
+    },
+    {
+      "ts": "2026-11-12T12:09:11.669269+00:00",
+      "call_id": "b1d3f1898ae4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6ac0bfd8544cf94f",
+      "prompt_tokens": 2289,
+      "completion_tokens": 50,
+      "latency_ms": 17873.35,
+      "server_ms": 17842.01,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "4892e3b6755b4e36"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2289,
+    "completion_tokens": 50,
+    "total_ms": 18022.05
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "(C) Hours"
+      ]
+    }
+  }
+}
