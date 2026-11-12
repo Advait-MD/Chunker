@@ -1,0 +1,119 @@
+{
+  "trace_id": "cc2019def47f4d39",
+  "created_at": "2026-11-12T14:50:01.508151+00:00",
+  "query": "When did Lord Patrick Crichton-Stuart's father die?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 135.27
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 135.32
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15277.27
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 135.21
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 963,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15141.82
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000034",
+    "6af2db6cb86d77e2:L0:000129",
+    "6af2db6cb86d77e2:L0:000184",
+    "317e12ccd417c0d7:L0:000016",
+    "abe982d210232c3f:L0:000141"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000034",
+    "6af2db6cb86d77e2:L0:000129",
+    "6af2db6cb86d77e2:L0:000184",
+    "317e12ccd417c0d7:L0:000016",
+    "abe982d210232c3f:L0:000141"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:50:01.569679+00:00",
+      "call_id": "831b5d30febc",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "39177c08de0b771d",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 20,
+      "completion_tokens": 0,
+      "latency_ms": 60.63,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "cc2019def47f4d39"
+    },
+    {
+      "ts": "2026-11-12T14:50:16.784490+00:00",
+      "call_id": "625328c3b0ae",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "afa2af29e7386ee1",
+      "prompt_tokens": 1851,
+      "completion_tokens": 55,
+      "latency_ms": 15140.73,
+      "server_ms": 15117.3,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "cc2019def47f4d39"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1851,
+    "completion_tokens": 55,
+    "total_ms": 15279.21
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

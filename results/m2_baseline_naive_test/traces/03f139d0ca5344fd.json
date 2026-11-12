@@ -1,0 +1,122 @@
+{
+  "trace_id": "03f139d0ca5344fd",
+  "created_at": "2026-11-12T14:24:50.367204+00:00",
+  "query": "Which film has the director who died later, The Devil And Miss Jones or The Man In The Funny Suit?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 153.36
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 153.41
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18817.16
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 153.29
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 525,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18663.59
+    }
+  },
+  "retrieved_ids": [
+    "99628090500247e3:L0:000107",
+    "317e12ccd417c0d7:L0:000195",
+    "4a757779abfb4ba1:L0:000037",
+    "b04ce6dd2d95fb80:L0:000156",
+    "317e12ccd417c0d7:L0:000020"
+  ],
+  "filtered_ids": [
+    "99628090500247e3:L0:000107",
+    "317e12ccd417c0d7:L0:000195",
+    "4a757779abfb4ba1:L0:000037",
+    "b04ce6dd2d95fb80:L0:000156",
+    "317e12ccd417c0d7:L0:000020"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:24:50.431986+00:00",
+      "call_id": "8cf72c122b56",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3e5e25d40ce65e9f",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 28,
+      "completion_tokens": 0,
+      "latency_ms": 63.76,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "03f139d0ca5344fd"
+    },
+    {
+      "ts": "2026-11-12T14:25:09.183502+00:00",
+      "call_id": "8a3c7fa8b8c1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "676abc636ea36a84",
+      "prompt_tokens": 1248,
+      "completion_tokens": 115,
+      "latency_ms": 18662.43,
+      "server_ms": 18641.48,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "03f139d0ca5344fd"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1248,
+    "completion_tokens": 115,
+    "total_ms": 18822.02
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The director of 'The Devil and Miss Jones' is Robert Cummings, who is an actor, not a director.",
+        "Therefore, the film 'The Man in the Funny Suit' has the director who died later."
+      ]
+    }
+  }
+}

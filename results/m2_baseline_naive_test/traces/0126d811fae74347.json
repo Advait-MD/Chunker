@@ -1,0 +1,119 @@
+{
+  "trace_id": "0126d811fae74347",
+  "created_at": "2026-11-12T14:57:06.981149+00:00",
+  "query": "Where did the director of film Q.R.R (Quien Resulte Responsable) die?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 131.28
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 131.34
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12358.7
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 131.23
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 963,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12227.27
+    }
+  },
+  "retrieved_ids": [
+    "317e12ccd417c0d7:L0:000137",
+    "0eac870d43736f51:L0:000004",
+    "abe982d210232c3f:L0:000125",
+    "6af2db6cb86d77e2:L0:000137",
+    "b04ce6dd2d95fb80:L0:000054"
+  ],
+  "filtered_ids": [
+    "317e12ccd417c0d7:L0:000137",
+    "0eac870d43736f51:L0:000004",
+    "abe982d210232c3f:L0:000125",
+    "6af2db6cb86d77e2:L0:000137",
+    "b04ce6dd2d95fb80:L0:000054"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:57:07.041528+00:00",
+      "call_id": "e53994bf4add",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8b65fa8d2d26a1b2",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 28,
+      "completion_tokens": 0,
+      "latency_ms": 59.9,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "0126d811fae74347"
+    },
+    {
+      "ts": "2026-11-12T14:57:19.339055+00:00",
+      "call_id": "2adacb3482b7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4e0a151622092523",
+      "prompt_tokens": 1739,
+      "completion_tokens": 45,
+      "latency_ms": 12226.17,
+      "server_ms": 12198.71,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0126d811fae74347"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1739,
+    "completion_tokens": 45,
+    "total_ms": 12360.47
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

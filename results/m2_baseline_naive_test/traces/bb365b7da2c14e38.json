@@ -1,0 +1,119 @@
+{
+  "trace_id": "bb365b7da2c14e38",
+  "created_at": "2026-11-12T13:42:05.335245+00:00",
+  "query": "Kete Krachi is a town in what region?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 141.47
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 141.52
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12555.86
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 141.42
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 715,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12414.24
+    }
+  },
+  "retrieved_ids": [
+    "634431bb1e27714f:L0:000065",
+    "cc2399aca11eb631:L0:000040",
+    "838c0e0106e6f015:L0:000030",
+    "cc2399aca11eb631:L0:000151",
+    "838c0e0106e6f015:L0:000079"
+  ],
+  "filtered_ids": [
+    "634431bb1e27714f:L0:000065",
+    "cc2399aca11eb631:L0:000040",
+    "838c0e0106e6f015:L0:000030",
+    "cc2399aca11eb631:L0:000151",
+    "838c0e0106e6f015:L0:000079"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:42:05.395414+00:00",
+      "call_id": "b45836076c3d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "de9b0113b1294ddc",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 18,
+      "completion_tokens": 0,
+      "latency_ms": 59.76,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "bb365b7da2c14e38"
+    },
+    {
+      "ts": "2026-11-12T13:42:17.890299+00:00",
+      "call_id": "290d83d006e7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "df98671f65f88acf",
+      "prompt_tokens": 1431,
+      "completion_tokens": 54,
+      "latency_ms": 12413.28,
+      "server_ms": 12393.09,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "bb365b7da2c14e38"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1431,
+    "completion_tokens": 54,
+    "total_ms": 12556.98
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

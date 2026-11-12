@@ -1,0 +1,123 @@
+{
+  "trace_id": "98aebeb8b7fc4358",
+  "created_at": "2026-11-12T12:43:49.581369+00:00",
+  "query": "Which old lady helps Coulter return home?\n\nOptions:\n(A) Sylvia\n(B) Both old ladies\n(C) Mrs. RSF\n(D) Mrs. RVS\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 137.85
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 137.9
+    },
+    {
+      "state": "DONE",
+      "t_ms": 27437.36
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 137.79
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1963,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 27299.24
+    }
+  },
+  "retrieved_ids": [
+    "a4b518a2c42bd878:L0:000002",
+    "a4b518a2c42bd878:L0:000016",
+    "a4b518a2c42bd878:L0:000001",
+    "a4b518a2c42bd878:L0:000006",
+    "a4b518a2c42bd878:L0:000015"
+  ],
+  "filtered_ids": [
+    "a4b518a2c42bd878:L0:000002",
+    "a4b518a2c42bd878:L0:000016",
+    "a4b518a2c42bd878:L0:000001",
+    "a4b518a2c42bd878:L0:000006",
+    "a4b518a2c42bd878:L0:000015"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:43:49.645099+00:00",
+      "call_id": "60ee6e49cbd5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "86a87ba3e16433cb",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 64,
+      "completion_tokens": 0,
+      "latency_ms": 62.8,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "98aebeb8b7fc4358"
+    },
+    {
+      "ts": "2026-11-12T12:44:17.016672+00:00",
+      "call_id": "f0feba7bf912",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "34295b82812f0981",
+      "prompt_tokens": 2529,
+      "completion_tokens": 104,
+      "latency_ms": 27297.11,
+      "server_ms": 27264.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "98aebeb8b7fc4358"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2529,
+    "completion_tokens": 104,
+    "total_ms": 27439.57
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "(C) Mrs.",
+        "RSF kept track of how much more fuel they had than they needed to get home.",
+        "When they were moving away from station, she dropped in alarmed little jumps, but when they were headed home, she inched along in serene contentment, or if they were coasting, sneaked triumphantly back up the dial."
+      ]
+    }
+  }
+}

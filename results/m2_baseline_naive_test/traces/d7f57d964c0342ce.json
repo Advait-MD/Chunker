@@ -1,0 +1,120 @@
+{
+  "trace_id": "d7f57d964c0342ce",
+  "created_at": "2026-11-12T11:08:31.569264+00:00",
+  "query": "What geological event caused the foundations of the land beneath the city where most university graduates stay after acquiring a degree?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 147.81
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 147.88
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13443.23
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 147.76
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 589,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13295.24
+    }
+  },
+  "retrieved_ids": [
+    "73dfa6a9bfcab050:L0:000023",
+    "8679484d23bfd3a0:L0:000146",
+    "dbcbda865eee9c7b:L0:000197",
+    "8679484d23bfd3a0:L0:000083",
+    "ad4ace752e719bab:L0:000110"
+  ],
+  "filtered_ids": [
+    "73dfa6a9bfcab050:L0:000023",
+    "8679484d23bfd3a0:L0:000146",
+    "dbcbda865eee9c7b:L0:000197",
+    "8679484d23bfd3a0:L0:000083",
+    "ad4ace752e719bab:L0:000110"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:08:31.634016+00:00",
+      "call_id": "0fa94d802e4c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "103c4a985ae1fbde",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 28,
+      "completion_tokens": 0,
+      "latency_ms": 64.0,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "d7f57d964c0342ce"
+    },
+    {
+      "ts": "2026-11-12T11:08:45.011546+00:00",
+      "call_id": "42c808975dcd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7fb966f2eb16deee",
+      "prompt_tokens": 1195,
+      "completion_tokens": 80,
+      "latency_ms": 13293.3,
+      "server_ms": 13256.14,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d7f57d964c0342ce"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1195,
+    "completion_tokens": 80,
+    "total_ms": 13444.69
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The geological event that caused the foundations of the land beneath the city where most university graduates stay after acquiring a degree is not mentioned in the provided passages.",
+        "Therefore, the answer is Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

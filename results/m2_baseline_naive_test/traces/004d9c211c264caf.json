@@ -1,0 +1,122 @@
+{
+  "trace_id": "004d9c211c264caf",
+  "created_at": "2026-11-12T13:35:33.968217+00:00",
+  "query": "What career did the British actor born in 1965  and star of Lock, Stock and Two Smoking Barrels have before acting?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 136.9
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 136.95
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14341.41
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 136.84
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 734,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14204.38
+    }
+  },
+  "retrieved_ids": [
+    "81fc433d55d23b4c:L0:000039",
+    "c8fd2b3ea47eb07f:L0:000157",
+    "bc1dba3471045f02:L0:000145",
+    "20496f59538deb41:L0:000113",
+    "cc2399aca11eb631:L0:000147"
+  ],
+  "filtered_ids": [
+    "81fc433d55d23b4c:L0:000039",
+    "c8fd2b3ea47eb07f:L0:000157",
+    "bc1dba3471045f02:L0:000145",
+    "20496f59538deb41:L0:000113",
+    "cc2399aca11eb631:L0:000147"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:35:34.029890+00:00",
+      "call_id": "6166028bc586",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e7e2857195ebe24e",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 29,
+      "completion_tokens": 0,
+      "latency_ms": 61.24,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "004d9c211c264caf"
+    },
+    {
+      "ts": "2026-11-12T13:35:48.308655+00:00",
+      "call_id": "fb980d4c55f7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "82ea3395ae328873",
+      "prompt_tokens": 1433,
+      "completion_tokens": 92,
+      "latency_ms": 14203.47,
+      "server_ms": 14184.7,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "004d9c211c264caf"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1433,
+    "completion_tokens": 92,
+    "total_ms": 14358.62
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        4
+      ],
+      "uncited_sentences": [
+        "Nick Moran, born in 1968, is an English actor, writer, producer and director, best known for his role as Eddy the card sharp in 'Lock, Stock, and Two Smoking Barrels'.",
+        "The evidence provided does not specify his career before acting."
+      ]
+    }
+  }
+}

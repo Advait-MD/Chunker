@@ -1,0 +1,119 @@
+{
+  "trace_id": "04691e6c5d204b9f",
+  "created_at": "2026-11-12T11:33:42.762356+00:00",
+  "query": "Who won the Indy car race in the largest populated city in the state where the Pithecanthropus Erectus performer is from?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 196.02
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 196.13
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 8595.68
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 195.95
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 375,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8399.42
+    }
+  },
+  "retrieved_ids": [
+    "dbcbda865eee9c7b:L0:000095",
+    "15abb5e49dced915:L0:000118",
+    "a168352d83e925b5:L0:000146",
+    "15abb5e49dced915:L0:000093",
+    "5a1a5bbda9db013e:L0:000120"
+  ],
+  "filtered_ids": [
+    "dbcbda865eee9c7b:L0:000095",
+    "15abb5e49dced915:L0:000118",
+    "a168352d83e925b5:L0:000146",
+    "15abb5e49dced915:L0:000093",
+    "5a1a5bbda9db013e:L0:000120"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:33:42.823711+00:00",
+      "call_id": "d0adde2b5189",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cd77113545451b82",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 34,
+      "completion_tokens": 0,
+      "latency_ms": 61.23,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "04691e6c5d204b9f"
+    },
+    {
+      "ts": "2026-11-12T11:33:51.356119+00:00",
+      "call_id": "1cb1a10c51e3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4e52ada21335337d",
+      "prompt_tokens": 979,
+      "completion_tokens": 43,
+      "latency_ms": 8397.38,
+      "server_ms": 8370.55,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "04691e6c5d204b9f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 979,
+    "completion_tokens": 43,
+    "total_ms": 8599.28
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

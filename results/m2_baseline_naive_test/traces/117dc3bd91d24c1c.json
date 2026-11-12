@@ -1,0 +1,121 @@
+{
+  "trace_id": "117dc3bd91d24c1c",
+  "created_at": "2026-11-12T13:39:30.101689+00:00",
+  "query": "Palm Springs lies in Palm Beach County, the third most populated county in its state. Which major U.S. city is it near?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 124.55
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 124.6
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11713.96
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 124.5
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 485,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11589.28
+    }
+  },
+  "retrieved_ids": [
+    "ba3cd068cf9ac2e4:L0:000090",
+    "ec3410ef955c5c93:L0:000031",
+    "c8fd2b3ea47eb07f:L0:000042",
+    "8e50522b7cb636d8:L0:000133",
+    "90976421f3f2bea2:L0:000153"
+  ],
+  "filtered_ids": [
+    "ba3cd068cf9ac2e4:L0:000090",
+    "ec3410ef955c5c93:L0:000031",
+    "c8fd2b3ea47eb07f:L0:000042",
+    "8e50522b7cb636d8:L0:000133",
+    "90976421f3f2bea2:L0:000153"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:39:30.154812+00:00",
+      "call_id": "8f7407b09509",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "275628e7f8429e2b",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 34,
+      "completion_tokens": 0,
+      "latency_ms": 52.38,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "117dc3bd91d24c1c"
+    },
+    {
+      "ts": "2026-11-12T13:39:41.815001+00:00",
+      "call_id": "ea5d3f04a7b4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "87aa1b6a710827d0",
+      "prompt_tokens": 1119,
+      "completion_tokens": 82,
+      "latency_ms": 11588.35,
+      "server_ms": 11560.88,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "117dc3bd91d24c1c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1119,
+    "completion_tokens": 82,
+    "total_ms": 11715.18
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Palm Springs does not lie in Palm Beach County, Florida.",
+        "Palm Beach County is the third-most populous county in Florida, but Palm Springs is not mentioned in the provided evidence passages.",
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

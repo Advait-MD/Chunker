@@ -1,0 +1,123 @@
+{
+  "trace_id": "cce469445f024a48",
+  "created_at": "2026-11-12T09:15:39.030738+00:00",
+  "query": "What datasets they used for evaluation?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 73.27
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 73.32
+    },
+    {
+      "state": "DONE",
+      "t_ms": 26960.49
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 73.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 650,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 26887.07
+    }
+  },
+  "retrieved_ids": [
+    "74bd71a556fa81c1:L0:000025",
+    "74bd71a556fa81c1:L0:000008",
+    "74bd71a556fa81c1:L0:000012",
+    "74bd71a556fa81c1:L0:000026",
+    "74bd71a556fa81c1:L0:000007"
+  ],
+  "filtered_ids": [
+    "74bd71a556fa81c1:L0:000025",
+    "74bd71a556fa81c1:L0:000008",
+    "74bd71a556fa81c1:L0:000012",
+    "74bd71a556fa81c1:L0:000026",
+    "74bd71a556fa81c1:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T09:15:39.034740+00:00",
+      "call_id": "7fb9779a73d0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1f9af2d07d21ed78",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cce469445f024a48"
+    },
+    {
+      "ts": "2026-11-12T09:16:05.990310+00:00",
+      "call_id": "c326190aa305",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4fd4a7aa2418dfab",
+      "prompt_tokens": 1325,
+      "completion_tokens": 180,
+      "latency_ms": 26886.02,
+      "server_ms": 26861.69,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "cce469445f024a48"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1325,
+    "completion_tokens": 180,
+    "total_ms": 26961.69
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        5
+      ],
+      "uncited_sentences": [
+        "For En-De, they used the standard dataset for WMT 2014 En-De translation, consisting of around 4.5 million sentence pairs.",
+        "For En-Vi, they used the dataset in IWSLT 2015, consisting of around 133K sentence pairs.",
+        "For De-En, they used the dataset in IWSLT 2014, containing 160K sentence pairs for training and 7K sentences for validation, with the same test set of around 7K sentences."
+      ]
+    }
+  }
+}

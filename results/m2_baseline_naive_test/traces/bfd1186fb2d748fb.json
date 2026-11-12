@@ -1,0 +1,119 @@
+{
+  "trace_id": "bfd1186fb2d748fb",
+  "created_at": "2026-11-12T15:00:48.697499+00:00",
+  "query": "According to Walter Isaacson, what was Steve Jobs' favorite song by the music artist Taylor Swift?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 56.95
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 57.0
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 58.37
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 56.91
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1008,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 1.31
+    }
+  },
+  "retrieved_ids": [
+    "17581cb533e90c48:L0:001025",
+    "17581cb533e90c48:L0:001018",
+    "17581cb533e90c48:L0:000813",
+    "17581cb533e90c48:L0:001014",
+    "17581cb533e90c48:L0:001001"
+  ],
+  "filtered_ids": [
+    "17581cb533e90c48:L0:001025",
+    "17581cb533e90c48:L0:001018",
+    "17581cb533e90c48:L0:000813",
+    "17581cb533e90c48:L0:001014",
+    "17581cb533e90c48:L0:001001"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T15:00:48.698500+00:00",
+      "call_id": "7c8361e23b20",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "aec9682081cef7c8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "bfd1186fb2d748fb"
+    },
+    {
+      "ts": "2026-11-12T15:00:48.755031+00:00",
+      "call_id": "83e1e9b4884e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "123f3259e4b232b4",
+      "prompt_tokens": 1507,
+      "completion_tokens": 45,
+      "latency_ms": 0.44,
+      "server_ms": 15473.6,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "bfd1186fb2d748fb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 1507,
+    "completion_tokens": 45,
+    "total_ms": 59.25
+  },
+  "config_hash": "307e5775b9d8",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

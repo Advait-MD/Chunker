@@ -1,0 +1,119 @@
+{
+  "trace_id": "ad4c019713bf4ae7",
+  "created_at": "2026-11-12T11:02:12.178725+00:00",
+  "query": "What did the director of \"A Stitch for Time\" win at the 54th Academy Awards?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 145.1
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 145.19
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 8358.91
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 145.03
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 337,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8213.63
+    }
+  },
+  "retrieved_ids": [
+    "f3503d3d186f0f90:L0:000097",
+    "66f5caec1369ebaf:L0:000084",
+    "dbcbda865eee9c7b:L0:000150",
+    "6bddce8aaad42fea:L0:000091",
+    "178c7e3e6ef6ae87:L0:000190"
+  ],
+  "filtered_ids": [
+    "f3503d3d186f0f90:L0:000097",
+    "66f5caec1369ebaf:L0:000084",
+    "dbcbda865eee9c7b:L0:000150",
+    "6bddce8aaad42fea:L0:000091",
+    "178c7e3e6ef6ae87:L0:000190"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:02:12.239781+00:00",
+      "call_id": "dc0ca1cdaf4a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a79a94d0047d90c9",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 24,
+      "completion_tokens": 0,
+      "latency_ms": 60.23,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "ad4c019713bf4ae7"
+    },
+    {
+      "ts": "2026-11-12T11:02:20.536889+00:00",
+      "call_id": "9295f2c2d327",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "fc30ab8661691c55",
+      "prompt_tokens": 943,
+      "completion_tokens": 45,
+      "latency_ms": 8212.71,
+      "server_ms": 8189.93,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ad4c019713bf4ae7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 943,
+    "completion_tokens": 45,
+    "total_ms": 8359.89
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

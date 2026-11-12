@@ -1,0 +1,123 @@
+{
+  "trace_id": "989fd365f8bd4237",
+  "created_at": "2026-11-12T13:06:47.907824+00:00",
+  "query": "What would the citizens of Carthis learn about Earth after Dameri returned?\n\nOptions:\n(A) They would learn about the animals of Earth\n(B) They would learn they needed to revise the log of Galactic League planets\n(C) They would learn it is an uncivilized place\n(D) They likely would never learn that it existed\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 153.65
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 153.71
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24071.9
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 153.6
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1970,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23918.09
+    }
+  },
+  "retrieved_ids": [
+    "5cb8b210379e1c67:L0:000009",
+    "5cb8b210379e1c67:L0:000008",
+    "5cb8b210379e1c67:L0:000000",
+    "5cb8b210379e1c67:L0:000007",
+    "5cb8b210379e1c67:L0:000005"
+  ],
+  "filtered_ids": [
+    "5cb8b210379e1c67:L0:000009",
+    "5cb8b210379e1c67:L0:000008",
+    "5cb8b210379e1c67:L0:000000",
+    "5cb8b210379e1c67:L0:000007",
+    "5cb8b210379e1c67:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:06:47.986124+00:00",
+      "call_id": "09257be5dcc6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2965f0a32ec47564",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 100,
+      "completion_tokens": 0,
+      "latency_ms": 77.95,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "989fd365f8bd4237"
+    },
+    {
+      "ts": "2026-11-12T13:07:11.978183+00:00",
+      "call_id": "ad2ff9c59c24",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "11aea41080136185",
+      "prompt_tokens": 2636,
+      "completion_tokens": 62,
+      "latency_ms": 23916.41,
+      "server_ms": 23889.19,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "989fd365f8bd4237"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2636,
+    "completion_tokens": 62,
+    "total_ms": 24073.17
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        4
+      ],
+      "uncited_sentences": [
+        "(C) They would learn it is an uncivilized place."
+      ]
+    }
+  }
+}

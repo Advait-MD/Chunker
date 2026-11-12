@@ -1,0 +1,125 @@
+{
+  "trace_id": "8df549d9ba8f49c4",
+  "created_at": "2026-11-12T13:09:47.055285+00:00",
+  "query": "Which of the following words best describes the main character's personality?\n\nOptions:\n(A) Sarcastic\n(B) Good-natured\n(C) Serious\n(D) Reverent\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 85.71
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 85.74
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22544.1
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 85.68
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1945,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22458.25
+    }
+  },
+  "retrieved_ids": [
+    "c89b89a8b09ec3d7:L0:000008",
+    "c89b89a8b09ec3d7:L0:000000",
+    "c89b89a8b09ec3d7:L0:000007",
+    "c89b89a8b09ec3d7:L0:000014",
+    "c89b89a8b09ec3d7:L0:000017"
+  ],
+  "filtered_ids": [
+    "c89b89a8b09ec3d7:L0:000008",
+    "c89b89a8b09ec3d7:L0:000000",
+    "c89b89a8b09ec3d7:L0:000007",
+    "c89b89a8b09ec3d7:L0:000014",
+    "c89b89a8b09ec3d7:L0:000017"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:09:47.106451+00:00",
+      "call_id": "76d55f4139fe",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "163daf71b5741c76",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 67,
+      "completion_tokens": 0,
+      "latency_ms": 50.75,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "8df549d9ba8f49c4"
+    },
+    {
+      "ts": "2026-11-12T13:10:09.598597+00:00",
+      "call_id": "140b62da8a0e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4816d1e51314e3b3",
+      "prompt_tokens": 2515,
+      "completion_tokens": 85,
+      "latency_ms": 22457.23,
+      "server_ms": 22429.29,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "8df549d9ba8f49c4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2515,
+    "completion_tokens": 85,
+    "total_ms": 22545.65
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "uncited_sentences": [
+        "(A) Sarcastic.",
+        "The main character often uses sarcasm, such as when he talks about quitting his job and burning the contract, or when he describes his successful disguise as a lizard."
+      ]
+    }
+  }
+}

@@ -107,6 +107,8 @@ class OllamaClient:
         self.keep_alive = o.get("keep_alive", "30m")
         self.seed = int(cfg["run"]["seed"])
         self.backend = str(o.get("backend", "unspecified"))
+        self._http = transport is None
+        self._version: Optional[str] = None
         self._post = transport or _http_transport(o["url"], int(o.get("max_retries", 2)))
         llm = cfg["llm"]
         self.cache = _SqliteCache(resolve_path(llm["cache_path"])) if llm.get("cache_enabled", True) else None
@@ -114,6 +116,21 @@ class OllamaClient:
         self.log_path.parent.mkdir(parents=True, exist_ok=True)
         self._log_lock = threading.Lock()
         self._local = threading.local()
+
+    @property
+    def server_version(self) -> str:
+        """Ollama server version, fetched once. Part of the generate cache key: a new runtime may change outputs."""
+        if self._version is None:
+            if not self._http:
+                self._version = "injected-transport"
+            else:
+                try:
+                    r = requests.get(f"{self.cfg['ollama']['url'].rstrip('/')}/api/version", timeout=10)
+                    r.raise_for_status()
+                    self._version = str(r.json()["version"])
+                except (requests.RequestException, KeyError, ValueError) as e:
+                    raise OllamaError(f"Cannot read the Ollama server version: {e}") from e
+        return self._version
 
     # ---- trace binding -------------------------------------------------
     def bind_trace(self, trace) -> None:
@@ -150,6 +167,7 @@ class OllamaClient:
 
         key_fields = {k: payload.get(k) for k in ("model", "prompt", "system", "options", "format")}
         key_fields["backend"] = self.backend  # CPU and GPU numerics differ; never serve one for the other
+        key_fields["ollama_version"] = self.server_version  # nor across runtime upgrades
         key_material = json.dumps(key_fields, sort_keys=True)
         key = "gen:" + sha256_text(key_material)
         prompt_hash = sha256_text((system or "") + "\x00" + prompt)[:16]
@@ -177,7 +195,7 @@ class OllamaClient:
             "prompt_tokens": result.prompt_tokens, "completion_tokens": result.completion_tokens,
             "latency_ms": round(latency_ms, 2), "server_ms": round((data.get("total_duration") or 0) / 1e6, 2),
             "cache_hit": hit, "temperature": options["temperature"], "json_mode": json_schema is not None,
-            "backend": self.backend,
+            "backend": self.backend, "ollama_version": self.server_version,
         })
         return result
 

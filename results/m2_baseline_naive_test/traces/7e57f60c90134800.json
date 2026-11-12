@@ -1,0 +1,119 @@
+{
+  "trace_id": "7e57f60c90134800",
+  "created_at": "2026-11-12T10:52:32.144593+00:00",
+  "query": "In the movie A League of their Own, who played the husband of the person who also played Thelma in the movie Thelma and Louise?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 141.78
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 141.85
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10958.85
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 141.73
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 534,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10816.94
+    }
+  },
+  "retrieved_ids": [
+    "15abb5e49dced915:L0:000165",
+    "73dfa6a9bfcab050:L0:000028",
+    "cc1bdb3bf430bd0d:L0:000143",
+    "dbcbda865eee9c7b:L0:000108",
+    "ad4ace752e719bab:L0:000112"
+  ],
+  "filtered_ids": [
+    "15abb5e49dced915:L0:000165",
+    "73dfa6a9bfcab050:L0:000028",
+    "cc1bdb3bf430bd0d:L0:000143",
+    "dbcbda865eee9c7b:L0:000108",
+    "ad4ace752e719bab:L0:000112"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T10:52:32.208719+00:00",
+      "call_id": "748187eaf25e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "784e46b77c61cfdc",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 35,
+      "completion_tokens": 0,
+      "latency_ms": 63.42,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "7e57f60c90134800"
+    },
+    {
+      "ts": "2026-11-12T10:52:43.102671+00:00",
+      "call_id": "4732c8c93e4e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "81690a243182bc87",
+      "prompt_tokens": 1132,
+      "completion_tokens": 45,
+      "latency_ms": 10816.04,
+      "server_ms": 10790.6,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "7e57f60c90134800"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1132,
+    "completion_tokens": 45,
+    "total_ms": 10960.85
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

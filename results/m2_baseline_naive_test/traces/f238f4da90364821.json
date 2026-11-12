@@ -1,0 +1,122 @@
+{
+  "trace_id": "f238f4da90364821",
+  "created_at": "2026-11-12T12:54:21.529567+00:00",
+  "query": "Does Dan Merrol want to make it work with Erica?\n\nOptions:\n(A) Yes, Dan knows that no one else will love him\n(B) Yes, she seems to Dan to be an excellent wife\n(C) No, he wants to have an open mind to other women\n(D) No, he wants to hide his appearance from everyone\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 152.22
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 152.27
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24327.36
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 152.16
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1964,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24175.01
+    }
+  },
+  "retrieved_ids": [
+    "b3676a9351caa0b4:L0:000002",
+    "b3676a9351caa0b4:L0:000010",
+    "b3676a9351caa0b4:L0:000001",
+    "b3676a9351caa0b4:L0:000012",
+    "b3676a9351caa0b4:L0:000000"
+  ],
+  "filtered_ids": [
+    "b3676a9351caa0b4:L0:000002",
+    "b3676a9351caa0b4:L0:000010",
+    "b3676a9351caa0b4:L0:000001",
+    "b3676a9351caa0b4:L0:000012",
+    "b3676a9351caa0b4:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:54:21.607997+00:00",
+      "call_id": "9ad045664687",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0e18e029d2c12cda",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 100,
+      "completion_tokens": 0,
+      "latency_ms": 77.81,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "f238f4da90364821"
+    },
+    {
+      "ts": "2026-11-12T12:54:45.856342+00:00",
+      "call_id": "cbb8206c3020",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4e08219be7433552",
+      "prompt_tokens": 2460,
+      "completion_tokens": 76,
+      "latency_ms": 24174.32,
+      "server_ms": 24155.32,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f238f4da90364821"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2460,
+    "completion_tokens": 76,
+    "total_ms": 24329.34
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

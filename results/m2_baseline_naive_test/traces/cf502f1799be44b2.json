@@ -1,0 +1,119 @@
+{
+  "trace_id": "cf502f1799be44b2",
+  "created_at": "2026-11-12T12:48:30.983229+00:00",
+  "query": "Why did George remain on Tepokt instead of returning home?\n\nOptions:\n(A) He like the way he was treated with respect on Tepokt\n(B) He was a wanted criminal on his home planet\n(C) He wanted to help the Tepoktans achieve interstellar travel\n(D) He was afraid of crashing in the meteorite field while leaving\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 161.15
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 161.2
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22917.6
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 161.09
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1934,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22756.29
+    }
+  },
+  "retrieved_ids": [
+    "a0408fac68f0a812:L0:000008",
+    "a0408fac68f0a812:L0:000009",
+    "a0408fac68f0a812:L0:000010",
+    "a0408fac68f0a812:L0:000006",
+    "a0408fac68f0a812:L0:000002"
+  ],
+  "filtered_ids": [
+    "a0408fac68f0a812:L0:000008",
+    "a0408fac68f0a812:L0:000009",
+    "a0408fac68f0a812:L0:000010",
+    "a0408fac68f0a812:L0:000006",
+    "a0408fac68f0a812:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:48:31.056276+00:00",
+      "call_id": "94a202197673",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9ed10dc3d152ba79",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 104,
+      "completion_tokens": 0,
+      "latency_ms": 70.51,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "cf502f1799be44b2"
+    },
+    {
+      "ts": "2026-11-12T12:48:53.899996+00:00",
+      "call_id": "37bfc814a55b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "fda3a40648ee2085",
+      "prompt_tokens": 2597,
+      "completion_tokens": 57,
+      "latency_ms": 22755.09,
+      "server_ms": 22726.11,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "cf502f1799be44b2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2597,
+    "completion_tokens": 57,
+    "total_ms": 22921.17
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

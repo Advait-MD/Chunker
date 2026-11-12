@@ -1,0 +1,122 @@
+{
+  "trace_id": "7b20f7cf825c4c57",
+  "created_at": "2026-11-12T09:13:10.117141+00:00",
+  "query": "What are the baseline models?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 70.96
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 71.01
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25194.35
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 70.91
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 898,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25123.23
+    }
+  },
+  "retrieved_ids": [
+    "107b2a26a3716ca7:L0:000018",
+    "107b2a26a3716ca7:L0:000027",
+    "107b2a26a3716ca7:L0:000030",
+    "107b2a26a3716ca7:L0:000017",
+    "107b2a26a3716ca7:L0:000022"
+  ],
+  "filtered_ids": [
+    "107b2a26a3716ca7:L0:000018",
+    "107b2a26a3716ca7:L0:000027",
+    "107b2a26a3716ca7:L0:000030",
+    "107b2a26a3716ca7:L0:000017",
+    "107b2a26a3716ca7:L0:000022"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T09:13:10.119526+00:00",
+      "call_id": "fe04913ad8d5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c41eae46799badfd",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7b20f7cf825c4c57"
+    },
+    {
+      "ts": "2026-11-12T09:13:35.310661+00:00",
+      "call_id": "8ab16661a84d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6c5e33475827ee95",
+      "prompt_tokens": 1513,
+      "completion_tokens": 144,
+      "latency_ms": 25122.22,
+      "server_ms": 25101.72,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "7b20f7cf825c4c57"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1513,
+    "completion_tokens": 144,
+    "total_ms": 25195.46
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "The baseline models include an MLE model trained on the Conceptual Captions training split alone, and a model called Baseline$+(t)$, which merges positively-rated captions from the Caption-Quality training split with the Conceptual Captions examples and finetunes the baseline model.",
+        "The $t \text{ value}$ represents the rating threshold for the included positive captions, with two variants being $t \text{ in } \rbrace 0.5, 0.7\text{rbrace$."
+      ]
+    }
+  }
+}

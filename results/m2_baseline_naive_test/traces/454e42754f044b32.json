@@ -1,0 +1,124 @@
+{
+  "trace_id": "454e42754f044b32",
+  "created_at": "2026-11-12T14:30:53.006195+00:00",
+  "query": "Which film has the director who was born first, The Girl In 419 or Dunked In The Deep?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 136.44
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 136.5
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 19782.68
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 136.36
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 550,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19646.0
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000167",
+    "4a757779abfb4ba1:L0:000132",
+    "0eac870d43736f51:L0:000009",
+    "99628090500247e3:L0:000107",
+    "6af2db6cb86d77e2:L0:000068"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000167",
+    "4a757779abfb4ba1:L0:000132",
+    "0eac870d43736f51:L0:000009",
+    "99628090500247e3:L0:000107",
+    "6af2db6cb86d77e2:L0:000068"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:30:53.070705+00:00",
+      "call_id": "931546395a3c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3cdd9f98e6fc94e0",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 28,
+      "completion_tokens": 0,
+      "latency_ms": 64.09,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "454e42754f044b32"
+    },
+    {
+      "ts": "2026-11-12T14:31:12.787755+00:00",
+      "call_id": "a83f626bd81d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8c0874ee6209be9e",
+      "prompt_tokens": 1192,
+      "completion_tokens": 135,
+      "latency_ms": 19644.57,
+      "server_ms": 19620.51,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "454e42754f044b32"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1192,
+    "completion_tokens": 135,
+    "total_ms": 19783.97
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "The Girl in 419 was directed by Alexander Hall and George Somnes, while Dunked In The Deep is not mentioned in the provided passages, so we cannot determine its director.",
+        "Therefore, we abstain from answering this question."
+      ]
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "trace_id": "253b1a8b13b44a6d",
+  "created_at": "2026-11-12T12:35:35.964708+00:00",
+  "query": "Why was Dennis sent on the mission even though he was grounded?\n\nOptions:\n(A) They wanted Koerber brought back alive\n(B) His grounding had been done in error\n(C) He was sent by mistake\n(D) The mission was likely to be deadly\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 89.18
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 89.21
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20659.98
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 89.14
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1956,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20570.5
+    }
+  },
+  "retrieved_ids": [
+    "136ce4c397778c8e:L0:000009",
+    "136ce4c397778c8e:L0:000016",
+    "136ce4c397778c8e:L0:000005",
+    "136ce4c397778c8e:L0:000014",
+    "136ce4c397778c8e:L0:000015"
+  ],
+  "filtered_ids": [
+    "136ce4c397778c8e:L0:000009",
+    "136ce4c397778c8e:L0:000016",
+    "136ce4c397778c8e:L0:000005",
+    "136ce4c397778c8e:L0:000014",
+    "136ce4c397778c8e:L0:000015"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:35:36.020776+00:00",
+      "call_id": "bae9e8da5504",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "44d3dec5cb122c63",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 85,
+      "completion_tokens": 0,
+      "latency_ms": 55.98,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "253b1a8b13b44a6d"
+    },
+    {
+      "ts": "2026-11-12T12:35:56.622459+00:00",
+      "call_id": "4cbf5f832586",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1766a2c254e69e67",
+      "prompt_tokens": 2547,
+      "completion_tokens": 109,
+      "latency_ms": 20568.29,
+      "server_ms": 20533.51,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "253b1a8b13b44a6d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2547,
+    "completion_tokens": 109,
+    "total_ms": 20663.93
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        3
+      ],
+      "uncited_sentences": [
+        "(B) His grounding had been done in error, for two reasons.",
+        "The first one you already know—your capture of one of Koerber's henchmen—has given us a line as to his present orbit of piracy, and the means of a check on his activities.",
+        "But that's not really why I've brought you here."
+      ]
+    }
+  }
+}

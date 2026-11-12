@@ -1,0 +1,122 @@
+{
+  "trace_id": "6e937e738ae445fe",
+  "created_at": "2026-11-12T12:03:23.096925+00:00",
+  "query": "What was Boris Knackenpast's great accomplishment?\n\nOptions:\n(A) Evading capture by the Americans\n(B) Evading capture by the Russians\n(C) Pretending to be a robot\n(D) Nobel prize for literature\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 147.74
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 147.79
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21055.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 147.69
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1961,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20907.57
+    }
+  },
+  "retrieved_ids": [
+    "1347e212fd21afeb:L0:000009",
+    "1347e212fd21afeb:L0:000002",
+    "1347e212fd21afeb:L0:000011",
+    "1347e212fd21afeb:L0:000018",
+    "1347e212fd21afeb:L0:000014"
+  ],
+  "filtered_ids": [
+    "1347e212fd21afeb:L0:000009",
+    "1347e212fd21afeb:L0:000002",
+    "1347e212fd21afeb:L0:000011",
+    "1347e212fd21afeb:L0:000018",
+    "1347e212fd21afeb:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:03:23.177827+00:00",
+      "call_id": "1c73a57d5b22",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "86d1e0d19d103f98",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 78,
+      "completion_tokens": 0,
+      "latency_ms": 80.46,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "6e937e738ae445fe"
+    },
+    {
+      "ts": "2026-11-12T12:03:44.151828+00:00",
+      "call_id": "0b477b2c64f8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6f6274495ae1475f",
+      "prompt_tokens": 2733,
+      "completion_tokens": 63,
+      "latency_ms": 20906.79,
+      "server_ms": 20879.86,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "6e937e738ae445fe"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2733,
+    "completion_tokens": 63,
+    "total_ms": 21058.05
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

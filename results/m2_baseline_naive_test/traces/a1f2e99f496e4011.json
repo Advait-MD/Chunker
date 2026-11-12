@@ -1,0 +1,119 @@
+{
+  "trace_id": "a1f2e99f496e4011",
+  "created_at": "2026-11-12T14:14:43.341445+00:00",
+  "query": "Which film has the director died later, The Man From Lost River or Mcveagh Of The South Seas?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 136.86
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 136.92
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 18858.76
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 136.81
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 951,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18721.74
+    }
+  },
+  "retrieved_ids": [
+    "99628090500247e3:L0:000110",
+    "6af2db6cb86d77e2:L0:000106",
+    "0eac870d43736f51:L0:000017",
+    "c73b757f0eb66f37:L0:000083",
+    "c73b757f0eb66f37:L0:000014"
+  ],
+  "filtered_ids": [
+    "99628090500247e3:L0:000110",
+    "6af2db6cb86d77e2:L0:000106",
+    "0eac870d43736f51:L0:000017",
+    "c73b757f0eb66f37:L0:000083",
+    "c73b757f0eb66f37:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:14:43.408814+00:00",
+      "call_id": "d7b624929551",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7b2e5fb25cbebd50",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 28,
+      "completion_tokens": 0,
+      "latency_ms": 66.91,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "a1f2e99f496e4011"
+    },
+    {
+      "ts": "2026-11-12T14:15:02.199537+00:00",
+      "call_id": "8693655ebb0e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7b51c7d9c3f666ba",
+      "prompt_tokens": 1706,
+      "completion_tokens": 82,
+      "latency_ms": 18720.54,
+      "server_ms": 18696.56,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a1f2e99f496e4011"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1706,
+    "completion_tokens": 82,
+    "total_ms": 18863.21
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The information provided does not contain details about the directors of 'The Man From Lost River' or 'Mcveagh Of The South Seas', thus it is impossible to determine which film has the director who died later based on the given passages."
+      ]
+    }
+  }
+}

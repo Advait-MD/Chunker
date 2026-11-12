@@ -1,0 +1,122 @@
+{
+  "trace_id": "0b6d868cf1664522",
+  "created_at": "2026-11-12T12:11:48.311107+00:00",
+  "query": "Why was Mr. Spurling able to speak in a hostile tone?\n\nOptions:\n(A) He was secretly martian himself\n(B) He had lived on Mars for too long \n(C) He had never undergone the ethical conditioning\n(D) He was a \"senile delinquent\" and had outgrown his ethical conditioning\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 85.6
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 85.65
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19934.52
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 85.56
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1981,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19848.79
+    }
+  },
+  "retrieved_ids": [
+    "1a6b8d0c61ffb689:L0:000012",
+    "1a6b8d0c61ffb689:L0:000011",
+    "1a6b8d0c61ffb689:L0:000007",
+    "1a6b8d0c61ffb689:L0:000008",
+    "1a6b8d0c61ffb689:L0:000006"
+  ],
+  "filtered_ids": [
+    "1a6b8d0c61ffb689:L0:000012",
+    "1a6b8d0c61ffb689:L0:000011",
+    "1a6b8d0c61ffb689:L0:000007",
+    "1a6b8d0c61ffb689:L0:000008",
+    "1a6b8d0c61ffb689:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:11:48.365272+00:00",
+      "call_id": "4a483d958ccd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5f2a8ab9e70d889d",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 96,
+      "completion_tokens": 0,
+      "latency_ms": 53.86,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "0b6d868cf1664522"
+    },
+    {
+      "ts": "2026-11-12T12:12:08.244790+00:00",
+      "call_id": "6d57b1cf8fd2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1a99def769a0a43d",
+      "prompt_tokens": 2668,
+      "completion_tokens": 43,
+      "latency_ms": 19847.87,
+      "server_ms": 19819.01,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0b6d868cf1664522"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2668,
+    "completion_tokens": 43,
+    "total_ms": 19936.13
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "(D) He was a"
+      ]
+    }
+  }
+}

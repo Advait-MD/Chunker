@@ -1,0 +1,120 @@
+{
+  "trace_id": "fe27da3063d6437c",
+  "created_at": "2026-11-12T09:21:34.845389+00:00",
+  "query": "What type of neural network models are used?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 68.76
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 68.82
+    },
+    {
+      "state": "DONE",
+      "t_ms": 27481.53
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 68.72
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1612,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 27412.58
+    }
+  },
+  "retrieved_ids": [
+    "ab2938c8ce2a6415:L0:000003",
+    "ab2938c8ce2a6415:L0:000008",
+    "ab2938c8ce2a6415:L0:000000",
+    "ab2938c8ce2a6415:L0:000012",
+    "ab2938c8ce2a6415:L0:000011"
+  ],
+  "filtered_ids": [
+    "ab2938c8ce2a6415:L0:000003",
+    "ab2938c8ce2a6415:L0:000008",
+    "ab2938c8ce2a6415:L0:000000",
+    "ab2938c8ce2a6415:L0:000012",
+    "ab2938c8ce2a6415:L0:000011"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T09:21:34.847578+00:00",
+      "call_id": "0de62b13af12",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "813e773e69e4e88e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fe27da3063d6437c"
+    },
+    {
+      "ts": "2026-11-12T09:22:02.320937+00:00",
+      "call_id": "cacd55cc9159",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1b954e5e14eaec98",
+      "prompt_tokens": 2290,
+      "completion_tokens": 100,
+      "latency_ms": 27406.48,
+      "server_ms": 27378.29,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "fe27da3063d6437c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2290,
+    "completion_tokens": 100,
+    "total_ms": 27482.64
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

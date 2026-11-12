@@ -1,0 +1,119 @@
+{
+  "trace_id": "b3dabd78a88c4b2f",
+  "created_at": "2026-11-12T14:26:25.943796+00:00",
+  "query": "Who was born later, Narayana Kasturi or Sigismund Toduță?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 140.36
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 140.41
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10567.88
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 140.3
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 796,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10427.39
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000173",
+    "99628090500247e3:L0:000191",
+    "99628090500247e3:L0:000087",
+    "53c7288bdcd3837a:L0:000080",
+    "99628090500247e3:L0:000021"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000173",
+    "99628090500247e3:L0:000191",
+    "99628090500247e3:L0:000087",
+    "53c7288bdcd3837a:L0:000080",
+    "99628090500247e3:L0:000021"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:26:26.004675+00:00",
+      "call_id": "e8cea98725be",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "df39e86d59ed06e2",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 21,
+      "completion_tokens": 0,
+      "latency_ms": 60.37,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "b3dabd78a88c4b2f"
+    },
+    {
+      "ts": "2026-11-12T14:26:36.510468+00:00",
+      "call_id": "54d6782651a1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9c1f20d0e4ccd207",
+      "prompt_tokens": 1552,
+      "completion_tokens": 45,
+      "latency_ms": 10426.24,
+      "server_ms": 10405.93,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "b3dabd78a88c4b2f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1552,
+    "completion_tokens": 45,
+    "total_ms": 10570.89
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

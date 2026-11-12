@@ -1,0 +1,119 @@
+{
+  "trace_id": "0c42010a84304b26",
+  "created_at": "2026-11-12T13:43:06.935820+00:00",
+  "query": "John ruskin named his album due to a removal of what?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 144.53
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 144.59
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14639.25
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 144.48
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1012,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14494.54
+    }
+  },
+  "retrieved_ids": [
+    "c8fd2b3ea47eb07f:L0:000025",
+    "838c0e0106e6f015:L0:000080",
+    "cb96563b0747a6ba:L0:000177",
+    "bc1dba3471045f02:L0:000021",
+    "81fc433d55d23b4c:L0:000112"
+  ],
+  "filtered_ids": [
+    "c8fd2b3ea47eb07f:L0:000025",
+    "838c0e0106e6f015:L0:000080",
+    "cb96563b0747a6ba:L0:000177",
+    "bc1dba3471045f02:L0:000021",
+    "81fc433d55d23b4c:L0:000112"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:43:07.002849+00:00",
+      "call_id": "a71e2aa117f3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9aa769cda053fa1d",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 19,
+      "completion_tokens": 0,
+      "latency_ms": 66.25,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "0c42010a84304b26"
+    },
+    {
+      "ts": "2026-11-12T13:43:21.573839+00:00",
+      "call_id": "e1fb2e943ec6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "eda48c7973678d76",
+      "prompt_tokens": 1591,
+      "completion_tokens": 54,
+      "latency_ms": 14491.89,
+      "server_ms": 14470.82,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0c42010a84304b26"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1591,
+    "completion_tokens": 54,
+    "total_ms": 14642.3
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

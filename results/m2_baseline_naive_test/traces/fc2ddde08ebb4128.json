@@ -1,0 +1,122 @@
+{
+  "trace_id": "fc2ddde08ebb4128",
+  "created_at": "2026-11-12T11:13:37.356629+00:00",
+  "query": "How many campuses are there in the institution that Desert Studies Center is a part of?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 153.75
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 153.81
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14808.29
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 153.7
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 677,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14654.36
+    }
+  },
+  "retrieved_ids": [
+    "ce57fdde2baaba9c:L0:000121",
+    "8679484d23bfd3a0:L0:000146",
+    "ad11b6e85f908fb3:L0:000066",
+    "dd498e0082847164:L0:000035",
+    "f59bbbdacaf7ffe4:L0:000152"
+  ],
+  "filtered_ids": [
+    "ce57fdde2baaba9c:L0:000121",
+    "8679484d23bfd3a0:L0:000146",
+    "ad11b6e85f908fb3:L0:000066",
+    "dd498e0082847164:L0:000035",
+    "f59bbbdacaf7ffe4:L0:000152"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:13:37.428928+00:00",
+      "call_id": "5edf854960c3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9e7ce872d8aeafc9",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 23,
+      "completion_tokens": 0,
+      "latency_ms": 71.98,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "fc2ddde08ebb4128"
+    },
+    {
+      "ts": "2026-11-12T11:13:52.163811+00:00",
+      "call_id": "9909a3f6b6e4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "505fafca0297ecd8",
+      "prompt_tokens": 1236,
+      "completion_tokens": 78,
+      "latency_ms": 14653.26,
+      "server_ms": 14625.02,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "fc2ddde08ebb4128"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1236,
+    "completion_tokens": 78,
+    "total_ms": 14810.28
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        5
+      ],
+      "uncited_sentences": [
+        "The University of California, Irvine (UCI or UC Irvine) is a public research university located in Irvine, California.",
+        "It is one of the 10 campuses in the University of California (UC) system."
+      ]
+    }
+  }
+}

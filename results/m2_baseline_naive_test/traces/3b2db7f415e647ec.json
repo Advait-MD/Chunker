@@ -1,0 +1,120 @@
+{
+  "trace_id": "3b2db7f415e647ec",
+  "created_at": "2026-11-12T10:02:47.944039+00:00",
+  "query": "What metric is used to measure translation accuracy?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 137.98
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 138.02
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17952.79
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 137.93
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1197,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17814.56
+    }
+  },
+  "retrieved_ids": [
+    "fdf8d6f38efc1093:L0:000012",
+    "fdf8d6f38efc1093:L0:000010",
+    "fdf8d6f38efc1093:L0:000009",
+    "fdf8d6f38efc1093:L0:000008",
+    "fdf8d6f38efc1093:L0:000001"
+  ],
+  "filtered_ids": [
+    "fdf8d6f38efc1093:L0:000012",
+    "fdf8d6f38efc1093:L0:000010",
+    "fdf8d6f38efc1093:L0:000009",
+    "fdf8d6f38efc1093:L0:000008",
+    "fdf8d6f38efc1093:L0:000001"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T10:02:48.010675+00:00",
+      "call_id": "6c6560ba48a6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2257f33983a9a9da",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 15,
+      "completion_tokens": 0,
+      "latency_ms": 66.03,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "3b2db7f415e647ec"
+    },
+    {
+      "ts": "2026-11-12T10:03:05.895504+00:00",
+      "call_id": "050b02bf0704",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4136ca3c07151e88",
+      "prompt_tokens": 1856,
+      "completion_tokens": 52,
+      "latency_ms": 17812.83,
+      "server_ms": 17783.85,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "3b2db7f415e647ec"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1856,
+    "completion_tokens": 52,
+    "total_ms": 17956.93
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

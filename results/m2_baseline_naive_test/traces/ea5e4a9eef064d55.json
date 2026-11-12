@@ -1,0 +1,125 @@
+{
+  "trace_id": "ea5e4a9eef064d55",
+  "created_at": "2026-11-12T12:58:02.544574+00:00",
+  "query": "What context does the author write the article in?\n\nOptions:\n(A) Adversarial commentary\n(B) Constructive feedback\n(C) Objective review\n(D) Unbiased summary\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 131.52
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 131.57
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23992.04
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 131.47
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1767,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23860.3
+    }
+  },
+  "retrieved_ids": [
+    "5afd77c132ed9eb1:L0:000001",
+    "5afd77c132ed9eb1:L0:000003",
+    "5afd77c132ed9eb1:L0:000004",
+    "5afd77c132ed9eb1:L0:000000",
+    "5afd77c132ed9eb1:L0:000006"
+  ],
+  "filtered_ids": [
+    "5afd77c132ed9eb1:L0:000001",
+    "5afd77c132ed9eb1:L0:000003",
+    "5afd77c132ed9eb1:L0:000004",
+    "5afd77c132ed9eb1:L0:000000",
+    "5afd77c132ed9eb1:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:58:02.611089+00:00",
+      "call_id": "19aee9c8a7fb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1276bbc8831f851b",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 67,
+      "completion_tokens": 0,
+      "latency_ms": 66.03,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "ea5e4a9eef064d55"
+    },
+    {
+      "ts": "2026-11-12T12:58:26.535507+00:00",
+      "call_id": "7a165eb9f353",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8bd10ae1418ddb7d",
+      "prompt_tokens": 2441,
+      "completion_tokens": 93,
+      "latency_ms": 23859.18,
+      "server_ms": 23828.74,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ea5e4a9eef064d55"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2441,
+    "completion_tokens": 93,
+    "total_ms": 23995.72
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The author writes the article in a context of adversarial commentary, critiquing Deborah Tannen's book and her arguments through a series of objections and counterarguments."
+      ]
+    }
+  }
+}

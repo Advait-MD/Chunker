@@ -1,0 +1,125 @@
+{
+  "trace_id": "74295746a1674579",
+  "created_at": "2026-11-12T12:52:51.601922+00:00",
+  "query": "What is Manet’s training background?\n\nOptions:\n(A) Communications operator\n(B) Engineer\n(C) Not discussed\n(D) Space guide\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 136.21
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 136.29
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20907.58
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 136.14
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1967,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20771.15
+    }
+  },
+  "retrieved_ids": [
+    "b5765cb1b549efaa:L0:000013",
+    "b5765cb1b549efaa:L0:000010",
+    "b5765cb1b549efaa:L0:000011",
+    "b5765cb1b549efaa:L0:000008",
+    "b5765cb1b549efaa:L0:000007"
+  ],
+  "filtered_ids": [
+    "b5765cb1b549efaa:L0:000013",
+    "b5765cb1b549efaa:L0:000010",
+    "b5765cb1b549efaa:L0:000011",
+    "b5765cb1b549efaa:L0:000008",
+    "b5765cb1b549efaa:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:52:51.663446+00:00",
+      "call_id": "ed2f220f4d7b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "071d8af4ee628b0e",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 60,
+      "completion_tokens": 0,
+      "latency_ms": 61.1,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "74295746a1674579"
+    },
+    {
+      "ts": "2026-11-12T12:53:12.508253+00:00",
+      "call_id": "33e572b6d7ae",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a2a9f8a83b7e6681",
+      "prompt_tokens": 2535,
+      "completion_tokens": 52,
+      "latency_ms": 20769.7,
+      "server_ms": 20743.76,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "74295746a1674579"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2535,
+    "completion_tokens": 52,
+    "total_ms": 20910.61
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "(C) Not discussed."
+      ]
+    }
+  }
+}

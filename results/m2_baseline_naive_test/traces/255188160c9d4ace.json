@@ -1,0 +1,122 @@
+{
+  "trace_id": "255188160c9d4ace",
+  "created_at": "2026-11-12T11:54:55.759548+00:00",
+  "query": "What is Serenus?\n\nOptions:\n(A) A galaxy\n(B) A planet\n(C) A spaceship\n(D) An alien race\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 162.18
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 162.24
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24563.92
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 162.12
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1962,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24401.58
+    }
+  },
+  "retrieved_ids": [
+    "000ccf97cce5a847:L0:000002",
+    "000ccf97cce5a847:L0:000010",
+    "000ccf97cce5a847:L0:000014",
+    "000ccf97cce5a847:L0:000001",
+    "000ccf97cce5a847:L0:000009"
+  ],
+  "filtered_ids": [
+    "000ccf97cce5a847:L0:000002",
+    "000ccf97cce5a847:L0:000010",
+    "000ccf97cce5a847:L0:000014",
+    "000ccf97cce5a847:L0:000001",
+    "000ccf97cce5a847:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:54:55.823450+00:00",
+      "call_id": "3624d4f90dbe",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0714eccb1faf8cd6",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 59,
+      "completion_tokens": 0,
+      "latency_ms": 62.88,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "255188160c9d4ace"
+    },
+    {
+      "ts": "2026-11-12T11:55:20.322954+00:00",
+      "call_id": "6107776a9710",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "44f145e2d53ee0ab",
+      "prompt_tokens": 2560,
+      "completion_tokens": 66,
+      "latency_ms": 24400.45,
+      "server_ms": 24375.47,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "255188160c9d4ace"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2560,
+    "completion_tokens": 66,
+    "total_ms": 24565.53
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "(C) Serenus was an ugly old tub.",
+        "At that, we were the better of the two interstellar freighters the human race had left."
+      ]
+    }
+  }
+}

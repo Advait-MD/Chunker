@@ -1,0 +1,119 @@
+{
+  "trace_id": "5c093e01735f4d32",
+  "created_at": "2026-11-12T11:11:50.969793+00:00",
+  "query": "Who is the spouse of the leading actor in the film The 6th Day?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 143.03
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 143.08
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 7084.28
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 142.97
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 283,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 6941.11
+    }
+  },
+  "retrieved_ids": [
+    "ad4ace752e719bab:L0:000112",
+    "4b634e52029ddab4:L0:000057",
+    "cc1bdb3bf430bd0d:L0:000143",
+    "73dfa6a9bfcab050:L0:000081",
+    "15abb5e49dced915:L0:000165"
+  ],
+  "filtered_ids": [
+    "ad4ace752e719bab:L0:000112",
+    "4b634e52029ddab4:L0:000057",
+    "cc1bdb3bf430bd0d:L0:000143",
+    "73dfa6a9bfcab050:L0:000081",
+    "15abb5e49dced915:L0:000165"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:11:51.029685+00:00",
+      "call_id": "5deda30a7e90",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c1e0c3652a579866",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 21,
+      "completion_tokens": 0,
+      "latency_ms": 59.05,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "5c093e01735f4d32"
+    },
+    {
+      "ts": "2026-11-12T11:11:58.053286+00:00",
+      "call_id": "589758364ece",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "564ea76e232ff0d5",
+      "prompt_tokens": 867,
+      "completion_tokens": 39,
+      "latency_ms": 6940.19,
+      "server_ms": 6917.57,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "5c093e01735f4d32"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 867,
+    "completion_tokens": 39,
+    "total_ms": 7085.77
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

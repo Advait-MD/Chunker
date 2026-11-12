@@ -1,0 +1,122 @@
+{
+  "trace_id": "64d40d65a178424e",
+  "created_at": "2026-11-12T12:11:28.710205+00:00",
+  "query": "Why was Deirdre sad after she left the bench?\n\nOptions:\n(A) Because Eldoria had died.\n(B) Because the young man did not ask her to prom.\n(C) Because her parents died of dysentery.\n(D) Because she was going to be separated from Blake.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 151.79
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 151.85
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19565.07
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 151.73
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1913,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19413.17
+    }
+  },
+  "retrieved_ids": [
+    "e11049b9efecac12:L0:000010",
+    "e11049b9efecac12:L0:000006",
+    "e11049b9efecac12:L0:000009",
+    "e11049b9efecac12:L0:000002",
+    "e11049b9efecac12:L0:000003"
+  ],
+  "filtered_ids": [
+    "e11049b9efecac12:L0:000010",
+    "e11049b9efecac12:L0:000006",
+    "e11049b9efecac12:L0:000009",
+    "e11049b9efecac12:L0:000002",
+    "e11049b9efecac12:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:11:28.790106+00:00",
+      "call_id": "3781628353e8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a9b3d691ba2ddcd3",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 94,
+      "completion_tokens": 0,
+      "latency_ms": 79.75,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "64d40d65a178424e"
+    },
+    {
+      "ts": "2026-11-12T12:11:48.274672+00:00",
+      "call_id": "4d70c0d426e2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2955015806745eea",
+      "prompt_tokens": 2497,
+      "completion_tokens": 57,
+      "latency_ms": 19412.43,
+      "server_ms": 19374.22,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "64d40d65a178424e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2497,
+    "completion_tokens": 57,
+    "total_ms": 19566.33
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        3
+      ],
+      "uncited_sentences": [
+        "(D) Because she was going to be separated from Blake."
+      ]
+    }
+  }
+}

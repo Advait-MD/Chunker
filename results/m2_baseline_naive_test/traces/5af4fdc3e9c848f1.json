@@ -1,0 +1,122 @@
+{
+  "trace_id": "5af4fdc3e9c848f1",
+  "created_at": "2026-11-12T13:21:35.759795+00:00",
+  "query": "Which member of The New Russian School was both a doctor and a chemist besides being a composer?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 84.45
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 84.48
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12704.56
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 84.41
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 615,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12619.98
+    }
+  },
+  "retrieved_ids": [
+    "8e50522b7cb636d8:L0:000168",
+    "838c0e0106e6f015:L0:000114",
+    "b120b09075017d08:L0:000029",
+    "c8fd2b3ea47eb07f:L0:000174",
+    "634431bb1e27714f:L0:000052"
+  ],
+  "filtered_ids": [
+    "8e50522b7cb636d8:L0:000168",
+    "838c0e0106e6f015:L0:000114",
+    "b120b09075017d08:L0:000029",
+    "c8fd2b3ea47eb07f:L0:000174",
+    "634431bb1e27714f:L0:000052"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:21:35.806885+00:00",
+      "call_id": "dceed7bdc372",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bd4da78097b4c99b",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 25,
+      "completion_tokens": 0,
+      "latency_ms": 47.11,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "5af4fdc3e9c848f1"
+    },
+    {
+      "ts": "2026-11-12T13:21:48.462861+00:00",
+      "call_id": "073c08bb8524",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4f305ada7aee25f6",
+      "prompt_tokens": 1364,
+      "completion_tokens": 60,
+      "latency_ms": 12618.56,
+      "server_ms": 12599.96,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "5af4fdc3e9c848f1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1364,
+    "completion_tokens": 60,
+    "total_ms": 12705.97
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        5
+      ],
+      "uncited_sentences": [
+        "Alexander Borodin was a Russian Romantic composer of Georgian origin, as well as a doctor and chemist."
+      ]
+    }
+  }
+}

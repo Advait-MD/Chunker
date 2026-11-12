@@ -1,0 +1,119 @@
+{
+  "trace_id": "cf429a645e1f402d",
+  "created_at": "2026-11-12T14:49:36.942027+00:00",
+  "query": "Are both movies, A Thousand Stars Aglitter and Wild (2016 Film), from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 140.72
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 140.78
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12203.23
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 140.66
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 789,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12062.36
+    }
+  },
+  "retrieved_ids": [
+    "b04ce6dd2d95fb80:L0:000198",
+    "99628090500247e3:L0:000088",
+    "53c7288bdcd3837a:L0:000007",
+    "53c7288bdcd3837a:L0:000125",
+    "460e441179bec402:L0:000147"
+  ],
+  "filtered_ids": [
+    "b04ce6dd2d95fb80:L0:000198",
+    "99628090500247e3:L0:000088",
+    "53c7288bdcd3837a:L0:000007",
+    "53c7288bdcd3837a:L0:000125",
+    "460e441179bec402:L0:000147"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:49:37.006936+00:00",
+      "call_id": "8a5851e55937",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3a4c69a50be401ac",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 28,
+      "completion_tokens": 0,
+      "latency_ms": 64.3,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "cf429a645e1f402d"
+    },
+    {
+      "ts": "2026-11-12T14:49:49.144563+00:00",
+      "call_id": "95a71f49535d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c406134c09f85f54",
+      "prompt_tokens": 1557,
+      "completion_tokens": 45,
+      "latency_ms": 12061.23,
+      "server_ms": 12040.03,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "cf429a645e1f402d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1557,
+    "completion_tokens": 45,
+    "total_ms": 12205.92
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

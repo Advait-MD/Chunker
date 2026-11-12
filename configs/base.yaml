@@ -12,13 +12,13 @@ ollama:
   max_retries: 2          # transport errors only; never a silent model fallback
   # Label for the compute backend Ollama runs on (set OLLAMA_VULKAN=1 for vulkan). It is part of the
   # generate cache key and every log record, so CPU and GPU outputs/latencies are never mixed.
-  backend: vulkan         # vulkan (Intel Arc iGPU, 29/29 layers of qwen2.5:7b) | cpu
+  backend: vulkan         # vulkan (Intel Arc iGPU; Ollama >= 0.40 also needs OLLAMA_IGPU_ENABLE=1) | cpu
 
 models:
   generator: qwen2.5:7b
   embedder: nomic-embed-text
   router: llama3.2:1b     # L2 classifier (M6)
-  judge: gemma3:1b        # must differ from generator family (M2)
+  judge: gemma3:4b        # must differ from generator family (owner choice, M2)
 
 embedding:
   doc_prefix: "search_document: "   # nomic-embed-text task prefixes
@@ -58,3 +58,22 @@ generation:
 
 trace:
   dir: logs/traces
+
+judge:
+  temperature: 0.0
+  max_tokens: 1024
+  num_ctx: 8192
+
+eval:
+  data_dir: data/benchmarks       # raw files from scripts/fetch_benchmarks.py (gitignored)
+  results_dir: results
+  n_dev: 50                       # owner choice: 250 test + 50 dev per dataset
+  n_test: 250
+  unanswerable_fraction: 0.10     # injected into the pooled multi-hop sets (spec: ~10%)
+  retrieval_ks: [5, 10, 20]
+  ndcg_k: 10
+  evidence_match: {shingle: 5, min_overlap: 0.5}
+  bootstrap: {n: 1000, ci: 0.95}
+  # gemma3:4b judge rejected for M2 on 8 real questions: 25% incomplete outputs, context recall 0 on correct
+  # answers, 22-74 s/question. Owner decision: faithfulness/citation support move to M5's NLI model.
+  judge_enabled: false

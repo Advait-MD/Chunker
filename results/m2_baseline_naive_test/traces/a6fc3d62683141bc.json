@@ -1,0 +1,119 @@
+{
+  "trace_id": "a6fc3d62683141bc",
+  "created_at": "2026-11-12T10:51:29.052716+00:00",
+  "query": "Which artist was featured on smooth jazz stations, along with Kenny G and the performer of Saxophonic?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 150.98
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 151.04
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11077.64
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 150.93
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 306,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10926.49
+    }
+  },
+  "retrieved_ids": [
+    "4b634e52029ddab4:L0:000009",
+    "73dfa6a9bfcab050:L0:000051",
+    "f3503d3d186f0f90:L0:000041",
+    "ce57fdde2baaba9c:L0:000064",
+    "cc1bdb3bf430bd0d:L0:000125"
+  ],
+  "filtered_ids": [
+    "4b634e52029ddab4:L0:000009",
+    "73dfa6a9bfcab050:L0:000051",
+    "f3503d3d186f0f90:L0:000041",
+    "ce57fdde2baaba9c:L0:000064",
+    "cc1bdb3bf430bd0d:L0:000125"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T10:51:29.122179+00:00",
+      "call_id": "09bd41fc647d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f1394d7b001b2eee",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 28,
+      "completion_tokens": 0,
+      "latency_ms": 69.01,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "a6fc3d62683141bc"
+    },
+    {
+      "ts": "2026-11-12T10:51:40.129520+00:00",
+      "call_id": "fe1f0d01ffe3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e2530461af82a3be",
+      "prompt_tokens": 912,
+      "completion_tokens": 63,
+      "latency_ms": 10925.5,
+      "server_ms": 10900.45,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a6fc3d62683141bc"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 912,
+    "completion_tokens": 63,
+    "total_ms": 11078.75
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

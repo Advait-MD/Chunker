@@ -1,0 +1,122 @@
+{
+  "trace_id": "24b1f2e8bbd248e0",
+  "created_at": "2026-11-12T12:05:25.381844+00:00",
+  "query": "Why did the author want the tasters to taste lagers?\n\nOptions:\n(A) They all sneer at lagers\n(B) It is the most common beer in the US\n(C) It is his favorite beer\n(D) It would be new to most of them\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 131.94
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 132.0
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22625.84
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 131.88
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1810,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22493.15
+    }
+  },
+  "retrieved_ids": [
+    "caca446628b62f1f:L0:000008",
+    "caca446628b62f1f:L0:000005",
+    "caca446628b62f1f:L0:000000",
+    "caca446628b62f1f:L0:000001",
+    "caca446628b62f1f:L0:000007"
+  ],
+  "filtered_ids": [
+    "caca446628b62f1f:L0:000008",
+    "caca446628b62f1f:L0:000005",
+    "caca446628b62f1f:L0:000000",
+    "caca446628b62f1f:L0:000001",
+    "caca446628b62f1f:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:05:25.446715+00:00",
+      "call_id": "86a250161526",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0351ffaa08f822de",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 86,
+      "completion_tokens": 0,
+      "latency_ms": 64.57,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "24b1f2e8bbd248e0"
+    },
+    {
+      "ts": "2026-11-12T12:05:48.006177+00:00",
+      "call_id": "d2e137740402",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "78f4d49d371981ac",
+      "prompt_tokens": 2445,
+      "completion_tokens": 79,
+      "latency_ms": 22492.14,
+      "server_ms": 22462.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "24b1f2e8bbd248e0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2445,
+    "completion_tokens": 79,
+    "total_ms": 22628.49
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "(B) It is the most common beer in the US.",
+        "The lager test came first, for two reasons."
+      ]
+    }
+  }
+}

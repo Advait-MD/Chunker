@@ -1,0 +1,119 @@
+{
+  "trace_id": "c47461a79b8943de",
+  "created_at": "2026-11-12T13:25:59.123819+00:00",
+  "query": "Spawn, a fictional character who Mustafa Shakir has expressed interest in playing, was created by?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 82.86
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 82.89
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 8619.2
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 82.82
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 642,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8536.27
+    }
+  },
+  "retrieved_ids": [
+    "20496f59538deb41:L0:000039",
+    "bc1dba3471045f02:L0:000059",
+    "b120b09075017d08:L0:000080",
+    "b120b09075017d08:L0:000065",
+    "8e50522b7cb636d8:L0:000120"
+  ],
+  "filtered_ids": [
+    "20496f59538deb41:L0:000039",
+    "bc1dba3471045f02:L0:000059",
+    "b120b09075017d08:L0:000080",
+    "b120b09075017d08:L0:000065",
+    "8e50522b7cb636d8:L0:000120"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:25:59.171362+00:00",
+      "call_id": "77890cdf0dcb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9c691f0abd389fbd",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 25,
+      "completion_tokens": 0,
+      "latency_ms": 47.47,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "c47461a79b8943de"
+    },
+    {
+      "ts": "2026-11-12T13:26:07.742569+00:00",
+      "call_id": "e4158be4e9aa",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "71a129b602f76442",
+      "prompt_tokens": 1215,
+      "completion_tokens": 45,
+      "latency_ms": 8535.7,
+      "server_ms": 8524.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "c47461a79b8943de"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1215,
+    "completion_tokens": 45,
+    "total_ms": 8622.43
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

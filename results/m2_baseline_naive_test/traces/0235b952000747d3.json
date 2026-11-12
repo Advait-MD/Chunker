@@ -1,0 +1,119 @@
+{
+  "trace_id": "0235b952000747d3",
+  "created_at": "2026-11-12T13:36:59.855144+00:00",
+  "query": "...Ready for It? is a Taylor Swift song from the album scheduled to be released on what date?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 163.66
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 163.76
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10620.67
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 163.6
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 996,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10456.85
+    }
+  },
+  "retrieved_ids": [
+    "cb96563b0747a6ba:L0:000174",
+    "bc1dba3471045f02:L0:000007",
+    "5d0f6cf59ee42566:L0:000030",
+    "c8fd2b3ea47eb07f:L0:000109",
+    "ba3cd068cf9ac2e4:L0:000165"
+  ],
+  "filtered_ids": [
+    "cb96563b0747a6ba:L0:000174",
+    "bc1dba3471045f02:L0:000007",
+    "5d0f6cf59ee42566:L0:000030",
+    "c8fd2b3ea47eb07f:L0:000109",
+    "ba3cd068cf9ac2e4:L0:000165"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:36:59.940152+00:00",
+      "call_id": "f1bd0fff5345",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "43f64cc225056142",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 29,
+      "completion_tokens": 0,
+      "latency_ms": 84.68,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "0235b952000747d3"
+    },
+    {
+      "ts": "2026-11-12T13:37:10.475164+00:00",
+      "call_id": "9c3a08ec2ef3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ef636a86f2bc8545",
+      "prompt_tokens": 1615,
+      "completion_tokens": 43,
+      "latency_ms": 10456.01,
+      "server_ms": 10432.61,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0235b952000747d3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1615,
+    "completion_tokens": 43,
+    "total_ms": 10621.82
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

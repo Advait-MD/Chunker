@@ -1,0 +1,120 @@
+{
+  "trace_id": "4e98f372255543c8",
+  "created_at": "2026-11-12T11:15:58.305959+00:00",
+  "query": "Who wrote the TV Series containing the Finale episodes?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 141.59
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 141.66
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15435.92
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 141.53
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 470,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15294.1
+    }
+  },
+  "retrieved_ids": [
+    "15abb5e49dced915:L0:000019",
+    "5a1a5bbda9db013e:L0:000167",
+    "ad4ace752e719bab:L0:000003",
+    "8b31d5859eb3d77a:L0:000067",
+    "f59bbbdacaf7ffe4:L0:000114"
+  ],
+  "filtered_ids": [
+    "15abb5e49dced915:L0:000019",
+    "5a1a5bbda9db013e:L0:000167",
+    "ad4ace752e719bab:L0:000003",
+    "8b31d5859eb3d77a:L0:000067",
+    "f59bbbdacaf7ffe4:L0:000114"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:15:58.365367+00:00",
+      "call_id": "a0a725c37385",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a02fa088b448e07c",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 16,
+      "completion_tokens": 0,
+      "latency_ms": 58.84,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "4e98f372255543c8"
+    },
+    {
+      "ts": "2026-11-12T11:16:13.740758+00:00",
+      "call_id": "ef58c5ef0985",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c72b630e5514fa25",
+      "prompt_tokens": 1112,
+      "completion_tokens": 113,
+      "latency_ms": 15292.76,
+      "server_ms": 15271.22,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "4e98f372255543c8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1112,
+    "completion_tokens": 113,
+    "total_ms": 15438.15
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

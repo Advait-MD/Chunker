@@ -1,0 +1,119 @@
+{
+  "trace_id": "004aae9acb3a4c3b",
+  "created_at": "2026-11-12T14:00:30.304223+00:00",
+  "query": "Where was the author of Thoughts of Machiavelli born?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 199.95
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 200.02
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17628.64
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 199.89
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 781,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17428.48
+    }
+  },
+  "retrieved_ids": [
+    "b120b09075017d08:L0:000014",
+    "c8fd2b3ea47eb07f:L0:000087",
+    "c8fd2b3ea47eb07f:L0:000081",
+    "bc1dba3471045f02:L0:000188",
+    "c8fd2b3ea47eb07f:L0:000065"
+  ],
+  "filtered_ids": [
+    "b120b09075017d08:L0:000014",
+    "c8fd2b3ea47eb07f:L0:000087",
+    "c8fd2b3ea47eb07f:L0:000081",
+    "bc1dba3471045f02:L0:000188",
+    "c8fd2b3ea47eb07f:L0:000065"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:00:30.403444+00:00",
+      "call_id": "6214dfad87c4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4cf54490b30a9600",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 19,
+      "completion_tokens": 0,
+      "latency_ms": 98.43,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "004aae9acb3a4c3b"
+    },
+    {
+      "ts": "2026-11-12T14:00:47.931666+00:00",
+      "call_id": "20cd14a10b5a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bedc8f6a2a72f4f6",
+      "prompt_tokens": 1459,
+      "completion_tokens": 59,
+      "latency_ms": 17426.97,
+      "server_ms": 17404.94,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "004aae9acb3a4c3b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1459,
+    "completion_tokens": 59,
+    "total_ms": 17629.88
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

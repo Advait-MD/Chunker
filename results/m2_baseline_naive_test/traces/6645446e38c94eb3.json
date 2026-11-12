@@ -1,0 +1,122 @@
+{
+  "trace_id": "6645446e38c94eb3",
+  "created_at": "2026-11-12T09:48:41.399342+00:00",
+  "query": "Did they test the idea that the system reduces the time needed to encode ADR reports on real pharmacologists?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 73.42
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 73.49
+    },
+    {
+      "state": "DONE",
+      "t_ms": 29079.41
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 73.37
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1754,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 29005.8
+    }
+  },
+  "retrieved_ids": [
+    "b88954807f37fdd9:L0:000027",
+    "b88954807f37fdd9:L0:000030",
+    "b88954807f37fdd9:L0:000000",
+    "b88954807f37fdd9:L0:000003",
+    "b88954807f37fdd9:L0:000002"
+  ],
+  "filtered_ids": [
+    "b88954807f37fdd9:L0:000027",
+    "b88954807f37fdd9:L0:000030",
+    "b88954807f37fdd9:L0:000000",
+    "b88954807f37fdd9:L0:000003",
+    "b88954807f37fdd9:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T09:48:41.401342+00:00",
+      "call_id": "51d4d5452381",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e9398dbe4fd9d27d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6645446e38c94eb3"
+    },
+    {
+      "ts": "2026-11-12T09:49:10.478137+00:00",
+      "call_id": "42feb73725b3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "82b93196567b038d",
+      "prompt_tokens": 2532,
+      "completion_tokens": 94,
+      "latency_ms": 29004.77,
+      "server_ms": 28971.6,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "6645446e38c94eb3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2532,
+    "completion_tokens": 94,
+    "total_ms": 29081.54
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Yes, they tested the idea that the system reduces the time needed to encode ADR reports on real pharmacologists."
+      ]
+    }
+  }
+}

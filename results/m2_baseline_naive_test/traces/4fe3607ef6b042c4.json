@@ -1,0 +1,119 @@
+{
+  "trace_id": "4fe3607ef6b042c4",
+  "created_at": "2026-11-12T09:58:17.162098+00:00",
+  "query": "how many data pairs were there for each dataset?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 143.73
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 143.78
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 17409.47
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 143.68
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1153,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17265.61
+    }
+  },
+  "retrieved_ids": [
+    "7d4dd427aff2410c:L0:000005",
+    "7d4dd427aff2410c:L0:000014",
+    "7d4dd427aff2410c:L0:000002",
+    "7d4dd427aff2410c:L0:000010",
+    "7d4dd427aff2410c:L0:000012"
+  ],
+  "filtered_ids": [
+    "7d4dd427aff2410c:L0:000005",
+    "7d4dd427aff2410c:L0:000014",
+    "7d4dd427aff2410c:L0:000002",
+    "7d4dd427aff2410c:L0:000010",
+    "7d4dd427aff2410c:L0:000012"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T09:58:17.237723+00:00",
+      "call_id": "a410f6774d8e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "78273034a940f993",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 17,
+      "completion_tokens": 0,
+      "latency_ms": 74.93,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "4fe3607ef6b042c4"
+    },
+    {
+      "ts": "2026-11-12T09:58:34.569926+00:00",
+      "call_id": "4a3c71de9f75",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "339ad02c00e37175",
+      "prompt_tokens": 1802,
+      "completion_tokens": 51,
+      "latency_ms": 17264.22,
+      "server_ms": 17237.09,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "4fe3607ef6b042c4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1802,
+    "completion_tokens": 51,
+    "total_ms": 17417.71
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The exact number of data pairs for each dataset is not specified in the provided passages."
+      ]
+    }
+  }
+}

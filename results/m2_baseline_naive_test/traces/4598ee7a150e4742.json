@@ -1,0 +1,120 @@
+{
+  "trace_id": "4598ee7a150e4742",
+  "created_at": "2026-11-12T12:40:08.228206+00:00",
+  "query": "What is true about the Nobel prize, according to the author?\n\nOptions:\n(A) It is equally easy to win a prize in Economics or Math\n(B) It is easier to win a prize in Economics than in Math\n(C) Mathematicians never win prizes in Economics\n(D) It is easier to win a prize in Math than in Economics\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 243.53
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 243.59
+    },
+    {
+      "state": "DONE",
+      "t_ms": 26142.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 243.46
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1886,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25899.24
+    }
+  },
+  "retrieved_ids": [
+    "bb0e284a66bbcba4:L0:000003",
+    "bb0e284a66bbcba4:L0:000002",
+    "bb0e284a66bbcba4:L0:000000",
+    "bb0e284a66bbcba4:L0:000001",
+    "bb0e284a66bbcba4:L0:000004"
+  ],
+  "filtered_ids": [
+    "bb0e284a66bbcba4:L0:000003",
+    "bb0e284a66bbcba4:L0:000002",
+    "bb0e284a66bbcba4:L0:000000",
+    "bb0e284a66bbcba4:L0:000001",
+    "bb0e284a66bbcba4:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:40:08.317405+00:00",
+      "call_id": "01bb5cdbe5c8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "01473deb9681c45b",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 99,
+      "completion_tokens": 0,
+      "latency_ms": 88.55,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "4598ee7a150e4742"
+    },
+    {
+      "ts": "2026-11-12T12:40:34.370031+00:00",
+      "call_id": "323fcf944abc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0ae01e11fd4b2053",
+      "prompt_tokens": 2581,
+      "completion_tokens": 64,
+      "latency_ms": 25897.98,
+      "server_ms": 25871.2,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "4598ee7a150e4742"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2581,
+    "completion_tokens": 64,
+    "total_ms": 26144.27
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

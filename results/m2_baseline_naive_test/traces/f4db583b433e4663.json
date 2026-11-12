@@ -1,0 +1,119 @@
+{
+  "trace_id": "f4db583b433e4663",
+  "created_at": "2026-11-12T11:31:00.449668+00:00",
+  "query": "How many refugees emigrated to the European country where Huguenots felt a kinship for emigration?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 86.16
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 86.19
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12975.23
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 86.13
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 656,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12888.95
+    }
+  },
+  "retrieved_ids": [
+    "dbcbda865eee9c7b:L0:000181",
+    "4b634e52029ddab4:L0:000112",
+    "ce57fdde2baaba9c:L0:000139",
+    "5a1a5bbda9db013e:L0:000178",
+    "f109b032e24ab27a:L0:000003"
+  ],
+  "filtered_ids": [
+    "dbcbda865eee9c7b:L0:000181",
+    "4b634e52029ddab4:L0:000112",
+    "ce57fdde2baaba9c:L0:000139",
+    "5a1a5bbda9db013e:L0:000178",
+    "f109b032e24ab27a:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:31:00.495882+00:00",
+      "call_id": "576110bbbcbd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b365ad45a005f9b6",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 24,
+      "completion_tokens": 0,
+      "latency_ms": 45.66,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "f4db583b433e4663"
+    },
+    {
+      "ts": "2026-11-12T11:31:13.424071+00:00",
+      "call_id": "e07e33399101",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "cbfbdcb932a5cb69",
+      "prompt_tokens": 1315,
+      "completion_tokens": 86,
+      "latency_ms": 12888.18,
+      "server_ms": 12867.45,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f4db583b433e4663"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1315,
+    "completion_tokens": 86,
+    "total_ms": 12976.1
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

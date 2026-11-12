@@ -1,0 +1,123 @@
+{
+  "trace_id": "4f27a3bd77314c24",
+  "created_at": "2026-11-12T12:35:09.814101+00:00",
+  "query": "The author says, \"After all, as biomechanical machines with a standard set of parts, humans should be subject to the same limitations we in, say, automobiles. How come they aren't?\" What is a good answer to this question based on the article?\n\nOptions:\n(A) They are subject to the same limits, just not the same quality control.\n(B) Actually, they are subject to biomechanical limitations imposed by factors like the speed at which the lungs can exchange oxygen. It's just that to date, that is not what is capping human performance potential.\n(C) It is specifically untrue that humans have a standard set of parts. There is as much variation in human anatomical details that affect running as in the difference between a Chevy truck and a race car.\n(D) Unlike inorganic automobile parts, the human machine can be improved without replacing any of its parts.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 190.13
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 190.19
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25376.04
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 190.07
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1685,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25185.76
+    }
+  },
+  "retrieved_ids": [
+    "f97471902c449d96:L0:000000",
+    "f97471902c449d96:L0:000007",
+    "f97471902c449d96:L0:000005",
+    "f97471902c449d96:L0:000006",
+    "f97471902c449d96:L0:000003"
+  ],
+  "filtered_ids": [
+    "f97471902c449d96:L0:000000",
+    "f97471902c449d96:L0:000007",
+    "f97471902c449d96:L0:000005",
+    "f97471902c449d96:L0:000006",
+    "f97471902c449d96:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:35:09.939118+00:00",
+      "call_id": "c574129b10d3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "74f00c3d77699b4c",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 218,
+      "completion_tokens": 0,
+      "latency_ms": 124.25,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "4f27a3bd77314c24"
+    },
+    {
+      "ts": "2026-11-12T12:35:35.189215+00:00",
+      "call_id": "7d1fbe2a11bd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c6ded6e9280f4264",
+      "prompt_tokens": 2469,
+      "completion_tokens": 81,
+      "latency_ms": 25184.74,
+      "server_ms": 25167.31,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "4f27a3bd77314c24"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2469,
+    "completion_tokens": 81,
+    "total_ms": 25377.44
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        4
+      ],
+      "uncited_sentences": [
+        "(B) Actually, they are subject to biomechanical limitations imposed by factors like the speed at which the lungs can exchange oxygen.",
+        "It's just that to date, that is not what is capping human performance potential."
+      ]
+    }
+  }
+}

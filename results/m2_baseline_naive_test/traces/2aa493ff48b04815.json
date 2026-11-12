@@ -1,0 +1,124 @@
+{
+  "trace_id": "2aa493ff48b04815",
+  "created_at": "2026-11-12T11:36:54.247946+00:00",
+  "query": "Why did the Russians want to send cars into space?\n\nOptions:\n(A) They didn't want to\n(B) They have strategic value\n(C) To get revenge on the Americans\n(D) To compete with the Americans\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 183.49
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 183.55
+    },
+    {
+      "state": "DONE",
+      "t_ms": 26176.43
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 183.41
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1946,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25992.75
+    }
+  },
+  "retrieved_ids": [
+    "2a07e554c74cf095:L0:000004",
+    "2a07e554c74cf095:L0:000000",
+    "2a07e554c74cf095:L0:000012",
+    "2a07e554c74cf095:L0:000011",
+    "2a07e554c74cf095:L0:000007"
+  ],
+  "filtered_ids": [
+    "2a07e554c74cf095:L0:000004",
+    "2a07e554c74cf095:L0:000000",
+    "2a07e554c74cf095:L0:000012",
+    "2a07e554c74cf095:L0:000011",
+    "2a07e554c74cf095:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:36:54.335480+00:00",
+      "call_id": "d7bcdb85261d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cde15d102da365ef",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 76,
+      "completion_tokens": 0,
+      "latency_ms": 86.43,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "2aa493ff48b04815"
+    },
+    {
+      "ts": "2026-11-12T11:37:20.423393+00:00",
+      "call_id": "ba8552fcb25b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "abe967b8dbb9fc82",
+      "prompt_tokens": 2522,
+      "completion_tokens": 80,
+      "latency_ms": 25991.12,
+      "server_ms": 25958.34,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2aa493ff48b04815"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2522,
+    "completion_tokens": 80,
+    "total_ms": 26179.55
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3
+      ],
+      "uncited_sentences": [
+        "(D) To compete with the Americans.",
+        "The evidence states that 'Newspapers said Russians and Americans were racing to send things into the air.' This indicates a competitive space race between the two nations."
+      ]
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "trace_id": "1b9be1ef742f4ef3",
+  "created_at": "2026-11-12T13:22:09.085667+00:00",
+  "query": "Luke Rockhold defeated the MMA fighter who was the first to earn a win against which champion in the UFC?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 138.18
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 138.24
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13438.11
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 138.13
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 674,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13299.72
+    }
+  },
+  "retrieved_ids": [
+    "cb96563b0747a6ba:L0:000142",
+    "ba3cd068cf9ac2e4:L0:000167",
+    "5d0f6cf59ee42566:L0:000123",
+    "20496f59538deb41:L0:000154",
+    "634431bb1e27714f:L0:000008"
+  ],
+  "filtered_ids": [
+    "cb96563b0747a6ba:L0:000142",
+    "ba3cd068cf9ac2e4:L0:000167",
+    "5d0f6cf59ee42566:L0:000123",
+    "20496f59538deb41:L0:000154",
+    "634431bb1e27714f:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:22:09.147169+00:00",
+      "call_id": "3986fe75b453",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "074f1382e9792248",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 28,
+      "completion_tokens": 0,
+      "latency_ms": 60.86,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "1b9be1ef742f4ef3"
+    },
+    {
+      "ts": "2026-11-12T13:22:22.522990+00:00",
+      "call_id": "1c91bd5f281a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "cd2e53f700d703f3",
+      "prompt_tokens": 1335,
+      "completion_tokens": 69,
+      "latency_ms": 13298.66,
+      "server_ms": 13273.4,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "1b9be1ef742f4ef3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1335,
+    "completion_tokens": 69,
+    "total_ms": 13439.59
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

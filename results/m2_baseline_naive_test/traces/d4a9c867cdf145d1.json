@@ -1,0 +1,119 @@
+{
+  "trace_id": "d4a9c867cdf145d1",
+  "created_at": "2026-11-12T13:36:25.694986+00:00",
+  "query": "What city is between Normanby le Wold and the A46 Junction between Lincoln and Grimsby?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 143.5
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 143.55
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11075.09
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 143.44
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 548,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10931.47
+    }
+  },
+  "retrieved_ids": [
+    "8e50522b7cb636d8:L0:000016",
+    "cc2399aca11eb631:L0:000122",
+    "cc2399aca11eb631:L0:000088",
+    "b120b09075017d08:L0:000006",
+    "9794e842cc9565f0:L0:000026"
+  ],
+  "filtered_ids": [
+    "8e50522b7cb636d8:L0:000016",
+    "cc2399aca11eb631:L0:000122",
+    "cc2399aca11eb631:L0:000088",
+    "b120b09075017d08:L0:000006",
+    "9794e842cc9565f0:L0:000026"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:36:25.762528+00:00",
+      "call_id": "b42b6cc0dae0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "502d316f47cc79dd",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 25,
+      "completion_tokens": 0,
+      "latency_ms": 67.62,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "d4a9c867cdf145d1"
+    },
+    {
+      "ts": "2026-11-12T13:36:36.768686+00:00",
+      "call_id": "37dffdad0847",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6aa7c8f9f803e0d8",
+      "prompt_tokens": 1210,
+      "completion_tokens": 45,
+      "latency_ms": 10930.13,
+      "server_ms": 10905.23,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d4a9c867cdf145d1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1210,
+    "completion_tokens": 45,
+    "total_ms": 11077.5
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

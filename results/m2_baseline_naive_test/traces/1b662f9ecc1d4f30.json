@@ -1,0 +1,119 @@
+{
+  "trace_id": "1b662f9ecc1d4f30",
+  "created_at": "2026-11-12T11:27:16.510127+00:00",
+  "query": "What city is the star of Sous les pieds des femmes from?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 152.7
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 152.78
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11463.1
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 152.65
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 390,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11310.21
+    }
+  },
+  "retrieved_ids": [
+    "4fcce431f5d22d1d:L0:000088",
+    "66f5caec1369ebaf:L0:000108",
+    "6683bfc7dec06e2a:L0:000175",
+    "178c7e3e6ef6ae87:L0:000147",
+    "ad11b6e85f908fb3:L0:000084"
+  ],
+  "filtered_ids": [
+    "4fcce431f5d22d1d:L0:000088",
+    "66f5caec1369ebaf:L0:000108",
+    "6683bfc7dec06e2a:L0:000175",
+    "178c7e3e6ef6ae87:L0:000147",
+    "ad11b6e85f908fb3:L0:000084"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:27:16.583220+00:00",
+      "call_id": "e54f07f9f370",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "36a634cf3b988edd",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 21,
+      "completion_tokens": 0,
+      "latency_ms": 72.83,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "1b662f9ecc1d4f30"
+    },
+    {
+      "ts": "2026-11-12T11:27:27.972460+00:00",
+      "call_id": "b96c60c17690",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9a0a031b7cf5afd5",
+      "prompt_tokens": 995,
+      "completion_tokens": 61,
+      "latency_ms": 11309.26,
+      "server_ms": 11292.92,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "1b662f9ecc1d4f30"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 995,
+    "completion_tokens": 61,
+    "total_ms": 11465.23
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

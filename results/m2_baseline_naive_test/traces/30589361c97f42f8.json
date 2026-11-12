@@ -1,0 +1,120 @@
+{
+  "trace_id": "30589361c97f42f8",
+  "created_at": "2026-11-12T14:35:23.310958+00:00",
+  "query": "Who is the child of the director of film Anna (1970 Film)?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 137.12
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 137.17
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 17120.82
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 137.06
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 955,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16983.51
+    }
+  },
+  "retrieved_ids": [
+    "99628090500247e3:L0:000105",
+    "99628090500247e3:L0:000139",
+    "53c7288bdcd3837a:L0:000079",
+    "abe982d210232c3f:L0:000125",
+    "99628090500247e3:L0:000110"
+  ],
+  "filtered_ids": [
+    "99628090500247e3:L0:000105",
+    "99628090500247e3:L0:000139",
+    "53c7288bdcd3837a:L0:000079",
+    "abe982d210232c3f:L0:000125",
+    "99628090500247e3:L0:000110"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:35:23.376563+00:00",
+      "call_id": "7e3313466291",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5644220242f33c8a",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 21,
+      "completion_tokens": 0,
+      "latency_ms": 64.98,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "30589361c97f42f8"
+    },
+    {
+      "ts": "2026-11-12T14:35:40.430981+00:00",
+      "call_id": "6a31f64aeea6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1ee9cfc33def30f5",
+      "prompt_tokens": 1781,
+      "completion_tokens": 68,
+      "latency_ms": 16982.52,
+      "server_ms": 16956.94,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "30589361c97f42f8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1781,
+    "completion_tokens": 68,
+    "total_ms": 17122.31
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

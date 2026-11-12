@@ -1,0 +1,119 @@
+{
+  "trace_id": "ee35bfbbb8e04fd5",
+  "created_at": "2026-11-12T13:31:40.419353+00:00",
+  "query": "Which film does \"Naked Weapon\" follow in the \"Naked\" series?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 172.77
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 172.96
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12691.62
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 172.71
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 823,
+      "latency_ms": 0.15
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12518.57
+    }
+  },
+  "retrieved_ids": [
+    "8e50522b7cb636d8:L0:000180",
+    "8e50522b7cb636d8:L0:000079",
+    "ec3410ef955c5c93:L0:000032",
+    "c8fd2b3ea47eb07f:L0:000119",
+    "bc1dba3471045f02:L0:000086"
+  ],
+  "filtered_ids": [
+    "8e50522b7cb636d8:L0:000180",
+    "8e50522b7cb636d8:L0:000079",
+    "ec3410ef955c5c93:L0:000032",
+    "c8fd2b3ea47eb07f:L0:000119",
+    "bc1dba3471045f02:L0:000086"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:31:40.519224+00:00",
+      "call_id": "e80472550b95",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cadc2d72da073faf",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 21,
+      "completion_tokens": 0,
+      "latency_ms": 99.22,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "ee35bfbbb8e04fd5"
+    },
+    {
+      "ts": "2026-11-12T13:31:53.110640+00:00",
+      "call_id": "5abd9bcfe1fc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ef5732f9960af924",
+      "prompt_tokens": 1455,
+      "completion_tokens": 45,
+      "latency_ms": 12517.56,
+      "server_ms": 12495.32,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ee35bfbbb8e04fd5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1455,
+    "completion_tokens": 45,
+    "total_ms": 12693.69
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

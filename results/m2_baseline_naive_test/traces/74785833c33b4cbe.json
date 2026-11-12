@@ -1,0 +1,119 @@
+{
+  "trace_id": "74785833c33b4cbe",
+  "created_at": "2026-11-12T14:25:23.163744+00:00",
+  "query": "Who is the spouse of the director of film The Thin Line (1980 Film)?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 82.27
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 82.3
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12235.62
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 82.24
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 987,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12153.28
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000161",
+    "317e12ccd417c0d7:L0:000042",
+    "6af2db6cb86d77e2:L0:000106",
+    "99628090500247e3:L0:000105",
+    "0eac870d43736f51:L0:000047"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000161",
+    "317e12ccd417c0d7:L0:000042",
+    "6af2db6cb86d77e2:L0:000106",
+    "99628090500247e3:L0:000105",
+    "0eac870d43736f51:L0:000047"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:25:23.210116+00:00",
+      "call_id": "b953f49cc8da",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "18fdfd3eeee5f153",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 23,
+      "completion_tokens": 0,
+      "latency_ms": 46.1,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "74785833c33b4cbe"
+    },
+    {
+      "ts": "2026-11-12T14:25:35.398741+00:00",
+      "call_id": "7d223e73c97a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c2f8d3257916a7ef",
+      "prompt_tokens": 1788,
+      "completion_tokens": 45,
+      "latency_ms": 12152.75,
+      "server_ms": 12140.82,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "74785833c33b4cbe"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1788,
+    "completion_tokens": 45,
+    "total_ms": 12236.81
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

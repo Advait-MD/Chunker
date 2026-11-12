@@ -1,0 +1,121 @@
+{
+  "trace_id": "3bb13b0828564720",
+  "created_at": "2026-11-12T11:54:34.315429+00:00",
+  "query": "How did Peter approach his conversations with Lexington?\n\nOptions:\n(A) He covered many of the details of his background to hopefully get himself hired\n(B) He dutifully took notes to be able to report what he found out\n(C) He was cautious to be humble and honest with his answers\n(D) He carefully mirrored his behavior to not upset him\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 142.88
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 142.93
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21367.99
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 142.82
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1867,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21224.97
+    }
+  },
+  "retrieved_ids": [
+    "f8ddb2246e2db5a5:L0:000002",
+    "f8ddb2246e2db5a5:L0:000004",
+    "f8ddb2246e2db5a5:L0:000011",
+    "f8ddb2246e2db5a5:L0:000007",
+    "f8ddb2246e2db5a5:L0:000005"
+  ],
+  "filtered_ids": [
+    "f8ddb2246e2db5a5:L0:000002",
+    "f8ddb2246e2db5a5:L0:000004",
+    "f8ddb2246e2db5a5:L0:000011",
+    "f8ddb2246e2db5a5:L0:000007",
+    "f8ddb2246e2db5a5:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:54:34.390969+00:00",
+      "call_id": "dfe0fc915400",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1b59cb88b214bb80",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 102,
+      "completion_tokens": 0,
+      "latency_ms": 75.13,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "3bb13b0828564720"
+    },
+    {
+      "ts": "2026-11-12T11:54:55.679778+00:00",
+      "call_id": "55af8ed76df6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "62d264300ea8d938",
+      "prompt_tokens": 2377,
+      "completion_tokens": 58,
+      "latency_ms": 21221.09,
+      "server_ms": 21197.54,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "3bb13b0828564720"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2377,
+    "completion_tokens": 58,
+    "total_ms": 21372.14
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2
+      ],
+      "uncited_sentences": [
+        "(C) He was cautious to be humble and honest with his answers."
+      ]
+    }
+  }
+}

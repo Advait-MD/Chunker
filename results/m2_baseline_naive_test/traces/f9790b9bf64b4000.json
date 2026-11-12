@@ -1,0 +1,120 @@
+{
+  "trace_id": "f9790b9bf64b4000",
+  "created_at": "2026-11-12T13:42:17.986674+00:00",
+  "query": "Which singer, who released his debut solo album in 2012, served as producer for the EP Live at the Third Man by White Denim in 2011?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 136.56
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 136.61
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12741.23
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 136.51
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 741,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12604.5
+    }
+  },
+  "retrieved_ids": [
+    "cb96563b0747a6ba:L0:000174",
+    "838c0e0106e6f015:L0:000082",
+    "b120b09075017d08:L0:000159",
+    "cb96563b0747a6ba:L0:000148",
+    "90976421f3f2bea2:L0:000119"
+  ],
+  "filtered_ids": [
+    "cb96563b0747a6ba:L0:000174",
+    "838c0e0106e6f015:L0:000082",
+    "b120b09075017d08:L0:000159",
+    "cb96563b0747a6ba:L0:000148",
+    "90976421f3f2bea2:L0:000119"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:42:18.046174+00:00",
+      "call_id": "cea010e958c9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1daa851f2b4744a3",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 35,
+      "completion_tokens": 0,
+      "latency_ms": 58.68,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "f9790b9bf64b4000"
+    },
+    {
+      "ts": "2026-11-12T13:42:30.727280+00:00",
+      "call_id": "b2d118e0bc03",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6f9bf2b525eb2531",
+      "prompt_tokens": 1459,
+      "completion_tokens": 67,
+      "latency_ms": 12603.43,
+      "server_ms": 12579.0,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f9790b9bf64b4000"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1459,
+    "completion_tokens": 67,
+    "total_ms": 12748.35
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

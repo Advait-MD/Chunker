@@ -1,0 +1,120 @@
+{
+  "trace_id": "aaae7947dd3f4fd8",
+  "created_at": "2026-11-12T11:37:46.303866+00:00",
+  "query": "How many people are left alive on Earth?\n\nOptions:\n(A) a number of people in various places\n(B) Only the boy\n(C) Only the boy, his family, and some people in New Mexico\n(D) Only the boy, his mom, his dad, and his sister\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 189.08
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 189.13
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20291.3
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 189.03
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1613,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20101.97
+    }
+  },
+  "retrieved_ids": [
+    "a3e91ed7338e9e41:L0:000019",
+    "a3e91ed7338e9e41:L0:000015",
+    "a3e91ed7338e9e41:L0:000020",
+    "a3e91ed7338e9e41:L0:000017",
+    "a3e91ed7338e9e41:L0:000014"
+  ],
+  "filtered_ids": [
+    "a3e91ed7338e9e41:L0:000019",
+    "a3e91ed7338e9e41:L0:000015",
+    "a3e91ed7338e9e41:L0:000020",
+    "a3e91ed7338e9e41:L0:000017",
+    "a3e91ed7338e9e41:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:37:46.386349+00:00",
+      "call_id": "e2ba0026a178",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "809b3987404a33de",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 89,
+      "completion_tokens": 0,
+      "latency_ms": 81.89,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "aaae7947dd3f4fd8"
+    },
+    {
+      "ts": "2026-11-12T11:38:06.593729+00:00",
+      "call_id": "ddd6c2d1fdd6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "353dbf03b9f144ed",
+      "prompt_tokens": 2139,
+      "completion_tokens": 68,
+      "latency_ms": 20100.18,
+      "server_ms": 20064.45,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "aaae7947dd3f4fd8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2139,
+    "completion_tokens": 68,
+    "total_ms": 20293.48
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}
