@@ -1,0 +1,60 @@
+# APEX base configuration. Every threshold and model name lives here (spec rule 4).
+# Overlay files (configs/*.yaml, configs/ablations/*.yaml) are deep-merged on top.
+
+run:
+  name: base
+  seed: 42
+
+ollama:
+  url: http://127.0.0.1:11434
+  timeout_s: 900          # 7B on CPU/iGPU can be slow on long prompts
+  keep_alive: 30m
+  max_retries: 2          # transport errors only; never a silent model fallback
+  # Label for the compute backend Ollama runs on (set OLLAMA_VULKAN=1 for vulkan). It is part of the
+  # generate cache key and every log record, so CPU and GPU outputs/latencies are never mixed.
+  backend: vulkan         # vulkan (Intel Arc iGPU, 29/29 layers of qwen2.5:7b) | cpu
+
+models:
+  generator: qwen2.5:7b
+  embedder: nomic-embed-text
+  router: llama3.2:1b     # L2 classifier (M6)
+  judge: gemma3:1b        # must differ from generator family (M2)
+
+embedding:
+  doc_prefix: "search_document: "   # nomic-embed-text task prefixes
+  query_prefix: "search_query: "
+  batch_size: 32
+  normalize: true
+  # nomic-embed-text panics if one input exceeds num_batch (default 512 tokens);
+  # the word-based chunk budget can exceed 512 BPE tokens, so use the model's full 2048 context.
+  options: {num_ctx: 2048, num_batch: 2048}
+
+llm:
+  cache_enabled: true
+  cache_path: .apex_cache/llm_cache.sqlite
+  log_path: logs/llm_calls.jsonl
+
+ingest:
+  extensions: [.pdf, .md, .markdown, .txt, .html, .htm]
+  chunk_target_tokens: 400
+  chunk_overlap_tokens: 50
+
+store:
+  path: apex_db
+  collection: nodes
+  space: cosine
+
+retrieval:
+  mode: dense             # M1 naive baseline: flat leaves, dense top-k only
+  top_k: 5
+  levels: [0]
+
+generation:
+  temperature: 0.0
+  max_tokens: 512
+  num_ctx: 8192
+  context_token_budget: 2500
+  system_prompt: answer_system.txt
+
+trace:
+  dir: logs/traces
