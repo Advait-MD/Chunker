@@ -1,0 +1,102 @@
+"""Query pipelines. M1: the naive baseline (flat leaves → dense top-k → cited generation).
+
+Later milestones add hybrid retrieval, the RAPTOR tree, the evidence filter, the DSM router
+and the multi-hop controller as separate, ablatable stages behind the same `answer()` contract.
+"""
+
+from __future__ import annotations
+
+from dataclasses import asdict
+from typing import Any, Dict, Optional
+
+from apex.config import load_config
+from apex.generate.citations import check_citations
+from apex.generate.generator import Generator, pack_evidence
+from apex.index.chroma_store import NodeStore
+from apex.index.embedder import Embedder
+from apex.llm import OllamaClient
+from apex.retrieve.dense import DenseRetriever
+from apex.trace import Tracer
+
+
+class Components:
+    """Wires shared components once from a config dict."""
+
+    def __init__(self, cfg: Dict[str, Any], client: Optional[OllamaClient] = None, store_path: Optional[str] = None):
+        self.cfg = cfg
+        self.client = client or OllamaClient(cfg)
+        self.store = NodeStore(cfg, path=store_path)
+        self.embedder = Embedder(cfg, self.client)
+        self.tracer = Tracer(cfg)
+
+
+class NaivePipeline:
+    name = "naive"
+
+    def __init__(self, comps: Components):
+        self.c = comps
+        self.retriever = DenseRetriever(comps.cfg, comps.store, comps.embedder)
+        self.generator = Generator(comps.cfg, comps.client)
+        self.budget = int(comps.cfg["generation"]["context_token_budget"])
+
+    def answer(self, query: str, source: Optional[str] = None, save_trace: bool = True) -> Dict[str, Any]:
+        trace = self.c.tracer.new(query)
+        trace.route, trace.routing_tier = "SINGLE_HOP", "none"  # no router in the naive baseline
+        self.c.client.bind_trace(trace)
+        try:
+            trace.enter("RETRIEVING")
+            with trace.stage("retrieve", retriever="dense_hnsw", k=self.retriever.top_k) as st:
+                hits = self.retriever.retrieve(query, source=source)
+                trace.retrieved_ids = [h.node.id for h in hits]
+                st["n_hits"] = len(hits)
+
+            trace.enter("FILTERING")  # pass-through in M1; only budget packing
+            with trace.stage("pack", token_budget=self.budget) as st:
+                evidence = pack_evidence(hits, self.budget)
+                trace.filtered_ids = [it.node_id for it in evidence.items]
+                st["n_items"] = len(evidence.items)
+                st["context_tokens"] = sum(h.node.token_count for h in hits if h.node.id in trace.filtered_ids)
+
+            if not evidence.items:
+                trace.enter("ABSTAIN")
+                gen = {"answer": "Insufficient evidence in the corpus to answer this question.",
+                       "citations": [], "confidence": 0.0, "abstained": True}
+            else:
+                trace.enter("GENERATING")
+                with trace.stage("generate", model=self.generator.model):
+                    gen = self.generator.generate(query, evidence)
+
+            cites = check_citations(gen["answer"], gen.get("citations", []), len(evidence.items))
+            by_id = {it.cite_id: it for it in evidence.items}
+            citations = [{"cite_id": i, "node_id": by_id[i].node_id, "source": by_id[i].source,
+                          "page": by_id[i].page, "section": by_id[i].section, "char_span": by_id[i].char_span}
+                         for i in cites["valid"]]
+            trace.extra["citation_check"] = {k: v for k, v in cites.items() if k != "valid"}
+            trace.enter("DONE" if not gen.get("abstained") else "ABSTAIN")
+        finally:
+            self.c.client.bind_trace(None)
+
+        result = {
+            "query": query, "answer": gen["answer"], "citations": citations,
+            "confidence": gen.get("confidence"), "abstained": bool(gen.get("abstained")),
+            "invalid_citations": cites["invalid"], "uncited_sentences": cites["uncited_sentences"],
+            "evidence": [asdict(it) for it in evidence.items],
+            "trace_id": trace.trace_id, "route": trace.route, "totals": trace.totals(), "pipeline": self.name,
+        }
+        if save_trace:
+            result["trace_path"] = self.c.tracer.save(trace)
+        result["_trace"] = trace
+        return result
+
+
+PIPELINES = {"naive": NaivePipeline}
+
+
+def build_pipeline(config_path: Optional[str] = None, overrides: Optional[Dict[str, Any]] = None,
+                   client: Optional[OllamaClient] = None, store_path: Optional[str] = None):
+    cfg = load_config(config_path, overrides)
+    comps = Components(cfg, client=client, store_path=store_path)
+    name = cfg.get("pipeline", "naive")
+    if name not in PIPELINES:
+        raise ValueError(f"Unknown pipeline '{name}'. Available: {sorted(PIPELINES)}")
+    return PIPELINES[name](comps)
