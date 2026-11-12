@@ -1,0 +1,119 @@
+{
+  "trace_id": "ae21ea7471ed4176",
+  "created_at": "2026-11-12T10:44:29.773947+00:00",
+  "query": "What is the distance in miles from Nashville to the place where Hemlock Semiconductor produces electronic components?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 160.29
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 160.34
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12186.91
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 160.24
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 673,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12026.49
+    }
+  },
+  "retrieved_ids": [
+    "ce290c1e5d5c6641:L0:000121",
+    "8679484d23bfd3a0:L0:000134",
+    "dd498e0082847164:L0:000036",
+    "f3503d3d186f0f90:L0:000162",
+    "178c7e3e6ef6ae87:L0:000196"
+  ],
+  "filtered_ids": [
+    "ce290c1e5d5c6641:L0:000121",
+    "8679484d23bfd3a0:L0:000134",
+    "dd498e0082847164:L0:000036",
+    "f3503d3d186f0f90:L0:000162",
+    "178c7e3e6ef6ae87:L0:000196"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T10:44:29.844837+00:00",
+      "call_id": "13a55f60a94e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2b41fa7ac1635b2e",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 25,
+      "completion_tokens": 0,
+      "latency_ms": 70.25,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "ae21ea7471ed4176"
+    },
+    {
+      "ts": "2026-11-12T10:44:41.960192+00:00",
+      "call_id": "bb8c99fb5637",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "910b401e26ec42d9",
+      "prompt_tokens": 1295,
+      "completion_tokens": 45,
+      "latency_ms": 12025.58,
+      "server_ms": 12006.15,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ae21ea7471ed4176"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1295,
+    "completion_tokens": 45,
+    "total_ms": 12187.95
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

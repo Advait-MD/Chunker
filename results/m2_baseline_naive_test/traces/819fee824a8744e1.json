@@ -1,0 +1,120 @@
+{
+  "trace_id": "819fee824a8744e1",
+  "created_at": "2026-11-12T11:58:01.237987+00:00",
+  "query": "Why could Ingrid not tell Maitland what year it was?\n\nOptions:\n(A) She was not allowed to\n(B) She didn't know\n(C) She didn't speak fluent English\n(D) She was unwilling to\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 123.28
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 123.33
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19208.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 123.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1930,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19084.39
+    }
+  },
+  "retrieved_ids": [
+    "7b80582cae4e102a:L0:000012",
+    "7b80582cae4e102a:L0:000010",
+    "7b80582cae4e102a:L0:000006",
+    "7b80582cae4e102a:L0:000009",
+    "7b80582cae4e102a:L0:000011"
+  ],
+  "filtered_ids": [
+    "7b80582cae4e102a:L0:000012",
+    "7b80582cae4e102a:L0:000010",
+    "7b80582cae4e102a:L0:000006",
+    "7b80582cae4e102a:L0:000009",
+    "7b80582cae4e102a:L0:000011"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:58:01.301490+00:00",
+      "call_id": "ae1c3ad9fceb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e7b7f43cc13f8e94",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 76,
+      "completion_tokens": 0,
+      "latency_ms": 62.74,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "819fee824a8744e1"
+    },
+    {
+      "ts": "2026-11-12T11:58:20.444219+00:00",
+      "call_id": "fd3b1d921824",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b73d00c1611a6cbd",
+      "prompt_tokens": 2558,
+      "completion_tokens": 52,
+      "latency_ms": 19082.53,
+      "server_ms": 19043.4,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "819fee824a8744e1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2558,
+    "completion_tokens": 52,
+    "total_ms": 19211.73
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

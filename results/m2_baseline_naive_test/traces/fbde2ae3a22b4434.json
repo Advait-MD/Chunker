@@ -1,0 +1,125 @@
+{
+  "trace_id": "fbde2ae3a22b4434",
+  "created_at": "2026-11-12T14:34:29.967050+00:00",
+  "query": "Which film has the director who is older than the other, The Man With The Glass Eye or The Pom Pom Girls?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 154.28
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 154.33
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17331.22
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 154.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 685,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17176.79
+    }
+  },
+  "retrieved_ids": [
+    "99628090500247e3:L0:000128",
+    "43d5059060d4defa:L0:000003",
+    "0eac870d43736f51:L0:000159",
+    "317e12ccd417c0d7:L0:000053",
+    "99628090500247e3:L0:000152"
+  ],
+  "filtered_ids": [
+    "99628090500247e3:L0:000128",
+    "43d5059060d4defa:L0:000003",
+    "0eac870d43736f51:L0:000159",
+    "317e12ccd417c0d7:L0:000053",
+    "99628090500247e3:L0:000152"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:34:30.029547+00:00",
+      "call_id": "aa6aa5f02cbf",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7a9ab284c31b5ab8",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 32,
+      "completion_tokens": 0,
+      "latency_ms": 62.0,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "fbde2ae3a22b4434"
+    },
+    {
+      "ts": "2026-11-12T14:34:47.297239+00:00",
+      "call_id": "20d56e94b4d9",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4f037903eebe1ad1",
+      "prompt_tokens": 1332,
+      "completion_tokens": 114,
+      "latency_ms": 17175.67,
+      "server_ms": 17127.49,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "fbde2ae3a22b4434"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1332,
+    "completion_tokens": 114,
+    "total_ms": 17334.19
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        5
+      ],
+      "uncited_sentences": [
+        "The director of The Man With The Glass Eye, Joseph L.",
+        "Mankiewicz, was born on May 11, 1909, while the director of The Pom Pom Girls, Paul Gross, was born on June 2, 1946.",
+        "Therefore, Joseph L.",
+        "Mankiewicz is older than Paul Gross."
+      ]
+    }
+  }
+}

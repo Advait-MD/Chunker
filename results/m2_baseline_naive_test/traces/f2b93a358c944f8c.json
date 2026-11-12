@@ -1,0 +1,119 @@
+{
+  "trace_id": "f2b93a358c944f8c",
+  "created_at": "2026-11-12T14:29:28.427079+00:00",
+  "query": "Where was the place of burial of Marie-Louise Loubet's husband?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 82.33
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 82.36
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 8915.54
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 82.29
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 561,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8833.11
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000105",
+    "6af2db6cb86d77e2:L0:000008",
+    "53c7288bdcd3837a:L0:000062",
+    "abe982d210232c3f:L0:000129",
+    "4a757779abfb4ba1:L0:000047"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000105",
+    "6af2db6cb86d77e2:L0:000008",
+    "53c7288bdcd3837a:L0:000062",
+    "abe982d210232c3f:L0:000129",
+    "4a757779abfb4ba1:L0:000047"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:29:28.473216+00:00",
+      "call_id": "74e4f416fdaa",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "672bbb92958747f4",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 22,
+      "completion_tokens": 0,
+      "latency_ms": 45.75,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "f2b93a358c944f8c"
+    },
+    {
+      "ts": "2026-11-12T14:29:37.342338+00:00",
+      "call_id": "0e6f6d664025",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9fdafd0a45603078",
+      "prompt_tokens": 1222,
+      "completion_tokens": 45,
+      "latency_ms": 8832.58,
+      "server_ms": 8818.57,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f2b93a358c944f8c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1222,
+    "completion_tokens": 45,
+    "total_ms": 8917.7
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

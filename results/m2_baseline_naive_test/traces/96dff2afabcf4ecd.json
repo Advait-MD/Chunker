@@ -1,0 +1,119 @@
+{
+  "trace_id": "96dff2afabcf4ecd",
+  "created_at": "2026-11-12T11:19:34.770526+00:00",
+  "query": "Who is the mother of the screenwriter of WarGames?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 146.81
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 146.87
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 6837.33
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 146.75
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 235,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 6690.39
+    }
+  },
+  "retrieved_ids": [
+    "dbcbda865eee9c7b:L0:000083",
+    "f3503d3d186f0f90:L0:000134",
+    "f59bbbdacaf7ffe4:L0:000142",
+    "cc1bdb3bf430bd0d:L0:000083",
+    "f109b032e24ab27a:L0:000025"
+  ],
+  "filtered_ids": [
+    "dbcbda865eee9c7b:L0:000083",
+    "f3503d3d186f0f90:L0:000134",
+    "f59bbbdacaf7ffe4:L0:000142",
+    "cc1bdb3bf430bd0d:L0:000083",
+    "f109b032e24ab27a:L0:000025"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:19:34.832535+00:00",
+      "call_id": "a6ac7f7d57ff",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3241d39f097a89d2",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 17,
+      "completion_tokens": 0,
+      "latency_ms": 61.79,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "96dff2afabcf4ecd"
+    },
+    {
+      "ts": "2026-11-12T11:19:41.606611+00:00",
+      "call_id": "63b6471885cd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f62499f96bae8b46",
+      "prompt_tokens": 848,
+      "completion_tokens": 39,
+      "latency_ms": 6689.12,
+      "server_ms": 6671.09,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "96dff2afabcf4ecd"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 848,
+    "completion_tokens": 39,
+    "total_ms": 6838.83
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

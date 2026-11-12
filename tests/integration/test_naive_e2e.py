@@ -78,7 +78,7 @@ def test_changed_file_replaces_old_nodes(cfg, corpus, fake):
 
 def test_model_abstention_passes_through(cfg, corpus):
     fake = FakeOllama(lambda p: {"answer": "Insufficient evidence in the corpus to answer this question.",
-                                 "citations": [], "confidence": 0.1, "abstained": True})
+                                 "short_answer": "Unanswerable", "citations": [], "confidence": 0.1, "abstained": True})
     comps, pipe = _pipeline(cfg, fake)
     ingest_path(corpus, cfg, comps.store, comps.embedder, log=lambda *_: None)
     res = pipe.answer("Who won the 1998 World Cup?")
@@ -87,7 +87,7 @@ def test_model_abstention_passes_through(cfg, corpus):
 
 
 def test_invalid_citation_reported(cfg, corpus):
-    fake = FakeOllama(lambda p: {"answer": "Fredville [9].", "citations": [9], "confidence": 0.5, "abstained": False})
+    fake = FakeOllama(lambda p: {"answer": "Fredville [9].", "short_answer": "Fredville", "citations": [9], "confidence": 0.5, "abstained": False})
     comps, pipe = _pipeline(cfg, fake)
     ingest_path(corpus, cfg, comps.store, comps.embedder, log=lambda *_: None)
     res = pipe.answer("capital of Freedonia")
@@ -110,3 +110,20 @@ def test_fastapi_query_endpoint(cfg, corpus, fake):
     body = r.json()
     assert body["trace_id"] and body["citations"][0]["source"] == "freedonia.md"
     assert body["citations"][0]["page"] == 1
+
+
+def test_truncated_generation_is_a_loud_generation_error(cfg, corpus):
+    from apex.generate.generator import GenerationError
+
+    class Truncating(FakeOllama):
+        def __call__(self, endpoint, payload, timeout):
+            out = super().__call__(endpoint, payload, timeout)
+            if endpoint == "/api/generate":
+                out.update({"response": '{"answer": "rambling', "done_reason": "length"})
+            return out
+
+    fake = Truncating()
+    comps, pipe = _pipeline(cfg, fake)
+    ingest_path(corpus, cfg, comps.store, comps.embedder, log=lambda *_: None)
+    with pytest.raises(GenerationError, match="truncated"):
+        pipe.answer("What is the capital of Freedonia?")

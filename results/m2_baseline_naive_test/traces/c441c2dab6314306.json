@@ -1,0 +1,122 @@
+{
+  "trace_id": "c441c2dab6314306",
+  "created_at": "2026-11-12T09:16:21.067199+00:00",
+  "query": "How many lexical features are considered?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 73.9
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 73.95
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14818.45
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 73.86
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 843,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14744.42
+    }
+  },
+  "retrieved_ids": [
+    "f8bd07355511bc96:L0:000011",
+    "f8bd07355511bc96:L0:000010",
+    "f8bd07355511bc96:L0:000000",
+    "f8bd07355511bc96:L0:000015",
+    "f8bd07355511bc96:L0:000006"
+  ],
+  "filtered_ids": [
+    "f8bd07355511bc96:L0:000011",
+    "f8bd07355511bc96:L0:000010",
+    "f8bd07355511bc96:L0:000000",
+    "f8bd07355511bc96:L0:000015",
+    "f8bd07355511bc96:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T09:16:21.068829+00:00",
+      "call_id": "5b63b20a983f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3b99d9328c982a15",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c441c2dab6314306"
+    },
+    {
+      "ts": "2026-11-12T09:16:35.884609+00:00",
+      "call_id": "bf871f4036e8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6730fd7b5c6347a1",
+      "prompt_tokens": 1427,
+      "completion_tokens": 59,
+      "latency_ms": 14743.51,
+      "server_ms": 14724.4,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "c441c2dab6314306"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1427,
+    "completion_tokens": 59,
+    "total_ms": 14819.46
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "Three lexical features are considered: dependency features, multilingual word-embeddings, and universal PoS embeddings."
+      ]
+    }
+  }
+}

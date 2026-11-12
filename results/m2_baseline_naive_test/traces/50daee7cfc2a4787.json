@@ -1,0 +1,121 @@
+{
+  "trace_id": "50daee7cfc2a4787",
+  "created_at": "2026-11-12T13:22:54.086999+00:00",
+  "query": "Are the films Gasland from 2010 and Pumping Iron from 1977 both documentaries?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 150.83
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 150.89
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15843.35
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 150.78
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 674,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15692.31
+    }
+  },
+  "retrieved_ids": [
+    "cb96563b0747a6ba:L0:000085",
+    "cb96563b0747a6ba:L0:000114",
+    "b120b09075017d08:L0:000010",
+    "c8fd2b3ea47eb07f:L0:000139",
+    "81fc433d55d23b4c:L0:000131"
+  ],
+  "filtered_ids": [
+    "cb96563b0747a6ba:L0:000085",
+    "cb96563b0747a6ba:L0:000114",
+    "b120b09075017d08:L0:000010",
+    "c8fd2b3ea47eb07f:L0:000139",
+    "81fc433d55d23b4c:L0:000131"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:22:54.161908+00:00",
+      "call_id": "db06bd5cadb1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a474f1cfc41d956c",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 21,
+      "completion_tokens": 0,
+      "latency_ms": 74.48,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "50daee7cfc2a4787"
+    },
+    {
+      "ts": "2026-11-12T13:23:09.929393+00:00",
+      "call_id": "7b4ffe591940",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ccee1dbcd9b5a099",
+      "prompt_tokens": 1332,
+      "completion_tokens": 84,
+      "latency_ms": 15691.16,
+      "server_ms": 15668.6,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "50daee7cfc2a4787"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1332,
+    "completion_tokens": 84,
+    "total_ms": 15845.04
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

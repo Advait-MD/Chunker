@@ -1,0 +1,120 @@
+{
+  "trace_id": "c7a595f3989f41fb",
+  "created_at": "2026-11-12T13:33:22.244061+00:00",
+  "query": "Which tennis player is older, Emilio Sánchez or Andrei Olhovskiy?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 131.96
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 132.02
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14392.61
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 131.9
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 591,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14260.47
+    }
+  },
+  "retrieved_ids": [
+    "ba3cd068cf9ac2e4:L0:000180",
+    "bc1dba3471045f02:L0:000072",
+    "81fc433d55d23b4c:L0:000123",
+    "ba3cd068cf9ac2e4:L0:000154",
+    "c8fd2b3ea47eb07f:L0:000201"
+  ],
+  "filtered_ids": [
+    "ba3cd068cf9ac2e4:L0:000180",
+    "bc1dba3471045f02:L0:000072",
+    "81fc433d55d23b4c:L0:000123",
+    "ba3cd068cf9ac2e4:L0:000154",
+    "c8fd2b3ea47eb07f:L0:000201"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:33:22.301346+00:00",
+      "call_id": "841ad5b36c92",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7af56f5b732cf3b7",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 22,
+      "completion_tokens": 0,
+      "latency_ms": 56.56,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "c7a595f3989f41fb"
+    },
+    {
+      "ts": "2026-11-12T13:33:36.635815+00:00",
+      "call_id": "e71211c62e30",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6da21b5f8cf1c9d3",
+      "prompt_tokens": 1320,
+      "completion_tokens": 94,
+      "latency_ms": 14259.47,
+      "server_ms": 14240.66,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "c7a595f3989f41fb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1320,
+    "completion_tokens": 94,
+    "total_ms": 14393.81
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,120 @@
+{
+  "trace_id": "a549cff2eedd43e7",
+  "created_at": "2026-11-12T13:59:05.298480+00:00",
+  "query": "The Memphis Hustle are based in a suburb of a city with a population of what in 2010?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 139.24
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 139.3
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13404.75
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 139.19
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 597,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13265.33
+    }
+  },
+  "retrieved_ids": [
+    "b120b09075017d08:L0:000113",
+    "81fc433d55d23b4c:L0:000185",
+    "90976421f3f2bea2:L0:000153",
+    "81fc433d55d23b4c:L0:000071",
+    "8e50522b7cb636d8:L0:000024"
+  ],
+  "filtered_ids": [
+    "b120b09075017d08:L0:000113",
+    "81fc433d55d23b4c:L0:000185",
+    "90976421f3f2bea2:L0:000153",
+    "81fc433d55d23b4c:L0:000071",
+    "8e50522b7cb636d8:L0:000024"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:59:05.357649+00:00",
+      "call_id": "929cca4e67bd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4b06ea1313da0e48",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 26,
+      "completion_tokens": 0,
+      "latency_ms": 58.36,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "a549cff2eedd43e7"
+    },
+    {
+      "ts": "2026-11-12T13:59:18.702281+00:00",
+      "call_id": "fd87ee8106ac",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ebc7789f88bf242a",
+      "prompt_tokens": 1270,
+      "completion_tokens": 81,
+      "latency_ms": 13264.24,
+      "server_ms": 13241.58,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a549cff2eedd43e7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1270,
+    "completion_tokens": 81,
+    "total_ms": 13407.28
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

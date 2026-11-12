@@ -1,0 +1,119 @@
+{
+  "trace_id": "1c5955363de047f6",
+  "created_at": "2026-11-12T13:52:00.892715+00:00",
+  "query": "Who was born first, Liam Cunningham or Michael Fassbender?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 142.23
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 142.29
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11221.89
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 142.18
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 575,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11079.52
+    }
+  },
+  "retrieved_ids": [
+    "ec3410ef955c5c93:L0:000070",
+    "ec3410ef955c5c93:L0:000169",
+    "cb96563b0747a6ba:L0:000003",
+    "20496f59538deb41:L0:000113",
+    "bc1dba3471045f02:L0:000145"
+  ],
+  "filtered_ids": [
+    "ec3410ef955c5c93:L0:000070",
+    "ec3410ef955c5c93:L0:000169",
+    "cb96563b0747a6ba:L0:000003",
+    "20496f59538deb41:L0:000113",
+    "bc1dba3471045f02:L0:000145"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:52:00.958605+00:00",
+      "call_id": "e07fad297e21",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7bfee8a5602b3d6e",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 20,
+      "completion_tokens": 0,
+      "latency_ms": 65.5,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "1c5955363de047f6"
+    },
+    {
+      "ts": "2026-11-12T13:52:12.113546+00:00",
+      "call_id": "f9ea6c4e43fd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b5d7c43bf24317c3",
+      "prompt_tokens": 1196,
+      "completion_tokens": 45,
+      "latency_ms": 11078.46,
+      "server_ms": 11027.31,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "1c5955363de047f6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1196,
+    "completion_tokens": 45,
+    "total_ms": 11223.5
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

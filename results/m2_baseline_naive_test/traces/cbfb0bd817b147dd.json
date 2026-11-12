@@ -1,0 +1,119 @@
+{
+  "trace_id": "cbfb0bd817b147dd",
+  "created_at": "2026-11-12T14:58:34.107076+00:00",
+  "query": "Who is the spouse of the performer of song Missing My Baby?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 150.73
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 150.78
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14039.77
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 150.67
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 991,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13888.93
+    }
+  },
+  "retrieved_ids": [
+    "99628090500247e3:L0:000060",
+    "317e12ccd417c0d7:L0:000129",
+    "4a757779abfb4ba1:L0:000161",
+    "b04ce6dd2d95fb80:L0:000074",
+    "abe982d210232c3f:L0:000045"
+  ],
+  "filtered_ids": [
+    "99628090500247e3:L0:000060",
+    "317e12ccd417c0d7:L0:000129",
+    "4a757779abfb4ba1:L0:000161",
+    "b04ce6dd2d95fb80:L0:000074",
+    "abe982d210232c3f:L0:000045"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:58:34.174097+00:00",
+      "call_id": "641da7758ce5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6ff8c4b9c831629e",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 19,
+      "completion_tokens": 0,
+      "latency_ms": 66.57,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "cbfb0bd817b147dd"
+    },
+    {
+      "ts": "2026-11-12T14:58:48.146093+00:00",
+      "call_id": "0cc70eb85bf6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "aac20ee975e35b51",
+      "prompt_tokens": 1680,
+      "completion_tokens": 52,
+      "latency_ms": 13888.22,
+      "server_ms": 13865.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "cbfb0bd817b147dd"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1680,
+    "completion_tokens": 52,
+    "total_ms": 14040.66
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -6,6 +6,8 @@ PDF parsing reuses the existing, tested `modules.document_loader.read_pdf_pages`
 
 from __future__ import annotations
 
+import json
+
 import hashlib
 import re
 import unicodedata
@@ -89,8 +91,30 @@ def parse_txt(path: Path) -> List[Dict]:
     return [{"page_number": 1, "section": None, "text": text}] if text else []
 
 
+def parse_jsonl_doc(path: Path) -> List[Dict]:
+    """Pre-segmented document: one JSON object per line, {"section": str|null, "text": str}.
+
+    Lossless input for benchmark corpora (no Markdown re-interpretation of the text). Each line becomes
+    one unit, so chunks never cross a section/paragraph boundary. Malformed lines raise.
+    """
+    units: List[Dict] = []
+    for n, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        try:
+            obj = json.loads(line)
+        except json.JSONDecodeError as e:
+            raise ValueError(f"{path}:{n}: invalid JSON: {e}") from e
+        if not isinstance(obj, dict) or not isinstance(obj.get("text"), str):
+            raise ValueError(f"{path}:{n}: each line must be an object with a string 'text'")
+        text = _normalise(obj["text"])
+        if text:
+            units.append({"page_number": len(units) + 1, "section": obj.get("section"), "text": text})
+    return units
+
+
 PARSERS = {".pdf": parse_pdf, ".md": parse_markdown, ".markdown": parse_markdown,
-           ".html": parse_html, ".htm": parse_html, ".txt": parse_txt}
+           ".html": parse_html, ".htm": parse_html, ".txt": parse_txt, ".jsonl": parse_jsonl_doc}
 
 
 def parse_file(path: str | Path) -> List[Dict]:

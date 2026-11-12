@@ -1,0 +1,119 @@
+{
+  "trace_id": "7e5d3af10758400b",
+  "created_at": "2026-11-12T10:44:42.064331+00:00",
+  "query": "Who did the Slavs have contact with in the country that Steven Spielberg's grandparents were from?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 162.65
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 162.71
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12293.47
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 162.59
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 677,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12130.68
+    }
+  },
+  "retrieved_ids": [
+    "8b31d5859eb3d77a:L0:000007",
+    "15abb5e49dced915:L0:000171",
+    "178c7e3e6ef6ae87:L0:000084",
+    "8679484d23bfd3a0:L0:000034",
+    "6bddce8aaad42fea:L0:000152"
+  ],
+  "filtered_ids": [
+    "8b31d5859eb3d77a:L0:000007",
+    "15abb5e49dced915:L0:000171",
+    "178c7e3e6ef6ae87:L0:000084",
+    "8679484d23bfd3a0:L0:000034",
+    "6bddce8aaad42fea:L0:000152"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T10:44:42.146351+00:00",
+      "call_id": "328ad0cec2ca",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "54b0cfae9f7ccd4f",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 26,
+      "completion_tokens": 0,
+      "latency_ms": 81.66,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "7e5d3af10758400b"
+    },
+    {
+      "ts": "2026-11-12T10:44:54.356956+00:00",
+      "call_id": "d5318b1c1b8e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0ead2d92b75b6dc6",
+      "prompt_tokens": 1336,
+      "completion_tokens": 43,
+      "latency_ms": 12129.68,
+      "server_ms": 12108.22,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "7e5d3af10758400b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1336,
+    "completion_tokens": 43,
+    "total_ms": 12294.52
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

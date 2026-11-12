@@ -1,0 +1,122 @@
+{
+  "trace_id": "605356482c2045e7",
+  "created_at": "2026-11-12T10:13:36.483366+00:00",
+  "query": "By how much do they outperform state-of-the-art models on knowledge graph completion?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 198.63
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 198.69
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21326.85
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 198.58
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1112,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21127.98
+    }
+  },
+  "retrieved_ids": [
+    "5cfe3c0f428e750f:L0:000006",
+    "5cfe3c0f428e750f:L0:000001",
+    "5cfe3c0f428e750f:L0:000018",
+    "5cfe3c0f428e750f:L0:000000",
+    "5cfe3c0f428e750f:L0:000017"
+  ],
+  "filtered_ids": [
+    "5cfe3c0f428e750f:L0:000006",
+    "5cfe3c0f428e750f:L0:000001",
+    "5cfe3c0f428e750f:L0:000018",
+    "5cfe3c0f428e750f:L0:000000",
+    "5cfe3c0f428e750f:L0:000017"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T10:13:36.605174+00:00",
+      "call_id": "cde048378e24",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b48cbf2d758d2c43",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 27,
+      "completion_tokens": 0,
+      "latency_ms": 120.64,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "605356482c2045e7"
+    },
+    {
+      "ts": "2026-11-12T10:13:57.809618+00:00",
+      "call_id": "92e20bbe3861",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "63500ca2b012ce7a",
+      "prompt_tokens": 1824,
+      "completion_tokens": 83,
+      "latency_ms": 21126.77,
+      "server_ms": 21098.93,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "605356482c2045e7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1824,
+    "completion_tokens": 83,
+    "total_ms": 21379.54
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        3,
+        4
+      ],
+      "uncited_sentences": [
+        "Our proposed CapsE outperforms other state-of-the-art models on two benchmark datasets WN18RR and FB15k-237 for the knowledge graph completion."
+      ]
+    }
+  }
+}

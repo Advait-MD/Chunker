@@ -1,0 +1,119 @@
+{
+  "trace_id": "33da70a0474a49b6",
+  "created_at": "2026-11-12T14:26:15.587318+00:00",
+  "query": "Which film was released first, Taxi! or What'S Your Hurry??",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 140.52
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 140.58
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10273.9
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 140.45
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 569,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10133.25
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000078",
+    "abe982d210232c3f:L0:000013",
+    "6af2db6cb86d77e2:L0:000143",
+    "6af2db6cb86d77e2:L0:000203",
+    "c73b757f0eb66f37:L0:000011"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000078",
+    "abe982d210232c3f:L0:000013",
+    "6af2db6cb86d77e2:L0:000143",
+    "6af2db6cb86d77e2:L0:000203",
+    "c73b757f0eb66f37:L0:000011"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:26:15.654682+00:00",
+      "call_id": "8515018e12d3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f6346a3641198349",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 22,
+      "completion_tokens": 0,
+      "latency_ms": 66.53,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "33da70a0474a49b6"
+    },
+    {
+      "ts": "2026-11-12T14:26:25.860299+00:00",
+      "call_id": "b9ae39bdceaf",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "75139a61b60f6ed1",
+      "prompt_tokens": 1219,
+      "completion_tokens": 45,
+      "latency_ms": 10132.04,
+      "server_ms": 10111.38,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "33da70a0474a49b6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1219,
+    "completion_tokens": 45,
+    "total_ms": 10275.19
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

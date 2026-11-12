@@ -1,0 +1,123 @@
+{
+  "trace_id": "fdbc2793196249b4",
+  "created_at": "2026-11-12T13:11:46.273410+00:00",
+  "query": "Who created the NBC sitcom that Johnny Pemberton appears in as the character Bo Thompson?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1091.59
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1091.65
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14727.92
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 1091.55
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 596,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13636.18
+    }
+  },
+  "retrieved_ids": [
+    "20496f59538deb41:L0:000178",
+    "b120b09075017d08:L0:000191",
+    "81fc433d55d23b4c:L0:000109",
+    "c8fd2b3ea47eb07f:L0:000012",
+    "20496f59538deb41:L0:000101"
+  ],
+  "filtered_ids": [
+    "20496f59538deb41:L0:000178",
+    "b120b09075017d08:L0:000191",
+    "81fc433d55d23b4c:L0:000109",
+    "c8fd2b3ea47eb07f:L0:000012",
+    "20496f59538deb41:L0:000101"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:11:46.332772+00:00",
+      "call_id": "3e7c76df516f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c80053ca230f8954",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 24,
+      "completion_tokens": 0,
+      "latency_ms": 58.78,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "fdbc2793196249b4"
+    },
+    {
+      "ts": "2026-11-12T13:12:01.001185+00:00",
+      "call_id": "f9f22e4a166e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "39d9c5d05f705def",
+      "prompt_tokens": 1205,
+      "completion_tokens": 98,
+      "latency_ms": 13608.24,
+      "server_ms": 13589.49,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "fdbc2793196249b4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1205,
+    "completion_tokens": 98,
+    "total_ms": 14729.14
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The NBC sitcom that Johnny Pemberton appears in as the character Bo Thompson is not mentioned in the provided evidence.",
+        "Therefore, the answer is Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

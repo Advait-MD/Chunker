@@ -1,0 +1,119 @@
+{
+  "trace_id": "21d83b15f8ab435b",
+  "created_at": "2026-11-12T11:33:51.543646+00:00",
+  "query": "What is the life expectancy of the type of retriever named after the body of water the Patuxent River turns into?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 180.86
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 180.91
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 9626.01
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 180.78
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 538,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9444.98
+    }
+  },
+  "retrieved_ids": [
+    "15abb5e49dced915:L0:000042",
+    "f109b032e24ab27a:L0:000147",
+    "6683bfc7dec06e2a:L0:000094",
+    "178c7e3e6ef6ae87:L0:000119",
+    "15abb5e49dced915:L0:000105"
+  ],
+  "filtered_ids": [
+    "15abb5e49dced915:L0:000042",
+    "f109b032e24ab27a:L0:000147",
+    "6683bfc7dec06e2a:L0:000094",
+    "178c7e3e6ef6ae87:L0:000119",
+    "15abb5e49dced915:L0:000105"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:33:51.620770+00:00",
+      "call_id": "59ceac1c17f1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4df74b1649fa65e6",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 32,
+      "completion_tokens": 0,
+      "latency_ms": 75.54,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "21d83b15f8ab435b"
+    },
+    {
+      "ts": "2026-11-12T11:34:01.168116+00:00",
+      "call_id": "31a2ec139da6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8bca5d354e440e31",
+      "prompt_tokens": 1161,
+      "completion_tokens": 45,
+      "latency_ms": 9443.25,
+      "server_ms": 9411.58,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "21d83b15f8ab435b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1161,
+    "completion_tokens": 45,
+    "total_ms": 9628.72
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

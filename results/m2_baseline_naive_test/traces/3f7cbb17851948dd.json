@@ -1,0 +1,119 @@
+{
+  "trace_id": "3f7cbb17851948dd",
+  "created_at": "2026-11-12T11:12:33.590317+00:00",
+  "query": "What day is the Feast in the city where the headquarters of the only group larger than Desde El Principio's record label held on?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 139.72
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 139.77
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10111.24
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 139.67
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 528,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9969.94
+    }
+  },
+  "retrieved_ids": [
+    "6bddce8aaad42fea:L0:000006",
+    "4fcce431f5d22d1d:L0:000056",
+    "15abb5e49dced915:L0:000109",
+    "a168352d83e925b5:L0:000064",
+    "5a1a5bbda9db013e:L0:000115"
+  ],
+  "filtered_ids": [
+    "6bddce8aaad42fea:L0:000006",
+    "4fcce431f5d22d1d:L0:000056",
+    "15abb5e49dced915:L0:000109",
+    "a168352d83e925b5:L0:000064",
+    "5a1a5bbda9db013e:L0:000115"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:12:33.649585+00:00",
+      "call_id": "d9976ed1b2e4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6da86756f1ef1b40",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 37,
+      "completion_tokens": 0,
+      "latency_ms": 58.87,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "3f7cbb17851948dd"
+    },
+    {
+      "ts": "2026-11-12T11:12:43.699240+00:00",
+      "call_id": "d21ae16b0606",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0fe95547d6a8eeb1",
+      "prompt_tokens": 1148,
+      "completion_tokens": 45,
+      "latency_ms": 9968.84,
+      "server_ms": 9944.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "3f7cbb17851948dd"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1148,
+    "completion_tokens": 45,
+    "total_ms": 10113.85
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

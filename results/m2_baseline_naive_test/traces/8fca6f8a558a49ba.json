@@ -1,0 +1,123 @@
+{
+  "trace_id": "8fca6f8a558a49ba",
+  "created_at": "2026-11-12T14:48:35.828081+00:00",
+  "query": "What nationality is the director of film On The Trail Of Igor Rizzi?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 80.72
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 80.75
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 16709.59
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 80.68
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1218,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16628.67
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000106",
+    "b04ce6dd2d95fb80:L0:000152",
+    "43d5059060d4defa:L0:000003",
+    "99628090500247e3:L0:000110",
+    "abe982d210232c3f:L0:000125"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000106",
+    "b04ce6dd2d95fb80:L0:000152",
+    "43d5059060d4defa:L0:000003",
+    "99628090500247e3:L0:000110",
+    "abe982d210232c3f:L0:000125"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:48:35.875603+00:00",
+      "call_id": "986c8d112f59",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6370502822b4d72c",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 21,
+      "completion_tokens": 0,
+      "latency_ms": 47.07,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "8fca6f8a558a49ba"
+    },
+    {
+      "ts": "2026-11-12T14:48:52.536523+00:00",
+      "call_id": "a6586d527a53",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "fadde3f05d7e9fb7",
+      "prompt_tokens": 2012,
+      "completion_tokens": 82,
+      "latency_ms": 16627.05,
+      "server_ms": 16601.11,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "8fca6f8a558a49ba"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2012,
+    "completion_tokens": 82,
+    "total_ms": 16711.49
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        5,
+        4,
+        3,
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

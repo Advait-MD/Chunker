@@ -1,0 +1,119 @@
+{
+  "trace_id": "bda584d67ac64379",
+  "created_at": "2026-11-12T13:30:06.631210+00:00",
+  "query": "The alcoholic drink that shares a name with Quintessentially Unreal's 1996 album is commonly reffered to in historical literature as what?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 135.52
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 135.57
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13323.19
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 135.47
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 636,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13187.51
+    }
+  },
+  "retrieved_ids": [
+    "634431bb1e27714f:L0:000110",
+    "838c0e0106e6f015:L0:000158",
+    "cc2399aca11eb631:L0:000146",
+    "5d0f6cf59ee42566:L0:000025",
+    "bc1dba3471045f02:L0:000150"
+  ],
+  "filtered_ids": [
+    "634431bb1e27714f:L0:000110",
+    "838c0e0106e6f015:L0:000158",
+    "cc2399aca11eb631:L0:000146",
+    "5d0f6cf59ee42566:L0:000025",
+    "bc1dba3471045f02:L0:000150"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:30:06.692798+00:00",
+      "call_id": "10d90e7dcd59",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "300418fa56894fda",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 37,
+      "completion_tokens": 0,
+      "latency_ms": 61.38,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "bda584d67ac64379"
+    },
+    {
+      "ts": "2026-11-12T13:30:19.953616+00:00",
+      "call_id": "bc4c64e8642c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "db92a4aa2be4ab82",
+      "prompt_tokens": 1252,
+      "completion_tokens": 79,
+      "latency_ms": 13186.41,
+      "server_ms": 13166.4,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "bda584d67ac64379"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1252,
+    "completion_tokens": 79,
+    "total_ms": 13325.13
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "trace_id": "55834073752543db",
+  "created_at": "2026-11-12T10:46:43.558597+00:00",
+  "query": "Who is the CEO of FleetBoston Financial's purchaser?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 155.89
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 155.94
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12534.15
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 155.84
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 698,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12378.14
+    }
+  },
+  "retrieved_ids": [
+    "e182527d2b1ecac3:L0:000138",
+    "15abb5e49dced915:L0:000009",
+    "c61175e20d09af4f:L0:000014",
+    "66f5caec1369ebaf:L0:000148",
+    "f3503d3d186f0f90:L0:000049"
+  ],
+  "filtered_ids": [
+    "e182527d2b1ecac3:L0:000138",
+    "15abb5e49dced915:L0:000009",
+    "c61175e20d09af4f:L0:000014",
+    "66f5caec1369ebaf:L0:000148",
+    "f3503d3d186f0f90:L0:000049"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T10:46:43.626406+00:00",
+      "call_id": "fe906ce67c93",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "be41468c14c6e58b",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 20,
+      "completion_tokens": 0,
+      "latency_ms": 66.96,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "55834073752543db"
+    },
+    {
+      "ts": "2026-11-12T10:46:56.092019+00:00",
+      "call_id": "dc10955f5967",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5825c30dbc39703e",
+      "prompt_tokens": 1359,
+      "completion_tokens": 45,
+      "latency_ms": 12377.19,
+      "server_ms": 12353.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "55834073752543db"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1359,
+    "completion_tokens": 45,
+    "total_ms": 12536.71
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

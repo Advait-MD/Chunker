@@ -1,0 +1,119 @@
+{
+  "trace_id": "569ca743a6124705",
+  "created_at": "2026-11-12T10:42:35.604119+00:00",
+  "query": "What is the Sarah performer's birth date?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 228.96
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 229.02
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10152.71
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 228.91
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 323,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9923.62
+    }
+  },
+  "retrieved_ids": [
+    "cc1bdb3bf430bd0d:L0:000115",
+    "5a1a5bbda9db013e:L0:000013",
+    "66f5caec1369ebaf:L0:000030",
+    "ad11b6e85f908fb3:L0:000194",
+    "cc1bdb3bf430bd0d:L0:000192"
+  ],
+  "filtered_ids": [
+    "cc1bdb3bf430bd0d:L0:000115",
+    "5a1a5bbda9db013e:L0:000013",
+    "66f5caec1369ebaf:L0:000030",
+    "ad11b6e85f908fb3:L0:000194",
+    "cc1bdb3bf430bd0d:L0:000192"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T10:42:35.701623+00:00",
+      "call_id": "40d58fa0d016",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "060d133ad9436d37",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 16,
+      "completion_tokens": 0,
+      "latency_ms": 97.23,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "569ca743a6124705"
+    },
+    {
+      "ts": "2026-11-12T10:42:45.755772+00:00",
+      "call_id": "2120879e378b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7d3635172bf49180",
+      "prompt_tokens": 887,
+      "completion_tokens": 45,
+      "latency_ms": 9922.62,
+      "server_ms": 9905.82,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "569ca743a6124705"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 887,
+    "completion_tokens": 45,
+    "total_ms": 10153.85
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

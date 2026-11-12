@@ -1,0 +1,120 @@
+{
+  "trace_id": "95c64eb3c3344a5d",
+  "created_at": "2026-11-12T13:24:32.293136+00:00",
+  "query": "UFO Magazine covers what subject named for Charles Hoy Fort?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 142.17
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 142.24
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14615.26
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 142.11
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 752,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14472.91
+    }
+  },
+  "retrieved_ids": [
+    "ec3410ef955c5c93:L0:000131",
+    "9794e842cc9565f0:L0:000020",
+    "838c0e0106e6f015:L0:000097",
+    "cb96563b0747a6ba:L0:000160",
+    "cc2399aca11eb631:L0:000131"
+  ],
+  "filtered_ids": [
+    "ec3410ef955c5c93:L0:000131",
+    "9794e842cc9565f0:L0:000020",
+    "838c0e0106e6f015:L0:000097",
+    "cb96563b0747a6ba:L0:000160",
+    "cc2399aca11eb631:L0:000131"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:24:32.354768+00:00",
+      "call_id": "2fdb6f53cc6d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e583a3aa3a0a0e11",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 18,
+      "completion_tokens": 0,
+      "latency_ms": 60.77,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "95c64eb3c3344a5d"
+    },
+    {
+      "ts": "2026-11-12T13:24:46.907216+00:00",
+      "call_id": "34e07445e2fe",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "35b7c624a495ada1",
+      "prompt_tokens": 1384,
+      "completion_tokens": 77,
+      "latency_ms": 14471.81,
+      "server_ms": 14451.4,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "95c64eb3c3344a5d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1384,
+    "completion_tokens": 77,
+    "total_ms": 14616.86
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

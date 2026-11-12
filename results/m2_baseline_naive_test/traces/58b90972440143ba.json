@@ -1,0 +1,123 @@
+{
+  "trace_id": "58b90972440143ba",
+  "created_at": "2026-11-12T10:08:58.854367+00:00",
+  "query": "what dataset is used?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 144.96
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 145.01
+    },
+    {
+      "state": "DONE",
+      "t_ms": 33438.74
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 144.9
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1806,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 33259.72
+    }
+  },
+  "retrieved_ids": [
+    "ab2938c8ce2a6415:L0:000015",
+    "ab2938c8ce2a6415:L0:000011",
+    "ab2938c8ce2a6415:L0:000006",
+    "ab2938c8ce2a6415:L0:000001",
+    "ab2938c8ce2a6415:L0:000008"
+  ],
+  "filtered_ids": [
+    "ab2938c8ce2a6415:L0:000015",
+    "ab2938c8ce2a6415:L0:000011",
+    "ab2938c8ce2a6415:L0:000006",
+    "ab2938c8ce2a6415:L0:000001",
+    "ab2938c8ce2a6415:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T10:08:58.922098+00:00",
+      "call_id": "f89190f97329",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a4582aebb3e0ca5b",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 12,
+      "completion_tokens": 0,
+      "latency_ms": 67.0,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "58b90972440143ba"
+    },
+    {
+      "ts": "2026-11-12T10:09:32.258306+00:00",
+      "call_id": "6dd42b593475",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "172885616634e8c2",
+      "prompt_tokens": 2467,
+      "completion_tokens": 140,
+      "latency_ms": 33258.24,
+      "server_ms": 33227.24,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "58b90972440143ba"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2467,
+    "completion_tokens": 140,
+    "total_ms": 33440.05
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The dataset used includes over 1.11 million essay responses, with 866,137 unique responses after preprocessing.",
+        "This dataset was expanded to include many types of essays over a range of essay topics, student age ranges, styles of writing, and a multitude of types of alerts."
+      ]
+    }
+  }
+}

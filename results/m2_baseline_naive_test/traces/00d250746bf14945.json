@@ -1,0 +1,119 @@
+{
+  "trace_id": "00d250746bf14945",
+  "created_at": "2026-11-12T13:25:23.148523+00:00",
+  "query": "Who covered the song I Love You by Chris Write?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 143.02
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 143.07
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13652.59
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 142.97
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 927,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13509.44
+    }
+  },
+  "retrieved_ids": [
+    "ba3cd068cf9ac2e4:L0:000156",
+    "20496f59538deb41:L0:000182",
+    "ba3cd068cf9ac2e4:L0:000030",
+    "bc1dba3471045f02:L0:000002",
+    "cb96563b0747a6ba:L0:000148"
+  ],
+  "filtered_ids": [
+    "ba3cd068cf9ac2e4:L0:000156",
+    "20496f59538deb41:L0:000182",
+    "ba3cd068cf9ac2e4:L0:000030",
+    "bc1dba3471045f02:L0:000002",
+    "cb96563b0747a6ba:L0:000148"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:25:23.213557+00:00",
+      "call_id": "bde0820a6e38",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "63c030a592102bbf",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 17,
+      "completion_tokens": 0,
+      "latency_ms": 64.4,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "00d250746bf14945"
+    },
+    {
+      "ts": "2026-11-12T13:25:36.800269+00:00",
+      "call_id": "82745129b28d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b9cbc416ff72bac2",
+      "prompt_tokens": 1575,
+      "completion_tokens": 45,
+      "latency_ms": 13508.33,
+      "server_ms": 13490.0,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "00d250746bf14945"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1575,
+    "completion_tokens": 45,
+    "total_ms": 13654.67
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

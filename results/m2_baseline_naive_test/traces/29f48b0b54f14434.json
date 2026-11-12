@@ -1,0 +1,119 @@
+{
+  "trace_id": "29f48b0b54f14434",
+  "created_at": "2026-11-12T14:24:07.777718+00:00",
+  "query": "Are Justine Lupe and Mark Kistler both from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 153.9
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 153.96
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15875.48
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 153.85
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1161,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15721.44
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000026",
+    "317e12ccd417c0d7:L0:000103",
+    "99628090500247e3:L0:000127",
+    "b04ce6dd2d95fb80:L0:000152",
+    "317e12ccd417c0d7:L0:000042"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000026",
+    "317e12ccd417c0d7:L0:000103",
+    "99628090500247e3:L0:000127",
+    "b04ce6dd2d95fb80:L0:000152",
+    "317e12ccd417c0d7:L0:000042"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:24:07.842549+00:00",
+      "call_id": "3d504e061304",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b033525a53adc8b8",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 21,
+      "completion_tokens": 0,
+      "latency_ms": 63.73,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "29f48b0b54f14434"
+    },
+    {
+      "ts": "2026-11-12T14:24:23.652596+00:00",
+      "call_id": "ca2156738a16",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "96a03e4594b1baf5",
+      "prompt_tokens": 1949,
+      "completion_tokens": 45,
+      "latency_ms": 15720.37,
+      "server_ms": 15694.35,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "29f48b0b54f14434"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1949,
+    "completion_tokens": 45,
+    "total_ms": 15877.14
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

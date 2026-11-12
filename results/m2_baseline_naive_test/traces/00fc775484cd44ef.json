@@ -1,0 +1,122 @@
+{
+  "trace_id": "00fc775484cd44ef",
+  "created_at": "2026-11-12T12:55:46.105912+00:00",
+  "query": "How many other expeditions ventured to the planet without noticing the city?\n\nOptions:\n(A) 11\n(B) 10\n(C) 0\n(D) 7\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 144.83
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 144.89
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22086.42
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 144.78
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1948,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21941.44
+    }
+  },
+  "retrieved_ids": [
+    "ed427014dfdf8245:L0:000001",
+    "ed427014dfdf8245:L0:000000",
+    "ed427014dfdf8245:L0:000013",
+    "ed427014dfdf8245:L0:000002",
+    "ed427014dfdf8245:L0:000014"
+  ],
+  "filtered_ids": [
+    "ed427014dfdf8245:L0:000001",
+    "ed427014dfdf8245:L0:000000",
+    "ed427014dfdf8245:L0:000013",
+    "ed427014dfdf8245:L0:000002",
+    "ed427014dfdf8245:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:55:46.165228+00:00",
+      "call_id": "5a0945230d53",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2b59c421655bb642",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 61,
+      "completion_tokens": 0,
+      "latency_ms": 58.84,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "00fc775484cd44ef"
+    },
+    {
+      "ts": "2026-11-12T12:56:08.191210+00:00",
+      "call_id": "35b821918e0d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ca9817571e3a16a6",
+      "prompt_tokens": 2441,
+      "completion_tokens": 73,
+      "latency_ms": 21940.33,
+      "server_ms": 21891.56,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "00fc775484cd44ef"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2441,
+    "completion_tokens": 73,
+    "total_ms": 22091.69
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "(B) The previous ten, in the time allowed them for exploration while this planet was still close enough to their own to permit a safe return in their ships, had not spotted the city."
+      ]
+    }
+  }
+}

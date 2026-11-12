@@ -1,0 +1,124 @@
+{
+  "trace_id": "e90cc463a8224fc0",
+  "created_at": "2026-11-12T12:09:54.074081+00:00",
+  "query": "How many different people tried to talk Chapman into staying on the moon?\n\nOptions:\n(A) 5\n(B) 2\n(C) 3\n(D) 4\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 133.43
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 133.5
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23128.72
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 133.38
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1931,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22994.86
+    }
+  },
+  "retrieved_ids": [
+    "fd3d1c6c92d6764a:L0:000007",
+    "fd3d1c6c92d6764a:L0:000001",
+    "fd3d1c6c92d6764a:L0:000005",
+    "fd3d1c6c92d6764a:L0:000015",
+    "fd3d1c6c92d6764a:L0:000012"
+  ],
+  "filtered_ids": [
+    "fd3d1c6c92d6764a:L0:000007",
+    "fd3d1c6c92d6764a:L0:000001",
+    "fd3d1c6c92d6764a:L0:000005",
+    "fd3d1c6c92d6764a:L0:000015",
+    "fd3d1c6c92d6764a:L0:000012"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T12:09:54.137886+00:00",
+      "call_id": "fa2064728f89",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f771d534904693af",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 62,
+      "completion_tokens": 0,
+      "latency_ms": 63.06,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "e90cc463a8224fc0"
+    },
+    {
+      "ts": "2026-11-12T12:10:17.201631+00:00",
+      "call_id": "3aefcd9b00b5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f1e793ac7dbe021f",
+      "prompt_tokens": 2405,
+      "completion_tokens": 80,
+      "latency_ms": 22993.26,
+      "server_ms": 22963.5,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "e90cc463a8224fc0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2405,
+    "completion_tokens": 80,
+    "total_ms": 23131.18
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3
+      ],
+      "uncited_sentences": [
+        "(D) Four different people tried to talk Chapman into staying on the moon.",
+        "Donley, Klein, and Dick all expressed their intentions to stay on the moon, and Chapman himself was reluctant to leave."
+      ]
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "trace_id": "d3320238206a4ee2",
+  "created_at": "2026-11-12T13:35:09.380984+00:00",
+  "query": "What is the capacity of the stadium that is the home ground of the Lahore Eagles?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 137.69
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 137.74
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12025.63
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 137.64
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 550,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11887.78
+    }
+  },
+  "retrieved_ids": [
+    "8e50522b7cb636d8:L0:000117",
+    "90976421f3f2bea2:L0:000181",
+    "5d0f6cf59ee42566:L0:000062",
+    "634431bb1e27714f:L0:000133",
+    "9794e842cc9565f0:L0:000050"
+  ],
+  "filtered_ids": [
+    "8e50522b7cb636d8:L0:000117",
+    "90976421f3f2bea2:L0:000181",
+    "5d0f6cf59ee42566:L0:000062",
+    "634431bb1e27714f:L0:000133",
+    "9794e842cc9565f0:L0:000050"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:35:09.441485+00:00",
+      "call_id": "94b97c198e6d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "50ecabb9612e6fe0",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 23,
+      "completion_tokens": 0,
+      "latency_ms": 60.34,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "d3320238206a4ee2"
+    },
+    {
+      "ts": "2026-11-12T13:35:21.405375+00:00",
+      "call_id": "9da0eafe7590",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8a9cf1df22324655",
+      "prompt_tokens": 1177,
+      "completion_tokens": 64,
+      "latency_ms": 11886.8,
+      "server_ms": 11866.45,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d3320238206a4ee2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1177,
+    "completion_tokens": 64,
+    "total_ms": 12026.74
+  },
+  "config_hash": "343afb38838a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

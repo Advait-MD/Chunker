@@ -1,0 +1,122 @@
+{
+  "trace_id": "5db7a294543b44e7",
+  "created_at": "2026-11-12T10:21:55.491091+00:00",
+  "query": "How do they preprocess Tweets?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 140.07
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 140.12
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22341.37
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 140.02
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1083,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22201.1
+    }
+  },
+  "retrieved_ids": [
+    "aca99bf4017b4031:L0:000008",
+    "aca99bf4017b4031:L0:000014",
+    "aca99bf4017b4031:L0:000016",
+    "aca99bf4017b4031:L0:000015",
+    "aca99bf4017b4031:L0:000006"
+  ],
+  "filtered_ids": [
+    "aca99bf4017b4031:L0:000008",
+    "aca99bf4017b4031:L0:000014",
+    "aca99bf4017b4031:L0:000016",
+    "aca99bf4017b4031:L0:000015",
+    "aca99bf4017b4031:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T10:21:55.559913+00:00",
+      "call_id": "dea9979ea3d9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3adfdbd7e6d74d15",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 17,
+      "completion_tokens": 0,
+      "latency_ms": 68.26,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "5db7a294543b44e7"
+    },
+    {
+      "ts": "2026-11-12T10:22:17.830779+00:00",
+      "call_id": "814ce071d9b5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2fe05c13622d57cf",
+      "prompt_tokens": 1732,
+      "completion_tokens": 100,
+      "latency_ms": 22199.56,
+      "server_ms": 22171.32,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "5db7a294543b44e7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1732,
+    "completion_tokens": 100,
+    "total_ms": 22343.37
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "They preprocess tweets by removing retweets, semantically meaningless expressions such as URLs, emoticons, user mentions (@), and hashtags, and stripping punctuation."
+      ]
+    }
+  }
+}

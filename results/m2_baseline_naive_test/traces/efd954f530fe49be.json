@@ -1,0 +1,123 @@
+{
+  "trace_id": "efd954f530fe49be",
+  "created_at": "2026-11-12T10:19:31.216182+00:00",
+  "query": "How do they propose to combine BM25 and word embedding similarity?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 136.36
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 136.42
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25984.67
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 136.3
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1402,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25848.16
+    }
+  },
+  "retrieved_ids": [
+    "15cd4595e6f19575:L0:000002",
+    "15cd4595e6f19575:L0:000016",
+    "15cd4595e6f19575:L0:000006",
+    "15cd4595e6f19575:L0:000013",
+    "15cd4595e6f19575:L0:000007"
+  ],
+  "filtered_ids": [
+    "15cd4595e6f19575:L0:000002",
+    "15cd4595e6f19575:L0:000016",
+    "15cd4595e6f19575:L0:000006",
+    "15cd4595e6f19575:L0:000013",
+    "15cd4595e6f19575:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T10:19:31.283769+00:00",
+      "call_id": "3dfa7ad07220",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3e26f01e809c4d14",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 22,
+      "completion_tokens": 0,
+      "latency_ms": 66.72,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "efd954f530fe49be"
+    },
+    {
+      "ts": "2026-11-12T10:19:57.200275+00:00",
+      "call_id": "155d70baa3e2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "87b3cbfd1ee8ba7b",
+      "prompt_tokens": 2154,
+      "completion_tokens": 107,
+      "latency_ms": 25847.21,
+      "server_ms": 25822.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "efd954f530fe49be"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2154,
+    "completion_tokens": 107,
+    "total_ms": 25985.72
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2,
+        4
+      ],
+      "uncited_sentences": [
+        "They propose to use the semantic measure based on word embedding similarity as an additional feature to improve BM25 ranking performance.",
+        "Specifically, they redefine the similarity measure as a cosine similarity between the query and document embeddings, and show that this improves ranking performance on PubMed user queries and click-through data."
+      ]
+    }
+  }
+}

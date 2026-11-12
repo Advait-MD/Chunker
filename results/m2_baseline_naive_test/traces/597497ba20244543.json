@@ -1,0 +1,119 @@
+{
+  "trace_id": "597497ba20244543",
+  "created_at": "2026-11-12T15:00:44.960530+00:00",
+  "query": "Who is the son of Odysseus and Penelope who searches for his father?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 57.0
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 57.04
+    },
+    {
+      "state": "DONE",
+      "t_ms": 58.54
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 56.95
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1843,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 1.42
+    }
+  },
+  "retrieved_ids": [
+    "f9add743188fc69e:L0:000641",
+    "f9add743188fc69e:L0:000613",
+    "f9add743188fc69e:L0:000616",
+    "17581cb533e90c48:L0:000648",
+    "f9add743188fc69e:L0:000647"
+  ],
+  "filtered_ids": [
+    "f9add743188fc69e:L0:000641",
+    "f9add743188fc69e:L0:000613",
+    "f9add743188fc69e:L0:000616",
+    "17581cb533e90c48:L0:000648",
+    "f9add743188fc69e:L0:000647"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T15:00:44.962030+00:00",
+      "call_id": "81f2194dd0bc",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d77747ad340d1c38",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "597497ba20244543"
+    },
+    {
+      "ts": "2026-11-12T15:00:45.018352+00:00",
+      "call_id": "1947889f92b0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "24b536be965391d6",
+      "prompt_tokens": 2801,
+      "completion_tokens": 46,
+      "latency_ms": 0.66,
+      "server_ms": 26910.48,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "597497ba20244543"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 2801,
+    "completion_tokens": 46,
+    "total_ms": 59.6
+  },
+  "config_hash": "307e5775b9d8",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

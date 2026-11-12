@@ -1,0 +1,125 @@
+{
+  "trace_id": "2cf071b1f68c4297",
+  "created_at": "2026-11-12T14:55:12.016525+00:00",
+  "query": "Which film has the director who was born later, The Ghosts Of Berkeley Square or Hello Caesar!?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 139.5
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 139.56
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19640.64
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 139.43
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1187,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19500.97
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000106",
+    "53c7288bdcd3837a:L0:000100",
+    "abe982d210232c3f:L0:000125",
+    "99628090500247e3:L0:000128",
+    "0eac870d43736f51:L0:000089"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000106",
+    "53c7288bdcd3837a:L0:000100",
+    "abe982d210232c3f:L0:000125",
+    "99628090500247e3:L0:000128",
+    "0eac870d43736f51:L0:000089"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:55:12.081021+00:00",
+      "call_id": "949881489a06",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2204e7a260aace25",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 26,
+      "completion_tokens": 0,
+      "latency_ms": 63.36,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "2cf071b1f68c4297"
+    },
+    {
+      "ts": "2026-11-12T14:55:31.656636+00:00",
+      "call_id": "e8c9c2110e97",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "42dfc199dc3b75ba",
+      "prompt_tokens": 1939,
+      "completion_tokens": 103,
+      "latency_ms": 19499.91,
+      "server_ms": 19469.96,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2cf071b1f68c4297"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1939,
+    "completion_tokens": 103,
+    "total_ms": 19641.68
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        5,
+        6
+      ],
+      "invalid": [
+        6
+      ],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Hello Caesar! was directed by Paul L.",
+        "Therefore, Hello Caesar! has the director who was born later."
+      ]
+    }
+  }
+}

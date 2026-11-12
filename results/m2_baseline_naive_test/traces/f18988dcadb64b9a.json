@@ -1,0 +1,121 @@
+{
+  "trace_id": "f18988dcadb64b9a",
+  "created_at": "2026-11-12T13:00:23.096649+00:00",
+  "query": "What time period in human history does the author liken the Venusian planet to?\n\nOptions:\n(A) The dawn of the Space Age\n(B) A fairytale of the Stone Age\n(C) A society on the edge of an industrial revolution\n(D) A magical Iron Age\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 87.49
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 87.52
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24709.26
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 87.46
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1767,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24621.57
+    }
+  },
+  "retrieved_ids": [
+    "3c1dafeffd094309:L0:000009",
+    "3c1dafeffd094309:L0:000000",
+    "3c1dafeffd094309:L0:000006",
+    "3c1dafeffd094309:L0:000016",
+    "3c1dafeffd094309:L0:000001"
+  ],
+  "filtered_ids": [
+    "3c1dafeffd094309:L0:000009",
+    "3c1dafeffd094309:L0:000000",
+    "3c1dafeffd094309:L0:000006",
+    "3c1dafeffd094309:L0:000016",
+    "3c1dafeffd094309:L0:000001"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T13:00:23.149185+00:00",
+      "call_id": "b74cb42015fa",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6d16631391683c92",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 87,
+      "completion_tokens": 0,
+      "latency_ms": 52.7,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "f18988dcadb64b9a"
+    },
+    {
+      "ts": "2026-11-12T13:00:47.802991+00:00",
+      "call_id": "60f58feaa56d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f17274953c51a377",
+      "prompt_tokens": 2366,
+      "completion_tokens": 52,
+      "latency_ms": 24618.98,
+      "server_ms": 24593.01,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f18988dcadb64b9a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2366,
+    "completion_tokens": 52,
+    "total_ms": 24711.3
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2
+      ],
+      "uncited_sentences": [
+        "(B) A fairytale of the Stone Age"
+      ]
+    }
+  }
+}

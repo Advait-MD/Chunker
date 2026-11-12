@@ -1,0 +1,119 @@
+{
+  "trace_id": "63da49df244c422c",
+  "created_at": "2026-11-12T14:24:34.844554+00:00",
+  "query": "Which award the performer of song Constantemente Mía got?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 136.54
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 136.61
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15420.79
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 136.49
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1104,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15280.21
+    }
+  },
+  "retrieved_ids": [
+    "53c7288bdcd3837a:L0:000131",
+    "4a757779abfb4ba1:L0:000026",
+    "317e12ccd417c0d7:L0:000103",
+    "abe982d210232c3f:L0:000045",
+    "99628090500247e3:L0:000060"
+  ],
+  "filtered_ids": [
+    "53c7288bdcd3837a:L0:000131",
+    "4a757779abfb4ba1:L0:000026",
+    "317e12ccd417c0d7:L0:000103",
+    "abe982d210232c3f:L0:000045",
+    "99628090500247e3:L0:000060"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:24:34.908761+00:00",
+      "call_id": "e6c9ffdc17d2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9e7d00e92c602810",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 18,
+      "completion_tokens": 0,
+      "latency_ms": 63.18,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "63da49df244c422c"
+    },
+    {
+      "ts": "2026-11-12T14:24:50.260928+00:00",
+      "call_id": "a18726d7805a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bfddf1f0ce63494d",
+      "prompt_tokens": 1853,
+      "completion_tokens": 45,
+      "latency_ms": 15279.2,
+      "server_ms": 15256.87,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "63da49df244c422c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1853,
+    "completion_tokens": 45,
+    "total_ms": 15421.79
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

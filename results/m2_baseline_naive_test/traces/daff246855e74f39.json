@@ -1,0 +1,119 @@
+{
+  "trace_id": "daff246855e74f39",
+  "created_at": "2026-11-12T14:21:55.527271+00:00",
+  "query": "Which album was released earlier, American Tunes or I'M In Love Again?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 80.98
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 81.01
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 9623.7
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 80.95
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 636,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9542.65
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000033",
+    "317e12ccd417c0d7:L0:000120",
+    "6af2db6cb86d77e2:L0:000173",
+    "99628090500247e3:L0:000060",
+    "53c7288bdcd3837a:L0:000167"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000033",
+    "317e12ccd417c0d7:L0:000120",
+    "6af2db6cb86d77e2:L0:000173",
+    "99628090500247e3:L0:000060",
+    "53c7288bdcd3837a:L0:000167"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:21:55.572272+00:00",
+      "call_id": "9e157bdf2b2f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a34cc4f2b4fcb60d",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 22,
+      "completion_tokens": 0,
+      "latency_ms": 45.18,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "daff246855e74f39"
+    },
+    {
+      "ts": "2026-11-12T14:22:05.150364+00:00",
+      "call_id": "d84bf4d04ad6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bf6e140ac20781a4",
+      "prompt_tokens": 1303,
+      "completion_tokens": 45,
+      "latency_ms": 9542.06,
+      "server_ms": 9529.83,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "daff246855e74f39"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1303,
+    "completion_tokens": 45,
+    "total_ms": 9625.04
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

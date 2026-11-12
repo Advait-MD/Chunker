@@ -1,0 +1,119 @@
+{
+  "trace_id": "1768bb5c263e4c3d",
+  "created_at": "2026-11-12T14:38:25.856916+00:00",
+  "query": "Where was the mother of Adela Of Pfalzel born?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 157.69
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 157.74
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 18210.49
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 157.62
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1327,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18052.68
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000201",
+    "b04ce6dd2d95fb80:L0:000107",
+    "b04ce6dd2d95fb80:L0:000076",
+    "abe982d210232c3f:L0:000072",
+    "460e441179bec402:L0:000045"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000201",
+    "b04ce6dd2d95fb80:L0:000107",
+    "b04ce6dd2d95fb80:L0:000076",
+    "abe982d210232c3f:L0:000072",
+    "460e441179bec402:L0:000045"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:38:25.940787+00:00",
+      "call_id": "6d4fbcbebc9d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3f0dcf76db646fef",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 20,
+      "completion_tokens": 0,
+      "latency_ms": 83.18,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "1768bb5c263e4c3d"
+    },
+    {
+      "ts": "2026-11-12T14:38:44.066832+00:00",
+      "call_id": "afc2611621ea",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f4f110a7f9f7df0d",
+      "prompt_tokens": 2219,
+      "completion_tokens": 45,
+      "latency_ms": 18051.43,
+      "server_ms": 18024.66,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "1768bb5c263e4c3d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2219,
+    "completion_tokens": 45,
+    "total_ms": 18212.06
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

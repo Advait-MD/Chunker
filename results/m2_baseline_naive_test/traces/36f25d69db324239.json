@@ -1,0 +1,121 @@
+{
+  "trace_id": "36f25d69db324239",
+  "created_at": "2026-11-12T09:31:06.562428+00:00",
+  "query": "Do they annotate their own dataset?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 71.16
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 71.21
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14469.69
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 71.11
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 484,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14398.32
+    }
+  },
+  "retrieved_ids": [
+    "af9d478ce4133d70:L0:000012",
+    "af9d478ce4133d70:L0:000009",
+    "af9d478ce4133d70:L0:000010",
+    "af9d478ce4133d70:L0:000016",
+    "af9d478ce4133d70:L0:000014"
+  ],
+  "filtered_ids": [
+    "af9d478ce4133d70:L0:000012",
+    "af9d478ce4133d70:L0:000009",
+    "af9d478ce4133d70:L0:000010",
+    "af9d478ce4133d70:L0:000016",
+    "af9d478ce4133d70:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T09:31:06.564246+00:00",
+      "call_id": "7004d6329d18",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4696804cdd68c1c2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "36f25d69db324239"
+    },
+    {
+      "ts": "2026-11-12T09:31:21.031208+00:00",
+      "call_id": "4f50249e810e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5b924dddbf327872",
+      "prompt_tokens": 1070,
+      "completion_tokens": 77,
+      "latency_ms": 14397.25,
+      "server_ms": 14366.88,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "36f25d69db324239"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1070,
+    "completion_tokens": 77,
+    "total_ms": 14471.93
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "No, they do not annotate their own dataset."
+      ]
+    }
+  }
+}

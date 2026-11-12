@@ -1,0 +1,119 @@
+{
+  "trace_id": "1cef8a4144b142d4",
+  "created_at": "2026-11-12T11:30:33.963277+00:00",
+  "query": "How many people work in Susan Winchester's alma mater?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 94.22
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 94.26
+    },
+    {
+      "state": "DONE",
+      "t_ms": 9540.51
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 94.18
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 390,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9446.11
+    }
+  },
+  "retrieved_ids": [
+    "dd498e0082847164:L0:000023",
+    "5a1a5bbda9db013e:L0:000121",
+    "f59bbbdacaf7ffe4:L0:000041",
+    "dbcbda865eee9c7b:L0:000163",
+    "ad4ace752e719bab:L0:000063"
+  ],
+  "filtered_ids": [
+    "dd498e0082847164:L0:000023",
+    "5a1a5bbda9db013e:L0:000121",
+    "f59bbbdacaf7ffe4:L0:000041",
+    "dbcbda865eee9c7b:L0:000163",
+    "ad4ace752e719bab:L0:000063"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:30:34.016277+00:00",
+      "call_id": "3ccf04afc0ef",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c74401b800408c9e",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 18,
+      "completion_tokens": 0,
+      "latency_ms": 52.26,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "1cef8a4144b142d4"
+    },
+    {
+      "ts": "2026-11-12T11:30:43.503037+00:00",
+      "call_id": "8e777316dbde",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "105d8b16b869eacd",
+      "prompt_tokens": 949,
+      "completion_tokens": 70,
+      "latency_ms": 9445.08,
+      "server_ms": 9422.71,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "1cef8a4144b142d4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 949,
+    "completion_tokens": 70,
+    "total_ms": 9542.12
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

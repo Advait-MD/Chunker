@@ -1,0 +1,119 @@
+{
+  "trace_id": "bc36d104279245bd",
+  "created_at": "2026-11-12T09:40:43.826892+00:00",
+  "query": "Did they use any regularization method to constrain the training?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 73.41
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 73.47
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14942.08
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 73.36
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 806,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14868.43
+    }
+  },
+  "retrieved_ids": [
+    "067e7baf05581459:L0:000005",
+    "067e7baf05581459:L0:000015",
+    "067e7baf05581459:L0:000013",
+    "067e7baf05581459:L0:000014",
+    "067e7baf05581459:L0:000008"
+  ],
+  "filtered_ids": [
+    "067e7baf05581459:L0:000005",
+    "067e7baf05581459:L0:000015",
+    "067e7baf05581459:L0:000013",
+    "067e7baf05581459:L0:000014",
+    "067e7baf05581459:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T09:40:43.828180+00:00",
+      "call_id": "a69bf829456b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f78ba94ada99399e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "bc36d104279245bd"
+    },
+    {
+      "ts": "2026-11-12T09:40:58.768438+00:00",
+      "call_id": "de1938c31d5c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "48d6a7b4a100ac1b",
+      "prompt_tokens": 1363,
+      "completion_tokens": 61,
+      "latency_ms": 14867.3,
+      "server_ms": 14844.82,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "bc36d104279245bd"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1363,
+    "completion_tokens": 61,
+    "total_ms": 14943.73
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

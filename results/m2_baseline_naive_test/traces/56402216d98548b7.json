@@ -1,0 +1,119 @@
+{
+  "trace_id": "56402216d98548b7",
+  "created_at": "2026-11-12T10:52:43.207678+00:00",
+  "query": "Who is the mother of Katharine Smith Salisbury's brother?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 159.12
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 159.17
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11408.24
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 159.07
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 579,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11248.99
+    }
+  },
+  "retrieved_ids": [
+    "8679484d23bfd3a0:L0:000085",
+    "ad4ace752e719bab:L0:000056",
+    "f59bbbdacaf7ffe4:L0:000031",
+    "4b634e52029ddab4:L0:000161",
+    "8679484d23bfd3a0:L0:000132"
+  ],
+  "filtered_ids": [
+    "8679484d23bfd3a0:L0:000085",
+    "ad4ace752e719bab:L0:000056",
+    "f59bbbdacaf7ffe4:L0:000031",
+    "4b634e52029ddab4:L0:000161",
+    "8679484d23bfd3a0:L0:000132"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T10:52:43.277179+00:00",
+      "call_id": "25d9f5bea2ab",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "375f513e6868f338",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 18,
+      "completion_tokens": 0,
+      "latency_ms": 69.35,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "56402216d98548b7"
+    },
+    {
+      "ts": "2026-11-12T10:52:54.614617+00:00",
+      "call_id": "8f60748e1689",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2156a24ac3f64239",
+      "prompt_tokens": 1192,
+      "completion_tokens": 45,
+      "latency_ms": 11248.02,
+      "server_ms": 11227.48,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "56402216d98548b7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1192,
+    "completion_tokens": 45,
+    "total_ms": 11412.18
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

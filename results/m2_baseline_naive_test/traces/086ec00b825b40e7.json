@@ -1,0 +1,122 @@
+{
+  "trace_id": "086ec00b825b40e7",
+  "created_at": "2026-11-12T10:33:44.371058+00:00",
+  "query": "By how much do they outperform baselines?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 135.65
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 135.7
+    },
+    {
+      "state": "DONE",
+      "t_ms": 30301.24
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 135.6
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1651,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 30165.39
+    }
+  },
+  "retrieved_ids": [
+    "fcc6b073f6c0e38c:L0:000017",
+    "fcc6b073f6c0e38c:L0:000016",
+    "fcc6b073f6c0e38c:L0:000014",
+    "fcc6b073f6c0e38c:L0:000009",
+    "fcc6b073f6c0e38c:L0:000013"
+  ],
+  "filtered_ids": [
+    "fcc6b073f6c0e38c:L0:000017",
+    "fcc6b073f6c0e38c:L0:000016",
+    "fcc6b073f6c0e38c:L0:000014",
+    "fcc6b073f6c0e38c:L0:000009",
+    "fcc6b073f6c0e38c:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T10:33:44.438560+00:00",
+      "call_id": "bc9771e65c46",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8869fc6536bcada8",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 17,
+      "completion_tokens": 0,
+      "latency_ms": 66.76,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "086ec00b825b40e7"
+    },
+    {
+      "ts": "2026-11-12T10:34:14.671561+00:00",
+      "call_id": "729860e3c22e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e418c6d9d6dc04e4",
+      "prompt_tokens": 2429,
+      "completion_tokens": 116,
+      "latency_ms": 30164.06,
+      "server_ms": 30120.01,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "086ec00b825b40e7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2429,
+    "completion_tokens": 116,
+    "total_ms": 30303.08
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "Our method significantly out-performed all the baselines, with the average improvement in accuracy across OMICS tasks between SEM-HMM and each baseline being statistically significant at a .01 level across all pairs and on sizes of 100 and 1000 using one-sided paired t-tests.",
+        "For INLINEFORM2 improvement was not statistically greater than zero."
+      ]
+    }
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "trace_id": "85371769d3bb4ae2",
+  "created_at": "2026-11-12T10:49:00.773778+00:00",
+  "query": "What publisher was formed from the owner of the The Daily News?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 153.5
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 153.55
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10526.14
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 153.45
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 439,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10372.52
+    }
+  },
+  "retrieved_ids": [
+    "5a1a5bbda9db013e:L0:000027",
+    "f59bbbdacaf7ffe4:L0:000040",
+    "73dfa6a9bfcab050:L0:000174",
+    "178c7e3e6ef6ae87:L0:000184",
+    "dbcbda865eee9c7b:L0:000090"
+  ],
+  "filtered_ids": [
+    "5a1a5bbda9db013e:L0:000027",
+    "f59bbbdacaf7ffe4:L0:000040",
+    "73dfa6a9bfcab050:L0:000174",
+    "178c7e3e6ef6ae87:L0:000184",
+    "dbcbda865eee9c7b:L0:000090"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T10:49:00.844144+00:00",
+      "call_id": "6c0556e3a8be",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "75ea5a36f08aab30",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 19,
+      "completion_tokens": 0,
+      "latency_ms": 69.59,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "85371769d3bb4ae2"
+    },
+    {
+      "ts": "2026-11-12T10:49:11.299455+00:00",
+      "call_id": "2dc29cc32892",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "be48ea4001cc2fd4",
+      "prompt_tokens": 1029,
+      "completion_tokens": 45,
+      "latency_ms": 10371.59,
+      "server_ms": 10352.68,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "85371769d3bb4ae2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1029,
+    "completion_tokens": 45,
+    "total_ms": 10527.19
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

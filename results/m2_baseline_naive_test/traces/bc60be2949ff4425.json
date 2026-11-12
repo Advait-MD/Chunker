@@ -1,0 +1,123 @@
+{
+  "trace_id": "bc60be2949ff4425",
+  "created_at": "2026-11-12T14:39:28.466548+00:00",
+  "query": "Which film has the director born first, Who Is Without Sin or Lost In The Suburbs?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 138.49
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 138.54
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17308.02
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 138.44
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 909,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17169.42
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000106",
+    "b04ce6dd2d95fb80:L0:000013",
+    "6af2db6cb86d77e2:L0:000068",
+    "99628090500247e3:L0:000107",
+    "abe982d210232c3f:L0:000125"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000106",
+    "b04ce6dd2d95fb80:L0:000013",
+    "6af2db6cb86d77e2:L0:000068",
+    "99628090500247e3:L0:000107",
+    "abe982d210232c3f:L0:000125"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T14:39:28.531339+00:00",
+      "call_id": "26c76e4c67c3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1a2dd0ed952572d9",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 24,
+      "completion_tokens": 0,
+      "latency_ms": 64.24,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "bc60be2949ff4425"
+    },
+    {
+      "ts": "2026-11-12T14:39:45.774119+00:00",
+      "call_id": "dc645f4bb031",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d1603baef23335a3",
+      "prompt_tokens": 1654,
+      "completion_tokens": 119,
+      "latency_ms": 17168.7,
+      "server_ms": 17152.42,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "bc60be2949ff4425"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1654,
+    "completion_tokens": 119,
+    "total_ms": 17309.52
+  },
+  "config_hash": "e05e1bf5215a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Alberto Cavallone was born in 1938, while George Stevens was born in 1904.",
+        "Therefore, Alberto Cavallone, the director of 'Who Is Without Sin', was born first."
+      ]
+    }
+  }
+}

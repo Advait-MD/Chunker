@@ -1,0 +1,127 @@
+{
+  "trace_id": "552c25e132a848fa",
+  "created_at": "2026-11-12T10:07:16.745515+00:00",
+  "query": "What are the solutions proposed for the seq2seq shortcomings?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 139.9
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 139.98
+    },
+    {
+      "state": "DONE",
+      "t_ms": 32962.15
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 139.85
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1197,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 32822.03
+    }
+  },
+  "retrieved_ids": [
+    "9140a38d578df604:L0:000000",
+    "9140a38d578df604:L0:000001",
+    "9140a38d578df604:L0:000002",
+    "9140a38d578df604:L0:000012",
+    "9140a38d578df604:L0:000007"
+  ],
+  "filtered_ids": [
+    "9140a38d578df604:L0:000000",
+    "9140a38d578df604:L0:000001",
+    "9140a38d578df604:L0:000002",
+    "9140a38d578df604:L0:000012",
+    "9140a38d578df604:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T10:07:16.817302+00:00",
+      "call_id": "5d2bcffed36e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "788c884b436a81a8",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 22,
+      "completion_tokens": 0,
+      "latency_ms": 71.0,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "552c25e132a848fa"
+    },
+    {
+      "ts": "2026-11-12T10:07:49.706762+00:00",
+      "call_id": "ccb0022de9c2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "32a211d91008e077",
+      "prompt_tokens": 1889,
+      "completion_tokens": 186,
+      "latency_ms": 32820.95,
+      "server_ms": 32792.43,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "552c25e132a848fa"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1889,
+    "completion_tokens": 186,
+    "total_ms": 32964.85
+  },
+  "config_hash": "77809b063d9a",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "The proposed solutions to the seq2seq shortcomings include practical solutions to overconfidence in predictions and a tendency to produce incomplete transcriptions when language models are used.",
+        "For overconfidence, the model can be constrained to emit the EOS token only when its probability is within a certain range of the most probable token.",
+        "For incomplete transcripts, a coverage term can be used to prevent looping over the utterance, ensuring that once a frame receives a cumulative attention greater than a threshold, it is counted as selected and subsequent selections do not reduce the decoding cost.",
+        "Additionally, extending the beam search cost with a language modeling term can help, but it faces challenges due to model overconfidence and the need to add a recording coverage term to prevent incomplete transcripts."
+      ]
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "trace_id": "380aa7a99dff4723",
+  "created_at": "2026-11-12T11:40:35.044370+00:00",
+  "query": "What is the likely outcome of the polo game?\n\nOptions:\n(A) Don’t know enough about their abilities to say\n(B) Sector twenty-three wins\n(C) Sector thirty-seven wins\n(D) They will likely call a truce\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 221.86
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 221.96
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23469.74
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 221.8
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1640,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23247.5
+    }
+  },
+  "retrieved_ids": [
+    "d0e00aef59ec5db1:L0:000009",
+    "d0e00aef59ec5db1:L0:000017",
+    "d0e00aef59ec5db1:L0:000008",
+    "d0e00aef59ec5db1:L0:000016",
+    "d0e00aef59ec5db1:L0:000010"
+  ],
+  "filtered_ids": [
+    "d0e00aef59ec5db1:L0:000009",
+    "d0e00aef59ec5db1:L0:000017",
+    "d0e00aef59ec5db1:L0:000008",
+    "d0e00aef59ec5db1:L0:000016",
+    "d0e00aef59ec5db1:L0:000010"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:40:35.135962+00:00",
+      "call_id": "0ab1d5f064b8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e3b27a8a804567da",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 80,
+      "completion_tokens": 0,
+      "latency_ms": 88.86,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "380aa7a99dff4723"
+    },
+    {
+      "ts": "2026-11-12T11:40:58.512087+00:00",
+      "call_id": "e4f9592bfb54",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "04d0f8db0329a28f",
+      "prompt_tokens": 2140,
+      "completion_tokens": 77,
+      "latency_ms": 23245.28,
+      "server_ms": 23204.41,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "380aa7a99dff4723"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2140,
+    "completion_tokens": 77,
+    "total_ms": 23473.25
+  },
+  "config_hash": "630770303afe",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

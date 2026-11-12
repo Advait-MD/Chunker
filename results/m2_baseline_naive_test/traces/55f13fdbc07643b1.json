@@ -1,0 +1,119 @@
+{
+  "trace_id": "55f13fdbc07643b1",
+  "created_at": "2026-11-12T11:28:00.466661+00:00",
+  "query": "The author of Elizabeth and After attended which university?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 85.73
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 85.76
+    },
+    {
+      "state": "DONE",
+      "t_ms": 8939.06
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 85.69
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 556,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8853.22
+    }
+  },
+  "retrieved_ids": [
+    "f59bbbdacaf7ffe4:L0:000031",
+    "8679484d23bfd3a0:L0:000032",
+    "8679484d23bfd3a0:L0:000070",
+    "4fcce431f5d22d1d:L0:000133",
+    "f59bbbdacaf7ffe4:L0:000192"
+  ],
+  "filtered_ids": [
+    "f59bbbdacaf7ffe4:L0:000031",
+    "8679484d23bfd3a0:L0:000032",
+    "8679484d23bfd3a0:L0:000070",
+    "4fcce431f5d22d1d:L0:000133",
+    "f59bbbdacaf7ffe4:L0:000192"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:28:00.513462+00:00",
+      "call_id": "9eabce9b39a9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a7932186f5d6508e",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 16,
+      "completion_tokens": 0,
+      "latency_ms": 46.07,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "55f13fdbc07643b1"
+    },
+    {
+      "ts": "2026-11-12T11:28:09.405231+00:00",
+      "call_id": "39855fced3cd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f3c270feec7f07fc",
+      "prompt_tokens": 1200,
+      "completion_tokens": 49,
+      "latency_ms": 8852.46,
+      "server_ms": 8829.01,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "55f13fdbc07643b1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1200,
+    "completion_tokens": 49,
+    "total_ms": 8940.41
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

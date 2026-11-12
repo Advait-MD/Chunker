@@ -1,0 +1,120 @@
+{
+  "trace_id": "3e976a33aa664829",
+  "created_at": "2026-11-12T11:02:00.228774+00:00",
+  "query": "Who did the original voice of the character that Mila Kunis plays in Family Guy?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 139.11
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 139.17
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11842.49
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "dense_hnsw",
+      "k": 5,
+      "n_hits": 5,
+      "latency_ms": 139.06
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 566,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11703.21
+    }
+  },
+  "retrieved_ids": [
+    "e182527d2b1ecac3:L0:000060",
+    "4fcce431f5d22d1d:L0:000186",
+    "15abb5e49dced915:L0:000164",
+    "f109b032e24ab27a:L0:000152",
+    "15abb5e49dced915:L0:000140"
+  ],
+  "filtered_ids": [
+    "e182527d2b1ecac3:L0:000060",
+    "4fcce431f5d22d1d:L0:000186",
+    "15abb5e49dced915:L0:000164",
+    "f109b032e24ab27a:L0:000152",
+    "15abb5e49dced915:L0:000140"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-12T11:02:00.287214+00:00",
+      "call_id": "865eae52e36a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d9f79b5c48e1d7fc",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 24,
+      "completion_tokens": 0,
+      "latency_ms": 57.91,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "3e976a33aa664829"
+    },
+    {
+      "ts": "2026-11-12T11:02:12.070364+00:00",
+      "call_id": "a127ff831287",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4954c7d6fa686f05",
+      "prompt_tokens": 1153,
+      "completion_tokens": 66,
+      "latency_ms": 11702.36,
+      "server_ms": 11678.73,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "3e976a33aa664829"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1153,
+    "completion_tokens": 66,
+    "total_ms": 11843.53
+  },
+  "config_hash": "efc371d0170b",
+  "git_sha": "bdce5cdb04a3498f4b53a1656696f3fdd08b70f6-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        5,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}
