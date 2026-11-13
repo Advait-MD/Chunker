@@ -66,8 +66,15 @@ class Hit:
     detail: Dict[str, Any] = field(default_factory=dict)  # per-stage scores and ranks (hybrid), for traces
 
 
+def tree_collection_name(cfg: Dict[str, Any]) -> str:
+    """The RAPTOR tree's collection: leaf collection + tag + seed, so trees never overwrite each other."""
+    r = cfg["raptor"]
+    return f"{cfg['store']['collection']}__{r['tag']}_s{int(r['seed'])}"
+
+
 class NodeStore:
-    def __init__(self, cfg: Dict[str, Any], path: Optional[str] = None):
+    def __init__(self, cfg: Dict[str, Any], path: Optional[str] = None, collection: Optional[str] = None):
+        """`collection` defaults to `store.collection`, or to its RAPTOR tree collection when `raptor.enabled`."""
         s = cfg["store"]
         self.path = resolve_path(path or s["path"])
         self.path.mkdir(parents=True, exist_ok=True)
@@ -75,10 +82,24 @@ class NodeStore:
         self.space = s.get("space", "cosine")
         if self.space != "cosine":
             raise ValueError("NodeStore scores assume cosine space; set store.space: cosine")
-        self.col = self.client.get_or_create_collection(
-            name=s["collection"], embedding_function=None,
-            configuration={"hnsw": {"space": self.space}},
-        )
+        if collection is None:
+            r = cfg.get("raptor") or {}
+            collection = tree_collection_name(cfg) if r.get("enabled") else s["collection"]
+            if r.get("enabled") and collection not in {c.name if hasattr(c, "name") else c
+                                                       for c in self.client.list_collections()}:
+                raise RuntimeError(f"raptor.enabled but tree collection {collection!r} does not exist: "
+                                   f"build it with `python -m apex.eval.suite tree ...`")
+        self.col = self._open(collection)
+
+    def _open(self, name: str):
+        return self.client.get_or_create_collection(name=name, embedding_function=None,
+                                                    configuration={"hnsw": {"space": self.space}})
+
+    def reset(self) -> None:
+        """Drop and recreate this collection (tree rebuilds)."""
+        name = self.col.name
+        self.client.delete_collection(name)
+        self.col = self._open(name)
 
     def count(self, where: Optional[Dict[str, Any]] = None) -> int:
         if where is None:
