@@ -1,0 +1,178 @@
+{
+  "trace_id": "0679646716d7483a",
+  "created_at": "2026-11-13T14:49:36.835133+00:00",
+  "query": "Who is the paternal grandfather of Diarmait Ua Briain?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5412.24
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5412.73
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13309.41
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.73,
+      "bm25_ms": 4.83,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 35
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5402.23
+      },
+      "hits": [
+        {
+          "id": "b04ce6dd2d95fb80:L0:000176",
+          "score": -0.028809234499931335,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.028809234499931335
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000193",
+          "score": -1.435549020767212,
+          "fused": 0.584863256003873,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -1.435549020767212
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000187",
+          "score": -3.541689157485962,
+          "fused": 0.5715338883935268,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -3.541689157485962
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000063",
+          "score": -5.291175365447998,
+          "fused": 0.2747160251630475,
+          "dense_rank": 9,
+          "bm25_rank": 16,
+          "fused_rank": 7,
+          "rerank": -5.291175365447998
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000190",
+          "score": -5.5058722496032715,
+          "fused": 0.18519357825554578,
+          "dense_rank": 7,
+          "bm25_rank": null,
+          "fused_rank": 14,
+          "rerank": -5.5058722496032715
+        }
+      ],
+      "latency_ms": 5412.19
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 410,
+      "latency_ms": 0.44
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 7896.61
+    }
+  },
+  "retrieved_ids": [
+    "b04ce6dd2d95fb80:L0:000176",
+    "c73b757f0eb66f37:L0:000193",
+    "317e12ccd417c0d7:L0:000187",
+    "c73b757f0eb66f37:L0:000063",
+    "b04ce6dd2d95fb80:L0:000190"
+  ],
+  "filtered_ids": [
+    "b04ce6dd2d95fb80:L0:000176",
+    "c73b757f0eb66f37:L0:000193",
+    "317e12ccd417c0d7:L0:000187",
+    "c73b757f0eb66f37:L0:000063",
+    "b04ce6dd2d95fb80:L0:000190"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:49:36.835133+00:00",
+      "call_id": "8b974e430bc8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "dfd734f7f735a986",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0679646716d7483a"
+    },
+    {
+      "ts": "2026-11-13T14:49:50.140875+00:00",
+      "call_id": "8c5dcf02ba41",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "534bff0862fb8f88",
+      "prompt_tokens": 1075,
+      "completion_tokens": 45,
+      "latency_ms": 7895.74,
+      "server_ms": 7876.61,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0679646716d7483a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1075,
+    "completion_tokens": 45,
+    "total_ms": 13311.22
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

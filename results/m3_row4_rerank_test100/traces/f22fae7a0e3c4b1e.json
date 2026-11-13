@@ -1,0 +1,179 @@
+{
+  "trace_id": "f22fae7a0e3c4b1e",
+  "created_at": "2026-11-13T14:24:08.451272+00:00",
+  "query": "Minor league baseball games that were played between the rivalling teams of the Sooners and the Cowboys were played at the stadium formerly known as what?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9401.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9402.3
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20733.68
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.62,
+      "bm25_ms": 18.37,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 9375.0
+      },
+      "hits": [
+        {
+          "id": "cc2399aca11eb631:L0:000193",
+          "score": 2.997143507003784,
+          "fused": 0.6235833913340978,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 2.997143507003784
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000150",
+          "score": 2.45147705078125,
+          "fused": 0.942815288649008,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 2.45147705078125
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000103",
+          "score": -0.4650425910949707,
+          "fused": 0.192609225650536,
+          "dense_rank": 13,
+          "bm25_rank": 15,
+          "fused_rank": 14,
+          "rerank": -0.4650425910949707
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000050",
+          "score": -0.8504859805107117,
+          "fused": 0.6324855776377651,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -0.8504859805107117
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000088",
+          "score": -2.2510647773742676,
+          "fused": 0.8492459497114146,
+          "dense_rank": 5,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": -2.2510647773742676
+        }
+      ],
+      "latency_ms": 9401.35
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 565,
+      "latency_ms": 0.88
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11331.29
+    }
+  },
+  "retrieved_ids": [
+    "cc2399aca11eb631:L0:000193",
+    "cb96563b0747a6ba:L0:000150",
+    "c8fd2b3ea47eb07f:L0:000103",
+    "9794e842cc9565f0:L0:000050",
+    "838c0e0106e6f015:L0:000088"
+  ],
+  "filtered_ids": [
+    "cc2399aca11eb631:L0:000193",
+    "cb96563b0747a6ba:L0:000150",
+    "c8fd2b3ea47eb07f:L0:000103",
+    "9794e842cc9565f0:L0:000050",
+    "838c0e0106e6f015:L0:000088"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:24:08.466950+00:00",
+      "call_id": "f2ebe1a0acae",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d9683428bf8aa16f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f22fae7a0e3c4b1e"
+    },
+    {
+      "ts": "2026-11-13T14:24:29.198801+00:00",
+      "call_id": "4aec44081ed1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1a4c880fb7b6e9e0",
+      "prompt_tokens": 1221,
+      "completion_tokens": 70,
+      "latency_ms": 11330.59,
+      "server_ms": 11331.36,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f22fae7a0e3c4b1e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1221,
+    "completion_tokens": 70,
+    "total_ms": 20734.53
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

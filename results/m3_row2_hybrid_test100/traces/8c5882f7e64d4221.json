@@ -1,0 +1,164 @@
+{
+  "trace_id": "8c5882f7e64d4221",
+  "created_at": "2026-11-13T10:41:39.821521+00:00",
+  "query": "Who was the great grandfather of Franklin Seaver Pratt's wife?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.13
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.19
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12863.56
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.39,
+      "bm25_ms": 7.43,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000097",
+          "score": 0.9383674634495307,
+          "fused": 0.9383674634495307,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000031",
+          "score": 0.5861431339567361,
+          "fused": 0.5861431339567361,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000077",
+          "score": 0.4595347642225416,
+          "fused": 0.4595347642225416,
+          "dense_rank": 10,
+          "bm25_rank": 4
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000035",
+          "score": 0.45555566882536735,
+          "fused": 0.45555566882536735,
+          "dense_rank": 2,
+          "bm25_rank": 11
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000062",
+          "score": 0.4136001424917228,
+          "fused": 0.4136001424917228,
+          "dense_rank": 16,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 11.09
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 486,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12852.18
+    }
+  },
+  "retrieved_ids": [
+    "c8fd2b3ea47eb07f:L0:000097",
+    "cc2399aca11eb631:L0:000031",
+    "ec3410ef955c5c93:L0:000077",
+    "cc2399aca11eb631:L0:000035",
+    "9794e842cc9565f0:L0:000062"
+  ],
+  "filtered_ids": [
+    "c8fd2b3ea47eb07f:L0:000097",
+    "cc2399aca11eb631:L0:000031",
+    "ec3410ef955c5c93:L0:000077",
+    "cc2399aca11eb631:L0:000035",
+    "9794e842cc9565f0:L0:000062"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:41:39.821521+00:00",
+      "call_id": "06f2d170aebd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2483b0c183c2d2f5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8c5882f7e64d4221"
+    },
+    {
+      "ts": "2026-11-13T10:41:52.689817+00:00",
+      "call_id": "ce39f586a30d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "083e0b9ff2041c21",
+      "prompt_tokens": 1188,
+      "completion_tokens": 81,
+      "latency_ms": 12851.03,
+      "server_ms": 12824.77,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "8c5882f7e64d4221"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1188,
+    "completion_tokens": 81,
+    "total_ms": 12866.77
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

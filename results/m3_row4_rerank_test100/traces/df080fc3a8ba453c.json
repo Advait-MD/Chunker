@@ -1,0 +1,183 @@
+{
+  "trace_id": "df080fc3a8ba453c",
+  "created_at": "2026-11-13T13:48:52.446830+00:00",
+  "query": "What likely happened to the squid once the Marco departed?\n\nOptions:\n(A) There was no change\n(B) One of them was in the hold of the Marco\n(C) They went to war with the pink anglers\n(D) They stopped associating with the pink anglers\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9062.59
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9062.72
+    },
+    {
+      "state": "DONE",
+      "t_ms": 30252.82
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.48,
+      "bm25_ms": 20.66,
+      "n_candidates": {
+        "dense": 11,
+        "bm25": 11
+      },
+      "n_fused": 11,
+      "rerank": {
+        "n": 11,
+        "n_computed": 11,
+        "latency_ms": 9031.69
+      },
+      "hits": [
+        {
+          "id": "b51efd26dc8361a6:L0:000010",
+          "score": -2.09462833404541,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -2.09462833404541
+        },
+        {
+          "id": "b51efd26dc8361a6:L0:000002",
+          "score": -2.81042218208313,
+          "fused": 0.16087617917755972,
+          "dense_rank": 8,
+          "bm25_rank": 10,
+          "fused_rank": 10,
+          "rerank": -2.81042218208313
+        },
+        {
+          "id": "b51efd26dc8361a6:L0:000003",
+          "score": -2.8886959552764893,
+          "fused": 0.5182521469546395,
+          "dense_rank": 7,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -2.8886959552764893
+        },
+        {
+          "id": "b51efd26dc8361a6:L0:000000",
+          "score": -3.5187950134277344,
+          "fused": 0.48647810123386415,
+          "dense_rank": 5,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -3.5187950134277344
+        },
+        {
+          "id": "b51efd26dc8361a6:L0:000009",
+          "score": -4.062439918518066,
+          "fused": 0.7016153623673893,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -4.062439918518066
+        }
+      ],
+      "latency_ms": 9062.54
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1891,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21189.04
+    }
+  },
+  "retrieved_ids": [
+    "b51efd26dc8361a6:L0:000010",
+    "b51efd26dc8361a6:L0:000002",
+    "b51efd26dc8361a6:L0:000003",
+    "b51efd26dc8361a6:L0:000000",
+    "b51efd26dc8361a6:L0:000009"
+  ],
+  "filtered_ids": [
+    "b51efd26dc8361a6:L0:000010",
+    "b51efd26dc8361a6:L0:000002",
+    "b51efd26dc8361a6:L0:000003",
+    "b51efd26dc8361a6:L0:000000",
+    "b51efd26dc8361a6:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:48:52.446830+00:00",
+      "call_id": "8d5190dfa94d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f66a85dae23709c1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "df080fc3a8ba453c"
+    },
+    {
+      "ts": "2026-11-13T13:49:22.693765+00:00",
+      "call_id": "ab08e0bfb55f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "de1c30741ec752a7",
+      "prompt_tokens": 2582,
+      "completion_tokens": 63,
+      "latency_ms": 21187.63,
+      "server_ms": 21151.77,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "df080fc3a8ba453c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2582,
+    "completion_tokens": 63,
+    "total_ms": 30255.12
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "uncited_sentences": [
+        "(D) They stopped associating with the pink anglers."
+      ]
+    }
+  }
+}

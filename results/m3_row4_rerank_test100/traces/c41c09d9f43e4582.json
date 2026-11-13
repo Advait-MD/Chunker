@@ -1,0 +1,179 @@
+{
+  "trace_id": "c41c09d9f43e4582",
+  "created_at": "2026-11-13T12:46:45.401251+00:00",
+  "query": "who has had the most hits in the league that includes the team that has played the most games of the type played just before the league MVP is awarded?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5752.78
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5753.25
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19585.53
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.18,
+      "bm25_ms": 21.81,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5724.48
+      },
+      "hits": [
+        {
+          "id": "8679484d23bfd3a0:L0:000127",
+          "score": 1.3998228311538696,
+          "fused": 0.5698103531275986,
+          "dense_rank": 2,
+          "bm25_rank": 16,
+          "fused_rank": 6,
+          "rerank": 1.3998228311538696
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000070",
+          "score": -0.2793523967266083,
+          "fused": 0.7242569641148482,
+          "dense_rank": 4,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": -0.2793523967266083
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000073",
+          "score": -1.3150025606155396,
+          "fused": 0.4945466813988625,
+          "dense_rank": 9,
+          "bm25_rank": 13,
+          "fused_rank": 7,
+          "rerank": -1.3150025606155396
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000128",
+          "score": -2.787626028060913,
+          "fused": 0.6820572213973061,
+          "dense_rank": 3,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": -2.787626028060913
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000107",
+          "score": -3.2614173889160156,
+          "fused": 0.6675165658143658,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 5,
+          "rerank": -3.2614173889160156
+        }
+      ],
+      "latency_ms": 5752.74
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 681,
+      "latency_ms": 0.44
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13832.14
+    }
+  },
+  "retrieved_ids": [
+    "8679484d23bfd3a0:L0:000127",
+    "ce290c1e5d5c6641:L0:000070",
+    "178c7e3e6ef6ae87:L0:000073",
+    "f59bbbdacaf7ffe4:L0:000128",
+    "ad11b6e85f908fb3:L0:000107"
+  ],
+  "filtered_ids": [
+    "8679484d23bfd3a0:L0:000127",
+    "ce290c1e5d5c6641:L0:000070",
+    "178c7e3e6ef6ae87:L0:000073",
+    "f59bbbdacaf7ffe4:L0:000128",
+    "ad11b6e85f908fb3:L0:000107"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:46:45.403947+00:00",
+      "call_id": "67b2b0f45a20",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b1d35423d840ebf3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c41c09d9f43e4582"
+    },
+    {
+      "ts": "2026-11-13T12:47:04.986554+00:00",
+      "call_id": "dc9ab4c0b32d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "45125224417309b7",
+      "prompt_tokens": 1345,
+      "completion_tokens": 81,
+      "latency_ms": 13830.89,
+      "server_ms": 13810.15,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "c41c09d9f43e4582"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1345,
+    "completion_tokens": 81,
+    "total_ms": 19588.01
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

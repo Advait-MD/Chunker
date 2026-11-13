@@ -1,0 +1,179 @@
+{
+  "trace_id": "71f736105ed44157",
+  "created_at": "2026-11-13T14:40:07.766984+00:00",
+  "query": "What actor replaced the Welch actor born in 1978 who played Robin Hood in the first season of \"Once upon a Time\"?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7781.55
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7781.64
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23924.28
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.36,
+      "bm25_ms": 13.72,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 7763.11
+      },
+      "hits": [
+        {
+          "id": "ec3410ef955c5c93:L0:000178",
+          "score": 2.632521152496338,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.632521152496338
+        },
+        {
+          "id": "20496f59538deb41:L0:000033",
+          "score": -1.2151075601577759,
+          "fused": 0.1398126860139336,
+          "dense_rank": 38,
+          "bm25_rank": 9,
+          "fused_rank": 19,
+          "rerank": -1.2151075601577759
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000063",
+          "score": -1.8469935655593872,
+          "fused": 0.3076084572019385,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -1.8469935655593872
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000143",
+          "score": -2.528076648712158,
+          "fused": 0.18815813213795013,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 13,
+          "rerank": -2.528076648712158
+        },
+        {
+          "id": "b120b09075017d08:L0:000045",
+          "score": -2.5423223972320557,
+          "fused": 0.4981439405857295,
+          "dense_rank": 3,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": -2.5423223972320557
+        }
+      ],
+      "latency_ms": 7781.51
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 622,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16142.51
+    }
+  },
+  "retrieved_ids": [
+    "ec3410ef955c5c93:L0:000178",
+    "20496f59538deb41:L0:000033",
+    "ba3cd068cf9ac2e4:L0:000063",
+    "bc1dba3471045f02:L0:000143",
+    "b120b09075017d08:L0:000045"
+  ],
+  "filtered_ids": [
+    "ec3410ef955c5c93:L0:000178",
+    "20496f59538deb41:L0:000033",
+    "ba3cd068cf9ac2e4:L0:000063",
+    "bc1dba3471045f02:L0:000143",
+    "b120b09075017d08:L0:000045"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:40:07.766984+00:00",
+      "call_id": "5ff2d937e8b0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0678e8bb28b4f4ca",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "71f736105ed44157"
+    },
+    {
+      "ts": "2026-11-13T14:40:31.693459+00:00",
+      "call_id": "7662ee2ba688",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6768cfbbf7fac7e6",
+      "prompt_tokens": 1255,
+      "completion_tokens": 119,
+      "latency_ms": 16141.4,
+      "server_ms": 16114.95,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "71f736105ed44157"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1255,
+    "completion_tokens": 119,
+    "total_ms": 23925.91
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

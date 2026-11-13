@@ -1,0 +1,178 @@
+{
+  "trace_id": "01a5b47cd1844592",
+  "created_at": "2026-11-13T14:33:34.586979+00:00",
+  "query": "What company did Rex Maughan aquire?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4999.9
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5000.02
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16073.42
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.11,
+      "bm25_ms": 4.51,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4990.92
+      },
+      "hits": [
+        {
+          "id": "8e50522b7cb636d8:L0:000137",
+          "score": 5.655429363250732,
+          "fused": 0.7973802340557063,
+          "dense_rank": 5,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 5.655429363250732
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000143",
+          "score": 4.004341125488281,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 4.004341125488281
+        },
+        {
+          "id": "20496f59538deb41:L0:000065",
+          "score": -3.1466064453125,
+          "fused": 0.573155090711356,
+          "dense_rank": 11,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -3.1466064453125
+        },
+        {
+          "id": "20496f59538deb41:L0:000167",
+          "score": -3.385510206222534,
+          "fused": 0.3569669740761964,
+          "dense_rank": 12,
+          "bm25_rank": 10,
+          "fused_rank": 8,
+          "rerank": -3.385510206222534
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000128",
+          "score": -3.449113368988037,
+          "fused": 0.4711782827911879,
+          "dense_rank": 50,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -3.449113368988037
+        }
+      ],
+      "latency_ms": 4999.86
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 569,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11073.27
+    }
+  },
+  "retrieved_ids": [
+    "8e50522b7cb636d8:L0:000137",
+    "81fc433d55d23b4c:L0:000143",
+    "20496f59538deb41:L0:000065",
+    "20496f59538deb41:L0:000167",
+    "cc2399aca11eb631:L0:000128"
+  ],
+  "filtered_ids": [
+    "8e50522b7cb636d8:L0:000137",
+    "81fc433d55d23b4c:L0:000143",
+    "20496f59538deb41:L0:000065",
+    "20496f59538deb41:L0:000167",
+    "cc2399aca11eb631:L0:000128"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:33:34.586979+00:00",
+      "call_id": "07c5d188950c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "72c931024f7e45d8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "01a5b47cd1844592"
+    },
+    {
+      "ts": "2026-11-13T14:33:50.652199+00:00",
+      "call_id": "653f7c330d06",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "85f9faa360aae9ea",
+      "prompt_tokens": 1194,
+      "completion_tokens": 61,
+      "latency_ms": 11072.15,
+      "server_ms": 11046.88,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "01a5b47cd1844592"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1194,
+    "completion_tokens": 61,
+    "total_ms": 16075.21
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

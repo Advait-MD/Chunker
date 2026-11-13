@@ -1,0 +1,187 @@
+{
+  "trace_id": "ddd6a6c947844776",
+  "created_at": "2026-11-13T15:33:38.370749+00:00",
+  "query": "What sequence of events led Steve Jobs to be ousted from Apple in 1985 by John Sculley and the board?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15372.61
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15374.34
+    },
+    {
+      "state": "DONE",
+      "t_ms": 52343.86
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.83,
+      "bm25_ms": 23.19,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 15341.72
+      },
+      "hits": [
+        {
+          "id": "17581cb533e90c48:L0:000015",
+          "score": 0.5181279182434082,
+          "fused": 0.6268200718706648,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.5181279182434082
+        },
+        {
+          "id": "17581cb533e90c48:L0:001421",
+          "score": 0.4148333668708801,
+          "fused": 0.6389233980185439,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 0.4148333668708801
+        },
+        {
+          "id": "17581cb533e90c48:L0:000501",
+          "score": 0.23552058637142181,
+          "fused": 0.39845567069635396,
+          "dense_rank": 6,
+          "bm25_rank": 16,
+          "fused_rank": 10,
+          "rerank": 0.23552058637142181
+        },
+        {
+          "id": "17581cb533e90c48:L0:001423",
+          "score": 0.17699821293354034,
+          "fused": 0.7280059581038535,
+          "dense_rank": 44,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.17699821293354034
+        },
+        {
+          "id": "17581cb533e90c48:L0:000513",
+          "score": 0.1671179234981537,
+          "fused": 0.4216988802607803,
+          "dense_rank": 10,
+          "bm25_rank": 11,
+          "fused_rank": 7,
+          "rerank": 0.1671179234981537
+        }
+      ],
+      "latency_ms": 15372.56
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1808,
+      "latency_ms": 1.67
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 36969.35
+    }
+  },
+  "retrieved_ids": [
+    "17581cb533e90c48:L0:000015",
+    "17581cb533e90c48:L0:001421",
+    "17581cb533e90c48:L0:000501",
+    "17581cb533e90c48:L0:001423",
+    "17581cb533e90c48:L0:000513"
+  ],
+  "filtered_ids": [
+    "17581cb533e90c48:L0:000015",
+    "17581cb533e90c48:L0:001421",
+    "17581cb533e90c48:L0:000501",
+    "17581cb533e90c48:L0:001423",
+    "17581cb533e90c48:L0:000513"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:33:38.370749+00:00",
+      "call_id": "9307847acf8e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "38aa219e6e345755",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ddd6a6c947844776"
+    },
+    {
+      "ts": "2026-11-13T15:34:30.713630+00:00",
+      "call_id": "0a5caf4aaabf",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a6629cb2ae0b876f",
+      "prompt_tokens": 2784,
+      "completion_tokens": 223,
+      "latency_ms": 36967.82,
+      "server_ms": 36938.48,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ddd6a6c947844776"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2784,
+    "completion_tokens": 223,
+    "total_ms": 52347.6
+  },
+  "config_hash": "bc54ffd33529",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Steve Jobs's authority was increasingly challenged by the board, who told Sculley to take more authority and less 'pal' approach with Jobs.",
+        "Jobs was also criticized for interfering with other divisions.",
+        "In early 1985, Sculley's Macintosh division continued to disappoint, and middle-level managers began to rise up against Jobs.",
+        "Mike Murray sought a private meeting with Sculley, who was not yet ready for a showdown with Jobs.",
+        "However, the board became alarmed at the turmoil, and in May 1985, Jobs planned a coup while Sculley was in China, but Jay Elliot advised against it."
+      ]
+    }
+  }
+}

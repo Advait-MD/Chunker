@@ -1,0 +1,180 @@
+{
+  "trace_id": "4e96b41bac9d40a0",
+  "created_at": "2026-11-13T14:00:58.652192+00:00",
+  "query": "Why did they choose Mr. Braun to make the decision about the object?\n\nOptions:\n(A) He was a good gambler\n(B) He was going to run for Congress\n(C) We do not get a reason\n(D) His family was in the city so it mattered more\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19169.39
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19169.56
+    },
+    {
+      "state": "DONE",
+      "t_ms": 40498.69
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.91,
+      "bm25_ms": 10.71,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 19
+      },
+      "n_fused": 19,
+      "rerank": {
+        "n": 19,
+        "n_computed": 19,
+        "latency_ms": 19155.3
+      },
+      "hits": [
+        {
+          "id": "e2aaf883e15e64c8:L0:000017",
+          "score": 0.5353115797042847,
+          "fused": 0.8545065429475158,
+          "dense_rank": 11,
+          "bm25_rank": 1,
+          "fused_rank": 4,
+          "rerank": 0.5353115797042847
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000006",
+          "score": -0.1809069961309433,
+          "fused": 0.9417529536502056,
+          "dense_rank": 3,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": -0.1809069961309433
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000016",
+          "score": -0.7536795139312744,
+          "fused": 0.8113782145693544,
+          "dense_rank": 14,
+          "bm25_rank": 2,
+          "fused_rank": 7,
+          "rerank": -0.7536795139312744
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000008",
+          "score": -0.790885329246521,
+          "fused": 0.6790958878276676,
+          "dense_rank": 1,
+          "bm25_rank": 13,
+          "fused_rank": 10,
+          "rerank": -0.790885329246521
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000011",
+          "score": -0.8140386939048767,
+          "fused": 0.8457595884818156,
+          "dense_rank": 4,
+          "bm25_rank": 8,
+          "fused_rank": 5,
+          "rerank": -0.8140386939048767
+        }
+      ],
+      "latency_ms": 19169.34
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1970,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21329.01
+    }
+  },
+  "retrieved_ids": [
+    "e2aaf883e15e64c8:L0:000017",
+    "e2aaf883e15e64c8:L0:000006",
+    "e2aaf883e15e64c8:L0:000016",
+    "e2aaf883e15e64c8:L0:000008",
+    "e2aaf883e15e64c8:L0:000011"
+  ],
+  "filtered_ids": [
+    "e2aaf883e15e64c8:L0:000017",
+    "e2aaf883e15e64c8:L0:000006",
+    "e2aaf883e15e64c8:L0:000016",
+    "e2aaf883e15e64c8:L0:000008",
+    "e2aaf883e15e64c8:L0:000011"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:00:58.652192+00:00",
+      "call_id": "24be7bf868f7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cf910fe07d6e55ff",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4e96b41bac9d40a0"
+    },
+    {
+      "ts": "2026-11-13T14:01:39.145947+00:00",
+      "call_id": "202232877a60",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "07649e36b923f677",
+      "prompt_tokens": 2491,
+      "completion_tokens": 61,
+      "latency_ms": 21327.69,
+      "server_ms": 21259.61,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "4e96b41bac9d40a0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2491,
+    "completion_tokens": 61,
+    "total_ms": 40502.98
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

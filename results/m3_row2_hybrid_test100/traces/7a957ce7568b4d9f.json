@@ -1,0 +1,166 @@
+{
+  "trace_id": "7a957ce7568b4d9f",
+  "created_at": "2026-11-13T09:29:24.714584+00:00",
+  "query": "How big is the self-collected corpus?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.61
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17.94
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17714.28
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.82,
+      "bm25_ms": 9.78,
+      "n_candidates": {
+        "dense": 14,
+        "bm25": 3
+      },
+      "n_fused": 14,
+      "hits": [
+        {
+          "id": "257b1f5daf8f6f31:L0:000010",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "257b1f5daf8f6f31:L0:000000",
+          "score": 0.6973901767647267,
+          "fused": 0.6973901767647267,
+          "dense_rank": 8,
+          "bm25_rank": 2
+        },
+        {
+          "id": "257b1f5daf8f6f31:L0:000009",
+          "score": 0.29152572159025103,
+          "fused": 0.29152572159025103,
+          "dense_rank": 2,
+          "bm25_rank": null
+        },
+        {
+          "id": "257b1f5daf8f6f31:L0:000002",
+          "score": 0.22829031834393715,
+          "fused": 0.22829031834393715,
+          "dense_rank": 3,
+          "bm25_rank": null
+        },
+        {
+          "id": "257b1f5daf8f6f31:L0:000005",
+          "score": 0.2254495064580701,
+          "fused": 0.2254495064580701,
+          "dense_rank": 4,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 17.56
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 906,
+      "latency_ms": 0.31
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17696.24
+    }
+  },
+  "retrieved_ids": [
+    "257b1f5daf8f6f31:L0:000010",
+    "257b1f5daf8f6f31:L0:000000",
+    "257b1f5daf8f6f31:L0:000009",
+    "257b1f5daf8f6f31:L0:000002",
+    "257b1f5daf8f6f31:L0:000005"
+  ],
+  "filtered_ids": [
+    "257b1f5daf8f6f31:L0:000010",
+    "257b1f5daf8f6f31:L0:000000",
+    "257b1f5daf8f6f31:L0:000009",
+    "257b1f5daf8f6f31:L0:000002",
+    "257b1f5daf8f6f31:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:29:24.717585+00:00",
+      "call_id": "951b19a2fed5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "dc8d232c817ccc8b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7a957ce7568b4d9f"
+    },
+    {
+      "ts": "2026-11-13T09:29:42.427942+00:00",
+      "call_id": "8c4a4289d7a5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c0c62c83abffb3b9",
+      "prompt_tokens": 1530,
+      "completion_tokens": 77,
+      "latency_ms": 17695.04,
+      "server_ms": 17665.64,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "7a957ce7568b4d9f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1530,
+    "completion_tokens": 77,
+    "total_ms": 17715.87
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "The self-collected corpus, BoketeDB, contains a theme (image) and funny caption (text) posted on Bokete, which is an image Ogiri website."
+      ]
+    }
+  }
+}

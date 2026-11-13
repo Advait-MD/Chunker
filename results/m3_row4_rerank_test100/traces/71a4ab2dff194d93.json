@@ -1,0 +1,181 @@
+{
+  "trace_id": "71a4ab2dff194d93",
+  "created_at": "2026-11-13T12:04:46.132111+00:00",
+  "query": "How many GPUs do they use for this task?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11965.39
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11965.59
+    },
+    {
+      "state": "DONE",
+      "t_ms": 37358.85
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 10.83,
+      "bm25_ms": 6.26,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 12
+      },
+      "n_fused": 17,
+      "rerank": {
+        "n": 17,
+        "n_computed": 17,
+        "latency_ms": 11947.34
+      },
+      "hits": [
+        {
+          "id": "47ee37545a8e7b64:L0:000007",
+          "score": -4.284378528594971,
+          "fused": 0.8736962208258148,
+          "dense_rank": 8,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -4.284378528594971
+        },
+        {
+          "id": "47ee37545a8e7b64:L0:000011",
+          "score": -5.428171157836914,
+          "fused": 0.33903755621812826,
+          "dense_rank": 5,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -5.428171157836914
+        },
+        {
+          "id": "47ee37545a8e7b64:L0:000012",
+          "score": -6.138164520263672,
+          "fused": 0.32135730813979924,
+          "dense_rank": 4,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -6.138164520263672
+        },
+        {
+          "id": "47ee37545a8e7b64:L0:000003",
+          "score": -6.9443039894104,
+          "fused": 0.06691331521853963,
+          "dense_rank": 13,
+          "bm25_rank": 12,
+          "fused_rank": 15,
+          "rerank": -6.9443039894104
+        },
+        {
+          "id": "47ee37545a8e7b64:L0:000016",
+          "score": -7.284170627593994,
+          "fused": 0.36026568663712827,
+          "dense_rank": 2,
+          "bm25_rank": 7,
+          "fused_rank": 3,
+          "rerank": -7.284170627593994
+        }
+      ],
+      "latency_ms": 11965.34
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1597,
+      "latency_ms": 0.13
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25393.14
+    }
+  },
+  "retrieved_ids": [
+    "47ee37545a8e7b64:L0:000007",
+    "47ee37545a8e7b64:L0:000011",
+    "47ee37545a8e7b64:L0:000012",
+    "47ee37545a8e7b64:L0:000003",
+    "47ee37545a8e7b64:L0:000016"
+  ],
+  "filtered_ids": [
+    "47ee37545a8e7b64:L0:000007",
+    "47ee37545a8e7b64:L0:000011",
+    "47ee37545a8e7b64:L0:000012",
+    "47ee37545a8e7b64:L0:000003",
+    "47ee37545a8e7b64:L0:000016"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:04:46.133108+00:00",
+      "call_id": "529754bc5218",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9249b167429b02b0",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "71a4ab2dff194d93"
+    },
+    {
+      "ts": "2026-11-13T12:05:23.490248+00:00",
+      "call_id": "5caf84ccba23",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ab526aa7530a4d21",
+      "prompt_tokens": 2353,
+      "completion_tokens": 91,
+      "latency_ms": 25391.53,
+      "server_ms": 25360.13,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "71a4ab2dff194d93"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2353,
+    "completion_tokens": 91,
+    "total_ms": 37359.85
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "Two-layer bidirectional GRU is used to fully fuse the information contained in the preliminary representation and the additional useful information included in the complementary representation.",
+        "We concatenate the outputs of the GPUs in two dimensions together, and we hence obtain the final contextualized representation $F$ of input text."
+      ]
+    }
+  }
+}

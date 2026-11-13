@@ -1,0 +1,181 @@
+{
+  "trace_id": "520ddeede1c6468d",
+  "created_at": "2026-11-13T15:07:58.503452+00:00",
+  "query": "Which film has the director died later, Romeo, Juliet And Darkness or I Can Explain?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7480.78
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7480.89
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25743.04
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.8,
+      "bm25_ms": 8.47,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 7467.08
+      },
+      "hits": [
+        {
+          "id": "6af2db6cb86d77e2:L0:000127",
+          "score": 8.667458534240723,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.667458534240723
+        },
+        {
+          "id": "0eac870d43736f51:L0:000115",
+          "score": 8.559121131896973,
+          "fused": 0.19507785648371115,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 8,
+          "rerank": 8.559121131896973
+        },
+        {
+          "id": "abe982d210232c3f:L0:000014",
+          "score": 2.0091946125030518,
+          "fused": 0.3900444849328492,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 2.0091946125030518
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000152",
+          "score": -0.5082637667655945,
+          "fused": 0.5031367575230871,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.5082637667655945
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -4.3086113929748535,
+          "fused": 0.1353680792172114,
+          "dense_rank": 9,
+          "bm25_rank": null,
+          "fused_rank": 17,
+          "rerank": -4.3086113929748535
+        }
+      ],
+      "latency_ms": 7480.72
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 663,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18262.0
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000127",
+    "0eac870d43736f51:L0:000115",
+    "abe982d210232c3f:L0:000014",
+    "53c7288bdcd3837a:L0:000152",
+    "b04ce6dd2d95fb80:L0:000152"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000127",
+    "0eac870d43736f51:L0:000115",
+    "abe982d210232c3f:L0:000014",
+    "53c7288bdcd3837a:L0:000152",
+    "b04ce6dd2d95fb80:L0:000152"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:07:58.503452+00:00",
+      "call_id": "2c6932b8f10c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "460ea3100b2ee651",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "520ddeede1c6468d"
+    },
+    {
+      "ts": "2026-11-13T15:08:24.233761+00:00",
+      "call_id": "0a3da91f841e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "201e012caf16bf2a",
+      "prompt_tokens": 1327,
+      "completion_tokens": 116,
+      "latency_ms": 18260.43,
+      "server_ms": 18230.43,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "520ddeede1c6468d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1327,
+    "completion_tokens": 116,
+    "total_ms": 25745.29
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, Jiří Weiss, the director of Romeo, Juliet and Darkness, died later."
+      ]
+    }
+  }
+}

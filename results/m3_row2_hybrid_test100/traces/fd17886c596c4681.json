@@ -1,0 +1,166 @@
+{
+  "trace_id": "fd17886c596c4681",
+  "created_at": "2026-11-13T09:54:27.280304+00:00",
+  "query": "The original language of the film titled and about the city of Tito's final resting place is the co-official language of a country. Where are the headquarters for that country's national radio and TV broadcaster?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 37.18
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 37.37
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15864.11
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.08,
+      "bm25_ms": 33.39,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "66f5caec1369ebaf:L0:000120",
+          "score": 0.8266911816098204,
+          "fused": 0.8266911816098204,
+          "dense_rank": 4,
+          "bm25_rank": 6
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000128",
+          "score": 0.7930308236122617,
+          "fused": 0.7930308236122617,
+          "dense_rank": 1,
+          "bm25_rank": 8
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000092",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000123",
+          "score": 0.6587350231173393,
+          "fused": 0.6587350231173393,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000152",
+          "score": 0.6512802689019783,
+          "fused": 0.6512802689019783,
+          "dense_rank": null,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 37.14
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 694,
+      "latency_ms": 0.17
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15826.59
+    }
+  },
+  "retrieved_ids": [
+    "66f5caec1369ebaf:L0:000120",
+    "73dfa6a9bfcab050:L0:000128",
+    "cc1bdb3bf430bd0d:L0:000092",
+    "e182527d2b1ecac3:L0:000123",
+    "4fcce431f5d22d1d:L0:000152"
+  ],
+  "filtered_ids": [
+    "66f5caec1369ebaf:L0:000120",
+    "73dfa6a9bfcab050:L0:000128",
+    "cc1bdb3bf430bd0d:L0:000092",
+    "e182527d2b1ecac3:L0:000123",
+    "4fcce431f5d22d1d:L0:000152"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:54:27.281310+00:00",
+      "call_id": "b5f62946beba",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "82e7a5c69de78e73",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fd17886c596c4681"
+    },
+    {
+      "ts": "2026-11-13T09:54:43.143615+00:00",
+      "call_id": "e1491eebcbf8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a7c67d682884596f",
+      "prompt_tokens": 1437,
+      "completion_tokens": 89,
+      "latency_ms": 15825.5,
+      "server_ms": 15790.38,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "fd17886c596c4681"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1437,
+    "completion_tokens": 89,
+    "total_ms": 15865.4
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The original language of the film titled and about the city of Tito's final resting place is Serbian, which is the co-official language of Serbia."
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+# Ablation row 2 (spec §2.8): naive + BM25 hybrid. BM25 ‖ FAISS IVF dense, 50 candidates each, fused top 20;
+# the generator gets the top 5, the same as the naive baseline.
+# Fusion: weighted (0.3 dense / 0.7 BM25, min-max normalised), chosen on the DEV split over RRF k ∈ {20, 60, 100}
+# and weights 0.5–0.8 (results/m3_fusion_dev). RRF (the spec's default) is kept as the fusion ablation:
+# configs/ablations/fusion_rrf.yaml. [PROPOSED] deviation, see docs/M3_NOTES.md.
+run:
+  name: row2_hybrid
+retrieval:
+  mode: hybrid
+  fusion: weighted
+  weights: {dense: 0.3, bm25: 0.7}

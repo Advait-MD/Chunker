@@ -1,0 +1,182 @@
+{
+  "trace_id": "6d7ad56ac169438f",
+  "created_at": "2026-11-13T15:02:29.276277+00:00",
+  "query": "Do both films King Uncle and Kanyaka (Film) have the directors from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6839.51
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6839.64
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22600.3
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.25,
+      "bm25_ms": 7.79,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6825.9
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000161",
+          "score": 7.7843852043151855,
+          "fused": 0.31405433609066014,
+          "dense_rank": null,
+          "bm25_rank": 12,
+          "fused_rank": 12,
+          "rerank": 7.7843852043151855
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000105",
+          "score": 7.485994338989258,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.485994338989258
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -5.601599216461182,
+          "fused": 0.2680078092565664,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 17,
+          "rerank": -5.601599216461182
+        },
+        {
+          "id": "0eac870d43736f51:L0:000089",
+          "score": -5.791889667510986,
+          "fused": 0.23224788641236194,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 20,
+          "rerank": -5.791889667510986
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000054",
+          "score": -5.894876480102539,
+          "fused": 0.6746195481914224,
+          "dense_rank": 11,
+          "bm25_rank": 5,
+          "fused_rank": 2,
+          "rerank": -5.894876480102539
+        }
+      ],
+      "latency_ms": 6839.45
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 930,
+      "latency_ms": 0.09
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15760.56
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000161",
+    "c73b757f0eb66f37:L0:000105",
+    "b04ce6dd2d95fb80:L0:000152",
+    "0eac870d43736f51:L0:000089",
+    "b04ce6dd2d95fb80:L0:000054"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000161",
+    "c73b757f0eb66f37:L0:000105",
+    "b04ce6dd2d95fb80:L0:000152",
+    "0eac870d43736f51:L0:000089",
+    "b04ce6dd2d95fb80:L0:000054"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:02:29.276277+00:00",
+      "call_id": "af5351ca8a6b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b35a1a7fc75f01a7",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6d7ad56ac169438f"
+    },
+    {
+      "ts": "2026-11-13T15:02:51.868128+00:00",
+      "call_id": "b47132bed2c1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "093b6af6b776236b",
+      "prompt_tokens": 1682,
+      "completion_tokens": 95,
+      "latency_ms": 15759.38,
+      "server_ms": 15730.09,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "6d7ad56ac169438f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1682,
+    "completion_tokens": 95,
+    "total_ms": 22602.27
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "No, the directors of King Uncle and Kanyaka (Film) are from different countries.",
+        "Kanyaka (Film) was directed by J."
+      ]
+    }
+  }
+}

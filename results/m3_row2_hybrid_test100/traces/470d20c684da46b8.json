@@ -1,0 +1,166 @@
+{
+  "trace_id": "470d20c684da46b8",
+  "created_at": "2026-11-13T11:17:26.048095+00:00",
+  "query": "Which film has the director who was born first, The Gigolos or More About The Children Of Noisy Village?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.86
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.92
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 16952.6
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.99,
+      "bm25_ms": 7.52,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000131",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000141",
+          "score": 0.6617086907124434,
+          "fused": 0.6617086907124434,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000106",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "99628090500247e3:L0:000128",
+          "score": 0.2332372456931051,
+          "fused": 0.2332372456931051,
+          "dense_rank": 6,
+          "bm25_rank": 9
+        },
+        {
+          "id": "99628090500247e3:L0:000054",
+          "score": 0.23255429755919987,
+          "fused": 0.23255429755919987,
+          "dense_rank": null,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 10.82
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 786,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16941.56
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000131",
+    "317e12ccd417c0d7:L0:000141",
+    "6af2db6cb86d77e2:L0:000106",
+    "99628090500247e3:L0:000128",
+    "99628090500247e3:L0:000054"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000131",
+    "317e12ccd417c0d7:L0:000141",
+    "6af2db6cb86d77e2:L0:000106",
+    "99628090500247e3:L0:000128",
+    "99628090500247e3:L0:000054"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:17:26.050097+00:00",
+      "call_id": "06bf18018496",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b0aa55bfcb2916d3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "470d20c684da46b8"
+    },
+    {
+      "ts": "2026-11-13T11:17:43.000245+00:00",
+      "call_id": "928eec8478f4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "092dda691da7ef99",
+      "prompt_tokens": 1467,
+      "completion_tokens": 79,
+      "latency_ms": 16940.63,
+      "server_ms": 16919.83,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "470d20c684da46b8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1467,
+    "completion_tokens": 79,
+    "total_ms": 16954.15
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The director of More About the Children of Noisy Village, Lasse Hallström, was born later than the director of The Gigolos, Bert I."
+      ]
+    }
+  }
+}

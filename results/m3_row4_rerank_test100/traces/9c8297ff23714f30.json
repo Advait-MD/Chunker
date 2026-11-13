@@ -1,0 +1,178 @@
+{
+  "trace_id": "9c8297ff23714f30",
+  "created_at": "2026-11-13T13:02:21.227845+00:00",
+  "query": "Who is the owner of the record label that the performer of Trojans belongs to?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4585.81
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4585.97
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14866.71
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.12,
+      "bm25_ms": 9.32,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4570.85
+      },
+      "hits": [
+        {
+          "id": "dd498e0082847164:L0:000156",
+          "score": 1.3855390548706055,
+          "fused": 0.9843443225001185,
+          "dense_rank": 5,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.3855390548706055
+        },
+        {
+          "id": "a168352d83e925b5:L0:000170",
+          "score": 1.311820149421692,
+          "fused": 0.9470976662614248,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 1.311820149421692
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000050",
+          "score": -0.6412573456764221,
+          "fused": 0.8360903271757298,
+          "dense_rank": 13,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -0.6412573456764221
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000028",
+          "score": -1.1200604438781738,
+          "fused": 0.7673215478303133,
+          "dense_rank": 11,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -1.1200604438781738
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000161",
+          "score": -1.307486891746521,
+          "fused": 0.3880251572676097,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 20,
+          "rerank": -1.307486891746521
+        }
+      ],
+      "latency_ms": 4585.76
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 300,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10280.64
+    }
+  },
+  "retrieved_ids": [
+    "dd498e0082847164:L0:000156",
+    "a168352d83e925b5:L0:000170",
+    "4fcce431f5d22d1d:L0:000050",
+    "6bddce8aaad42fea:L0:000028",
+    "ad11b6e85f908fb3:L0:000161"
+  ],
+  "filtered_ids": [
+    "dd498e0082847164:L0:000156",
+    "a168352d83e925b5:L0:000170",
+    "4fcce431f5d22d1d:L0:000050",
+    "6bddce8aaad42fea:L0:000028",
+    "ad11b6e85f908fb3:L0:000161"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:02:21.227845+00:00",
+      "call_id": "a5a1112f1d76",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7b09ec6411bddd71",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9c8297ff23714f30"
+    },
+    {
+      "ts": "2026-11-13T13:02:36.092391+00:00",
+      "call_id": "d401ae347d52",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "43d172f85d4fe4ef",
+      "prompt_tokens": 882,
+      "completion_tokens": 82,
+      "latency_ms": 10279.52,
+      "server_ms": 10255.17,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "9c8297ff23714f30"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 882,
+    "completion_tokens": 82,
+    "total_ms": 14871.01
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

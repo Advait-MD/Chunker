@@ -1,0 +1,178 @@
+{
+  "trace_id": "b59a9c528fdb47cf",
+  "created_at": "2026-11-13T15:14:57.215119+00:00",
+  "query": "What nationality is the performer of song Gone Fishin' (Song)?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6301.15
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6301.26
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25831.02
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.06,
+      "bm25_ms": 4.06,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6289.15
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000038",
+          "score": 5.522358417510986,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.522358417510986
+        },
+        {
+          "id": "abe982d210232c3f:L0:000045",
+          "score": -1.2262744903564453,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 3,
+          "rerank": -1.2262744903564453
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000026",
+          "score": -2.1348605155944824,
+          "fused": 0.20739781671885463,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": -2.1348605155944824
+        },
+        {
+          "id": "abe982d210232c3f:L0:000092",
+          "score": -2.3687400817871094,
+          "fused": 0.24642577316436845,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 10,
+          "rerank": -2.3687400817871094
+        },
+        {
+          "id": "99628090500247e3:L0:000060",
+          "score": -3.0557565689086914,
+          "fused": 0.25327526902035746,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 8,
+          "rerank": -3.0557565689086914
+        }
+      ],
+      "latency_ms": 6301.08
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1525,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19529.64
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000038",
+    "abe982d210232c3f:L0:000045",
+    "4a757779abfb4ba1:L0:000026",
+    "abe982d210232c3f:L0:000092",
+    "99628090500247e3:L0:000060"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000038",
+    "abe982d210232c3f:L0:000045",
+    "4a757779abfb4ba1:L0:000026",
+    "abe982d210232c3f:L0:000092",
+    "99628090500247e3:L0:000060"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:14:57.215119+00:00",
+      "call_id": "360a1b772405",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7573452d8a76a670",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b59a9c528fdb47cf"
+    },
+    {
+      "ts": "2026-11-13T15:15:23.045933+00:00",
+      "call_id": "4ef371e31637",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "04647915c9275cea",
+      "prompt_tokens": 2317,
+      "completion_tokens": 67,
+      "latency_ms": 19528.26,
+      "server_ms": 19497.93,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "b59a9c528fdb47cf"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2317,
+    "completion_tokens": 67,
+    "total_ms": 25833.76
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

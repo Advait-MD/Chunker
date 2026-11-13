@@ -1,0 +1,167 @@
+{
+  "trace_id": "9a02edfb6ca34c8f",
+  "created_at": "2026-11-13T09:42:23.964013+00:00",
+  "query": "A country's military branch, the equivalent of which in the US contains the Air Defense Artillery, was unprepared for the invasion of Ivo Werner's country. When was the word \"Slavs\" used in the national anthem of the unprepared country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 32.1
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 32.16
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 22984.28
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.61,
+      "bm25_ms": 28.15,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000054",
+          "score": 0.9139593961136858,
+          "fused": 0.9139593961136858,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000133",
+          "score": 0.7280777497118078,
+          "fused": 0.7280777497118078,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000076",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000055",
+          "score": 0.4455263925594972,
+          "fused": 0.4455263925594972,
+          "dense_rank": 7,
+          "bm25_rank": 6
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000063",
+          "score": 0.39362649857282944,
+          "fused": 0.39362649857282944,
+          "dense_rank": 1,
+          "bm25_rank": 18
+        }
+      ],
+      "latency_ms": 32.03
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 449,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22951.98
+    }
+  },
+  "retrieved_ids": [
+    "f59bbbdacaf7ffe4:L0:000054",
+    "f59bbbdacaf7ffe4:L0:000133",
+    "e182527d2b1ecac3:L0:000076",
+    "ce290c1e5d5c6641:L0:000055",
+    "178c7e3e6ef6ae87:L0:000063"
+  ],
+  "filtered_ids": [
+    "f59bbbdacaf7ffe4:L0:000054",
+    "f59bbbdacaf7ffe4:L0:000133",
+    "e182527d2b1ecac3:L0:000076",
+    "ce290c1e5d5c6641:L0:000055",
+    "178c7e3e6ef6ae87:L0:000063"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:42:23.966478+00:00",
+      "call_id": "b6ba664d9feb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "118a8a35f46c0503",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9a02edfb6ca34c8f"
+    },
+    {
+      "ts": "2026-11-13T09:42:46.947670+00:00",
+      "call_id": "be2a0d2ce15b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9d9c8e6f57228d9d",
+      "prompt_tokens": 1096,
+      "completion_tokens": 184,
+      "latency_ms": 22951.11,
+      "server_ms": 22931.01,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "9a02edfb6ca34c8f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1096,
+    "completion_tokens": 184,
+    "total_ms": 22986.14
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The word 'Slavs' was used in the national anthem of the Slovak Republic (1939–1945), Yugoslavia (1943–1992) and the Federal Republic of Yugoslavia (1992–2003), later Serbia and Montenegro (2003–2006).",
+        "However, the evidence does not specify which of these countries was unprepared for the invasion of Ivo Werner's country."
+      ]
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "trace_id": "abd26dc48d5540c6",
+  "created_at": "2026-11-13T12:56:40.129154+00:00",
+  "query": "Who is the child of the Italian navigator who sailed for England and explored the eastern coast of the continent Francisco Bojado's birthplace is located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5713.08
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5713.64
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 21261.58
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.98,
+      "bm25_ms": 20.76,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5684.94
+      },
+      "hits": [
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000006",
+          "score": 3.99707293510437,
+          "fused": 0.6872490278958008,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 6,
+          "rerank": 3.99707293510437
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000186",
+          "score": -0.9226500391960144,
+          "fused": 0.7610437003875667,
+          "dense_rank": 2,
+          "bm25_rank": 6,
+          "fused_rank": 3,
+          "rerank": -0.9226500391960144
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000092",
+          "score": -1.121836543083191,
+          "fused": 0.6006462379058699,
+          "dense_rank": 5,
+          "bm25_rank": 9,
+          "fused_rank": 7,
+          "rerank": -1.121836543083191
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000173",
+          "score": -3.206949234008789,
+          "fused": 0.3801140621849033,
+          "dense_rank": 31,
+          "bm25_rank": 11,
+          "fused_rank": 15,
+          "rerank": -3.206949234008789
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000190",
+          "score": -4.388885021209717,
+          "fused": 0.38288637623722904,
+          "dense_rank": 24,
+          "bm25_rank": 13,
+          "fused_rank": 14,
+          "rerank": -4.388885021209717
+        }
+      ],
+      "latency_ms": 5713.02
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 554,
+      "latency_ms": 0.52
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15547.7
+    }
+  },
+  "retrieved_ids": [
+    "f59bbbdacaf7ffe4:L0:000006",
+    "dbcbda865eee9c7b:L0:000186",
+    "8b31d5859eb3d77a:L0:000092",
+    "e182527d2b1ecac3:L0:000173",
+    "73dfa6a9bfcab050:L0:000190"
+  ],
+  "filtered_ids": [
+    "f59bbbdacaf7ffe4:L0:000006",
+    "dbcbda865eee9c7b:L0:000186",
+    "8b31d5859eb3d77a:L0:000092",
+    "e182527d2b1ecac3:L0:000173",
+    "73dfa6a9bfcab050:L0:000190"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:56:40.129154+00:00",
+      "call_id": "185644a3df55",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b8b5c232de24af3b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "abd26dc48d5540c6"
+    },
+    {
+      "ts": "2026-11-13T12:57:01.381856+00:00",
+      "call_id": "73eba32d9d46",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8b12b4a1ace0d17f",
+      "prompt_tokens": 1170,
+      "completion_tokens": 119,
+      "latency_ms": 15546.63,
+      "server_ms": 15516.27,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "abd26dc48d5540c6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1170,
+    "completion_tokens": 119,
+    "total_ms": 21263.38
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        5,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

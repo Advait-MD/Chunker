@@ -1,0 +1,178 @@
+{
+  "trace_id": "cf127b4da7c64a5b",
+  "created_at": "2026-11-13T14:55:43.052114+00:00",
+  "query": "Where was the place of death of Thomas Sheridan (Soldier)'s father?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4761.51
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4761.61
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12996.34
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.51,
+      "bm25_ms": 7.57,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4748.08
+      },
+      "hits": [
+        {
+          "id": "317e12ccd417c0d7:L0:000035",
+          "score": 4.423403739929199,
+          "fused": 0.9490077046328269,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.423403739929199
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000032",
+          "score": -2.4055731296539307,
+          "fused": 0.3809839580655345,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -2.4055731296539307
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000049",
+          "score": -2.839218854904175,
+          "fused": 0.3086759334706586,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": -2.839218854904175
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000029",
+          "score": -3.587026596069336,
+          "fused": 0.3330174729793298,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -3.587026596069336
+        },
+        {
+          "id": "460e441179bec402:L0:000127",
+          "score": -3.9478397369384766,
+          "fused": 0.3809839580655345,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -3.9478397369384766
+        }
+      ],
+      "latency_ms": 4761.46
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 240,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8234.66
+    }
+  },
+  "retrieved_ids": [
+    "317e12ccd417c0d7:L0:000035",
+    "317e12ccd417c0d7:L0:000032",
+    "c73b757f0eb66f37:L0:000049",
+    "b04ce6dd2d95fb80:L0:000029",
+    "460e441179bec402:L0:000127"
+  ],
+  "filtered_ids": [
+    "317e12ccd417c0d7:L0:000035",
+    "317e12ccd417c0d7:L0:000032",
+    "c73b757f0eb66f37:L0:000049",
+    "b04ce6dd2d95fb80:L0:000029",
+    "460e441179bec402:L0:000127"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:55:43.054112+00:00",
+      "call_id": "46f26d479c1d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "258dd95faddc8161",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cf127b4da7c64a5b"
+    },
+    {
+      "ts": "2026-11-13T14:55:56.047720+00:00",
+      "call_id": "f1470da63d86",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8a4378a9bdc12759",
+      "prompt_tokens": 821,
+      "completion_tokens": 56,
+      "latency_ms": 8233.11,
+      "server_ms": 8211.72,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "cf127b4da7c64a5b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 821,
+    "completion_tokens": 56,
+    "total_ms": 12998.39
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The place of death of Thomas Sheridan (soldier)'s father is not explicitly stated in the provided passages."
+      ]
+    }
+  }
+}

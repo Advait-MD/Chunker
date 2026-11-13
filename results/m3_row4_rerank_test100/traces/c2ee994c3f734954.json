@@ -1,0 +1,181 @@
+{
+  "trace_id": "c2ee994c3f734954",
+  "created_at": "2026-11-13T14:57:22.907364+00:00",
+  "query": "Which film has the director who was born later, Budak Nafsu or The Bilingual Lover?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6990.69
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6990.83
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25276.29
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.74,
+      "bm25_ms": 4.16,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6982.21
+      },
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000181",
+          "score": 8.827513694763184,
+          "fused": 0.5923350220876173,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 8.827513694763184
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000005",
+          "score": 7.614082336425781,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.614082336425781
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000086",
+          "score": -5.102334976196289,
+          "fused": 0.14576419017870373,
+          "dense_rank": 16,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": -5.102334976196289
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000053",
+          "score": -6.141753673553467,
+          "fused": 0.14487851300273127,
+          "dense_rank": 30,
+          "bm25_rank": 5,
+          "fused_rank": 9,
+          "rerank": -6.141753673553467
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000176",
+          "score": -6.187352657318115,
+          "fused": 0.11393481097084171,
+          "dense_rank": 9,
+          "bm25_rank": null,
+          "fused_rank": 14,
+          "rerank": -6.187352657318115
+        }
+      ],
+      "latency_ms": 6990.64
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 748,
+      "latency_ms": 0.1
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18284.52
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000181",
+    "4a757779abfb4ba1:L0:000005",
+    "6af2db6cb86d77e2:L0:000086",
+    "317e12ccd417c0d7:L0:000053",
+    "4a757779abfb4ba1:L0:000176"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000181",
+    "4a757779abfb4ba1:L0:000005",
+    "6af2db6cb86d77e2:L0:000086",
+    "317e12ccd417c0d7:L0:000053",
+    "4a757779abfb4ba1:L0:000176"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:57:22.909369+00:00",
+      "call_id": "ad5ebdb9cccb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7fa51ba105e6641a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c2ee994c3f734954"
+    },
+    {
+      "ts": "2026-11-13T14:57:48.182978+00:00",
+      "call_id": "ca104a01b5d5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "26e97976f367184a",
+      "prompt_tokens": 1433,
+      "completion_tokens": 112,
+      "latency_ms": 18282.56,
+      "server_ms": 18258.48,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "c2ee994c3f734954"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1433,
+    "completion_tokens": 112,
+    "total_ms": 25278.26
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, the director of The Bilingual Lover was born later than the director of Budak Nafsu."
+      ]
+    }
+  }
+}

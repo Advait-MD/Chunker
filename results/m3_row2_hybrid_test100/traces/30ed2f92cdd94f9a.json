@@ -1,0 +1,167 @@
+{
+  "trace_id": "30ed2f92cdd94f9a",
+  "created_at": "2026-11-13T10:58:00.416402+00:00",
+  "query": "At what height does State Route 160 start?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.47
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 20.43
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20097.73
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.97,
+      "bm25_ms": 14.3,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "90976421f3f2bea2:L0:000191",
+          "score": 0.9898965904840784,
+          "fused": 0.9898965904840784,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "20496f59538deb41:L0:000115",
+          "score": 0.9834986083276839,
+          "fused": 0.9834986083276839,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000051",
+          "score": 0.9643127522080248,
+          "fused": 0.9643127522080248,
+          "dense_rank": 5,
+          "bm25_rank": 3
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000095",
+          "score": 0.948189458797591,
+          "fused": 0.948189458797591,
+          "dense_rank": 6,
+          "bm25_rank": 4
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000005",
+          "score": 0.9268350360764318,
+          "fused": 0.9268350360764318,
+          "dense_rank": 4,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 19.37
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 511,
+      "latency_ms": 0.89
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20076.86
+    }
+  },
+  "retrieved_ids": [
+    "90976421f3f2bea2:L0:000191",
+    "20496f59538deb41:L0:000115",
+    "c8fd2b3ea47eb07f:L0:000051",
+    "5d0f6cf59ee42566:L0:000095",
+    "5d0f6cf59ee42566:L0:000005"
+  ],
+  "filtered_ids": [
+    "90976421f3f2bea2:L0:000191",
+    "20496f59538deb41:L0:000115",
+    "c8fd2b3ea47eb07f:L0:000051",
+    "5d0f6cf59ee42566:L0:000095",
+    "5d0f6cf59ee42566:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:58:00.417424+00:00",
+      "call_id": "33b998e16596",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "babc613d9dbfd6ce",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "30ed2f92cdd94f9a"
+    },
+    {
+      "ts": "2026-11-13T10:58:20.511961+00:00",
+      "call_id": "a5c79b973f41",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7fcd7e78e062468d",
+      "prompt_tokens": 1169,
+      "completion_tokens": 84,
+      "latency_ms": 20074.35,
+      "server_ms": 20042.39,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "30ed2f92cdd94f9a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1169,
+    "completion_tokens": 84,
+    "total_ms": 20100.52
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

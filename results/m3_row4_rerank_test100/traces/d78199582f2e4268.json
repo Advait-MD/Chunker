@@ -1,0 +1,178 @@
+{
+  "trace_id": "d78199582f2e4268",
+  "created_at": "2026-11-13T13:04:10.031540+00:00",
+  "query": "What team is the person with the highest point average in NBA history on?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9323.57
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9324.57
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 27051.04
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.36,
+      "bm25_ms": 6.21,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 9311.7
+      },
+      "hits": [
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000034",
+          "score": 1.7924461364746094,
+          "fused": 0.4870996208372567,
+          "dense_rank": 3,
+          "bm25_rank": 16,
+          "fused_rank": 7,
+          "rerank": 1.7924461364746094
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000022",
+          "score": 0.7227704524993896,
+          "fused": 0.4824518158094513,
+          "dense_rank": 1,
+          "bm25_rank": 17,
+          "fused_rank": 8,
+          "rerank": 0.7227704524993896
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000009",
+          "score": 0.6900988817214966,
+          "fused": 0.5530807429290807,
+          "dense_rank": 5,
+          "bm25_rank": 7,
+          "fused_rank": 4,
+          "rerank": 0.6900988817214966
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000092",
+          "score": 0.6035747528076172,
+          "fused": 0.8657803303459871,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 0.6035747528076172
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000104",
+          "score": 0.25480085611343384,
+          "fused": 0.43310741477929937,
+          "dense_rank": 6,
+          "bm25_rank": 15,
+          "fused_rank": 10,
+          "rerank": 0.25480085611343384
+        }
+      ],
+      "latency_ms": 9323.52
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 803,
+      "latency_ms": 0.94
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17726.21
+    }
+  },
+  "retrieved_ids": [
+    "f59bbbdacaf7ffe4:L0:000034",
+    "8679484d23bfd3a0:L0:000022",
+    "dbcbda865eee9c7b:L0:000009",
+    "6bddce8aaad42fea:L0:000092",
+    "8679484d23bfd3a0:L0:000104"
+  ],
+  "filtered_ids": [
+    "f59bbbdacaf7ffe4:L0:000034",
+    "8679484d23bfd3a0:L0:000022",
+    "dbcbda865eee9c7b:L0:000009",
+    "6bddce8aaad42fea:L0:000092",
+    "8679484d23bfd3a0:L0:000104"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:04:10.031540+00:00",
+      "call_id": "f6da4f231852",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c2c02599411ac5b9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d78199582f2e4268"
+    },
+    {
+      "ts": "2026-11-13T13:04:37.075589+00:00",
+      "call_id": "257993cc92b7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ad1be4765ac59c4e",
+      "prompt_tokens": 1470,
+      "completion_tokens": 112,
+      "latency_ms": 17724.57,
+      "server_ms": 17704.41,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d78199582f2e4268"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1470,
+    "completion_tokens": 112,
+    "total_ms": 27055.0
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

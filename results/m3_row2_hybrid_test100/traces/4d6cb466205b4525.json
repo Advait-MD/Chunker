@@ -1,0 +1,163 @@
+{
+  "trace_id": "4d6cb466205b4525",
+  "created_at": "2026-11-13T09:56:55.426489+00:00",
+  "query": "What other county does the county where Imperial is located share a border with?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.56
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.25
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 7378.07
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.24,
+      "bm25_ms": 10.73,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ce57fdde2baaba9c:L0:000177",
+          "score": 0.9561291193430834,
+          "fused": 0.9561291193430834,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000027",
+          "score": 0.9132650098196117,
+          "fused": 0.9132650098196117,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000154",
+          "score": 0.6110825353689057,
+          "fused": 0.6110825353689057,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000140",
+          "score": 0.5339380307645817,
+          "fused": 0.5339380307645817,
+          "dense_rank": 5,
+          "bm25_rank": 6
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000146",
+          "score": 0.48318887078634903,
+          "fused": 0.48318887078634903,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 14.51
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 310,
+      "latency_ms": 0.66
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 7362.77
+    }
+  },
+  "retrieved_ids": [
+    "ce57fdde2baaba9c:L0:000177",
+    "dbcbda865eee9c7b:L0:000027",
+    "e182527d2b1ecac3:L0:000154",
+    "f3503d3d186f0f90:L0:000140",
+    "e182527d2b1ecac3:L0:000146"
+  ],
+  "filtered_ids": [
+    "ce57fdde2baaba9c:L0:000177",
+    "dbcbda865eee9c7b:L0:000027",
+    "e182527d2b1ecac3:L0:000154",
+    "f3503d3d186f0f90:L0:000140",
+    "e182527d2b1ecac3:L0:000146"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:56:55.428737+00:00",
+      "call_id": "f614edcd58f9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3b7e683a1001faa3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4d6cb466205b4525"
+    },
+    {
+      "ts": "2026-11-13T09:57:02.803992+00:00",
+      "call_id": "2b915d5c0a5a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "24c4185078ff1a5b",
+      "prompt_tokens": 891,
+      "completion_tokens": 45,
+      "latency_ms": 7362.08,
+      "server_ms": 7346.89,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "4d6cb466205b4525"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 891,
+    "completion_tokens": 45,
+    "total_ms": 7378.61
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

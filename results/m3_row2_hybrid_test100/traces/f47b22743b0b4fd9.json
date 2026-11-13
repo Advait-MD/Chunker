@@ -1,0 +1,163 @@
+{
+  "trace_id": "f47b22743b0b4fd9",
+  "created_at": "2026-11-13T09:51:38.139216+00:00",
+  "query": "Who wrote Turn Me On by the Thinking About You performer?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.42
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.49
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 8894.86
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.47,
+      "bm25_ms": 9.62,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000183",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000163",
+          "score": 0.5528404088461171,
+          "fused": 0.5528404088461171,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000076",
+          "score": 0.48356477356798694,
+          "fused": 0.48356477356798694,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000026",
+          "score": 0.42651514760740206,
+          "fused": 0.42651514760740206,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000081",
+          "score": 0.4102211793135649,
+          "fused": 0.4102211793135649,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 13.38
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 486,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8881.3
+    }
+  },
+  "retrieved_ids": [
+    "f59bbbdacaf7ffe4:L0:000183",
+    "4fcce431f5d22d1d:L0:000163",
+    "178c7e3e6ef6ae87:L0:000076",
+    "8679484d23bfd3a0:L0:000026",
+    "f109b032e24ab27a:L0:000081"
+  ],
+  "filtered_ids": [
+    "f59bbbdacaf7ffe4:L0:000183",
+    "4fcce431f5d22d1d:L0:000163",
+    "178c7e3e6ef6ae87:L0:000076",
+    "8679484d23bfd3a0:L0:000026",
+    "f109b032e24ab27a:L0:000081"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:51:38.141219+00:00",
+      "call_id": "be1e90fc8d86",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "aa0826aae563d5a9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f47b22743b0b4fd9"
+    },
+    {
+      "ts": "2026-11-13T09:51:47.033161+00:00",
+      "call_id": "3135c4d58188",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "40b76dc59a1b1b5f",
+      "prompt_tokens": 1042,
+      "completion_tokens": 45,
+      "latency_ms": 8880.24,
+      "server_ms": 8856.55,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f47b22743b0b4fd9"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1042,
+    "completion_tokens": 45,
+    "total_ms": 8896.98
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

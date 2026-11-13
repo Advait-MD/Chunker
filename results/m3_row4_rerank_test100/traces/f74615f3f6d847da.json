@@ -1,0 +1,178 @@
+{
+  "trace_id": "f74615f3f6d847da",
+  "created_at": "2026-11-13T12:45:02.229992+00:00",
+  "query": "Who is the CEO of FleetBoston Financial's purchaser?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4902.89
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4903.98
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14440.38
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.92,
+      "bm25_ms": 4.93,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4894.53
+      },
+      "hits": [
+        {
+          "id": "15abb5e49dced915:L0:000036",
+          "score": 2.4948949813842773,
+          "fused": 0.8247638940921248,
+          "dense_rank": 19,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.4948949813842773
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000097",
+          "score": -0.2186651974916458,
+          "fused": 0.41763331778797774,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 10,
+          "rerank": -0.2186651974916458
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000129",
+          "score": -4.92979097366333,
+          "fused": 0.5729417472682622,
+          "dense_rank": 25,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -4.92979097366333
+        },
+        {
+          "id": "ad4ace752e719bab:L0:000017",
+          "score": -5.308713436126709,
+          "fused": 0.46464033454821835,
+          "dense_rank": 8,
+          "bm25_rank": 11,
+          "fused_rank": 7,
+          "rerank": -5.308713436126709
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000009",
+          "score": -6.887459754943848,
+          "fused": 0.4557410548829872,
+          "dense_rank": 14,
+          "bm25_rank": 9,
+          "fused_rank": 8,
+          "rerank": -6.887459754943848
+        }
+      ],
+      "latency_ms": 4902.86
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 476,
+      "latency_ms": 1.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9536.28
+    }
+  },
+  "retrieved_ids": [
+    "15abb5e49dced915:L0:000036",
+    "dbcbda865eee9c7b:L0:000097",
+    "66f5caec1369ebaf:L0:000129",
+    "ad4ace752e719bab:L0:000017",
+    "66f5caec1369ebaf:L0:000009"
+  ],
+  "filtered_ids": [
+    "15abb5e49dced915:L0:000036",
+    "dbcbda865eee9c7b:L0:000097",
+    "66f5caec1369ebaf:L0:000129",
+    "ad4ace752e719bab:L0:000017",
+    "66f5caec1369ebaf:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:45:02.229992+00:00",
+      "call_id": "5711f5b1a99c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "be41468c14c6e58b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f74615f3f6d847da"
+    },
+    {
+      "ts": "2026-11-13T12:45:16.673032+00:00",
+      "call_id": "eab231198d81",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "891adc98cf67abff",
+      "prompt_tokens": 1075,
+      "completion_tokens": 59,
+      "latency_ms": 9535.13,
+      "server_ms": 9514.0,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f74615f3f6d847da"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1075,
+    "completion_tokens": 59,
+    "total_ms": 14443.06
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "trace_id": "ac0b63bb020a4ff9",
+  "created_at": "2026-11-13T09:55:11.677401+00:00",
+  "query": "What county is the NRHEG High School located in?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.67
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.82
+    },
+    {
+      "state": "DONE",
+      "t_ms": 9141.34
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.24,
+      "bm25_ms": 9.92,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ad4ace752e719bab:L0:000093",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000153",
+          "score": 0.5476971459323753,
+          "fused": 0.5476971459323753,
+          "dense_rank": 7,
+          "bm25_rank": 3
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000034",
+          "score": 0.542044970770896,
+          "fused": 0.542044970770896,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000043",
+          "score": 0.4911323059023435,
+          "fused": 0.4911323059023435,
+          "dense_rank": 13,
+          "bm25_rank": 4
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000185",
+          "score": 0.46373574579616,
+          "fused": 0.46373574579616,
+          "dense_rank": null,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 13.62
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 283,
+      "latency_ms": 0.13
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9127.41
+    }
+  },
+  "retrieved_ids": [
+    "ad4ace752e719bab:L0:000093",
+    "ad11b6e85f908fb3:L0:000153",
+    "6683bfc7dec06e2a:L0:000034",
+    "6683bfc7dec06e2a:L0:000043",
+    "73dfa6a9bfcab050:L0:000185"
+  ],
+  "filtered_ids": [
+    "ad4ace752e719bab:L0:000093",
+    "ad11b6e85f908fb3:L0:000153",
+    "6683bfc7dec06e2a:L0:000034",
+    "6683bfc7dec06e2a:L0:000043",
+    "73dfa6a9bfcab050:L0:000185"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:55:11.678402+00:00",
+      "call_id": "3eda91470ffb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8696e8473181132e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ac0b63bb020a4ff9"
+    },
+    {
+      "ts": "2026-11-13T09:55:20.817957+00:00",
+      "call_id": "58bbab8fbc8c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0e2ff8b5e160484b",
+      "prompt_tokens": 853,
+      "completion_tokens": 60,
+      "latency_ms": 9126.37,
+      "server_ms": 9100.58,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ac0b63bb020a4ff9"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 853,
+    "completion_tokens": 60,
+    "total_ms": 9142.66
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

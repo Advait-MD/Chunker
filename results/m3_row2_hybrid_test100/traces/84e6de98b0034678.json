@@ -1,0 +1,163 @@
+{
+  "trace_id": "84e6de98b0034678",
+  "created_at": "2026-11-13T09:40:54.189365+00:00",
+  "query": "In what year did the insurgency start in the part of the country it is about?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.97
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.01
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12456.19
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.0,
+      "bm25_ms": 5.78,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "178c7e3e6ef6ae87:L0:000199",
+          "score": 0.9463392290765791,
+          "fused": 0.9463392290765791,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000033",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000090",
+          "score": 0.6018974894545244,
+          "fused": 0.6018974894545244,
+          "dense_rank": 4,
+          "bm25_rank": 6
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000137",
+          "score": 0.5729791742033609,
+          "fused": 0.5729791742033609,
+          "dense_rank": 2,
+          "bm25_rank": 8
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000067",
+          "score": 0.5651148592477884,
+          "fused": 0.5651148592477884,
+          "dense_rank": null,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 11.94
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 864,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12444.12
+    }
+  },
+  "retrieved_ids": [
+    "178c7e3e6ef6ae87:L0:000199",
+    "178c7e3e6ef6ae87:L0:000033",
+    "6683bfc7dec06e2a:L0:000090",
+    "f109b032e24ab27a:L0:000137",
+    "e182527d2b1ecac3:L0:000067"
+  ],
+  "filtered_ids": [
+    "178c7e3e6ef6ae87:L0:000199",
+    "178c7e3e6ef6ae87:L0:000033",
+    "6683bfc7dec06e2a:L0:000090",
+    "f109b032e24ab27a:L0:000137",
+    "e182527d2b1ecac3:L0:000067"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:40:54.191364+00:00",
+      "call_id": "f2ac2c23600e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c898106e5640bb02",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "84e6de98b0034678"
+    },
+    {
+      "ts": "2026-11-13T09:41:06.645088+00:00",
+      "call_id": "29255d5d9d58",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0df3b5a9501ab445",
+      "prompt_tokens": 1498,
+      "completion_tokens": 51,
+      "latency_ms": 12437.61,
+      "server_ms": 12408.58,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "84e6de98b0034678"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1498,
+    "completion_tokens": 51,
+    "total_ms": 12457.75
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

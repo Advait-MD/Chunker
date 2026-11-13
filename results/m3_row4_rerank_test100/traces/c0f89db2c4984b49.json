@@ -1,0 +1,182 @@
+{
+  "trace_id": "c0f89db2c4984b49",
+  "created_at": "2026-11-13T15:04:37.916177+00:00",
+  "query": "Which film has the director who is older, A Medal For Benny or King Of Chinatown?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8080.62
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8080.73
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 24374.51
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.39,
+      "bm25_ms": 5.69,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 8070.27
+      },
+      "hits": [
+        {
+          "id": "317e12ccd417c0d7:L0:000014",
+          "score": 9.0175142288208,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 9.0175142288208
+        },
+        {
+          "id": "abe982d210232c3f:L0:000012",
+          "score": 8.739921569824219,
+          "fused": 0.44244242860203636,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 8.739921569824219
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -4.358937740325928,
+          "fused": 0.26972371634503295,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -4.358937740325928
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000014",
+          "score": -4.695544242858887,
+          "fused": 0.2508076530688171,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 8,
+          "rerank": -4.695544242858887
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000068",
+          "score": -5.566040515899658,
+          "fused": 0.16937069366063856,
+          "dense_rank": 11,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": -5.566040515899658
+        }
+      ],
+      "latency_ms": 8080.57
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 829,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16293.68
+    }
+  },
+  "retrieved_ids": [
+    "317e12ccd417c0d7:L0:000014",
+    "abe982d210232c3f:L0:000012",
+    "b04ce6dd2d95fb80:L0:000152",
+    "c73b757f0eb66f37:L0:000014",
+    "6af2db6cb86d77e2:L0:000068"
+  ],
+  "filtered_ids": [
+    "317e12ccd417c0d7:L0:000014",
+    "abe982d210232c3f:L0:000012",
+    "b04ce6dd2d95fb80:L0:000152",
+    "c73b757f0eb66f37:L0:000014",
+    "6af2db6cb86d77e2:L0:000068"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:04:37.916177+00:00",
+      "call_id": "9c7695542303",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "29247519eb2f51dd",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c0f89db2c4984b49"
+    },
+    {
+      "ts": "2026-11-13T15:05:02.282864+00:00",
+      "call_id": "3797a1e9c265",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "dd6a52bf72e64404",
+      "prompt_tokens": 1520,
+      "completion_tokens": 97,
+      "latency_ms": 16289.41,
+      "server_ms": 16254.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "c0f89db2c4984b49"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1520,
+    "completion_tokens": 97,
+    "total_ms": 24376.54
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "A Medal for Benny was directed by Irving Pichel, while King of Chinatown was directed by Nick Grinde.",
+        "The evidence does not provide the birth dates of the directors, so it is impossible to determine which director is older based on the given information."
+      ]
+    }
+  }
+}

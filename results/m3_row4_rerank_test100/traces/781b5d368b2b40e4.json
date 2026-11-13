@@ -1,0 +1,179 @@
+{
+  "trace_id": "781b5d368b2b40e4",
+  "created_at": "2026-11-13T14:32:38.543174+00:00",
+  "query": "Are Dogo Cubano and the Dutch Shepherd both breeds of dog?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5064.18
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5064.28
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15293.11
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.78,
+      "bm25_ms": 6.66,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5052.52
+      },
+      "hits": [
+        {
+          "id": "81fc433d55d23b4c:L0:000118",
+          "score": 5.180292129516602,
+          "fused": 0.6993616824347118,
+          "dense_rank": 11,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 5.180292129516602
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000080",
+          "score": 4.918460369110107,
+          "fused": 0.8254904347586332,
+          "dense_rank": 12,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 4.918460369110107
+        },
+        {
+          "id": "b120b09075017d08:L0:000073",
+          "score": -2.469160795211792,
+          "fused": 0.8920832438451851,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": -2.469160795211792
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000191",
+          "score": -4.421688556671143,
+          "fused": 0.6474071322692853,
+          "dense_rank": 8,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": -4.421688556671143
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000083",
+          "score": -5.511281967163086,
+          "fused": 0.535629422550765,
+          "dense_rank": 2,
+          "bm25_rank": 9,
+          "fused_rank": 8,
+          "rerank": -5.511281967163086
+        }
+      ],
+      "latency_ms": 5064.13
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 380,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10228.7
+    }
+  },
+  "retrieved_ids": [
+    "81fc433d55d23b4c:L0:000118",
+    "bc1dba3471045f02:L0:000080",
+    "b120b09075017d08:L0:000073",
+    "8e50522b7cb636d8:L0:000191",
+    "838c0e0106e6f015:L0:000083"
+  ],
+  "filtered_ids": [
+    "81fc433d55d23b4c:L0:000118",
+    "bc1dba3471045f02:L0:000080",
+    "b120b09075017d08:L0:000073",
+    "8e50522b7cb636d8:L0:000191",
+    "838c0e0106e6f015:L0:000083"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:32:38.543174+00:00",
+      "call_id": "386b219ae862",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b07c90092770fbef",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "781b5d368b2b40e4"
+    },
+    {
+      "ts": "2026-11-13T14:32:53.841605+00:00",
+      "call_id": "8d2d4db57938",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "210bc66958727994",
+      "prompt_tokens": 968,
+      "completion_tokens": 72,
+      "latency_ms": 10227.51,
+      "server_ms": 10165.2,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "781b5d368b2b40e4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 968,
+    "completion_tokens": 72,
+    "total_ms": 15293.87
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

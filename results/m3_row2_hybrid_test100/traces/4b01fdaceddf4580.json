@@ -1,0 +1,163 @@
+{
+  "trace_id": "4b01fdaceddf4580",
+  "created_at": "2026-11-13T09:58:58.004843+00:00",
+  "query": "Who is the owner of the record label that the performer of Trojans belongs to?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.35
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.57
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10129.03
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.64,
+      "bm25_ms": 11.24,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "dd498e0082847164:L0:000156",
+          "score": 0.9843443225001185,
+          "fused": 0.9843443225001185,
+          "dense_rank": 5,
+          "bm25_rank": 1
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000141",
+          "score": 0.9482349361926316,
+          "fused": 0.9482349361926316,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "a168352d83e925b5:L0:000170",
+          "score": 0.9470976662614248,
+          "fused": 0.9470976662614248,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000050",
+          "score": 0.8360903271757298,
+          "fused": 0.8360903271757298,
+          "dense_rank": 13,
+          "bm25_rank": 4
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000028",
+          "score": 0.7673215478303133,
+          "fused": 0.7673215478303133,
+          "dense_rank": 11,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 15.3
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 319,
+      "latency_ms": 0.19
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10113.34
+    }
+  },
+  "retrieved_ids": [
+    "dd498e0082847164:L0:000156",
+    "cc1bdb3bf430bd0d:L0:000141",
+    "a168352d83e925b5:L0:000170",
+    "4fcce431f5d22d1d:L0:000050",
+    "6bddce8aaad42fea:L0:000028"
+  ],
+  "filtered_ids": [
+    "dd498e0082847164:L0:000156",
+    "cc1bdb3bf430bd0d:L0:000141",
+    "a168352d83e925b5:L0:000170",
+    "4fcce431f5d22d1d:L0:000050",
+    "6bddce8aaad42fea:L0:000028"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:58:58.007469+00:00",
+      "call_id": "c7f719978055",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7b09ec6411bddd71",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4b01fdaceddf4580"
+    },
+    {
+      "ts": "2026-11-13T09:59:08.132832+00:00",
+      "call_id": "3a4deff220a0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e2f273f10ee70bbb",
+      "prompt_tokens": 891,
+      "completion_tokens": 62,
+      "latency_ms": 10112.23,
+      "server_ms": 10087.0,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "4b01fdaceddf4580"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 891,
+    "completion_tokens": 62,
+    "total_ms": 10132.19
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

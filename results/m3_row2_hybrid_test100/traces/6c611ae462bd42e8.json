@@ -1,0 +1,163 @@
+{
+  "trace_id": "6c611ae462bd42e8",
+  "created_at": "2026-11-13T09:44:27.091945+00:00",
+  "query": "In the top five largest urban areas in the state where the performer of The Paramour Sessions was from, where does the place of death for Alexander Golitzen rank?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.0
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.23
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.26
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10282.18
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.78,
+      "bm25_ms": 10.27,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "dbcbda865eee9c7b:L0:000150",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "ad4ace752e719bab:L0:000009",
+          "score": 0.5578818037496728,
+          "fused": 0.5578818037496728,
+          "dense_rank": 7,
+          "bm25_rank": 4
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000138",
+          "score": 0.4877610197403076,
+          "fused": 0.4877610197403076,
+          "dense_rank": 47,
+          "bm25_rank": 2
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000022",
+          "score": 0.4023499762640644,
+          "fused": 0.4023499762640644,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000185",
+          "score": 0.3708501626267234,
+          "fused": 0.3708501626267234,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 12.21
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 692,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10269.85
+    }
+  },
+  "retrieved_ids": [
+    "dbcbda865eee9c7b:L0:000150",
+    "ad4ace752e719bab:L0:000009",
+    "4fcce431f5d22d1d:L0:000138",
+    "73dfa6a9bfcab050:L0:000022",
+    "6bddce8aaad42fea:L0:000185"
+  ],
+  "filtered_ids": [
+    "dbcbda865eee9c7b:L0:000150",
+    "ad4ace752e719bab:L0:000009",
+    "4fcce431f5d22d1d:L0:000138",
+    "73dfa6a9bfcab050:L0:000022",
+    "6bddce8aaad42fea:L0:000185"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:44:27.092942+00:00",
+      "call_id": "50368cf26e1d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "84d5444a5a731025",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6c611ae462bd42e8"
+    },
+    {
+      "ts": "2026-11-13T09:44:37.373608+00:00",
+      "call_id": "9e089988131e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "72cbc5bc445dbfc0",
+      "prompt_tokens": 1294,
+      "completion_tokens": 45,
+      "latency_ms": 10269.02,
+      "server_ms": 10245.24,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "6c611ae462bd42e8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1294,
+    "completion_tokens": 45,
+    "total_ms": 10283.27
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "trace_id": "08c68c8240214c60",
+  "created_at": "2026-11-13T13:22:25.745694+00:00",
+  "query": "What were the consequences of Asa meeting Kershaw and Furston?\n\nOptions:\n(A) Furston saved Kershaw and Asa's life after running into the Slider.\n(B) Kershaw and Furston taught Asa how to deal with Dorr and his devious tactics. \n(C) Kershaw and Furston discouraged Asa's hopes of being a successful muck man.\n(D) Kershaw and Furston were essential in helping Asa assimilate to his job as a muck man.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 76408.54
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 76409.09
+    },
+    {
+      "state": "DONE",
+      "t_ms": 97333.18
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.16,
+      "bm25_ms": 36.32,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 17
+      },
+      "n_fused": 17,
+      "rerank": {
+        "n": 17,
+        "n_computed": 17,
+        "latency_ms": 76361.25
+      },
+      "hits": [
+        {
+          "id": "f79ed1ee0196e8de:L0:000009",
+          "score": 0.37559378147125244,
+          "fused": 0.790124476365262,
+          "dense_rank": 7,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.37559378147125244
+        },
+        {
+          "id": "f79ed1ee0196e8de:L0:000000",
+          "score": 0.3182758688926697,
+          "fused": 0.4280483109889295,
+          "dense_rank": 13,
+          "bm25_rank": 13,
+          "fused_rank": 12,
+          "rerank": 0.3182758688926697
+        },
+        {
+          "id": "f79ed1ee0196e8de:L0:000010",
+          "score": 0.1616135686635971,
+          "fused": 0.5150305936790481,
+          "dense_rank": 14,
+          "bm25_rank": 9,
+          "fused_rank": 10,
+          "rerank": 0.1616135686635971
+        },
+        {
+          "id": "f79ed1ee0196e8de:L0:000012",
+          "score": 0.02910568192601204,
+          "fused": 0.6991451010245547,
+          "dense_rank": 9,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 0.02910568192601204
+        },
+        {
+          "id": "f79ed1ee0196e8de:L0:000013",
+          "score": -0.2424410581588745,
+          "fused": 0.6123602608865772,
+          "dense_rank": 15,
+          "bm25_rank": 5,
+          "fused_rank": 9,
+          "rerank": -0.2424410581588745
+        }
+      ],
+      "latency_ms": 76408.49
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1936,
+      "latency_ms": 0.52
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20923.97
+    }
+  },
+  "retrieved_ids": [
+    "f79ed1ee0196e8de:L0:000009",
+    "f79ed1ee0196e8de:L0:000000",
+    "f79ed1ee0196e8de:L0:000010",
+    "f79ed1ee0196e8de:L0:000012",
+    "f79ed1ee0196e8de:L0:000013"
+  ],
+  "filtered_ids": [
+    "f79ed1ee0196e8de:L0:000009",
+    "f79ed1ee0196e8de:L0:000000",
+    "f79ed1ee0196e8de:L0:000010",
+    "f79ed1ee0196e8de:L0:000012",
+    "f79ed1ee0196e8de:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:22:25.745694+00:00",
+      "call_id": "ee5bdcf5ee79",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "92ad253d60fd2767",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "08c68c8240214c60"
+    },
+    {
+      "ts": "2026-11-13T13:24:03.076729+00:00",
+      "call_id": "8bc787ab9d4e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "42d1e6ba3e5dd2bd",
+      "prompt_tokens": 2660,
+      "completion_tokens": 67,
+      "latency_ms": 20923.12,
+      "server_ms": 20902.97,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "08c68c8240214c60"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2660,
+    "completion_tokens": 67,
+    "total_ms": 97334.57
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

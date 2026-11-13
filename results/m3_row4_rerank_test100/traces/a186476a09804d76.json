@@ -1,0 +1,178 @@
+{
+  "trace_id": "a186476a09804d76",
+  "created_at": "2026-11-13T15:38:05.516812+00:00",
+  "query": "What is the official currency and capital city of the planet Mars according to the provided documents?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12910.23
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12910.36
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 36321.04
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.54,
+      "bm25_ms": 18.13,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 12884.86
+      },
+      "hits": [
+        {
+          "id": "f9add743188fc69e:L0:000650",
+          "score": -7.068426609039307,
+          "fused": 0.22339552878509755,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 20,
+          "rerank": -7.068426609039307
+        },
+        {
+          "id": "17581cb533e90c48:L0:001548",
+          "score": -7.473548889160156,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -7.473548889160156
+        },
+        {
+          "id": "f9add743188fc69e:L0:000643",
+          "score": -8.007351875305176,
+          "fused": 0.25111479469372244,
+          "dense_rank": null,
+          "bm25_rank": 15,
+          "fused_rank": 17,
+          "rerank": -8.007351875305176
+        },
+        {
+          "id": "f9add743188fc69e:L0:000615",
+          "score": -8.061551094055176,
+          "fused": 0.22442581043909546,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -8.061551094055176
+        },
+        {
+          "id": "f9add743188fc69e:L0:000140",
+          "score": -8.069180488586426,
+          "fused": 0.4709023301194393,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 10,
+          "rerank": -8.069180488586426
+        }
+      ],
+      "latency_ms": 12910.18
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1732,
+      "latency_ms": 0.09
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23410.59
+    }
+  },
+  "retrieved_ids": [
+    "f9add743188fc69e:L0:000650",
+    "17581cb533e90c48:L0:001548",
+    "f9add743188fc69e:L0:000643",
+    "f9add743188fc69e:L0:000615",
+    "f9add743188fc69e:L0:000140"
+  ],
+  "filtered_ids": [
+    "f9add743188fc69e:L0:000650",
+    "17581cb533e90c48:L0:001548",
+    "f9add743188fc69e:L0:000643",
+    "f9add743188fc69e:L0:000615",
+    "f9add743188fc69e:L0:000140"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:38:05.518823+00:00",
+      "call_id": "a13b45828b76",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "09afee7f3102a386",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a186476a09804d76"
+    },
+    {
+      "ts": "2026-11-13T15:38:41.836850+00:00",
+      "call_id": "aab5d00f7d37",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2d2a8cc610658f02",
+      "prompt_tokens": 2685,
+      "completion_tokens": 52,
+      "latency_ms": 23409.07,
+      "server_ms": 23376.83,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a186476a09804d76"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2685,
+    "completion_tokens": 52,
+    "total_ms": 36322.82
+  },
+  "config_hash": "bc54ffd33529",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

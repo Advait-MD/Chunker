@@ -1,0 +1,179 @@
+{
+  "trace_id": "e9c9796b2086432f",
+  "created_at": "2026-11-13T14:58:21.797312+00:00",
+  "query": "Are both Alex Bregman and Francesca Sterlacci from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5629.34
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5630.01
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17392.65
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.7,
+      "bm25_ms": 6.53,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5616.26
+      },
+      "hits": [
+        {
+          "id": "b04ce6dd2d95fb80:L0:000200",
+          "score": 8.908967018127441,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.908967018127441
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000105",
+          "score": 7.3157734870910645,
+          "fused": 0.3570362544074952,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 7.3157734870910645
+        },
+        {
+          "id": "99628090500247e3:L0:000079",
+          "score": -6.566434860229492,
+          "fused": 0.17040212852617867,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 19,
+          "rerank": -6.566434860229492
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000003",
+          "score": -6.754636287689209,
+          "fused": 0.25653664883620064,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 8,
+          "rerank": -6.754636287689209
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000013",
+          "score": -7.394207000732422,
+          "fused": 0.22585943534562877,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": -7.394207000732422
+        }
+      ],
+      "latency_ms": 5629.29
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 650,
+      "latency_ms": 0.63
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11762.51
+    }
+  },
+  "retrieved_ids": [
+    "b04ce6dd2d95fb80:L0:000200",
+    "317e12ccd417c0d7:L0:000105",
+    "99628090500247e3:L0:000079",
+    "6af2db6cb86d77e2:L0:000003",
+    "b04ce6dd2d95fb80:L0:000013"
+  ],
+  "filtered_ids": [
+    "b04ce6dd2d95fb80:L0:000200",
+    "317e12ccd417c0d7:L0:000105",
+    "99628090500247e3:L0:000079",
+    "6af2db6cb86d77e2:L0:000003",
+    "b04ce6dd2d95fb80:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:58:21.797312+00:00",
+      "call_id": "ae35ee9877fd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c60e0aba520e0024",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e9c9796b2086432f"
+    },
+    {
+      "ts": "2026-11-13T14:58:39.198784+00:00",
+      "call_id": "cedf7dd73f76",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "efaec7e586d7d409",
+      "prompt_tokens": 1337,
+      "completion_tokens": 57,
+      "latency_ms": 11761.22,
+      "server_ms": 11737.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "e9c9796b2086432f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1337,
+    "completion_tokens": 57,
+    "total_ms": 17395.22
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

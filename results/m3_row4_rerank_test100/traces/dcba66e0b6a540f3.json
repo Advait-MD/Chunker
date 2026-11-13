@@ -1,0 +1,178 @@
+{
+  "trace_id": "dcba66e0b6a540f3",
+  "created_at": "2026-11-13T14:26:07.483806+00:00",
+  "query": "Which member of The New Russian School was both a doctor and a chemist besides being a composer?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6141.77
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6142.77
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18674.91
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.44,
+      "bm25_ms": 13.07,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6120.33
+      },
+      "hits": [
+        {
+          "id": "8e50522b7cb636d8:L0:000168",
+          "score": 6.117867946624756,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.117867946624756
+        },
+        {
+          "id": "634431bb1e27714f:L0:000052",
+          "score": 3.8064136505126953,
+          "fused": 0.34033264073097946,
+          "dense_rank": 5,
+          "bm25_rank": 8,
+          "fused_rank": 3,
+          "rerank": 3.8064136505126953
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000114",
+          "score": -3.491633415222168,
+          "fused": 0.23651486051284853,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 5,
+          "rerank": -3.491633415222168
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000174",
+          "score": -4.232604503631592,
+          "fused": 0.18068514949622802,
+          "dense_rank": 4,
+          "bm25_rank": 38,
+          "fused_rank": 13,
+          "rerank": -4.232604503631592
+        },
+        {
+          "id": "b120b09075017d08:L0:000146",
+          "score": -7.268925666809082,
+          "fused": 0.1587622092588937,
+          "dense_rank": null,
+          "bm25_rank": 14,
+          "fused_rank": 18,
+          "rerank": -7.268925666809082
+        }
+      ],
+      "latency_ms": 6141.71
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 429,
+      "latency_ms": 0.93
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12531.99
+    }
+  },
+  "retrieved_ids": [
+    "8e50522b7cb636d8:L0:000168",
+    "634431bb1e27714f:L0:000052",
+    "838c0e0106e6f015:L0:000114",
+    "c8fd2b3ea47eb07f:L0:000174",
+    "b120b09075017d08:L0:000146"
+  ],
+  "filtered_ids": [
+    "8e50522b7cb636d8:L0:000168",
+    "634431bb1e27714f:L0:000052",
+    "838c0e0106e6f015:L0:000114",
+    "c8fd2b3ea47eb07f:L0:000174",
+    "b120b09075017d08:L0:000146"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:26:07.485816+00:00",
+      "call_id": "666363f1229b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bd4da78097b4c99b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "dcba66e0b6a540f3"
+    },
+    {
+      "ts": "2026-11-13T14:26:26.147783+00:00",
+      "call_id": "cce99986b759",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bab14c49617038c3",
+      "prompt_tokens": 1145,
+      "completion_tokens": 60,
+      "latency_ms": 12530.12,
+      "server_ms": 12478.95,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "dcba66e0b6a540f3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1145,
+    "completion_tokens": 60,
+    "total_ms": 18680.36
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

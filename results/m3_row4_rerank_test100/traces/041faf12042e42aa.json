@@ -1,0 +1,178 @@
+{
+  "trace_id": "041faf12042e42aa",
+  "created_at": "2026-11-13T13:01:33.154134+00:00",
+  "query": "Who was the child of the Italian navigator who sailed for England, and explored the eastern coast of the continent where the birthplace of Eduardo Cuervo is found?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6190.99
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6191.5
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15651.62
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.69,
+      "bm25_ms": 19.61,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6166.53
+      },
+      "hits": [
+        {
+          "id": "c61175e20d09af4f:L0:000024",
+          "score": 1.5831550359725952,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 4,
+          "rerank": 1.5831550359725952
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000186",
+          "score": 0.09334815293550491,
+          "fused": 0.6258414450080769,
+          "dense_rank": 7,
+          "bm25_rank": 7,
+          "fused_rank": 6,
+          "rerank": 0.09334815293550491
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000092",
+          "score": -0.6804498434066772,
+          "fused": 0.5510601413485435,
+          "dense_rank": 3,
+          "bm25_rank": 11,
+          "fused_rank": 7,
+          "rerank": -0.6804498434066772
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000090",
+          "score": -3.2626333236694336,
+          "fused": 0.35680146291387954,
+          "dense_rank": 36,
+          "bm25_rank": 8,
+          "fused_rank": 14,
+          "rerank": -3.2626333236694336
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000190",
+          "score": -3.4370810985565186,
+          "fused": 0.4544662869527132,
+          "dense_rank": 40,
+          "bm25_rank": 6,
+          "fused_rank": 10,
+          "rerank": -3.4370810985565186
+        }
+      ],
+      "latency_ms": 6190.94
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 494,
+      "latency_ms": 0.46
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9460.04
+    }
+  },
+  "retrieved_ids": [
+    "c61175e20d09af4f:L0:000024",
+    "dbcbda865eee9c7b:L0:000186",
+    "8b31d5859eb3d77a:L0:000092",
+    "cc1bdb3bf430bd0d:L0:000090",
+    "73dfa6a9bfcab050:L0:000190"
+  ],
+  "filtered_ids": [
+    "c61175e20d09af4f:L0:000024",
+    "dbcbda865eee9c7b:L0:000186",
+    "8b31d5859eb3d77a:L0:000092",
+    "cc1bdb3bf430bd0d:L0:000090",
+    "73dfa6a9bfcab050:L0:000190"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:01:33.154134+00:00",
+      "call_id": "ced40159b090",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e0835883d2beccf8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "041faf12042e42aa"
+    },
+    {
+      "ts": "2026-11-13T13:01:48.799173+00:00",
+      "call_id": "03eec7577f8d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "923390fb02aa33e3",
+      "prompt_tokens": 1102,
+      "completion_tokens": 45,
+      "latency_ms": 9458.94,
+      "server_ms": 9435.09,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "041faf12042e42aa"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1102,
+    "completion_tokens": 45,
+    "total_ms": 15655.75
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

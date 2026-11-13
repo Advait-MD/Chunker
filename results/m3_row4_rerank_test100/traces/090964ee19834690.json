@@ -1,0 +1,179 @@
+{
+  "trace_id": "090964ee19834690",
+  "created_at": "2026-11-13T13:21:13.861128+00:00",
+  "query": "What was Said’s relationship with Western media?\n\nOptions:\n(A) He never tried to engage with Western media due to his reputation\n(B) He remained aware of its importance, but chose not to use it as a venue\n(C) He was shunned by Western media and they would not pick up his work\n(D) He published in several Western magazines\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8018.01
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8018.17
+    },
+    {
+      "state": "DONE",
+      "t_ms": 28235.59
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.63,
+      "bm25_ms": 26.78,
+      "n_candidates": {
+        "dense": 7,
+        "bm25": 7
+      },
+      "n_fused": 7,
+      "rerank": {
+        "n": 7,
+        "n_computed": 7,
+        "latency_ms": 7984.12
+      },
+      "hits": [
+        {
+          "id": "bdf27b3f75600b25:L0:000002",
+          "score": -0.435875803232193,
+          "fused": 0.5331795058220683,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.435875803232193
+        },
+        {
+          "id": "bdf27b3f75600b25:L0:000004",
+          "score": -0.6446419358253479,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.6446419358253479
+        },
+        {
+          "id": "bdf27b3f75600b25:L0:000005",
+          "score": -1.0010888576507568,
+          "fused": 0.7711773810986475,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -1.0010888576507568
+        },
+        {
+          "id": "bdf27b3f75600b25:L0:000000",
+          "score": -1.2182105779647827,
+          "fused": 0.12877075120246315,
+          "dense_rank": 6,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -1.2182105779647827
+        },
+        {
+          "id": "bdf27b3f75600b25:L0:000003",
+          "score": -1.382277011871338,
+          "fused": 0.3610634932075032,
+          "dense_rank": 3,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -1.382277011871338
+        }
+      ],
+      "latency_ms": 8017.95
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1877,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20217.28
+    }
+  },
+  "retrieved_ids": [
+    "bdf27b3f75600b25:L0:000002",
+    "bdf27b3f75600b25:L0:000004",
+    "bdf27b3f75600b25:L0:000005",
+    "bdf27b3f75600b25:L0:000000",
+    "bdf27b3f75600b25:L0:000003"
+  ],
+  "filtered_ids": [
+    "bdf27b3f75600b25:L0:000002",
+    "bdf27b3f75600b25:L0:000004",
+    "bdf27b3f75600b25:L0:000005",
+    "bdf27b3f75600b25:L0:000000",
+    "bdf27b3f75600b25:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:21:13.861128+00:00",
+      "call_id": "688ca517dae3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8de5449e10ae7bab",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "090964ee19834690"
+    },
+    {
+      "ts": "2026-11-13T13:21:42.090296+00:00",
+      "call_id": "9cd36a254bcb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6c49d9cae525935f",
+      "prompt_tokens": 2547,
+      "completion_tokens": 51,
+      "latency_ms": 20215.79,
+      "server_ms": 20188.88,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "090964ee19834690"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2547,
+    "completion_tokens": 51,
+    "total_ms": 28236.52
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

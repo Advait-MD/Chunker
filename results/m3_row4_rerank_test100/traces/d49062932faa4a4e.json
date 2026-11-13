@@ -1,0 +1,178 @@
+{
+  "trace_id": "d49062932faa4a4e",
+  "created_at": "2026-11-13T12:39:19.967309+00:00",
+  "query": "Which city shares border with the area having Bella Vista High School?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4279.02
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4279.67
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14857.04
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.2,
+      "bm25_ms": 16.11,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4257.82
+      },
+      "hits": [
+        {
+          "id": "a168352d83e925b5:L0:000136",
+          "score": -1.2779428958892822,
+          "fused": 0.2663217309245056,
+          "dense_rank": 15,
+          "bm25_rank": 9,
+          "fused_rank": 9,
+          "rerank": -1.2779428958892822
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000126",
+          "score": -1.6294413805007935,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": -1.6294413805007935
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000153",
+          "score": -2.6914305686950684,
+          "fused": 0.19546272175193063,
+          "dense_rank": 20,
+          "bm25_rank": 24,
+          "fused_rank": 19,
+          "rerank": -2.6914305686950684
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000153",
+          "score": -2.9967200756073,
+          "fused": 0.773666003044576,
+          "dense_rank": 12,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": -2.9967200756073
+        },
+        {
+          "id": "ce57fdde2baaba9c:L0:000177",
+          "score": -4.451400279998779,
+          "fused": 0.2433306075987484,
+          "dense_rank": 33,
+          "bm25_rank": 5,
+          "fused_rank": 11,
+          "rerank": -4.451400279998779
+        }
+      ],
+      "latency_ms": 4278.99
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 375,
+      "latency_ms": 0.6
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10577.24
+    }
+  },
+  "retrieved_ids": [
+    "a168352d83e925b5:L0:000136",
+    "ad11b6e85f908fb3:L0:000126",
+    "178c7e3e6ef6ae87:L0:000153",
+    "ad11b6e85f908fb3:L0:000153",
+    "ce57fdde2baaba9c:L0:000177"
+  ],
+  "filtered_ids": [
+    "a168352d83e925b5:L0:000136",
+    "ad11b6e85f908fb3:L0:000126",
+    "178c7e3e6ef6ae87:L0:000153",
+    "ad11b6e85f908fb3:L0:000153",
+    "ce57fdde2baaba9c:L0:000177"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:39:19.967309+00:00",
+      "call_id": "4eee324f9286",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "df2f2e60187fb4af",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d49062932faa4a4e"
+    },
+    {
+      "ts": "2026-11-13T12:39:34.833403+00:00",
+      "call_id": "f23865402ab6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6a530bab5a076f0e",
+      "prompt_tokens": 969,
+      "completion_tokens": 73,
+      "latency_ms": 10576.02,
+      "server_ms": 10554.58,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d49062932faa4a4e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 969,
+    "completion_tokens": 73,
+    "total_ms": 14859.85
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

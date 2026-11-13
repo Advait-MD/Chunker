@@ -1,0 +1,181 @@
+{
+  "trace_id": "b288ecd109664580",
+  "created_at": "2026-11-13T13:58:40.729266+00:00",
+  "query": "What do we know about Peter’s mental abilities?\n\nOptions:\n(A) He discovered through his training that he can manipulate telepathically\n(B) He is being controlled by the Gool\n(C) He is only imagining that he has telepathy since he has gone mad\n(D) He has known his telepathy since childhood and that’s why he went into psychodynamics\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19726.43
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19726.53
+    },
+    {
+      "state": "DONE",
+      "t_ms": 39964.18
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.16,
+      "bm25_ms": 28.01,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 20
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 19692.15
+      },
+      "hits": [
+        {
+          "id": "ef846b5c8602cdfe:L0:000003",
+          "score": -1.5657925605773926,
+          "fused": 0.9641003535115238,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.5657925605773926
+        },
+        {
+          "id": "ef846b5c8602cdfe:L0:000004",
+          "score": -2.704050064086914,
+          "fused": 0.7463672506872367,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -2.704050064086914
+        },
+        {
+          "id": "ef846b5c8602cdfe:L0:000007",
+          "score": -2.972412586212158,
+          "fused": 0.48104272338393606,
+          "dense_rank": 9,
+          "bm25_rank": 5,
+          "fused_rank": 7,
+          "rerank": -2.972412586212158
+        },
+        {
+          "id": "ef846b5c8602cdfe:L0:000006",
+          "score": -3.4587512016296387,
+          "fused": 0.5050369784299811,
+          "dense_rank": 5,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -3.4587512016296387
+        },
+        {
+          "id": "ef846b5c8602cdfe:L0:000002",
+          "score": -4.187961101531982,
+          "fused": 0.6444760425027637,
+          "dense_rank": 6,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": -4.187961101531982
+        }
+      ],
+      "latency_ms": 19726.38
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1974,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20237.36
+    }
+  },
+  "retrieved_ids": [
+    "ef846b5c8602cdfe:L0:000003",
+    "ef846b5c8602cdfe:L0:000004",
+    "ef846b5c8602cdfe:L0:000007",
+    "ef846b5c8602cdfe:L0:000006",
+    "ef846b5c8602cdfe:L0:000002"
+  ],
+  "filtered_ids": [
+    "ef846b5c8602cdfe:L0:000003",
+    "ef846b5c8602cdfe:L0:000004",
+    "ef846b5c8602cdfe:L0:000007",
+    "ef846b5c8602cdfe:L0:000006",
+    "ef846b5c8602cdfe:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:58:40.729266+00:00",
+      "call_id": "68e158268baa",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "80ea95582ea6a240",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b288ecd109664580"
+    },
+    {
+      "ts": "2026-11-13T13:59:20.690619+00:00",
+      "call_id": "d55b902bb3fc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ec60286032de3156",
+      "prompt_tokens": 2641,
+      "completion_tokens": 65,
+      "latency_ms": 20235.13,
+      "server_ms": 20188.55,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "b288ecd109664580"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2641,
+    "completion_tokens": 65,
+    "total_ms": 39969.53
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

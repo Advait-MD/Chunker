@@ -1,0 +1,163 @@
+{
+  "trace_id": "0e23131a6aa94453",
+  "created_at": "2026-11-13T09:24:31.392274+00:00",
+  "query": "Does the SESAME dataset include discontiguous entities?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16.53
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16.84
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 16027.52
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.87,
+      "bm25_ms": 12.32,
+      "n_candidates": {
+        "dense": 29,
+        "bm25": 23
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "fce081454ba0ef60:L0:000019",
+          "score": 0.9756852626977053,
+          "fused": 0.9756852626977053,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "fce081454ba0ef60:L0:000028",
+          "score": 0.8150606505349078,
+          "fused": 0.8150606505349078,
+          "dense_rank": 17,
+          "bm25_rank": 1
+        },
+        {
+          "id": "fce081454ba0ef60:L0:000027",
+          "score": 0.7776087665117599,
+          "fused": 0.7776087665117599,
+          "dense_rank": 11,
+          "bm25_rank": 3
+        },
+        {
+          "id": "fce081454ba0ef60:L0:000021",
+          "score": 0.6223322566433778,
+          "fused": 0.6223322566433778,
+          "dense_rank": 3,
+          "bm25_rank": 6
+        },
+        {
+          "id": "fce081454ba0ef60:L0:000026",
+          "score": 0.5433632786194942,
+          "fused": 0.5433632786194942,
+          "dense_rank": 24,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 16.48
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1001,
+      "latency_ms": 0.29
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16010.61
+    }
+  },
+  "retrieved_ids": [
+    "fce081454ba0ef60:L0:000019",
+    "fce081454ba0ef60:L0:000028",
+    "fce081454ba0ef60:L0:000027",
+    "fce081454ba0ef60:L0:000021",
+    "fce081454ba0ef60:L0:000026"
+  ],
+  "filtered_ids": [
+    "fce081454ba0ef60:L0:000019",
+    "fce081454ba0ef60:L0:000028",
+    "fce081454ba0ef60:L0:000027",
+    "fce081454ba0ef60:L0:000021",
+    "fce081454ba0ef60:L0:000026"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:24:31.394835+00:00",
+      "call_id": "c5e9ea462711",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f9a780bcfc475374",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0e23131a6aa94453"
+    },
+    {
+      "ts": "2026-11-13T09:24:47.419179+00:00",
+      "call_id": "241bd45a72f1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "60fca3a757b40b89",
+      "prompt_tokens": 1666,
+      "completion_tokens": 45,
+      "latency_ms": 16009.54,
+      "server_ms": 15983.84,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0e23131a6aa94453"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1666,
+    "completion_tokens": 45,
+    "total_ms": 16029.92
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

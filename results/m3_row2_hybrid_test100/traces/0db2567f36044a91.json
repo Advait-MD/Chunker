@@ -1,0 +1,165 @@
+{
+  "trace_id": "0db2567f36044a91",
+  "created_at": "2026-11-13T11:17:52.503964+00:00",
+  "query": "Are both Caracu River and South Fork Rogue River located in the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5.33
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5.37
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12090.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.67,
+      "bm25_ms": 3.47,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000087",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000182",
+          "score": 0.7556944631704621,
+          "fused": 0.7556944631704621,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "43d5059060d4defa:L0:000002",
+          "score": 0.686239451200096,
+          "fused": 0.686239451200096,
+          "dense_rank": 9,
+          "bm25_rank": 3
+        },
+        {
+          "id": "99628090500247e3:L0:000111",
+          "score": 0.5492040829161184,
+          "fused": 0.5492040829161184,
+          "dense_rank": 3,
+          "bm25_rank": 5
+        },
+        {
+          "id": "0eac870d43736f51:L0:000116",
+          "score": 0.5386510435835797,
+          "fused": 0.5386510435835797,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 5.31
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 504,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12085.02
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000087",
+    "317e12ccd417c0d7:L0:000182",
+    "43d5059060d4defa:L0:000002",
+    "99628090500247e3:L0:000111",
+    "0eac870d43736f51:L0:000116"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000087",
+    "317e12ccd417c0d7:L0:000182",
+    "43d5059060d4defa:L0:000002",
+    "99628090500247e3:L0:000111",
+    "0eac870d43736f51:L0:000116"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:17:52.504966+00:00",
+      "call_id": "95836529d788",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "36a2b1cbffb5835b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0db2567f36044a91"
+    },
+    {
+      "ts": "2026-11-13T11:18:04.593471+00:00",
+      "call_id": "f16f2a131d0e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "76ac24e25f79af56",
+      "prompt_tokens": 1068,
+      "completion_tokens": 95,
+      "latency_ms": 12084.43,
+      "server_ms": 12069.26,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0db2567f36044a91"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1068,
+    "completion_tokens": 95,
+    "total_ms": 12091.0
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

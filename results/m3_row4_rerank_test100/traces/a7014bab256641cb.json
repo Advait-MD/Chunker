@@ -1,0 +1,181 @@
+{
+  "trace_id": "a7014bab256641cb",
+  "created_at": "2026-11-13T12:31:26.311639+00:00",
+  "query": "How long are the two unlabelled corpora?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17576.29
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17576.87
+    },
+    {
+      "state": "DONE",
+      "t_ms": 33965.16
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.69,
+      "bm25_ms": 14.32,
+      "n_candidates": {
+        "dense": 27,
+        "bm25": 10
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 17550.0
+      },
+      "hits": [
+        {
+          "id": "bf6db44b5eedd435:L0:000000",
+          "score": -2.3670358657836914,
+          "fused": 0.9290699580917279,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -2.3670358657836914
+        },
+        {
+          "id": "bf6db44b5eedd435:L0:000001",
+          "score": -3.05908203125,
+          "fused": 0.6592721253224787,
+          "dense_rank": 19,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -3.05908203125
+        },
+        {
+          "id": "bf6db44b5eedd435:L0:000016",
+          "score": -6.17983341217041,
+          "fused": 0.9048070648626931,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -6.17983341217041
+        },
+        {
+          "id": "bf6db44b5eedd435:L0:000019",
+          "score": -6.480192184448242,
+          "fused": 0.19569635072395974,
+          "dense_rank": 11,
+          "bm25_rank": 6,
+          "fused_rank": 9,
+          "rerank": -6.480192184448242
+        },
+        {
+          "id": "bf6db44b5eedd435:L0:000011",
+          "score": -6.482329368591309,
+          "fused": 0.3733949590520673,
+          "dense_rank": 9,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -6.482329368591309
+        }
+      ],
+      "latency_ms": 17576.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1181,
+      "latency_ms": 0.54
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16388.19
+    }
+  },
+  "retrieved_ids": [
+    "bf6db44b5eedd435:L0:000000",
+    "bf6db44b5eedd435:L0:000001",
+    "bf6db44b5eedd435:L0:000016",
+    "bf6db44b5eedd435:L0:000019",
+    "bf6db44b5eedd435:L0:000011"
+  ],
+  "filtered_ids": [
+    "bf6db44b5eedd435:L0:000000",
+    "bf6db44b5eedd435:L0:000001",
+    "bf6db44b5eedd435:L0:000016",
+    "bf6db44b5eedd435:L0:000019",
+    "bf6db44b5eedd435:L0:000011"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:31:26.315662+00:00",
+      "call_id": "9eb23b21ea33",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e65b8c5bd8cd2514",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a7014bab256641cb"
+    },
+    {
+      "ts": "2026-11-13T12:32:00.277325+00:00",
+      "call_id": "91fa00729979",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "80bf6333bfdf6535",
+      "prompt_tokens": 1855,
+      "completion_tokens": 74,
+      "latency_ms": 16386.64,
+      "server_ms": 16362.15,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a7014bab256641cb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1855,
+    "completion_tokens": 74,
+    "total_ms": 33967.25
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        5
+      ],
+      "uncited_sentences": [
+        "The two unlabelled corpora are BookCorpus and Amazon Book Review dataset, with the latter being about twice as large as BookCorpus."
+      ]
+    }
+  }
+}

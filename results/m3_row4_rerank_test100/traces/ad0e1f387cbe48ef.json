@@ -1,0 +1,178 @@
+{
+  "trace_id": "ad0e1f387cbe48ef",
+  "created_at": "2026-11-13T14:16:14.955166+00:00",
+  "query": "What is the name of the film directed by Alex Cox  adapted from a 1606 play starring Diana Quick as the Dutchess?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4986.17
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4987.81
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15547.74
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.64,
+      "bm25_ms": 21.35,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4953.85
+      },
+      "hits": [
+        {
+          "id": "90976421f3f2bea2:L0:000138",
+          "score": 6.740218639373779,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.740218639373779
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000049",
+          "score": 0.4759783148765564,
+          "fused": 0.2414317633971838,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 7,
+          "rerank": 0.4759783148765564
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000182",
+          "score": -0.5101070404052734,
+          "fused": 0.19820225762902263,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": -0.5101070404052734
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000122",
+          "score": -1.5781053304672241,
+          "fused": 0.1568276689220191,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 10,
+          "rerank": -1.5781053304672241
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000027",
+          "score": -3.6069467067718506,
+          "fused": 0.2796925543288937,
+          "dense_rank": 2,
+          "bm25_rank": 10,
+          "fused_rank": 6,
+          "rerank": -3.6069467067718506
+        }
+      ],
+      "latency_ms": 4986.11
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 483,
+      "latency_ms": 1.6
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10559.82
+    }
+  },
+  "retrieved_ids": [
+    "90976421f3f2bea2:L0:000138",
+    "8e50522b7cb636d8:L0:000049",
+    "8e50522b7cb636d8:L0:000182",
+    "bc1dba3471045f02:L0:000122",
+    "cb96563b0747a6ba:L0:000027"
+  ],
+  "filtered_ids": [
+    "90976421f3f2bea2:L0:000138",
+    "8e50522b7cb636d8:L0:000049",
+    "8e50522b7cb636d8:L0:000182",
+    "bc1dba3471045f02:L0:000122",
+    "cb96563b0747a6ba:L0:000027"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:16:14.955166+00:00",
+      "call_id": "8745bbdf26c7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "01b05e371281fc5a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ad0e1f387cbe48ef"
+    },
+    {
+      "ts": "2026-11-13T14:16:30.504471+00:00",
+      "call_id": "4bc57e8cac1b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5e2b9f32746b27fb",
+      "prompt_tokens": 1100,
+      "completion_tokens": 69,
+      "latency_ms": 10558.02,
+      "server_ms": 10542.23,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ad0e1f387cbe48ef"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1100,
+    "completion_tokens": 69,
+    "total_ms": 15548.66
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "trace_id": "0e542ac47e014e9b",
+  "created_at": "2026-11-13T12:42:22.678943+00:00",
+  "query": "Who wrote turn me on, which was performed by the person who also performed Chasing Pirates?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4506.36
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4507.06
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14166.79
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.58,
+      "bm25_ms": 17.43,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4483.2
+      },
+      "hits": [
+        {
+          "id": "8679484d23bfd3a0:L0:000098",
+          "score": 4.377063274383545,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.377063274383545
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000000",
+          "score": -3.408294439315796,
+          "fused": 0.17941154002406481,
+          "dense_rank": null,
+          "bm25_rank": 16,
+          "fused_rank": 19,
+          "rerank": -3.408294439315796
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000039",
+          "score": -5.11399507522583,
+          "fused": 0.23910869765874285,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 11,
+          "rerank": -5.11399507522583
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000151",
+          "score": -5.555749416351318,
+          "fused": 0.4184974269854842,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -5.555749416351318
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000018",
+          "score": -5.990467071533203,
+          "fused": 0.32646173640499737,
+          "dense_rank": 1,
+          "bm25_rank": 44,
+          "fused_rank": 6,
+          "rerank": -5.990467071533203
+        }
+      ],
+      "latency_ms": 4506.31
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 584,
+      "latency_ms": 0.65
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9659.64
+    }
+  },
+  "retrieved_ids": [
+    "8679484d23bfd3a0:L0:000098",
+    "5a1a5bbda9db013e:L0:000000",
+    "8b31d5859eb3d77a:L0:000039",
+    "f3503d3d186f0f90:L0:000151",
+    "f109b032e24ab27a:L0:000018"
+  ],
+  "filtered_ids": [
+    "8679484d23bfd3a0:L0:000098",
+    "5a1a5bbda9db013e:L0:000000",
+    "8b31d5859eb3d77a:L0:000039",
+    "f3503d3d186f0f90:L0:000151",
+    "f109b032e24ab27a:L0:000018"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:42:22.694748+00:00",
+      "call_id": "c0fc4d8ea1db",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1329eb24189c44f8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0e542ac47e014e9b"
+    },
+    {
+      "ts": "2026-11-13T12:42:36.854708+00:00",
+      "call_id": "983e9ebce6d0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a380be5ea108d825",
+      "prompt_tokens": 1190,
+      "completion_tokens": 43,
+      "latency_ms": 9658.49,
+      "server_ms": 9635.69,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0e542ac47e014e9b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1190,
+    "completion_tokens": 43,
+    "total_ms": 14169.65
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

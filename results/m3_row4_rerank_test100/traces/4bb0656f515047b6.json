@@ -1,0 +1,181 @@
+{
+  "trace_id": "4bb0656f515047b6",
+  "created_at": "2026-11-13T14:15:00.853709+00:00",
+  "query": "Are Phlebodium and Pieris both species of ferns?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5744.34
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5745.58
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19039.36
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.01,
+      "bm25_ms": 5.98,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5728.57
+      },
+      "hits": [
+        {
+          "id": "634431bb1e27714f:L0:000150",
+          "score": 6.62213134765625,
+          "fused": 0.9796376002374451,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.62213134765625
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000078",
+          "score": 6.224558353424072,
+          "fused": 0.3779384272109281,
+          "dense_rank": 5,
+          "bm25_rank": 10,
+          "fused_rank": 9,
+          "rerank": 6.224558353424072
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000123",
+          "score": 3.5853075981140137,
+          "fused": 0.43773270242877454,
+          "dense_rank": 25,
+          "bm25_rank": 4,
+          "fused_rank": 7,
+          "rerank": 3.5853075981140137
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000022",
+          "score": 0.023149969056248665,
+          "fused": 0.6288085680167463,
+          "dense_rank": 1,
+          "bm25_rank": 7,
+          "fused_rank": 4,
+          "rerank": 0.023149969056248665
+        },
+        {
+          "id": "20496f59538deb41:L0:000052",
+          "score": -0.6162892580032349,
+          "fused": 0.40870113094046245,
+          "dense_rank": 14,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": -0.6162892580032349
+        }
+      ],
+      "latency_ms": 5744.3
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 695,
+      "latency_ms": 1.2
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13293.63
+    }
+  },
+  "retrieved_ids": [
+    "634431bb1e27714f:L0:000150",
+    "838c0e0106e6f015:L0:000078",
+    "ec3410ef955c5c93:L0:000123",
+    "bc1dba3471045f02:L0:000022",
+    "20496f59538deb41:L0:000052"
+  ],
+  "filtered_ids": [
+    "634431bb1e27714f:L0:000150",
+    "838c0e0106e6f015:L0:000078",
+    "ec3410ef955c5c93:L0:000123",
+    "bc1dba3471045f02:L0:000022",
+    "20496f59538deb41:L0:000052"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:15:00.853709+00:00",
+      "call_id": "29de2e70568e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f13fbeddf35e6082",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4bb0656f515047b6"
+    },
+    {
+      "ts": "2026-11-13T14:15:19.892420+00:00",
+      "call_id": "6ead54762a9a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d654029dc56c3bdf",
+      "prompt_tokens": 1363,
+      "completion_tokens": 72,
+      "latency_ms": 13292.68,
+      "server_ms": 13274.77,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "4bb0656f515047b6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1363,
+    "completion_tokens": 72,
+    "total_ms": 19042.5
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4,
+        3,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

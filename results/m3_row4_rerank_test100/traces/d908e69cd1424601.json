@@ -1,0 +1,179 @@
+{
+  "trace_id": "d908e69cd1424601",
+  "created_at": "2026-11-13T12:53:22.436592+00:00",
+  "query": "What percentage did the Dow Jones fall in the historical era where the book takes place?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5476.7
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5478.43
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18286.45
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.82,
+      "bm25_ms": 13.87,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5456.79
+      },
+      "hits": [
+        {
+          "id": "5a1a5bbda9db013e:L0:000163",
+          "score": -0.03983263298869133,
+          "fused": 0.3238343327583467,
+          "dense_rank": 5,
+          "bm25_rank": 18,
+          "fused_rank": 11,
+          "rerank": -0.03983263298869133
+        },
+        {
+          "id": "15abb5e49dced915:L0:000138",
+          "score": -0.42178845405578613,
+          "fused": 0.35673493536750356,
+          "dense_rank": 2,
+          "bm25_rank": 17,
+          "fused_rank": 8,
+          "rerank": -0.42178845405578613
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000144",
+          "score": -1.2415539026260376,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.2415539026260376
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000020",
+          "score": -2.168459177017212,
+          "fused": 0.344610851302659,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 10,
+          "rerank": -2.168459177017212
+        },
+        {
+          "id": "ad4ace752e719bab:L0:000071",
+          "score": -2.7251434326171875,
+          "fused": 0.5533269626705427,
+          "dense_rank": 17,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -2.7251434326171875
+        }
+      ],
+      "latency_ms": 5476.65
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 542,
+      "latency_ms": 1.7
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12807.86
+    }
+  },
+  "retrieved_ids": [
+    "5a1a5bbda9db013e:L0:000163",
+    "15abb5e49dced915:L0:000138",
+    "e182527d2b1ecac3:L0:000144",
+    "e182527d2b1ecac3:L0:000020",
+    "ad4ace752e719bab:L0:000071"
+  ],
+  "filtered_ids": [
+    "5a1a5bbda9db013e:L0:000163",
+    "15abb5e49dced915:L0:000138",
+    "e182527d2b1ecac3:L0:000144",
+    "e182527d2b1ecac3:L0:000020",
+    "ad4ace752e719bab:L0:000071"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:53:22.436592+00:00",
+      "call_id": "6be8192858d1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "327662f52d4082a6",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d908e69cd1424601"
+    },
+    {
+      "ts": "2026-11-13T12:53:40.718690+00:00",
+      "call_id": "421524c090b9",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "69a2cb41d0cef7fb",
+      "prompt_tokens": 1132,
+      "completion_tokens": 69,
+      "latency_ms": 12806.65,
+      "server_ms": 12781.27,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d908e69cd1424601"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1132,
+    "completion_tokens": 69,
+    "total_ms": 18288.27
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

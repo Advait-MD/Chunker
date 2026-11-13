@@ -1,0 +1,181 @@
+{
+  "trace_id": "2ca5b1b4eed74c5a",
+  "created_at": "2026-11-13T14:47:53.584347+00:00",
+  "query": "Where did M. K. Muthu's father die?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6321.47
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6322.71
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 16634.34
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.2,
+      "bm25_ms": 2.35,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6313.78
+      },
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000056",
+          "score": 1.5729631185531616,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.5729631185531616
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000137",
+          "score": -5.393348693847656,
+          "fused": 0.12826498896682872,
+          "dense_rank": 7,
+          "bm25_rank": null,
+          "fused_rank": 13,
+          "rerank": -5.393348693847656
+        },
+        {
+          "id": "460e441179bec402:L0:000105",
+          "score": -5.914353370666504,
+          "fused": 0.10650844979458567,
+          "dense_rank": 12,
+          "bm25_rank": null,
+          "fused_rank": 20,
+          "rerank": -5.914353370666504
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000049",
+          "score": -5.9543328285217285,
+          "fused": 0.31031490513346016,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -5.9543328285217285
+        },
+        {
+          "id": "0eac870d43736f51:L0:000047",
+          "score": -6.7293381690979,
+          "fused": 0.18194002170754023,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 8,
+          "rerank": -6.7293381690979
+        }
+      ],
+      "latency_ms": 6321.43
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 597,
+      "latency_ms": 1.19
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10311.51
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000056",
+    "6af2db6cb86d77e2:L0:000137",
+    "460e441179bec402:L0:000105",
+    "c73b757f0eb66f37:L0:000049",
+    "0eac870d43736f51:L0:000047"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000056",
+    "6af2db6cb86d77e2:L0:000137",
+    "460e441179bec402:L0:000105",
+    "c73b757f0eb66f37:L0:000049",
+    "0eac870d43736f51:L0:000047"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:47:53.584347+00:00",
+      "call_id": "b98e4465f400",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bcf9b308afca53b1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2ca5b1b4eed74c5a"
+    },
+    {
+      "ts": "2026-11-13T14:48:10.226262+00:00",
+      "call_id": "950827a53634",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d042b04f80365bb9",
+      "prompt_tokens": 1301,
+      "completion_tokens": 53,
+      "latency_ms": 10310.25,
+      "server_ms": 10283.4,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2ca5b1b4eed74c5a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1301,
+    "completion_tokens": 53,
+    "total_ms": 16636.67
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "M.",
+        "K.",
+        "Muthu's father, M.",
+        "Karunanidhi, died."
+      ]
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "trace_id": "a7e9609fc5474771",
+  "created_at": "2026-11-13T11:31:33.888247+00:00",
+  "query": "What sequence of events led Steve Jobs to be ousted from Apple in 1985 by John Sculley and the board?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8.38
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8.42
+    },
+    {
+      "state": "DONE",
+      "t_ms": 30895.25
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.46,
+      "bm25_ms": 6.75,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "17581cb533e90c48:L0:001423",
+          "score": 0.7280059581038535,
+          "fused": 0.7280059581038535,
+          "dense_rank": 44,
+          "bm25_rank": 1
+        },
+        {
+          "id": "17581cb533e90c48:L0:001421",
+          "score": 0.6389233980185439,
+          "fused": 0.6389233980185439,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "17581cb533e90c48:L0:000015",
+          "score": 0.6268200718706648,
+          "fused": 0.6268200718706648,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "17581cb533e90c48:L0:000797",
+          "score": 0.5307081414757198,
+          "fused": 0.5307081414757198,
+          "dense_rank": 2,
+          "bm25_rank": 12
+        },
+        {
+          "id": "17581cb533e90c48:L0:000510",
+          "score": 0.5280892314774444,
+          "fused": 0.5280892314774444,
+          "dense_rank": 14,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 8.36
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1423,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 30886.63
+    }
+  },
+  "retrieved_ids": [
+    "17581cb533e90c48:L0:001423",
+    "17581cb533e90c48:L0:001421",
+    "17581cb533e90c48:L0:000015",
+    "17581cb533e90c48:L0:000797",
+    "17581cb533e90c48:L0:000510"
+  ],
+  "filtered_ids": [
+    "17581cb533e90c48:L0:001423",
+    "17581cb533e90c48:L0:001421",
+    "17581cb533e90c48:L0:000015",
+    "17581cb533e90c48:L0:000797",
+    "17581cb533e90c48:L0:000510"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:31:33.889263+00:00",
+      "call_id": "961dab15fada",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "38aa219e6e345755",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a7e9609fc5474771"
+    },
+    {
+      "ts": "2026-11-13T11:32:04.782852+00:00",
+      "call_id": "2740895b662f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "800d337de483f593",
+      "prompt_tokens": 2365,
+      "completion_tokens": 195,
+      "latency_ms": 30885.42,
+      "server_ms": 30855.86,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a7e9609fc5474771"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2365,
+    "completion_tokens": 195,
+    "total_ms": 30896.45
+  },
+  "config_hash": "da9c6a093c0d",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The sequence of events leading to Steve Jobs' ousting from Apple in 1985 by John Sculley and the board included a series of confrontations and conflicts.",
+        "In May 1985, Jobs approached Sculley asking for more time to prove his management of the Macintosh division, but Sculley did not back down."
+      ]
+    }
+  }
+}

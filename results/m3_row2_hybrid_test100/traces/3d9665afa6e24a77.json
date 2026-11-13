@@ -1,0 +1,163 @@
+{
+  "trace_id": "3d9665afa6e24a77",
+  "created_at": "2026-11-13T09:41:14.533354+00:00",
+  "query": "When is the next episode of the series that Steven the Sword Fighter is a part of being released?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 21.55
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 21.61
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10100.41
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.72,
+      "bm25_ms": 16.46,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "66f5caec1369ebaf:L0:000076",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "dd498e0082847164:L0:000075",
+          "score": 0.621328380139012,
+          "fused": 0.621328380139012,
+          "dense_rank": 3,
+          "bm25_rank": 9
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000066",
+          "score": 0.6079998067985853,
+          "fused": 0.6079998067985853,
+          "dense_rank": 7,
+          "bm25_rank": 4
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000067",
+          "score": 0.6048698860494854,
+          "fused": 0.6048698860494854,
+          "dense_rank": 4,
+          "bm25_rank": 8
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000076",
+          "score": 0.600089444764213,
+          "fused": 0.600089444764213,
+          "dense_rank": null,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 21.5
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 360,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10078.72
+    }
+  },
+  "retrieved_ids": [
+    "66f5caec1369ebaf:L0:000076",
+    "dd498e0082847164:L0:000075",
+    "5a1a5bbda9db013e:L0:000066",
+    "8b31d5859eb3d77a:L0:000067",
+    "6683bfc7dec06e2a:L0:000076"
+  ],
+  "filtered_ids": [
+    "66f5caec1369ebaf:L0:000076",
+    "dd498e0082847164:L0:000075",
+    "5a1a5bbda9db013e:L0:000066",
+    "8b31d5859eb3d77a:L0:000067",
+    "6683bfc7dec06e2a:L0:000076"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:41:14.535826+00:00",
+      "call_id": "259037c585f2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7dee1d6798d97840",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "3d9665afa6e24a77"
+    },
+    {
+      "ts": "2026-11-13T09:41:24.632560+00:00",
+      "call_id": "cf19f34cc1fb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "62bd29c76e676b38",
+      "prompt_tokens": 928,
+      "completion_tokens": 45,
+      "latency_ms": 10077.79,
+      "server_ms": 10055.85,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "3d9665afa6e24a77"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 928,
+    "completion_tokens": 45,
+    "total_ms": 10102.84
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

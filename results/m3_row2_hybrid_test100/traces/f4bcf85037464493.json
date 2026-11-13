@@ -1,0 +1,163 @@
+{
+  "trace_id": "f4bcf85037464493",
+  "created_at": "2026-11-13T10:22:07.329892+00:00",
+  "query": "What does the author think about inaugural speech writers compared with the delivering presidents?\n\nOptions:\n(A) The writers are considered to be just as important as the delivering president\n(B) The writers are highly applauded\n(C) The writers are cast aside as unimportant in the process\n(D) The subject is not covered\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 29.54
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 30.57
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 20143.15
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.0,
+      "bm25_ms": 24.38,
+      "n_candidates": {
+        "dense": 7,
+        "bm25": 7
+      },
+      "n_fused": 7,
+      "hits": [
+        {
+          "id": "606a00eadeab492f:L0:000003",
+          "score": 0.9864905860673336,
+          "fused": 0.9864905860673336,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "606a00eadeab492f:L0:000000",
+          "score": 0.9100044357011942,
+          "fused": 0.9100044357011942,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "606a00eadeab492f:L0:000002",
+          "score": 0.37139329832506496,
+          "fused": 0.37139329832506496,
+          "dense_rank": 2,
+          "bm25_rank": 6
+        },
+        {
+          "id": "606a00eadeab492f:L0:000004",
+          "score": 0.3701499226418757,
+          "fused": 0.3701499226418757,
+          "dense_rank": 5,
+          "bm25_rank": 5
+        },
+        {
+          "id": "606a00eadeab492f:L0:000006",
+          "score": 0.3441164977892377,
+          "fused": 0.3441164977892377,
+          "dense_rank": 6,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 29.48
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1758,
+      "latency_ms": 1.0
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20112.46
+    }
+  },
+  "retrieved_ids": [
+    "606a00eadeab492f:L0:000003",
+    "606a00eadeab492f:L0:000000",
+    "606a00eadeab492f:L0:000002",
+    "606a00eadeab492f:L0:000004",
+    "606a00eadeab492f:L0:000006"
+  ],
+  "filtered_ids": [
+    "606a00eadeab492f:L0:000003",
+    "606a00eadeab492f:L0:000000",
+    "606a00eadeab492f:L0:000002",
+    "606a00eadeab492f:L0:000004",
+    "606a00eadeab492f:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:22:07.331891+00:00",
+      "call_id": "9c5482aa1bd7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d5ebc99d754b8a4c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f4bcf85037464493"
+    },
+    {
+      "ts": "2026-11-13T10:22:27.471775+00:00",
+      "call_id": "8d0104cb784e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "19f52122d283bcf8",
+      "prompt_tokens": 2452,
+      "completion_tokens": 42,
+      "latency_ms": 20110.34,
+      "server_ms": 20078.25,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f4bcf85037464493"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2452,
+    "completion_tokens": 42,
+    "total_ms": 20144.78
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "(D) The subject is not covered."
+      ]
+    }
+  }
+}

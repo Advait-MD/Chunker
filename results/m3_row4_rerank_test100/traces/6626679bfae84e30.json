@@ -1,0 +1,178 @@
+{
+  "trace_id": "6626679bfae84e30",
+  "created_at": "2026-11-13T14:19:27.964452+00:00",
+  "query": "Which plant, the Chaerophyllum or the Cryptanthus, can be found in various places across the world?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7393.71
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7393.93
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19367.36
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.07,
+      "bm25_ms": 12.56,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 7374.89
+      },
+      "hits": [
+        {
+          "id": "20496f59538deb41:L0:000122",
+          "score": 6.641719818115234,
+          "fused": 0.7351801165695961,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 6.641719818115234
+        },
+        {
+          "id": "634431bb1e27714f:L0:000021",
+          "score": 4.091170787811279,
+          "fused": 0.3598386693096278,
+          "dense_rank": 22,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": 4.091170787811279
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000037",
+          "score": -0.9603314995765686,
+          "fused": 0.7579132770622132,
+          "dense_rank": 28,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.9603314995765686
+        },
+        {
+          "id": "20496f59538deb41:L0:000183",
+          "score": -6.254619121551514,
+          "fused": 0.17553391802692855,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 19,
+          "rerank": -6.254619121551514
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000022",
+          "score": -6.742395877838135,
+          "fused": 0.6554336407776298,
+          "dense_rank": 6,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -6.742395877838135
+        }
+      ],
+      "latency_ms": 7393.66
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 401,
+      "latency_ms": 0.18
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11973.34
+    }
+  },
+  "retrieved_ids": [
+    "20496f59538deb41:L0:000122",
+    "634431bb1e27714f:L0:000021",
+    "cb96563b0747a6ba:L0:000037",
+    "20496f59538deb41:L0:000183",
+    "cc2399aca11eb631:L0:000022"
+  ],
+  "filtered_ids": [
+    "20496f59538deb41:L0:000122",
+    "634431bb1e27714f:L0:000021",
+    "cb96563b0747a6ba:L0:000037",
+    "20496f59538deb41:L0:000183",
+    "cc2399aca11eb631:L0:000022"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:19:27.964452+00:00",
+      "call_id": "af82ca7bcdec",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "13d7b6088dc484be",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6626679bfae84e30"
+    },
+    {
+      "ts": "2026-11-13T14:19:47.332613+00:00",
+      "call_id": "64ba5243b571",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d27202d8fc730687",
+      "prompt_tokens": 1046,
+      "completion_tokens": 84,
+      "latency_ms": 11972.54,
+      "server_ms": 11958.83,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "6626679bfae84e30"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1046,
+    "completion_tokens": 84,
+    "total_ms": 19368.28
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

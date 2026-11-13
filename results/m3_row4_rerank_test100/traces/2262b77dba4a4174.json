@@ -1,0 +1,179 @@
+{
+  "trace_id": "2262b77dba4a4174",
+  "created_at": "2026-11-13T14:53:15.837950+00:00",
+  "query": "Do the bands The Gordons (Duo) and Sacred Rite (Band), originate from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8514.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8515.14
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21569.43
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.07,
+      "bm25_ms": 4.69,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 8505.86
+      },
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000197",
+          "score": 8.008745193481445,
+          "fused": 0.9136021490364258,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.008745193481445
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000169",
+          "score": 7.201232433319092,
+          "fused": 0.6718853804989953,
+          "dense_rank": 5,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 7.201232433319092
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000042",
+          "score": -1.7219069004058838,
+          "fused": 0.17587978472809612,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 18,
+          "rerank": -1.7219069004058838
+        },
+        {
+          "id": "abe982d210232c3f:L0:000037",
+          "score": -1.8957829475402832,
+          "fused": 0.33942794345974076,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -1.8957829475402832
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000019",
+          "score": -2.002990961074829,
+          "fused": 0.35521838624282215,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": -2.002990961074829
+        }
+      ],
+      "latency_ms": 8514.36
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 535,
+      "latency_ms": 0.71
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13054.15
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000197",
+    "317e12ccd417c0d7:L0:000169",
+    "b04ce6dd2d95fb80:L0:000042",
+    "abe982d210232c3f:L0:000037",
+    "b04ce6dd2d95fb80:L0:000019"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000197",
+    "317e12ccd417c0d7:L0:000169",
+    "b04ce6dd2d95fb80:L0:000042",
+    "abe982d210232c3f:L0:000037",
+    "b04ce6dd2d95fb80:L0:000019"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:53:15.837950+00:00",
+      "call_id": "972b9c6d6126",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b9c476198fd2b15e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2262b77dba4a4174"
+    },
+    {
+      "ts": "2026-11-13T14:53:37.408524+00:00",
+      "call_id": "eb826289759c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "71ee21531eb709e4",
+      "prompt_tokens": 1162,
+      "completion_tokens": 73,
+      "latency_ms": 13053.05,
+      "server_ms": 13031.91,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2262b77dba4a4174"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1162,
+    "completion_tokens": 73,
+    "total_ms": 21571.44
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

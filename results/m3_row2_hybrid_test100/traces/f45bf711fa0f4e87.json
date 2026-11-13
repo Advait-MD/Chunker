@@ -1,0 +1,163 @@
+{
+  "trace_id": "f45bf711fa0f4e87",
+  "created_at": "2026-11-13T10:52:28.461749+00:00",
+  "query": "What Disney movie was the wrestler with the real name of John William Minton in?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.84
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.92
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11820.9
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.35,
+      "bm25_ms": 7.19,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "bc1dba3471045f02:L0:000192",
+          "score": 0.9840123123171882,
+          "fused": 0.9840123123171882,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000007",
+          "score": 0.6292444479789037,
+          "fused": 0.6292444479789037,
+          "dense_rank": 4,
+          "bm25_rank": 4
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000108",
+          "score": 0.6010020322375982,
+          "fused": 0.6010020322375982,
+          "dense_rank": 2,
+          "bm25_rank": 7
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000081",
+          "score": 0.5053652349336759,
+          "fused": 0.5053652349336759,
+          "dense_rank": 8,
+          "bm25_rank": 8
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000156",
+          "score": 0.45579139669309626,
+          "fused": 0.45579139669309626,
+          "dense_rank": null,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 10.8
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 614,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11809.91
+    }
+  },
+  "retrieved_ids": [
+    "bc1dba3471045f02:L0:000192",
+    "8e50522b7cb636d8:L0:000007",
+    "90976421f3f2bea2:L0:000108",
+    "5d0f6cf59ee42566:L0:000081",
+    "bc1dba3471045f02:L0:000156"
+  ],
+  "filtered_ids": [
+    "bc1dba3471045f02:L0:000192",
+    "8e50522b7cb636d8:L0:000007",
+    "90976421f3f2bea2:L0:000108",
+    "5d0f6cf59ee42566:L0:000081",
+    "bc1dba3471045f02:L0:000156"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:52:28.463748+00:00",
+      "call_id": "96ffe5b4efdf",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "64e6b49e351c3d18",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f45bf711fa0f4e87"
+    },
+    {
+      "ts": "2026-11-13T10:52:40.281920+00:00",
+      "call_id": "cc080f06d6de",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a62aa3d5dd089e73",
+      "prompt_tokens": 1298,
+      "completion_tokens": 45,
+      "latency_ms": 11808.88,
+      "server_ms": 11784.19,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f45bf711fa0f4e87"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1298,
+    "completion_tokens": 45,
+    "total_ms": 11822.36
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

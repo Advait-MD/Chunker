@@ -1,0 +1,164 @@
+{
+  "trace_id": "18216d2facec4aff",
+  "created_at": "2026-11-13T09:26:09.542252+00:00",
+  "query": "Which of two design architectures have better performance?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.85
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18.04
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19311.42
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.1,
+      "bm25_ms": 13.36,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 15
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ec354b94e4875d1d:L0:000000",
+          "score": 0.8650076899027722,
+          "fused": 0.8650076899027722,
+          "dense_rank": 6,
+          "bm25_rank": 1
+        },
+        {
+          "id": "ec354b94e4875d1d:L0:000015",
+          "score": 0.6254688754327773,
+          "fused": 0.6254688754327773,
+          "dense_rank": 1,
+          "bm25_rank": 5
+        },
+        {
+          "id": "ec354b94e4875d1d:L0:000018",
+          "score": 0.6057436439156927,
+          "fused": 0.6057436439156927,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "ec354b94e4875d1d:L0:000002",
+          "score": 0.6002977311821626,
+          "fused": 0.6002977311821626,
+          "dense_rank": 14,
+          "bm25_rank": 2
+        },
+        {
+          "id": "ec354b94e4875d1d:L0:000014",
+          "score": 0.5901795838501066,
+          "fused": 0.5901795838501066,
+          "dense_rank": 2,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 17.79
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1211,
+      "latency_ms": 0.15
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19293.08
+    }
+  },
+  "retrieved_ids": [
+    "ec354b94e4875d1d:L0:000000",
+    "ec354b94e4875d1d:L0:000015",
+    "ec354b94e4875d1d:L0:000018",
+    "ec354b94e4875d1d:L0:000002",
+    "ec354b94e4875d1d:L0:000014"
+  ],
+  "filtered_ids": [
+    "ec354b94e4875d1d:L0:000000",
+    "ec354b94e4875d1d:L0:000015",
+    "ec354b94e4875d1d:L0:000018",
+    "ec354b94e4875d1d:L0:000002",
+    "ec354b94e4875d1d:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:26:09.544809+00:00",
+      "call_id": "34a89b99bdff",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "52f7428a07397238",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "18216d2facec4aff"
+    },
+    {
+      "ts": "2026-11-13T09:26:28.853155+00:00",
+      "call_id": "fe1b899e03c6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3d3a2d85a9c4bb8f",
+      "prompt_tokens": 1768,
+      "completion_tokens": 61,
+      "latency_ms": 19292.08,
+      "server_ms": 19268.87,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "18216d2facec4aff"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1768,
+    "completion_tokens": 61,
+    "total_ms": 19312.48
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

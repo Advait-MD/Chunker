@@ -1,0 +1,181 @@
+{
+  "trace_id": "7a54ce9b76984ecd",
+  "created_at": "2026-11-13T14:34:11.912672+00:00",
+  "query": "Which was built first Woolworth Building or 1 New York Plaza?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6933.13
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6933.22
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20732.29
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.02,
+      "bm25_ms": 17.02,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6904.88
+      },
+      "hits": [
+        {
+          "id": "20496f59538deb41:L0:000061",
+          "score": 8.388941764831543,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.388941764831543
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000139",
+          "score": 6.903336524963379,
+          "fused": 0.6550412190560878,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": 6.903336524963379
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000032",
+          "score": -0.8378158807754517,
+          "fused": 0.5670791058829204,
+          "dense_rank": 25,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": -0.8378158807754517
+        },
+        {
+          "id": "b120b09075017d08:L0:000052",
+          "score": -1.517429232597351,
+          "fused": 0.3848105811075047,
+          "dense_rank": 7,
+          "bm25_rank": 8,
+          "fused_rank": 7,
+          "rerank": -1.517429232597351
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000097",
+          "score": -2.0611093044281006,
+          "fused": 0.5898746761459187,
+          "dense_rank": 6,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -2.0611093044281006
+        }
+      ],
+      "latency_ms": 6933.05
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 589,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13798.85
+    }
+  },
+  "retrieved_ids": [
+    "20496f59538deb41:L0:000061",
+    "8e50522b7cb636d8:L0:000139",
+    "90976421f3f2bea2:L0:000032",
+    "b120b09075017d08:L0:000052",
+    "5d0f6cf59ee42566:L0:000097"
+  ],
+  "filtered_ids": [
+    "20496f59538deb41:L0:000061",
+    "8e50522b7cb636d8:L0:000139",
+    "90976421f3f2bea2:L0:000032",
+    "b120b09075017d08:L0:000052",
+    "5d0f6cf59ee42566:L0:000097"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:34:11.918411+00:00",
+      "call_id": "364e4a3e4122",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2e68f50b77d4fd85",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7a54ce9b76984ecd"
+    },
+    {
+      "ts": "2026-11-13T14:34:32.646123+00:00",
+      "call_id": "e3f3b98ca622",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7f6849089a62468e",
+      "prompt_tokens": 1228,
+      "completion_tokens": 88,
+      "latency_ms": 13797.42,
+      "server_ms": 13770.14,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "7a54ce9b76984ecd"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1228,
+    "completion_tokens": 88,
+    "total_ms": 20734.38
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, the Woolworth Building was built first."
+      ]
+    }
+  }
+}

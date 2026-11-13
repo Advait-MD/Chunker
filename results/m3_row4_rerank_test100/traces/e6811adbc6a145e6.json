@@ -1,0 +1,179 @@
+{
+  "trace_id": "e6811adbc6a145e6",
+  "created_at": "2026-11-13T13:47:49.387841+00:00",
+  "query": "Why was Nagurski happy to no longer be a captain?\n\nOptions:\n(A) The men didn't trust him\n(B) He was suspicious of everything\n(C) He had only wanted to do it for a few years\n(D) He wanted less stress at work\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16676.25
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16676.33
+    },
+    {
+      "state": "DONE",
+      "t_ms": 35084.03
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.91,
+      "bm25_ms": 17.01,
+      "n_candidates": {
+        "dense": 22,
+        "bm25": 22
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 16649.48
+      },
+      "hits": [
+        {
+          "id": "fdc68d24a0ed4ea9:L0:000007",
+          "score": 1.7986241579055786,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.7986241579055786
+        },
+        {
+          "id": "fdc68d24a0ed4ea9:L0:000006",
+          "score": -0.6730971336364746,
+          "fused": 0.4203328052906317,
+          "dense_rank": 8,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": -0.6730971336364746
+        },
+        {
+          "id": "fdc68d24a0ed4ea9:L0:000010",
+          "score": -1.1446481943130493,
+          "fused": 0.6291780640148494,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -1.1446481943130493
+        },
+        {
+          "id": "fdc68d24a0ed4ea9:L0:000008",
+          "score": -1.8367122411727905,
+          "fused": 0.5740289635352197,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -1.8367122411727905
+        },
+        {
+          "id": "fdc68d24a0ed4ea9:L0:000020",
+          "score": -2.018491268157959,
+          "fused": 0.4307865935876263,
+          "dense_rank": 9,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -2.018491268157959
+        }
+      ],
+      "latency_ms": 16676.2
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1948,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18407.61
+    }
+  },
+  "retrieved_ids": [
+    "fdc68d24a0ed4ea9:L0:000007",
+    "fdc68d24a0ed4ea9:L0:000006",
+    "fdc68d24a0ed4ea9:L0:000010",
+    "fdc68d24a0ed4ea9:L0:000008",
+    "fdc68d24a0ed4ea9:L0:000020"
+  ],
+  "filtered_ids": [
+    "fdc68d24a0ed4ea9:L0:000007",
+    "fdc68d24a0ed4ea9:L0:000006",
+    "fdc68d24a0ed4ea9:L0:000010",
+    "fdc68d24a0ed4ea9:L0:000008",
+    "fdc68d24a0ed4ea9:L0:000020"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:47:49.387841+00:00",
+      "call_id": "cedd4d2691a4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "73b1fa14393d3bb2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e6811adbc6a145e6"
+    },
+    {
+      "ts": "2026-11-13T13:48:24.476269+00:00",
+      "call_id": "941427961bc5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4e7c81daf7e070cf",
+      "prompt_tokens": 2488,
+      "completion_tokens": 56,
+      "latency_ms": 18406.67,
+      "server_ms": 18389.38,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "e6811adbc6a145e6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2488,
+    "completion_tokens": 56,
+    "total_ms": 35093.81
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

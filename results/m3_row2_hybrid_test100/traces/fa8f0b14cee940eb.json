@@ -1,0 +1,165 @@
+{
+  "trace_id": "fa8f0b14cee940eb",
+  "created_at": "2026-11-13T11:24:37.062199+00:00",
+  "query": "Who authored 'The Book of Five Rings'?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.12
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.22
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13948.42
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.38,
+      "bm25_ms": 5.36,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "54e450272e768455:L0:000000",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "54e450272e768455:L0:000024",
+          "score": 0.6310200339038531,
+          "fused": 0.6310200339038531,
+          "dense_rank": 2,
+          "bm25_rank": 7
+        },
+        {
+          "id": "54e450272e768455:L0:000021",
+          "score": 0.617016569746734,
+          "fused": 0.617016569746734,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "54e450272e768455:L0:000004",
+          "score": 0.5834256674376178,
+          "fused": 0.5834256674376178,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "54e450272e768455:L0:000008",
+          "score": 0.5310006491853119,
+          "fused": 0.5310006491853119,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 9.08
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1022,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13939.08
+    }
+  },
+  "retrieved_ids": [
+    "54e450272e768455:L0:000000",
+    "54e450272e768455:L0:000024",
+    "54e450272e768455:L0:000021",
+    "54e450272e768455:L0:000004",
+    "54e450272e768455:L0:000008"
+  ],
+  "filtered_ids": [
+    "54e450272e768455:L0:000000",
+    "54e450272e768455:L0:000024",
+    "54e450272e768455:L0:000021",
+    "54e450272e768455:L0:000004",
+    "54e450272e768455:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:24:37.063435+00:00",
+      "call_id": "fe2b13544a3b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fd9beda8097c6389",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fa8f0b14cee940eb"
+    },
+    {
+      "ts": "2026-11-13T11:24:51.009165+00:00",
+      "call_id": "14119a30088a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "fe634c754cb2ed4c",
+      "prompt_tokens": 1555,
+      "completion_tokens": 65,
+      "latency_ms": 13937.88,
+      "server_ms": 13909.73,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "fa8f0b14cee940eb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1555,
+    "completion_tokens": 65,
+    "total_ms": 13950.21
+  },
+  "config_hash": "da9c6a093c0d",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "trace_id": "9fbd658792834ac5",
+  "created_at": "2026-11-13T13:09:49.031930+00:00",
+  "query": "Why did the Russians want to send cars into space?\n\nOptions:\n(A) They didn't want to\n(B) They have strategic value\n(C) To get revenge on the Americans\n(D) To compete with the Americans\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12675.53
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12676.56
+    },
+    {
+      "state": "DONE",
+      "t_ms": 34144.99
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.94,
+      "bm25_ms": 26.7,
+      "n_candidates": {
+        "dense": 14,
+        "bm25": 14
+      },
+      "n_fused": 14,
+      "rerank": {
+        "n": 14,
+        "n_computed": 14,
+        "latency_ms": 12636.14
+      },
+      "hits": [
+        {
+          "id": "2a07e554c74cf095:L0:000011",
+          "score": -1.678924560546875,
+          "fused": 0.9334983392101684,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.678924560546875
+        },
+        {
+          "id": "2a07e554c74cf095:L0:000000",
+          "score": -2.0494823455810547,
+          "fused": 0.6992095932752067,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -2.0494823455810547
+        },
+        {
+          "id": "2a07e554c74cf095:L0:000001",
+          "score": -3.571730852127075,
+          "fused": 0.2640439725944484,
+          "dense_rank": 6,
+          "bm25_rank": 13,
+          "fused_rank": 9,
+          "rerank": -3.571730852127075
+        },
+        {
+          "id": "2a07e554c74cf095:L0:000012",
+          "score": -3.7393832206726074,
+          "fused": 0.741751658138496,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -3.7393832206726074
+        },
+        {
+          "id": "2a07e554c74cf095:L0:000013",
+          "score": -4.159304618835449,
+          "fused": 0.19327286313862954,
+          "dense_rank": 14,
+          "bm25_rank": 6,
+          "fused_rank": 13,
+          "rerank": -4.159304618835449
+        }
+      ],
+      "latency_ms": 12675.48
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1657,
+      "latency_ms": 0.96
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21468.26
+    }
+  },
+  "retrieved_ids": [
+    "2a07e554c74cf095:L0:000011",
+    "2a07e554c74cf095:L0:000000",
+    "2a07e554c74cf095:L0:000001",
+    "2a07e554c74cf095:L0:000012",
+    "2a07e554c74cf095:L0:000013"
+  ],
+  "filtered_ids": [
+    "2a07e554c74cf095:L0:000011",
+    "2a07e554c74cf095:L0:000000",
+    "2a07e554c74cf095:L0:000001",
+    "2a07e554c74cf095:L0:000012",
+    "2a07e554c74cf095:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:09:49.033937+00:00",
+      "call_id": "47f42d976db1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cde15d102da365ef",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9fbd658792834ac5"
+    },
+    {
+      "ts": "2026-11-13T13:10:23.166485+00:00",
+      "call_id": "48efd7b5f9b7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f2a97cb4610c6e1c",
+      "prompt_tokens": 2213,
+      "completion_tokens": 96,
+      "latency_ms": 21466.79,
+      "server_ms": 21426.2,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "9fbd658792834ac5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2213,
+    "completion_tokens": 96,
+    "total_ms": 34147.36
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2,
+        3,
+        4
+      ],
+      "uncited_sentences": [
+        "(D) To compete with the Americans.",
+        "The Russians observed cars orbiting the Earth and believed the Americans were attempting to ridicule their space efforts.",
+        "They also reported that the Americans had sent up a house and an ancient automobile, indicating a competitive stance in space exploration."
+      ]
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "trace_id": "ec4f550bb5f346be",
+  "created_at": "2026-11-13T11:02:21.986020+00:00",
+  "query": "Where was the place of death of the director of film Sensational Janine?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.84
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.9
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10524.73
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.03,
+      "bm25_ms": 4.52,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000039",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000020",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "460e441179bec402:L0:000087",
+          "score": 0.27602646702398936,
+          "fused": 0.27602646702398936,
+          "dense_rank": 7,
+          "bm25_rank": 16
+        },
+        {
+          "id": "abe982d210232c3f:L0:000182",
+          "score": 0.25943206341544567,
+          "fused": 0.25943206341544567,
+          "dense_rank": 2,
+          "bm25_rank": null
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000013",
+          "score": 0.24550873649457675,
+          "fused": 0.24550873649457675,
+          "dense_rank": 3,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 7.8
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 345,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10516.74
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000039",
+    "317e12ccd417c0d7:L0:000020",
+    "460e441179bec402:L0:000087",
+    "abe982d210232c3f:L0:000182",
+    "b04ce6dd2d95fb80:L0:000013"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000039",
+    "317e12ccd417c0d7:L0:000020",
+    "460e441179bec402:L0:000087",
+    "abe982d210232c3f:L0:000182",
+    "b04ce6dd2d95fb80:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:02:21.987018+00:00",
+      "call_id": "6ae24de0f189",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fd844792b73ad44b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ec4f550bb5f346be"
+    },
+    {
+      "ts": "2026-11-13T11:02:32.510066+00:00",
+      "call_id": "ad47ce8bf376",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bac8a067bd5354c1",
+      "prompt_tokens": 957,
+      "completion_tokens": 57,
+      "latency_ms": 10515.85,
+      "server_ms": 10489.19,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ec4f550bb5f346be"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 957,
+    "completion_tokens": 57,
+    "total_ms": 10525.8
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "The place of death of the director of film Sensational Janine is not mentioned in the provided passages."
+      ]
+    }
+  }
+}

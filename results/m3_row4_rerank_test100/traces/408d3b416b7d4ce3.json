@@ -1,0 +1,180 @@
+{
+  "trace_id": "408d3b416b7d4ce3",
+  "created_at": "2026-11-13T11:37:56.094144+00:00",
+  "query": "Does the query-bag matching model use a neural network?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8221.1
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8221.17
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23708.27
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.5,
+      "bm25_ms": 29.89,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 17
+      },
+      "n_fused": 17,
+      "rerank": {
+        "n": 17,
+        "n_computed": 17,
+        "latency_ms": 8186.31
+      },
+      "hits": [
+        {
+          "id": "e224741dbc7dbcc7:L0:000001",
+          "score": 4.11726713180542,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.11726713180542
+        },
+        {
+          "id": "e224741dbc7dbcc7:L0:000004",
+          "score": 0.8981919288635254,
+          "fused": 0.8309099266695639,
+          "dense_rank": 5,
+          "bm25_rank": 7,
+          "fused_rank": 6,
+          "rerank": 0.8981919288635254
+        },
+        {
+          "id": "e224741dbc7dbcc7:L0:000008",
+          "score": 0.6575284600257874,
+          "fused": 0.7947993507785149,
+          "dense_rank": 10,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": 0.6575284600257874
+        },
+        {
+          "id": "e224741dbc7dbcc7:L0:000000",
+          "score": 0.22847415506839752,
+          "fused": 0.8571827259934215,
+          "dense_rank": 8,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 0.22847415506839752
+        },
+        {
+          "id": "e224741dbc7dbcc7:L0:000015",
+          "score": -0.01828170195221901,
+          "fused": 0.8820523187107687,
+          "dense_rank": 3,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": -0.01828170195221901
+        }
+      ],
+      "latency_ms": 8221.05
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1210,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15487.0
+    }
+  },
+  "retrieved_ids": [
+    "e224741dbc7dbcc7:L0:000001",
+    "e224741dbc7dbcc7:L0:000004",
+    "e224741dbc7dbcc7:L0:000008",
+    "e224741dbc7dbcc7:L0:000000",
+    "e224741dbc7dbcc7:L0:000015"
+  ],
+  "filtered_ids": [
+    "e224741dbc7dbcc7:L0:000001",
+    "e224741dbc7dbcc7:L0:000004",
+    "e224741dbc7dbcc7:L0:000008",
+    "e224741dbc7dbcc7:L0:000000",
+    "e224741dbc7dbcc7:L0:000015"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:37:56.095462+00:00",
+      "call_id": "894892f33f43",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0016eb0cebc51b9b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "408d3b416b7d4ce3"
+    },
+    {
+      "ts": "2026-11-13T11:38:19.801182+00:00",
+      "call_id": "1365f7696f87",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7001c39976034d9c",
+      "prompt_tokens": 1778,
+      "completion_tokens": 56,
+      "latency_ms": 15485.77,
+      "server_ms": 15456.32,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "408d3b416b7d4ce3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1778,
+    "completion_tokens": 56,
+    "total_ms": 23709.41
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2
+      ],
+      "uncited_sentences": [
+        "Yes, the query-bag matching model uses the hCNN model, which is a CNN-based matching model."
+      ]
+    }
+  }
+}

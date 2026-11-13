@@ -1,0 +1,178 @@
+{
+  "trace_id": "c99b119a50d74328",
+  "created_at": "2026-11-13T12:58:25.562030+00:00",
+  "query": "Ivo Werner is from Country A that invaded Country B because their military branch that helped the Old West police was unprepared. When was the word \"Slavs\" used in the national anthem of country B?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6487.85
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6488.46
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15761.01
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.2,
+      "bm25_ms": 30.25,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6449.5
+      },
+      "hits": [
+        {
+          "id": "e182527d2b1ecac3:L0:000076",
+          "score": 3.777580976486206,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 3.777580976486206
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000054",
+          "score": 2.7005321979522705,
+          "fused": 0.8555800258947035,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 2.7005321979522705
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000055",
+          "score": -5.636049747467041,
+          "fused": 0.4985957740945101,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -5.636049747467041
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000176",
+          "score": -6.349520683288574,
+          "fused": 0.15375714285038017,
+          "dense_rank": 9,
+          "bm25_rank": 42,
+          "fused_rank": 12,
+          "rerank": -6.349520683288574
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000152",
+          "score": -6.593170642852783,
+          "fused": 0.12541175334897675,
+          "dense_rank": 11,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -6.593170642852783
+        }
+      ],
+      "latency_ms": 6487.79
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 444,
+      "latency_ms": 0.57
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9250.14
+    }
+  },
+  "retrieved_ids": [
+    "e182527d2b1ecac3:L0:000076",
+    "f59bbbdacaf7ffe4:L0:000054",
+    "ce290c1e5d5c6641:L0:000055",
+    "8b31d5859eb3d77a:L0:000176",
+    "66f5caec1369ebaf:L0:000152"
+  ],
+  "filtered_ids": [
+    "e182527d2b1ecac3:L0:000076",
+    "f59bbbdacaf7ffe4:L0:000054",
+    "ce290c1e5d5c6641:L0:000055",
+    "8b31d5859eb3d77a:L0:000176",
+    "66f5caec1369ebaf:L0:000152"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:58:25.562030+00:00",
+      "call_id": "05fd16e1f15d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ef8e3387296f3728",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c99b119a50d74328"
+    },
+    {
+      "ts": "2026-11-13T12:58:41.302500+00:00",
+      "call_id": "3cc09612b8f2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1c2743a340236341",
+      "prompt_tokens": 1081,
+      "completion_tokens": 45,
+      "latency_ms": 9249.14,
+      "server_ms": 9223.23,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "c99b119a50d74328"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1081,
+    "completion_tokens": 45,
+    "total_ms": 15763.11
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

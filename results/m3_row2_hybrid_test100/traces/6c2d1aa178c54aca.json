@@ -1,0 +1,168 @@
+{
+  "trace_id": "6c2d1aa178c54aca",
+  "created_at": "2026-11-13T11:21:56.424782+00:00",
+  "query": "Do both directors of films The Wrath Of Silence and Legend Of The Fox have the same nationality?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.26
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.32
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23989.06
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.97,
+      "bm25_ms": 5.96,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000031",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000137",
+          "score": 0.6092070963997895,
+          "fused": 0.6092070963997895,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000057",
+          "score": 0.520998924977096,
+          "fused": 0.520998924977096,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000106",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000176",
+          "score": 0.273029436728258,
+          "fused": 0.273029436728258,
+          "dense_rank": 3,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 9.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 865,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23979.6
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000031",
+    "317e12ccd417c0d7:L0:000137",
+    "b04ce6dd2d95fb80:L0:000057",
+    "6af2db6cb86d77e2:L0:000106",
+    "4a757779abfb4ba1:L0:000176"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000031",
+    "317e12ccd417c0d7:L0:000137",
+    "b04ce6dd2d95fb80:L0:000057",
+    "6af2db6cb86d77e2:L0:000106",
+    "4a757779abfb4ba1:L0:000176"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:21:56.426762+00:00",
+      "call_id": "890208065700",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "357e11aac15a422d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6c2d1aa178c54aca"
+    },
+    {
+      "ts": "2026-11-13T11:22:20.413744+00:00",
+      "call_id": "70d318960662",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d3dc7abff56482cd",
+      "prompt_tokens": 1535,
+      "completion_tokens": 153,
+      "latency_ms": 23978.69,
+      "server_ms": 23949.88,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "6c2d1aa178c54aca"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1535,
+    "completion_tokens": 153,
+    "total_ms": 23992.05
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "No, the directors of The Wrath of Silence and Legend of the Fox have different nationalities.",
+        "However, the question asks about the directors, and while the evidence does not explicitly state the nationality of Chang Cheh, it is reasonable to infer that he is also from Hong Kong.",
+        "Therefore, the correct answer is no, they do not have the same nationality."
+      ]
+    }
+  }
+}

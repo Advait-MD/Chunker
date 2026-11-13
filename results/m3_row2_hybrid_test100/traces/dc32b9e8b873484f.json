@@ -1,0 +1,164 @@
+{
+  "trace_id": "dc32b9e8b873484f",
+  "created_at": "2026-11-13T11:02:53.695491+00:00",
+  "query": "Do the movies Seven Sinners (1936 Film) and Everyday (Film), originate from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.02
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.08
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15734.64
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.16,
+      "bm25_ms": 6.55,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "53c7288bdcd3837a:L0:000049",
+          "score": 0.8132579652154284,
+          "fused": 0.8132579652154284,
+          "dense_rank": 8,
+          "bm25_rank": 1
+        },
+        {
+          "id": "460e441179bec402:L0:000191",
+          "score": 0.6125216874919154,
+          "fused": 0.6125216874919154,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000009",
+          "score": 0.5013366432641405,
+          "fused": 0.5013366432641405,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "99628090500247e3:L0:000196",
+          "score": 0.38488562552877326,
+          "fused": 0.38488562552877326,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000173",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 9.98
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 640,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15724.45
+    }
+  },
+  "retrieved_ids": [
+    "53c7288bdcd3837a:L0:000049",
+    "460e441179bec402:L0:000191",
+    "317e12ccd417c0d7:L0:000009",
+    "99628090500247e3:L0:000196",
+    "4a757779abfb4ba1:L0:000173"
+  ],
+  "filtered_ids": [
+    "53c7288bdcd3837a:L0:000049",
+    "460e441179bec402:L0:000191",
+    "317e12ccd417c0d7:L0:000009",
+    "99628090500247e3:L0:000196",
+    "4a757779abfb4ba1:L0:000173"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:02:53.697495+00:00",
+      "call_id": "d69db8697fee",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6a72751a4a36ae41",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "dc32b9e8b873484f"
+    },
+    {
+      "ts": "2026-11-13T11:03:09.429051+00:00",
+      "call_id": "e87007544dbe",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e18459568b29b8f4",
+      "prompt_tokens": 1325,
+      "completion_tokens": 74,
+      "latency_ms": 15723.44,
+      "server_ms": 15691.35,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "dc32b9e8b873484f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1325,
+    "completion_tokens": 74,
+    "total_ms": 15735.75
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

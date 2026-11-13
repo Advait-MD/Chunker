@@ -1,0 +1,166 @@
+{
+  "trace_id": "2c83f7c8dbd448bd",
+  "created_at": "2026-11-13T09:45:19.402704+00:00",
+  "query": "What is the distance in miles from Nashville to the place where Hemlock Semiconductor produces electronic components?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.67
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.73
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13872.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.77,
+      "bm25_ms": 14.53,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ce290c1e5d5c6641:L0:000121",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "ad4ace752e719bab:L0:000163",
+          "score": 0.37677735516651417,
+          "fused": 0.37677735516651417,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "15abb5e49dced915:L0:000162",
+          "score": 0.32272561014390866,
+          "fused": 0.32272561014390866,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000134",
+          "score": 0.281157447114779,
+          "fused": 0.281157447114779,
+          "dense_rank": 2,
+          "bm25_rank": null
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000169",
+          "score": 0.2770423155396289,
+          "fused": 0.2770423155396289,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 19.62
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 549,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13853.11
+    }
+  },
+  "retrieved_ids": [
+    "ce290c1e5d5c6641:L0:000121",
+    "ad4ace752e719bab:L0:000163",
+    "15abb5e49dced915:L0:000162",
+    "8679484d23bfd3a0:L0:000134",
+    "dbcbda865eee9c7b:L0:000169"
+  ],
+  "filtered_ids": [
+    "ce290c1e5d5c6641:L0:000121",
+    "ad4ace752e719bab:L0:000163",
+    "15abb5e49dced915:L0:000162",
+    "8679484d23bfd3a0:L0:000134",
+    "dbcbda865eee9c7b:L0:000169"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:45:19.404711+00:00",
+      "call_id": "3e5409be8046",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2b41fa7ac1635b2e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2c83f7c8dbd448bd"
+    },
+    {
+      "ts": "2026-11-13T09:45:33.274063+00:00",
+      "call_id": "8a1ab87976f7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5feb4f1af1a6076d",
+      "prompt_tokens": 1137,
+      "completion_tokens": 87,
+      "latency_ms": 13852.18,
+      "server_ms": 13831.87,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2c83f7c8dbd448bd"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1137,
+    "completion_tokens": 87,
+    "total_ms": 13874.65
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "trace_id": "1ed368f40fbf4e46",
+  "created_at": "2026-11-13T10:04:19.563469+00:00",
+  "query": "How many people are left alive on Earth?\n\nOptions:\n(A) a number of people in various places\n(B) Only the boy\n(C) Only the boy, his family, and some people in New Mexico\n(D) Only the boy, his mom, his dad, and his sister\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 23.48
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 23.53
+    },
+    {
+      "state": "DONE",
+      "t_ms": 29348.18
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.91,
+      "bm25_ms": 20.36,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "a3e91ed7338e9e41:L0:000010",
+          "score": 0.7810843868991484,
+          "fused": 0.7810843868991484,
+          "dense_rank": 12,
+          "bm25_rank": 1
+        },
+        {
+          "id": "a3e91ed7338e9e41:L0:000019",
+          "score": 0.5659239278510844,
+          "fused": 0.5659239278510844,
+          "dense_rank": 1,
+          "bm25_rank": 6
+        },
+        {
+          "id": "a3e91ed7338e9e41:L0:000011",
+          "score": 0.48187914436797985,
+          "fused": 0.48187914436797985,
+          "dense_rank": 15,
+          "bm25_rank": 2
+        },
+        {
+          "id": "a3e91ed7338e9e41:L0:000012",
+          "score": 0.4803130161998568,
+          "fused": 0.4803130161998568,
+          "dense_rank": 7,
+          "bm25_rank": 3
+        },
+        {
+          "id": "a3e91ed7338e9e41:L0:000015",
+          "score": 0.4643258539128779,
+          "fused": 0.4643258539128779,
+          "dense_rank": 2,
+          "bm25_rank": 11
+        }
+      ],
+      "latency_ms": 23.44
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1909,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 29324.5
+    }
+  },
+  "retrieved_ids": [
+    "a3e91ed7338e9e41:L0:000010",
+    "a3e91ed7338e9e41:L0:000019",
+    "a3e91ed7338e9e41:L0:000011",
+    "a3e91ed7338e9e41:L0:000012",
+    "a3e91ed7338e9e41:L0:000015"
+  ],
+  "filtered_ids": [
+    "a3e91ed7338e9e41:L0:000010",
+    "a3e91ed7338e9e41:L0:000019",
+    "a3e91ed7338e9e41:L0:000011",
+    "a3e91ed7338e9e41:L0:000012",
+    "a3e91ed7338e9e41:L0:000015"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:04:19.565469+00:00",
+      "call_id": "bea81bc6f1e1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "809b3987404a33de",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1ed368f40fbf4e46"
+    },
+    {
+      "ts": "2026-11-13T10:04:48.909452+00:00",
+      "call_id": "0777b74d83eb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3bd81f0f589d45ae",
+      "prompt_tokens": 2458,
+      "completion_tokens": 65,
+      "latency_ms": 29322.58,
+      "server_ms": 29282.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "1ed368f40fbf4e46"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2458,
+    "completion_tokens": 65,
+    "total_ms": 29349.63
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "(D) Only the boy, his mom, his dad, and his sister."
+      ]
+    }
+  }
+}

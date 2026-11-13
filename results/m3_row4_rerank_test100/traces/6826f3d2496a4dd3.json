@@ -1,0 +1,180 @@
+{
+  "trace_id": "6826f3d2496a4dd3",
+  "created_at": "2026-11-13T14:04:22.341251+00:00",
+  "query": "How does Dr. Harris know Braun?\n\nOptions:\n(A) Dr. Harris arrested Braun for fraud. \n(B) They went to undergraduate college together. \n(C) Braun used to work for the CIA. \n(D) Dr. Harris wrote a term paper about Braun and his business.  \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13074.81
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13074.91
+    },
+    {
+      "state": "DONE",
+      "t_ms": 30250.27
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.88,
+      "bm25_ms": 21.52,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 18
+      },
+      "n_fused": 19,
+      "rerank": {
+        "n": 19,
+        "n_computed": 19,
+        "latency_ms": 13048.19
+      },
+      "hits": [
+        {
+          "id": "e2aaf883e15e64c8:L0:000005",
+          "score": 0.5766969323158264,
+          "fused": 0.7866899558698031,
+          "dense_rank": 14,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 0.5766969323158264
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000000",
+          "score": -0.4780701994895935,
+          "fused": 0.7051980711387396,
+          "dense_rank": 1,
+          "bm25_rank": 7,
+          "fused_rank": 5,
+          "rerank": -0.4780701994895935
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000008",
+          "score": -1.1215685606002808,
+          "fused": 0.7675352236211699,
+          "dense_rank": 4,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": -1.1215685606002808
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000007",
+          "score": -1.8478187322616577,
+          "fused": 0.4403062596225238,
+          "dense_rank": 7,
+          "bm25_rank": 15,
+          "fused_rank": 10,
+          "rerank": -1.8478187322616577
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000012",
+          "score": -2.0629637241363525,
+          "fused": 0.7,
+          "dense_rank": 19,
+          "bm25_rank": 1,
+          "fused_rank": 6,
+          "rerank": -2.0629637241363525
+        }
+      ],
+      "latency_ms": 13074.76
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1885,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17175.26
+    }
+  },
+  "retrieved_ids": [
+    "e2aaf883e15e64c8:L0:000005",
+    "e2aaf883e15e64c8:L0:000000",
+    "e2aaf883e15e64c8:L0:000008",
+    "e2aaf883e15e64c8:L0:000007",
+    "e2aaf883e15e64c8:L0:000012"
+  ],
+  "filtered_ids": [
+    "e2aaf883e15e64c8:L0:000005",
+    "e2aaf883e15e64c8:L0:000000",
+    "e2aaf883e15e64c8:L0:000008",
+    "e2aaf883e15e64c8:L0:000007",
+    "e2aaf883e15e64c8:L0:000012"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:04:22.341251+00:00",
+      "call_id": "11e3ad7892c3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9b38fbf7fe33c8ea",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6826f3d2496a4dd3"
+    },
+    {
+      "ts": "2026-11-13T14:04:52.584863+00:00",
+      "call_id": "5a708248c4c2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4a6ee4d6e3ddf845",
+      "prompt_tokens": 2388,
+      "completion_tokens": 50,
+      "latency_ms": 17174.25,
+      "server_ms": 17148.81,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "6826f3d2496a4dd3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2388,
+    "completion_tokens": 50,
+    "total_ms": 30250.92
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "(D) Dr."
+      ]
+    }
+  }
+}

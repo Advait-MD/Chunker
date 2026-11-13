@@ -1,0 +1,164 @@
+{
+  "trace_id": "daa406559bf74fd9",
+  "created_at": "2026-11-13T10:31:32.937635+00:00",
+  "query": "Why did the author want the tasters to taste lagers?\n\nOptions:\n(A) They all sneer at lagers\n(B) It is the most common beer in the US\n(C) It is his favorite beer\n(D) It would be new to most of them\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 22.25
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 23.82
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23905.36
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.79,
+      "bm25_ms": 18.77,
+      "n_candidates": {
+        "dense": 9,
+        "bm25": 9
+      },
+      "n_fused": 9,
+      "hits": [
+        {
+          "id": "caca446628b62f1f:L0:000008",
+          "score": 0.9485504250808947,
+          "fused": 0.9485504250808947,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "caca446628b62f1f:L0:000001",
+          "score": 0.9269089344658623,
+          "fused": 0.9269089344658623,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "caca446628b62f1f:L0:000007",
+          "score": 0.6749538644389068,
+          "fused": 0.6749538644389068,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "caca446628b62f1f:L0:000002",
+          "score": 0.6527852582894197,
+          "fused": 0.6527852582894197,
+          "dense_rank": 8,
+          "bm25_rank": 3
+        },
+        {
+          "id": "caca446628b62f1f:L0:000000",
+          "score": 0.5934737360046184,
+          "fused": 0.5934737360046184,
+          "dense_rank": 3,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 22.21
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1817,
+      "latency_ms": 1.54
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23881.32
+    }
+  },
+  "retrieved_ids": [
+    "caca446628b62f1f:L0:000008",
+    "caca446628b62f1f:L0:000001",
+    "caca446628b62f1f:L0:000007",
+    "caca446628b62f1f:L0:000002",
+    "caca446628b62f1f:L0:000000"
+  ],
+  "filtered_ids": [
+    "caca446628b62f1f:L0:000008",
+    "caca446628b62f1f:L0:000001",
+    "caca446628b62f1f:L0:000007",
+    "caca446628b62f1f:L0:000002",
+    "caca446628b62f1f:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:31:32.938628+00:00",
+      "call_id": "ce12ca7dfeb5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0351ffaa08f822de",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "daa406559bf74fd9"
+    },
+    {
+      "ts": "2026-11-13T10:31:56.841642+00:00",
+      "call_id": "d598c2423968",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "19134b68474c2f58",
+      "prompt_tokens": 2454,
+      "completion_tokens": 62,
+      "latency_ms": 23879.77,
+      "server_ms": 23846.63,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "daa406559bf74fd9"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2454,
+    "completion_tokens": 62,
+    "total_ms": 23906.84
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

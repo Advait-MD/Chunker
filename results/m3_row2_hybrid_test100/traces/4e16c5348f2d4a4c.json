@@ -1,0 +1,163 @@
+{
+  "trace_id": "4e16c5348f2d4a4c",
+  "created_at": "2026-11-13T10:51:05.375891+00:00",
+  "query": "Where is the casino that Summer Nights takes place in?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8.67
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8.73
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11308.14
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.85,
+      "bm25_ms": 5.53,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "90976421f3f2bea2:L0:000020",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000071",
+          "score": 0.4772779393727158,
+          "fused": 0.4772779393727158,
+          "dense_rank": 1,
+          "bm25_rank": 17
+        },
+        {
+          "id": "b120b09075017d08:L0:000047",
+          "score": 0.46940479732791357,
+          "fused": 0.46940479732791357,
+          "dense_rank": 32,
+          "bm25_rank": 3
+        },
+        {
+          "id": "b120b09075017d08:L0:000183",
+          "score": 0.4586172578382318,
+          "fused": 0.4586172578382318,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000158",
+          "score": 0.4459307255895771,
+          "fused": 0.4459307255895771,
+          "dense_rank": 17,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 8.63
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 470,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11299.29
+    }
+  },
+  "retrieved_ids": [
+    "90976421f3f2bea2:L0:000020",
+    "ec3410ef955c5c93:L0:000071",
+    "b120b09075017d08:L0:000047",
+    "b120b09075017d08:L0:000183",
+    "9794e842cc9565f0:L0:000158"
+  ],
+  "filtered_ids": [
+    "90976421f3f2bea2:L0:000020",
+    "ec3410ef955c5c93:L0:000071",
+    "b120b09075017d08:L0:000047",
+    "b120b09075017d08:L0:000183",
+    "9794e842cc9565f0:L0:000158"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:51:05.377894+00:00",
+      "call_id": "cd57f4341442",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2cf0d547c8fd27a2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4e16c5348f2d4a4c"
+    },
+    {
+      "ts": "2026-11-13T10:51:16.683861+00:00",
+      "call_id": "bffb175f09bf",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a1cbb19ce204f25e",
+      "prompt_tokens": 1081,
+      "completion_tokens": 70,
+      "latency_ms": 11298.16,
+      "server_ms": 11272.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "4e16c5348f2d4a4c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1081,
+    "completion_tokens": 70,
+    "total_ms": 11310.3
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

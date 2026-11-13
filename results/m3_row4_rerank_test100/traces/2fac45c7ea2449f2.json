@@ -1,0 +1,178 @@
+{
+  "trace_id": "2fac45c7ea2449f2",
+  "created_at": "2026-11-13T12:35:24.423103+00:00",
+  "query": "When is the next episode of the series that Steven the Sword Fighter is a part of being released?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5333.04
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5333.74
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13097.19
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 10.87,
+      "bm25_ms": 31.93,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5286.14
+      },
+      "hits": [
+        {
+          "id": "15abb5e49dced915:L0:000019",
+          "score": -4.1051554679870605,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -4.1051554679870605
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000142",
+          "score": -4.910339832305908,
+          "fused": 0.4313871398739734,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 10,
+          "rerank": -4.910339832305908
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000153",
+          "score": -4.991985321044922,
+          "fused": 0.5868179669572454,
+          "dense_rank": 6,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -4.991985321044922
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000045",
+          "score": -5.580582618713379,
+          "fused": 0.2854203956606204,
+          "dense_rank": 5,
+          "bm25_rank": 31,
+          "fused_rank": 16,
+          "rerank": -5.580582618713379
+        },
+        {
+          "id": "dd498e0082847164:L0:000075",
+          "score": -5.725073337554932,
+          "fused": 0.621328380139012,
+          "dense_rank": 3,
+          "bm25_rank": 9,
+          "fused_rank": 2,
+          "rerank": -5.725073337554932
+        }
+      ],
+      "latency_ms": 5332.99
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 396,
+      "latency_ms": 0.67
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 7763.37
+    }
+  },
+  "retrieved_ids": [
+    "15abb5e49dced915:L0:000019",
+    "cc1bdb3bf430bd0d:L0:000142",
+    "73dfa6a9bfcab050:L0:000153",
+    "e182527d2b1ecac3:L0:000045",
+    "dd498e0082847164:L0:000075"
+  ],
+  "filtered_ids": [
+    "15abb5e49dced915:L0:000019",
+    "cc1bdb3bf430bd0d:L0:000142",
+    "73dfa6a9bfcab050:L0:000153",
+    "e182527d2b1ecac3:L0:000045",
+    "dd498e0082847164:L0:000075"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:35:24.424114+00:00",
+      "call_id": "7ee7cbb1d70e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7dee1d6798d97840",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2fac45c7ea2449f2"
+    },
+    {
+      "ts": "2026-11-13T12:35:37.514446+00:00",
+      "call_id": "cd6607b30d18",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0e51995a7d77d5a8",
+      "prompt_tokens": 975,
+      "completion_tokens": 45,
+      "latency_ms": 7762.31,
+      "server_ms": 7756.28,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2fac45c7ea2449f2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 975,
+    "completion_tokens": 45,
+    "total_ms": 13099.69
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

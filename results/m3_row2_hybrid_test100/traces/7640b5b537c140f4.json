@@ -1,0 +1,164 @@
+{
+  "trace_id": "7640b5b537c140f4",
+  "created_at": "2026-11-13T10:50:17.441146+00:00",
+  "query": "Are the films Gasland from 2010 and Pumping Iron from 1977 both documentaries?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.32
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.39
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10105.4
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.16,
+      "bm25_ms": 8.68,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "90976421f3f2bea2:L0:000095",
+          "score": 0.7673221555516244,
+          "fused": 0.7673221555516244,
+          "dense_rank": 14,
+          "bm25_rank": 2
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000085",
+          "score": 0.7408528591054566,
+          "fused": 0.7408528591054566,
+          "dense_rank": 1,
+          "bm25_rank": 8
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000178",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000061",
+          "score": 0.6514577169476201,
+          "fused": 0.6514577169476201,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000061",
+          "score": 0.5623574409566862,
+          "fused": 0.5623574409566862,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 12.27
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 402,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10092.9
+    }
+  },
+  "retrieved_ids": [
+    "90976421f3f2bea2:L0:000095",
+    "cb96563b0747a6ba:L0:000085",
+    "bc1dba3471045f02:L0:000178",
+    "cc2399aca11eb631:L0:000061",
+    "c8fd2b3ea47eb07f:L0:000061"
+  ],
+  "filtered_ids": [
+    "90976421f3f2bea2:L0:000095",
+    "cb96563b0747a6ba:L0:000085",
+    "bc1dba3471045f02:L0:000178",
+    "cc2399aca11eb631:L0:000061",
+    "c8fd2b3ea47eb07f:L0:000061"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:50:17.442147+00:00",
+      "call_id": "3b39320c3515",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a474f1cfc41d956c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7640b5b537c140f4"
+    },
+    {
+      "ts": "2026-11-13T10:50:27.544971+00:00",
+      "call_id": "6262eecd1c43",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4f1726e5e12d807b",
+      "prompt_tokens": 1021,
+      "completion_tokens": 65,
+      "latency_ms": 10091.9,
+      "server_ms": 10071.74,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "7640b5b537c140f4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1021,
+    "completion_tokens": 65,
+    "total_ms": 10107.08
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

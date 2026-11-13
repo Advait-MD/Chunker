@@ -1,0 +1,185 @@
+{
+  "trace_id": "dbe4e09024f54799",
+  "created_at": "2026-11-13T13:35:06.695164+00:00",
+  "query": "Of the following descriptions, which best describe Meek?\n\nOptions:\n(A) nosy and cautious\n(B) confident and handsome\n(C) funny and charismatic\n(D) clumsy and inexperienced\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17288.45
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17288.59
+    },
+    {
+      "state": "DONE",
+      "t_ms": 41983.0
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.68,
+      "bm25_ms": 20.79,
+      "n_candidates": {
+        "dense": 18,
+        "bm25": 14
+      },
+      "n_fused": 18,
+      "rerank": {
+        "n": 18,
+        "n_computed": 18,
+        "latency_ms": 17260.37
+      },
+      "hits": [
+        {
+          "id": "d0e00aef59ec5db1:L0:000001",
+          "score": -2.9853620529174805,
+          "fused": 0.5397086031018424,
+          "dense_rank": 15,
+          "bm25_rank": 12,
+          "fused_rank": 12,
+          "rerank": -2.9853620529174805
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000011",
+          "score": -3.095460891723633,
+          "fused": 0.7756507418746358,
+          "dense_rank": 10,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": -3.095460891723633
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000010",
+          "score": -3.30155873298645,
+          "fused": 0.8363005495717861,
+          "dense_rank": 2,
+          "bm25_rank": 5,
+          "fused_rank": 1,
+          "rerank": -3.30155873298645
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000002",
+          "score": -3.4505600929260254,
+          "fused": 0.7894362512750662,
+          "dense_rank": 7,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -3.4505600929260254
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000003",
+          "score": -3.700307846069336,
+          "fused": 0.7897956672220369,
+          "dense_rank": 14,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": -3.700307846069336
+        }
+      ],
+      "latency_ms": 17288.4
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1961,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24694.09
+    }
+  },
+  "retrieved_ids": [
+    "d0e00aef59ec5db1:L0:000001",
+    "d0e00aef59ec5db1:L0:000011",
+    "d0e00aef59ec5db1:L0:000010",
+    "d0e00aef59ec5db1:L0:000002",
+    "d0e00aef59ec5db1:L0:000003"
+  ],
+  "filtered_ids": [
+    "d0e00aef59ec5db1:L0:000001",
+    "d0e00aef59ec5db1:L0:000011",
+    "d0e00aef59ec5db1:L0:000010",
+    "d0e00aef59ec5db1:L0:000002",
+    "d0e00aef59ec5db1:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:35:06.697177+00:00",
+      "call_id": "92d5007acaad",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5926ff532be4df41",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "dbe4e09024f54799"
+    },
+    {
+      "ts": "2026-11-13T13:35:48.665749+00:00",
+      "call_id": "02f979ba0409",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "93e13ef19537b358",
+      "prompt_tokens": 2566,
+      "completion_tokens": 93,
+      "latency_ms": 24691.95,
+      "server_ms": 24641.19,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "dbe4e09024f54799"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2566,
+    "completion_tokens": 93,
+    "total_ms": 41986.26
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "(D) clumsy and inexperienced.",
+        "Meek is described as clumsy, having dents in his space armor and being unsure about using stilts in low gravity.",
+        "He is also inexperienced, having only learned piloting from books and never left Earth until recently."
+      ]
+    }
+  }
+}

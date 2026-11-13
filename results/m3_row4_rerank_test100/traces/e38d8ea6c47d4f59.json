@@ -1,0 +1,181 @@
+{
+  "trace_id": "e38d8ea6c47d4f59",
+  "created_at": "2026-11-13T12:29:54.730702+00:00",
+  "query": "What languages did they use?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11977.7
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11979.13
+    },
+    {
+      "state": "DONE",
+      "t_ms": 36413.34
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.25,
+      "bm25_ms": 2.59,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 13
+      },
+      "n_fused": 17,
+      "rerank": {
+        "n": 17,
+        "n_computed": 17,
+        "latency_ms": 11968.17
+      },
+      "hits": [
+        {
+          "id": "0b0ebc0d961209ab:L0:000006",
+          "score": -0.23606610298156738,
+          "fused": 0.982065156274087,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": -0.23606610298156738
+        },
+        {
+          "id": "0b0ebc0d961209ab:L0:000002",
+          "score": -1.7055999040603638,
+          "fused": 0.7924011300215901,
+          "dense_rank": 9,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -1.7055999040603638
+        },
+        {
+          "id": "0b0ebc0d961209ab:L0:000010",
+          "score": -2.4070050716400146,
+          "fused": 0.5720055946018378,
+          "dense_rank": 12,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -2.4070050716400146
+        },
+        {
+          "id": "0b0ebc0d961209ab:L0:000011",
+          "score": -2.5018177032470703,
+          "fused": 0.4955336471611492,
+          "dense_rank": 3,
+          "bm25_rank": 7,
+          "fused_rank": 6,
+          "rerank": -2.5018177032470703
+        },
+        {
+          "id": "0b0ebc0d961209ab:L0:000001",
+          "score": -3.2653045654296875,
+          "fused": 0.9423414412498148,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": -3.2653045654296875
+        }
+      ],
+      "latency_ms": 11977.65
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1671,
+      "latency_ms": 1.38
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24434.09
+    }
+  },
+  "retrieved_ids": [
+    "0b0ebc0d961209ab:L0:000006",
+    "0b0ebc0d961209ab:L0:000002",
+    "0b0ebc0d961209ab:L0:000010",
+    "0b0ebc0d961209ab:L0:000011",
+    "0b0ebc0d961209ab:L0:000001"
+  ],
+  "filtered_ids": [
+    "0b0ebc0d961209ab:L0:000006",
+    "0b0ebc0d961209ab:L0:000002",
+    "0b0ebc0d961209ab:L0:000010",
+    "0b0ebc0d961209ab:L0:000011",
+    "0b0ebc0d961209ab:L0:000001"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:29:54.730702+00:00",
+      "call_id": "ccfc53ad5b12",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3e11dd12cda577a4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e38d8ea6c47d4f59"
+    },
+    {
+      "ts": "2026-11-13T12:30:31.141198+00:00",
+      "call_id": "bec205b83831",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0ee6c603f675421c",
+      "prompt_tokens": 2410,
+      "completion_tokens": 100,
+      "latency_ms": 24432.72,
+      "server_ms": 24402.86,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "e38d8ea6c47d4f59"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2410,
+    "completion_tokens": 100,
+    "total_ms": 36415.48
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "They used Spanish, French, Portuguese, Mandarin Chinese (zh), Croatian (hr), Czech (cs), French (fr), Polish (pl), Portuguese (pt), Swedish (sv), and English for pretraining."
+      ]
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "trace_id": "ffdaac9257914b78",
+  "created_at": "2026-11-13T12:47:47.434718+00:00",
+  "query": "What publisher was formed from the owner of the The Daily News?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4633.35
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4634.61
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13823.3
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.07,
+      "bm25_ms": 11.97,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4612.29
+      },
+      "hits": [
+        {
+          "id": "ce290c1e5d5c6641:L0:000110",
+          "score": 0.6984813809394836,
+          "fused": 0.8321172866384672,
+          "dense_rank": 10,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.6984813809394836
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000041",
+          "score": -4.210487365722656,
+          "fused": 0.39912423230901733,
+          "dense_rank": 33,
+          "bm25_rank": 11,
+          "fused_rank": 13,
+          "rerank": -4.210487365722656
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000078",
+          "score": -4.649012088775635,
+          "fused": 0.29602499004080135,
+          "dense_rank": 23,
+          "bm25_rank": 16,
+          "fused_rank": 17,
+          "rerank": -4.649012088775635
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000174",
+          "score": -5.349146842956543,
+          "fused": 0.21367753172430953,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 20,
+          "rerank": -5.349146842956543
+        },
+        {
+          "id": "ce57fdde2baaba9c:L0:000074",
+          "score": -5.472964286804199,
+          "fused": 0.31802254980880273,
+          "dense_rank": 32,
+          "bm25_rank": 15,
+          "fused_rank": 15,
+          "rerank": -5.472964286804199
+        }
+      ],
+      "latency_ms": 4633.28
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 478,
+      "latency_ms": 1.22
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9188.59
+    }
+  },
+  "retrieved_ids": [
+    "ce290c1e5d5c6641:L0:000110",
+    "6bddce8aaad42fea:L0:000041",
+    "73dfa6a9bfcab050:L0:000078",
+    "73dfa6a9bfcab050:L0:000174",
+    "ce57fdde2baaba9c:L0:000074"
+  ],
+  "filtered_ids": [
+    "ce290c1e5d5c6641:L0:000110",
+    "6bddce8aaad42fea:L0:000041",
+    "73dfa6a9bfcab050:L0:000078",
+    "73dfa6a9bfcab050:L0:000174",
+    "ce57fdde2baaba9c:L0:000074"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:47:47.434718+00:00",
+      "call_id": "a1076057e066",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "75ea5a36f08aab30",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ffdaac9257914b78"
+    },
+    {
+      "ts": "2026-11-13T12:48:01.251996+00:00",
+      "call_id": "b20cca657d5e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "112f116ea2edee3d",
+      "prompt_tokens": 1063,
+      "completion_tokens": 45,
+      "latency_ms": 9187.46,
+      "server_ms": 9161.96,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ffdaac9257914b78"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1063,
+    "completion_tokens": 45,
+    "total_ms": 13824.96
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "trace_id": "2208e74b86c54197",
+  "created_at": "2026-11-13T13:30:30.878025+00:00",
+  "query": "Which is not true?\n\nOptions:\n(A) Some ballparks are subsidized by taxpayers\n(B) People get more affordable tickets because the ballpark is subsidized\n(C) Some ballparks are built in urban locations\n(D) Some team owners pay to build their own ballparks\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6420.82
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6421.17
+    },
+    {
+      "state": "DONE",
+      "t_ms": 30310.05
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.83,
+      "bm25_ms": 25.99,
+      "n_candidates": {
+        "dense": 7,
+        "bm25": 7
+      },
+      "n_fused": 7,
+      "rerank": {
+        "n": 7,
+        "n_computed": 7,
+        "latency_ms": 6387.96
+      },
+      "hits": [
+        {
+          "id": "dedb8964eb5aff3f:L0:000003",
+          "score": 1.402416467666626,
+          "fused": 0.7487911728563552,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.402416467666626
+        },
+        {
+          "id": "dedb8964eb5aff3f:L0:000005",
+          "score": -1.3456315994262695,
+          "fused": 0.49919892147850414,
+          "dense_rank": 4,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": -1.3456315994262695
+        },
+        {
+          "id": "dedb8964eb5aff3f:L0:000006",
+          "score": -1.7641513347625732,
+          "fused": 0.9427108707005325,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.7641513347625732
+        },
+        {
+          "id": "dedb8964eb5aff3f:L0:000004",
+          "score": -2.155728340148926,
+          "fused": 0.5075211877012242,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 3,
+          "rerank": -2.155728340148926
+        },
+        {
+          "id": "dedb8964eb5aff3f:L0:000000",
+          "score": -2.8828930854797363,
+          "fused": 0.3736089115219825,
+          "dense_rank": 7,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": -2.8828930854797363
+        }
+      ],
+      "latency_ms": 6420.77
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1800,
+      "latency_ms": 0.3
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23888.72
+    }
+  },
+  "retrieved_ids": [
+    "dedb8964eb5aff3f:L0:000003",
+    "dedb8964eb5aff3f:L0:000005",
+    "dedb8964eb5aff3f:L0:000006",
+    "dedb8964eb5aff3f:L0:000004",
+    "dedb8964eb5aff3f:L0:000000"
+  ],
+  "filtered_ids": [
+    "dedb8964eb5aff3f:L0:000003",
+    "dedb8964eb5aff3f:L0:000005",
+    "dedb8964eb5aff3f:L0:000006",
+    "dedb8964eb5aff3f:L0:000004",
+    "dedb8964eb5aff3f:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:30:30.883844+00:00",
+      "call_id": "385a14c8b6ef",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c866d7bf3f79ed7a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2208e74b86c54197"
+    },
+    {
+      "ts": "2026-11-13T13:31:01.191148+00:00",
+      "call_id": "0fd0aa6396e3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "622879623b5796d8",
+      "prompt_tokens": 2459,
+      "completion_tokens": 76,
+      "latency_ms": 23886.9,
+      "server_ms": 23854.81,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2208e74b86c54197"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2459,
+    "completion_tokens": 76,
+    "total_ms": 30312.05
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "(B) People get more affordable tickets because the ballpark is subsidized.",
+        "This is not true."
+      ]
+    }
+  }
+}

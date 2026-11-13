@@ -1,0 +1,166 @@
+{
+  "trace_id": "b6fe4b932dd648ee",
+  "created_at": "2026-11-13T09:41:24.637337+00:00",
+  "query": "Who was the child of the 28th U.S. president?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.1
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.16
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10876.65
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.46,
+      "bm25_ms": 10.31,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ad11b6e85f908fb3:L0:000129",
+          "score": 0.8101945078854677,
+          "fused": 0.8101945078854677,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000075",
+          "score": 0.7161253041656778,
+          "fused": 0.7161253041656778,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000190",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000004",
+          "score": 0.6036149568493334,
+          "fused": 0.6036149568493334,
+          "dense_rank": 1,
+          "bm25_rank": 9
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000066",
+          "score": 0.568099344209954,
+          "fused": 0.568099344209954,
+          "dense_rank": 9,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 15.06
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 444,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10861.39
+    }
+  },
+  "retrieved_ids": [
+    "ad11b6e85f908fb3:L0:000129",
+    "6683bfc7dec06e2a:L0:000075",
+    "f109b032e24ab27a:L0:000190",
+    "6683bfc7dec06e2a:L0:000004",
+    "cc1bdb3bf430bd0d:L0:000066"
+  ],
+  "filtered_ids": [
+    "ad11b6e85f908fb3:L0:000129",
+    "6683bfc7dec06e2a:L0:000075",
+    "f109b032e24ab27a:L0:000190",
+    "6683bfc7dec06e2a:L0:000004",
+    "cc1bdb3bf430bd0d:L0:000066"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:41:24.640573+00:00",
+      "call_id": "eecc4aabcf72",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "db46b662f9ac9f86",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b6fe4b932dd648ee"
+    },
+    {
+      "ts": "2026-11-13T09:41:35.511871+00:00",
+      "call_id": "15b857825084",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b5849f85e5f1be5d",
+      "prompt_tokens": 1058,
+      "completion_tokens": 61,
+      "latency_ms": 10859.53,
+      "server_ms": 10834.04,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "b6fe4b932dd648ee"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1058,
+    "completion_tokens": 61,
+    "total_ms": 10878.82
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2,
+        5
+      ],
+      "uncited_sentences": [
+        "The 28th U.S. president, Woodrow Wilson, had no children mentioned in the passages."
+      ]
+    }
+  }
+}

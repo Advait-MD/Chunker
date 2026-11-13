@@ -1,0 +1,166 @@
+{
+  "trace_id": "36daef49afb34521",
+  "created_at": "2026-11-13T11:15:56.712120+00:00",
+  "query": "Who lived longer, Neil Lloyd Macky or Domenico Cosselli?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.98
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8.04
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17158.57
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.96,
+      "bm25_ms": 4.68,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000145",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "460e441179bec402:L0:000038",
+          "score": 0.6904510612363594,
+          "fused": 0.6904510612363594,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000193",
+          "score": 0.503284757387478,
+          "fused": 0.503284757387478,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000069",
+          "score": 0.4878333101886748,
+          "fused": 0.4878333101886748,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "0eac870d43736f51:L0:000059",
+          "score": 0.3686766992183892,
+          "fused": 0.3686766992183892,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 7.94
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 690,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17150.39
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000145",
+    "460e441179bec402:L0:000038",
+    "6af2db6cb86d77e2:L0:000193",
+    "6af2db6cb86d77e2:L0:000069",
+    "0eac870d43736f51:L0:000059"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000145",
+    "460e441179bec402:L0:000038",
+    "6af2db6cb86d77e2:L0:000193",
+    "6af2db6cb86d77e2:L0:000069",
+    "0eac870d43736f51:L0:000059"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:15:56.714613+00:00",
+      "call_id": "f341499f0c62",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7878f17b114874c1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "36daef49afb34521"
+    },
+    {
+      "ts": "2026-11-13T11:16:13.870159+00:00",
+      "call_id": "825338092e1b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "073bd69a50ad130e",
+      "prompt_tokens": 1408,
+      "completion_tokens": 97,
+      "latency_ms": 17149.43,
+      "server_ms": 17120.8,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "36daef49afb34521"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1408,
+    "completion_tokens": 97,
+    "total_ms": 17160.86
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Neil Lloyd Macky died in 1981 at the age of 90, while Domenico Cosselli died in 1855 at the age of 54."
+      ]
+    }
+  }
+}

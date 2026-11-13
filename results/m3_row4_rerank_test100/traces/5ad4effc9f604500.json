@@ -1,0 +1,180 @@
+{
+  "trace_id": "5ad4effc9f604500",
+  "created_at": "2026-11-13T13:25:10.143027+00:00",
+  "query": "Why does Kerry Blane leave retirement?\n\nOptions:\n(A) He runs out of money in his pension\n(B) Splinter Wood asks for him to be his mentor\n(C) He misses flying spacecraft too much to quit\n(D) He is called back to fly spacecraft because he is one of the best pilots\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17854.56
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17854.71
+    },
+    {
+      "state": "DONE",
+      "t_ms": 38604.77
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.53,
+      "bm25_ms": 37.09,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 17
+      },
+      "n_fused": 17,
+      "rerank": {
+        "n": 17,
+        "n_computed": 17,
+        "latency_ms": 17803.32
+      },
+      "hits": [
+        {
+          "id": "b206449a502b4d8d:L0:000002",
+          "score": 1.3410652875900269,
+          "fused": 0.5946479057644436,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.3410652875900269
+        },
+        {
+          "id": "b206449a502b4d8d:L0:000003",
+          "score": -0.7020041346549988,
+          "fused": 0.5444259377462318,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -0.7020041346549988
+        },
+        {
+          "id": "b206449a502b4d8d:L0:000001",
+          "score": -1.092166781425476,
+          "fused": 0.9568115712173011,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.092166781425476
+        },
+        {
+          "id": "b206449a502b4d8d:L0:000007",
+          "score": -1.1938198804855347,
+          "fused": 0.3185366386274292,
+          "dense_rank": 14,
+          "bm25_rank": 5,
+          "fused_rank": 8,
+          "rerank": -1.1938198804855347
+        },
+        {
+          "id": "b206449a502b4d8d:L0:000006",
+          "score": -1.1970059871673584,
+          "fused": 0.28003869801796755,
+          "dense_rank": 5,
+          "bm25_rank": 12,
+          "fused_rank": 10,
+          "rerank": -1.1970059871673584
+        }
+      ],
+      "latency_ms": 17854.5
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1917,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20749.97
+    }
+  },
+  "retrieved_ids": [
+    "b206449a502b4d8d:L0:000002",
+    "b206449a502b4d8d:L0:000003",
+    "b206449a502b4d8d:L0:000001",
+    "b206449a502b4d8d:L0:000007",
+    "b206449a502b4d8d:L0:000006"
+  ],
+  "filtered_ids": [
+    "b206449a502b4d8d:L0:000002",
+    "b206449a502b4d8d:L0:000003",
+    "b206449a502b4d8d:L0:000001",
+    "b206449a502b4d8d:L0:000007",
+    "b206449a502b4d8d:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:25:10.148447+00:00",
+      "call_id": "43ced799fb51",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6d63613534e5c012",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5ad4effc9f604500"
+    },
+    {
+      "ts": "2026-11-13T13:25:48.734823+00:00",
+      "call_id": "69d7f97ea695",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a6536a42f4b91db8",
+      "prompt_tokens": 2609,
+      "completion_tokens": 52,
+      "latency_ms": 20748.66,
+      "server_ms": 20714.79,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "5ad4effc9f604500"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2609,
+    "completion_tokens": 52,
+    "total_ms": 38606.03
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "(C) He misses flying spacecraft too much to quit."
+      ]
+    }
+  }
+}

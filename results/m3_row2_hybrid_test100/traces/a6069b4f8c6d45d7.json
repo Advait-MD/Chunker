@@ -1,0 +1,167 @@
+{
+  "trace_id": "a6069b4f8c6d45d7",
+  "created_at": "2026-11-13T11:28:15.916458+00:00",
+  "query": "What company did Steve Jobs acquire from George Lucas that revolutionized computer animation?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.51
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.54
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17427.72
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.83,
+      "bm25_ms": 5.52,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "17581cb533e90c48:L0:000605",
+          "score": 0.9870893051950494,
+          "fused": 0.9870893051950494,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "17581cb533e90c48:L0:000614",
+          "score": 0.6438291333517457,
+          "fused": 0.6438291333517457,
+          "dense_rank": 9,
+          "bm25_rank": 2
+        },
+        {
+          "id": "17581cb533e90c48:L0:000604",
+          "score": 0.5575793614033904,
+          "fused": 0.5575793614033904,
+          "dense_rank": 16,
+          "bm25_rank": 3
+        },
+        {
+          "id": "17581cb533e90c48:L0:000602",
+          "score": 0.5349908403724442,
+          "fused": 0.5349908403724442,
+          "dense_rank": 15,
+          "bm25_rank": 4
+        },
+        {
+          "id": "17581cb533e90c48:L0:000611",
+          "score": 0.5116180633217168,
+          "fused": 0.5116180633217168,
+          "dense_rank": 3,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 7.49
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1304,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17420.06
+    }
+  },
+  "retrieved_ids": [
+    "17581cb533e90c48:L0:000605",
+    "17581cb533e90c48:L0:000614",
+    "17581cb533e90c48:L0:000604",
+    "17581cb533e90c48:L0:000602",
+    "17581cb533e90c48:L0:000611"
+  ],
+  "filtered_ids": [
+    "17581cb533e90c48:L0:000605",
+    "17581cb533e90c48:L0:000614",
+    "17581cb533e90c48:L0:000604",
+    "17581cb533e90c48:L0:000602",
+    "17581cb533e90c48:L0:000611"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:28:15.917456+00:00",
+      "call_id": "3dd5a83b548a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b304a846c4557de9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a6069b4f8c6d45d7"
+    },
+    {
+      "ts": "2026-11-13T11:28:33.343004+00:00",
+      "call_id": "6e8d76dd477e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "aac200fd02253d70",
+      "prompt_tokens": 1841,
+      "completion_tokens": 79,
+      "latency_ms": 17419.22,
+      "server_ms": 17368.97,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a6069b4f8c6d45d7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1841,
+    "completion_tokens": 79,
+    "total_ms": 17430.17
+  },
+  "config_hash": "da9c6a093c0d",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4,
+        2,
+        3,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

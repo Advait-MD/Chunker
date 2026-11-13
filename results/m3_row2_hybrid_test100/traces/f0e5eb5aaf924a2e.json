@@ -1,0 +1,163 @@
+{
+  "trace_id": "f0e5eb5aaf924a2e",
+  "created_at": "2026-11-13T09:47:36.681245+00:00",
+  "query": "Who is the CEO of FleetBoston Financial's purchaser?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.58
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.65
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 9779.15
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.98,
+      "bm25_ms": 9.26,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "15abb5e49dced915:L0:000036",
+          "score": 0.8247638940921248,
+          "fused": 0.8247638940921248,
+          "dense_rank": 19,
+          "bm25_rank": 1
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000099",
+          "score": 0.6294590408862716,
+          "fused": 0.6294590408862716,
+          "dense_rank": 21,
+          "bm25_rank": 3
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000129",
+          "score": 0.5729417472682622,
+          "fused": 0.5729417472682622,
+          "dense_rank": 25,
+          "bm25_rank": 4
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000018",
+          "score": 0.5342993116428648,
+          "fused": 0.5342993116428648,
+          "dense_rank": 13,
+          "bm25_rank": 8
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000057",
+          "score": 0.5298696746203871,
+          "fused": 0.5298696746203871,
+          "dense_rank": null,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 12.54
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 375,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9766.42
+    }
+  },
+  "retrieved_ids": [
+    "15abb5e49dced915:L0:000036",
+    "5a1a5bbda9db013e:L0:000099",
+    "66f5caec1369ebaf:L0:000129",
+    "5a1a5bbda9db013e:L0:000018",
+    "e182527d2b1ecac3:L0:000057"
+  ],
+  "filtered_ids": [
+    "15abb5e49dced915:L0:000036",
+    "5a1a5bbda9db013e:L0:000099",
+    "66f5caec1369ebaf:L0:000129",
+    "5a1a5bbda9db013e:L0:000018",
+    "e182527d2b1ecac3:L0:000057"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:47:36.682245+00:00",
+      "call_id": "2d5dd36b7670",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "be41468c14c6e58b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f0e5eb5aaf924a2e"
+    },
+    {
+      "ts": "2026-11-13T09:47:46.459616+00:00",
+      "call_id": "7a80ebfcf05b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7b0227ded1c0b172",
+      "prompt_tokens": 962,
+      "completion_tokens": 63,
+      "latency_ms": 9765.46,
+      "server_ms": 9740.09,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f0e5eb5aaf924a2e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 962,
+    "completion_tokens": 63,
+    "total_ms": 9780.2
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The CEO of Bank of America, which purchased FleetBoston Financial, is not explicitly mentioned in the provided passages."
+      ]
+    }
+  }
+}

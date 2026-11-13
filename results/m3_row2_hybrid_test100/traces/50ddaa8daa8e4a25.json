@@ -1,0 +1,163 @@
+{
+  "trace_id": "50ddaa8daa8e4a25",
+  "created_at": "2026-11-13T11:08:39.897711+00:00",
+  "query": "Where was the place of death of Thomas Sheridan (Soldier)'s father?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.08
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.14
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 9652.01
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.25,
+      "bm25_ms": 5.52,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "317e12ccd417c0d7:L0:000035",
+          "score": 0.9490077046328269,
+          "fused": 0.9490077046328269,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000032",
+          "score": 0.3809839580655345,
+          "fused": 0.3809839580655345,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "460e441179bec402:L0:000127",
+          "score": 0.3809839580655345,
+          "fused": 0.3809839580655345,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "abe982d210232c3f:L0:000110",
+          "score": 0.3582487748860504,
+          "fused": 0.3582487748860504,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000181",
+          "score": 0.3488260757915984,
+          "fused": 0.3488260757915984,
+          "dense_rank": 3,
+          "bm25_rank": 20
+        }
+      ],
+      "latency_ms": 9.04
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 271,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9642.75
+    }
+  },
+  "retrieved_ids": [
+    "317e12ccd417c0d7:L0:000035",
+    "317e12ccd417c0d7:L0:000032",
+    "460e441179bec402:L0:000127",
+    "abe982d210232c3f:L0:000110",
+    "53c7288bdcd3837a:L0:000181"
+  ],
+  "filtered_ids": [
+    "317e12ccd417c0d7:L0:000035",
+    "317e12ccd417c0d7:L0:000032",
+    "460e441179bec402:L0:000127",
+    "abe982d210232c3f:L0:000110",
+    "53c7288bdcd3837a:L0:000181"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:08:39.899720+00:00",
+      "call_id": "8da619d858db",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "258dd95faddc8161",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "50ddaa8daa8e4a25"
+    },
+    {
+      "ts": "2026-11-13T11:08:49.549310+00:00",
+      "call_id": "be5b09e42ff0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "df76f770027e457a",
+      "prompt_tokens": 866,
+      "completion_tokens": 61,
+      "latency_ms": 9641.8,
+      "server_ms": 9618.55,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "50ddaa8daa8e4a25"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 866,
+    "completion_tokens": 61,
+    "total_ms": 9653.17
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

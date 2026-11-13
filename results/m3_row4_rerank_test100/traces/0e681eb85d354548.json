@@ -1,0 +1,181 @@
+{
+  "trace_id": "0e681eb85d354548",
+  "created_at": "2026-11-13T11:59:21.516708+00:00",
+  "query": "Do they compare to non-lexicon methods?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15023.14
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15023.33
+    },
+    {
+      "state": "DONE",
+      "t_ms": 38689.29
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 11.49,
+      "bm25_ms": 26.97,
+      "n_candidates": {
+        "dense": 13,
+        "bm25": 10
+      },
+      "n_fused": 13,
+      "rerank": {
+        "n": 13,
+        "n_computed": 13,
+        "latency_ms": 14974.53
+      },
+      "hits": [
+        {
+          "id": "d4a3708bcec8b7c9:L0:000008",
+          "score": -2.5742053985595703,
+          "fused": 0.6113319532915524,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -2.5742053985595703
+        },
+        {
+          "id": "d4a3708bcec8b7c9:L0:000004",
+          "score": -3.988399028778076,
+          "fused": 0.5134911596840747,
+          "dense_rank": 6,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -3.988399028778076
+        },
+        {
+          "id": "d4a3708bcec8b7c9:L0:000002",
+          "score": -4.080083847045898,
+          "fused": 0.326142641819838,
+          "dense_rank": 7,
+          "bm25_rank": 9,
+          "fused_rank": 9,
+          "rerank": -4.080083847045898
+        },
+        {
+          "id": "d4a3708bcec8b7c9:L0:000000",
+          "score": -4.2528791427612305,
+          "fused": 0.5258638495112594,
+          "dense_rank": 5,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -4.2528791427612305
+        },
+        {
+          "id": "d4a3708bcec8b7c9:L0:000003",
+          "score": -4.73728609085083,
+          "fused": 0.9548690972924025,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -4.73728609085083
+        }
+      ],
+      "latency_ms": 15023.04
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1088,
+      "latency_ms": 0.14
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23665.16
+    }
+  },
+  "retrieved_ids": [
+    "d4a3708bcec8b7c9:L0:000008",
+    "d4a3708bcec8b7c9:L0:000004",
+    "d4a3708bcec8b7c9:L0:000002",
+    "d4a3708bcec8b7c9:L0:000000",
+    "d4a3708bcec8b7c9:L0:000003"
+  ],
+  "filtered_ids": [
+    "d4a3708bcec8b7c9:L0:000008",
+    "d4a3708bcec8b7c9:L0:000004",
+    "d4a3708bcec8b7c9:L0:000002",
+    "d4a3708bcec8b7c9:L0:000000",
+    "d4a3708bcec8b7c9:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:59:21.521706+00:00",
+      "call_id": "e836f834cda2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "821f70b9065686b2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0e681eb85d354548"
+    },
+    {
+      "ts": "2026-11-13T12:00:00.202746+00:00",
+      "call_id": "7b1a8ff2e1e9",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ca449b11afc0fea1",
+      "prompt_tokens": 1749,
+      "completion_tokens": 66,
+      "latency_ms": 23661.87,
+      "server_ms": 23614.94,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0e681eb85d354548"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1749,
+    "completion_tokens": 66,
+    "total_ms": 38692.69
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Yes, they compare to non-lexicon methods."
+      ]
+    }
+  }
+}

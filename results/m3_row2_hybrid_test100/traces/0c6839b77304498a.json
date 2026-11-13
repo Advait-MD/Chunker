@@ -1,0 +1,164 @@
+{
+  "trace_id": "0c6839b77304498a",
+  "created_at": "2026-11-13T11:11:44.492270+00:00",
+  "query": "Which film whose director is younger, Return Of The Hero or Home In Indiana?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.83
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.89
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12710.71
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.44,
+      "bm25_ms": 6.11,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000168",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "460e441179bec402:L0:000116",
+          "score": 0.6412410531442629,
+          "fused": 0.6412410531442629,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "99628090500247e3:L0:000091",
+          "score": 0.4920522823187091,
+          "fused": 0.4920522823187091,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "460e441179bec402:L0:000041",
+          "score": 0.40771767435456086,
+          "fused": 0.40771767435456086,
+          "dense_rank": 1,
+          "bm25_rank": 18
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000088",
+          "score": 0.3043437200141413,
+          "fused": 0.3043437200141413,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 9.8
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 370,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12700.7
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000168",
+    "460e441179bec402:L0:000116",
+    "99628090500247e3:L0:000091",
+    "460e441179bec402:L0:000041",
+    "6af2db6cb86d77e2:L0:000088"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000168",
+    "460e441179bec402:L0:000116",
+    "99628090500247e3:L0:000091",
+    "460e441179bec402:L0:000041",
+    "6af2db6cb86d77e2:L0:000088"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:11:44.493702+00:00",
+      "call_id": "870fa5a82b1b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cfbeb3d232ee5f61",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0c6839b77304498a"
+    },
+    {
+      "ts": "2026-11-13T11:11:57.201699+00:00",
+      "call_id": "9d353de22e93",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "53ae4a7ecff9cac4",
+      "prompt_tokens": 980,
+      "completion_tokens": 92,
+      "latency_ms": 12699.68,
+      "server_ms": 12666.35,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0c6839b77304498a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 980,
+    "completion_tokens": 92,
+    "total_ms": 12711.97
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

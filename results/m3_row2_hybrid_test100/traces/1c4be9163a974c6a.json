@@ -1,0 +1,166 @@
+{
+  "trace_id": "1c4be9163a974c6a",
+  "created_at": "2026-11-13T11:25:33.297152+00:00",
+  "query": "Who is the son of Odysseus and Penelope who searches for his father?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.42
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.62
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25600.99
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.47,
+      "bm25_ms": 6.61,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "f9add743188fc69e:L0:000631",
+          "score": 0.8116306586033872,
+          "fused": 0.8116306586033872,
+          "dense_rank": 6,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f9add743188fc69e:L0:000647",
+          "score": 0.7417731090481097,
+          "fused": 0.7417731090481097,
+          "dense_rank": 5,
+          "bm25_rank": 7
+        },
+        {
+          "id": "f9add743188fc69e:L0:000079",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "f9add743188fc69e:L0:000011",
+          "score": 0.6150380325869218,
+          "fused": 0.6150380325869218,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f9add743188fc69e:L0:000635",
+          "score": 0.6080644174356712,
+          "fused": 0.6080644174356712,
+          "dense_rank": 26,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 11.38
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1930,
+      "latency_ms": 0.18
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25589.19
+    }
+  },
+  "retrieved_ids": [
+    "f9add743188fc69e:L0:000631",
+    "f9add743188fc69e:L0:000647",
+    "f9add743188fc69e:L0:000079",
+    "f9add743188fc69e:L0:000011",
+    "f9add743188fc69e:L0:000635"
+  ],
+  "filtered_ids": [
+    "f9add743188fc69e:L0:000631",
+    "f9add743188fc69e:L0:000647",
+    "f9add743188fc69e:L0:000079",
+    "f9add743188fc69e:L0:000011",
+    "f9add743188fc69e:L0:000635"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:25:33.298152+00:00",
+      "call_id": "799739c94660",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d77747ad340d1c38",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1c4be9163a974c6a"
+    },
+    {
+      "ts": "2026-11-13T11:25:58.896795+00:00",
+      "call_id": "471eecd248d5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6859552867aafd4c",
+      "prompt_tokens": 2863,
+      "completion_tokens": 59,
+      "latency_ms": 25587.81,
+      "server_ms": 25546.82,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "1c4be9163a974c6a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2863,
+    "completion_tokens": 59,
+    "total_ms": 25602.47
+  },
+  "config_hash": "da9c6a093c0d",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        3,
+        4
+      ],
+      "uncited_sentences": [
+        "Telemachus is the son of Odysseus and Penelope who searches for his father."
+      ]
+    }
+  }
+}

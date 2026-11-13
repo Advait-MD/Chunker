@@ -1,0 +1,164 @@
+{
+  "trace_id": "697da6d138394d75",
+  "created_at": "2026-11-13T11:22:43.902057+00:00",
+  "query": "Who was born later, Narayana Kasturi or Sigismund Toduță?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.65
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.72
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23253.2
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.84,
+      "bm25_ms": 5.44,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "460e441179bec402:L0:000204",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "99628090500247e3:L0:000016",
+          "score": 0.5888064971667547,
+          "fused": 0.5888064971667547,
+          "dense_rank": 17,
+          "bm25_rank": 2
+        },
+        {
+          "id": "460e441179bec402:L0:000173",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "99628090500247e3:L0:000017",
+          "score": 0.29651090802326935,
+          "fused": 0.29651090802326935,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "abe982d210232c3f:L0:000100",
+          "score": 0.2528906875072675,
+          "fused": 0.2528906875072675,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 9.61
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1096,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23243.34
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000204",
+    "99628090500247e3:L0:000016",
+    "460e441179bec402:L0:000173",
+    "99628090500247e3:L0:000017",
+    "abe982d210232c3f:L0:000100"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000204",
+    "99628090500247e3:L0:000016",
+    "460e441179bec402:L0:000173",
+    "99628090500247e3:L0:000017",
+    "abe982d210232c3f:L0:000100"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:22:43.903057+00:00",
+      "call_id": "2dfd84317a1c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "df39e86d59ed06e2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "697da6d138394d75"
+    },
+    {
+      "ts": "2026-11-13T11:23:07.153909+00:00",
+      "call_id": "1a89db9e8daf",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e1cabfdcb34b3109",
+      "prompt_tokens": 1885,
+      "completion_tokens": 108,
+      "latency_ms": 23241.83,
+      "server_ms": 23213.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "697da6d138394d75"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1885,
+    "completion_tokens": 108,
+    "total_ms": 23254.59
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

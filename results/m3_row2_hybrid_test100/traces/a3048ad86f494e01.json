@@ -1,0 +1,163 @@
+{
+  "trace_id": "a3048ad86f494e01",
+  "created_at": "2026-11-13T10:17:56.773575+00:00",
+  "query": "Why did the Blonde Icicle melt?\n\nOptions:\n(A) She saw value where she didn't see it before.\n(B) She was so happy about how much money they would make.\n(C) She sang the theme for Puffy Products.\n(D) She stopped being angry about the floating bread.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 30.17
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 30.8
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23667.37
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.54,
+      "bm25_ms": 25.1,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 19
+      },
+      "n_fused": 19,
+      "hits": [
+        {
+          "id": "f3eb6c80c1c23120:L0:000002",
+          "score": 0.8226555532949366,
+          "fused": 0.8226555532949366,
+          "dense_rank": 14,
+          "bm25_rank": 1
+        },
+        {
+          "id": "f3eb6c80c1c23120:L0:000017",
+          "score": 0.7987104485551495,
+          "fused": 0.7987104485551495,
+          "dense_rank": 8,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f3eb6c80c1c23120:L0:000003",
+          "score": 0.6018258138524549,
+          "fused": 0.6018258138524549,
+          "dense_rank": 17,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f3eb6c80c1c23120:L0:000015",
+          "score": 0.5824546861968772,
+          "fused": 0.5824546861968772,
+          "dense_rank": 10,
+          "bm25_rank": 6
+        },
+        {
+          "id": "f3eb6c80c1c23120:L0:000000",
+          "score": 0.5678736326283592,
+          "fused": 0.5678736326283592,
+          "dense_rank": 16,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 30.13
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1928,
+      "latency_ms": 0.6
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23636.41
+    }
+  },
+  "retrieved_ids": [
+    "f3eb6c80c1c23120:L0:000002",
+    "f3eb6c80c1c23120:L0:000017",
+    "f3eb6c80c1c23120:L0:000003",
+    "f3eb6c80c1c23120:L0:000015",
+    "f3eb6c80c1c23120:L0:000000"
+  ],
+  "filtered_ids": [
+    "f3eb6c80c1c23120:L0:000002",
+    "f3eb6c80c1c23120:L0:000017",
+    "f3eb6c80c1c23120:L0:000003",
+    "f3eb6c80c1c23120:L0:000015",
+    "f3eb6c80c1c23120:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:17:56.775579+00:00",
+      "call_id": "c4235ee0e8c7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "13a432c7d6e7ae49",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a3048ad86f494e01"
+    },
+    {
+      "ts": "2026-11-13T10:18:20.440100+00:00",
+      "call_id": "8c2a418bac2d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5b5e840955d71472",
+      "prompt_tokens": 2653,
+      "completion_tokens": 55,
+      "latency_ms": 23634.83,
+      "server_ms": 23595.68,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a3048ad86f494e01"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2653,
+    "completion_tokens": 55,
+    "total_ms": 23669.39
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

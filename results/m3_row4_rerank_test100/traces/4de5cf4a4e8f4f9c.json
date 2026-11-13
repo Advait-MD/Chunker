@@ -1,0 +1,178 @@
+{
+  "trace_id": "4de5cf4a4e8f4f9c",
+  "created_at": "2026-11-13T13:25:48.754721+00:00",
+  "query": "What caused Blake to suspect where Sabrina was?\n\nOptions:\n(A) Many criminals had entered his mind before\n(B) He saw his office in disarray\n(C) He saw an embroidered handkerchief\n(D) Sabrina was a total stranger\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16852.15
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16852.7
+    },
+    {
+      "state": "DONE",
+      "t_ms": 36702.33
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.5,
+      "bm25_ms": 10.22,
+      "n_candidates": {
+        "dense": 18,
+        "bm25": 17
+      },
+      "n_fused": 18,
+      "rerank": {
+        "n": 18,
+        "n_computed": 18,
+        "latency_ms": 16836.39
+      },
+      "hits": [
+        {
+          "id": "e11049b9efecac12:L0:000014",
+          "score": 1.6181164979934692,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.6181164979934692
+        },
+        {
+          "id": "e11049b9efecac12:L0:000006",
+          "score": 0.18862801790237427,
+          "fused": 0.4957492945948965,
+          "dense_rank": 7,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.18862801790237427
+        },
+        {
+          "id": "e11049b9efecac12:L0:000015",
+          "score": 0.13394823670387268,
+          "fused": 0.742025585157873,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 0.13394823670387268
+        },
+        {
+          "id": "e11049b9efecac12:L0:000008",
+          "score": 0.004968305118381977,
+          "fused": 0.3207305342913436,
+          "dense_rank": 14,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": 0.004968305118381977
+        },
+        {
+          "id": "e11049b9efecac12:L0:000016",
+          "score": -0.24542519450187683,
+          "fused": 0.40352840856089334,
+          "dense_rank": 9,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -0.24542519450187683
+        }
+      ],
+      "latency_ms": 16852.11
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1931,
+      "latency_ms": 0.51
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19849.52
+    }
+  },
+  "retrieved_ids": [
+    "e11049b9efecac12:L0:000014",
+    "e11049b9efecac12:L0:000006",
+    "e11049b9efecac12:L0:000015",
+    "e11049b9efecac12:L0:000008",
+    "e11049b9efecac12:L0:000016"
+  ],
+  "filtered_ids": [
+    "e11049b9efecac12:L0:000014",
+    "e11049b9efecac12:L0:000006",
+    "e11049b9efecac12:L0:000015",
+    "e11049b9efecac12:L0:000008",
+    "e11049b9efecac12:L0:000016"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:25:48.754721+00:00",
+      "call_id": "240371e80327",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "deef2388111f5fb3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4de5cf4a4e8f4f9c"
+    },
+    {
+      "ts": "2026-11-13T13:26:25.453256+00:00",
+      "call_id": "f693ca0e63c2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f28a63f02f51760a",
+      "prompt_tokens": 2550,
+      "completion_tokens": 51,
+      "latency_ms": 19848.3,
+      "server_ms": 19817.08,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "4de5cf4a4e8f4f9c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2550,
+    "completion_tokens": 51,
+    "total_ms": 36703.38
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

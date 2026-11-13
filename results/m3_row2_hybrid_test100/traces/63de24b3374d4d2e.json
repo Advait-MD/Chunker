@@ -1,0 +1,163 @@
+{
+  "trace_id": "63de24b3374d4d2e",
+  "created_at": "2026-11-13T11:07:14.870982+00:00",
+  "query": "Who is Antoine-Charles Taschereau's paternal grandfather?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.05
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.98
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8.04
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13221.12
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.73,
+      "bm25_ms": 3.9,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000166",
+          "score": 0.8396879071479009,
+          "fused": 0.8396879071479009,
+          "dense_rank": 9,
+          "bm25_rank": 1
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000187",
+          "score": 0.7544800666323646,
+          "fused": 0.7544800666323646,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000016",
+          "score": 0.5836963409657445,
+          "fused": 0.5836963409657445,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "460e441179bec402:L0:000076",
+          "score": 0.4920643039861336,
+          "fused": 0.4920643039861336,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000113",
+          "score": 0.38214550566406563,
+          "fused": 0.38214550566406563,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 7.89
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 605,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13213.01
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000166",
+    "317e12ccd417c0d7:L0:000187",
+    "317e12ccd417c0d7:L0:000016",
+    "460e441179bec402:L0:000076",
+    "4a757779abfb4ba1:L0:000113"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000166",
+    "317e12ccd417c0d7:L0:000187",
+    "317e12ccd417c0d7:L0:000016",
+    "460e441179bec402:L0:000076",
+    "4a757779abfb4ba1:L0:000113"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:07:14.873312+00:00",
+      "call_id": "6f0df4c3a519",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "906636c796810dd4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "63de24b3374d4d2e"
+    },
+    {
+      "ts": "2026-11-13T11:07:28.091496+00:00",
+      "call_id": "c8b016d38968",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "657491c68f200359",
+      "prompt_tokens": 1389,
+      "completion_tokens": 45,
+      "latency_ms": 13212.12,
+      "server_ms": 13189.57,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "63de24b3374d4d2e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1389,
+    "completion_tokens": 45,
+    "total_ms": 13223.1
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

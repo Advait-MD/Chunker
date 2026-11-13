@@ -1,0 +1,179 @@
+{
+  "trace_id": "97b73b11aa0f40de",
+  "created_at": "2026-11-13T13:59:20.706453+00:00",
+  "query": "Why does the author think Tannen is wrong?\n\nOptions:\n(A) She believes people should be critical of everything they disagree with, no matter how small\n(B) She exercises her right to free speech\n(C) She expects men and women to communicate well\n(D) She advocates treating a terrorist the same way you treat your best friend\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7540.32
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7540.41
+    },
+    {
+      "state": "DONE",
+      "t_ms": 30804.72
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.42,
+      "bm25_ms": 50.73,
+      "n_candidates": {
+        "dense": 7,
+        "bm25": 7
+      },
+      "n_fused": 7,
+      "rerank": {
+        "n": 7,
+        "n_computed": 7,
+        "latency_ms": 7481.18
+      },
+      "hits": [
+        {
+          "id": "5afd77c132ed9eb1:L0:000006",
+          "score": 0.09963590651750565,
+          "fused": 0.5907059748031883,
+          "dense_rank": 6,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 0.09963590651750565
+        },
+        {
+          "id": "5afd77c132ed9eb1:L0:000002",
+          "score": -0.27168843150138855,
+          "fused": 0.5438791592362776,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.27168843150138855
+        },
+        {
+          "id": "5afd77c132ed9eb1:L0:000003",
+          "score": -1.1360268592834473,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.1360268592834473
+        },
+        {
+          "id": "5afd77c132ed9eb1:L0:000001",
+          "score": -1.4583706855773926,
+          "fused": 0.5255244900885837,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -1.4583706855773926
+        },
+        {
+          "id": "5afd77c132ed9eb1:L0:000004",
+          "score": -1.8973388671875,
+          "fused": 0.2948026475944725,
+          "dense_rank": 5,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -1.8973388671875
+        }
+      ],
+      "latency_ms": 7540.23
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1754,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23264.17
+    }
+  },
+  "retrieved_ids": [
+    "5afd77c132ed9eb1:L0:000006",
+    "5afd77c132ed9eb1:L0:000002",
+    "5afd77c132ed9eb1:L0:000003",
+    "5afd77c132ed9eb1:L0:000001",
+    "5afd77c132ed9eb1:L0:000004"
+  ],
+  "filtered_ids": [
+    "5afd77c132ed9eb1:L0:000006",
+    "5afd77c132ed9eb1:L0:000002",
+    "5afd77c132ed9eb1:L0:000003",
+    "5afd77c132ed9eb1:L0:000001",
+    "5afd77c132ed9eb1:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:59:20.706453+00:00",
+      "call_id": "7ac64cce4723",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "aacc6db5af200252",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "97b73b11aa0f40de"
+    },
+    {
+      "ts": "2026-11-13T13:59:51.508563+00:00",
+      "call_id": "6fd26fb08f73",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bb6f226d735dbff3",
+      "prompt_tokens": 2438,
+      "completion_tokens": 76,
+      "latency_ms": 23262.88,
+      "server_ms": 23229.67,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "97b73b11aa0f40de"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2438,
+    "completion_tokens": 76,
+    "total_ms": 30806.56
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

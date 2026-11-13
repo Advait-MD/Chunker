@@ -1,0 +1,165 @@
+{
+  "trace_id": "97babcf701074f09",
+  "created_at": "2026-11-13T11:20:30.310434+00:00",
+  "query": "Who is the spouse of the director of film Confidentially Connie?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.89
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.96
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12708.05
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.7,
+      "bm25_ms": 4.75,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000117",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000042",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000007",
+          "score": 0.27355683923005913,
+          "fused": 0.27355683923005913,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000085",
+          "score": 0.26380405202139295,
+          "fused": 0.26380405202139295,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000027",
+          "score": 0.2396776057166884,
+          "fused": 0.2396776057166884,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 7.85
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 654,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12699.97
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000117",
+    "317e12ccd417c0d7:L0:000042",
+    "317e12ccd417c0d7:L0:000007",
+    "4a757779abfb4ba1:L0:000085",
+    "c73b757f0eb66f37:L0:000027"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000117",
+    "317e12ccd417c0d7:L0:000042",
+    "317e12ccd417c0d7:L0:000007",
+    "4a757779abfb4ba1:L0:000085",
+    "c73b757f0eb66f37:L0:000027"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:20:30.311433+00:00",
+      "call_id": "21701771e014",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5dc3700d0e67d24d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "97babcf701074f09"
+    },
+    {
+      "ts": "2026-11-13T11:20:43.017907+00:00",
+      "call_id": "520be214589d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c8b51c7e0fb82cdd",
+      "prompt_tokens": 1308,
+      "completion_tokens": 70,
+      "latency_ms": 12698.9,
+      "server_ms": 12667.74,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "97babcf701074f09"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1308,
+    "completion_tokens": 70,
+    "total_ms": 12710.36
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "There is no information provided about his spouse in the given passages."
+      ]
+    }
+  }
+}

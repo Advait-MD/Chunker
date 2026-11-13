@@ -1,0 +1,163 @@
+{
+  "trace_id": "7e5ae13e1a464803",
+  "created_at": "2026-11-13T11:26:42.919990+00:00",
+  "query": "What is the name of the monster with six heads who ate Odysseus' men?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.92
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.99
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15972.75
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.65,
+      "bm25_ms": 7.9,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "f9add743188fc69e:L0:000587",
+          "score": 0.8689957437008715,
+          "fused": 0.8689957437008715,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f9add743188fc69e:L0:000581",
+          "score": 0.7838703236680531,
+          "fused": 0.7838703236680531,
+          "dense_rank": 8,
+          "bm25_rank": 1
+        },
+        {
+          "id": "f9add743188fc69e:L0:000454",
+          "score": 0.6724451772810192,
+          "fused": 0.6724451772810192,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f9add743188fc69e:L0:000360",
+          "score": 0.4647320393658864,
+          "fused": 0.4647320393658864,
+          "dense_rank": 21,
+          "bm25_rank": 4
+        },
+        {
+          "id": "f9add743188fc69e:L0:000624",
+          "score": 0.3631601084225043,
+          "fused": 0.3631601084225043,
+          "dense_rank": 32,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 11.87
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1004,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15960.66
+    }
+  },
+  "retrieved_ids": [
+    "f9add743188fc69e:L0:000587",
+    "f9add743188fc69e:L0:000581",
+    "f9add743188fc69e:L0:000454",
+    "f9add743188fc69e:L0:000360",
+    "f9add743188fc69e:L0:000624"
+  ],
+  "filtered_ids": [
+    "f9add743188fc69e:L0:000587",
+    "f9add743188fc69e:L0:000581",
+    "f9add743188fc69e:L0:000454",
+    "f9add743188fc69e:L0:000360",
+    "f9add743188fc69e:L0:000624"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:26:42.922005+00:00",
+      "call_id": "bec403e1300f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5e03d2ce02955b83",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7e5ae13e1a464803"
+    },
+    {
+      "ts": "2026-11-13T11:26:58.891654+00:00",
+      "call_id": "dba37529460a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9d6e758e571b086c",
+      "prompt_tokens": 1646,
+      "completion_tokens": 54,
+      "latency_ms": 15959.66,
+      "server_ms": 15936.97,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "7e5ae13e1a464803"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1646,
+    "completion_tokens": 54,
+    "total_ms": 15974.56
+  },
+  "config_hash": "da9c6a093c0d",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

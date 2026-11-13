@@ -1,0 +1,164 @@
+{
+  "trace_id": "d8adad639f46472b",
+  "created_at": "2026-11-13T10:40:28.283208+00:00",
+  "query": "What country is the theme park served by the Huis Ten Bosch train service themed on?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.38
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.44
+    },
+    {
+      "state": "DONE",
+      "t_ms": 8747.69
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.31,
+      "bm25_ms": 9.76,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "634431bb1e27714f:L0:000100",
+          "score": 0.9584916152107162,
+          "fused": 0.9584916152107162,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000049",
+          "score": 0.816816550788487,
+          "fused": 0.816816550788487,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "634431bb1e27714f:L0:000081",
+          "score": 0.47074548868586763,
+          "fused": 0.47074548868586763,
+          "dense_rank": 3,
+          "bm25_rank": 6
+        },
+        {
+          "id": "b120b09075017d08:L0:000084",
+          "score": 0.37427932929124424,
+          "fused": 0.37427932929124424,
+          "dense_rank": 16,
+          "bm25_rank": 5
+        },
+        {
+          "id": "b120b09075017d08:L0:000030",
+          "score": 0.33029542514993,
+          "fused": 0.33029542514993,
+          "dense_rank": null,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 13.34
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 340,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8734.15
+    }
+  },
+  "retrieved_ids": [
+    "634431bb1e27714f:L0:000100",
+    "81fc433d55d23b4c:L0:000049",
+    "634431bb1e27714f:L0:000081",
+    "b120b09075017d08:L0:000084",
+    "b120b09075017d08:L0:000030"
+  ],
+  "filtered_ids": [
+    "634431bb1e27714f:L0:000100",
+    "81fc433d55d23b4c:L0:000049",
+    "634431bb1e27714f:L0:000081",
+    "b120b09075017d08:L0:000084",
+    "b120b09075017d08:L0:000030"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:40:28.284203+00:00",
+      "call_id": "91c5e2ee21ea",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5d2c4a8b00d15b40",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d8adad639f46472b"
+    },
+    {
+      "ts": "2026-11-13T10:40:37.029320+00:00",
+      "call_id": "6d7b53713ce4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "47c89a0988857bef",
+      "prompt_tokens": 912,
+      "completion_tokens": 61,
+      "latency_ms": 8733.27,
+      "server_ms": 8709.33,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d8adad639f46472b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 912,
+    "completion_tokens": 61,
+    "total_ms": 8748.83
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

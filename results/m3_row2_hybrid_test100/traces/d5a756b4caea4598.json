@@ -1,0 +1,163 @@
+{
+  "trace_id": "d5a756b4caea4598",
+  "created_at": "2026-11-13T10:39:38.936603+00:00",
+  "query": "Who created the NBC sitcom that Johnny Pemberton appears in as the character Bo Thompson?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16.63
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16.68
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14029.85
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.74,
+      "bm25_ms": 8.6,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "9794e842cc9565f0:L0:000148",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000012",
+          "score": 0.4462769289236666,
+          "fused": 0.4462769289236666,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "20496f59538deb41:L0:000178",
+          "score": 0.32627466372688874,
+          "fused": 0.32627466372688874,
+          "dense_rank": 1,
+          "bm25_rank": 30
+        },
+        {
+          "id": "b120b09075017d08:L0:000191",
+          "score": 0.2458470332103141,
+          "fused": 0.2458470332103141,
+          "dense_rank": 2,
+          "bm25_rank": 41
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000109",
+          "score": 0.21564301510805256,
+          "fused": 0.21564301510805256,
+          "dense_rank": 3,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 16.58
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 544,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14013.02
+    }
+  },
+  "retrieved_ids": [
+    "9794e842cc9565f0:L0:000148",
+    "c8fd2b3ea47eb07f:L0:000012",
+    "20496f59538deb41:L0:000178",
+    "b120b09075017d08:L0:000191",
+    "81fc433d55d23b4c:L0:000109"
+  ],
+  "filtered_ids": [
+    "9794e842cc9565f0:L0:000148",
+    "c8fd2b3ea47eb07f:L0:000012",
+    "20496f59538deb41:L0:000178",
+    "b120b09075017d08:L0:000191",
+    "81fc433d55d23b4c:L0:000109"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:39:38.939906+00:00",
+      "call_id": "ff64e3e94ef5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c80053ca230f8954",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d5a756b4caea4598"
+    },
+    {
+      "ts": "2026-11-13T10:39:52.966159+00:00",
+      "call_id": "2ca4ea20c20f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b67a83d609ecb6c4",
+      "prompt_tokens": 1152,
+      "completion_tokens": 88,
+      "latency_ms": 14006.05,
+      "server_ms": 13979.84,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d5a756b4caea4598"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1152,
+    "completion_tokens": 88,
+    "total_ms": 14031.84
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

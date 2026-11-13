@@ -1,0 +1,164 @@
+{
+  "trace_id": "217f1ed2d9d24d30",
+  "created_at": "2026-11-13T11:19:04.193639+00:00",
+  "query": "Who is the spouse of the director of film Fire-Eater (Film)?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.02
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.14
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12514.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.87,
+      "bm25_ms": 7.46,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000157",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000124",
+          "score": 0.5994474748437052,
+          "fused": 0.5994474748437052,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000042",
+          "score": 0.40506656068409985,
+          "fused": 0.40506656068409985,
+          "dense_rank": 3,
+          "bm25_rank": 6
+        },
+        {
+          "id": "abe982d210232c3f:L0:000201",
+          "score": 0.4042499782673066,
+          "fused": 0.4042499782673066,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "99628090500247e3:L0:000105",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 11.96
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 565,
+      "latency_ms": 0.09
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12502.7
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000157",
+    "b04ce6dd2d95fb80:L0:000124",
+    "317e12ccd417c0d7:L0:000042",
+    "abe982d210232c3f:L0:000201",
+    "99628090500247e3:L0:000105"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000157",
+    "b04ce6dd2d95fb80:L0:000124",
+    "317e12ccd417c0d7:L0:000042",
+    "abe982d210232c3f:L0:000201",
+    "99628090500247e3:L0:000105"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:19:04.195639+00:00",
+      "call_id": "3f0d68d45703",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7aec8533edde2a1a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "217f1ed2d9d24d30"
+    },
+    {
+      "ts": "2026-11-13T11:19:16.708029+00:00",
+      "call_id": "9c2a869a8571",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2a95ea46d044af3d",
+      "prompt_tokens": 1259,
+      "completion_tokens": 75,
+      "latency_ms": 12501.48,
+      "server_ms": 12479.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "217f1ed2d9d24d30"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1259,
+    "completion_tokens": 75,
+    "total_ms": 12516.67
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

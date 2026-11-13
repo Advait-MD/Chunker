@@ -1,0 +1,163 @@
+{
+  "trace_id": "bb2805617d0249f3",
+  "created_at": "2026-11-13T11:18:37.023519+00:00",
+  "query": "Where was the mother of Maria Of Jülich-Berg born?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.07
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.14
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15841.31
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.45,
+      "bm25_ms": 5.17,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000080",
+          "score": 0.742980508727513,
+          "fused": 0.742980508727513,
+          "dense_rank": 22,
+          "bm25_rank": 2
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000196",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "abe982d210232c3f:L0:000072",
+          "score": 0.6857932618784782,
+          "fused": 0.6857932618784782,
+          "dense_rank": 8,
+          "bm25_rank": 7
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000201",
+          "score": 0.6778622984814773,
+          "fused": 0.6778622984814773,
+          "dense_rank": 10,
+          "bm25_rank": 6
+        },
+        {
+          "id": "99628090500247e3:L0:000106",
+          "score": 0.6695306725592743,
+          "fused": 0.6695306725592743,
+          "dense_rank": 4,
+          "bm25_rank": 12
+        }
+      ],
+      "latency_ms": 9.0
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1130,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15832.06
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000080",
+    "c73b757f0eb66f37:L0:000196",
+    "abe982d210232c3f:L0:000072",
+    "6af2db6cb86d77e2:L0:000201",
+    "99628090500247e3:L0:000106"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000080",
+    "c73b757f0eb66f37:L0:000196",
+    "abe982d210232c3f:L0:000072",
+    "6af2db6cb86d77e2:L0:000201",
+    "99628090500247e3:L0:000106"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:18:37.025516+00:00",
+      "call_id": "92d3f3f45bac",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e7abc9cf0698f2d1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "bb2805617d0249f3"
+    },
+    {
+      "ts": "2026-11-13T11:18:52.864381+00:00",
+      "call_id": "e12a8ab5dd0c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4c7a109ca62b7985",
+      "prompt_tokens": 2048,
+      "completion_tokens": 63,
+      "latency_ms": 15830.98,
+      "server_ms": 15803.0,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "bb2805617d0249f3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2048,
+    "completion_tokens": 63,
+    "total_ms": 15842.95
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

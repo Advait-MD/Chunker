@@ -1,0 +1,163 @@
+{
+  "trace_id": "5a9f1ab808fc4a9c",
+  "created_at": "2026-11-13T09:45:48.225896+00:00",
+  "query": "Who wrote turn me on, which was performed by the person who also performed Chasing Pirates?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.1
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.19
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 9520.81
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.02,
+      "bm25_ms": 15.64,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "8679484d23bfd3a0:L0:000098",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000067",
+          "score": 0.5086071693687959,
+          "fused": 0.5086071693687959,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000151",
+          "score": 0.4184974269854842,
+          "fused": 0.4184974269854842,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000076",
+          "score": 0.3598795861977459,
+          "fused": 0.3598795861977459,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000153",
+          "score": 0.349016515648009,
+          "fused": 0.349016515648009,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 19.06
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 419,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9501.54
+    }
+  },
+  "retrieved_ids": [
+    "8679484d23bfd3a0:L0:000098",
+    "5a1a5bbda9db013e:L0:000067",
+    "f3503d3d186f0f90:L0:000151",
+    "5a1a5bbda9db013e:L0:000076",
+    "ce290c1e5d5c6641:L0:000153"
+  ],
+  "filtered_ids": [
+    "8679484d23bfd3a0:L0:000098",
+    "5a1a5bbda9db013e:L0:000067",
+    "f3503d3d186f0f90:L0:000151",
+    "5a1a5bbda9db013e:L0:000076",
+    "ce290c1e5d5c6641:L0:000153"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:45:48.226898+00:00",
+      "call_id": "0b2f2dea91fa",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1329eb24189c44f8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5a9f1ab808fc4a9c"
+    },
+    {
+      "ts": "2026-11-13T09:45:57.745957+00:00",
+      "call_id": "cd55b3d7bbfd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bf267bed8ffd7610",
+      "prompt_tokens": 1007,
+      "completion_tokens": 45,
+      "latency_ms": 9500.56,
+      "server_ms": 9455.72,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "5a9f1ab808fc4a9c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1007,
+    "completion_tokens": 45,
+    "total_ms": 9523.17
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

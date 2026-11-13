@@ -1,0 +1,11 @@
+# Ablation row 4 (spec §2.8) as far as M3 can build it: row 2 + cross-encoder rerank of the fused top 20
+# (bge-reranker-v2-m3, pinned in base.yaml); the generator gets the reranked top 5. RAPTOR (row 3) arrives in M4,
+# after which the cumulative row 4 is re-run on top of the tree.
+run:
+  name: row4_rerank
+retrieval:
+  mode: hybrid
+  fusion: weighted
+  weights: {dense: 0.3, bm25: 0.7}
+rerank:
+  enabled: true

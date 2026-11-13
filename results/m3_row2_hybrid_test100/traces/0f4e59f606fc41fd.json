@@ -1,0 +1,164 @@
+{
+  "trace_id": "0f4e59f606fc41fd",
+  "created_at": "2026-11-13T09:51:47.048281+00:00",
+  "query": "Which artist was featured on smooth jazz stations, along with Kenny G and the performer of Saxophonic?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.31
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18.37
+    },
+    {
+      "state": "DONE",
+      "t_ms": 9919.09
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.42,
+      "bm25_ms": 14.56,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "4b634e52029ddab4:L0:000009",
+          "score": 0.8572680939180826,
+          "fused": 0.8572680939180826,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "ad4ace752e719bab:L0:000084",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000100",
+          "score": 0.6165029923624394,
+          "fused": 0.6165029923624394,
+          "dense_rank": 10,
+          "bm25_rank": 6
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000003",
+          "score": 0.6050423644619956,
+          "fused": 0.6050423644619956,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000196",
+          "score": 0.567057442894548,
+          "fused": 0.567057442894548,
+          "dense_rank": 22,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 18.27
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 355,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9900.58
+    }
+  },
+  "retrieved_ids": [
+    "4b634e52029ddab4:L0:000009",
+    "ad4ace752e719bab:L0:000084",
+    "5a1a5bbda9db013e:L0:000100",
+    "178c7e3e6ef6ae87:L0:000003",
+    "8679484d23bfd3a0:L0:000196"
+  ],
+  "filtered_ids": [
+    "4b634e52029ddab4:L0:000009",
+    "ad4ace752e719bab:L0:000084",
+    "5a1a5bbda9db013e:L0:000100",
+    "178c7e3e6ef6ae87:L0:000003",
+    "8679484d23bfd3a0:L0:000196"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:51:47.050282+00:00",
+      "call_id": "e36236959fe2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f1394d7b001b2eee",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0f4e59f606fc41fd"
+    },
+    {
+      "ts": "2026-11-13T09:51:56.966839+00:00",
+      "call_id": "228d8558e2b0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5bf872c6f497ebcd",
+      "prompt_tokens": 940,
+      "completion_tokens": 63,
+      "latency_ms": 9899.33,
+      "server_ms": 9877.24,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0f4e59f606fc41fd"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 940,
+    "completion_tokens": 63,
+    "total_ms": 9921.34
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

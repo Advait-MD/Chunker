@@ -1,0 +1,181 @@
+{
+  "trace_id": "d9ecf8392a294b1b",
+  "created_at": "2026-11-13T13:44:31.229772+00:00",
+  "query": "Why did Zubb want the men to go visit the Qornt?\n\nOptions:\n(A) He wanted to report their crimes against him\n(B) He thought they would be ignored\n(C) He wanted the men to be honored guests\n(D) He wanted them to negotiate a surrender\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15932.56
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15932.78
+    },
+    {
+      "state": "DONE",
+      "t_ms": 37256.25
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.19,
+      "bm25_ms": 10.18,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 15915.76
+      },
+      "hits": [
+        {
+          "id": "6344ae855cee9a61:L0:000015",
+          "score": 0.1713826209306717,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.1713826209306717
+        },
+        {
+          "id": "6344ae855cee9a61:L0:000006",
+          "score": -0.8155907392501831,
+          "fused": 0.517905886444068,
+          "dense_rank": 9,
+          "bm25_rank": 8,
+          "fused_rank": 5,
+          "rerank": -0.8155907392501831
+        },
+        {
+          "id": "6344ae855cee9a61:L0:000011",
+          "score": -0.822023868560791,
+          "fused": 0.5563133829593688,
+          "dense_rank": 3,
+          "bm25_rank": 7,
+          "fused_rank": 4,
+          "rerank": -0.822023868560791
+        },
+        {
+          "id": "6344ae855cee9a61:L0:000008",
+          "score": -1.485217809677124,
+          "fused": 0.6546214274980002,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -1.485217809677124
+        },
+        {
+          "id": "6344ae855cee9a61:L0:000017",
+          "score": -1.5556288957595825,
+          "fused": 0.394580110153797,
+          "dense_rank": 17,
+          "bm25_rank": 12,
+          "fused_rank": 13,
+          "rerank": -1.5556288957595825
+        }
+      ],
+      "latency_ms": 15932.51
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1980,
+      "latency_ms": 0.16
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21323.36
+    }
+  },
+  "retrieved_ids": [
+    "6344ae855cee9a61:L0:000015",
+    "6344ae855cee9a61:L0:000006",
+    "6344ae855cee9a61:L0:000011",
+    "6344ae855cee9a61:L0:000008",
+    "6344ae855cee9a61:L0:000017"
+  ],
+  "filtered_ids": [
+    "6344ae855cee9a61:L0:000015",
+    "6344ae855cee9a61:L0:000006",
+    "6344ae855cee9a61:L0:000011",
+    "6344ae855cee9a61:L0:000008",
+    "6344ae855cee9a61:L0:000017"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:44:31.229772+00:00",
+      "call_id": "9f13fbac3e51",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "df4a193a97bdd5d1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d9ecf8392a294b1b"
+    },
+    {
+      "ts": "2026-11-13T13:45:08.485136+00:00",
+      "call_id": "96f5057c332b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "14d1cebde491a371",
+      "prompt_tokens": 2678,
+      "completion_tokens": 55,
+      "latency_ms": 21321.91,
+      "server_ms": 21291.69,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d9ecf8392a294b1b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2678,
+    "completion_tokens": 55,
+    "total_ms": 37258.0
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        3
+      ],
+      "uncited_sentences": [
+        "(A) He wanted to report their crimes against him."
+      ]
+    }
+  }
+}

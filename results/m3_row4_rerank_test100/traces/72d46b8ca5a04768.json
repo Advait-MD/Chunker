@@ -1,0 +1,179 @@
+{
+  "trace_id": "72d46b8ca5a04768",
+  "created_at": "2026-11-13T12:01:25.703350+00:00",
+  "query": "What models are able to be fooled for IMDB sentiment classification task by this approach?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.34
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.42
+    },
+    {
+      "state": "DONE",
+      "t_ms": 7371.99
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.09,
+      "bm25_ms": 13.18,
+      "n_candidates": {
+        "dense": 34,
+        "bm25": 24
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "8b226e2047435419:L0:000000",
+          "score": 3.687391996383667,
+          "fused": 0.9285466626019694,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.687391996383667
+        },
+        {
+          "id": "8b226e2047435419:L0:000002",
+          "score": 2.4190030097961426,
+          "fused": 0.7638618498099947,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 2.4190030097961426
+        },
+        {
+          "id": "8b226e2047435419:L0:000032",
+          "score": 1.4349417686462402,
+          "fused": 0.6188814091610875,
+          "dense_rank": 5,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": 1.4349417686462402
+        },
+        {
+          "id": "8b226e2047435419:L0:000033",
+          "score": 0.6923179030418396,
+          "fused": 0.5374451606985443,
+          "dense_rank": 16,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": 0.6923179030418396
+        },
+        {
+          "id": "8b226e2047435419:L0:000027",
+          "score": -0.5883604288101196,
+          "fused": 0.7578418372013012,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.5883604288101196
+        }
+      ],
+      "latency_ms": 15.3
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1381,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 7356.42
+    }
+  },
+  "retrieved_ids": [
+    "8b226e2047435419:L0:000000",
+    "8b226e2047435419:L0:000002",
+    "8b226e2047435419:L0:000032",
+    "8b226e2047435419:L0:000033",
+    "8b226e2047435419:L0:000027"
+  ],
+  "filtered_ids": [
+    "8b226e2047435419:L0:000000",
+    "8b226e2047435419:L0:000002",
+    "8b226e2047435419:L0:000032",
+    "8b226e2047435419:L0:000033",
+    "8b226e2047435419:L0:000027"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:01:25.703350+00:00",
+      "call_id": "0cd5b3e0c477",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9af9f49f92bbce51",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "72d46b8ca5a04768"
+    },
+    {
+      "ts": "2026-11-13T12:01:33.074322+00:00",
+      "call_id": "05d9c0cf20e5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b60b35148ea5bc1f",
+      "prompt_tokens": 1999,
+      "completion_tokens": 77,
+      "latency_ms": 7335.89,
+      "server_ms": 7319.69,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "72d46b8ca5a04768"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1999,
+    "completion_tokens": 77,
+    "total_ms": 7372.51
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "trace_id": "eee9e83e5ecf473a",
+  "created_at": "2026-11-13T12:10:00.277024+00:00",
+  "query": "What fine-grained semantic types are considered?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5372.72
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5372.78
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19949.93
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.94,
+      "bm25_ms": 11.37,
+      "n_candidates": {
+        "dense": 15,
+        "bm25": 10
+      },
+      "n_fused": 15,
+      "rerank": {
+        "n": 15,
+        "n_computed": 15,
+        "latency_ms": 5356.61
+      },
+      "hits": [
+        {
+          "id": "90e3232be5af4d00:L0:000000",
+          "score": 2.335287570953369,
+          "fused": 0.9826964267410478,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 2.335287570953369
+        },
+        {
+          "id": "90e3232be5af4d00:L0:000001",
+          "score": 1.6942635774612427,
+          "fused": 0.6930313391121528,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 1.6942635774612427
+        },
+        {
+          "id": "90e3232be5af4d00:L0:000003",
+          "score": -0.13881579041481018,
+          "fused": 0.9313268262316915,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": -0.13881579041481018
+        },
+        {
+          "id": "90e3232be5af4d00:L0:000011",
+          "score": -0.1703435629606247,
+          "fused": 0.6541747905437777,
+          "dense_rank": 5,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -0.1703435629606247
+        },
+        {
+          "id": "90e3232be5af4d00:L0:000012",
+          "score": -0.4237912595272064,
+          "fused": 0.6339301204681311,
+          "dense_rank": 2,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -0.4237912595272064
+        }
+      ],
+      "latency_ms": 5372.67
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 981,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14577.06
+    }
+  },
+  "retrieved_ids": [
+    "90e3232be5af4d00:L0:000000",
+    "90e3232be5af4d00:L0:000001",
+    "90e3232be5af4d00:L0:000003",
+    "90e3232be5af4d00:L0:000011",
+    "90e3232be5af4d00:L0:000012"
+  ],
+  "filtered_ids": [
+    "90e3232be5af4d00:L0:000000",
+    "90e3232be5af4d00:L0:000001",
+    "90e3232be5af4d00:L0:000003",
+    "90e3232be5af4d00:L0:000011",
+    "90e3232be5af4d00:L0:000012"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:10:00.279025+00:00",
+      "call_id": "fb8dc22c156d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "37331ac01812b7f4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "eee9e83e5ecf473a"
+    },
+    {
+      "ts": "2026-11-13T12:10:20.225626+00:00",
+      "call_id": "693386d32e77",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0ce3529f3221866c",
+      "prompt_tokens": 1526,
+      "completion_tokens": 70,
+      "latency_ms": 14576.07,
+      "server_ms": 14553.23,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "eee9e83e5ecf473a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1526,
+    "completion_tokens": 70,
+    "total_ms": 19951.71
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "Fine-grained semantic types are considered in the task of assigning types to entity mentions, such as in the example"
+      ]
+    }
+  }
+}

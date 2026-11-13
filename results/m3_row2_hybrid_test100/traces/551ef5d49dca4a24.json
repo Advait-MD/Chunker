@@ -1,0 +1,163 @@
+{
+  "trace_id": "551ef5d49dca4a24",
+  "created_at": "2026-11-13T09:43:58.060077+00:00",
+  "query": "Which city shares border with the area having Bella Vista High School?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16.48
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16.54
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10136.41
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.54,
+      "bm25_ms": 12.62,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ad11b6e85f908fb3:L0:000153",
+          "score": 0.773666003044576,
+          "fused": 0.773666003044576,
+          "dense_rank": 12,
+          "bm25_rank": 2
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000126",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "dd498e0082847164:L0:000047",
+          "score": 0.616337591318765,
+          "fused": 0.616337591318765,
+          "dense_rank": 9,
+          "bm25_rank": 3
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000049",
+          "score": 0.5214854913780101,
+          "fused": 0.5214854913780101,
+          "dense_rank": 7,
+          "bm25_rank": 4
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000036",
+          "score": 0.44580634879603864,
+          "fused": 0.44580634879603864,
+          "dense_rank": 2,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 16.43
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 369,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10119.77
+    }
+  },
+  "retrieved_ids": [
+    "ad11b6e85f908fb3:L0:000153",
+    "ad11b6e85f908fb3:L0:000126",
+    "dd498e0082847164:L0:000047",
+    "6bddce8aaad42fea:L0:000049",
+    "ad11b6e85f908fb3:L0:000036"
+  ],
+  "filtered_ids": [
+    "ad11b6e85f908fb3:L0:000153",
+    "ad11b6e85f908fb3:L0:000126",
+    "dd498e0082847164:L0:000047",
+    "6bddce8aaad42fea:L0:000049",
+    "ad11b6e85f908fb3:L0:000036"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:43:58.062074+00:00",
+      "call_id": "824479de7a37",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "df2f2e60187fb4af",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "551ef5d49dca4a24"
+    },
+    {
+      "ts": "2026-11-13T09:44:08.196042+00:00",
+      "call_id": "99651f9ae6a1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "597cee71907a55ed",
+      "prompt_tokens": 930,
+      "completion_tokens": 55,
+      "latency_ms": 10118.7,
+      "server_ms": 10098.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "551ef5d49dca4a24"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 930,
+    "completion_tokens": 55,
+    "total_ms": 10137.91
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The evidence does not provide information about the city sharing a border with the area having Bella Vista High School."
+      ]
+    }
+  }
+}

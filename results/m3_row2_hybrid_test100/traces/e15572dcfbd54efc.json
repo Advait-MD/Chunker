@@ -1,0 +1,167 @@
+{
+  "trace_id": "e15572dcfbd54efc",
+  "created_at": "2026-11-13T09:09:31.198032+00:00",
+  "query": "How can an existing bot detection system by customized for health-related research?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.19
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17.22
+    },
+    {
+      "state": "DONE",
+      "t_ms": 27368.98
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 8.22,
+      "bm25_ms": 8.84,
+      "n_candidates": {
+        "dense": 12,
+        "bm25": 12
+      },
+      "n_fused": 12,
+      "hits": [
+        {
+          "id": "f146cb4aaaa09114:L0:000009",
+          "score": 0.9977726850773068,
+          "fused": 0.9977726850773068,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "f146cb4aaaa09114:L0:000000",
+          "score": 0.9575411367136608,
+          "fused": 0.9575411367136608,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f146cb4aaaa09114:L0:000002",
+          "score": 0.739893564730259,
+          "fused": 0.739893564730259,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f146cb4aaaa09114:L0:000007",
+          "score": 0.6585403537390038,
+          "fused": 0.6585403537390038,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "f146cb4aaaa09114:L0:000008",
+          "score": 0.6553391793359702,
+          "fused": 0.6553391793359702,
+          "dense_rank": 4,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 17.15
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1129,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 27351.57
+    }
+  },
+  "retrieved_ids": [
+    "f146cb4aaaa09114:L0:000009",
+    "f146cb4aaaa09114:L0:000000",
+    "f146cb4aaaa09114:L0:000002",
+    "f146cb4aaaa09114:L0:000007",
+    "f146cb4aaaa09114:L0:000008"
+  ],
+  "filtered_ids": [
+    "f146cb4aaaa09114:L0:000009",
+    "f146cb4aaaa09114:L0:000000",
+    "f146cb4aaaa09114:L0:000002",
+    "f146cb4aaaa09114:L0:000007",
+    "f146cb4aaaa09114:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:09:31.206347+00:00",
+      "call_id": "2e1493869b4c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9f4955cc3aca1489",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e15572dcfbd54efc"
+    },
+    {
+      "ts": "2026-11-13T09:09:58.566752+00:00",
+      "call_id": "d3d361da4812",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "574d3dbe3add322c",
+      "prompt_tokens": 1716,
+      "completion_tokens": 133,
+      "latency_ms": 27348.41,
+      "server_ms": 27309.24,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "e15572dcfbd54efc"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1716,
+    "completion_tokens": 133,
+    "total_ms": 27369.52
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "An existing bot detection system can be customized for health-related research by incorporating additional features and a statistical machine learning classifier, as demonstrated in the study where the system, originally designed for political bot detection, underperformed when applied to health-related Twitter users."
+      ]
+    }
+  }
+}

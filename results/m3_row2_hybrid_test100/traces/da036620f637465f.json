@@ -1,0 +1,164 @@
+{
+  "trace_id": "da036620f637465f",
+  "created_at": "2026-11-13T09:29:42.461512+00:00",
+  "query": "Which uncertain outcomes are forecast using the wisdom of crowds?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 20.1
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 20.45
+    },
+    {
+      "state": "DONE",
+      "t_ms": 33363.07
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.87,
+      "bm25_ms": 14.15,
+      "n_candidates": {
+        "dense": 22,
+        "bm25": 14
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "1433714c6bedb392:L0:000000",
+          "score": 0.9906314315681152,
+          "fused": 0.9906314315681152,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "1433714c6bedb392:L0:000001",
+          "score": 0.8604019982898639,
+          "fused": 0.8604019982898639,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "1433714c6bedb392:L0:000011",
+          "score": 0.48800640989054156,
+          "fused": 0.48800640989054156,
+          "dense_rank": 3,
+          "bm25_rank": 4
+        },
+        {
+          "id": "1433714c6bedb392:L0:000005",
+          "score": 0.4747179210300103,
+          "fused": 0.4747179210300103,
+          "dense_rank": 9,
+          "bm25_rank": 3
+        },
+        {
+          "id": "1433714c6bedb392:L0:000002",
+          "score": 0.4130000667844659,
+          "fused": 0.4130000667844659,
+          "dense_rank": 4,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 20.05
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1449,
+      "latency_ms": 0.33
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 33342.32
+    }
+  },
+  "retrieved_ids": [
+    "1433714c6bedb392:L0:000000",
+    "1433714c6bedb392:L0:000001",
+    "1433714c6bedb392:L0:000011",
+    "1433714c6bedb392:L0:000005",
+    "1433714c6bedb392:L0:000002"
+  ],
+  "filtered_ids": [
+    "1433714c6bedb392:L0:000000",
+    "1433714c6bedb392:L0:000001",
+    "1433714c6bedb392:L0:000011",
+    "1433714c6bedb392:L0:000005",
+    "1433714c6bedb392:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:29:42.464057+00:00",
+      "call_id": "18199057d173",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "87821cef435ee7f4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "da036620f637465f"
+    },
+    {
+      "ts": "2026-11-13T09:30:15.823822+00:00",
+      "call_id": "eae1f8f92abd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "55eae7142235322f",
+      "prompt_tokens": 2166,
+      "completion_tokens": 164,
+      "latency_ms": 33341.26,
+      "server_ms": 33303.73,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "da036620f637465f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2166,
+    "completion_tokens": 164,
+    "total_ms": 33364.1
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

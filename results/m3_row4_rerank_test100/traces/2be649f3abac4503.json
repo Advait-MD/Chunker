@@ -1,0 +1,178 @@
+{
+  "trace_id": "2be649f3abac4503",
+  "created_at": "2026-11-13T12:38:08.584706+00:00",
+  "query": "What is the direction of flow of the body of water by the city where Uni-Systems is headquartered?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5723.2
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5724.89
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 16808.96
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.92,
+      "bm25_ms": 20.88,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5692.09
+      },
+      "hits": [
+        {
+          "id": "a168352d83e925b5:L0:000132",
+          "score": 4.6498703956604,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.6498703956604
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000074",
+          "score": -2.0038325786590576,
+          "fused": 0.17588037129310335,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 17,
+          "rerank": -2.0038325786590576
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000033",
+          "score": -3.5665056705474854,
+          "fused": 0.4421888013201615,
+          "dense_rank": 22,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -3.5665056705474854
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000172",
+          "score": -3.8443360328674316,
+          "fused": 0.5339679476222688,
+          "dense_rank": 39,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -3.8443360328674316
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000191",
+          "score": -4.014325141906738,
+          "fused": 0.17362562468003226,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": -4.014325141906738
+        }
+      ],
+      "latency_ms": 5723.15
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 488,
+      "latency_ms": 1.64
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11083.83
+    }
+  },
+  "retrieved_ids": [
+    "a168352d83e925b5:L0:000132",
+    "8679484d23bfd3a0:L0:000074",
+    "cc1bdb3bf430bd0d:L0:000033",
+    "f109b032e24ab27a:L0:000172",
+    "6bddce8aaad42fea:L0:000191"
+  ],
+  "filtered_ids": [
+    "a168352d83e925b5:L0:000132",
+    "8679484d23bfd3a0:L0:000074",
+    "cc1bdb3bf430bd0d:L0:000033",
+    "f109b032e24ab27a:L0:000172",
+    "6bddce8aaad42fea:L0:000191"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:38:08.584706+00:00",
+      "call_id": "57d1da11a138",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8b5e2ffd6990ea1b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2be649f3abac4503"
+    },
+    {
+      "ts": "2026-11-13T12:38:25.399741+00:00",
+      "call_id": "2eb727e61921",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5370c2f75b9f7b68",
+      "prompt_tokens": 1032,
+      "completion_tokens": 72,
+      "latency_ms": 11082.6,
+      "server_ms": 11073.45,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2be649f3abac4503"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1032,
+    "completion_tokens": 72,
+    "total_ms": 16810.83
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "trace_id": "079a3aaf6ae64c06",
+  "created_at": "2026-11-13T15:01:54.082858+00:00",
+  "query": "Which film has the director who died earlier, Slums Of Berlin or Phantom India?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7396.7
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7397.38
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20434.91
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.92,
+      "bm25_ms": 7.19,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 7385.07
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000002",
+          "score": 6.247448921203613,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.247448921203613
+        },
+        {
+          "id": "abe982d210232c3f:L0:000074",
+          "score": 4.0231170654296875,
+          "fused": 0.5480367072127513,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 4.0231170654296875
+        },
+        {
+          "id": "460e441179bec402:L0:000116",
+          "score": -4.898839950561523,
+          "fused": 0.14874776509372176,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 15,
+          "rerank": -4.898839950561523
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000176",
+          "score": -5.779250144958496,
+          "fused": 0.19679209015745958,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -5.779250144958496
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000014",
+          "score": -5.9941911697387695,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 4,
+          "rerank": -5.9941911697387695
+        }
+      ],
+      "latency_ms": 7396.65
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 876,
+      "latency_ms": 0.63
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13037.44
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000002",
+    "abe982d210232c3f:L0:000074",
+    "460e441179bec402:L0:000116",
+    "4a757779abfb4ba1:L0:000176",
+    "c73b757f0eb66f37:L0:000014"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000002",
+    "abe982d210232c3f:L0:000074",
+    "460e441179bec402:L0:000116",
+    "4a757779abfb4ba1:L0:000176",
+    "c73b757f0eb66f37:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:01:54.082858+00:00",
+      "call_id": "ea6779fcf3d3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5dffb434f0123c10",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "079a3aaf6ae64c06"
+    },
+    {
+      "ts": "2026-11-13T15:02:14.522692+00:00",
+      "call_id": "d673c11e0d68",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8b521d347885b8af",
+      "prompt_tokens": 1568,
+      "completion_tokens": 71,
+      "latency_ms": 13036.54,
+      "server_ms": 13017.84,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "079a3aaf6ae64c06"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1568,
+    "completion_tokens": 71,
+    "total_ms": 20436.79
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

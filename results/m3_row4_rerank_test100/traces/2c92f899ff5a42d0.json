@@ -1,0 +1,180 @@
+{
+  "trace_id": "2c92f899ff5a42d0",
+  "created_at": "2026-11-13T12:07:20.200578+00:00",
+  "query": "How much time takes the training of DistilBERT?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5328.38
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5328.5
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20916.68
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.97,
+      "bm25_ms": 16.23,
+      "n_candidates": {
+        "dense": 11,
+        "bm25": 10
+      },
+      "n_fused": 11,
+      "rerank": {
+        "n": 11,
+        "n_computed": 11,
+        "latency_ms": 5307.02
+      },
+      "hits": [
+        {
+          "id": "22ec7938ee2e7fff:L0:000004",
+          "score": 2.6301162242889404,
+          "fused": 0.6439407986351711,
+          "dense_rank": 10,
+          "bm25_rank": 2,
+          "fused_rank": 5,
+          "rerank": 2.6301162242889404
+        },
+        {
+          "id": "22ec7938ee2e7fff:L0:000006",
+          "score": -0.3996376395225525,
+          "fused": 0.8919039648707204,
+          "dense_rank": 6,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.3996376395225525
+        },
+        {
+          "id": "22ec7938ee2e7fff:L0:000000",
+          "score": -1.0926003456115723,
+          "fused": 0.7691573447987683,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 2,
+          "rerank": -1.0926003456115723
+        },
+        {
+          "id": "22ec7938ee2e7fff:L0:000009",
+          "score": -1.938265323638916,
+          "fused": 0.7672062659813823,
+          "dense_rank": 4,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": -1.938265323638916
+        },
+        {
+          "id": "22ec7938ee2e7fff:L0:000010",
+          "score": -2.195146322250366,
+          "fused": 0.7080340567615063,
+          "dense_rank": 8,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -2.195146322250366
+        }
+      ],
+      "latency_ms": 5328.32
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1083,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15588.09
+    }
+  },
+  "retrieved_ids": [
+    "22ec7938ee2e7fff:L0:000004",
+    "22ec7938ee2e7fff:L0:000006",
+    "22ec7938ee2e7fff:L0:000000",
+    "22ec7938ee2e7fff:L0:000009",
+    "22ec7938ee2e7fff:L0:000010"
+  ],
+  "filtered_ids": [
+    "22ec7938ee2e7fff:L0:000004",
+    "22ec7938ee2e7fff:L0:000006",
+    "22ec7938ee2e7fff:L0:000000",
+    "22ec7938ee2e7fff:L0:000009",
+    "22ec7938ee2e7fff:L0:000010"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:07:20.202574+00:00",
+      "call_id": "7ccf75781430",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "99bf3de94f2d1b6f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2c92f899ff5a42d0"
+    },
+    {
+      "ts": "2026-11-13T12:07:41.116504+00:00",
+      "call_id": "321d87938a70",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "496b6cb2a5d769b0",
+      "prompt_tokens": 1761,
+      "completion_tokens": 58,
+      "latency_ms": 15586.85,
+      "server_ms": 15555.66,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2c92f899ff5a42d0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1761,
+    "completion_tokens": 58,
+    "total_ms": 20917.73
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "DistilBERT was trained on 8 16GB V100 GPUs for approximately 90 hours."
+      ]
+    }
+  }
+}

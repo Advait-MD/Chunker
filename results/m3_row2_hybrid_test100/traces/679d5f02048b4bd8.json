@@ -1,0 +1,164 @@
+{
+  "trace_id": "679d5f02048b4bd8",
+  "created_at": "2026-11-13T09:12:41.136532+00:00",
+  "query": "what are the previous state of the art for tweet semantic similarity?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.57
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.63
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16166.61
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.71,
+      "bm25_ms": 11.65,
+      "n_candidates": {
+        "dense": 15,
+        "bm25": 13
+      },
+      "n_fused": 15,
+      "hits": [
+        {
+          "id": "f4265249ba4c8fa5:L0:000000",
+          "score": 0.9930847358401085,
+          "fused": 0.9930847358401085,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "f4265249ba4c8fa5:L0:000011",
+          "score": 0.6724135903356432,
+          "fused": 0.6724135903356432,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f4265249ba4c8fa5:L0:000013",
+          "score": 0.4519716344880542,
+          "fused": 0.4519716344880542,
+          "dense_rank": 3,
+          "bm25_rank": 6
+        },
+        {
+          "id": "f4265249ba4c8fa5:L0:000014",
+          "score": 0.43635978289215616,
+          "fused": 0.43635978289215616,
+          "dense_rank": 9,
+          "bm25_rank": 4
+        },
+        {
+          "id": "f4265249ba4c8fa5:L0:000010",
+          "score": 0.42052611464906403,
+          "fused": 0.42052611464906403,
+          "dense_rank": 14,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 15.53
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 784,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16150.85
+    }
+  },
+  "retrieved_ids": [
+    "f4265249ba4c8fa5:L0:000000",
+    "f4265249ba4c8fa5:L0:000011",
+    "f4265249ba4c8fa5:L0:000013",
+    "f4265249ba4c8fa5:L0:000014",
+    "f4265249ba4c8fa5:L0:000010"
+  ],
+  "filtered_ids": [
+    "f4265249ba4c8fa5:L0:000000",
+    "f4265249ba4c8fa5:L0:000011",
+    "f4265249ba4c8fa5:L0:000013",
+    "f4265249ba4c8fa5:L0:000014",
+    "f4265249ba4c8fa5:L0:000010"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:12:41.138582+00:00",
+      "call_id": "73354dba6055",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5110bfa7a2a3c7bc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "679d5f02048b4bd8"
+    },
+    {
+      "ts": "2026-11-13T09:12:57.301817+00:00",
+      "call_id": "080a2fdefb3e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f9cb308c58a5349b",
+      "prompt_tokens": 1376,
+      "completion_tokens": 97,
+      "latency_ms": 16149.59,
+      "server_ms": 16119.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "679d5f02048b4bd8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1376,
+    "completion_tokens": 97,
+    "total_ms": 16168.09
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

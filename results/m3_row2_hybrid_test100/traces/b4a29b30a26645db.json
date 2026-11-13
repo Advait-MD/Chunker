@@ -1,0 +1,168 @@
+{
+  "trace_id": "b4a29b30a26645db",
+  "created_at": "2026-11-13T09:38:50.211289+00:00",
+  "query": "What type of classifiers were used?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.21
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.73
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20220.32
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.51,
+      "bm25_ms": 6.9,
+      "n_candidates": {
+        "dense": 14,
+        "bm25": 7
+      },
+      "n_fused": 14,
+      "hits": [
+        {
+          "id": "a146f3d7e2a1c799:L0:000010",
+          "score": 0.9214252725179156,
+          "fused": 0.9214252725179156,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "a146f3d7e2a1c799:L0:000006",
+          "score": 0.9112292916720848,
+          "fused": 0.9112292916720848,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "a146f3d7e2a1c799:L0:000004",
+          "score": 0.4721724076950786,
+          "fused": 0.4721724076950786,
+          "dense_rank": 1,
+          "bm25_rank": 5
+        },
+        {
+          "id": "a146f3d7e2a1c799:L0:000005",
+          "score": 0.33449304445325556,
+          "fused": 0.33449304445325556,
+          "dense_rank": 6,
+          "bm25_rank": 3
+        },
+        {
+          "id": "a146f3d7e2a1c799:L0:000008",
+          "score": 0.22435303806871562,
+          "fused": 0.22435303806871562,
+          "dense_rank": 11,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 13.16
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 623,
+      "latency_ms": 0.5
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20205.87
+    }
+  },
+  "retrieved_ids": [
+    "a146f3d7e2a1c799:L0:000010",
+    "a146f3d7e2a1c799:L0:000006",
+    "a146f3d7e2a1c799:L0:000004",
+    "a146f3d7e2a1c799:L0:000005",
+    "a146f3d7e2a1c799:L0:000008"
+  ],
+  "filtered_ids": [
+    "a146f3d7e2a1c799:L0:000010",
+    "a146f3d7e2a1c799:L0:000006",
+    "a146f3d7e2a1c799:L0:000004",
+    "a146f3d7e2a1c799:L0:000005",
+    "a146f3d7e2a1c799:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:38:50.213285+00:00",
+      "call_id": "ae4b31e2f030",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "709722776acf4fd8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b4a29b30a26645db"
+    },
+    {
+      "ts": "2026-11-13T09:39:10.430078+00:00",
+      "call_id": "d07c60f80281",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "074be8cc7b4d61a2",
+      "prompt_tokens": 1254,
+      "completion_tokens": 140,
+      "latency_ms": 20204.56,
+      "server_ms": 20182.14,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "b4a29b30a26645db"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1254,
+    "completion_tokens": 140,
+    "total_ms": 20222.41
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4,
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": []
+    }
+  }
+}

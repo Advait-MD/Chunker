@@ -1,0 +1,163 @@
+{
+  "trace_id": "5a4f3cd4a8f34121",
+  "created_at": "2026-11-13T11:00:09.085426+00:00",
+  "query": "Which award David Hersey had got for Equus a play by Peter Shaffer ?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.63
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.75
+    },
+    {
+      "state": "DONE",
+      "t_ms": 9412.18
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.56,
+      "bm25_ms": 12.52,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "cc2399aca11eb631:L0:000156",
+          "score": 0.890292563167266,
+          "fused": 0.890292563167266,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000004",
+          "score": 0.8708705917515298,
+          "fused": 0.8708705917515298,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000139",
+          "score": 0.6513719216281711,
+          "fused": 0.6513719216281711,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000103",
+          "score": 0.6048432385328892,
+          "fused": 0.6048432385328892,
+          "dense_rank": 30,
+          "bm25_rank": 3
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000170",
+          "score": 0.4205948585374069,
+          "fused": 0.4205948585374069,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 19.57
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 279,
+      "latency_ms": 0.1
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9392.33
+    }
+  },
+  "retrieved_ids": [
+    "cc2399aca11eb631:L0:000156",
+    "c8fd2b3ea47eb07f:L0:000004",
+    "bc1dba3471045f02:L0:000139",
+    "ec3410ef955c5c93:L0:000103",
+    "ec3410ef955c5c93:L0:000170"
+  ],
+  "filtered_ids": [
+    "cc2399aca11eb631:L0:000156",
+    "c8fd2b3ea47eb07f:L0:000004",
+    "bc1dba3471045f02:L0:000139",
+    "ec3410ef955c5c93:L0:000103",
+    "ec3410ef955c5c93:L0:000170"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:00:09.087165+00:00",
+      "call_id": "efb86f280e9b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8e43fb150ff5e528",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5a4f3cd4a8f34121"
+    },
+    {
+      "ts": "2026-11-13T11:00:18.496853+00:00",
+      "call_id": "7794cccdd682",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c8066a0fa2f668d8",
+      "prompt_tokens": 871,
+      "completion_tokens": 60,
+      "latency_ms": 9391.37,
+      "server_ms": 9349.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "5a4f3cd4a8f34121"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 871,
+    "completion_tokens": 60,
+    "total_ms": 9414.29
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

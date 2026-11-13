@@ -1,0 +1,166 @@
+{
+  "trace_id": "baeece4ccaee437c",
+  "created_at": "2026-11-13T09:30:31.118742+00:00",
+  "query": "Do they compare their proposed domain adaptation methods to some existing methods?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.8
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.89
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14041.36
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.04,
+      "bm25_ms": 9.58,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 12
+      },
+      "n_fused": 17,
+      "hits": [
+        {
+          "id": "d297c551895c3182:L0:000014",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "d297c551895c3182:L0:000012",
+          "score": 0.9572627871004404,
+          "fused": 0.9572627871004404,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "d297c551895c3182:L0:000003",
+          "score": 0.863720136440528,
+          "fused": 0.863720136440528,
+          "dense_rank": 6,
+          "bm25_rank": 2
+        },
+        {
+          "id": "d297c551895c3182:L0:000002",
+          "score": 0.8212510974471544,
+          "fused": 0.8212510974471544,
+          "dense_rank": 4,
+          "bm25_rank": 4
+        },
+        {
+          "id": "d297c551895c3182:L0:000000",
+          "score": 0.6257928327049995,
+          "fused": 0.6257928327049995,
+          "dense_rank": 8,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 13.77
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1247,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14027.34
+    }
+  },
+  "retrieved_ids": [
+    "d297c551895c3182:L0:000014",
+    "d297c551895c3182:L0:000012",
+    "d297c551895c3182:L0:000003",
+    "d297c551895c3182:L0:000002",
+    "d297c551895c3182:L0:000000"
+  ],
+  "filtered_ids": [
+    "d297c551895c3182:L0:000014",
+    "d297c551895c3182:L0:000012",
+    "d297c551895c3182:L0:000003",
+    "d297c551895c3182:L0:000002",
+    "d297c551895c3182:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:30:31.120737+00:00",
+      "call_id": "cba6ce057324",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8f8a39af091400db",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "baeece4ccaee437c"
+    },
+    {
+      "ts": "2026-11-13T09:30:45.158727+00:00",
+      "call_id": "82b7d4e9160f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7c89aff1806c6412",
+      "prompt_tokens": 1843,
+      "completion_tokens": 57,
+      "latency_ms": 14026.11,
+      "server_ms": 13997.0,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "baeece4ccaee437c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1843,
+    "completion_tokens": 57,
+    "total_ms": 14043.04
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": []
+    }
+  }
+}

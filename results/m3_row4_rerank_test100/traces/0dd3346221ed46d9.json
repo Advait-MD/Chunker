@@ -1,0 +1,179 @@
+{
+  "trace_id": "0dd3346221ed46d9",
+  "created_at": "2026-11-13T12:39:48.715818+00:00",
+  "query": "Who is the spouse of the actor who plays Vision in the new Avengers movie?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5034.38
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5035.62
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 20809.15
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.33,
+      "bm25_ms": 17.64,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5008.25
+      },
+      "hits": [
+        {
+          "id": "8b31d5859eb3d77a:L0:000059",
+          "score": -1.8790239095687866,
+          "fused": 0.2667590718280129,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 7,
+          "rerank": -1.8790239095687866
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000045",
+          "score": -3.199950933456421,
+          "fused": 0.2401243438606511,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 10,
+          "rerank": -3.199950933456421
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000144",
+          "score": -3.4989168643951416,
+          "fused": 0.229068749024685,
+          "dense_rank": 15,
+          "bm25_rank": 15,
+          "fused_rank": 12,
+          "rerank": -3.4989168643951416
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000187",
+          "score": -3.7979023456573486,
+          "fused": 0.42191652316314116,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -3.7979023456573486
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000118",
+          "score": -4.318843841552734,
+          "fused": 0.23614764680549263,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 11,
+          "rerank": -4.318843841552734
+        }
+      ],
+      "latency_ms": 5034.34
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 961,
+      "latency_ms": 1.21
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15773.4
+    }
+  },
+  "retrieved_ids": [
+    "8b31d5859eb3d77a:L0:000059",
+    "cc1bdb3bf430bd0d:L0:000045",
+    "ce290c1e5d5c6641:L0:000144",
+    "8679484d23bfd3a0:L0:000187",
+    "178c7e3e6ef6ae87:L0:000118"
+  ],
+  "filtered_ids": [
+    "8b31d5859eb3d77a:L0:000059",
+    "cc1bdb3bf430bd0d:L0:000045",
+    "ce290c1e5d5c6641:L0:000144",
+    "8679484d23bfd3a0:L0:000187",
+    "178c7e3e6ef6ae87:L0:000118"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:39:48.715818+00:00",
+      "call_id": "d0ab46bbb7ab",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ae46f23a1be6680b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0dd3346221ed46d9"
+    },
+    {
+      "ts": "2026-11-13T12:40:09.517147+00:00",
+      "call_id": "d2d09f229cc6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ce2547beb85a7def",
+      "prompt_tokens": 1644,
+      "completion_tokens": 77,
+      "latency_ms": 15771.49,
+      "server_ms": 15744.15,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0dd3346221ed46d9"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1644,
+    "completion_tokens": 77,
+    "total_ms": 20812.11
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "trace_id": "a0fb3bb30e47465f",
+  "created_at": "2026-11-13T14:25:47.126554+00:00",
+  "query": "What sports team included both of the brothers Case McCoy and Colt McCoy during different years?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7526.42
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7527.14
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20349.65
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.84,
+      "bm25_ms": 9.83,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 7513.15
+      },
+      "hits": [
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000125",
+          "score": -0.3057561218738556,
+          "fused": 0.7030871000765492,
+          "dense_rank": 46,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.3057561218738556
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000022",
+          "score": -0.7676341533660889,
+          "fused": 0.5021754125176873,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.7676341533660889
+        },
+        {
+          "id": "20496f59538deb41:L0:000074",
+          "score": -4.322002410888672,
+          "fused": 0.24085600286005981,
+          "dense_rank": 18,
+          "bm25_rank": 10,
+          "fused_rank": 10,
+          "rerank": -4.322002410888672
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000004",
+          "score": -4.838825225830078,
+          "fused": 0.344582938362217,
+          "dense_rank": 13,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -4.838825225830078
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000113",
+          "score": -5.317028522491455,
+          "fused": 0.17241853966263015,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 17,
+          "rerank": -5.317028522491455
+        }
+      ],
+      "latency_ms": 7526.38
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 806,
+      "latency_ms": 0.68
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12822.38
+    }
+  },
+  "retrieved_ids": [
+    "ba3cd068cf9ac2e4:L0:000125",
+    "cb96563b0747a6ba:L0:000022",
+    "20496f59538deb41:L0:000074",
+    "9794e842cc9565f0:L0:000004",
+    "9794e842cc9565f0:L0:000113"
+  ],
+  "filtered_ids": [
+    "ba3cd068cf9ac2e4:L0:000125",
+    "cb96563b0747a6ba:L0:000022",
+    "20496f59538deb41:L0:000074",
+    "9794e842cc9565f0:L0:000004",
+    "9794e842cc9565f0:L0:000113"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:25:47.126554+00:00",
+      "call_id": "1c5bbda1b155",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9868e3cf52787dfe",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a0fb3bb30e47465f"
+    },
+    {
+      "ts": "2026-11-13T14:26:07.478140+00:00",
+      "call_id": "16e39a5f6edd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "726b282f4631bd73",
+      "prompt_tokens": 1447,
+      "completion_tokens": 66,
+      "latency_ms": 12820.74,
+      "server_ms": 12796.87,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a0fb3bb30e47465f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1447,
+    "completion_tokens": 66,
+    "total_ms": 20351.41
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "The University of Texas included both brothers Case McCoy and Colt McCoy during different years.",
+        "However, the evidence does not specify the exact years for each brother."
+      ]
+    }
+  }
+}

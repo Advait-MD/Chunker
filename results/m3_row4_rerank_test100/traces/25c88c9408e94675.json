@@ -1,0 +1,182 @@
+{
+  "trace_id": "25c88c9408e94675",
+  "created_at": "2026-11-13T12:33:20.262268+00:00",
+  "query": "Do they separately extract topic relations and topic hierarchies in their model?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14583.57
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14583.88
+    },
+    {
+      "state": "DONE",
+      "t_ms": 34568.16
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.81,
+      "bm25_ms": 15.46,
+      "n_candidates": {
+        "dense": 22,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 14553.94
+      },
+      "hits": [
+        {
+          "id": "df3021c2d14dadb7:L0:000001",
+          "score": 2.3951985836029053,
+          "fused": 0.9301905646053258,
+          "dense_rank": 6,
+          "bm25_rank": 1,
+          "fused_rank": 3,
+          "rerank": 2.3951985836029053
+        },
+        {
+          "id": "df3021c2d14dadb7:L0:000002",
+          "score": 1.7098637819290161,
+          "fused": 0.9347454342819879,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.7098637819290161
+        },
+        {
+          "id": "df3021c2d14dadb7:L0:000000",
+          "score": 1.6335444450378418,
+          "fused": 0.9575705011899573,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": 1.6335444450378418
+        },
+        {
+          "id": "df3021c2d14dadb7:L0:000004",
+          "score": 0.6607801914215088,
+          "fused": 0.728203829089586,
+          "dense_rank": 1,
+          "bm25_rank": 8,
+          "fused_rank": 5,
+          "rerank": 0.6607801914215088
+        },
+        {
+          "id": "df3021c2d14dadb7:L0:000005",
+          "score": -0.06883043795824051,
+          "fused": 0.690120944785241,
+          "dense_rank": 4,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": -0.06883043795824051
+        }
+      ],
+      "latency_ms": 14583.5
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1258,
+      "latency_ms": 0.28
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19984.13
+    }
+  },
+  "retrieved_ids": [
+    "df3021c2d14dadb7:L0:000001",
+    "df3021c2d14dadb7:L0:000002",
+    "df3021c2d14dadb7:L0:000000",
+    "df3021c2d14dadb7:L0:000004",
+    "df3021c2d14dadb7:L0:000005"
+  ],
+  "filtered_ids": [
+    "df3021c2d14dadb7:L0:000001",
+    "df3021c2d14dadb7:L0:000002",
+    "df3021c2d14dadb7:L0:000000",
+    "df3021c2d14dadb7:L0:000004",
+    "df3021c2d14dadb7:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:33:20.263282+00:00",
+      "call_id": "1181ca7ed5f0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "01eb334e804199ce",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "25c88c9408e94675"
+    },
+    {
+      "ts": "2026-11-13T12:33:54.826012+00:00",
+      "call_id": "ce693a1ef466",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e67ef7e6254e3cfe",
+      "prompt_tokens": 2046,
+      "completion_tokens": 96,
+      "latency_ms": 19982.88,
+      "server_ms": 19953.85,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "25c88c9408e94675"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2046,
+    "completion_tokens": 96,
+    "total_ms": 34570.16
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "Yes, they separately extract topic relations and topic hierarchies in their model.",
+        "Specifically, the model uses language parsing and relation extraction to learn relations for the noun phrases, and adapts and improves the hierarchical latent Dirichlet allocation (hLDA) model to build topic hierarchies."
+      ]
+    }
+  }
+}

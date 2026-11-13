@@ -1,0 +1,163 @@
+{
+  "trace_id": "923150c237074612",
+  "created_at": "2026-11-13T11:18:12.738872+00:00",
+  "query": "When was the director of film I Want Someone To Eat Cheese With born?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8.7
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8.76
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17045.18
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.87,
+      "bm25_ms": 5.5,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000075",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "0eac870d43736f51:L0:000159",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000106",
+          "score": 0.27419292035146703,
+          "fused": 0.27419292035146703,
+          "dense_rank": 2,
+          "bm25_rank": null
+        },
+        {
+          "id": "abe982d210232c3f:L0:000125",
+          "score": 0.24468912671829057,
+          "fused": 0.24468912671829057,
+          "dense_rank": 3,
+          "bm25_rank": null
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": 0.24022757535751385,
+          "fused": 0.24022757535751385,
+          "dense_rank": 4,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 8.66
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1369,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17036.31
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000075",
+    "0eac870d43736f51:L0:000159",
+    "6af2db6cb86d77e2:L0:000106",
+    "abe982d210232c3f:L0:000125",
+    "b04ce6dd2d95fb80:L0:000152"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000075",
+    "0eac870d43736f51:L0:000159",
+    "6af2db6cb86d77e2:L0:000106",
+    "abe982d210232c3f:L0:000125",
+    "b04ce6dd2d95fb80:L0:000152"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:18:12.739876+00:00",
+      "call_id": "23beb19102ce",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e03822675f75bda0",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "923150c237074612"
+    },
+    {
+      "ts": "2026-11-13T11:18:29.783324+00:00",
+      "call_id": "053a25f514f2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d6bfe714f4010524",
+      "prompt_tokens": 2157,
+      "completion_tokens": 67,
+      "latency_ms": 17035.28,
+      "server_ms": 16972.73,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "923150c237074612"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2157,
+    "completion_tokens": 67,
+    "total_ms": 17046.52
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "trace_id": "1b48e2cc28964d83",
+  "created_at": "2026-11-13T13:14:57.621462+00:00",
+  "query": "What martial art does the author think is best overall?\n\nOptions:\n(A) Jujistui\n(B) Tae kwon do\n(C) Karate\n(D) Different martial arts for different purposes\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11724.51
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11724.63
+    },
+    {
+      "state": "DONE",
+      "t_ms": 44750.68
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.98,
+      "bm25_ms": 19.18,
+      "n_candidates": {
+        "dense": 7,
+        "bm25": 7
+      },
+      "n_fused": 7,
+      "rerank": {
+        "n": 7,
+        "n_computed": 7,
+        "latency_ms": 11698.73
+      },
+      "hits": [
+        {
+          "id": "e69f506283d8e1fc:L0:000000",
+          "score": 0.0565977580845356,
+          "fused": 0.9401514445603667,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 0.0565977580845356
+        },
+        {
+          "id": "e69f506283d8e1fc:L0:000003",
+          "score": -0.3502391576766968,
+          "fused": 0.7696415601197661,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.3502391576766968
+        },
+        {
+          "id": "e69f506283d8e1fc:L0:000002",
+          "score": -0.7614476084709167,
+          "fused": 0.8843453922521722,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": -0.7614476084709167
+        },
+        {
+          "id": "e69f506283d8e1fc:L0:000006",
+          "score": -1.6665425300598145,
+          "fused": 0.0,
+          "dense_rank": 7,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -1.6665425300598145
+        },
+        {
+          "id": "e69f506283d8e1fc:L0:000005",
+          "score": -2.0316107273101807,
+          "fused": 0.10547161520559648,
+          "dense_rank": 6,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -2.0316107273101807
+        }
+      ],
+      "latency_ms": 11724.45
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1901,
+      "latency_ms": 0.09
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 33025.93
+    }
+  },
+  "retrieved_ids": [
+    "e69f506283d8e1fc:L0:000000",
+    "e69f506283d8e1fc:L0:000003",
+    "e69f506283d8e1fc:L0:000002",
+    "e69f506283d8e1fc:L0:000006",
+    "e69f506283d8e1fc:L0:000005"
+  ],
+  "filtered_ids": [
+    "e69f506283d8e1fc:L0:000000",
+    "e69f506283d8e1fc:L0:000003",
+    "e69f506283d8e1fc:L0:000002",
+    "e69f506283d8e1fc:L0:000006",
+    "e69f506283d8e1fc:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:14:57.621462+00:00",
+      "call_id": "215828136298",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "59c39093aea7f254",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1b48e2cc28964d83"
+    },
+    {
+      "ts": "2026-11-13T13:15:42.370588+00:00",
+      "call_id": "d1909d177c03",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "46a4c039fffdee8f",
+      "prompt_tokens": 2571,
+      "completion_tokens": 150,
+      "latency_ms": 33024.49,
+      "server_ms": 32994.27,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "1b48e2cc28964d83"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2571,
+    "completion_tokens": 150,
+    "total_ms": 44752.47
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "(D) Different martial arts for different purposes.",
+        "The author provides a detailed analysis of various martial arts, suggesting that the best choice depends on individual goals.",
+        "For instance, Tae kwon do is good for a strong aerobic workout and self-defense, while karate is approachable and familiar.",
+        "Jujitsu is highly effective for self-defense but can be intimidating.",
+        "Kung fu is more of a sport than an art.",
+        "Therefore, the author implies that different martial arts are suited for different purposes."
+      ]
+    }
+  }
+}

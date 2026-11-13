@@ -1,0 +1,159 @@
+{
+  "run_id": "m3_row2_hybrid_test100",
+  "created": "2026-11-13T09:09:29.725449+00:00",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "config_path": "configs/ablations/row2_hybrid.yaml",
+  "config_hash": "03c4d870ec11",
+  "split": "test",
+  "datasets": [
+    "qasper",
+    "musique",
+    "quality",
+    "hotpotqa",
+    "2wiki",
+    "custom"
+  ],
+  "limit": 100,
+  "ollama": {
+    "version": "0.40.16",
+    "backend": "vulkan",
+    "models": {
+      "generator": {
+        "name": "qwen2.5:7b",
+        "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e"
+      },
+      "embedder": {
+        "name": "nomic-embed-text",
+        "digest": "0a109f422b47e3a30ba2b10eca18548e944e8a23073ee3f3e947efcf3c45e59f"
+      },
+      "judge": {
+        "name": "gemma3:4b",
+        "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7"
+      }
+    }
+  },
+  "config": {
+    "run": {
+      "name": "row2_hybrid",
+      "seed": 42
+    },
+    "ollama": {
+      "url": "http://127.0.0.1:11434",
+      "timeout_s": 900,
+      "keep_alive": "30m",
+      "max_retries": 2,
+      "backend": "vulkan"
+    },
+    "models": {
+      "generator": "qwen2.5:7b",
+      "embedder": "nomic-embed-text",
+      "router": "llama3.2:1b",
+      "judge": "gemma3:4b"
+    },
+    "embedding": {
+      "doc_prefix": "search_document: ",
+      "query_prefix": "search_query: ",
+      "batch_size": 32,
+      "normalize": true,
+      "options": {
+        "num_ctx": 2048,
+        "num_batch": 2048
+      }
+    },
+    "llm": {
+      "cache_enabled": true,
+      "cache_path": ".apex_cache/llm_cache.sqlite",
+      "log_path": "logs/llm_calls.jsonl"
+    },
+    "ingest": {
+      "extensions": [
+        ".pdf",
+        ".md",
+        ".markdown",
+        ".txt",
+        ".html",
+        ".htm"
+      ],
+      "chunk_target_tokens": 400,
+      "chunk_overlap_tokens": 50
+    },
+    "store": {
+      "path": "apex_db",
+      "collection": "nodes",
+      "space": "cosine"
+    },
+    "retrieval": {
+      "mode": "hybrid",
+      "top_k": 5,
+      "levels": [
+        0
+      ],
+      "dense_backend": "ivf",
+      "candidates": 50,
+      "fused_k": 20,
+      "fusion": "weighted",
+      "rrf_k": 60,
+      "weights": {
+        "dense": 0.3,
+        "bm25": 0.7
+      }
+    },
+    "bm25": {
+      "k1": 1.2,
+      "b": 0.75
+    },
+    "ivf": {
+      "nlist": null,
+      "nlist_factor": 4,
+      "min_points_per_centroid": 39,
+      "nprobe": 32
+    },
+    "rerank": {
+      "enabled": false,
+      "model": "BAAI/bge-reranker-v2-m3",
+      "revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+      "max_length": 512,
+      "batch_size": 1,
+      "quantize": "int8",
+      "threads": 0,
+      "cache_path": ".apex_cache/rerank_cache.sqlite"
+    },
+    "generation": {
+      "temperature": 0.0,
+      "max_tokens": 512,
+      "num_ctx": 8192,
+      "context_token_budget": 2500,
+      "system_prompt": "answer_system.txt"
+    },
+    "trace": {
+      "dir": "logs/traces"
+    },
+    "judge": {
+      "temperature": 0.0,
+      "max_tokens": 1024,
+      "num_ctx": 8192
+    },
+    "eval": {
+      "data_dir": "data/benchmarks",
+      "results_dir": "results",
+      "n_dev": 50,
+      "n_test": 250,
+      "unanswerable_fraction": 0.1,
+      "retrieval_ks": [
+        5,
+        10,
+        20
+      ],
+      "ndcg_k": 10,
+      "evidence_match": {
+        "shingle": 5,
+        "min_overlap": 0.5
+      },
+      "bootstrap": {
+        "n": 1000,
+        "ci": 0.95
+      },
+      "judge_enabled": false
+    }
+  }
+}

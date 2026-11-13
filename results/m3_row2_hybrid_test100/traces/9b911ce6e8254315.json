@@ -1,0 +1,163 @@
+{
+  "trace_id": "9b911ce6e8254315",
+  "created_at": "2026-11-13T10:24:00.994505+00:00",
+  "query": "Why was Roger mortified at the news about the cancelled metal-foil wrapper order?\n\nOptions:\n(A) The consumers would now be able to see the product\n(B) The loaves would go stale much more quickly now\n(C) They now had nothing to wrap the loaves with\n(D) The loaves would now be too light and float away\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 29.38
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 29.46
+    },
+    {
+      "state": "DONE",
+      "t_ms": 26457.28
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.56,
+      "bm25_ms": 26.52,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 18
+      },
+      "n_fused": 19,
+      "hits": [
+        {
+          "id": "f3eb6c80c1c23120:L0:000010",
+          "score": 0.875360728346696,
+          "fused": 0.875360728346696,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "f3eb6c80c1c23120:L0:000008",
+          "score": 0.7489878981189391,
+          "fused": 0.7489878981189391,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        },
+        {
+          "id": "f3eb6c80c1c23120:L0:000011",
+          "score": 0.7436124938398936,
+          "fused": 0.7436124938398936,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f3eb6c80c1c23120:L0:000007",
+          "score": 0.693099114349164,
+          "fused": 0.693099114349164,
+          "dense_rank": 10,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f3eb6c80c1c23120:L0:000009",
+          "score": 0.6548745094103083,
+          "fused": 0.6548745094103083,
+          "dense_rank": 7,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 29.34
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1955,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 26427.71
+    }
+  },
+  "retrieved_ids": [
+    "f3eb6c80c1c23120:L0:000010",
+    "f3eb6c80c1c23120:L0:000008",
+    "f3eb6c80c1c23120:L0:000011",
+    "f3eb6c80c1c23120:L0:000007",
+    "f3eb6c80c1c23120:L0:000009"
+  ],
+  "filtered_ids": [
+    "f3eb6c80c1c23120:L0:000010",
+    "f3eb6c80c1c23120:L0:000008",
+    "f3eb6c80c1c23120:L0:000011",
+    "f3eb6c80c1c23120:L0:000007",
+    "f3eb6c80c1c23120:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:24:00.996501+00:00",
+      "call_id": "1f60b5325f71",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "873ec58bdb4e4984",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9b911ce6e8254315"
+    },
+    {
+      "ts": "2026-11-13T10:24:27.451750+00:00",
+      "call_id": "828e5bc9ead4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9551a3047c81c57f",
+      "prompt_tokens": 2652,
+      "completion_tokens": 59,
+      "latency_ms": 26423.18,
+      "server_ms": 26393.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "9b911ce6e8254315"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2652,
+    "completion_tokens": 59,
+    "total_ms": 26459.12
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

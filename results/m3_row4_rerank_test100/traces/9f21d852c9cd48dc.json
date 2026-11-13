@@ -1,0 +1,179 @@
+{
+  "trace_id": "9f21d852c9cd48dc",
+  "created_at": "2026-11-13T15:12:22.134346+00:00",
+  "query": "Which film came out earlier, La Marca De Satanás or Sofia'S Last Ambulance?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4358.97
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4359.96
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17441.9
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.17,
+      "bm25_ms": 16.88,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4335.1
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000051",
+          "score": 8.476902961730957,
+          "fused": 0.6927608111160178,
+          "dense_rank": 18,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 8.476902961730957
+        },
+        {
+          "id": "abe982d210232c3f:L0:000171",
+          "score": 8.339455604553223,
+          "fused": 0.9588523427191449,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.339455604553223
+        },
+        {
+          "id": "abe982d210232c3f:L0:000124",
+          "score": -5.235669136047363,
+          "fused": 0.1407853663708002,
+          "dense_rank": 32,
+          "bm25_rank": 9,
+          "fused_rank": 13,
+          "rerank": -5.235669136047363
+        },
+        {
+          "id": "abe982d210232c3f:L0:000136",
+          "score": -6.806619644165039,
+          "fused": 0.2230868497217077,
+          "dense_rank": 24,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": -6.806619644165039
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000058",
+          "score": -7.162067890167236,
+          "fused": 0.17447084607564867,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": -7.162067890167236
+        }
+      ],
+      "latency_ms": 4358.92
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 421,
+      "latency_ms": 0.95
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13081.81
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000051",
+    "abe982d210232c3f:L0:000171",
+    "abe982d210232c3f:L0:000124",
+    "abe982d210232c3f:L0:000136",
+    "b04ce6dd2d95fb80:L0:000058"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000051",
+    "abe982d210232c3f:L0:000171",
+    "abe982d210232c3f:L0:000124",
+    "abe982d210232c3f:L0:000136",
+    "b04ce6dd2d95fb80:L0:000058"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:12:22.150002+00:00",
+      "call_id": "3fa49afb86d2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "987c409255479196",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9f21d852c9cd48dc"
+    },
+    {
+      "ts": "2026-11-13T15:12:39.581514+00:00",
+      "call_id": "4aabdba2ae90",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "fe5d682300477755",
+      "prompt_tokens": 1037,
+      "completion_tokens": 98,
+      "latency_ms": 13080.65,
+      "server_ms": 13057.99,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "9f21d852c9cd48dc"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1037,
+    "completion_tokens": 98,
+    "total_ms": 17443.6
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

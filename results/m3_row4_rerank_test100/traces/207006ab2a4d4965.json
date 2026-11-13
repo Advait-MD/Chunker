@@ -1,0 +1,181 @@
+{
+  "trace_id": "207006ab2a4d4965",
+  "created_at": "2026-11-13T13:36:33.138084+00:00",
+  "query": "Why does the stranger land on Venus?\n\nOptions:\n(A) To enlighten the people of Venus by showing them advanced technology\n(B) To take Koroby back to his planet\n(C) To observe the people of Venus and send his observations back home\n(D) He lands there by mistake\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 28576.82
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 28576.97
+    },
+    {
+      "state": "DONE",
+      "t_ms": 47125.04
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.06,
+      "bm25_ms": 22.4,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 17
+      },
+      "n_fused": 17,
+      "rerank": {
+        "n": 17,
+        "n_computed": 17,
+        "latency_ms": 28541.95
+      },
+      "hits": [
+        {
+          "id": "3c1dafeffd094309:L0:000010",
+          "score": -0.8288863897323608,
+          "fused": 0.9864679504771752,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": -0.8288863897323608
+        },
+        {
+          "id": "3c1dafeffd094309:L0:000000",
+          "score": -0.8860819339752197,
+          "fused": 0.8746780961256247,
+          "dense_rank": 6,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": -0.8860819339752197
+        },
+        {
+          "id": "3c1dafeffd094309:L0:000008",
+          "score": -1.4104597568511963,
+          "fused": 0.8156634627234565,
+          "dense_rank": 11,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -1.4104597568511963
+        },
+        {
+          "id": "3c1dafeffd094309:L0:000007",
+          "score": -1.6741228103637695,
+          "fused": 0.8058093580402585,
+          "dense_rank": 8,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -1.6741228103637695
+        },
+        {
+          "id": "3c1dafeffd094309:L0:000003",
+          "score": -3.192847728729248,
+          "fused": 0.3482460791339146,
+          "dense_rank": 15,
+          "bm25_rank": 11,
+          "fused_rank": 13,
+          "rerank": -3.192847728729248
+        }
+      ],
+      "latency_ms": 28576.77
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1933,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18547.56
+    }
+  },
+  "retrieved_ids": [
+    "3c1dafeffd094309:L0:000010",
+    "3c1dafeffd094309:L0:000000",
+    "3c1dafeffd094309:L0:000008",
+    "3c1dafeffd094309:L0:000007",
+    "3c1dafeffd094309:L0:000003"
+  ],
+  "filtered_ids": [
+    "3c1dafeffd094309:L0:000010",
+    "3c1dafeffd094309:L0:000000",
+    "3c1dafeffd094309:L0:000008",
+    "3c1dafeffd094309:L0:000007",
+    "3c1dafeffd094309:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:36:33.138084+00:00",
+      "call_id": "4d2071ec1ed9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "84e5216e54d874d2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "207006ab2a4d4965"
+    },
+    {
+      "ts": "2026-11-13T13:37:20.261682+00:00",
+      "call_id": "9ec7824e9967",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f36c7819366d607a",
+      "prompt_tokens": 2534,
+      "completion_tokens": 49,
+      "latency_ms": 18546.71,
+      "server_ms": 18529.55,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "207006ab2a4d4965"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2534,
+    "completion_tokens": 49,
+    "total_ms": 47126.51
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        3
+      ],
+      "uncited_sentences": [
+        "(D) He lands there by mistake."
+      ]
+    }
+  }
+}

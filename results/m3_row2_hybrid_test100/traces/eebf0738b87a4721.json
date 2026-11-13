@@ -1,0 +1,167 @@
+{
+  "trace_id": "eebf0738b87a4721",
+  "created_at": "2026-11-13T10:30:04.947412+00:00",
+  "query": "What is Ludmilla?\n\nOptions:\n(A) A chicken\n(B) A city\n(C) An American submarine \n(D) A Polish ship\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.93
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17.99
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18890.88
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.36,
+      "bm25_ms": 14.31,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 16
+      },
+      "n_fused": 19,
+      "hits": [
+        {
+          "id": "e2aaf883e15e64c8:L0:000000",
+          "score": 0.892482035395983,
+          "fused": 0.892482035395983,
+          "dense_rank": 5,
+          "bm25_rank": 1
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000001",
+          "score": 0.808789669815593,
+          "fused": 0.808789669815593,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000002",
+          "score": 0.6053391035873177,
+          "fused": 0.6053391035873177,
+          "dense_rank": 2,
+          "bm25_rank": 4
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000005",
+          "score": 0.5353994417473532,
+          "fused": 0.5353994417473532,
+          "dense_rank": 15,
+          "bm25_rank": 3
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000012",
+          "score": 0.5071197477995641,
+          "fused": 0.5071197477995641,
+          "dense_rank": 3,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 17.89
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1840,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18872.79
+    }
+  },
+  "retrieved_ids": [
+    "e2aaf883e15e64c8:L0:000000",
+    "e2aaf883e15e64c8:L0:000001",
+    "e2aaf883e15e64c8:L0:000002",
+    "e2aaf883e15e64c8:L0:000005",
+    "e2aaf883e15e64c8:L0:000012"
+  ],
+  "filtered_ids": [
+    "e2aaf883e15e64c8:L0:000000",
+    "e2aaf883e15e64c8:L0:000001",
+    "e2aaf883e15e64c8:L0:000002",
+    "e2aaf883e15e64c8:L0:000005",
+    "e2aaf883e15e64c8:L0:000012"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:30:04.949405+00:00",
+      "call_id": "f00f77d0f597",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7260bd549abdf25a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.02,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "eebf0738b87a4721"
+    },
+    {
+      "ts": "2026-11-13T10:30:23.837753+00:00",
+      "call_id": "3f0bd94ded99",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f102182a68595c8c",
+      "prompt_tokens": 2337,
+      "completion_tokens": 46,
+      "latency_ms": 18870.83,
+      "server_ms": 18831.46,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "eebf0738b87a4721"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2337,
+    "completion_tokens": 46,
+    "total_ms": 18892.29
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3
+      ],
+      "uncited_sentences": [
+        "(D) A Polish ship"
+      ]
+    }
+  }
+}

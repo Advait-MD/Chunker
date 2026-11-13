@@ -1,0 +1,164 @@
+{
+  "trace_id": "55ab872ce2474a7b",
+  "created_at": "2026-11-13T11:18:04.595679+00:00",
+  "query": "Are Guancangping Railway Station and Yangquan North Railway Station both located in the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.0
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5.27
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5.3
+    },
+    {
+      "state": "DONE",
+      "t_ms": 8134.75
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.62,
+      "bm25_ms": 3.49,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000116",
+          "score": 0.9056968217222346,
+          "fused": 0.9056968217222346,
+          "dense_rank": 5,
+          "bm25_rank": 1
+        },
+        {
+          "id": "460e441179bec402:L0:000114",
+          "score": 0.8332067381420653,
+          "fused": 0.8332067381420653,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000029",
+          "score": 0.8247416629969475,
+          "fused": 0.8247416629969475,
+          "dense_rank": 1,
+          "bm25_rank": 8
+        },
+        {
+          "id": "abe982d210232c3f:L0:000159",
+          "score": 0.7517242802999381,
+          "fused": 0.7517242802999381,
+          "dense_rank": 2,
+          "bm25_rank": 10
+        },
+        {
+          "id": "99628090500247e3:L0:000026",
+          "score": 0.7439857303990479,
+          "fused": 0.7439857303990479,
+          "dense_rank": 11,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 5.25
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 135,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8129.33
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000116",
+    "460e441179bec402:L0:000114",
+    "c73b757f0eb66f37:L0:000029",
+    "abe982d210232c3f:L0:000159",
+    "99628090500247e3:L0:000026"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000116",
+    "460e441179bec402:L0:000114",
+    "c73b757f0eb66f37:L0:000029",
+    "abe982d210232c3f:L0:000159",
+    "99628090500247e3:L0:000026"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:18:04.596681+00:00",
+      "call_id": "e0f6105b4742",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f2677babb2d374a4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "55ab872ce2474a7b"
+    },
+    {
+      "ts": "2026-11-13T11:18:12.729142+00:00",
+      "call_id": "e3869c30bf6b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "910f6f0bb8a475f7",
+      "prompt_tokens": 703,
+      "completion_tokens": 66,
+      "latency_ms": 8128.38,
+      "server_ms": 8104.58,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "55ab872ce2474a7b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 703,
+    "completion_tokens": 66,
+    "total_ms": 8136.54
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "trace_id": "2e068d7d86bd4d64",
+  "created_at": "2026-11-13T10:33:08.710043+00:00",
+  "query": "What is the relationship like between Earth and the planet the story is centered around?\n\nOptions:\n(A) The planet was saved by Earth and forever in the debt\n(B) Earth people were the original colonists, which had subsequently lost contact for hundreds of years\n(C) The planet started a war with Earth that they lost, and were banished to their current planet without space ships\n(D) Earth started a war with the planet, took it over, and then systematically wiped out it’s language and culture\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 34.78
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 34.84
+    },
+    {
+      "state": "DONE",
+      "t_ms": 26046.18
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.8,
+      "bm25_ms": 30.76,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 20
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "650372bcd2b0a7be:L0:000005",
+          "score": 0.9789925141809697,
+          "fused": 0.9789925141809697,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "650372bcd2b0a7be:L0:000001",
+          "score": 0.6872109088120955,
+          "fused": 0.6872109088120955,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "650372bcd2b0a7be:L0:000011",
+          "score": 0.6071468464757981,
+          "fused": 0.6071468464757981,
+          "dense_rank": 2,
+          "bm25_rank": 4
+        },
+        {
+          "id": "650372bcd2b0a7be:L0:000000",
+          "score": 0.5644868479449283,
+          "fused": 0.5644868479449283,
+          "dense_rank": 5,
+          "bm25_rank": 3
+        },
+        {
+          "id": "650372bcd2b0a7be:L0:000004",
+          "score": 0.4232568333529288,
+          "fused": 0.4232568333529288,
+          "dense_rank": 10,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 34.75
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1879,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 26011.25
+    }
+  },
+  "retrieved_ids": [
+    "650372bcd2b0a7be:L0:000005",
+    "650372bcd2b0a7be:L0:000001",
+    "650372bcd2b0a7be:L0:000011",
+    "650372bcd2b0a7be:L0:000000",
+    "650372bcd2b0a7be:L0:000004"
+  ],
+  "filtered_ids": [
+    "650372bcd2b0a7be:L0:000005",
+    "650372bcd2b0a7be:L0:000001",
+    "650372bcd2b0a7be:L0:000011",
+    "650372bcd2b0a7be:L0:000000",
+    "650372bcd2b0a7be:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:33:08.712135+00:00",
+      "call_id": "fe8050b34b04",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a8d3228074952f20",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2e068d7d86bd4d64"
+    },
+    {
+      "ts": "2026-11-13T10:33:34.755289+00:00",
+      "call_id": "58420d8cbe42",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "def3845aaa36b448",
+      "prompt_tokens": 2577,
+      "completion_tokens": 60,
+      "latency_ms": 26009.49,
+      "server_ms": 25973.59,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2e068d7d86bd4d64"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2577,
+    "completion_tokens": 60,
+    "total_ms": 26048.1
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        4
+      ],
+      "uncited_sentences": [
+        "(B) Earth people were the original colonists, which had subsequently lost contact for hundreds of years."
+      ]
+    }
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "trace_id": "77f2b636908549b8",
+  "created_at": "2026-11-13T10:42:16.619327+00:00",
+  "query": "What is the name of the film directed by Alex Cox  adapted from a 1606 play starring Diana Quick as the Dutchess?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.27
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.33
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11851.57
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.46,
+      "bm25_ms": 11.5,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "90976421f3f2bea2:L0:000138",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "20496f59538deb41:L0:000054",
+          "score": 0.3606584368156314,
+          "fused": 0.3606584368156314,
+          "dense_rank": 12,
+          "bm25_rank": 2
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000099",
+          "score": 0.31859245326777846,
+          "fused": 0.31859245326777846,
+          "dense_rank": 4,
+          "bm25_rank": 6
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000047",
+          "score": 0.295667107330477,
+          "fused": 0.295667107330477,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000021",
+          "score": 0.28168346290619856,
+          "fused": 0.28168346290619856,
+          "dense_rank": 18,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 15.24
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 484,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11836.13
+    }
+  },
+  "retrieved_ids": [
+    "90976421f3f2bea2:L0:000138",
+    "20496f59538deb41:L0:000054",
+    "5d0f6cf59ee42566:L0:000099",
+    "ba3cd068cf9ac2e4:L0:000047",
+    "ba3cd068cf9ac2e4:L0:000021"
+  ],
+  "filtered_ids": [
+    "90976421f3f2bea2:L0:000138",
+    "20496f59538deb41:L0:000054",
+    "5d0f6cf59ee42566:L0:000099",
+    "ba3cd068cf9ac2e4:L0:000047",
+    "ba3cd068cf9ac2e4:L0:000021"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:42:16.621323+00:00",
+      "call_id": "060d0924cc78",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "01b05e371281fc5a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "77f2b636908549b8"
+    },
+    {
+      "ts": "2026-11-13T10:42:28.469127+00:00",
+      "call_id": "31132b4180e6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "38e37ca56405d252",
+      "prompt_tokens": 1136,
+      "completion_tokens": 67,
+      "latency_ms": 11835.11,
+      "server_ms": 11809.25,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "77f2b636908549b8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1136,
+    "completion_tokens": 67,
+    "total_ms": 11853.7
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

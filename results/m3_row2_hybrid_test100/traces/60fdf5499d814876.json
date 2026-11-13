@@ -1,0 +1,168 @@
+{
+  "trace_id": "60fdf5499d814876",
+  "created_at": "2026-11-13T10:14:14.666118+00:00",
+  "query": "Does Corisande love Ludovick?\n\nOptions:\n(A) No, she used him for her ends\n(B) Yes, her uncle said so\n(C) Yes, they got married\n(D) No, she wanted to be President\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 22.19
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 23.29
+    },
+    {
+      "state": "DONE",
+      "t_ms": 27220.59
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.15,
+      "bm25_ms": 18.8,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 19
+      },
+      "n_fused": 19,
+      "hits": [
+        {
+          "id": "2968a513e75b0147:L0:000017",
+          "score": 0.9388555398153062,
+          "fused": 0.9388555398153062,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2968a513e75b0147:L0:000018",
+          "score": 0.9263391365392113,
+          "fused": 0.9263391365392113,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "2968a513e75b0147:L0:000009",
+          "score": 0.6253057767891017,
+          "fused": 0.6253057767891017,
+          "dense_rank": 4,
+          "bm25_rank": 5
+        },
+        {
+          "id": "2968a513e75b0147:L0:000010",
+          "score": 0.6239070897777524,
+          "fused": 0.6239070897777524,
+          "dense_rank": 3,
+          "bm25_rank": 6
+        },
+        {
+          "id": "2968a513e75b0147:L0:000005",
+          "score": 0.615254833908429,
+          "fused": 0.615254833908429,
+          "dense_rank": 11,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 22.15
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1875,
+      "latency_ms": 1.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 27196.7
+    }
+  },
+  "retrieved_ids": [
+    "2968a513e75b0147:L0:000017",
+    "2968a513e75b0147:L0:000018",
+    "2968a513e75b0147:L0:000009",
+    "2968a513e75b0147:L0:000010",
+    "2968a513e75b0147:L0:000005"
+  ],
+  "filtered_ids": [
+    "2968a513e75b0147:L0:000017",
+    "2968a513e75b0147:L0:000018",
+    "2968a513e75b0147:L0:000009",
+    "2968a513e75b0147:L0:000010",
+    "2968a513e75b0147:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:14:14.668120+00:00",
+      "call_id": "2c9eb99e2da4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "afd4f226448d84cc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "60fdf5499d814876"
+    },
+    {
+      "ts": "2026-11-13T10:14:41.884949+00:00",
+      "call_id": "6eff7e020099",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b22b5a19038b3194",
+      "prompt_tokens": 2483,
+      "completion_tokens": 88,
+      "latency_ms": 27195.02,
+      "server_ms": 27158.06,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "60fdf5499d814876"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2483,
+    "completion_tokens": 88,
+    "total_ms": 27222.4
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "(C) Yes, they got married."
+      ]
+    }
+  }
+}

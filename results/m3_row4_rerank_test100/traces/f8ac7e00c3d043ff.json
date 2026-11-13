@@ -1,0 +1,179 @@
+{
+  "trace_id": "f8ac7e00c3d043ff",
+  "created_at": "2026-11-13T14:53:56.944028+00:00",
+  "query": "Do both films Masters Of The Sea (Film) and The Auction Mart have the directors from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6420.32
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6420.42
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22329.29
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.92,
+      "bm25_ms": 15.31,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6400.85
+      },
+      "hits": [
+        {
+          "id": "6af2db6cb86d77e2:L0:000030",
+          "score": 7.025341510772705,
+          "fused": 0.431521367340108,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 7.025341510772705
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000006",
+          "score": 5.226471900939941,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.226471900939941
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000010",
+          "score": -3.271378755569458,
+          "fused": 0.4901016566997252,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -3.271378755569458
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": -3.8766028881073,
+          "fused": 0.1583561142561939,
+          "dense_rank": 8,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": -3.8766028881073
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -5.153470993041992,
+          "fused": 0.14757872871687797,
+          "dense_rank": 9,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -5.153470993041992
+        }
+      ],
+      "latency_ms": 6420.27
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 832,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15908.74
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000030",
+    "53c7288bdcd3837a:L0:000006",
+    "317e12ccd417c0d7:L0:000010",
+    "abe982d210232c3f:L0:000151",
+    "b04ce6dd2d95fb80:L0:000152"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000030",
+    "53c7288bdcd3837a:L0:000006",
+    "317e12ccd417c0d7:L0:000010",
+    "abe982d210232c3f:L0:000151",
+    "b04ce6dd2d95fb80:L0:000152"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:53:56.944028+00:00",
+      "call_id": "8223d5845054",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1bf653cc720a5718",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f8ac7e00c3d043ff"
+    },
+    {
+      "ts": "2026-11-13T14:54:19.266789+00:00",
+      "call_id": "1c3d77683aad",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f3696ca10a5ac7f0",
+      "prompt_tokens": 1524,
+      "completion_tokens": 78,
+      "latency_ms": 15907.43,
+      "server_ms": 15860.24,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f8ac7e00c3d043ff"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1524,
+    "completion_tokens": 78,
+    "total_ms": 22331.39
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

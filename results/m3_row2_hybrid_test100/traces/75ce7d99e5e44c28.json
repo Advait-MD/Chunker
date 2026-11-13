@@ -1,0 +1,168 @@
+{
+  "trace_id": "75ce7d99e5e44c28",
+  "created_at": "2026-11-13T10:21:41.050731+00:00",
+  "query": "What is the language spoken on Saturn?\n\nOptions:\n(A) Martian\n(B) English\n(C) Binary\n(D) Saturnese\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.75
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.82
+    },
+    {
+      "state": "DONE",
+      "t_ms": 26274.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.27,
+      "bm25_ms": 13.25,
+      "n_candidates": {
+        "dense": 18,
+        "bm25": 15
+      },
+      "n_fused": 18,
+      "hits": [
+        {
+          "id": "d0e00aef59ec5db1:L0:000016",
+          "score": 0.9249382481588635,
+          "fused": 0.9249382481588635,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000000",
+          "score": 0.8865475280360247,
+          "fused": 0.8865475280360247,
+          "dense_rank": 6,
+          "bm25_rank": 3
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000001",
+          "score": 0.881356375202478,
+          "fused": 0.881356375202478,
+          "dense_rank": 8,
+          "bm25_rank": 2
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000004",
+          "score": 0.8489774007455675,
+          "fused": 0.8489774007455675,
+          "dense_rank": 1,
+          "bm25_rank": 5
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000012",
+          "score": 0.790136994146651,
+          "fused": 0.790136994146651,
+          "dense_rank": 7,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 15.71
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1938,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 26258.09
+    }
+  },
+  "retrieved_ids": [
+    "d0e00aef59ec5db1:L0:000016",
+    "d0e00aef59ec5db1:L0:000000",
+    "d0e00aef59ec5db1:L0:000001",
+    "d0e00aef59ec5db1:L0:000004",
+    "d0e00aef59ec5db1:L0:000012"
+  ],
+  "filtered_ids": [
+    "d0e00aef59ec5db1:L0:000016",
+    "d0e00aef59ec5db1:L0:000000",
+    "d0e00aef59ec5db1:L0:000001",
+    "d0e00aef59ec5db1:L0:000004",
+    "d0e00aef59ec5db1:L0:000012"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:21:41.051737+00:00",
+      "call_id": "515574699894",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f5c18b9a9b860a28",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "75ce7d99e5e44c28"
+    },
+    {
+      "ts": "2026-11-13T10:22:07.322494+00:00",
+      "call_id": "2fe5409ab244",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d588074aae4bf4a3",
+      "prompt_tokens": 2559,
+      "completion_tokens": 127,
+      "latency_ms": 26254.48,
+      "server_ms": 26212.19,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "75ce7d99e5e44c28"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2559,
+    "completion_tokens": 127,
+    "total_ms": 26276.57
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "(B) English is spoken on Saturn.",
+        "This can be inferred from the passage where the radio on the mantel blared a warning signal, automatically tuning in on one of the regular newscasts from Titan City out on Saturn's biggest moon.",
+        "The passage suggests that the announcer's voice is in English, as it mentions 'ladies and gentlemen' and talks about events on Earth and Saturn in a way that would be understood by English speakers."
+      ]
+    }
+  }
+}

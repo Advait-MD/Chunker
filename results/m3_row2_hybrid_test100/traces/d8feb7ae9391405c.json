@@ -1,0 +1,165 @@
+{
+  "trace_id": "d8feb7ae9391405c",
+  "created_at": "2026-11-13T09:21:37.006500+00:00",
+  "query": "Do they create the basic dialog agent and basic user simulator separately?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.61
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18.66
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18806.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.04,
+      "bm25_ms": 14.21,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 19
+      },
+      "n_fused": 19,
+      "hits": [
+        {
+          "id": "59655a048fbe2495:L0:000002",
+          "score": 0.9759843144108233,
+          "fused": 0.9759843144108233,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "59655a048fbe2495:L0:000005",
+          "score": 0.9135630564075556,
+          "fused": 0.9135630564075556,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "59655a048fbe2495:L0:000000",
+          "score": 0.8265937026836916,
+          "fused": 0.8265937026836916,
+          "dense_rank": 11,
+          "bm25_rank": 1
+        },
+        {
+          "id": "59655a048fbe2495:L0:000006",
+          "score": 0.8238025174135077,
+          "fused": 0.8238025174135077,
+          "dense_rank": 4,
+          "bm25_rank": 4
+        },
+        {
+          "id": "59655a048fbe2495:L0:000009",
+          "score": 0.7248405707250727,
+          "fused": 0.7248405707250727,
+          "dense_rank": 2,
+          "bm25_rank": 9
+        }
+      ],
+      "latency_ms": 18.56
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1408,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18787.65
+    }
+  },
+  "retrieved_ids": [
+    "59655a048fbe2495:L0:000002",
+    "59655a048fbe2495:L0:000005",
+    "59655a048fbe2495:L0:000000",
+    "59655a048fbe2495:L0:000006",
+    "59655a048fbe2495:L0:000009"
+  ],
+  "filtered_ids": [
+    "59655a048fbe2495:L0:000002",
+    "59655a048fbe2495:L0:000005",
+    "59655a048fbe2495:L0:000000",
+    "59655a048fbe2495:L0:000006",
+    "59655a048fbe2495:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:21:37.008505+00:00",
+      "call_id": "e16da78752b7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "66d95745cc812155",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d8feb7ae9391405c"
+    },
+    {
+      "ts": "2026-11-13T09:21:55.810294+00:00",
+      "call_id": "7c31268edde4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d6a40fcd22d2a54a",
+      "prompt_tokens": 1998,
+      "completion_tokens": 73,
+      "latency_ms": 18784.7,
+      "server_ms": 18746.79,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d8feb7ae9391405c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1998,
+    "completion_tokens": 73,
+    "total_ms": 18808.02
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

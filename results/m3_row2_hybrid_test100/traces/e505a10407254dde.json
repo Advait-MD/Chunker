@@ -1,0 +1,166 @@
+{
+  "trace_id": "e505a10407254dde",
+  "created_at": "2026-11-13T10:38:22.950379+00:00",
+  "query": "How are the pirates foiled?\n\nOptions:\n(A) They board the Kismet without backups\n(B) They don’t know what Darling actually looks like\n(C) They don’t use their tractor beam to lock onto Kismet\n(D) They don’t know what Darling sounds like\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 29.28
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 29.43
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25806.22
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.92,
+      "bm25_ms": 26.07,
+      "n_candidates": {
+        "dense": 18,
+        "bm25": 18
+      },
+      "n_fused": 18,
+      "hits": [
+        {
+          "id": "369294acde117c7a:L0:000015",
+          "score": 0.9919222177678497,
+          "fused": 0.9919222177678497,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "369294acde117c7a:L0:000011",
+          "score": 0.9062361804990444,
+          "fused": 0.9062361804990444,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "369294acde117c7a:L0:000000",
+          "score": 0.7524312677545525,
+          "fused": 0.7524312677545525,
+          "dense_rank": 16,
+          "bm25_rank": 2
+        },
+        {
+          "id": "369294acde117c7a:L0:000010",
+          "score": 0.7174395989422458,
+          "fused": 0.7174395989422458,
+          "dense_rank": 6,
+          "bm25_rank": 4
+        },
+        {
+          "id": "369294acde117c7a:L0:000012",
+          "score": 0.638581945611171,
+          "fused": 0.638581945611171,
+          "dense_rank": 1,
+          "bm25_rank": 9
+        }
+      ],
+      "latency_ms": 29.23
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1989,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25776.7
+    }
+  },
+  "retrieved_ids": [
+    "369294acde117c7a:L0:000015",
+    "369294acde117c7a:L0:000011",
+    "369294acde117c7a:L0:000000",
+    "369294acde117c7a:L0:000010",
+    "369294acde117c7a:L0:000012"
+  ],
+  "filtered_ids": [
+    "369294acde117c7a:L0:000015",
+    "369294acde117c7a:L0:000011",
+    "369294acde117c7a:L0:000000",
+    "369294acde117c7a:L0:000010",
+    "369294acde117c7a:L0:000012"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:38:22.951406+00:00",
+      "call_id": "3bcdccea98cb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bd95a40949bedbcd",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e505a10407254dde"
+    },
+    {
+      "ts": "2026-11-13T10:38:48.755508+00:00",
+      "call_id": "7eca0e7b810d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bfe4b06e232f0383",
+      "prompt_tokens": 2612,
+      "completion_tokens": 53,
+      "latency_ms": 25775.54,
+      "server_ms": 25743.83,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "e505a10407254dde"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2612,
+    "completion_tokens": 53,
+    "total_ms": 25807.81
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2,
+        4
+      ],
+      "uncited_sentences": [
+        "(A) They board the Kismet without backups"
+      ]
+    }
+  }
+}

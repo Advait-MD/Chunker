@@ -1,0 +1,178 @@
+{
+  "trace_id": "f4ce5de2b10943f7",
+  "created_at": "2026-11-13T14:02:15.241675+00:00",
+  "query": "What is the Oans' unusual advantage?\n\nOptions:\n(A) They have the human's fire weapons. \n(B) They emit flames. \n(C) The strength of their arms. \n(D) Their eyes cut the night. \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16590.81
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16590.97
+    },
+    {
+      "state": "DONE",
+      "t_ms": 37457.67
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.44,
+      "bm25_ms": 17.97,
+      "n_candidates": {
+        "dense": 18,
+        "bm25": 18
+      },
+      "n_fused": 18,
+      "rerank": {
+        "n": 18,
+        "n_computed": 18,
+        "latency_ms": 16561.25
+      },
+      "hits": [
+        {
+          "id": "e139a82b9482174d:L0:000004",
+          "score": -1.3360673189163208,
+          "fused": 0.9576054356845285,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.3360673189163208
+        },
+        {
+          "id": "e139a82b9482174d:L0:000005",
+          "score": -1.845910668373108,
+          "fused": 0.7597948155299425,
+          "dense_rank": 1,
+          "bm25_rank": 8,
+          "fused_rank": 3,
+          "rerank": -1.845910668373108
+        },
+        {
+          "id": "e139a82b9482174d:L0:000007",
+          "score": -2.1155779361724854,
+          "fused": 0.6893620554210566,
+          "dense_rank": 5,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": -2.1155779361724854
+        },
+        {
+          "id": "e139a82b9482174d:L0:000013",
+          "score": -2.338013172149658,
+          "fused": 0.9100186440817973,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -2.338013172149658
+        },
+        {
+          "id": "e139a82b9482174d:L0:000002",
+          "score": -3.152113676071167,
+          "fused": 0.7538809941196205,
+          "dense_rank": 6,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -3.152113676071167
+        }
+      ],
+      "latency_ms": 16590.75
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1975,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20866.53
+    }
+  },
+  "retrieved_ids": [
+    "e139a82b9482174d:L0:000004",
+    "e139a82b9482174d:L0:000005",
+    "e139a82b9482174d:L0:000007",
+    "e139a82b9482174d:L0:000013",
+    "e139a82b9482174d:L0:000002"
+  ],
+  "filtered_ids": [
+    "e139a82b9482174d:L0:000004",
+    "e139a82b9482174d:L0:000005",
+    "e139a82b9482174d:L0:000007",
+    "e139a82b9482174d:L0:000013",
+    "e139a82b9482174d:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:02:15.241675+00:00",
+      "call_id": "7f9bc04b2762",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8d9e5fbdaa77c0cf",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f4ce5de2b10943f7"
+    },
+    {
+      "ts": "2026-11-13T14:02:52.695023+00:00",
+      "call_id": "521c0b97640b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ad38a430c2b3106c",
+      "prompt_tokens": 2529,
+      "completion_tokens": 43,
+      "latency_ms": 20865.19,
+      "server_ms": 20834.52,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f4ce5de2b10943f7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2529,
+    "completion_tokens": 43,
+    "total_ms": 37459.43
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

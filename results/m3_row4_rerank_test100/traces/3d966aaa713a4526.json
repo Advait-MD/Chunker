@@ -1,0 +1,178 @@
+{
+  "trace_id": "3d966aaa713a4526",
+  "created_at": "2026-11-13T12:36:44.423362+00:00",
+  "query": "What year did the city were Hans-Joachim Merker was born end?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5583.32
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5583.43
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 18020.48
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.11,
+      "bm25_ms": 39.85,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5533.52
+      },
+      "hits": [
+        {
+          "id": "ce290c1e5d5c6641:L0:000073",
+          "score": 5.9907612800598145,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.9907612800598145
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000041",
+          "score": -3.9736413955688477,
+          "fused": 0.17613828261908554,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -3.9736413955688477
+        },
+        {
+          "id": "4b634e52029ddab4:L0:000088",
+          "score": -4.650061130523682,
+          "fused": 0.15840127888899264,
+          "dense_rank": 7,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -4.650061130523682
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000089",
+          "score": -4.73376989364624,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 5,
+          "rerank": -4.73376989364624
+        },
+        {
+          "id": "4b634e52029ddab4:L0:000067",
+          "score": -5.006998062133789,
+          "fused": 0.2106290617635264,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 9,
+          "rerank": -5.006998062133789
+        }
+      ],
+      "latency_ms": 5583.27
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 689,
+      "latency_ms": 0.09
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12436.96
+    }
+  },
+  "retrieved_ids": [
+    "ce290c1e5d5c6641:L0:000073",
+    "6683bfc7dec06e2a:L0:000041",
+    "4b634e52029ddab4:L0:000088",
+    "178c7e3e6ef6ae87:L0:000089",
+    "4b634e52029ddab4:L0:000067"
+  ],
+  "filtered_ids": [
+    "ce290c1e5d5c6641:L0:000073",
+    "6683bfc7dec06e2a:L0:000041",
+    "4b634e52029ddab4:L0:000088",
+    "178c7e3e6ef6ae87:L0:000089",
+    "4b634e52029ddab4:L0:000067"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:36:44.423362+00:00",
+      "call_id": "7390e08f0eb7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3786188380726901",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "3d966aaa713a4526"
+    },
+    {
+      "ts": "2026-11-13T12:37:02.449195+00:00",
+      "call_id": "3ba6e78874c8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d1df9a83e5cef2a1",
+      "prompt_tokens": 1360,
+      "completion_tokens": 64,
+      "latency_ms": 12435.73,
+      "server_ms": 12411.49,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "3d966aaa713a4526"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1360,
+    "completion_tokens": 64,
+    "total_ms": 18024.0
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The city where Hans-Joachim Merker was born is Merseburg, which does not have a specific year mentioned in the provided evidence."
+      ]
+    }
+  }
+}

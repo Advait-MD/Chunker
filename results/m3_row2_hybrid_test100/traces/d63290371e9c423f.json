@@ -1,0 +1,163 @@
+{
+  "trace_id": "d63290371e9c423f",
+  "created_at": "2026-11-13T11:21:13.245782+00:00",
+  "query": "What nationality is the performer of song Gone Fishin' (Song)?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.83
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.89
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13944.26
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.03,
+      "bm25_ms": 4.45,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000038",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000013",
+          "score": 0.3568133298136973,
+          "fused": 0.3568133298136973,
+          "dense_rank": 2,
+          "bm25_rank": 36
+        },
+        {
+          "id": "abe982d210232c3f:L0:000045",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000131",
+          "score": 0.2808456673387432,
+          "fused": 0.2808456673387432,
+          "dense_rank": 17,
+          "bm25_rank": 13
+        },
+        {
+          "id": "99628090500247e3:L0:000174",
+          "score": 0.2751477364185126,
+          "fused": 0.2751477364185126,
+          "dense_rank": null,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 7.78
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 821,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13936.26
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000038",
+    "6af2db6cb86d77e2:L0:000013",
+    "abe982d210232c3f:L0:000045",
+    "53c7288bdcd3837a:L0:000131",
+    "99628090500247e3:L0:000174"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000038",
+    "6af2db6cb86d77e2:L0:000013",
+    "abe982d210232c3f:L0:000045",
+    "53c7288bdcd3837a:L0:000131",
+    "99628090500247e3:L0:000174"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:21:13.246782+00:00",
+      "call_id": "36b42c5cb407",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7573452d8a76a670",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d63290371e9c423f"
+    },
+    {
+      "ts": "2026-11-13T11:21:27.188417+00:00",
+      "call_id": "25bf626f326c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "406ceea70b67f19c",
+      "prompt_tokens": 1480,
+      "completion_tokens": 60,
+      "latency_ms": 13935.2,
+      "server_ms": 13894.47,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d63290371e9c423f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1480,
+    "completion_tokens": 60,
+    "total_ms": 13946.69
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

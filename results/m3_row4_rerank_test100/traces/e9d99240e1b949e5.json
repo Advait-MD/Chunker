@@ -1,0 +1,180 @@
+{
+  "trace_id": "e9d99240e1b949e5",
+  "created_at": "2026-11-13T12:48:01.267689+00:00",
+  "query": "What is the population in 2010 of they city popular with tourists?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4424.48
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4424.58
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16982.74
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.25,
+      "bm25_ms": 8.87,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4410.26
+      },
+      "hits": [
+        {
+          "id": "6683bfc7dec06e2a:L0:000154",
+          "score": -0.4892359972000122,
+          "fused": 0.26112202678816165,
+          "dense_rank": 22,
+          "bm25_rank": 19,
+          "fused_rank": 13,
+          "rerank": -0.4892359972000122
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000063",
+          "score": -0.6447340250015259,
+          "fused": 0.20261746728818975,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 20,
+          "rerank": -0.6447340250015259
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000132",
+          "score": -0.8369925022125244,
+          "fused": 0.26944006712640156,
+          "dense_rank": 6,
+          "bm25_rank": 39,
+          "fused_rank": 11,
+          "rerank": -0.8369925022125244
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000198",
+          "score": -0.9249838590621948,
+          "fused": 0.4203230557846458,
+          "dense_rank": 3,
+          "bm25_rank": 15,
+          "fused_rank": 5,
+          "rerank": -0.9249838590621948
+        },
+        {
+          "id": "ce57fdde2baaba9c:L0:000174",
+          "score": -1.5385693311691284,
+          "fused": 0.4223712093168653,
+          "dense_rank": 21,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -1.5385693311691284
+        }
+      ],
+      "latency_ms": 4424.43
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 652,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12558.01
+    }
+  },
+  "retrieved_ids": [
+    "6683bfc7dec06e2a:L0:000154",
+    "66f5caec1369ebaf:L0:000063",
+    "ad11b6e85f908fb3:L0:000132",
+    "8b31d5859eb3d77a:L0:000198",
+    "ce57fdde2baaba9c:L0:000174"
+  ],
+  "filtered_ids": [
+    "6683bfc7dec06e2a:L0:000154",
+    "66f5caec1369ebaf:L0:000063",
+    "ad11b6e85f908fb3:L0:000132",
+    "8b31d5859eb3d77a:L0:000198",
+    "ce57fdde2baaba9c:L0:000174"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:48:01.267689+00:00",
+      "call_id": "5c332388d9ca",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3d3a2c9b6a9f08d5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e9d99240e1b949e5"
+    },
+    {
+      "ts": "2026-11-13T12:48:18.247375+00:00",
+      "call_id": "9127c6949899",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c62cee3ef8db8bf9",
+      "prompt_tokens": 1320,
+      "completion_tokens": 64,
+      "latency_ms": 12556.27,
+      "server_ms": 12528.67,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "e9d99240e1b949e5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1320,
+    "completion_tokens": 64,
+    "total_ms": 16985.42
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2
+      ],
+      "uncited_sentences": [
+        "Fort Lauderdale had a population of 165,521 in 2010, making it a city popular with tourists."
+      ]
+    }
+  }
+}

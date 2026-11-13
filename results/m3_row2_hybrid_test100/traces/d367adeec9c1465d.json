@@ -1,0 +1,166 @@
+{
+  "trace_id": "d367adeec9c1465d",
+  "created_at": "2026-11-13T09:09:58.586727+00:00",
+  "query": "Does the query-bag matching model use a neural network?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.21
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.24
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15535.61
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.84,
+      "bm25_ms": 7.21,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 17
+      },
+      "n_fused": 17,
+      "hits": [
+        {
+          "id": "e224741dbc7dbcc7:L0:000001",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "e224741dbc7dbcc7:L0:000012",
+          "score": 0.9035905783737426,
+          "fused": 0.9035905783737426,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "e224741dbc7dbcc7:L0:000015",
+          "score": 0.8820523187107687,
+          "fused": 0.8820523187107687,
+          "dense_rank": 3,
+          "bm25_rank": 5
+        },
+        {
+          "id": "e224741dbc7dbcc7:L0:000000",
+          "score": 0.8571827259934215,
+          "fused": 0.8571827259934215,
+          "dense_rank": 8,
+          "bm25_rank": 3
+        },
+        {
+          "id": "e224741dbc7dbcc7:L0:000003",
+          "score": 0.8536782257157962,
+          "fused": 0.8536782257157962,
+          "dense_rank": 2,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 9.18
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1155,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15526.3
+    }
+  },
+  "retrieved_ids": [
+    "e224741dbc7dbcc7:L0:000001",
+    "e224741dbc7dbcc7:L0:000012",
+    "e224741dbc7dbcc7:L0:000015",
+    "e224741dbc7dbcc7:L0:000000",
+    "e224741dbc7dbcc7:L0:000003"
+  ],
+  "filtered_ids": [
+    "e224741dbc7dbcc7:L0:000001",
+    "e224741dbc7dbcc7:L0:000012",
+    "e224741dbc7dbcc7:L0:000015",
+    "e224741dbc7dbcc7:L0:000000",
+    "e224741dbc7dbcc7:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:09:58.587721+00:00",
+      "call_id": "0b80df7e1747",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0016eb0cebc51b9b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d367adeec9c1465d"
+    },
+    {
+      "ts": "2026-11-13T09:10:14.122168+00:00",
+      "call_id": "5fb4919378b8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3af06fdd09b7d834",
+      "prompt_tokens": 1683,
+      "completion_tokens": 81,
+      "latency_ms": 15525.73,
+      "server_ms": 15498.58,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d367adeec9c1465d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1683,
+    "completion_tokens": 81,
+    "total_ms": 15536.15
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Yes, the query-bag matching model uses a neural network."
+      ]
+    }
+  }
+}

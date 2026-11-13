@@ -1,0 +1,167 @@
+{
+  "trace_id": "40ca4f92805b45d2",
+  "created_at": "2026-11-13T10:43:08.724582+00:00",
+  "query": "What 3 countries are part of the legal name of the airline that merged with Braathens in 2004?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.78
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14.85
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 25889.11
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.21,
+      "bm25_ms": 10.22,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "cc2399aca11eb631:L0:000152",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000055",
+          "score": 0.9263822908712294,
+          "fused": 0.9263822908712294,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000064",
+          "score": 0.8583932703112929,
+          "fused": 0.8583932703112929,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "20496f59538deb41:L0:000148",
+          "score": 0.7619545059638995,
+          "fused": 0.7619545059638995,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "634431bb1e27714f:L0:000094",
+          "score": 0.6589303502896287,
+          "fused": 0.6589303502896287,
+          "dense_rank": 15,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 14.73
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 666,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25874.12
+    }
+  },
+  "retrieved_ids": [
+    "cc2399aca11eb631:L0:000152",
+    "81fc433d55d23b4c:L0:000055",
+    "81fc433d55d23b4c:L0:000064",
+    "20496f59538deb41:L0:000148",
+    "634431bb1e27714f:L0:000094"
+  ],
+  "filtered_ids": [
+    "cc2399aca11eb631:L0:000152",
+    "81fc433d55d23b4c:L0:000055",
+    "81fc433d55d23b4c:L0:000064",
+    "20496f59538deb41:L0:000148",
+    "634431bb1e27714f:L0:000094"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:43:08.726589+00:00",
+      "call_id": "b85e742a5b80",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3458c60ed22d9ead",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "40ca4f92805b45d2"
+    },
+    {
+      "ts": "2026-11-13T10:43:34.613094+00:00",
+      "call_id": "9e19aa84a5f6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a98cda8f2fc7a48c",
+      "prompt_tokens": 1441,
+      "completion_tokens": 142,
+      "latency_ms": 25872.49,
+      "server_ms": 25845.63,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "40ca4f92805b45d2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1441,
+    "completion_tokens": 142,
+    "total_ms": 25890.18
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "However, the question asks for 3 countries, which is not directly supported by the evidence.",
+        "The evidence does not explicitly state a third country in the name or legal structure of the merged airline."
+      ]
+    }
+  }
+}

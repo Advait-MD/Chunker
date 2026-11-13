@@ -1,0 +1,166 @@
+{
+  "trace_id": "7b8b81dd6c7f4b35",
+  "created_at": "2026-11-13T11:23:07.177908+00:00",
+  "query": "Which school was founded first, Colegio Israelita De México or Waldorf University?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.64
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.71
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14948.79
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.63,
+      "bm25_ms": 5.64,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000001",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000153",
+          "score": 0.5849593819392975,
+          "fused": 0.5849593819392975,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000173",
+          "score": 0.35085234335155036,
+          "fused": 0.35085234335155036,
+          "dense_rank": 4,
+          "bm25_rank": 9
+        },
+        {
+          "id": "abe982d210232c3f:L0:000133",
+          "score": 0.3152819217940757,
+          "fused": 0.3152819217940757,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000185",
+          "score": 0.2735471040753251,
+          "fused": 0.2735471040753251,
+          "dense_rank": 20,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 9.59
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 409,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14938.95
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000001",
+    "53c7288bdcd3837a:L0:000153",
+    "b04ce6dd2d95fb80:L0:000173",
+    "abe982d210232c3f:L0:000133",
+    "317e12ccd417c0d7:L0:000185"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000001",
+    "53c7288bdcd3837a:L0:000153",
+    "b04ce6dd2d95fb80:L0:000173",
+    "abe982d210232c3f:L0:000133",
+    "317e12ccd417c0d7:L0:000185"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:23:07.179918+00:00",
+      "call_id": "4f431fe79e70",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5d5fcf35ce749e51",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7b8b81dd6c7f4b35"
+    },
+    {
+      "ts": "2026-11-13T11:23:22.126404+00:00",
+      "call_id": "08e0608d4b6c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bfff3f973113b5e4",
+      "prompt_tokens": 1088,
+      "completion_tokens": 86,
+      "latency_ms": 14938.04,
+      "server_ms": 14915.55,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "7b8b81dd6c7f4b35"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1088,
+    "completion_tokens": 86,
+    "total_ms": 14953.9
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, Colegio Israelita de México was founded first."
+      ]
+    }
+  }
+}

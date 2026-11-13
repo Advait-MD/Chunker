@@ -1,0 +1,163 @@
+{
+  "trace_id": "cdc1d1cd744c4ed4",
+  "created_at": "2026-11-13T10:49:01.078693+00:00",
+  "query": "Susanna Thompson appeared in the courtroom drama film Ghosts of Mississippi, directed by who?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.91
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.97
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12059.62
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.76,
+      "bm25_ms": 7.86,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "634431bb1e27714f:L0:000039",
+          "score": 0.9120263334945624,
+          "fused": 0.9120263334945624,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000042",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "634431bb1e27714f:L0:000138",
+          "score": 0.4360953865187128,
+          "fused": 0.4360953865187128,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000036",
+          "score": 0.3456151254144949,
+          "fused": 0.3456151254144949,
+          "dense_rank": 4,
+          "bm25_rank": 7
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000035",
+          "score": 0.3334318646505888,
+          "fused": 0.3334318646505888,
+          "dense_rank": 47,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 10.87
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 460,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12048.54
+    }
+  },
+  "retrieved_ids": [
+    "634431bb1e27714f:L0:000039",
+    "5d0f6cf59ee42566:L0:000042",
+    "634431bb1e27714f:L0:000138",
+    "ec3410ef955c5c93:L0:000036",
+    "c8fd2b3ea47eb07f:L0:000035"
+  ],
+  "filtered_ids": [
+    "634431bb1e27714f:L0:000039",
+    "5d0f6cf59ee42566:L0:000042",
+    "634431bb1e27714f:L0:000138",
+    "ec3410ef955c5c93:L0:000036",
+    "c8fd2b3ea47eb07f:L0:000035"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:49:01.080694+00:00",
+      "call_id": "aae54c762271",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d6c1becd8127845e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cdc1d1cd744c4ed4"
+    },
+    {
+      "ts": "2026-11-13T10:49:13.137691+00:00",
+      "call_id": "624606219483",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3a838fd39f1ad09d",
+      "prompt_tokens": 1075,
+      "completion_tokens": 59,
+      "latency_ms": 12047.69,
+      "server_ms": 12025.48,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "cdc1d1cd744c4ed4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1075,
+    "completion_tokens": 59,
+    "total_ms": 12060.74
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

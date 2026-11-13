@@ -1,0 +1,167 @@
+{
+  "trace_id": "7acd283c12dd4534",
+  "created_at": "2026-11-13T10:20:40.128442+00:00",
+  "query": "How did Peter approach his conversations with Lexington?\n\nOptions:\n(A) He covered many of the details of his background to hopefully get himself hired\n(B) He dutifully took notes to be able to report what he found out\n(C) He was cautious to be humble and honest with his answers\n(D) He carefully mirrored his behavior to not upset him\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 28.59
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 29.69
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21249.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.8,
+      "bm25_ms": 24.54,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 20
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "f8ddb2246e2db5a5:L0:000004",
+          "score": 0.9915581497684532,
+          "fused": 0.9915581497684532,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "f8ddb2246e2db5a5:L0:000007",
+          "score": 0.709055901804272,
+          "fused": 0.709055901804272,
+          "dense_rank": 4,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f8ddb2246e2db5a5:L0:000005",
+          "score": 0.7062819898063049,
+          "fused": 0.7062819898063049,
+          "dense_rank": 5,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f8ddb2246e2db5a5:L0:000002",
+          "score": 0.5688467240168574,
+          "fused": 0.5688467240168574,
+          "dense_rank": 1,
+          "bm25_rank": 5
+        },
+        {
+          "id": "f8ddb2246e2db5a5:L0:000003",
+          "score": 0.5144186269320654,
+          "fused": 0.5144186269320654,
+          "dense_rank": 8,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 28.55
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1877,
+      "latency_ms": 1.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21219.89
+    }
+  },
+  "retrieved_ids": [
+    "f8ddb2246e2db5a5:L0:000004",
+    "f8ddb2246e2db5a5:L0:000007",
+    "f8ddb2246e2db5a5:L0:000005",
+    "f8ddb2246e2db5a5:L0:000002",
+    "f8ddb2246e2db5a5:L0:000003"
+  ],
+  "filtered_ids": [
+    "f8ddb2246e2db5a5:L0:000004",
+    "f8ddb2246e2db5a5:L0:000007",
+    "f8ddb2246e2db5a5:L0:000005",
+    "f8ddb2246e2db5a5:L0:000002",
+    "f8ddb2246e2db5a5:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:20:40.129440+00:00",
+      "call_id": "95642732b0b5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1b59cb88b214bb80",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7acd283c12dd4534"
+    },
+    {
+      "ts": "2026-11-13T10:21:01.376690+00:00",
+      "call_id": "65dd86c5b0b9",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "016eafe38e0beb6e",
+      "prompt_tokens": 2394,
+      "completion_tokens": 64,
+      "latency_ms": 21218.31,
+      "server_ms": 21182.9,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "7acd283c12dd4534"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2394,
+    "completion_tokens": 64,
+    "total_ms": 21252.2
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        3,
+        5
+      ],
+      "uncited_sentences": [
+        "(C) He was cautious to be humble and honest with his answers."
+      ]
+    }
+  }
+}

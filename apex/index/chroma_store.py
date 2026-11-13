@@ -61,8 +61,9 @@ class Node:
 @dataclass
 class Hit:
     node: Node
-    score: float  # cosine similarity (1 - cosine distance)
+    score: float  # final ranking score: cosine similarity for dense, RRF/fused or reranker score for hybrid
     rank: int
+    detail: Dict[str, Any] = field(default_factory=dict)  # per-stage scores and ranks (hybrid), for traces
 
 
 class NodeStore:
@@ -121,6 +122,25 @@ class NodeStore:
             return {}
         res = self.col.get(ids=ids, include=["documents", "metadatas"])
         return {nid: Node.from_record(nid, doc, md) for nid, doc, md in zip(res["ids"], res["documents"], res["metadatas"])}
+
+    def all_nodes(self, where: Optional[Dict[str, Any]] = None, batch_size: int = 2000):
+        """Every node matching `where`, with its stored embedding, in a stable (id-sorted) order.
+
+        The source of truth for the BM25 and FAISS indexes, which are derived views keyed by node id.
+        """
+        ids, docs, mds, embs = [], [], [], []
+        offset = 0
+        while True:
+            res = self.col.get(where=where, include=["documents", "metadatas", "embeddings"],
+                               limit=batch_size, offset=offset)
+            if not res["ids"]:
+                break
+            ids += res["ids"]; docs += res["documents"]; mds += res["metadatas"]; embs += list(res["embeddings"])
+            offset += len(res["ids"])
+        order = sorted(range(len(ids)), key=lambda i: ids[i])
+        nodes = [Node.from_record(ids[i], docs[i], mds[i]) for i in order]
+        vecs = np.asarray([embs[i] for i in order], dtype=np.float32).reshape(len(order), -1)
+        return nodes, vecs
 
     def sources(self) -> Dict[str, int]:
         res = self.col.get(where={"level": 0}, include=["metadatas"])

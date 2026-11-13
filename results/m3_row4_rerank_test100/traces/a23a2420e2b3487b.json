@@ -1,0 +1,180 @@
+{
+  "trace_id": "a23a2420e2b3487b",
+  "created_at": "2026-11-13T12:58:54.364284+00:00",
+  "query": "Who is the spouse of the actor portraying Jerry Lee Lewis in Great Balls of Fire?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4767.34
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4768.09
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14002.41
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.03,
+      "bm25_ms": 13.91,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4747.32
+      },
+      "hits": [
+        {
+          "id": "66f5caec1369ebaf:L0:000091",
+          "score": 5.314672470092773,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.314672470092773
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000059",
+          "score": -2.092465400695801,
+          "fused": 0.21871200442049837,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 8,
+          "rerank": -2.092465400695801
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000081",
+          "score": -4.282370090484619,
+          "fused": 0.2517454218054205,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -4.282370090484619
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000077",
+          "score": -4.304253101348877,
+          "fused": 0.18291935248736726,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 13,
+          "rerank": -4.304253101348877
+        },
+        {
+          "id": "ad4ace752e719bab:L0:000112",
+          "score": -4.633934497833252,
+          "fused": 0.27266731345225864,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 5,
+          "rerank": -4.633934497833252
+        }
+      ],
+      "latency_ms": 4767.29
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 374,
+      "latency_ms": 0.7
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9234.26
+    }
+  },
+  "retrieved_ids": [
+    "66f5caec1369ebaf:L0:000091",
+    "8b31d5859eb3d77a:L0:000059",
+    "73dfa6a9bfcab050:L0:000081",
+    "dbcbda865eee9c7b:L0:000077",
+    "ad4ace752e719bab:L0:000112"
+  ],
+  "filtered_ids": [
+    "66f5caec1369ebaf:L0:000091",
+    "8b31d5859eb3d77a:L0:000059",
+    "73dfa6a9bfcab050:L0:000081",
+    "dbcbda865eee9c7b:L0:000077",
+    "ad4ace752e719bab:L0:000112"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:58:54.364284+00:00",
+      "call_id": "0234173df011",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e81f03b992d7c989",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a23a2420e2b3487b"
+    },
+    {
+      "ts": "2026-11-13T12:59:08.373377+00:00",
+      "call_id": "5cd4928f2909",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1a61f00837975f0a",
+      "prompt_tokens": 978,
+      "completion_tokens": 66,
+      "latency_ms": 9233.05,
+      "server_ms": 9217.28,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a23a2420e2b3487b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 978,
+    "completion_tokens": 66,
+    "total_ms": 14003.51
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "The spouse of the actor portraying Jerry Lee Lewis in Great Balls of Fire! is not mentioned in the given passages."
+      ]
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "trace_id": "27127363662a402b",
+  "created_at": "2026-11-13T14:32:25.653469+00:00",
+  "query": "Who was born first, Javier Frana or Sherwood Stewart?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4370.66
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4370.76
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12896.5
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.88,
+      "bm25_ms": 9.46,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4356.0
+      },
+      "hits": [
+        {
+          "id": "8e50522b7cb636d8:L0:000103",
+          "score": -1.4163451194763184,
+          "fused": 0.4339436847130456,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -1.4163451194763184
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000201",
+          "score": -1.8384859561920166,
+          "fused": 0.3584953303306933,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": -1.8384859561920166
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000196",
+          "score": -2.140547275543213,
+          "fused": 0.5717966117181914,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -2.140547275543213
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000095",
+          "score": -2.2069079875946045,
+          "fused": 0.5584906057778172,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -2.2069079875946045
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000116",
+          "score": -2.344710350036621,
+          "fused": 0.663583389001479,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -2.344710350036621
+        }
+      ],
+      "latency_ms": 4370.61
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 298,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8525.66
+    }
+  },
+  "retrieved_ids": [
+    "8e50522b7cb636d8:L0:000103",
+    "c8fd2b3ea47eb07f:L0:000201",
+    "cc2399aca11eb631:L0:000196",
+    "c8fd2b3ea47eb07f:L0:000095",
+    "8e50522b7cb636d8:L0:000116"
+  ],
+  "filtered_ids": [
+    "8e50522b7cb636d8:L0:000103",
+    "c8fd2b3ea47eb07f:L0:000201",
+    "cc2399aca11eb631:L0:000196",
+    "c8fd2b3ea47eb07f:L0:000095",
+    "8e50522b7cb636d8:L0:000116"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:32:25.653469+00:00",
+      "call_id": "4db1e74da6b8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3a8e7cc9762669cd",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "27127363662a402b"
+    },
+    {
+      "ts": "2026-11-13T14:32:38.543174+00:00",
+      "call_id": "da4f0e91a36c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "95ec035888538bf5",
+      "prompt_tokens": 930,
+      "completion_tokens": 45,
+      "latency_ms": 8524.51,
+      "server_ms": 8492.45,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "27127363662a402b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 930,
+    "completion_tokens": 45,
+    "total_ms": 12898.27
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

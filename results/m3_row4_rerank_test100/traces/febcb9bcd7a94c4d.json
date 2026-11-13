@@ -1,0 +1,178 @@
+{
+  "trace_id": "febcb9bcd7a94c4d",
+  "created_at": "2026-11-13T14:57:48.205030+00:00",
+  "query": "Where was the director of film Mark (Film) born?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3816.05
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3816.7
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16186.52
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.29,
+      "bm25_ms": 4.6,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 3806.55
+      },
+      "hits": [
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -3.4666974544525146,
+          "fused": 0.20427384171136104,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": -3.4666974544525146
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000113",
+          "score": -3.5316977500915527,
+          "fused": 0.7322829977038754,
+          "dense_rank": 39,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -3.5316977500915527
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000175",
+          "score": -4.1812238693237305,
+          "fused": 0.1885763885424669,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": -4.1812238693237305
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000034",
+          "score": -4.704184055328369,
+          "fused": 0.24587388846051333,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 13,
+          "rerank": -4.704184055328369
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000081",
+          "score": -5.047699928283691,
+          "fused": 0.18352149392047226,
+          "dense_rank": 7,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -5.047699928283691
+        }
+      ],
+      "latency_ms": 3816.0
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 773,
+      "latency_ms": 0.61
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12369.17
+    }
+  },
+  "retrieved_ids": [
+    "b04ce6dd2d95fb80:L0:000152",
+    "6af2db6cb86d77e2:L0:000113",
+    "4a757779abfb4ba1:L0:000175",
+    "317e12ccd417c0d7:L0:000034",
+    "53c7288bdcd3837a:L0:000081"
+  ],
+  "filtered_ids": [
+    "b04ce6dd2d95fb80:L0:000152",
+    "6af2db6cb86d77e2:L0:000113",
+    "4a757779abfb4ba1:L0:000175",
+    "317e12ccd417c0d7:L0:000034",
+    "53c7288bdcd3837a:L0:000081"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:57:48.205030+00:00",
+      "call_id": "918bf4993fa5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "eac7f6d379da7a95",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "febcb9bcd7a94c4d"
+    },
+    {
+      "ts": "2026-11-13T14:58:04.385984+00:00",
+      "call_id": "0077a2250fbc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "66e454a82879cd48",
+      "prompt_tokens": 1438,
+      "completion_tokens": 57,
+      "latency_ms": 12368.07,
+      "server_ms": 12347.42,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "febcb9bcd7a94c4d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1438,
+    "completion_tokens": 57,
+    "total_ms": 16189.04
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

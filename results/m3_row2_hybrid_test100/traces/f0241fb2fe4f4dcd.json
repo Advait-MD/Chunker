@@ -1,0 +1,165 @@
+{
+  "trace_id": "f0241fb2fe4f4dcd",
+  "created_at": "2026-11-13T11:10:44.773059+00:00",
+  "query": "Which film has the director who was born later, Aloha, Bobby And Rose or The Elusive Avengers?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.9
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.96
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16394.87
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.43,
+      "bm25_ms": 6.14,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "6af2db6cb86d77e2:L0:000056",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000009",
+          "score": 0.5983734631566697,
+          "fused": 0.5983734631566697,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000022",
+          "score": 0.48875667460886507,
+          "fused": 0.48875667460886507,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "0eac870d43736f51:L0:000180",
+          "score": 0.4667660227161202,
+          "fused": 0.4667660227161202,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "99628090500247e3:L0:000120",
+          "score": 0.4525030189228959,
+          "fused": 0.4525030189228959,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 9.85
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 366,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16384.79
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000056",
+    "53c7288bdcd3837a:L0:000009",
+    "53c7288bdcd3837a:L0:000022",
+    "0eac870d43736f51:L0:000180",
+    "99628090500247e3:L0:000120"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000056",
+    "53c7288bdcd3837a:L0:000009",
+    "53c7288bdcd3837a:L0:000022",
+    "0eac870d43736f51:L0:000180",
+    "99628090500247e3:L0:000120"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:10:44.775211+00:00",
+      "call_id": "51b3442135b0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "209c7cb55f3f7ae9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f0241fb2fe4f4dcd"
+    },
+    {
+      "ts": "2026-11-13T11:11:01.166351+00:00",
+      "call_id": "feab708eca32",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "299f34952c55a7d7",
+      "prompt_tokens": 1004,
+      "completion_tokens": 113,
+      "latency_ms": 16383.41,
+      "server_ms": 16357.69,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f0241fb2fe4f4dcd"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1004,
+    "completion_tokens": 113,
+    "total_ms": 16396.11
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

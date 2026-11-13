@@ -1,0 +1,178 @@
+{
+  "trace_id": "ad8f7ff0737a4d4c",
+  "created_at": "2026-11-13T13:49:22.709560+00:00",
+  "query": "Of the following options, which best describe Captain Homer Fogarty?\n\nOptions:\n(A) Dumb and kind\n(B) Handsome and brave\n(C) Brave and desperate\n(D) Rash and impatient\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13868.0
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13868.7
+    },
+    {
+      "state": "DONE",
+      "t_ms": 34196.52
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.41,
+      "bm25_ms": 17.31,
+      "n_candidates": {
+        "dense": 18,
+        "bm25": 18
+      },
+      "n_fused": 18,
+      "rerank": {
+        "n": 18,
+        "n_computed": 18,
+        "latency_ms": 13839.39
+      },
+      "hits": [
+        {
+          "id": "369294acde117c7a:L0:000000",
+          "score": -1.5768039226531982,
+          "fused": 0.7633764588277312,
+          "dense_rank": 12,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.5768039226531982
+        },
+        {
+          "id": "369294acde117c7a:L0:000012",
+          "score": -2.4837021827697754,
+          "fused": 0.4590775083206917,
+          "dense_rank": 7,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": -2.4837021827697754
+        },
+        {
+          "id": "369294acde117c7a:L0:000010",
+          "score": -2.4984898567199707,
+          "fused": 0.5469825314609504,
+          "dense_rank": 14,
+          "bm25_rank": 3,
+          "fused_rank": 5,
+          "rerank": -2.4984898567199707
+        },
+        {
+          "id": "369294acde117c7a:L0:000011",
+          "score": -2.5001561641693115,
+          "fused": 0.4637127096661069,
+          "dense_rank": 11,
+          "bm25_rank": 6,
+          "fused_rank": 8,
+          "rerank": -2.5001561641693115
+        },
+        {
+          "id": "369294acde117c7a:L0:000003",
+          "score": -2.5128860473632812,
+          "fused": 0.6023104200400539,
+          "dense_rank": 9,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": -2.5128860473632812
+        }
+      ],
+      "latency_ms": 13867.94
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1982,
+      "latency_ms": 0.66
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20327.66
+    }
+  },
+  "retrieved_ids": [
+    "369294acde117c7a:L0:000000",
+    "369294acde117c7a:L0:000012",
+    "369294acde117c7a:L0:000010",
+    "369294acde117c7a:L0:000011",
+    "369294acde117c7a:L0:000003"
+  ],
+  "filtered_ids": [
+    "369294acde117c7a:L0:000000",
+    "369294acde117c7a:L0:000012",
+    "369294acde117c7a:L0:000010",
+    "369294acde117c7a:L0:000011",
+    "369294acde117c7a:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:49:22.709560+00:00",
+      "call_id": "12b894d45704",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d00060fbd068fe67",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ad8f7ff0737a4d4c"
+    },
+    {
+      "ts": "2026-11-13T13:49:56.903485+00:00",
+      "call_id": "910154d1400b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b40399ee60c72685",
+      "prompt_tokens": 2587,
+      "completion_tokens": 48,
+      "latency_ms": 20326.3,
+      "server_ms": 20297.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ad8f7ff0737a4d4c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2587,
+    "completion_tokens": 48,
+    "total_ms": 34199.61
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

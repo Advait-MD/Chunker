@@ -1,0 +1,178 @@
+{
+  "trace_id": "aa34fbedf2384b8b",
+  "created_at": "2026-11-13T15:09:05.348060+00:00",
+  "query": "Where was the director of film The Planet (Film) born?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3599.93
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3599.99
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15402.86
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.03,
+      "bm25_ms": 2.3,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 3594.97
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000018",
+          "score": 3.9795784950256348,
+          "fused": 0.34884149864275743,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 3.9795784950256348
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000057",
+          "score": -3.3364951610565186,
+          "fused": 0.19713844737884295,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 9,
+          "rerank": -3.3364951610565186
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000034",
+          "score": -4.373907089233398,
+          "fused": 0.19825141048117365,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 8,
+          "rerank": -4.373907089233398
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000086",
+          "score": -4.490835189819336,
+          "fused": 0.1512547584768761,
+          "dense_rank": 9,
+          "bm25_rank": 37,
+          "fused_rank": 16,
+          "rerank": -4.490835189819336
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000013",
+          "score": -4.721546649932861,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 4,
+          "rerank": -4.721546649932861
+        }
+      ],
+      "latency_ms": 3599.9
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 756,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11802.76
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000018",
+    "4a757779abfb4ba1:L0:000057",
+    "317e12ccd417c0d7:L0:000034",
+    "6af2db6cb86d77e2:L0:000086",
+    "b04ce6dd2d95fb80:L0:000013"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000018",
+    "4a757779abfb4ba1:L0:000057",
+    "317e12ccd417c0d7:L0:000034",
+    "6af2db6cb86d77e2:L0:000086",
+    "b04ce6dd2d95fb80:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:09:05.348060+00:00",
+      "call_id": "2f52534cb8a1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a373cb148d45030d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "aa34fbedf2384b8b"
+    },
+    {
+      "ts": "2026-11-13T15:09:20.753201+00:00",
+      "call_id": "b1fdf6b3e1df",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "af9a1ee663e11ac3",
+      "prompt_tokens": 1423,
+      "completion_tokens": 58,
+      "latency_ms": 11801.74,
+      "server_ms": 11779.72,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "aa34fbedf2384b8b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1423,
+    "completion_tokens": 58,
+    "total_ms": 15405.41
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

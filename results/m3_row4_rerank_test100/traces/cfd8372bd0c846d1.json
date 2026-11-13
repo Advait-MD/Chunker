@@ -1,0 +1,181 @@
+{
+  "trace_id": "cfd8372bd0c846d1",
+  "created_at": "2026-11-13T13:57:42.207013+00:00",
+  "query": "What is not a lesson the author gleaned from the book?\n\nOptions:\n(A) Look on all sides of a discussion\n(B) Extremists are usually the most courageous people\n(C) Innovating is better than criticizing\n(D) Don't misrepresent things or people will stop listening to you\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6961.96
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6962.05
+    },
+    {
+      "state": "DONE",
+      "t_ms": 29245.77
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.49,
+      "bm25_ms": 26.28,
+      "n_candidates": {
+        "dense": 7,
+        "bm25": 7
+      },
+      "n_fused": 7,
+      "rerank": {
+        "n": 7,
+        "n_computed": 7,
+        "latency_ms": 6927.4
+      },
+      "hits": [
+        {
+          "id": "5afd77c132ed9eb1:L0:000000",
+          "score": -5.0231122970581055,
+          "fused": 0.7881704583518179,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -5.0231122970581055
+        },
+        {
+          "id": "5afd77c132ed9eb1:L0:000001",
+          "score": -5.376616477966309,
+          "fused": 0.7150693332732188,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -5.376616477966309
+        },
+        {
+          "id": "5afd77c132ed9eb1:L0:000003",
+          "score": -6.076940059661865,
+          "fused": 0.9358880427690689,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -6.076940059661865
+        },
+        {
+          "id": "5afd77c132ed9eb1:L0:000006",
+          "score": -6.368567943572998,
+          "fused": 0.14432718113850354,
+          "dense_rank": 6,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": -6.368567943572998
+        },
+        {
+          "id": "5afd77c132ed9eb1:L0:000002",
+          "score": -6.5556488037109375,
+          "fused": 0.6973707621972225,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -6.5556488037109375
+        }
+      ],
+      "latency_ms": 6961.9
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1781,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22283.59
+    }
+  },
+  "retrieved_ids": [
+    "5afd77c132ed9eb1:L0:000000",
+    "5afd77c132ed9eb1:L0:000001",
+    "5afd77c132ed9eb1:L0:000003",
+    "5afd77c132ed9eb1:L0:000006",
+    "5afd77c132ed9eb1:L0:000002"
+  ],
+  "filtered_ids": [
+    "5afd77c132ed9eb1:L0:000000",
+    "5afd77c132ed9eb1:L0:000001",
+    "5afd77c132ed9eb1:L0:000003",
+    "5afd77c132ed9eb1:L0:000006",
+    "5afd77c132ed9eb1:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:57:42.214976+00:00",
+      "call_id": "3d6c5a05c03c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e01c929cabd65c21",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cfd8372bd0c846d1"
+    },
+    {
+      "ts": "2026-11-13T13:58:11.448593+00:00",
+      "call_id": "c84c5429da30",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "531bb19fb6fc3491",
+      "prompt_tokens": 2487,
+      "completion_tokens": 83,
+      "latency_ms": 22282.0,
+      "server_ms": 22252.78,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "cfd8372bd0c846d1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2487,
+    "completion_tokens": 83,
+    "total_ms": 29247.76
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "(B) Extremists are usually the most courageous people is not a lesson the author gleaned from the book."
+      ]
+    }
+  }
+}

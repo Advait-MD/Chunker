@@ -1,0 +1,179 @@
+{
+  "trace_id": "2674a89c07bc4db2",
+  "created_at": "2026-11-13T15:09:43.622099+00:00",
+  "query": "Are Guancangping Railway Station and Yangquan North Railway Station both located in the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4766.86
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4768.59
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14299.03
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.76,
+      "bm25_ms": 8.47,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4754.02
+      },
+      "hits": [
+        {
+          "id": "460e441179bec402:L0:000114",
+          "score": 9.924630165100098,
+          "fused": 0.8332067381420653,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 9.924630165100098
+        },
+        {
+          "id": "abe982d210232c3f:L0:000116",
+          "score": 8.191874504089355,
+          "fused": 0.9056968217222346,
+          "dense_rank": 5,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.191874504089355
+        },
+        {
+          "id": "99628090500247e3:L0:000067",
+          "score": -5.837611198425293,
+          "fused": 0.7376439419821371,
+          "dense_rank": 9,
+          "bm25_rank": 5,
+          "fused_rank": 7,
+          "rerank": -5.837611198425293
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000109",
+          "score": -7.319354057312012,
+          "fused": 0.7376439419821371,
+          "dense_rank": 10,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": -7.319354057312012
+        },
+        {
+          "id": "99628090500247e3:L0:000160",
+          "score": -7.386153221130371,
+          "fused": 0.7376439419821371,
+          "dense_rank": 8,
+          "bm25_rank": 6,
+          "fused_rank": 8,
+          "rerank": -7.386153221130371
+        }
+      ],
+      "latency_ms": 4766.81
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 140,
+      "latency_ms": 1.67
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9530.3
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000114",
+    "abe982d210232c3f:L0:000116",
+    "99628090500247e3:L0:000067",
+    "53c7288bdcd3837a:L0:000109",
+    "99628090500247e3:L0:000160"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000114",
+    "abe982d210232c3f:L0:000116",
+    "99628090500247e3:L0:000067",
+    "53c7288bdcd3837a:L0:000109",
+    "99628090500247e3:L0:000160"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:09:43.622099+00:00",
+      "call_id": "5fbc192ffbd8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f2677babb2d374a4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2674a89c07bc4db2"
+    },
+    {
+      "ts": "2026-11-13T15:09:57.927388+00:00",
+      "call_id": "29d2fbdc72eb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "837cc86d02e4a1c4",
+      "prompt_tokens": 695,
+      "completion_tokens": 66,
+      "latency_ms": 9529.05,
+      "server_ms": 9512.04,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2674a89c07bc4db2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 695,
+    "completion_tokens": 66,
+    "total_ms": 14300.76
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

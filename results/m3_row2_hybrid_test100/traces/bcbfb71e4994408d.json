@@ -1,0 +1,166 @@
+{
+  "trace_id": "bcbfb71e4994408d",
+  "created_at": "2026-11-13T09:33:25.468457+00:00",
+  "query": "Does the paper report F1-scores with and without post-processing for the second task?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 20.41
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 20.85
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19769.9
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.14,
+      "bm25_ms": 16.02,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 15
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "fcd108e81c92d0a3:L0:000016",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "fcd108e81c92d0a3:L0:000000",
+          "score": 0.793247562602802,
+          "fused": 0.793247562602802,
+          "dense_rank": 5,
+          "bm25_rank": 2
+        },
+        {
+          "id": "fcd108e81c92d0a3:L0:000018",
+          "score": 0.7289602444506236,
+          "fused": 0.7289602444506236,
+          "dense_rank": 3,
+          "bm25_rank": 4
+        },
+        {
+          "id": "fcd108e81c92d0a3:L0:000002",
+          "score": 0.6929781607631523,
+          "fused": 0.6929781607631523,
+          "dense_rank": 8,
+          "bm25_rank": 3
+        },
+        {
+          "id": "fcd108e81c92d0a3:L0:000013",
+          "score": 0.49710665212403315,
+          "fused": 0.49710665212403315,
+          "dense_rank": 7,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 20.37
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 974,
+      "latency_ms": 0.42
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19748.87
+    }
+  },
+  "retrieved_ids": [
+    "fcd108e81c92d0a3:L0:000016",
+    "fcd108e81c92d0a3:L0:000000",
+    "fcd108e81c92d0a3:L0:000018",
+    "fcd108e81c92d0a3:L0:000002",
+    "fcd108e81c92d0a3:L0:000013"
+  ],
+  "filtered_ids": [
+    "fcd108e81c92d0a3:L0:000016",
+    "fcd108e81c92d0a3:L0:000000",
+    "fcd108e81c92d0a3:L0:000018",
+    "fcd108e81c92d0a3:L0:000002",
+    "fcd108e81c92d0a3:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:33:25.471458+00:00",
+      "call_id": "b2dd0d4c78e4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d87971304985d165",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "bcbfb71e4994408d"
+    },
+    {
+      "ts": "2026-11-13T09:33:45.237151+00:00",
+      "call_id": "aa5d3024b6ce",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5dd36718a225405d",
+      "prompt_tokens": 1530,
+      "completion_tokens": 85,
+      "latency_ms": 19747.57,
+      "server_ms": 19719.47,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "bcbfb71e4994408d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1530,
+    "completion_tokens": 85,
+    "total_ms": 19771.79
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "No, the paper does not report F1-scores with and without post-processing for the second task."
+      ]
+    }
+  }
+}

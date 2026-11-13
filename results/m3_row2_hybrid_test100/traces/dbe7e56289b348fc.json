@@ -1,0 +1,165 @@
+{
+  "trace_id": "dbe7e56289b348fc",
+  "created_at": "2026-11-13T10:45:15.395240+00:00",
+  "query": "The Company They Keep is a book written by Diana Pavlac Glyer, who is a professor at a university in Azusa, California, that was founded in 1899, and is under the auspices of what religion?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.29
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.33
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14025.5
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.97,
+      "bm25_ms": 7.16,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "634431bb1e27714f:L0:000099",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "634431bb1e27714f:L0:000034",
+          "score": 0.6371900380318488,
+          "fused": 0.6371900380318488,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000091",
+          "score": 0.3836335325750489,
+          "fused": 0.3836335325750489,
+          "dense_rank": 11,
+          "bm25_rank": 4
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000055",
+          "score": 0.3761287403295425,
+          "fused": 0.3761287403295425,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "634431bb1e27714f:L0:000015",
+          "score": 0.23277394525608358,
+          "fused": 0.23277394525608358,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 9.27
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 516,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14016.05
+    }
+  },
+  "retrieved_ids": [
+    "634431bb1e27714f:L0:000099",
+    "634431bb1e27714f:L0:000034",
+    "9794e842cc9565f0:L0:000091",
+    "bc1dba3471045f02:L0:000055",
+    "634431bb1e27714f:L0:000015"
+  ],
+  "filtered_ids": [
+    "634431bb1e27714f:L0:000099",
+    "634431bb1e27714f:L0:000034",
+    "9794e842cc9565f0:L0:000091",
+    "bc1dba3471045f02:L0:000055",
+    "634431bb1e27714f:L0:000015"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:45:15.396238+00:00",
+      "call_id": "f3879730fda1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "999615ab4ddd7571",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "dbe7e56289b348fc"
+    },
+    {
+      "ts": "2026-11-13T10:45:29.419748+00:00",
+      "call_id": "08002d6f053f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bd8a433fd6a01294",
+      "prompt_tokens": 1138,
+      "completion_tokens": 111,
+      "latency_ms": 14015.21,
+      "server_ms": 13990.37,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "dbe7e56289b348fc"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1138,
+    "completion_tokens": 111,
+    "total_ms": 14027.05
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

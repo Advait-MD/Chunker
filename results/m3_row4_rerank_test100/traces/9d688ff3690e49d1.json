@@ -1,0 +1,180 @@
+{
+  "trace_id": "9d688ff3690e49d1",
+  "created_at": "2026-11-13T13:37:54.501340+00:00",
+  "query": "Why did Robert want to go to space?\n\nOptions:\n(A) He wanted to follow in his father’s footsteps and fly to space like him\n(B) He needed to escape his life on Earth\n(C) He was after eternal youth himself\n(D) We don’t know for sure from the story\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14804.29
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14804.48
+    },
+    {
+      "state": "DONE",
+      "t_ms": 35158.71
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.37,
+      "bm25_ms": 26.81,
+      "n_candidates": {
+        "dense": 18,
+        "bm25": 18
+      },
+      "n_fused": 18,
+      "rerank": {
+        "n": 18,
+        "n_computed": 18,
+        "latency_ms": 14767.46
+      },
+      "hits": [
+        {
+          "id": "2fd46b2152775681:L0:000005",
+          "score": 0.0013386011123657227,
+          "fused": 0.6306838584626384,
+          "dense_rank": 4,
+          "bm25_rank": 9,
+          "fused_rank": 6,
+          "rerank": 0.0013386011123657227
+        },
+        {
+          "id": "2fd46b2152775681:L0:000003",
+          "score": -0.7597737312316895,
+          "fused": 0.7285796726759723,
+          "dense_rank": 3,
+          "bm25_rank": 6,
+          "fused_rank": 2,
+          "rerank": -0.7597737312316895
+        },
+        {
+          "id": "2fd46b2152775681:L0:000008",
+          "score": -1.2807711362838745,
+          "fused": 0.7024550792434539,
+          "dense_rank": 2,
+          "bm25_rank": 7,
+          "fused_rank": 5,
+          "rerank": -1.2807711362838745
+        },
+        {
+          "id": "2fd46b2152775681:L0:000014",
+          "score": -1.3043591976165771,
+          "fused": 0.5915266250281581,
+          "dense_rank": 11,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": -1.3043591976165771
+        },
+        {
+          "id": "2fd46b2152775681:L0:000009",
+          "score": -1.5303717851638794,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.5303717851638794
+        }
+      ],
+      "latency_ms": 14804.24
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1938,
+      "latency_ms": 0.15
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20354.08
+    }
+  },
+  "retrieved_ids": [
+    "2fd46b2152775681:L0:000005",
+    "2fd46b2152775681:L0:000003",
+    "2fd46b2152775681:L0:000008",
+    "2fd46b2152775681:L0:000014",
+    "2fd46b2152775681:L0:000009"
+  ],
+  "filtered_ids": [
+    "2fd46b2152775681:L0:000005",
+    "2fd46b2152775681:L0:000003",
+    "2fd46b2152775681:L0:000008",
+    "2fd46b2152775681:L0:000014",
+    "2fd46b2152775681:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:37:54.501340+00:00",
+      "call_id": "a5260a67722d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bae216c080c75b99",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9d688ff3690e49d1"
+    },
+    {
+      "ts": "2026-11-13T13:38:29.648808+00:00",
+      "call_id": "d5533ce16cd5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "dc0efe5d778a8162",
+      "prompt_tokens": 2464,
+      "completion_tokens": 61,
+      "latency_ms": 20352.56,
+      "server_ms": 20291.47,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "9d688ff3690e49d1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2464,
+    "completion_tokens": 61,
+    "total_ms": 35159.83
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

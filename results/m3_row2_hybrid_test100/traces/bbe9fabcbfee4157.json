@@ -1,0 +1,164 @@
+{
+  "trace_id": "bbe9fabcbfee4157",
+  "created_at": "2026-11-13T10:00:09.606599+00:00",
+  "query": "What team is the person with the highest point average in NBA history on?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.36
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18.28
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19577.58
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.11,
+      "bm25_ms": 13.83,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "6bddce8aaad42fea:L0:000092",
+          "score": 0.8657803303459871,
+          "fused": 0.8657803303459871,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000124",
+          "score": 0.7985845046346765,
+          "fused": 0.7985845046346765,
+          "dense_rank": 26,
+          "bm25_rank": 1
+        },
+        {
+          "id": "15abb5e49dced915:L0:000071",
+          "score": 0.5886643529796258,
+          "fused": 0.5886643529796258,
+          "dense_rank": 7,
+          "bm25_rank": 5
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000009",
+          "score": 0.5530807429290807,
+          "fused": 0.5530807429290807,
+          "dense_rank": 5,
+          "bm25_rank": 7
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000172",
+          "score": 0.4990199047732578,
+          "fused": 0.4990199047732578,
+          "dense_rank": 29,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 17.32
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 922,
+      "latency_ms": 0.9
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19559.22
+    }
+  },
+  "retrieved_ids": [
+    "6bddce8aaad42fea:L0:000092",
+    "f109b032e24ab27a:L0:000124",
+    "15abb5e49dced915:L0:000071",
+    "dbcbda865eee9c7b:L0:000009",
+    "8679484d23bfd3a0:L0:000172"
+  ],
+  "filtered_ids": [
+    "6bddce8aaad42fea:L0:000092",
+    "f109b032e24ab27a:L0:000124",
+    "15abb5e49dced915:L0:000071",
+    "dbcbda865eee9c7b:L0:000009",
+    "8679484d23bfd3a0:L0:000172"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:00:09.607596+00:00",
+      "call_id": "d3cd8b7c02f1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c2c02599411ac5b9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "bbe9fabcbfee4157"
+    },
+    {
+      "ts": "2026-11-13T10:00:29.183128+00:00",
+      "call_id": "9be8ef160d3b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "edabf0592318d233",
+      "prompt_tokens": 1741,
+      "completion_tokens": 102,
+      "latency_ms": 19558.5,
+      "server_ms": 19528.4,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "bbe9fabcbfee4157"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1741,
+    "completion_tokens": 102,
+    "total_ms": 19578.53
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

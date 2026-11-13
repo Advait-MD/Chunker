@@ -1,0 +1,178 @@
+{
+  "trace_id": "95f3f5baaa844139",
+  "created_at": "2026-11-13T14:26:26.163921+00:00",
+  "query": "Susanna Thompson appeared in the courtroom drama film Ghosts of Mississippi, directed by who?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5435.98
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5436.62
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16951.91
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.35,
+      "bm25_ms": 8.8,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5419.26
+      },
+      "hits": [
+        {
+          "id": "634431bb1e27714f:L0:000039",
+          "score": 7.014899730682373,
+          "fused": 0.9120263334945624,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 7.014899730682373
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000042",
+          "score": 6.455809116363525,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 6.455809116363525
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000156",
+          "score": -2.628596544265747,
+          "fused": 0.06760661566407435,
+          "dense_rank": 14,
+          "bm25_rank": null,
+          "fused_rank": 20,
+          "rerank": -2.628596544265747
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000035",
+          "score": -2.654951572418213,
+          "fused": 0.3334318646505888,
+          "dense_rank": 47,
+          "bm25_rank": 3,
+          "fused_rank": 5,
+          "rerank": -2.654951572418213
+        },
+        {
+          "id": "20496f59538deb41:L0:000111",
+          "score": -2.9514968395233154,
+          "fused": 0.16622380244823778,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -2.9514968395233154
+        }
+      ],
+      "latency_ms": 5435.93
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 487,
+      "latency_ms": 0.59
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11515.15
+    }
+  },
+  "retrieved_ids": [
+    "634431bb1e27714f:L0:000039",
+    "5d0f6cf59ee42566:L0:000042",
+    "81fc433d55d23b4c:L0:000156",
+    "c8fd2b3ea47eb07f:L0:000035",
+    "20496f59538deb41:L0:000111"
+  ],
+  "filtered_ids": [
+    "634431bb1e27714f:L0:000039",
+    "5d0f6cf59ee42566:L0:000042",
+    "81fc433d55d23b4c:L0:000156",
+    "c8fd2b3ea47eb07f:L0:000035",
+    "20496f59538deb41:L0:000111"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:26:26.179809+00:00",
+      "call_id": "752aef8b6330",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d6c1becd8127845e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "95f3f5baaa844139"
+    },
+    {
+      "ts": "2026-11-13T14:26:43.124600+00:00",
+      "call_id": "c878e4f9dfc9",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bc005cb00d3e3edb",
+      "prompt_tokens": 1120,
+      "completion_tokens": 57,
+      "latency_ms": 11514.01,
+      "server_ms": 11495.7,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "95f3f5baaa844139"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1120,
+    "completion_tokens": 57,
+    "total_ms": 16953.0
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

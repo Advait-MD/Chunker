@@ -1,0 +1,178 @@
+{
+  "trace_id": "4239547ecaea4c84",
+  "created_at": "2026-11-13T12:59:49.044239+00:00",
+  "query": "Who won the Indy Car Race in the largest populated city of the state where the performer of Mingus Three is from?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5738.77
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5738.95
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 17095.22
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.19,
+      "bm25_ms": 15.17,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5718.46
+      },
+      "hits": [
+        {
+          "id": "4b634e52029ddab4:L0:000051",
+          "score": 5.7738356590271,
+          "fused": 0.2795697957777024,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 9,
+          "rerank": 5.7738356590271
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000146",
+          "score": -1.3635798692703247,
+          "fused": 0.30572693224578046,
+          "dense_rank": 43,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -1.3635798692703247
+        },
+        {
+          "id": "ad4ace752e719bab:L0:000163",
+          "score": -1.9099246263504028,
+          "fused": 0.23506361450129057,
+          "dense_rank": 6,
+          "bm25_rank": 24,
+          "fused_rank": 10,
+          "rerank": -1.9099246263504028
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000167",
+          "score": -2.218695640563965,
+          "fused": 0.36014539593156747,
+          "dense_rank": 13,
+          "bm25_rank": 7,
+          "fused_rank": 5,
+          "rerank": -2.218695640563965
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000154",
+          "score": -2.611962080001831,
+          "fused": 0.1965353514048423,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": -2.611962080001831
+        }
+      ],
+      "latency_ms": 5738.72
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 648,
+      "latency_ms": 0.1
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11356.18
+    }
+  },
+  "retrieved_ids": [
+    "4b634e52029ddab4:L0:000051",
+    "ce290c1e5d5c6641:L0:000146",
+    "ad4ace752e719bab:L0:000163",
+    "e182527d2b1ecac3:L0:000167",
+    "178c7e3e6ef6ae87:L0:000154"
+  ],
+  "filtered_ids": [
+    "4b634e52029ddab4:L0:000051",
+    "ce290c1e5d5c6641:L0:000146",
+    "ad4ace752e719bab:L0:000163",
+    "e182527d2b1ecac3:L0:000167",
+    "178c7e3e6ef6ae87:L0:000154"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:59:49.046240+00:00",
+      "call_id": "2292d688b13f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9b05c2f7e60cab5b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4239547ecaea4c84"
+    },
+    {
+      "ts": "2026-11-13T13:00:06.134504+00:00",
+      "call_id": "9455226c9025",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2fb44c1d28decda6",
+      "prompt_tokens": 1244,
+      "completion_tokens": 45,
+      "latency_ms": 11354.97,
+      "server_ms": 11332.54,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "4239547ecaea4c84"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1244,
+    "completion_tokens": 45,
+    "total_ms": 17097.6
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

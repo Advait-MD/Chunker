@@ -1,0 +1,181 @@
+{
+  "trace_id": "ce1aa4f7fd394f6c",
+  "created_at": "2026-11-13T12:43:08.378330+00:00",
+  "query": "Who was in charge of the place where Bergen is located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4372.59
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4373.56
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 17581.11
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.31,
+      "bm25_ms": 7.68,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4358.6
+      },
+      "hits": [
+        {
+          "id": "f3503d3d186f0f90:L0:000103",
+          "score": -1.399568796157837,
+          "fused": 0.4202365777526068,
+          "dense_rank": null,
+          "bm25_rank": 12,
+          "fused_rank": 12,
+          "rerank": -1.399568796157837
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000195",
+          "score": -2.310997486114502,
+          "fused": 0.47680941972894425,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": -2.310997486114502
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000080",
+          "score": -4.3307929039001465,
+          "fused": 0.6829477504799663,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -4.3307929039001465
+        },
+        {
+          "id": "dd498e0082847164:L0:000107",
+          "score": -5.262449264526367,
+          "fused": 0.4387890397554723,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 11,
+          "rerank": -5.262449264526367
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000192",
+          "score": -5.345818519592285,
+          "fused": 0.4465948832994472,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": -5.345818519592285
+        }
+      ],
+      "latency_ms": 4372.53
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 238,
+      "latency_ms": 0.92
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13207.38
+    }
+  },
+  "retrieved_ids": [
+    "f3503d3d186f0f90:L0:000103",
+    "8679484d23bfd3a0:L0:000195",
+    "8679484d23bfd3a0:L0:000080",
+    "dd498e0082847164:L0:000107",
+    "5a1a5bbda9db013e:L0:000192"
+  ],
+  "filtered_ids": [
+    "f3503d3d186f0f90:L0:000103",
+    "8679484d23bfd3a0:L0:000195",
+    "8679484d23bfd3a0:L0:000080",
+    "dd498e0082847164:L0:000107",
+    "5a1a5bbda9db013e:L0:000192"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:43:08.378330+00:00",
+      "call_id": "b97acec98e2f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e2c498cfb4690f05",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ce1aa4f7fd394f6c"
+    },
+    {
+      "ts": "2026-11-13T12:43:25.957072+00:00",
+      "call_id": "0b0931a19570",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9062ab5f79aa75ce",
+      "prompt_tokens": 806,
+      "completion_tokens": 109,
+      "latency_ms": 13206.22,
+      "server_ms": 13181.04,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ce1aa4f7fd394f6c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 806,
+    "completion_tokens": 109,
+    "total_ms": 17582.74
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, the answer is Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

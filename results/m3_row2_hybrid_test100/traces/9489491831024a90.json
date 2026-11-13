@@ -1,0 +1,163 @@
+{
+  "trace_id": "9489491831024a90",
+  "created_at": "2026-11-13T10:59:33.550362+00:00",
+  "query": "In what year was the coach who led the 2007 South Carolina Gamecocks football team in his third season as USC head coach born?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 33.03
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 35.04
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11006.25
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.21,
+      "bm25_ms": 26.42,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "838c0e0106e6f015:L0:000010",
+          "score": 0.7374834750740891,
+          "fused": 0.7374834750740891,
+          "dense_rank": 31,
+          "bm25_rank": 1
+        },
+        {
+          "id": "20496f59538deb41:L0:000079",
+          "score": 0.6479820337199141,
+          "fused": 0.6479820337199141,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000039",
+          "score": 0.6000879825918656,
+          "fused": 0.6000879825918656,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "634431bb1e27714f:L0:000057",
+          "score": 0.5667614005039663,
+          "fused": 0.5667614005039663,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "20496f59538deb41:L0:000126",
+          "score": 0.5286677444414676,
+          "fused": 0.5286677444414676,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 32.94
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 439,
+      "latency_ms": 1.96
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10971.08
+    }
+  },
+  "retrieved_ids": [
+    "838c0e0106e6f015:L0:000010",
+    "20496f59538deb41:L0:000079",
+    "8e50522b7cb636d8:L0:000039",
+    "634431bb1e27714f:L0:000057",
+    "20496f59538deb41:L0:000126"
+  ],
+  "filtered_ids": [
+    "838c0e0106e6f015:L0:000010",
+    "20496f59538deb41:L0:000079",
+    "8e50522b7cb636d8:L0:000039",
+    "634431bb1e27714f:L0:000057",
+    "20496f59538deb41:L0:000126"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:59:33.552374+00:00",
+      "call_id": "bb74502767f1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ae8596a97dcd6ed0",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9489491831024a90"
+    },
+    {
+      "ts": "2026-11-13T10:59:44.556142+00:00",
+      "call_id": "fdb8dd960e7d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "efb3dbc8f8412829",
+      "prompt_tokens": 1126,
+      "completion_tokens": 45,
+      "latency_ms": 10969.64,
+      "server_ms": 10940.86,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "9489491831024a90"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1126,
+    "completion_tokens": 45,
+    "total_ms": 11008.46
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

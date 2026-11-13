@@ -1,0 +1,181 @@
+{
+  "trace_id": "f63e13a3d52a4e7d",
+  "created_at": "2026-11-13T15:16:29.743493+00:00",
+  "query": "Who was born later, Park So-Jin or Joseph M. Pettit?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4741.81
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4741.93
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17459.05
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.2,
+      "bm25_ms": 7.84,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4726.45
+      },
+      "hits": [
+        {
+          "id": "53c7288bdcd3837a:L0:000198",
+          "score": 8.886558532714844,
+          "fused": 0.8745089728463851,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 8.886558532714844
+        },
+        {
+          "id": "abe982d210232c3f:L0:000071",
+          "score": 8.555005073547363,
+          "fused": 0.7677887219896576,
+          "dense_rank": 29,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 8.555005073547363
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000185",
+          "score": -4.421431064605713,
+          "fused": 0.23795286185855194,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -4.421431064605713
+        },
+        {
+          "id": "abe982d210232c3f:L0:000153",
+          "score": -6.322203636169434,
+          "fused": 0.20127102352334678,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 10,
+          "rerank": -6.322203636169434
+        },
+        {
+          "id": "0eac870d43736f51:L0:000021",
+          "score": -6.741252899169922,
+          "fused": 0.24884799412845052,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -6.741252899169922
+        }
+      ],
+      "latency_ms": 4741.74
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 248,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12716.97
+    }
+  },
+  "retrieved_ids": [
+    "53c7288bdcd3837a:L0:000198",
+    "abe982d210232c3f:L0:000071",
+    "b04ce6dd2d95fb80:L0:000185",
+    "abe982d210232c3f:L0:000153",
+    "0eac870d43736f51:L0:000021"
+  ],
+  "filtered_ids": [
+    "53c7288bdcd3837a:L0:000198",
+    "abe982d210232c3f:L0:000071",
+    "b04ce6dd2d95fb80:L0:000185",
+    "abe982d210232c3f:L0:000153",
+    "0eac870d43736f51:L0:000021"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:16:29.759549+00:00",
+      "call_id": "115b0b427e55",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3d9f781274e30ca1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f63e13a3d52a4e7d"
+    },
+    {
+      "ts": "2026-11-13T15:16:47.216032+00:00",
+      "call_id": "ec7a0cbc6924",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b1ad7ef3597ef3fe",
+      "prompt_tokens": 831,
+      "completion_tokens": 96,
+      "latency_ms": 12715.77,
+      "server_ms": 12698.07,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f63e13a3d52a4e7d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 831,
+    "completion_tokens": 96,
+    "total_ms": 17460.8
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Park So-Jin was born later than Joseph M."
+      ]
+    }
+  }
+}

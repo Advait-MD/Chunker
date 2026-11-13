@@ -1,0 +1,168 @@
+{
+  "trace_id": "1d9806ae38ed4ec5",
+  "created_at": "2026-11-13T09:26:50.751937+00:00",
+  "query": "What is the caching mechanism?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.8
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.94
+    },
+    {
+      "state": "DONE",
+      "t_ms": 35244.09
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.02,
+      "bm25_ms": 5.54,
+      "n_candidates": {
+        "dense": 28,
+        "bm25": 7
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "39c5be984918a664:L0:000016",
+          "score": 0.9736405098818851,
+          "fused": 0.9736405098818851,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "39c5be984918a664:L0:000015",
+          "score": 0.8660954685033015,
+          "fused": 0.8660954685033015,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "39c5be984918a664:L0:000000",
+          "score": 0.5738121879223546,
+          "fused": 0.5738121879223546,
+          "dense_rank": 15,
+          "bm25_rank": 3
+        },
+        {
+          "id": "39c5be984918a664:L0:000002",
+          "score": 0.46243087319177517,
+          "fused": 0.46243087319177517,
+          "dense_rank": 6,
+          "bm25_rank": 4
+        },
+        {
+          "id": "39c5be984918a664:L0:000026",
+          "score": 0.2928217100600767,
+          "fused": 0.2928217100600767,
+          "dense_rank": 9,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 9.76
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1289,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 35234.01
+    }
+  },
+  "retrieved_ids": [
+    "39c5be984918a664:L0:000016",
+    "39c5be984918a664:L0:000015",
+    "39c5be984918a664:L0:000000",
+    "39c5be984918a664:L0:000002",
+    "39c5be984918a664:L0:000026"
+  ],
+  "filtered_ids": [
+    "39c5be984918a664:L0:000016",
+    "39c5be984918a664:L0:000015",
+    "39c5be984918a664:L0:000000",
+    "39c5be984918a664:L0:000002",
+    "39c5be984918a664:L0:000026"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:26:50.754174+00:00",
+      "call_id": "31f292517f12",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fb8506b8f5e1765e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1d9806ae38ed4ec5"
+    },
+    {
+      "ts": "2026-11-13T09:27:25.996041+00:00",
+      "call_id": "00a102b49a7d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "851c9c3c4d10ea47",
+      "prompt_tokens": 1915,
+      "completion_tokens": 231,
+      "latency_ms": 35233.35,
+      "server_ms": 35214.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "1d9806ae38ed4ec5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1915,
+    "completion_tokens": 231,
+    "total_ms": 35245.44
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The caching mechanism is based on the assumption that words in recent history are more likely to appear again.",
+        "It involves storing the outputs and states of language models for future prediction given the same contextual history."
+      ]
+    }
+  }
+}

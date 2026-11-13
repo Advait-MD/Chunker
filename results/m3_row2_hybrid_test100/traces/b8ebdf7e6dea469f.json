@@ -1,0 +1,163 @@
+{
+  "trace_id": "b8ebdf7e6dea469f",
+  "created_at": "2026-11-13T09:45:00.047199+00:00",
+  "query": "What is the seat of the county sharing a border with the county whose seat is the city WAPL is licensed to broadcast to?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 22.15
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 22.21
+    },
+    {
+      "state": "DONE",
+      "t_ms": 9440.64
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.77,
+      "bm25_ms": 18.03,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "dbcbda865eee9c7b:L0:000027",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000141",
+          "score": 0.7085720076077496,
+          "fused": 0.7085720076077496,
+          "dense_rank": 5,
+          "bm25_rank": 5
+        },
+        {
+          "id": "a168352d83e925b5:L0:000104",
+          "score": 0.6676545103315886,
+          "fused": 0.6676545103315886,
+          "dense_rank": 10,
+          "bm25_rank": 7
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000063",
+          "score": 0.6653857575417375,
+          "fused": 0.6653857575417375,
+          "dense_rank": 2,
+          "bm25_rank": 12
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000070",
+          "score": 0.656119082914756,
+          "fused": 0.656119082914756,
+          "dense_rank": 17,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 22.11
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 338,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9418.32
+    }
+  },
+  "retrieved_ids": [
+    "dbcbda865eee9c7b:L0:000027",
+    "ad11b6e85f908fb3:L0:000141",
+    "a168352d83e925b5:L0:000104",
+    "66f5caec1369ebaf:L0:000063",
+    "66f5caec1369ebaf:L0:000070"
+  ],
+  "filtered_ids": [
+    "dbcbda865eee9c7b:L0:000027",
+    "ad11b6e85f908fb3:L0:000141",
+    "a168352d83e925b5:L0:000104",
+    "66f5caec1369ebaf:L0:000063",
+    "66f5caec1369ebaf:L0:000070"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:45:00.049206+00:00",
+      "call_id": "0cfcb4e438f7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "64b88e4c90ee6404",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b8ebdf7e6dea469f"
+    },
+    {
+      "ts": "2026-11-13T09:45:09.487653+00:00",
+      "call_id": "6a382a16653f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "90d18d0abdff1530",
+      "prompt_tokens": 953,
+      "completion_tokens": 56,
+      "latency_ms": 9417.31,
+      "server_ms": 9396.82,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "b8ebdf7e6dea469f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 953,
+    "completion_tokens": 56,
+    "total_ms": 9454.65
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}
