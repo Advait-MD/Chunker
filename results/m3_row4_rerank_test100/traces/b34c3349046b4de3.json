@@ -1,0 +1,181 @@
+{
+  "trace_id": "b34c3349046b4de3",
+  "created_at": "2026-11-13T14:25:32.131488+00:00",
+  "query": "Which French aristocrat and military officer who fought in the American Revolutionary War visited this historic home located at Enfield, Halifax County, North Carolina, known as The Cellar?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4776.42
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4781.65
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14989.11
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.98,
+      "bm25_ms": 21.84,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4747.0
+      },
+      "hits": [
+        {
+          "id": "8e50522b7cb636d8:L0:000144",
+          "score": 10.363797187805176,
+          "fused": 0.7895293493531386,
+          "dense_rank": 13,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 10.363797187805176
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000074",
+          "score": 8.393129348754883,
+          "fused": 0.7201355794751743,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": 8.393129348754883
+        },
+        {
+          "id": "b120b09075017d08:L0:000037",
+          "score": 1.8957490921020508,
+          "fused": 0.4180104917576835,
+          "dense_rank": 25,
+          "bm25_rank": 5,
+          "fused_rank": 7,
+          "rerank": 1.8957490921020508
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000099",
+          "score": 0.8756153583526611,
+          "fused": 0.3321925121985775,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 10,
+          "rerank": 0.8756153583526611
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000157",
+          "score": 0.6535534262657166,
+          "fused": 0.35794549653395785,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 9,
+          "rerank": 0.6535534262657166
+        }
+      ],
+      "latency_ms": 4776.38
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 479,
+      "latency_ms": 5.19
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10207.39
+    }
+  },
+  "retrieved_ids": [
+    "8e50522b7cb636d8:L0:000144",
+    "838c0e0106e6f015:L0:000074",
+    "b120b09075017d08:L0:000037",
+    "ba3cd068cf9ac2e4:L0:000099",
+    "ec3410ef955c5c93:L0:000157"
+  ],
+  "filtered_ids": [
+    "8e50522b7cb636d8:L0:000144",
+    "838c0e0106e6f015:L0:000074",
+    "b120b09075017d08:L0:000037",
+    "ba3cd068cf9ac2e4:L0:000099",
+    "ec3410ef955c5c93:L0:000157"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:25:32.131488+00:00",
+      "call_id": "f28f0723bf54",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d10b7af23cdcfcf1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b34c3349046b4de3"
+    },
+    {
+      "ts": "2026-11-13T14:25:47.121279+00:00",
+      "call_id": "1a01c14c905e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "77ff04afca9fdbf6",
+      "prompt_tokens": 1122,
+      "completion_tokens": 64,
+      "latency_ms": 10206.56,
+      "server_ms": 10194.48,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "b34c3349046b4de3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1122,
+    "completion_tokens": 64,
+    "total_ms": 14991.66
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "The Marquis de Lafayette visited The Cellar, a historic home located at Enfield, Halifax County, North Carolina."
+      ]
+    }
+  }
+}

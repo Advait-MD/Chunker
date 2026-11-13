@@ -1,0 +1,180 @@
+{
+  "trace_id": "35fcabc792f843f1",
+  "created_at": "2026-11-13T13:07:15.219095+00:00",
+  "query": "Who did Kenneth say he brought down?\n\nOptions:\n(A) Clinton\n(B) Gingrich\n(C) the GOP\n(D) Monica\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15188.18
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15188.89
+    },
+    {
+      "state": "DONE",
+      "t_ms": 34622.26
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 36.27,
+      "bm25_ms": 111.45,
+      "n_candidates": {
+        "dense": 9,
+        "bm25": 9
+      },
+      "n_fused": 9,
+      "rerank": {
+        "n": 9,
+        "n_computed": 9,
+        "latency_ms": 15032.28
+      },
+      "hits": [
+        {
+          "id": "3b2bbfce51fc1364:L0:000008",
+          "score": -1.081736445426941,
+          "fused": 0.7367660534762456,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -1.081736445426941
+        },
+        {
+          "id": "3b2bbfce51fc1364:L0:000004",
+          "score": -1.4756321907043457,
+          "fused": 0.6490302921413096,
+          "dense_rank": 4,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -1.4756321907043457
+        },
+        {
+          "id": "3b2bbfce51fc1364:L0:000007",
+          "score": -1.820806622505188,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.820806622505188
+        },
+        {
+          "id": "3b2bbfce51fc1364:L0:000000",
+          "score": -2.2814483642578125,
+          "fused": 0.721284138926539,
+          "dense_rank": 6,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -2.2814483642578125
+        },
+        {
+          "id": "3b2bbfce51fc1364:L0:000003",
+          "score": -3.5361990928649902,
+          "fused": 0.2843911965157424,
+          "dense_rank": 8,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": -3.5361990928649902
+        }
+      ],
+      "latency_ms": 15188.09
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1857,
+      "latency_ms": 0.67
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19433.26
+    }
+  },
+  "retrieved_ids": [
+    "3b2bbfce51fc1364:L0:000008",
+    "3b2bbfce51fc1364:L0:000004",
+    "3b2bbfce51fc1364:L0:000007",
+    "3b2bbfce51fc1364:L0:000000",
+    "3b2bbfce51fc1364:L0:000003"
+  ],
+  "filtered_ids": [
+    "3b2bbfce51fc1364:L0:000008",
+    "3b2bbfce51fc1364:L0:000004",
+    "3b2bbfce51fc1364:L0:000007",
+    "3b2bbfce51fc1364:L0:000000",
+    "3b2bbfce51fc1364:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:07:15.232017+00:00",
+      "call_id": "87120fd679fa",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d32e1711b0ee5cac",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "35fcabc792f843f1"
+    },
+    {
+      "ts": "2026-11-13T13:07:49.848462+00:00",
+      "call_id": "4c69d6f86eec",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1e8333e0c8018a7b",
+      "prompt_tokens": 2520,
+      "completion_tokens": 36,
+      "latency_ms": 19430.86,
+      "server_ms": 19398.95,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "35fcabc792f843f1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2520,
+    "completion_tokens": 36,
+    "total_ms": 34626.5
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        3
+      ],
+      "uncited_sentences": [
+        "(A) Clinton"
+      ]
+    }
+  }
+}

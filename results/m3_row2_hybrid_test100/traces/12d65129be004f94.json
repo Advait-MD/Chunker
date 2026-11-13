@@ -1,0 +1,166 @@
+{
+  "trace_id": "12d65129be004f94",
+  "created_at": "2026-11-13T11:09:45.997265+00:00",
+  "query": "Which film has the director who was born later, Budak Nafsu or The Bilingual Lover?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8.07
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8.12
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19242.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.76,
+      "bm25_ms": 5.01,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000005",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "abe982d210232c3f:L0:000181",
+          "score": 0.5923350220876173,
+          "fused": 0.5923350220876173,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "43d5059060d4defa:L0:000003",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000073",
+          "score": 0.2275396938233609,
+          "fused": 0.2275396938233609,
+          "dense_rank": 2,
+          "bm25_rank": null
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000042",
+          "score": 0.2259091840446929,
+          "fused": 0.2259091840446929,
+          "dense_rank": 3,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 8.03
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 742,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19234.72
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000005",
+    "abe982d210232c3f:L0:000181",
+    "43d5059060d4defa:L0:000003",
+    "4a757779abfb4ba1:L0:000073",
+    "317e12ccd417c0d7:L0:000042"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000005",
+    "abe982d210232c3f:L0:000181",
+    "43d5059060d4defa:L0:000003",
+    "4a757779abfb4ba1:L0:000073",
+    "317e12ccd417c0d7:L0:000042"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:09:45.998277+00:00",
+      "call_id": "fa787eafd3fc",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7fa51ba105e6641a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "12d65129be004f94"
+    },
+    {
+      "ts": "2026-11-13T11:10:05.239250+00:00",
+      "call_id": "bac1af3eec7b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a72092f9647f9a75",
+      "prompt_tokens": 1465,
+      "completion_tokens": 110,
+      "latency_ms": 19233.29,
+      "server_ms": 19207.19,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "12d65129be004f94"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1465,
+    "completion_tokens": 110,
+    "total_ms": 19244.23
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, The Bilingual Lover has the director who was born later."
+      ]
+    }
+  }
+}

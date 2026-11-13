@@ -1,0 +1,164 @@
+{
+  "trace_id": "c25243e81d2e4559",
+  "created_at": "2026-11-13T09:19:13.509353+00:00",
+  "query": "What type of weight pruning do they use?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.55
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.62
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19207.66
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.59,
+      "bm25_ms": 7.72,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 8
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "3d5f78a6650b8155:L0:000015",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "3d5f78a6650b8155:L0:000017",
+          "score": 0.8755251874116847,
+          "fused": 0.8755251874116847,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "3d5f78a6650b8155:L0:000000",
+          "score": 0.5387779936996915,
+          "fused": 0.5387779936996915,
+          "dense_rank": 4,
+          "bm25_rank": 3
+        },
+        {
+          "id": "3d5f78a6650b8155:L0:000016",
+          "score": 0.45134570907858623,
+          "fused": 0.45134570907858623,
+          "dense_rank": 3,
+          "bm25_rank": 6
+        },
+        {
+          "id": "3d5f78a6650b8155:L0:000002",
+          "score": 0.4207042382946077,
+          "fused": 0.4207042382946077,
+          "dense_rank": 15,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 11.51
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1344,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19195.82
+    }
+  },
+  "retrieved_ids": [
+    "3d5f78a6650b8155:L0:000015",
+    "3d5f78a6650b8155:L0:000017",
+    "3d5f78a6650b8155:L0:000000",
+    "3d5f78a6650b8155:L0:000016",
+    "3d5f78a6650b8155:L0:000002"
+  ],
+  "filtered_ids": [
+    "3d5f78a6650b8155:L0:000015",
+    "3d5f78a6650b8155:L0:000017",
+    "3d5f78a6650b8155:L0:000000",
+    "3d5f78a6650b8155:L0:000016",
+    "3d5f78a6650b8155:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:19:13.511553+00:00",
+      "call_id": "f383dafae932",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4c035a3c4367674b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c25243e81d2e4559"
+    },
+    {
+      "ts": "2026-11-13T09:19:32.716003+00:00",
+      "call_id": "5d81fad3727b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e2ee57f56315672b",
+      "prompt_tokens": 2104,
+      "completion_tokens": 54,
+      "latency_ms": 19194.4,
+      "server_ms": 19154.28,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "c25243e81d2e4559"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2104,
+    "completion_tokens": 54,
+    "total_ms": 19209.08
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

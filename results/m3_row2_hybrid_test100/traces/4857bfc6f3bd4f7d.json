@@ -1,0 +1,163 @@
+{
+  "trace_id": "4857bfc6f3bd4f7d",
+  "created_at": "2026-11-13T09:48:38.798074+00:00",
+  "query": "In 2010, what was the population of the city where the Yongle emperor greeted the person to whom the edict was addressed?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.73
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17.79
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15629.89
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.34,
+      "bm25_ms": 14.05,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "6bddce8aaad42fea:L0:000096",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "15abb5e49dced915:L0:000024",
+          "score": 0.6084153828076236,
+          "fused": 0.6084153828076236,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000107",
+          "score": 0.5929794349523774,
+          "fused": 0.5929794349523774,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000061",
+          "score": 0.5923775988853516,
+          "fused": 0.5923775988853516,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000192",
+          "score": 0.3621190789669477,
+          "fused": 0.3621190789669477,
+          "dense_rank": 22,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 17.69
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 619,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15611.94
+    }
+  },
+  "retrieved_ids": [
+    "6bddce8aaad42fea:L0:000096",
+    "15abb5e49dced915:L0:000024",
+    "178c7e3e6ef6ae87:L0:000107",
+    "73dfa6a9bfcab050:L0:000061",
+    "f3503d3d186f0f90:L0:000192"
+  ],
+  "filtered_ids": [
+    "6bddce8aaad42fea:L0:000096",
+    "15abb5e49dced915:L0:000024",
+    "178c7e3e6ef6ae87:L0:000107",
+    "73dfa6a9bfcab050:L0:000061",
+    "f3503d3d186f0f90:L0:000192"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:48:38.800077+00:00",
+      "call_id": "8eed739376ab",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bc154c900dad8423",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4857bfc6f3bd4f7d"
+    },
+    {
+      "ts": "2026-11-13T09:48:54.426735+00:00",
+      "call_id": "570c3341e079",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "20e5f224d3c065bb",
+      "prompt_tokens": 1352,
+      "completion_tokens": 89,
+      "latency_ms": 15610.82,
+      "server_ms": 15586.79,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "4857bfc6f3bd4f7d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1352,
+    "completion_tokens": 89,
+    "total_ms": 15631.5
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "trace_id": "9dfad550d13e415a",
+  "created_at": "2026-11-13T12:22:58.883460+00:00",
+  "query": "How big are OSA and PD corporas used for testing?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9331.86
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9332.7
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22337.37
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.87,
+      "bm25_ms": 13.98,
+      "n_candidates": {
+        "dense": 22,
+        "bm25": 18
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 9307.45
+      },
+      "hits": [
+        {
+          "id": "659c0588e1bb916b:L0:000006",
+          "score": -1.9260272979736328,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.9260272979736328
+        },
+        {
+          "id": "659c0588e1bb916b:L0:000000",
+          "score": -2.9914307594299316,
+          "fused": 0.81926062122215,
+          "dense_rank": 5,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": -2.9914307594299316
+        },
+        {
+          "id": "659c0588e1bb916b:L0:000015",
+          "score": -3.427079439163208,
+          "fused": 0.2891825501026836,
+          "dense_rank": 2,
+          "bm25_rank": 17,
+          "fused_rank": 15,
+          "rerank": -3.427079439163208
+        },
+        {
+          "id": "659c0588e1bb916b:L0:000003",
+          "score": -4.109468460083008,
+          "fused": 0.3697408901066047,
+          "dense_rank": 21,
+          "bm25_rank": 10,
+          "fused_rank": 13,
+          "rerank": -4.109468460083008
+        },
+        {
+          "id": "659c0588e1bb916b:L0:000016",
+          "score": -4.5878095626831055,
+          "fused": 0.8108393928803458,
+          "dense_rank": 15,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -4.5878095626831055
+        }
+      ],
+      "latency_ms": 9331.81
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 838,
+      "latency_ms": 0.8
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13004.58
+    }
+  },
+  "retrieved_ids": [
+    "659c0588e1bb916b:L0:000006",
+    "659c0588e1bb916b:L0:000000",
+    "659c0588e1bb916b:L0:000015",
+    "659c0588e1bb916b:L0:000003",
+    "659c0588e1bb916b:L0:000016"
+  ],
+  "filtered_ids": [
+    "659c0588e1bb916b:L0:000006",
+    "659c0588e1bb916b:L0:000000",
+    "659c0588e1bb916b:L0:000015",
+    "659c0588e1bb916b:L0:000003",
+    "659c0588e1bb916b:L0:000016"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:22:58.894262+00:00",
+      "call_id": "91d8da9fd8ad",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3c2afa1fb3cc8192",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9dfad550d13e415a"
+    },
+    {
+      "ts": "2026-11-13T12:23:21.228858+00:00",
+      "call_id": "4f216f64c2f5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0f43371beed14616",
+      "prompt_tokens": 1425,
+      "completion_tokens": 70,
+      "latency_ms": 13003.65,
+      "server_ms": 12982.2,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "9dfad550d13e415a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1425,
+    "completion_tokens": 70,
+    "total_ms": 22339.84
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        3
+      ],
+      "uncited_sentences": [
+        "The corpora used for testing, specifically the PPD and POSA corpora, had a size of less than 3 hours each."
+      ]
+    }
+  }
+}

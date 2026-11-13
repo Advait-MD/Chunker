@@ -1,0 +1,180 @@
+{
+  "trace_id": "0543d66602bb4f10",
+  "created_at": "2026-11-13T14:27:54.331376+00:00",
+  "query": "Which has more species, Lysiloma or Hydrocotyle umbellata?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5186.17
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5187.37
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19334.48
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.93,
+      "bm25_ms": 7.42,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5173.3
+      },
+      "hits": [
+        {
+          "id": "ec3410ef955c5c93:L0:000200",
+          "score": 7.9505696296691895,
+          "fused": 0.27240287564036036,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 10,
+          "rerank": 7.9505696296691895
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000126",
+          "score": 7.381977081298828,
+          "fused": 0.9894090387046023,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.381977081298828
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000122",
+          "score": -2.380230665206909,
+          "fused": 0.46932756756040167,
+          "dense_rank": 17,
+          "bm25_rank": 2,
+          "fused_rank": 5,
+          "rerank": -2.380230665206909
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000044",
+          "score": -2.3880112171173096,
+          "fused": 0.3861826466962172,
+          "dense_rank": 22,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": -2.3880112171173096
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000034",
+          "score": -4.759939670562744,
+          "fused": 0.4443627597017997,
+          "dense_rank": 14,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -4.759939670562744
+        }
+      ],
+      "latency_ms": 5186.12
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 493,
+      "latency_ms": 1.17
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14146.94
+    }
+  },
+  "retrieved_ids": [
+    "ec3410ef955c5c93:L0:000200",
+    "ba3cd068cf9ac2e4:L0:000126",
+    "ec3410ef955c5c93:L0:000122",
+    "cc2399aca11eb631:L0:000044",
+    "c8fd2b3ea47eb07f:L0:000034"
+  ],
+  "filtered_ids": [
+    "ec3410ef955c5c93:L0:000200",
+    "ba3cd068cf9ac2e4:L0:000126",
+    "ec3410ef955c5c93:L0:000122",
+    "cc2399aca11eb631:L0:000044",
+    "c8fd2b3ea47eb07f:L0:000034"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:27:54.331376+00:00",
+      "call_id": "c57c05fcb3b0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2d2be08ec6f654d4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0543d66602bb4f10"
+    },
+    {
+      "ts": "2026-11-13T14:28:13.657960+00:00",
+      "call_id": "a5099d187be7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2dbcd8fb85248780",
+      "prompt_tokens": 1135,
+      "completion_tokens": 107,
+      "latency_ms": 14145.77,
+      "server_ms": 14118.83,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0543d66602bb4f10"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1135,
+    "completion_tokens": 107,
+    "total_ms": 19336.08
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

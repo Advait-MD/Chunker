@@ -1,0 +1,181 @@
+{
+  "trace_id": "5a4fc94fd9b146e3",
+  "created_at": "2026-11-13T14:40:31.708976+00:00",
+  "query": "Which year was the more recent engine series, the Honda K or Honda H, introduced?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5668.31
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5668.42
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19804.09
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.29,
+      "bm25_ms": 10.19,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5653.59
+      },
+      "hits": [
+        {
+          "id": "9794e842cc9565f0:L0:000043",
+          "score": 6.198254108428955,
+          "fused": 0.9899273066530728,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.198254108428955
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000164",
+          "score": 0.8617863059043884,
+          "fused": 0.8475727647074474,
+          "dense_rank": 6,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.8617863059043884
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000121",
+          "score": -2.873304605484009,
+          "fused": 0.9122106415487572,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -2.873304605484009
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000140",
+          "score": -4.232692241668701,
+          "fused": 0.831888179160854,
+          "dense_rank": 3,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -4.232692241668701
+        },
+        {
+          "id": "b120b09075017d08:L0:000129",
+          "score": -4.2428154945373535,
+          "fused": 0.7821659157184812,
+          "dense_rank": 7,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -4.2428154945373535
+        }
+      ],
+      "latency_ms": 5668.26
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 683,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14135.51
+    }
+  },
+  "retrieved_ids": [
+    "9794e842cc9565f0:L0:000043",
+    "8e50522b7cb636d8:L0:000164",
+    "ec3410ef955c5c93:L0:000121",
+    "c8fd2b3ea47eb07f:L0:000140",
+    "b120b09075017d08:L0:000129"
+  ],
+  "filtered_ids": [
+    "9794e842cc9565f0:L0:000043",
+    "8e50522b7cb636d8:L0:000164",
+    "ec3410ef955c5c93:L0:000121",
+    "c8fd2b3ea47eb07f:L0:000140",
+    "b120b09075017d08:L0:000129"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:40:31.708976+00:00",
+      "call_id": "a5f13dda1846",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2d11ae47a2daff72",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5a4fc94fd9b146e3"
+    },
+    {
+      "ts": "2026-11-13T14:40:51.518139+00:00",
+      "call_id": "9433dd22c7bb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "edc51d544da5d863",
+      "prompt_tokens": 1300,
+      "completion_tokens": 92,
+      "latency_ms": 14134.4,
+      "server_ms": 14113.07,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "5a4fc94fd9b146e3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1300,
+    "completion_tokens": 92,
+    "total_ms": 19806.06
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, the Honda K engine is the more recent series."
+      ]
+    }
+  }
+}

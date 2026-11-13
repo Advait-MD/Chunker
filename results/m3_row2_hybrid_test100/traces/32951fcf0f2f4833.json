@@ -1,0 +1,163 @@
+{
+  "trace_id": "32951fcf0f2f4833",
+  "created_at": "2026-11-13T10:44:55.979713+00:00",
+  "query": "Johnny Mathis: Wonderful Wonderful aired at what luxury hotel, casino and spa resort located in Atlantic City, New Jersey?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.73
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.79
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10060.16
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.88,
+      "bm25_ms": 12.54,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "838c0e0106e6f015:L0:000149",
+          "score": 0.9262283639273372,
+          "fused": 0.9262283639273372,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000167",
+          "score": 0.9027183702996449,
+          "fused": 0.9027183702996449,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000117",
+          "score": 0.7535416629217927,
+          "fused": 0.7535416629217927,
+          "dense_rank": 6,
+          "bm25_rank": 3
+        },
+        {
+          "id": "634431bb1e27714f:L0:000088",
+          "score": 0.736577355946282,
+          "fused": 0.736577355946282,
+          "dense_rank": 4,
+          "bm25_rank": 5
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000153",
+          "score": 0.6097152914364734,
+          "fused": 0.6097152914364734,
+          "dense_rank": 7,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 15.69
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 450,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10044.0
+    }
+  },
+  "retrieved_ids": [
+    "838c0e0106e6f015:L0:000149",
+    "cb96563b0747a6ba:L0:000167",
+    "bc1dba3471045f02:L0:000117",
+    "634431bb1e27714f:L0:000088",
+    "cc2399aca11eb631:L0:000153"
+  ],
+  "filtered_ids": [
+    "838c0e0106e6f015:L0:000149",
+    "cb96563b0747a6ba:L0:000167",
+    "bc1dba3471045f02:L0:000117",
+    "634431bb1e27714f:L0:000088",
+    "cc2399aca11eb631:L0:000153"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:44:55.981719+00:00",
+      "call_id": "e1228b0bb1ae",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c9c73e43c6187617",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "32951fcf0f2f4833"
+    },
+    {
+      "ts": "2026-11-13T10:45:06.039337+00:00",
+      "call_id": "9d9719f02a44",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bb7a9cfb33a59c48",
+      "prompt_tokens": 1060,
+      "completion_tokens": 45,
+      "latency_ms": 10042.82,
+      "server_ms": 9984.98,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "32951fcf0f2f4833"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1060,
+    "completion_tokens": 45,
+    "total_ms": 10061.51
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

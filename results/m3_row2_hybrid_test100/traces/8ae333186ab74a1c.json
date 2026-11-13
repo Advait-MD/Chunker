@@ -1,0 +1,167 @@
+{
+  "trace_id": "8ae333186ab74a1c",
+  "created_at": "2026-11-13T09:35:36.323600+00:00",
+  "query": "What is the performance for the three languages tested?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.24
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.42
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24204.42
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.43,
+      "bm25_ms": 9.41,
+      "n_candidates": {
+        "dense": 16,
+        "bm25": 11
+      },
+      "n_fused": 16,
+      "hits": [
+        {
+          "id": "f8bd07355511bc96:L0:000010",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "f8bd07355511bc96:L0:000013",
+          "score": 0.6130650367931961,
+          "fused": 0.6130650367931961,
+          "dense_rank": 6,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f8bd07355511bc96:L0:000015",
+          "score": 0.5887583339427057,
+          "fused": 0.5887583339427057,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f8bd07355511bc96:L0:000001",
+          "score": 0.48870264002000385,
+          "fused": 0.48870264002000385,
+          "dense_rank": 9,
+          "bm25_rank": 4
+        },
+        {
+          "id": "f8bd07355511bc96:L0:000000",
+          "score": 0.39882730106995196,
+          "fused": 0.39882730106995196,
+          "dense_rank": 4,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 15.2
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1058,
+      "latency_ms": 0.15
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24188.8
+    }
+  },
+  "retrieved_ids": [
+    "f8bd07355511bc96:L0:000010",
+    "f8bd07355511bc96:L0:000013",
+    "f8bd07355511bc96:L0:000015",
+    "f8bd07355511bc96:L0:000001",
+    "f8bd07355511bc96:L0:000000"
+  ],
+  "filtered_ids": [
+    "f8bd07355511bc96:L0:000010",
+    "f8bd07355511bc96:L0:000013",
+    "f8bd07355511bc96:L0:000015",
+    "f8bd07355511bc96:L0:000001",
+    "f8bd07355511bc96:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:35:36.324824+00:00",
+      "call_id": "0695d6915963",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "00f8cc6066887669",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8ae333186ab74a1c"
+    },
+    {
+      "ts": "2026-11-13T09:36:00.526495+00:00",
+      "call_id": "bfbde9401ed2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b97cfb44bf268e6c",
+      "prompt_tokens": 1700,
+      "completion_tokens": 136,
+      "latency_ms": 24186.93,
+      "server_ms": 24161.63,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "8ae333186ab74a1c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1700,
+    "completion_tokens": 136,
+    "total_ms": 24206.37
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Dependency features are crucial for zero-shot cross-lingual semantic parsing.",
+        "TreeLSTMs slightly improve performance only for German."
+      ]
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "trace_id": "f84c35df023047fd",
+  "created_at": "2026-11-13T12:55:35.871471+00:00",
+  "query": "The BBC Footballer of the Year is a member of which team?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4241.04
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4242.16
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15998.4
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.66,
+      "bm25_ms": 8.21,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4223.84
+      },
+      "hits": [
+        {
+          "id": "66f5caec1369ebaf:L0:000058",
+          "score": -1.452991008758545,
+          "fused": 0.12702310055494517,
+          "dense_rank": 9,
+          "bm25_rank": null,
+          "fused_rank": 17,
+          "rerank": -1.452991008758545
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000199",
+          "score": -2.118349075317383,
+          "fused": 0.11831529003408049,
+          "dense_rank": 11,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -2.118349075317383
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000063",
+          "score": -2.1651666164398193,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -2.1651666164398193
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000118",
+          "score": -3.7858469486236572,
+          "fused": 0.2963900476002044,
+          "dense_rank": 32,
+          "bm25_rank": 2,
+          "fused_rank": 6,
+          "rerank": -3.7858469486236572
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000113",
+          "score": -4.513742923736572,
+          "fused": 0.25367035884666145,
+          "dense_rank": 29,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": -4.513742923736572
+        }
+      ],
+      "latency_ms": 4240.97
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 452,
+      "latency_ms": 1.09
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11756.13
+    }
+  },
+  "retrieved_ids": [
+    "66f5caec1369ebaf:L0:000058",
+    "73dfa6a9bfcab050:L0:000199",
+    "6bddce8aaad42fea:L0:000063",
+    "8679484d23bfd3a0:L0:000118",
+    "dbcbda865eee9c7b:L0:000113"
+  ],
+  "filtered_ids": [
+    "66f5caec1369ebaf:L0:000058",
+    "73dfa6a9bfcab050:L0:000199",
+    "6bddce8aaad42fea:L0:000063",
+    "8679484d23bfd3a0:L0:000118",
+    "dbcbda865eee9c7b:L0:000113"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:55:35.873770+00:00",
+      "call_id": "a7686fcdfe04",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b82dd230da812d43",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f84c35df023047fd"
+    },
+    {
+      "ts": "2026-11-13T12:55:51.867512+00:00",
+      "call_id": "b1b1ae87d853",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8ecf7a893abf0f90",
+      "prompt_tokens": 1036,
+      "completion_tokens": 70,
+      "latency_ms": 11754.84,
+      "server_ms": 11734.91,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f84c35df023047fd"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1036,
+    "completion_tokens": 70,
+    "total_ms": 16001.37
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

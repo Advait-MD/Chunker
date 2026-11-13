@@ -1,0 +1,180 @@
+{
+  "trace_id": "29f48da21e244285",
+  "created_at": "2026-11-13T13:40:33.309116+00:00",
+  "query": "What would happen to Dameri Tass if he took Earth’s animals off planet?\n\nOptions:\n(A) He would lose his reputation\n(B) He would be hailed as a hero\n(C) President McCord would accuse him of stealing\n(D) He would feel bad for the animals\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.0
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10816.14
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10816.22
+    },
+    {
+      "state": "DONE",
+      "t_ms": 32313.18
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.9,
+      "bm25_ms": 12.51,
+      "n_candidates": {
+        "dense": 11,
+        "bm25": 11
+      },
+      "n_fused": 11,
+      "rerank": {
+        "n": 11,
+        "n_computed": 11,
+        "latency_ms": 10799.29
+      },
+      "hits": [
+        {
+          "id": "5cb8b210379e1c67:L0:000009",
+          "score": 0.523226797580719,
+          "fused": 0.8287072007568244,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 0.523226797580719
+        },
+        {
+          "id": "5cb8b210379e1c67:L0:000004",
+          "score": -0.2209569811820984,
+          "fused": 0.5162006709579583,
+          "dense_rank": 10,
+          "bm25_rank": 6,
+          "fused_rank": 8,
+          "rerank": -0.2209569811820984
+        },
+        {
+          "id": "5cb8b210379e1c67:L0:000000",
+          "score": -0.6944912075996399,
+          "fused": 0.5672543152652775,
+          "dense_rank": 7,
+          "bm25_rank": 7,
+          "fused_rank": 6,
+          "rerank": -0.6944912075996399
+        },
+        {
+          "id": "5cb8b210379e1c67:L0:000008",
+          "score": -0.7502613663673401,
+          "fused": 0.8827890978586821,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -0.7502613663673401
+        },
+        {
+          "id": "5cb8b210379e1c67:L0:000007",
+          "score": -1.0338579416275024,
+          "fused": 0.9823135590223977,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.0338579416275024
+        }
+      ],
+      "latency_ms": 10816.11
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1963,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21496.84
+    }
+  },
+  "retrieved_ids": [
+    "5cb8b210379e1c67:L0:000009",
+    "5cb8b210379e1c67:L0:000004",
+    "5cb8b210379e1c67:L0:000000",
+    "5cb8b210379e1c67:L0:000008",
+    "5cb8b210379e1c67:L0:000007"
+  ],
+  "filtered_ids": [
+    "5cb8b210379e1c67:L0:000009",
+    "5cb8b210379e1c67:L0:000004",
+    "5cb8b210379e1c67:L0:000000",
+    "5cb8b210379e1c67:L0:000008",
+    "5cb8b210379e1c67:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:40:33.309116+00:00",
+      "call_id": "82c66b5cbc8f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fdffde70cd317e37",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "29f48da21e244285"
+    },
+    {
+      "ts": "2026-11-13T13:41:05.627331+00:00",
+      "call_id": "3a8eb6b32b5c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a79484f193203f51",
+      "prompt_tokens": 2593,
+      "completion_tokens": 59,
+      "latency_ms": 21495.66,
+      "server_ms": 21469.46,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "29f48da21e244285"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2593,
+    "completion_tokens": 59,
+    "total_ms": 32315.18
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

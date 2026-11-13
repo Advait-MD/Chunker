@@ -1,0 +1,163 @@
+{
+  "trace_id": "742f7215753a4906",
+  "created_at": "2026-11-13T09:30:45.211431+00:00",
+  "query": "What new tasks do they use to show the transferring ability of the shared meta-knowledge?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 23.05
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 23.56
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20436.06
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.64,
+      "bm25_ms": 17.67,
+      "n_candidates": {
+        "dense": 28,
+        "bm25": 25
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "29bd0fd1a0ea82cc:L0:000000",
+          "score": 0.9404973995710268,
+          "fused": 0.9404973995710268,
+          "dense_rank": 5,
+          "bm25_rank": 1
+        },
+        {
+          "id": "29bd0fd1a0ea82cc:L0:000025",
+          "score": 0.9171593859662842,
+          "fused": 0.9171593859662842,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "29bd0fd1a0ea82cc:L0:000020",
+          "score": 0.8377542449524044,
+          "fused": 0.8377542449524044,
+          "dense_rank": 9,
+          "bm25_rank": 3
+        },
+        {
+          "id": "29bd0fd1a0ea82cc:L0:000021",
+          "score": 0.7726310290398809,
+          "fused": 0.7726310290398809,
+          "dense_rank": 1,
+          "bm25_rank": 5
+        },
+        {
+          "id": "29bd0fd1a0ea82cc:L0:000024",
+          "score": 0.7514930110759936,
+          "fused": 0.7514930110759936,
+          "dense_rank": 6,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 23.01
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1193,
+      "latency_ms": 0.48
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20412.36
+    }
+  },
+  "retrieved_ids": [
+    "29bd0fd1a0ea82cc:L0:000000",
+    "29bd0fd1a0ea82cc:L0:000025",
+    "29bd0fd1a0ea82cc:L0:000020",
+    "29bd0fd1a0ea82cc:L0:000021",
+    "29bd0fd1a0ea82cc:L0:000024"
+  ],
+  "filtered_ids": [
+    "29bd0fd1a0ea82cc:L0:000000",
+    "29bd0fd1a0ea82cc:L0:000025",
+    "29bd0fd1a0ea82cc:L0:000020",
+    "29bd0fd1a0ea82cc:L0:000021",
+    "29bd0fd1a0ea82cc:L0:000024"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:30:45.212434+00:00",
+      "call_id": "e02e92f83ff6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f6704aaf90462600",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "742f7215753a4906"
+    },
+    {
+      "ts": "2026-11-13T09:31:05.646023+00:00",
+      "call_id": "612c18cf72da",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "95349e4fee49b1b7",
+      "prompt_tokens": 1744,
+      "completion_tokens": 105,
+      "latency_ms": 20410.14,
+      "server_ms": 20381.72,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "742f7215753a4906"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1744,
+    "completion_tokens": 105,
+    "total_ms": 20437.24
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

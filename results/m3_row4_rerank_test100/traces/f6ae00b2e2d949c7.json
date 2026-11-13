@@ -1,0 +1,178 @@
+{
+  "trace_id": "f6ae00b2e2d949c7",
+  "created_at": "2026-11-13T15:13:46.606959+00:00",
+  "query": "Who is the spouse of the director of film Confidentially Connie?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6622.25
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6622.38
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 18313.71
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.19,
+      "bm25_ms": 8.41,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6606.08
+      },
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000117",
+          "score": 5.2866902351379395,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.2866902351379395
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000161",
+          "score": -1.7896499633789062,
+          "fused": 0.2323817681453596,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -1.7896499633789062
+        },
+        {
+          "id": "abe982d210232c3f:L0:000020",
+          "score": -2.9435415267944336,
+          "fused": 0.1459598995508548,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 15,
+          "rerank": -2.9435415267944336
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000085",
+          "score": -3.4409682750701904,
+          "fused": 0.26380405202139295,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -3.4409682750701904
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000126",
+          "score": -4.17119836807251,
+          "fused": 0.13086852516993092,
+          "dense_rank": 7,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -4.17119836807251
+        }
+      ],
+      "latency_ms": 6622.18
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 654,
+      "latency_ms": 0.09
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11691.24
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000117",
+    "4a757779abfb4ba1:L0:000161",
+    "abe982d210232c3f:L0:000020",
+    "4a757779abfb4ba1:L0:000085",
+    "b04ce6dd2d95fb80:L0:000126"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000117",
+    "4a757779abfb4ba1:L0:000161",
+    "abe982d210232c3f:L0:000020",
+    "4a757779abfb4ba1:L0:000085",
+    "b04ce6dd2d95fb80:L0:000126"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:13:46.606959+00:00",
+      "call_id": "0273f42f73c2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5dc3700d0e67d24d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f6ae00b2e2d949c7"
+    },
+    {
+      "ts": "2026-11-13T15:14:04.921224+00:00",
+      "call_id": "1ee9ee267654",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ddf6faf9891a9bb4",
+      "prompt_tokens": 1268,
+      "completion_tokens": 52,
+      "latency_ms": 11689.68,
+      "server_ms": 11664.95,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f6ae00b2e2d949c7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1268,
+    "completion_tokens": 52,
+    "total_ms": 18316.5
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The spouse of the director of film Confidentially Connie is not mentioned in the provided passages."
+      ]
+    }
+  }
+}

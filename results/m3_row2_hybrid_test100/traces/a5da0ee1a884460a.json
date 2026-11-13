@@ -1,0 +1,163 @@
+{
+  "trace_id": "a5da0ee1a884460a",
+  "created_at": "2026-11-13T10:59:44.561545+00:00",
+  "query": "What team did Travis Cortez Mays play on which currently compete in the Big 12 Conference.?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.3
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.52
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14629.77
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.53,
+      "bm25_ms": 11.99,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000086",
+          "score": 0.8845374229303513,
+          "fused": 0.8845374229303513,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000192",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "b120b09075017d08:L0:000087",
+          "score": 0.6979819183224605,
+          "fused": 0.6979819183224605,
+          "dense_rank": 16,
+          "bm25_rank": 3
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000089",
+          "score": 0.6949174294320403,
+          "fused": 0.6949174294320403,
+          "dense_rank": 3,
+          "bm25_rank": 4
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000171",
+          "score": 0.6272121543986144,
+          "fused": 0.6272121543986144,
+          "dense_rank": 5,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 18.24
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 480,
+      "latency_ms": 1.18
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14609.52
+    }
+  },
+  "retrieved_ids": [
+    "c8fd2b3ea47eb07f:L0:000086",
+    "90976421f3f2bea2:L0:000192",
+    "b120b09075017d08:L0:000087",
+    "90976421f3f2bea2:L0:000089",
+    "ba3cd068cf9ac2e4:L0:000171"
+  ],
+  "filtered_ids": [
+    "c8fd2b3ea47eb07f:L0:000086",
+    "90976421f3f2bea2:L0:000192",
+    "b120b09075017d08:L0:000087",
+    "90976421f3f2bea2:L0:000089",
+    "ba3cd068cf9ac2e4:L0:000171"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:59:44.564574+00:00",
+      "call_id": "9a891a1f0bdc",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "50b3974bb5ec5198",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a5da0ee1a884460a"
+    },
+    {
+      "ts": "2026-11-13T10:59:59.189597+00:00",
+      "call_id": "e1313c74881e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1343b2959b1222a5",
+      "prompt_tokens": 1147,
+      "completion_tokens": 74,
+      "latency_ms": 14607.75,
+      "server_ms": 14578.87,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a5da0ee1a884460a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1147,
+    "completion_tokens": 74,
+    "total_ms": 14631.83
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

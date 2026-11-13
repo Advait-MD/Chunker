@@ -1,0 +1,180 @@
+{
+  "trace_id": "a940cdbec2f947e6",
+  "created_at": "2026-11-13T13:09:09.000690+00:00",
+  "query": "Why was Harper strongly in favor of automation?\n\nOptions:\n(A) New technology was a sign of sophistication.\n(B) He appreciated machine silence and accuracy.\n(C) He wanted to do less work and maximize profits.\n(D) It potentially would save him a lot of money.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 21256.0
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 21256.94
+    },
+    {
+      "state": "DONE",
+      "t_ms": 40026.19
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.68,
+      "bm25_ms": 33.1,
+      "n_candidates": {
+        "dense": 18,
+        "bm25": 18
+      },
+      "n_fused": 18,
+      "rerank": {
+        "n": 18,
+        "n_computed": 18,
+        "latency_ms": 21210.52
+      },
+      "hits": [
+        {
+          "id": "d30c407f908e14ca:L0:000004",
+          "score": 0.6346322298049927,
+          "fused": 0.5662210682817717,
+          "dense_rank": 3,
+          "bm25_rank": 7,
+          "fused_rank": 6,
+          "rerank": 0.6346322298049927
+        },
+        {
+          "id": "d30c407f908e14ca:L0:000012",
+          "score": -1.1673823595046997,
+          "fused": 0.6354275638962386,
+          "dense_rank": 7,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -1.1673823595046997
+        },
+        {
+          "id": "d30c407f908e14ca:L0:000009",
+          "score": -1.3863811492919922,
+          "fused": 0.6945070218844964,
+          "dense_rank": 12,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -1.3863811492919922
+        },
+        {
+          "id": "d30c407f908e14ca:L0:000017",
+          "score": -1.419432520866394,
+          "fused": 0.37815753990080414,
+          "dense_rank": 5,
+          "bm25_rank": 16,
+          "fused_rank": 14,
+          "rerank": -1.419432520866394
+        },
+        {
+          "id": "d30c407f908e14ca:L0:000015",
+          "score": -1.457065224647522,
+          "fused": 0.484769658488316,
+          "dense_rank": 6,
+          "bm25_rank": 11,
+          "fused_rank": 10,
+          "rerank": -1.457065224647522
+        }
+      ],
+      "latency_ms": 21255.95
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1857,
+      "latency_ms": 0.9
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18769.06
+    }
+  },
+  "retrieved_ids": [
+    "d30c407f908e14ca:L0:000004",
+    "d30c407f908e14ca:L0:000012",
+    "d30c407f908e14ca:L0:000009",
+    "d30c407f908e14ca:L0:000017",
+    "d30c407f908e14ca:L0:000015"
+  ],
+  "filtered_ids": [
+    "d30c407f908e14ca:L0:000004",
+    "d30c407f908e14ca:L0:000012",
+    "d30c407f908e14ca:L0:000009",
+    "d30c407f908e14ca:L0:000017",
+    "d30c407f908e14ca:L0:000015"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:09:09.002701+00:00",
+      "call_id": "67c6265a671c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "da38c9d9b4e4af70",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a940cdbec2f947e6"
+    },
+    {
+      "ts": "2026-11-13T13:09:49.015882+00:00",
+      "call_id": "6b9d392aabf5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "519c0e62e087b008",
+      "prompt_tokens": 2437,
+      "completion_tokens": 61,
+      "latency_ms": 18767.75,
+      "server_ms": 18737.19,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a940cdbec2f947e6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2437,
+    "completion_tokens": 61,
+    "total_ms": 40029.27
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

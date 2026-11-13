@@ -1,0 +1,163 @@
+{
+  "trace_id": "e1383cff11ee49e3",
+  "created_at": "2026-11-13T10:59:11.116861+00:00",
+  "query": "Who is the film dedicated to that Paramount Classics and MTV Films co-purchased the rights to?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.7
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16.41
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12119.62
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.63,
+      "bm25_ms": 12.51,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "9794e842cc9565f0:L0:000107",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000006",
+          "score": 0.5715072102048465,
+          "fused": 0.5715072102048465,
+          "dense_rank": 8,
+          "bm25_rank": 2
+        },
+        {
+          "id": "634431bb1e27714f:L0:000190",
+          "score": 0.5488455132694199,
+          "fused": 0.5488455132694199,
+          "dense_rank": 7,
+          "bm25_rank": 3
+        },
+        {
+          "id": "20496f59538deb41:L0:000056",
+          "score": 0.467690393025589,
+          "fused": 0.467690393025589,
+          "dense_rank": 10,
+          "bm25_rank": 5
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000184",
+          "score": 0.4579323593175514,
+          "fused": 0.4579323593175514,
+          "dense_rank": 6,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 15.66
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 581,
+      "latency_ms": 0.67
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12103.04
+    }
+  },
+  "retrieved_ids": [
+    "9794e842cc9565f0:L0:000107",
+    "5d0f6cf59ee42566:L0:000006",
+    "634431bb1e27714f:L0:000190",
+    "20496f59538deb41:L0:000056",
+    "9794e842cc9565f0:L0:000184"
+  ],
+  "filtered_ids": [
+    "9794e842cc9565f0:L0:000107",
+    "5d0f6cf59ee42566:L0:000006",
+    "634431bb1e27714f:L0:000190",
+    "20496f59538deb41:L0:000056",
+    "9794e842cc9565f0:L0:000184"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:59:11.117874+00:00",
+      "call_id": "4bebea371484",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0eceb0d6023421de",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e1383cff11ee49e3"
+    },
+    {
+      "ts": "2026-11-13T10:59:23.235970+00:00",
+      "call_id": "586f29bc627a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "40bf9ed6685e553f",
+      "prompt_tokens": 1156,
+      "completion_tokens": 63,
+      "latency_ms": 12101.73,
+      "server_ms": 12064.93,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "e1383cff11ee49e3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1156,
+    "completion_tokens": 63,
+    "total_ms": 12123.19
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

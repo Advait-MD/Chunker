@@ -1,0 +1,164 @@
+{
+  "trace_id": "ef152ba96f0f4c18",
+  "created_at": "2026-11-13T09:56:27.494134+00:00",
+  "query": "The volcano, named after the legendary King featured in Historia Regum Britanniae, last erupted when?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.77
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.93
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10865.84
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.35,
+      "bm25_ms": 16.05,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "4fcce431f5d22d1d:L0:000058",
+          "score": 0.781591590930274,
+          "fused": 0.781591590930274,
+          "dense_rank": 26,
+          "bm25_rank": 2
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000117",
+          "score": 0.7664286315700843,
+          "fused": 0.7664286315700843,
+          "dense_rank": 28,
+          "bm25_rank": 1
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000131",
+          "score": 0.7615125315286885,
+          "fused": 0.7615125315286885,
+          "dense_rank": 19,
+          "bm25_rank": 4
+        },
+        {
+          "id": "a168352d83e925b5:L0:000069",
+          "score": 0.7295846510909889,
+          "fused": 0.7295846510909889,
+          "dense_rank": 33,
+          "bm25_rank": 3
+        },
+        {
+          "id": "ce57fdde2baaba9c:L0:000161",
+          "score": 0.611254892264257,
+          "fused": 0.611254892264257,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 19.73
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 263,
+      "latency_ms": 0.14
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10845.79
+    }
+  },
+  "retrieved_ids": [
+    "4fcce431f5d22d1d:L0:000058",
+    "cc1bdb3bf430bd0d:L0:000117",
+    "dbcbda865eee9c7b:L0:000131",
+    "a168352d83e925b5:L0:000069",
+    "ce57fdde2baaba9c:L0:000161"
+  ],
+  "filtered_ids": [
+    "4fcce431f5d22d1d:L0:000058",
+    "cc1bdb3bf430bd0d:L0:000117",
+    "dbcbda865eee9c7b:L0:000131",
+    "a168352d83e925b5:L0:000069",
+    "ce57fdde2baaba9c:L0:000161"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:56:27.495133+00:00",
+      "call_id": "409c086092bf",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "263c730d772892af",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ef152ba96f0f4c18"
+    },
+    {
+      "ts": "2026-11-13T09:56:38.359197+00:00",
+      "call_id": "cd5366d76c93",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c140e58a74023351",
+      "prompt_tokens": 823,
+      "completion_tokens": 70,
+      "latency_ms": 10844.8,
+      "server_ms": 10822.96,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ef152ba96f0f4c18"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 823,
+    "completion_tokens": 70,
+    "total_ms": 10870.41
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

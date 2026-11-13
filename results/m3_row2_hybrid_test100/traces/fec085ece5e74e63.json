@@ -1,0 +1,163 @@
+{
+  "trace_id": "fec085ece5e74e63",
+  "created_at": "2026-11-13T10:34:42.597508+00:00",
+  "query": "What is Ernie likely to do next time he sees Vivian?\n\nOptions:\n(A) Joke with her\n(B) Avoid her\n(C) Ask her to lunch\n(D) Make fun of her\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.85
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18.92
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18384.68
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.74,
+      "bm25_ms": 15.86,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 19
+      },
+      "n_fused": 19,
+      "hits": [
+        {
+          "id": "de9de8d3c22b17cd:L0:000014",
+          "score": 0.8995762509359119,
+          "fused": 0.8995762509359119,
+          "dense_rank": 6,
+          "bm25_rank": 1
+        },
+        {
+          "id": "de9de8d3c22b17cd:L0:000018",
+          "score": 0.8971749293824784,
+          "fused": 0.8971749293824784,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "de9de8d3c22b17cd:L0:000016",
+          "score": 0.8616782369590416,
+          "fused": 0.8616782369590416,
+          "dense_rank": 5,
+          "bm25_rank": 3
+        },
+        {
+          "id": "de9de8d3c22b17cd:L0:000012",
+          "score": 0.8559045211836414,
+          "fused": 0.8559045211836414,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "de9de8d3c22b17cd:L0:000017",
+          "score": 0.8178419987885936,
+          "fused": 0.8178419987885936,
+          "dense_rank": 1,
+          "bm25_rank": 8
+        }
+      ],
+      "latency_ms": 18.82
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1817,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18365.16
+    }
+  },
+  "retrieved_ids": [
+    "de9de8d3c22b17cd:L0:000014",
+    "de9de8d3c22b17cd:L0:000018",
+    "de9de8d3c22b17cd:L0:000016",
+    "de9de8d3c22b17cd:L0:000012",
+    "de9de8d3c22b17cd:L0:000017"
+  ],
+  "filtered_ids": [
+    "de9de8d3c22b17cd:L0:000014",
+    "de9de8d3c22b17cd:L0:000018",
+    "de9de8d3c22b17cd:L0:000016",
+    "de9de8d3c22b17cd:L0:000012",
+    "de9de8d3c22b17cd:L0:000017"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:34:42.599502+00:00",
+      "call_id": "4316dc0f17f7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "37588d02071ef8d9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fec085ece5e74e63"
+    },
+    {
+      "ts": "2026-11-13T10:35:00.981556+00:00",
+      "call_id": "a56a1b4443fc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e1ae689e89699834",
+      "prompt_tokens": 2340,
+      "completion_tokens": 71,
+      "latency_ms": 18363.75,
+      "server_ms": 18333.01,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "fec085ece5e74e63"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2340,
+    "completion_tokens": 71,
+    "total_ms": 18386.33
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "trace_id": "e5baa721b8d94501",
+  "created_at": "2026-11-13T12:35:37.524501+00:00",
+  "query": "Who was the child of the 28th U.S. president?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5595.19
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5595.33
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 19045.38
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.63,
+      "bm25_ms": 9.32,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5577.26
+      },
+      "hits": [
+        {
+          "id": "ce57fdde2baaba9c:L0:000153",
+          "score": 3.0206775665283203,
+          "fused": 0.38563562201218654,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 7,
+          "rerank": 3.0206775665283203
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000075",
+          "score": 2.7163283824920654,
+          "fused": 0.7161253041656778,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 2.7163283824920654
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000101",
+          "score": 0.7002639174461365,
+          "fused": 0.2567054559469115,
+          "dense_rank": 19,
+          "bm25_rank": 13,
+          "fused_rank": 11,
+          "rerank": 0.7002639174461365
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000190",
+          "score": 0.45559456944465637,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 3,
+          "rerank": 0.45559456944465637
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000004",
+          "score": -2.1239707469940186,
+          "fused": 0.6036149568493334,
+          "dense_rank": 1,
+          "bm25_rank": 9,
+          "fused_rank": 4,
+          "rerank": -2.1239707469940186
+        }
+      ],
+      "latency_ms": 5594.59
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 672,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13449.97
+    }
+  },
+  "retrieved_ids": [
+    "ce57fdde2baaba9c:L0:000153",
+    "6683bfc7dec06e2a:L0:000075",
+    "73dfa6a9bfcab050:L0:000101",
+    "f109b032e24ab27a:L0:000190",
+    "6683bfc7dec06e2a:L0:000004"
+  ],
+  "filtered_ids": [
+    "ce57fdde2baaba9c:L0:000153",
+    "6683bfc7dec06e2a:L0:000075",
+    "73dfa6a9bfcab050:L0:000101",
+    "f109b032e24ab27a:L0:000190",
+    "6683bfc7dec06e2a:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:35:37.524501+00:00",
+      "call_id": "eb06bcbf036f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "db46b662f9ac9f86",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e5baa721b8d94501"
+    },
+    {
+      "ts": "2026-11-13T12:35:56.565410+00:00",
+      "call_id": "4b27cd4bd477",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "56a981ed6d508060",
+      "prompt_tokens": 1375,
+      "completion_tokens": 59,
+      "latency_ms": 13448.56,
+      "server_ms": 13422.98,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "e5baa721b8d94501"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1375,
+    "completion_tokens": 59,
+    "total_ms": 19048.76
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The child of the 28th U.S. president, Woodrow Wilson, was not mentioned in the provided passages."
+      ]
+    }
+  }
+}

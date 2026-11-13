@@ -1,0 +1,181 @@
+{
+  "trace_id": "c67853e210954f82",
+  "created_at": "2026-11-13T11:39:59.548603+00:00",
+  "query": "What dataset did they use?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6742.82
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6742.96
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17513.75
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.98,
+      "bm25_ms": 6.94,
+      "n_candidates": {
+        "dense": 14,
+        "bm25": 8
+      },
+      "n_fused": 14,
+      "rerank": {
+        "n": 14,
+        "n_computed": 14,
+        "latency_ms": 6730.57
+      },
+      "hits": [
+        {
+          "id": "5163e3b7a565eec7:L0:000007",
+          "score": -4.744208335876465,
+          "fused": 0.9723387843454357,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": -4.744208335876465
+        },
+        {
+          "id": "5163e3b7a565eec7:L0:000013",
+          "score": -5.653669357299805,
+          "fused": 0.10818034832892685,
+          "dense_rank": 10,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -5.653669357299805
+        },
+        {
+          "id": "5163e3b7a565eec7:L0:000011",
+          "score": -6.015624523162842,
+          "fused": 0.08776224070227955,
+          "dense_rank": 11,
+          "bm25_rank": null,
+          "fused_rank": 13,
+          "rerank": -6.015624523162842
+        },
+        {
+          "id": "5163e3b7a565eec7:L0:000008",
+          "score": -6.538843154907227,
+          "fused": 0.7924603354464789,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -6.538843154907227
+        },
+        {
+          "id": "5163e3b7a565eec7:L0:000002",
+          "score": -6.558568954467773,
+          "fused": 0.14967495066000872,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 9,
+          "rerank": -6.558568954467773
+        }
+      ],
+      "latency_ms": 6742.77
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 397,
+      "latency_ms": 0.1
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10770.71
+    }
+  },
+  "retrieved_ids": [
+    "5163e3b7a565eec7:L0:000007",
+    "5163e3b7a565eec7:L0:000013",
+    "5163e3b7a565eec7:L0:000011",
+    "5163e3b7a565eec7:L0:000008",
+    "5163e3b7a565eec7:L0:000002"
+  ],
+  "filtered_ids": [
+    "5163e3b7a565eec7:L0:000007",
+    "5163e3b7a565eec7:L0:000013",
+    "5163e3b7a565eec7:L0:000011",
+    "5163e3b7a565eec7:L0:000008",
+    "5163e3b7a565eec7:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:39:59.551855+00:00",
+      "call_id": "24cf38eeec7b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cb2ad826e2e91a88",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c67853e210954f82"
+    },
+    {
+      "ts": "2026-11-13T11:40:17.062071+00:00",
+      "call_id": "6575c686b571",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ab8860faf2fe7f2c",
+      "prompt_tokens": 995,
+      "completion_tokens": 76,
+      "latency_ms": 10769.83,
+      "server_ms": 10751.91,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "c67853e210954f82"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 995,
+    "completion_tokens": 76,
+    "total_ms": 17514.27
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "They used a modified labelled corpus as Peng and Dredze did for NER in Chinese social media, and unlabelled text from Sina Weibo service in China."
+      ]
+    }
+  }
+}

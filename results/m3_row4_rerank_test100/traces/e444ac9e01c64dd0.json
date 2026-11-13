@@ -1,0 +1,178 @@
+{
+  "trace_id": "e444ac9e01c64dd0",
+  "created_at": "2026-11-13T14:47:32.222453+00:00",
+  "query": "What is the place of birth of Henrik Selberg's father?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8230.5
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8230.65
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 21355.66
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.13,
+      "bm25_ms": 4.45,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 8220.05
+      },
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000053",
+          "score": 6.186046600341797,
+          "fused": 0.7,
+          "dense_rank": 50,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.186046600341797
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000045",
+          "score": 2.540597677230835,
+          "fused": 0.6144477134762879,
+          "dense_rank": 41,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 2.540597677230835
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000037",
+          "score": 1.4574017524719238,
+          "fused": 0.6187329349249747,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.4574017524719238
+        },
+        {
+          "id": "460e441179bec402:L0:000070",
+          "score": -3.85438871383667,
+          "fused": 0.2575804655773137,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 11,
+          "rerank": -3.85438871383667
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000052",
+          "score": -4.18403434753418,
+          "fused": 0.584534912839683,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -4.18403434753418
+        }
+      ],
+      "latency_ms": 8230.43
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 966,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13124.96
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000053",
+    "6af2db6cb86d77e2:L0:000045",
+    "317e12ccd417c0d7:L0:000037",
+    "460e441179bec402:L0:000070",
+    "6af2db6cb86d77e2:L0:000052"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000053",
+    "6af2db6cb86d77e2:L0:000045",
+    "317e12ccd417c0d7:L0:000037",
+    "460e441179bec402:L0:000070",
+    "6af2db6cb86d77e2:L0:000052"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:47:32.222453+00:00",
+      "call_id": "9080705ad34d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ee227ff7e8584ecb",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e444ac9e01c64dd0"
+    },
+    {
+      "ts": "2026-11-13T14:47:53.579723+00:00",
+      "call_id": "bda64500a376",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9c678e26cf2527b6",
+      "prompt_tokens": 1683,
+      "completion_tokens": 62,
+      "latency_ms": 13123.65,
+      "server_ms": 13106.66,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "e444ac9e01c64dd0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1683,
+    "completion_tokens": 62,
+    "total_ms": 21356.54
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The place of birth of Henrik Selberg's father, Ole Michael Ludvigsen Selberg, is not explicitly stated in the provided passages."
+      ]
+    }
+  }
+}

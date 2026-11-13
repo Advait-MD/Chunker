@@ -1,0 +1,169 @@
+{
+  "trace_id": "ad52c91d615248c6",
+  "created_at": "2026-11-13T10:02:32.019166+00:00",
+  "query": "Why does they author write about these two different movies within the same article?\n\nOptions:\n(A) The movies have a similar theme\n(B) The directors have a similar process\n(C) The directors worked together\n(D) The movies have similar criticisms\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 26.49
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 26.55
+    },
+    {
+      "state": "DONE",
+      "t_ms": 34010.2
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.92,
+      "bm25_ms": 22.4,
+      "n_candidates": {
+        "dense": 7,
+        "bm25": 7
+      },
+      "n_fused": 7,
+      "hits": [
+        {
+          "id": "33f3974d6e263a41:L0:000000",
+          "score": 0.9000525505567267,
+          "fused": 0.9000525505567267,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "33f3974d6e263a41:L0:000001",
+          "score": 0.6207428669434127,
+          "fused": 0.6207428669434127,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "33f3974d6e263a41:L0:000005",
+          "score": 0.4375505682755497,
+          "fused": 0.4375505682755497,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "33f3974d6e263a41:L0:000006",
+          "score": 0.37403301898723473,
+          "fused": 0.37403301898723473,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "33f3974d6e263a41:L0:000002",
+          "score": 0.26296853871217674,
+          "fused": 0.26296853871217674,
+          "dense_rank": 7,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 26.45
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1823,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 33983.49
+    }
+  },
+  "retrieved_ids": [
+    "33f3974d6e263a41:L0:000000",
+    "33f3974d6e263a41:L0:000001",
+    "33f3974d6e263a41:L0:000005",
+    "33f3974d6e263a41:L0:000006",
+    "33f3974d6e263a41:L0:000002"
+  ],
+  "filtered_ids": [
+    "33f3974d6e263a41:L0:000000",
+    "33f3974d6e263a41:L0:000001",
+    "33f3974d6e263a41:L0:000005",
+    "33f3974d6e263a41:L0:000006",
+    "33f3974d6e263a41:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:02:32.022164+00:00",
+      "call_id": "7c164031ec77",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9c8facafce266ac2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ad52c91d615248c6"
+    },
+    {
+      "ts": "2026-11-13T10:03:06.028275+00:00",
+      "call_id": "53ac36afdbbd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "fdf21a6f59f0cbd1",
+      "prompt_tokens": 2474,
+      "completion_tokens": 180,
+      "latency_ms": 33982.5,
+      "server_ms": 33944.64,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ad52c91d615248c6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2474,
+    "completion_tokens": 180,
+    "total_ms": 34011.33
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "(A) The movies have a similar theme.",
+        "The author writes about Mike Leigh's 'Topsy-Turvy' and Roger Morris's 'The Vastness of Heaven' within the same article because both movies explore the process of creating art and the challenges faced by their respective directors.",
+        "'Topsy-Turvy' delves into the creation of Gilbert and Sullivan's 'The Mikado,' while 'The Vastness of Heaven' examines the making of a documentary about Fred Leuchter, an engineer who claimed to prove the gas chambers at Auschwitz were not used for mass murder.",
+        "Both films highlight the meticulous and often frustrating process of artistic creation and the personal struggles of the creators."
+      ]
+    }
+  }
+}

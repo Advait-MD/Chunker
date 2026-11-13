@@ -1,0 +1,178 @@
+{
+  "trace_id": "a44c7c94fe05465e",
+  "created_at": "2026-11-13T12:54:05.936890+00:00",
+  "query": "How many games does the team play that had the most champion league wins between 1992 and 2013?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6365.5
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6366.33
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 21295.62
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.42,
+      "bm25_ms": 8.69,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6352.18
+      },
+      "hits": [
+        {
+          "id": "e182527d2b1ecac3:L0:000180",
+          "score": 1.5408333539962769,
+          "fused": 0.6278049871205991,
+          "dense_rank": 8,
+          "bm25_rank": 8,
+          "fused_rank": 4,
+          "rerank": 1.5408333539962769
+        },
+        {
+          "id": "15abb5e49dced915:L0:000120",
+          "score": -0.8508943319320679,
+          "fused": 0.35247909573609887,
+          "dense_rank": 9,
+          "bm25_rank": 25,
+          "fused_rank": 14,
+          "rerank": -0.8508943319320679
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000078",
+          "score": -1.2799813747406006,
+          "fused": 0.46114567568502307,
+          "dense_rank": 1,
+          "bm25_rank": 33,
+          "fused_rank": 10,
+          "rerank": -1.2799813747406006
+        },
+        {
+          "id": "4b634e52029ddab4:L0:000092",
+          "score": -1.8114906549453735,
+          "fused": 0.33112289758007096,
+          "dense_rank": 28,
+          "bm25_rank": 16,
+          "fused_rank": 16,
+          "rerank": -1.8114906549453735
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000012",
+          "score": -1.9177534580230713,
+          "fused": 0.9496762370945633,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": -1.9177534580230713
+        }
+      ],
+      "latency_ms": 6365.46
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 652,
+      "latency_ms": 0.79
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14929.16
+    }
+  },
+  "retrieved_ids": [
+    "e182527d2b1ecac3:L0:000180",
+    "15abb5e49dced915:L0:000120",
+    "66f5caec1369ebaf:L0:000078",
+    "4b634e52029ddab4:L0:000092",
+    "cc1bdb3bf430bd0d:L0:000012"
+  ],
+  "filtered_ids": [
+    "e182527d2b1ecac3:L0:000180",
+    "15abb5e49dced915:L0:000120",
+    "66f5caec1369ebaf:L0:000078",
+    "4b634e52029ddab4:L0:000092",
+    "cc1bdb3bf430bd0d:L0:000012"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:54:05.952861+00:00",
+      "call_id": "074427b11ebf",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f583e73264b62cd5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a44c7c94fe05465e"
+    },
+    {
+      "ts": "2026-11-13T12:54:27.240266+00:00",
+      "call_id": "7f0c655a36f8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "48c0dafd8170f1e8",
+      "prompt_tokens": 1251,
+      "completion_tokens": 92,
+      "latency_ms": 14927.8,
+      "server_ms": 14886.24,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a44c7c94fe05465e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1251,
+    "completion_tokens": 92,
+    "total_ms": 21297.49
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

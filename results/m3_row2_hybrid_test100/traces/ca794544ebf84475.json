@@ -1,0 +1,163 @@
+{
+  "trace_id": "ca794544ebf84475",
+  "created_at": "2026-11-13T11:34:24.506661+00:00",
+  "query": "What is the official currency and capital city of the planet Mars according to the provided documents?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.58
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.64
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15760.51
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.14,
+      "bm25_ms": 8.12,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "f9add743188fc69e:L0:000652",
+          "score": 0.8136372818909572,
+          "fused": 0.8136372818909572,
+          "dense_rank": 17,
+          "bm25_rank": 1
+        },
+        {
+          "id": "17581cb533e90c48:L0:000910",
+          "score": 0.6823086574317183,
+          "fused": 0.6823086574317183,
+          "dense_rank": 20,
+          "bm25_rank": 2
+        },
+        {
+          "id": "54e450272e768455:L0:000014",
+          "score": 0.5446138554960251,
+          "fused": 0.5446138554960251,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "17581cb533e90c48:L0:000277",
+          "score": 0.5416152404358248,
+          "fused": 0.5416152404358248,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "f9add743188fc69e:L0:000653",
+          "score": 0.5236099332645854,
+          "fused": 0.5236099332645854,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 11.54
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1481,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15748.82
+    }
+  },
+  "retrieved_ids": [
+    "f9add743188fc69e:L0:000652",
+    "17581cb533e90c48:L0:000910",
+    "54e450272e768455:L0:000014",
+    "17581cb533e90c48:L0:000277",
+    "f9add743188fc69e:L0:000653"
+  ],
+  "filtered_ids": [
+    "f9add743188fc69e:L0:000652",
+    "17581cb533e90c48:L0:000910",
+    "54e450272e768455:L0:000014",
+    "17581cb533e90c48:L0:000277",
+    "f9add743188fc69e:L0:000653"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:34:24.507656+00:00",
+      "call_id": "17c1aeac8b05",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "09afee7f3102a386",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ca794544ebf84475"
+    },
+    {
+      "ts": "2026-11-13T11:34:40.266691+00:00",
+      "call_id": "2e5e900d75a8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "07200f1e94352bbd",
+      "prompt_tokens": 2231,
+      "completion_tokens": 45,
+      "latency_ms": 15748.11,
+      "server_ms": 15720.7,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ca794544ebf84475"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2231,
+    "completion_tokens": 45,
+    "total_ms": 15761.03
+  },
+  "config_hash": "da9c6a093c0d",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

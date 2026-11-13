@@ -1,0 +1,163 @@
+{
+  "trace_id": "b5523516d616431b",
+  "created_at": "2026-11-13T09:46:18.164399+00:00",
+  "query": "Who was in charge of the place where Bergen is located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.64
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.71
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 8632.66
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.57,
+      "bm25_ms": 6.5,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ce290c1e5d5c6641:L0:000149",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000080",
+          "score": 0.6829477504799663,
+          "fused": 0.6829477504799663,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "a168352d83e925b5:L0:000060",
+          "score": 0.6282264269989998,
+          "fused": 0.6282264269989998,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000061",
+          "score": 0.5180330302729421,
+          "fused": 0.5180330302729421,
+          "dense_rank": 31,
+          "bm25_rank": 5
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000195",
+          "score": 0.47680941972894425,
+          "fused": 0.47680941972894425,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 10.53
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 249,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8621.87
+    }
+  },
+  "retrieved_ids": [
+    "ce290c1e5d5c6641:L0:000149",
+    "8679484d23bfd3a0:L0:000080",
+    "a168352d83e925b5:L0:000060",
+    "f59bbbdacaf7ffe4:L0:000061",
+    "8679484d23bfd3a0:L0:000195"
+  ],
+  "filtered_ids": [
+    "ce290c1e5d5c6641:L0:000149",
+    "8679484d23bfd3a0:L0:000080",
+    "a168352d83e925b5:L0:000060",
+    "f59bbbdacaf7ffe4:L0:000061",
+    "8679484d23bfd3a0:L0:000195"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:46:18.166644+00:00",
+      "call_id": "f414c1133319",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e2c498cfb4690f05",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b5523516d616431b"
+    },
+    {
+      "ts": "2026-11-13T09:46:26.797145+00:00",
+      "call_id": "b0cac99493df",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f76ac8184bdb203e",
+      "prompt_tokens": 841,
+      "completion_tokens": 45,
+      "latency_ms": 8621.05,
+      "server_ms": 8605.44,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "b5523516d616431b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 841,
+    "completion_tokens": 45,
+    "total_ms": 8633.95
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

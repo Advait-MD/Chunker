@@ -1,0 +1,182 @@
+{
+  "trace_id": "edc1363eeed54efb",
+  "created_at": "2026-11-13T12:26:20.399795+00:00",
+  "query": "What are the restrictions of the restricted track?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10364.05
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10364.14
+    },
+    {
+      "state": "DONE",
+      "t_ms": 30746.63
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.37,
+      "bm25_ms": 18.71,
+      "n_candidates": {
+        "dense": 14,
+        "bm25": 7
+      },
+      "n_fused": 14,
+      "rerank": {
+        "n": 14,
+        "n_computed": 14,
+        "latency_ms": 10331.27
+      },
+      "hits": [
+        {
+          "id": "c9f39c549839465e:L0:000001",
+          "score": 0.28484049439430237,
+          "fused": 0.5103274579076926,
+          "dense_rank": 11,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 0.28484049439430237
+        },
+        {
+          "id": "c9f39c549839465e:L0:000011",
+          "score": -0.14382097125053406,
+          "fused": 0.993517382368561,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.14382097125053406
+        },
+        {
+          "id": "c9f39c549839465e:L0:000000",
+          "score": -0.4348151385784149,
+          "fused": 0.8100491185749705,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.4348151385784149
+        },
+        {
+          "id": "c9f39c549839465e:L0:000013",
+          "score": -0.8334019184112549,
+          "fused": 0.6297357236167813,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.8334019184112549
+        },
+        {
+          "id": "c9f39c549839465e:L0:000007",
+          "score": -1.8268624544143677,
+          "fused": 0.41719171071443883,
+          "dense_rank": 3,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -1.8268624544143677
+        }
+      ],
+      "latency_ms": 10363.96
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1091,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20382.37
+    }
+  },
+  "retrieved_ids": [
+    "c9f39c549839465e:L0:000001",
+    "c9f39c549839465e:L0:000011",
+    "c9f39c549839465e:L0:000000",
+    "c9f39c549839465e:L0:000013",
+    "c9f39c549839465e:L0:000007"
+  ],
+  "filtered_ids": [
+    "c9f39c549839465e:L0:000001",
+    "c9f39c549839465e:L0:000011",
+    "c9f39c549839465e:L0:000000",
+    "c9f39c549839465e:L0:000013",
+    "c9f39c549839465e:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:26:20.399795+00:00",
+      "call_id": "e5a35463e7e9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9389aa8a10261848",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "edc1363eeed54efb"
+    },
+    {
+      "ts": "2026-11-13T12:26:51.146155+00:00",
+      "call_id": "d583b0563296",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "530f0de17716f24f",
+      "prompt_tokens": 1788,
+      "completion_tokens": 127,
+      "latency_ms": 20381.33,
+      "server_ms": 20353.07,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "edc1363eeed54efb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1788,
+    "completion_tokens": 127,
+    "total_ms": 30748.55
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The restricted track of the BEA 2019 shared task on grammatical error correction provided 1.2M pairs (560K without identity mappings) of corrected and uncorrected sentences."
+      ]
+    }
+  }
+}

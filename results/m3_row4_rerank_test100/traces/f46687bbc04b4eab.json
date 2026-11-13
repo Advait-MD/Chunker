@@ -1,0 +1,178 @@
+{
+  "trace_id": "f46687bbc04b4eab",
+  "created_at": "2026-11-13T12:36:30.186858+00:00",
+  "query": "Who was Suzanne Farrington's mother's spouse?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5330.73
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5332.18
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14228.48
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.62,
+      "bm25_ms": 7.91,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5318.04
+      },
+      "hits": [
+        {
+          "id": "f3503d3d186f0f90:L0:000048",
+          "score": 5.593804359436035,
+          "fused": 0.9227251281243376,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.593804359436035
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000184",
+          "score": -3.8346290588378906,
+          "fused": 0.16028579990108985,
+          "dense_rank": 8,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": -3.8346290588378906
+        },
+        {
+          "id": "c61175e20d09af4f:L0:000028",
+          "score": -3.883793354034424,
+          "fused": 0.14505646556246654,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 17,
+          "rerank": -3.883793354034424
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000163",
+          "score": -4.032341957092285,
+          "fused": 0.14932509890655274,
+          "dense_rank": 10,
+          "bm25_rank": 39,
+          "fused_rank": 16,
+          "rerank": -4.032341957092285
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000016",
+          "score": -4.225278377532959,
+          "fused": 0.15788399289756178,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 13,
+          "rerank": -4.225278377532959
+        }
+      ],
+      "latency_ms": 5330.69
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 480,
+      "latency_ms": 1.41
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8896.17
+    }
+  },
+  "retrieved_ids": [
+    "f3503d3d186f0f90:L0:000048",
+    "5a1a5bbda9db013e:L0:000184",
+    "c61175e20d09af4f:L0:000028",
+    "8b31d5859eb3d77a:L0:000163",
+    "f109b032e24ab27a:L0:000016"
+  ],
+  "filtered_ids": [
+    "f3503d3d186f0f90:L0:000048",
+    "5a1a5bbda9db013e:L0:000184",
+    "c61175e20d09af4f:L0:000028",
+    "8b31d5859eb3d77a:L0:000163",
+    "f109b032e24ab27a:L0:000016"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:36:30.188303+00:00",
+      "call_id": "bb07a6f467c6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9519307b27641d86",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f46687bbc04b4eab"
+    },
+    {
+      "ts": "2026-11-13T12:36:44.409765+00:00",
+      "call_id": "50f37f1df070",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9fb55d1b136e9461",
+      "prompt_tokens": 1130,
+      "completion_tokens": 54,
+      "latency_ms": 8895.0,
+      "server_ms": 8876.25,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f46687bbc04b4eab"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1130,
+    "completion_tokens": 54,
+    "total_ms": 14234.26
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

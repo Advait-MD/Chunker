@@ -1,0 +1,178 @@
+{
+  "trace_id": "803abaa519b34417",
+  "created_at": "2026-11-13T15:16:47.231909+00:00",
+  "query": "Which film was released first, Taxi! or What'S Your Hurry??",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4613.47
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4614.11
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14980.34
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.93,
+      "bm25_ms": 6.77,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4598.5
+      },
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000060",
+          "score": -7.2636332511901855,
+          "fused": 0.09587083083769914,
+          "dense_rank": null,
+          "bm25_rank": 14,
+          "fused_rank": 17,
+          "rerank": -7.2636332511901855
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000203",
+          "score": -7.461503982543945,
+          "fused": 0.10537565479724732,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 13,
+          "rerank": -7.461503982543945
+        },
+        {
+          "id": "460e441179bec402:L0:000023",
+          "score": -7.479682445526123,
+          "fused": 0.09989382864785724,
+          "dense_rank": null,
+          "bm25_rank": 13,
+          "fused_rank": 16,
+          "rerank": -7.479682445526123
+        },
+        {
+          "id": "99628090500247e3:L0:000070",
+          "score": -7.51723051071167,
+          "fused": 0.10493614403970895,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 14,
+          "rerank": -7.51723051071167
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000201",
+          "score": -7.881197452545166,
+          "fused": 0.10283542543289494,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 15,
+          "rerank": -7.881197452545166
+        }
+      ],
+      "latency_ms": 4613.41
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 609,
+      "latency_ms": 0.6
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10366.14
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000060",
+    "6af2db6cb86d77e2:L0:000203",
+    "460e441179bec402:L0:000023",
+    "99628090500247e3:L0:000070",
+    "4a757779abfb4ba1:L0:000201"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000060",
+    "6af2db6cb86d77e2:L0:000203",
+    "460e441179bec402:L0:000023",
+    "99628090500247e3:L0:000070",
+    "4a757779abfb4ba1:L0:000201"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:16:47.234461+00:00",
+      "call_id": "9e8f14e98a93",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f6346a3641198349",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "803abaa519b34417"
+    },
+    {
+      "ts": "2026-11-13T15:17:02.210898+00:00",
+      "call_id": "0911335ebd8d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d58a78d44a45a98a",
+      "prompt_tokens": 1245,
+      "completion_tokens": 45,
+      "latency_ms": 10364.97,
+      "server_ms": 10341.87,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "803abaa519b34417"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1245,
+    "completion_tokens": 45,
+    "total_ms": 14983.08
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

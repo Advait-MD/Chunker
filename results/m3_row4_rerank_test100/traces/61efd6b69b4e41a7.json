@@ -1,0 +1,180 @@
+{
+  "trace_id": "61efd6b69b4e41a7",
+  "created_at": "2026-11-13T12:01:33.092094+00:00",
+  "query": "How do they use BERT to encode the whole text?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 37501.18
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 37501.35
+    },
+    {
+      "state": "DONE",
+      "t_ms": 61046.16
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.5,
+      "bm25_ms": 7.38,
+      "n_candidates": {
+        "dense": 13,
+        "bm25": 8
+      },
+      "n_fused": 13,
+      "rerank": {
+        "n": 13,
+        "n_computed": 13,
+        "latency_ms": 37490.38
+      },
+      "hits": [
+        {
+          "id": "19ddb4a0169c2bee:L0:000003",
+          "score": -1.3738653659820557,
+          "fused": 0.6554459879407601,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -1.3738653659820557
+        },
+        {
+          "id": "19ddb4a0169c2bee:L0:000004",
+          "score": -1.6066359281539917,
+          "fused": 0.8881209399566928,
+          "dense_rank": 6,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.6066359281539917
+        },
+        {
+          "id": "19ddb4a0169c2bee:L0:000001",
+          "score": -1.7795941829681396,
+          "fused": 0.4143640235499294,
+          "dense_rank": 5,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": -1.7795941829681396
+        },
+        {
+          "id": "19ddb4a0169c2bee:L0:000010",
+          "score": -2.4375405311584473,
+          "fused": 0.30823630801951307,
+          "dense_rank": 3,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -2.4375405311584473
+        },
+        {
+          "id": "19ddb4a0169c2bee:L0:000011",
+          "score": -2.488161563873291,
+          "fused": 0.5076679535506363,
+          "dense_rank": 8,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -2.488161563873291
+        }
+      ],
+      "latency_ms": 37501.09
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1358,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23544.64
+    }
+  },
+  "retrieved_ids": [
+    "19ddb4a0169c2bee:L0:000003",
+    "19ddb4a0169c2bee:L0:000004",
+    "19ddb4a0169c2bee:L0:000001",
+    "19ddb4a0169c2bee:L0:000010",
+    "19ddb4a0169c2bee:L0:000011"
+  ],
+  "filtered_ids": [
+    "19ddb4a0169c2bee:L0:000003",
+    "19ddb4a0169c2bee:L0:000004",
+    "19ddb4a0169c2bee:L0:000001",
+    "19ddb4a0169c2bee:L0:000010",
+    "19ddb4a0169c2bee:L0:000011"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:01:33.094100+00:00",
+      "call_id": "a40336d9aec9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "580610a8a98bc139",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "61efd6b69b4e41a7"
+    },
+    {
+      "ts": "2026-11-13T12:02:34.136291+00:00",
+      "call_id": "da67e511f9c8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "80f612b9d6fdbd13",
+      "prompt_tokens": 1991,
+      "completion_tokens": 93,
+      "latency_ms": 23539.12,
+      "server_ms": 23453.79,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "61efd6b69b4e41a7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1991,
+    "completion_tokens": 93,
+    "total_ms": 61047.47
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "To use BERT for encoding the whole text, they insert a [CLS] token before each sentence and a [SEP] token after each sentence."
+      ]
+    }
+  }
+}

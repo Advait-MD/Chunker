@@ -1,0 +1,163 @@
+{
+  "trace_id": "d31e3b05cf6b4e73",
+  "created_at": "2026-11-13T09:33:45.278105+00:00",
+  "query": "How big are OSA and PD corporas used for testing?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 30.26
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 31.1
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 16762.5
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 8.13,
+      "bm25_ms": 20.82,
+      "n_candidates": {
+        "dense": 22,
+        "bm25": 18
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "659c0588e1bb916b:L0:000006",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "659c0588e1bb916b:L0:000000",
+          "score": 0.81926062122215,
+          "fused": 0.81926062122215,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "659c0588e1bb916b:L0:000016",
+          "score": 0.8108393928803458,
+          "fused": 0.8108393928803458,
+          "dense_rank": 15,
+          "bm25_rank": 3
+        },
+        {
+          "id": "659c0588e1bb916b:L0:000002",
+          "score": 0.6735893679338217,
+          "fused": 0.6735893679338217,
+          "dense_rank": 18,
+          "bm25_rank": 5
+        },
+        {
+          "id": "659c0588e1bb916b:L0:000021",
+          "score": 0.6129951943248368,
+          "fused": 0.6129951943248368,
+          "dense_rank": 22,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 30.2
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 905,
+      "latency_ms": 0.81
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16731.21
+    }
+  },
+  "retrieved_ids": [
+    "659c0588e1bb916b:L0:000006",
+    "659c0588e1bb916b:L0:000000",
+    "659c0588e1bb916b:L0:000016",
+    "659c0588e1bb916b:L0:000002",
+    "659c0588e1bb916b:L0:000021"
+  ],
+  "filtered_ids": [
+    "659c0588e1bb916b:L0:000006",
+    "659c0588e1bb916b:L0:000000",
+    "659c0588e1bb916b:L0:000016",
+    "659c0588e1bb916b:L0:000002",
+    "659c0588e1bb916b:L0:000021"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:33:45.280104+00:00",
+      "call_id": "eb35b594f1c4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3c2afa1fb3cc8192",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d31e3b05cf6b4e73"
+    },
+    {
+      "ts": "2026-11-13T09:34:02.038104+00:00",
+      "call_id": "fb9980510d44",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a2a4b4f5ac692b78",
+      "prompt_tokens": 1536,
+      "completion_tokens": 55,
+      "latency_ms": 16728.8,
+      "server_ms": 16690.52,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d31e3b05cf6b4e73"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1536,
+    "completion_tokens": 55,
+    "total_ms": 16767.6
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The sizes of the OSA and PD corpora used for testing are not specified in the provided passages."
+      ]
+    }
+  }
+}

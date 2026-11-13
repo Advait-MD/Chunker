@@ -1,0 +1,164 @@
+{
+  "trace_id": "7d51be3678ae4a44",
+  "created_at": "2026-11-13T10:50:52.431028+00:00",
+  "query": "Mooreville, Mississippi is located on which Interstate highway that follows US Route 78?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.2
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.26
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12932.78
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.02,
+      "bm25_ms": 8.88,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "81fc433d55d23b4c:L0:000181",
+          "score": 0.859432696958952,
+          "fused": 0.859432696958952,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000055",
+          "score": 0.829551027655008,
+          "fused": 0.829551027655008,
+          "dense_rank": 6,
+          "bm25_rank": 1
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000084",
+          "score": 0.6781937494006545,
+          "fused": 0.6781937494006545,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000064",
+          "score": 0.6741699653302626,
+          "fused": 0.6741699653302626,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000155",
+          "score": 0.6693966489714392,
+          "fused": 0.6693966489714392,
+          "dense_rank": 3,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 12.16
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 502,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12920.4
+    }
+  },
+  "retrieved_ids": [
+    "81fc433d55d23b4c:L0:000181",
+    "ec3410ef955c5c93:L0:000055",
+    "bc1dba3471045f02:L0:000084",
+    "ec3410ef955c5c93:L0:000064",
+    "81fc433d55d23b4c:L0:000155"
+  ],
+  "filtered_ids": [
+    "81fc433d55d23b4c:L0:000181",
+    "ec3410ef955c5c93:L0:000055",
+    "bc1dba3471045f02:L0:000084",
+    "ec3410ef955c5c93:L0:000064",
+    "81fc433d55d23b4c:L0:000155"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:50:52.432039+00:00",
+      "call_id": "41ad4c90e7da",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "99496b207840a78a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7d51be3678ae4a44"
+    },
+    {
+      "ts": "2026-11-13T10:51:05.363295+00:00",
+      "call_id": "885b008bb113",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9461c467f748bd65",
+      "prompt_tokens": 1134,
+      "completion_tokens": 83,
+      "latency_ms": 12919.54,
+      "server_ms": 12894.97,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "7d51be3678ae4a44"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1134,
+    "completion_tokens": 83,
+    "total_ms": 12933.83
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

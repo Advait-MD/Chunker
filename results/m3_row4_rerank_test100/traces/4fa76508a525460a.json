@@ -1,0 +1,178 @@
+{
+  "trace_id": "4fa76508a525460a",
+  "created_at": "2026-11-13T14:50:08.181686+00:00",
+  "query": "What is the place of birth of the director of film Pages Of Life (Film)?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9154.8
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9155.02
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 24046.57
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.4,
+      "bm25_ms": 5.54,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 9143.35
+      },
+      "hits": [
+        {
+          "id": "317e12ccd417c0d7:L0:000123",
+          "score": 5.234178066253662,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.234178066253662
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": -1.8880136013031006,
+          "fused": 0.28448983036034486,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -1.8880136013031006
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -2.1905415058135986,
+          "fused": 0.23739757278773793,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 10,
+          "rerank": -2.1905415058135986
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000068",
+          "score": -2.2590060234069824,
+          "fused": 0.2651659270785976,
+          "dense_rank": 23,
+          "bm25_rank": 9,
+          "fused_rank": 8,
+          "rerank": -2.2590060234069824
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000081",
+          "score": -2.797445297241211,
+          "fused": 0.2392759951901778,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 9,
+          "rerank": -2.797445297241211
+        }
+      ],
+      "latency_ms": 9154.75
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1051,
+      "latency_ms": 0.18
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14891.47
+    }
+  },
+  "retrieved_ids": [
+    "317e12ccd417c0d7:L0:000123",
+    "abe982d210232c3f:L0:000151",
+    "b04ce6dd2d95fb80:L0:000152",
+    "6af2db6cb86d77e2:L0:000068",
+    "53c7288bdcd3837a:L0:000081"
+  ],
+  "filtered_ids": [
+    "317e12ccd417c0d7:L0:000123",
+    "abe982d210232c3f:L0:000151",
+    "b04ce6dd2d95fb80:L0:000152",
+    "6af2db6cb86d77e2:L0:000068",
+    "53c7288bdcd3837a:L0:000081"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:50:08.183685+00:00",
+      "call_id": "cbfc72d64b3a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "998fc44b19624795",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4fa76508a525460a"
+    },
+    {
+      "ts": "2026-11-13T14:50:32.227991+00:00",
+      "call_id": "5f7a0a9c77af",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2121b1353085cf03",
+      "prompt_tokens": 1762,
+      "completion_tokens": 57,
+      "latency_ms": 14889.71,
+      "server_ms": 14865.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "4fa76508a525460a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1762,
+    "completion_tokens": 57,
+    "total_ms": 24049.84
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The place of birth of the director of film Pages Of Life (Film) is not mentioned in the provided passages."
+      ]
+    }
+  }
+}

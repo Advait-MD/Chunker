@@ -1,0 +1,165 @@
+{
+  "trace_id": "2253b28632324bba",
+  "created_at": "2026-11-13T09:37:04.683686+00:00",
+  "query": "what neural network models were explored?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.96
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17.35
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23590.54
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.82,
+      "bm25_ms": 9.29,
+      "n_candidates": {
+        "dense": 14,
+        "bm25": 11
+      },
+      "n_fused": 14,
+      "hits": [
+        {
+          "id": "876a5c07ec14904b:L0:000000",
+          "score": 0.9887259903239771,
+          "fused": 0.9887259903239771,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "876a5c07ec14904b:L0:000001",
+          "score": 0.5172529416872261,
+          "fused": 0.5172529416872261,
+          "dense_rank": 10,
+          "bm25_rank": 2
+        },
+        {
+          "id": "876a5c07ec14904b:L0:000008",
+          "score": 0.3611981394422836,
+          "fused": 0.3611981394422836,
+          "dense_rank": 4,
+          "bm25_rank": 5
+        },
+        {
+          "id": "876a5c07ec14904b:L0:000012",
+          "score": 0.34707847277617393,
+          "fused": 0.34707847277617393,
+          "dense_rank": 3,
+          "bm25_rank": 6
+        },
+        {
+          "id": "876a5c07ec14904b:L0:000010",
+          "score": 0.33959145031210314,
+          "fused": 0.33959145031210314,
+          "dense_rank": 1,
+          "bm25_rank": 8
+        }
+      ],
+      "latency_ms": 14.91
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1269,
+      "latency_ms": 2.35
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23573.05
+    }
+  },
+  "retrieved_ids": [
+    "876a5c07ec14904b:L0:000000",
+    "876a5c07ec14904b:L0:000001",
+    "876a5c07ec14904b:L0:000008",
+    "876a5c07ec14904b:L0:000012",
+    "876a5c07ec14904b:L0:000010"
+  ],
+  "filtered_ids": [
+    "876a5c07ec14904b:L0:000000",
+    "876a5c07ec14904b:L0:000001",
+    "876a5c07ec14904b:L0:000008",
+    "876a5c07ec14904b:L0:000012",
+    "876a5c07ec14904b:L0:000010"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:37:04.686683+00:00",
+      "call_id": "0a12c2e9e9ac",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "74e1daf31155c4f8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2253b28632324bba"
+    },
+    {
+      "ts": "2026-11-13T09:37:28.273014+00:00",
+      "call_id": "1e6c435ecdae",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "576349dc17a29301",
+      "prompt_tokens": 1924,
+      "completion_tokens": 91,
+      "latency_ms": 23571.8,
+      "server_ms": 23545.1,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2253b28632324bba"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1924,
+    "completion_tokens": 91,
+    "total_ms": 23592.6
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        4,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

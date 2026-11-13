@@ -1,0 +1,166 @@
+{
+  "trace_id": "5094fc399d3a44c2",
+  "created_at": "2026-11-13T09:23:14.078726+00:00",
+  "query": "Which knowledge destilation methods do they introduce?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.7
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.73
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20275.56
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.73,
+      "bm25_ms": 4.83,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 16
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "3d5f78a6650b8155:L0:000000",
+          "score": 0.9947593732528537,
+          "fused": 0.9947593732528537,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "3d5f78a6650b8155:L0:000018",
+          "score": 0.9428933616418274,
+          "fused": 0.9428933616418274,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "3d5f78a6650b8155:L0:000016",
+          "score": 0.8080588330989089,
+          "fused": 0.8080588330989089,
+          "dense_rank": 4,
+          "bm25_rank": 3
+        },
+        {
+          "id": "3d5f78a6650b8155:L0:000012",
+          "score": 0.7385143989178571,
+          "fused": 0.7385143989178571,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "3d5f78a6650b8155:L0:000017",
+          "score": 0.600722097859211,
+          "fused": 0.600722097859211,
+          "dense_rank": 10,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 7.67
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1215,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20267.63
+    }
+  },
+  "retrieved_ids": [
+    "3d5f78a6650b8155:L0:000000",
+    "3d5f78a6650b8155:L0:000018",
+    "3d5f78a6650b8155:L0:000016",
+    "3d5f78a6650b8155:L0:000012",
+    "3d5f78a6650b8155:L0:000017"
+  ],
+  "filtered_ids": [
+    "3d5f78a6650b8155:L0:000000",
+    "3d5f78a6650b8155:L0:000018",
+    "3d5f78a6650b8155:L0:000016",
+    "3d5f78a6650b8155:L0:000012",
+    "3d5f78a6650b8155:L0:000017"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:23:14.080724+00:00",
+      "call_id": "f8c5a716f2b3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b6485a02cd7005d1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5094fc399d3a44c2"
+    },
+    {
+      "ts": "2026-11-13T09:23:34.353678+00:00",
+      "call_id": "cf9f6a0a7d90",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "686f19d326f4e794",
+      "prompt_tokens": 1972,
+      "completion_tokens": 71,
+      "latency_ms": 20266.54,
+      "server_ms": 20240.43,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "5094fc399d3a44c2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1972,
+    "completion_tokens": 71,
+    "total_ms": 20279.22
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "They introduce two novel sequence-level versions of knowledge distillation, which further improve performance and seem to eliminate the need for beam search."
+      ]
+    }
+  }
+}

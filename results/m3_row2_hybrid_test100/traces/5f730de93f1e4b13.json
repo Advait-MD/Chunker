@@ -1,0 +1,164 @@
+{
+  "trace_id": "5f730de93f1e4b13",
+  "created_at": "2026-11-13T09:16:36.319661+00:00",
+  "query": "What is the drawback to methods that rely on textual cues?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.61
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.67
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19805.32
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.89,
+      "bm25_ms": 8.51,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 12
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "8356ef8158853767:L0:000000",
+          "score": 0.8473117192658938,
+          "fused": 0.8473117192658938,
+          "dense_rank": 10,
+          "bm25_rank": 1
+        },
+        {
+          "id": "8356ef8158853767:L0:000017",
+          "score": 0.5831229370655577,
+          "fused": 0.5831229370655577,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "8356ef8158853767:L0:000006",
+          "score": 0.42659065632014737,
+          "fused": 0.42659065632014737,
+          "dense_rank": 5,
+          "bm25_rank": 3
+        },
+        {
+          "id": "8356ef8158853767:L0:000020",
+          "score": 0.3458212973504732,
+          "fused": 0.3458212973504732,
+          "dense_rank": 1,
+          "bm25_rank": 8
+        },
+        {
+          "id": "8356ef8158853767:L0:000002",
+          "score": 0.322601539119715,
+          "fused": 0.322601539119715,
+          "dense_rank": 9,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 11.58
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1423,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19793.51
+    }
+  },
+  "retrieved_ids": [
+    "8356ef8158853767:L0:000000",
+    "8356ef8158853767:L0:000017",
+    "8356ef8158853767:L0:000006",
+    "8356ef8158853767:L0:000020",
+    "8356ef8158853767:L0:000002"
+  ],
+  "filtered_ids": [
+    "8356ef8158853767:L0:000000",
+    "8356ef8158853767:L0:000017",
+    "8356ef8158853767:L0:000006",
+    "8356ef8158853767:L0:000020",
+    "8356ef8158853767:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:16:36.321498+00:00",
+      "call_id": "865f1497d358",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "59060f723fb71642",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5f730de93f1e4b13"
+    },
+    {
+      "ts": "2026-11-13T09:16:56.124546+00:00",
+      "call_id": "1ed30ce67da0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ff76182961aa5f0a",
+      "prompt_tokens": 2056,
+      "completion_tokens": 95,
+      "latency_ms": 19792.42,
+      "server_ms": 19742.28,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "5f730de93f1e4b13"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2056,
+    "completion_tokens": 95,
+    "total_ms": 19806.48
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "trace_id": "b5d71a75bfb94d75",
+  "created_at": "2026-11-13T12:52:32.127400+00:00",
+  "query": "In the movie A League of their Own, who played the husband of the person who also played Thelma in the movie Thelma and Louise?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.0
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5151.96
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5153.47
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13640.36
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.57,
+      "bm25_ms": 8.29,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5140.2
+      },
+      "hits": [
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000015",
+          "score": 4.748867511749268,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.748867511749268
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000185",
+          "score": -2.8721542358398438,
+          "fused": 0.20272000646407295,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 13,
+          "rerank": -2.8721542358398438
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000028",
+          "score": -5.109564304351807,
+          "fused": 0.26556179094836285,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 8,
+          "rerank": -5.109564304351807
+        },
+        {
+          "id": "4b634e52029ddab4:L0:000078",
+          "score": -5.312292575836182,
+          "fused": 0.3190249009895618,
+          "dense_rank": 47,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -5.312292575836182
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000175",
+          "score": -5.540151119232178,
+          "fused": 0.19430799605987237,
+          "dense_rank": 17,
+          "bm25_rank": 17,
+          "fused_rank": 14,
+          "rerank": -5.540151119232178
+        }
+      ],
+      "latency_ms": 5151.92
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 578,
+      "latency_ms": 1.47
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8486.84
+    }
+  },
+  "retrieved_ids": [
+    "cc1bdb3bf430bd0d:L0:000015",
+    "dbcbda865eee9c7b:L0:000185",
+    "73dfa6a9bfcab050:L0:000028",
+    "4b634e52029ddab4:L0:000078",
+    "f59bbbdacaf7ffe4:L0:000175"
+  ],
+  "filtered_ids": [
+    "cc1bdb3bf430bd0d:L0:000015",
+    "dbcbda865eee9c7b:L0:000185",
+    "73dfa6a9bfcab050:L0:000028",
+    "4b634e52029ddab4:L0:000078",
+    "f59bbbdacaf7ffe4:L0:000175"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:52:32.127400+00:00",
+      "call_id": "a4691b9e94ee",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "784e46b77c61cfdc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b5d71a75bfb94d75"
+    },
+    {
+      "ts": "2026-11-13T12:52:45.766702+00:00",
+      "call_id": "ceaca1e6d9a3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f60b2b06034b61ae",
+      "prompt_tokens": 1183,
+      "completion_tokens": 45,
+      "latency_ms": 8486.06,
+      "server_ms": 8466.22,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "b5d71a75bfb94d75"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1183,
+    "completion_tokens": 45,
+    "total_ms": 13641.56
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

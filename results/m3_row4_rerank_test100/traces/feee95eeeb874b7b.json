@@ -1,0 +1,179 @@
+{
+  "trace_id": "feee95eeeb874b7b",
+  "created_at": "2026-11-13T15:12:39.601169+00:00",
+  "query": "Which film has the director born earlier, High Society Blues or Counterblast?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5470.25
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5470.46
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20942.94
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.55,
+      "bm25_ms": 8.16,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5456.49
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000100",
+          "score": 8.545905113220215,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.545905113220215
+        },
+        {
+          "id": "abe982d210232c3f:L0:000127",
+          "score": 7.909138202667236,
+          "fused": 0.37584720631319746,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 7.909138202667236
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000103",
+          "score": -2.5086798667907715,
+          "fused": 0.39631900629483546,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -2.5086798667907715
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -3.4996654987335205,
+          "fused": 0.08994692869493698,
+          "dense_rank": 8,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -3.4996654987335205
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000176",
+          "score": -3.975670337677002,
+          "fused": 0.09254200272227082,
+          "dense_rank": 7,
+          "bm25_rank": null,
+          "fused_rank": 17,
+          "rerank": -3.975670337677002
+        }
+      ],
+      "latency_ms": 5470.19
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 824,
+      "latency_ms": 0.16
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15472.35
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000100",
+    "abe982d210232c3f:L0:000127",
+    "317e12ccd417c0d7:L0:000103",
+    "b04ce6dd2d95fb80:L0:000152",
+    "4a757779abfb4ba1:L0:000176"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000100",
+    "abe982d210232c3f:L0:000127",
+    "317e12ccd417c0d7:L0:000103",
+    "b04ce6dd2d95fb80:L0:000152",
+    "4a757779abfb4ba1:L0:000176"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:12:39.601169+00:00",
+      "call_id": "4fdb3f6a63a9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "59da7bdb4b58760f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "feee95eeeb874b7b"
+    },
+    {
+      "ts": "2026-11-13T15:13:00.544041+00:00",
+      "call_id": "371d2722f281",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9b8ca06d4006c393",
+      "prompt_tokens": 1503,
+      "completion_tokens": 80,
+      "latency_ms": 15471.05,
+      "server_ms": 15449.74,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "feee95eeeb874b7b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1503,
+    "completion_tokens": 80,
+    "total_ms": 20944.54
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

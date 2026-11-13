@@ -1,0 +1,164 @@
+{
+  "trace_id": "8798fc0c0f1f4a9c",
+  "created_at": "2026-11-13T09:23:52.045813+00:00",
+  "query": "What other scenarios can the bias mitigation methods be applied to?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.31
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18.38
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15794.73
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.87,
+      "bm25_ms": 13.75,
+      "n_candidates": {
+        "dense": 15,
+        "bm25": 13
+      },
+      "n_fused": 15,
+      "hits": [
+        {
+          "id": "758652bb4c931b62:L0:000000",
+          "score": 0.968007488591424,
+          "fused": 0.968007488591424,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "758652bb4c931b62:L0:000012",
+          "score": 0.809392846518221,
+          "fused": 0.809392846518221,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "758652bb4c931b62:L0:000011",
+          "score": 0.7936090821275019,
+          "fused": 0.7936090821275019,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "758652bb4c931b62:L0:000014",
+          "score": 0.7282352933279588,
+          "fused": 0.7282352933279588,
+          "dense_rank": 8,
+          "bm25_rank": 4
+        },
+        {
+          "id": "758652bb4c931b62:L0:000002",
+          "score": 0.47652222308683473,
+          "fused": 0.47652222308683473,
+          "dense_rank": 3,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 18.26
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1025,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15776.17
+    }
+  },
+  "retrieved_ids": [
+    "758652bb4c931b62:L0:000000",
+    "758652bb4c931b62:L0:000012",
+    "758652bb4c931b62:L0:000011",
+    "758652bb4c931b62:L0:000014",
+    "758652bb4c931b62:L0:000002"
+  ],
+  "filtered_ids": [
+    "758652bb4c931b62:L0:000000",
+    "758652bb4c931b62:L0:000012",
+    "758652bb4c931b62:L0:000011",
+    "758652bb4c931b62:L0:000014",
+    "758652bb4c931b62:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:23:52.048807+00:00",
+      "call_id": "ac7868be9088",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "45945e28bdb3b730",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8798fc0c0f1f4a9c"
+    },
+    {
+      "ts": "2026-11-13T09:24:07.839056+00:00",
+      "call_id": "a4b827f6c766",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7d4293f59ac8c489",
+      "prompt_tokens": 1592,
+      "completion_tokens": 58,
+      "latency_ms": 15774.91,
+      "server_ms": 15748.35,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "8798fc0c0f1f4a9c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1592,
+    "completion_tokens": 58,
+    "total_ms": 15797.13
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

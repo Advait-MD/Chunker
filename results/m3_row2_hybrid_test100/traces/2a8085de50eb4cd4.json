@@ -1,0 +1,163 @@
+{
+  "trace_id": "2a8085de50eb4cd4",
+  "created_at": "2026-11-13T09:50:23.660930+00:00",
+  "query": "The actor who plays the father in I Can Only Imagine has a wife played by who in another film?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.5
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.57
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11287.41
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.26,
+      "bm25_ms": 13.92,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "4b634e52029ddab4:L0:000131",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000117",
+          "score": 0.3761643710317723,
+          "fused": 0.3761643710317723,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "dd498e0082847164:L0:000067",
+          "score": 0.3609749178015841,
+          "fused": 0.3609749178015841,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000038",
+          "score": 0.345073013403907,
+          "fused": 0.345073013403907,
+          "dense_rank": 2,
+          "bm25_rank": 29
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000133",
+          "score": 0.3346257036521307,
+          "fused": 0.3346257036521307,
+          "dense_rank": 27,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 19.46
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 392,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11267.74
+    }
+  },
+  "retrieved_ids": [
+    "4b634e52029ddab4:L0:000131",
+    "6683bfc7dec06e2a:L0:000117",
+    "dd498e0082847164:L0:000067",
+    "f59bbbdacaf7ffe4:L0:000038",
+    "178c7e3e6ef6ae87:L0:000133"
+  ],
+  "filtered_ids": [
+    "4b634e52029ddab4:L0:000131",
+    "6683bfc7dec06e2a:L0:000117",
+    "dd498e0082847164:L0:000067",
+    "f59bbbdacaf7ffe4:L0:000038",
+    "178c7e3e6ef6ae87:L0:000133"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:50:23.662769+00:00",
+      "call_id": "acb6f1135df9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "81f120fb3f7e1022",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2a8085de50eb4cd4"
+    },
+    {
+      "ts": "2026-11-13T09:50:34.947255+00:00",
+      "call_id": "c90855f48e4f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9b3fc520501c3767",
+      "prompt_tokens": 961,
+      "completion_tokens": 80,
+      "latency_ms": 11266.75,
+      "server_ms": 11247.12,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2a8085de50eb4cd4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 961,
+    "completion_tokens": 80,
+    "total_ms": 11288.65
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

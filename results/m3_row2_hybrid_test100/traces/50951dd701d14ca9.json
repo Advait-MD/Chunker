@@ -1,0 +1,164 @@
+{
+  "trace_id": "50951dd701d14ca9",
+  "created_at": "2026-11-13T09:52:27.640067+00:00",
+  "query": "Why is Common Sense, which was written by an author who encouraged revolt, an important work?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.84
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.91
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14162.82
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.08,
+      "bm25_ms": 10.44,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ce57fdde2baaba9c:L0:000059",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000126",
+          "score": 0.7715138166428166,
+          "fused": 0.7715138166428166,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "4b634e52029ddab4:L0:000197",
+          "score": 0.6307190805530598,
+          "fused": 0.6307190805530598,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000016",
+          "score": 0.5357542925366162,
+          "fused": 0.5357542925366162,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000087",
+          "score": 0.35304626776861125,
+          "fused": 0.35304626776861125,
+          "dense_rank": 21,
+          "bm25_rank": 8
+        }
+      ],
+      "latency_ms": 13.81
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 610,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14148.78
+    }
+  },
+  "retrieved_ids": [
+    "ce57fdde2baaba9c:L0:000059",
+    "f3503d3d186f0f90:L0:000126",
+    "4b634e52029ddab4:L0:000197",
+    "e182527d2b1ecac3:L0:000016",
+    "ad11b6e85f908fb3:L0:000087"
+  ],
+  "filtered_ids": [
+    "ce57fdde2baaba9c:L0:000059",
+    "f3503d3d186f0f90:L0:000126",
+    "4b634e52029ddab4:L0:000197",
+    "e182527d2b1ecac3:L0:000016",
+    "ad11b6e85f908fb3:L0:000087"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:52:27.641064+00:00",
+      "call_id": "00e7ea655154",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1ce0b44d095a1bf9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "50951dd701d14ca9"
+    },
+    {
+      "ts": "2026-11-13T09:52:41.802278+00:00",
+      "call_id": "f926a6243c6a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "185c475946e331f3",
+      "prompt_tokens": 1202,
+      "completion_tokens": 81,
+      "latency_ms": 14147.84,
+      "server_ms": 14123.49,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "50951dd701d14ca9"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1202,
+    "completion_tokens": 81,
+    "total_ms": 14163.87
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

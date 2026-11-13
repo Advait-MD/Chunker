@@ -1,0 +1,182 @@
+{
+  "trace_id": "badcfe5d99114603",
+  "created_at": "2026-11-13T14:55:56.054718+00:00",
+  "query": "Which film whose director is younger, A Social Celebrity or A Sound Of Trumpets?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7504.52
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7505.03
+    },
+    {
+      "state": "DONE",
+      "t_ms": 26992.77
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.41,
+      "bm25_ms": 8.8,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 7490.0
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000081",
+          "score": 8.277242660522461,
+          "fused": 0.5366583480851738,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 8.277242660522461
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000135",
+          "score": 7.935848236083984,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.935848236083984
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -4.477293014526367,
+          "fused": 0.15529142344428967,
+          "dense_rank": 11,
+          "bm25_rank": null,
+          "fused_rank": 13,
+          "rerank": -4.477293014526367
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000014",
+          "score": -5.226302623748779,
+          "fused": 0.18069609853049343,
+          "dense_rank": 10,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -5.226302623748779
+        },
+        {
+          "id": "0eac870d43736f51:L0:000159",
+          "score": -5.790619850158691,
+          "fused": 0.3403656708534727,
+          "dense_rank": 1,
+          "bm25_rank": 22,
+          "fused_rank": 3,
+          "rerank": -5.790619850158691
+        }
+      ],
+      "latency_ms": 7504.47
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 901,
+      "latency_ms": 0.48
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19487.61
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000081",
+    "4a757779abfb4ba1:L0:000135",
+    "b04ce6dd2d95fb80:L0:000152",
+    "c73b757f0eb66f37:L0:000014",
+    "0eac870d43736f51:L0:000159"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000081",
+    "4a757779abfb4ba1:L0:000135",
+    "b04ce6dd2d95fb80:L0:000152",
+    "c73b757f0eb66f37:L0:000014",
+    "0eac870d43736f51:L0:000159"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:55:56.054718+00:00",
+      "call_id": "3a07decee8c8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "28d913ef5a0765e2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "badcfe5d99114603"
+    },
+    {
+      "ts": "2026-11-13T14:56:23.054895+00:00",
+      "call_id": "0ff338f0cdb0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9c6e773e0bef38c7",
+      "prompt_tokens": 1598,
+      "completion_tokens": 119,
+      "latency_ms": 19486.45,
+      "server_ms": 19464.56,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "badcfe5d99114603"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1598,
+    "completion_tokens": 119,
+    "total_ms": 26994.99
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "A Sound of Trumpets is directed by Henri Safran, who directed it in 1964, while A Social Celebrity was directed by Malcolm St.",
+        "Clair in 1926."
+      ]
+    }
+  }
+}

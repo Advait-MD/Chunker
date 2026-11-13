@@ -1,0 +1,165 @@
+{
+  "trace_id": "60f38184038a4dfb",
+  "created_at": "2026-11-13T10:13:25.954353+00:00",
+  "query": "What is Pashkov’s assignment?\n\nOptions:\n(A) To kill Colonel James. \n(B) To take Colonel James to Stockholm. \n(C) To kidnap Boris Knackenpast and impersonate him. \n(D) To kidnap Colonel James and then impersonate him. \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 26.52
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 26.95
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24692.51
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.15,
+      "bm25_ms": 22.22,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "1347e212fd21afeb:L0:000011",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "1347e212fd21afeb:L0:000018",
+          "score": 0.8230086483175832,
+          "fused": 0.8230086483175832,
+          "dense_rank": 2,
+          "bm25_rank": 6
+        },
+        {
+          "id": "1347e212fd21afeb:L0:000002",
+          "score": 0.8080748269147311,
+          "fused": 0.8080748269147311,
+          "dense_rank": 3,
+          "bm25_rank": 5
+        },
+        {
+          "id": "1347e212fd21afeb:L0:000001",
+          "score": 0.7676214370225576,
+          "fused": 0.7676214370225576,
+          "dense_rank": 12,
+          "bm25_rank": 3
+        },
+        {
+          "id": "1347e212fd21afeb:L0:000017",
+          "score": 0.7416763292521639,
+          "fused": 0.7416763292521639,
+          "dense_rank": 15,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 26.46
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1964,
+      "latency_ms": 0.4
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24665.42
+    }
+  },
+  "retrieved_ids": [
+    "1347e212fd21afeb:L0:000011",
+    "1347e212fd21afeb:L0:000018",
+    "1347e212fd21afeb:L0:000002",
+    "1347e212fd21afeb:L0:000001",
+    "1347e212fd21afeb:L0:000017"
+  ],
+  "filtered_ids": [
+    "1347e212fd21afeb:L0:000011",
+    "1347e212fd21afeb:L0:000018",
+    "1347e212fd21afeb:L0:000002",
+    "1347e212fd21afeb:L0:000001",
+    "1347e212fd21afeb:L0:000017"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:13:25.956352+00:00",
+      "call_id": "ff36c21d18c8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "85059c5142f8f640",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "60f38184038a4dfb"
+    },
+    {
+      "ts": "2026-11-13T10:13:50.646456+00:00",
+      "call_id": "056392d64e6c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ed61fd5424a4be53",
+      "prompt_tokens": 2703,
+      "completion_tokens": 62,
+      "latency_ms": 24663.74,
+      "server_ms": 24622.98,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "60f38184038a4dfb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2703,
+    "completion_tokens": 62,
+    "total_ms": 24694.0
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

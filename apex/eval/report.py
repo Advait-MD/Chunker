@@ -48,7 +48,7 @@ def markdown_table(meta: Dict[str, Any], allm: Dict[str, Dict[str, Any]]) -> str
                      f"{_fmt(a['f1_answerable'])} | {_fmt(a.get('f1_long'))} | {_fmt(a.get('mc_acc'))} | "
                      f"{m.get('n_generation_errors', 0)} |")
     lines += ["", "## Retrieval", "",
-              "Recall/MRR/nDCG: top-20 dense retrieval against gold evidence passages. *Answer in context*: a short "
+              "Recall/MRR/nDCG: the top 20 from the run's retriever, scored against gold evidence passages. *Answer in context*: a short "
               "gold answer occurs in the evidence actually packed into the prompt (deterministic context recall).", "",
               "| Dataset | n | Recall@5 | Recall@10 | Recall@20 | MRR | nDCG@10 | Answer in context (n) |",
               "| --- | --- | --- | --- | --- | --- | --- | --- |"]

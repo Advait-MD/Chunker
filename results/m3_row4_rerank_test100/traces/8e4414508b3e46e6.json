@@ -1,0 +1,182 @@
+{
+  "trace_id": "8e4414508b3e46e6",
+  "created_at": "2026-11-13T12:14:22.951774+00:00",
+  "query": "What were subtasks A and B?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4778.59
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4778.71
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21016.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.17,
+      "bm25_ms": 4.41,
+      "n_candidates": {
+        "dense": 13,
+        "bm25": 6
+      },
+      "n_fused": 13,
+      "rerank": {
+        "n": 13,
+        "n_computed": 13,
+        "latency_ms": 4770.0
+      },
+      "hits": [
+        {
+          "id": "5113513d66b8be17:L0:000000",
+          "score": 1.5350401401519775,
+          "fused": 0.8681278676551583,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.5350401401519775
+        },
+        {
+          "id": "5113513d66b8be17:L0:000004",
+          "score": 1.0891183614730835,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.0891183614730835
+        },
+        {
+          "id": "5113513d66b8be17:L0:000008",
+          "score": 1.0761717557907104,
+          "fused": 0.13706453725844556,
+          "dense_rank": 12,
+          "bm25_rank": 4,
+          "fused_rank": 10,
+          "rerank": 1.0761717557907104
+        },
+        {
+          "id": "5113513d66b8be17:L0:000010",
+          "score": 0.7300623655319214,
+          "fused": 0.192192017317339,
+          "dense_rank": 6,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": 0.7300623655319214
+        },
+        {
+          "id": "5113513d66b8be17:L0:000012",
+          "score": 0.3205030560493469,
+          "fused": 0.18666310779680456,
+          "dense_rank": 11,
+          "bm25_rank": 3,
+          "fused_rank": 7,
+          "rerank": 0.3205030560493469
+        }
+      ],
+      "latency_ms": 4778.54
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 790,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16237.65
+    }
+  },
+  "retrieved_ids": [
+    "5113513d66b8be17:L0:000000",
+    "5113513d66b8be17:L0:000004",
+    "5113513d66b8be17:L0:000008",
+    "5113513d66b8be17:L0:000010",
+    "5113513d66b8be17:L0:000012"
+  ],
+  "filtered_ids": [
+    "5113513d66b8be17:L0:000000",
+    "5113513d66b8be17:L0:000004",
+    "5113513d66b8be17:L0:000008",
+    "5113513d66b8be17:L0:000010",
+    "5113513d66b8be17:L0:000012"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:14:22.951774+00:00",
+      "call_id": "0d5c34a90d2f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0aa7dcbe93347ba2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8e4414508b3e46e6"
+    },
+    {
+      "ts": "2026-11-13T12:14:43.965852+00:00",
+      "call_id": "44c4280c7fda",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f5085c57baf76e47",
+      "prompt_tokens": 1372,
+      "completion_tokens": 104,
+      "latency_ms": 16236.45,
+      "server_ms": 16214.49,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "8e4414508b3e46e6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1372,
+    "completion_tokens": 104,
+    "total_ms": 21017.85
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        3,
+        4
+      ],
+      "uncited_sentences": [
+        "Subtask A involved comparing each pair of tweets to determine if the first tweet was funnier than the second, outputting tweet_ids followed by a “1” or “0” accordingly.",
+        "Subtask B required ranking all tweets for a hashtag based on their funniness."
+      ]
+    }
+  }
+}

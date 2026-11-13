@@ -1,0 +1,163 @@
+{
+  "trace_id": "47e7ec07522a426f",
+  "created_at": "2026-11-13T11:13:26.076394+00:00",
+  "query": "Where was the place of death of Anne Devereux's husband?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.78
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.84
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10667.61
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.37,
+      "bm25_ms": 4.11,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000084",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "460e441179bec402:L0:000086",
+          "score": 0.6725261266451025,
+          "fused": 0.6725261266451025,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000015",
+          "score": 0.3356609489855035,
+          "fused": 0.3356609489855035,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000116",
+          "score": 0.31510603466293485,
+          "fused": 0.31510603466293485,
+          "dense_rank": 6,
+          "bm25_rank": 14
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000062",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 7.74
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 490,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10659.7
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000084",
+    "460e441179bec402:L0:000086",
+    "53c7288bdcd3837a:L0:000015",
+    "317e12ccd417c0d7:L0:000116",
+    "53c7288bdcd3837a:L0:000062"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000084",
+    "460e441179bec402:L0:000086",
+    "53c7288bdcd3837a:L0:000015",
+    "317e12ccd417c0d7:L0:000116",
+    "53c7288bdcd3837a:L0:000062"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:13:26.078395+00:00",
+      "call_id": "68a815a6993c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ba184d9c989642da",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "47e7ec07522a426f"
+    },
+    {
+      "ts": "2026-11-13T11:13:36.742726+00:00",
+      "call_id": "dfbe38f4ce4c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "475442a16e9d0f52",
+      "prompt_tokens": 1159,
+      "completion_tokens": 45,
+      "latency_ms": 10658.77,
+      "server_ms": 10635.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "47e7ec07522a426f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1159,
+    "completion_tokens": 45,
+    "total_ms": 10668.69
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

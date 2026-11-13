@@ -1,0 +1,167 @@
+{
+  "trace_id": "06eeaedfc55b4f6e",
+  "created_at": "2026-11-13T10:17:31.682254+00:00",
+  "query": "Why does the person responding to the author feel that the Phantom Menace will do well regardless of critics.\n\nOptions:\n(A) The overblown advertisement for the movie\n(B) People buying multiple tickets to see the movie\n(C) The next movie in the series has already announced \n(D) The franchise being a \"cult classic\"\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 28.59
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 29.06
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25086.01
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.12,
+      "bm25_ms": 24.84,
+      "n_candidates": {
+        "dense": 8,
+        "bm25": 8
+      },
+      "n_fused": 8,
+      "hits": [
+        {
+          "id": "eec23eb0358757f1:L0:000006",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "eec23eb0358757f1:L0:000000",
+          "score": 0.6602153426274188,
+          "fused": 0.6602153426274188,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "eec23eb0358757f1:L0:000001",
+          "score": 0.45489326606348585,
+          "fused": 0.45489326606348585,
+          "dense_rank": 6,
+          "bm25_rank": 3
+        },
+        {
+          "id": "eec23eb0358757f1:L0:000004",
+          "score": 0.4062169460685019,
+          "fused": 0.4062169460685019,
+          "dense_rank": 3,
+          "bm25_rank": 4
+        },
+        {
+          "id": "eec23eb0358757f1:L0:000003",
+          "score": 0.35111834327323876,
+          "fused": 0.35111834327323876,
+          "dense_rank": 5,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 28.55
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1917,
+      "latency_ms": 0.44
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25056.77
+    }
+  },
+  "retrieved_ids": [
+    "eec23eb0358757f1:L0:000006",
+    "eec23eb0358757f1:L0:000000",
+    "eec23eb0358757f1:L0:000001",
+    "eec23eb0358757f1:L0:000004",
+    "eec23eb0358757f1:L0:000003"
+  ],
+  "filtered_ids": [
+    "eec23eb0358757f1:L0:000006",
+    "eec23eb0358757f1:L0:000000",
+    "eec23eb0358757f1:L0:000001",
+    "eec23eb0358757f1:L0:000004",
+    "eec23eb0358757f1:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:17:31.683800+00:00",
+      "call_id": "9202ecabc9e1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4921a722f18c7dd6",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "06eeaedfc55b4f6e"
+    },
+    {
+      "ts": "2026-11-13T10:17:56.767205+00:00",
+      "call_id": "9086bf10b60a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f5c98e4698cb1fce",
+      "prompt_tokens": 2549,
+      "completion_tokens": 89,
+      "latency_ms": 25055.4,
+      "server_ms": 25020.77,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "06eeaedfc55b4f6e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2549,
+    "completion_tokens": 89,
+    "total_ms": 25087.95
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "(B) People buying multiple tickets to see the movie.",
+        "The author states, 'I myself stood in line for five hours and already have tickets to see it three times, and I know I'll enjoy it.",
+        "Why?"
+      ]
+    }
+  }
+}

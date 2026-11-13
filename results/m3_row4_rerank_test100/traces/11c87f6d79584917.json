@@ -1,0 +1,178 @@
+{
+  "trace_id": "11c87f6d79584917",
+  "created_at": "2026-11-13T14:31:46.100217+00:00",
+  "query": "What Disney movie was the wrestler with the real name of John William Minton in?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7313.94
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7314.05
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19253.15
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.87,
+      "bm25_ms": 11.02,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 7295.72
+      },
+      "hits": [
+        {
+          "id": "bc1dba3471045f02:L0:000192",
+          "score": 2.2111570835113525,
+          "fused": 0.9840123123171882,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.2111570835113525
+        },
+        {
+          "id": "634431bb1e27714f:L0:000097",
+          "score": -4.921412944793701,
+          "fused": 0.24663828348392927,
+          "dense_rank": 13,
+          "bm25_rank": 17,
+          "fused_rank": 13,
+          "rerank": -4.921412944793701
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000154",
+          "score": -5.421822547912598,
+          "fused": 0.16945771561241454,
+          "dense_rank": null,
+          "bm25_rank": 13,
+          "fused_rank": 20,
+          "rerank": -5.421822547912598
+        },
+        {
+          "id": "20496f59538deb41:L0:000003",
+          "score": -5.642106056213379,
+          "fused": 0.257308529144292,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 11,
+          "rerank": -5.642106056213379
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000003",
+          "score": -5.896908283233643,
+          "fused": 0.23767063391732562,
+          "dense_rank": 7,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -5.896908283233643
+        }
+      ],
+      "latency_ms": 7313.89
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 568,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11938.95
+    }
+  },
+  "retrieved_ids": [
+    "bc1dba3471045f02:L0:000192",
+    "634431bb1e27714f:L0:000097",
+    "c8fd2b3ea47eb07f:L0:000154",
+    "20496f59538deb41:L0:000003",
+    "cb96563b0747a6ba:L0:000003"
+  ],
+  "filtered_ids": [
+    "bc1dba3471045f02:L0:000192",
+    "634431bb1e27714f:L0:000097",
+    "c8fd2b3ea47eb07f:L0:000154",
+    "20496f59538deb41:L0:000003",
+    "cb96563b0747a6ba:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:31:46.100217+00:00",
+      "call_id": "29811be21e19",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "64e6b49e351c3d18",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "11c87f6d79584917"
+    },
+    {
+      "ts": "2026-11-13T14:32:05.354722+00:00",
+      "call_id": "119c4f5e879f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "aad7b29f7245c3d3",
+      "prompt_tokens": 1220,
+      "completion_tokens": 64,
+      "latency_ms": 11937.62,
+      "server_ms": 11917.63,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "11c87f6d79584917"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1220,
+    "completion_tokens": 64,
+    "total_ms": 19255.67
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

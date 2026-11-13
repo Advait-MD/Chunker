@@ -1,0 +1,182 @@
+{
+  "trace_id": "f826f1b76f184aa2",
+  "created_at": "2026-11-13T12:04:13.792982+00:00",
+  "query": "Do they create the basic dialog agent and basic user simulator separately?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17158.92
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17159.08
+    },
+    {
+      "state": "DONE",
+      "t_ms": 32322.48
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.51,
+      "bm25_ms": 15.72,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 19
+      },
+      "n_fused": 19,
+      "rerank": {
+        "n": 19,
+        "n_computed": 19,
+        "latency_ms": 17136.97
+      },
+      "hits": [
+        {
+          "id": "59655a048fbe2495:L0:000006",
+          "score": 2.9095230102539062,
+          "fused": 0.8238025174135077,
+          "dense_rank": 4,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 2.9095230102539062
+        },
+        {
+          "id": "59655a048fbe2495:L0:000000",
+          "score": 2.6583752632141113,
+          "fused": 0.8265937026836916,
+          "dense_rank": 11,
+          "bm25_rank": 1,
+          "fused_rank": 3,
+          "rerank": 2.6583752632141113
+        },
+        {
+          "id": "59655a048fbe2495:L0:000014",
+          "score": 2.5341434478759766,
+          "fused": 0.70358642288153,
+          "dense_rank": 6,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": 2.5341434478759766
+        },
+        {
+          "id": "59655a048fbe2495:L0:000002",
+          "score": 2.359847068786621,
+          "fused": 0.9759843144108233,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 2.359847068786621
+        },
+        {
+          "id": "59655a048fbe2495:L0:000005",
+          "score": 1.900282621383667,
+          "fused": 0.9135630564075556,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 1.900282621383667
+        }
+      ],
+      "latency_ms": 17158.87
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1249,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15163.29
+    }
+  },
+  "retrieved_ids": [
+    "59655a048fbe2495:L0:000006",
+    "59655a048fbe2495:L0:000000",
+    "59655a048fbe2495:L0:000014",
+    "59655a048fbe2495:L0:000002",
+    "59655a048fbe2495:L0:000005"
+  ],
+  "filtered_ids": [
+    "59655a048fbe2495:L0:000006",
+    "59655a048fbe2495:L0:000000",
+    "59655a048fbe2495:L0:000014",
+    "59655a048fbe2495:L0:000002",
+    "59655a048fbe2495:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:04:13.794983+00:00",
+      "call_id": "24f7ed98babb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "66d95745cc812155",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f826f1b76f184aa2"
+    },
+    {
+      "ts": "2026-11-13T12:04:46.114830+00:00",
+      "call_id": "b4567fe11350",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "54fea469c4ec8ce5",
+      "prompt_tokens": 1830,
+      "completion_tokens": 71,
+      "latency_ms": 15162.06,
+      "server_ms": 15139.07,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f826f1b76f184aa2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1830,
+    "completion_tokens": 71,
+    "total_ms": 32323.01
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

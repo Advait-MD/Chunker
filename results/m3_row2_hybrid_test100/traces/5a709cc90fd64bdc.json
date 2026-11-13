@@ -1,0 +1,164 @@
+{
+  "trace_id": "5a709cc90fd64bdc",
+  "created_at": "2026-11-13T11:24:51.036952+00:00",
+  "query": "What martial style or school did Miyamoto Musashi found?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.5
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.56
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20424.31
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.86,
+      "bm25_ms": 6.32,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "54e450272e768455:L0:000012",
+          "score": 0.8286681191565242,
+          "fused": 0.8286681191565242,
+          "dense_rank": 19,
+          "bm25_rank": 1
+        },
+        {
+          "id": "54e450272e768455:L0:000000",
+          "score": 0.8130482375213166,
+          "fused": 0.8130482375213166,
+          "dense_rank": 18,
+          "bm25_rank": 2
+        },
+        {
+          "id": "54e450272e768455:L0:000014",
+          "score": 0.7487514601391202,
+          "fused": 0.7487514601391202,
+          "dense_rank": 15,
+          "bm25_rank": 3
+        },
+        {
+          "id": "54e450272e768455:L0:000027",
+          "score": 0.6895193154842025,
+          "fused": 0.6895193154842025,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "54e450272e768455:L0:000022",
+          "score": 0.6008848149208575,
+          "fused": 0.6008848149208575,
+          "dense_rank": 34,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 10.46
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1696,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20413.55
+    }
+  },
+  "retrieved_ids": [
+    "54e450272e768455:L0:000012",
+    "54e450272e768455:L0:000000",
+    "54e450272e768455:L0:000014",
+    "54e450272e768455:L0:000027",
+    "54e450272e768455:L0:000022"
+  ],
+  "filtered_ids": [
+    "54e450272e768455:L0:000012",
+    "54e450272e768455:L0:000000",
+    "54e450272e768455:L0:000014",
+    "54e450272e768455:L0:000027",
+    "54e450272e768455:L0:000022"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:24:51.038953+00:00",
+      "call_id": "820c07adfa64",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d718090a697d4948",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5a709cc90fd64bdc"
+    },
+    {
+      "ts": "2026-11-13T11:25:11.460400+00:00",
+      "call_id": "1e163fcc9cff",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "97095d060839de4f",
+      "prompt_tokens": 2377,
+      "completion_tokens": 68,
+      "latency_ms": 20412.2,
+      "server_ms": 20377.99,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "5a709cc90fd64bdc"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2377,
+    "completion_tokens": 68,
+    "total_ms": 20426.83
+  },
+  "config_hash": "da9c6a093c0d",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

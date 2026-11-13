@@ -1,0 +1,163 @@
+{
+  "trace_id": "09962d41df21498a",
+  "created_at": "2026-11-13T10:59:23.262594+00:00",
+  "query": "What are some foods that may have been served at the Hawaiin Cottage?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.04
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.59
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10279.72
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.4,
+      "bm25_ms": 7.95,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000184",
+          "score": 0.9171476714189936,
+          "fused": 0.9171476714189936,
+          "dense_rank": 6,
+          "bm25_rank": 1
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000041",
+          "score": 0.835931013120483,
+          "fused": 0.835931013120483,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000114",
+          "score": 0.729686018532707,
+          "fused": 0.729686018532707,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000149",
+          "score": 0.6220927162504092,
+          "fused": 0.6220927162504092,
+          "dense_rank": 14,
+          "bm25_rank": 3
+        },
+        {
+          "id": "20496f59538deb41:L0:000102",
+          "score": 0.4936571797494728,
+          "fused": 0.4936571797494728,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 11.96
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 530,
+      "latency_ms": 1.5
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10265.46
+    }
+  },
+  "retrieved_ids": [
+    "c8fd2b3ea47eb07f:L0:000184",
+    "5d0f6cf59ee42566:L0:000041",
+    "ba3cd068cf9ac2e4:L0:000114",
+    "90976421f3f2bea2:L0:000149",
+    "20496f59538deb41:L0:000102"
+  ],
+  "filtered_ids": [
+    "c8fd2b3ea47eb07f:L0:000184",
+    "5d0f6cf59ee42566:L0:000041",
+    "ba3cd068cf9ac2e4:L0:000114",
+    "90976421f3f2bea2:L0:000149",
+    "20496f59538deb41:L0:000102"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:59:23.265100+00:00",
+      "call_id": "dd6003bbe009",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f62ab0aec474f050",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "09962d41df21498a"
+    },
+    {
+      "ts": "2026-11-13T10:59:33.540330+00:00",
+      "call_id": "d1fa2f630fb7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "af5ec69beccb5f1a",
+      "prompt_tokens": 1097,
+      "completion_tokens": 45,
+      "latency_ms": 10263.85,
+      "server_ms": 10232.6,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "09962d41df21498a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1097,
+    "completion_tokens": 45,
+    "total_ms": 10283.12
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

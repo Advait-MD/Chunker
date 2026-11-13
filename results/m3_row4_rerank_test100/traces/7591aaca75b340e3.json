@@ -1,0 +1,179 @@
+{
+  "trace_id": "7591aaca75b340e3",
+  "created_at": "2026-11-13T14:38:10.992520+00:00",
+  "query": "Who fills in occasionally for the meteorologist who replaced  Ginger Zee ?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16101.53
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16101.6
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25261.89
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.63,
+      "bm25_ms": 6.16,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 16090.53
+      },
+      "hits": [
+        {
+          "id": "90976421f3f2bea2:L0:000063",
+          "score": 3.999014139175415,
+          "fused": 0.764227137471053,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 3.999014139175415
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000140",
+          "score": 2.7626285552978516,
+          "fused": 0.757494339855233,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 2.7626285552978516
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000171",
+          "score": 2.4225735664367676,
+          "fused": 0.9510308973828794,
+          "dense_rank": 5,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.4225735664367676
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000089",
+          "score": 0.34991323947906494,
+          "fused": 0.5579629045305672,
+          "dense_rank": 2,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": 0.34991323947906494
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000073",
+          "score": -0.6312890648841858,
+          "fused": 0.24133144190892034,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": -0.6312890648841858
+        }
+      ],
+      "latency_ms": 16101.49
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 497,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9160.22
+    }
+  },
+  "retrieved_ids": [
+    "90976421f3f2bea2:L0:000063",
+    "ba3cd068cf9ac2e4:L0:000140",
+    "cb96563b0747a6ba:L0:000171",
+    "c8fd2b3ea47eb07f:L0:000089",
+    "9794e842cc9565f0:L0:000073"
+  ],
+  "filtered_ids": [
+    "90976421f3f2bea2:L0:000063",
+    "ba3cd068cf9ac2e4:L0:000140",
+    "cb96563b0747a6ba:L0:000171",
+    "c8fd2b3ea47eb07f:L0:000089",
+    "9794e842cc9565f0:L0:000073"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:38:10.992520+00:00",
+      "call_id": "5113d05acedd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2a35ded570dd44d7",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7591aaca75b340e3"
+    },
+    {
+      "ts": "2026-11-13T14:38:36.256948+00:00",
+      "call_id": "1a3d66eee0ea",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f1bdc89ff7c8212d",
+      "prompt_tokens": 1081,
+      "completion_tokens": 60,
+      "latency_ms": 9159.48,
+      "server_ms": 9142.69,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "7591aaca75b340e3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1081,
+    "completion_tokens": 60,
+    "total_ms": 25263.51
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

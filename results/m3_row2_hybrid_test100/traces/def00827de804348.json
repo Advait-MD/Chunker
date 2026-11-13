@@ -1,0 +1,163 @@
+{
+  "trace_id": "def00827de804348",
+  "created_at": "2026-11-13T09:21:55.852700+00:00",
+  "query": "How many GPUs do they use for this task?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.46
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.53
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20938.58
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.37,
+      "bm25_ms": 10.7,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 12
+      },
+      "n_fused": 17,
+      "hits": [
+        {
+          "id": "47ee37545a8e7b64:L0:000007",
+          "score": 0.8736962208258148,
+          "fused": 0.8736962208258148,
+          "dense_rank": 8,
+          "bm25_rank": 1
+        },
+        {
+          "id": "47ee37545a8e7b64:L0:000008",
+          "score": 0.37416147770704894,
+          "fused": 0.37416147770704894,
+          "dense_rank": 1,
+          "bm25_rank": 8
+        },
+        {
+          "id": "47ee37545a8e7b64:L0:000016",
+          "score": 0.36026568663712827,
+          "fused": 0.36026568663712827,
+          "dense_rank": 2,
+          "bm25_rank": 7
+        },
+        {
+          "id": "47ee37545a8e7b64:L0:000011",
+          "score": 0.33903755621812826,
+          "fused": 0.33903755621812826,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "47ee37545a8e7b64:L0:000012",
+          "score": 0.32135730813979924,
+          "fused": 0.32135730813979924,
+          "dense_rank": 4,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 15.4
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1542,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20922.93
+    }
+  },
+  "retrieved_ids": [
+    "47ee37545a8e7b64:L0:000007",
+    "47ee37545a8e7b64:L0:000008",
+    "47ee37545a8e7b64:L0:000016",
+    "47ee37545a8e7b64:L0:000011",
+    "47ee37545a8e7b64:L0:000012"
+  ],
+  "filtered_ids": [
+    "47ee37545a8e7b64:L0:000007",
+    "47ee37545a8e7b64:L0:000008",
+    "47ee37545a8e7b64:L0:000016",
+    "47ee37545a8e7b64:L0:000011",
+    "47ee37545a8e7b64:L0:000012"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:21:55.854475+00:00",
+      "call_id": "8ef2c1999157",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9249b167429b02b0",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "def00827de804348"
+    },
+    {
+      "ts": "2026-11-13T09:22:16.790463+00:00",
+      "call_id": "760a1b2901a8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "44e381cca6ba38e1",
+      "prompt_tokens": 2256,
+      "completion_tokens": 66,
+      "latency_ms": 20921.85,
+      "server_ms": 20885.49,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "def00827de804348"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2256,
+    "completion_tokens": 66,
+    "total_ms": 20939.58
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

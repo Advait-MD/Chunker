@@ -1,0 +1,167 @@
+{
+  "trace_id": "c44e4a58466b47aa",
+  "created_at": "2026-11-13T10:24:27.455746+00:00",
+  "query": "Why could Ingrid not tell Maitland what year it was?\n\nOptions:\n(A) She was not allowed to\n(B) She didn't know\n(C) She didn't speak fluent English\n(D) She was unwilling to\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.63
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.7
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24099.39
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.16,
+      "bm25_ms": 16.24,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 20
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "7b80582cae4e102a:L0:000012",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "7b80582cae4e102a:L0:000010",
+          "score": 0.8827364596805602,
+          "fused": 0.8827364596805602,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "7b80582cae4e102a:L0:000009",
+          "score": 0.7030579316459664,
+          "fused": 0.7030579316459664,
+          "dense_rank": 4,
+          "bm25_rank": 4
+        },
+        {
+          "id": "7b80582cae4e102a:L0:000003",
+          "score": 0.699158361128568,
+          "fused": 0.699158361128568,
+          "dense_rank": 9,
+          "bm25_rank": 3
+        },
+        {
+          "id": "7b80582cae4e102a:L0:000014",
+          "score": 0.5865429778111013,
+          "fused": 0.5865429778111013,
+          "dense_rank": 6,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 19.59
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1945,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24079.63
+    }
+  },
+  "retrieved_ids": [
+    "7b80582cae4e102a:L0:000012",
+    "7b80582cae4e102a:L0:000010",
+    "7b80582cae4e102a:L0:000009",
+    "7b80582cae4e102a:L0:000003",
+    "7b80582cae4e102a:L0:000014"
+  ],
+  "filtered_ids": [
+    "7b80582cae4e102a:L0:000012",
+    "7b80582cae4e102a:L0:000010",
+    "7b80582cae4e102a:L0:000009",
+    "7b80582cae4e102a:L0:000003",
+    "7b80582cae4e102a:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:24:27.457755+00:00",
+      "call_id": "99bfe73c50f5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e7b7f43cc13f8e94",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c44e4a58466b47aa"
+    },
+    {
+      "ts": "2026-11-13T10:24:51.555158+00:00",
+      "call_id": "add0fd2857c8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b9630d87f0b93ad1",
+      "prompt_tokens": 2561,
+      "completion_tokens": 50,
+      "latency_ms": 24078.41,
+      "server_ms": 24056.77,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "c44e4a58466b47aa"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2561,
+    "completion_tokens": 50,
+    "total_ms": 24100.96
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3
+      ],
+      "uncited_sentences": [
+        "(B) She didn't know."
+      ]
+    }
+  }
+}

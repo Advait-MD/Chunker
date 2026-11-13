@@ -1,0 +1,182 @@
+{
+  "trace_id": "d3af256c650c45dc",
+  "created_at": "2026-11-13T14:02:52.705952+00:00",
+  "query": "What is Ernie likely to do next time he sees Vivian?\n\nOptions:\n(A) Joke with her\n(B) Avoid her\n(C) Ask her to lunch\n(D) Make fun of her\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17029.88
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17029.95
+    },
+    {
+      "state": "DONE",
+      "t_ms": 41778.43
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.12,
+      "bm25_ms": 17.35,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 19
+      },
+      "n_fused": 19,
+      "rerank": {
+        "n": 19,
+        "n_computed": 19,
+        "latency_ms": 17004.78
+      },
+      "hits": [
+        {
+          "id": "de9de8d3c22b17cd:L0:000018",
+          "score": 0.45686182379722595,
+          "fused": 0.8971749293824784,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 0.45686182379722595
+        },
+        {
+          "id": "de9de8d3c22b17cd:L0:000017",
+          "score": 0.3879954516887665,
+          "fused": 0.8178419987885936,
+          "dense_rank": 1,
+          "bm25_rank": 8,
+          "fused_rank": 5,
+          "rerank": 0.3879954516887665
+        },
+        {
+          "id": "de9de8d3c22b17cd:L0:000016",
+          "score": -0.960181713104248,
+          "fused": 0.8616782369590416,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.960181713104248
+        },
+        {
+          "id": "de9de8d3c22b17cd:L0:000007",
+          "score": -1.282289981842041,
+          "fused": 0.7584204871836708,
+          "dense_rank": 3,
+          "bm25_rank": 11,
+          "fused_rank": 6,
+          "rerank": -1.282289981842041
+        },
+        {
+          "id": "de9de8d3c22b17cd:L0:000011",
+          "score": -2.347600221633911,
+          "fused": 0.70082383504937,
+          "dense_rank": 7,
+          "bm25_rank": 10,
+          "fused_rank": 8,
+          "rerank": -2.347600221633911
+        }
+      ],
+      "latency_ms": 17029.84
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1838,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24748.05
+    }
+  },
+  "retrieved_ids": [
+    "de9de8d3c22b17cd:L0:000018",
+    "de9de8d3c22b17cd:L0:000017",
+    "de9de8d3c22b17cd:L0:000016",
+    "de9de8d3c22b17cd:L0:000007",
+    "de9de8d3c22b17cd:L0:000011"
+  ],
+  "filtered_ids": [
+    "de9de8d3c22b17cd:L0:000018",
+    "de9de8d3c22b17cd:L0:000017",
+    "de9de8d3c22b17cd:L0:000016",
+    "de9de8d3c22b17cd:L0:000007",
+    "de9de8d3c22b17cd:L0:000011"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:02:52.708003+00:00",
+      "call_id": "d3a7ebfa78e4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "37588d02071ef8d9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d3af256c650c45dc"
+    },
+    {
+      "ts": "2026-11-13T14:03:34.483804+00:00",
+      "call_id": "1138df5965cd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "eef29ffab530c983",
+      "prompt_tokens": 2415,
+      "completion_tokens": 128,
+      "latency_ms": 24747.16,
+      "server_ms": 24731.72,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d3af256c650c45dc"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2415,
+    "completion_tokens": 128,
+    "total_ms": 41779.07
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Ernie, generally looking steadily out the window at the brown buildings and black stanchions whipping past, enjoyed a kind of anonymity and privacy more refreshing to his spirit than he realized.",
+        "But now all that had been suddenly changed.",
+        "People had started to talk to him; total strangers struck up conversations almost every morning and afternoon."
+      ]
+    }
+  }
+}

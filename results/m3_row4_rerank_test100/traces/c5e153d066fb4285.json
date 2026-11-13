@@ -1,0 +1,178 @@
+{
+  "trace_id": "c5e153d066fb4285",
+  "created_at": "2026-11-13T14:22:58.363171+00:00",
+  "query": "A Wind in the Door is part of a series written by who?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6092.88
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6093.13
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16791.14
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.21,
+      "bm25_ms": 9.85,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6075.12
+      },
+      "hits": [
+        {
+          "id": "838c0e0106e6f015:L0:000002",
+          "score": 7.5689544677734375,
+          "fused": 0.7,
+          "dense_rank": 50,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.5689544677734375
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000062",
+          "score": -0.14769549667835236,
+          "fused": 0.14309903204125468,
+          "dense_rank": 12,
+          "bm25_rank": 27,
+          "fused_rank": 20,
+          "rerank": -0.14769549667835236
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000000",
+          "score": -1.5404325723648071,
+          "fused": 0.1646350859727069,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -1.5404325723648071
+        },
+        {
+          "id": "20496f59538deb41:L0:000095",
+          "score": -1.828255534172058,
+          "fused": 0.2990244554104056,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 10,
+          "rerank": -1.828255534172058
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000009",
+          "score": -1.8306474685668945,
+          "fused": 0.32145794767562696,
+          "dense_rank": 23,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": -1.8306474685668945
+        }
+      ],
+      "latency_ms": 6092.82
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 449,
+      "latency_ms": 0.22
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10697.89
+    }
+  },
+  "retrieved_ids": [
+    "838c0e0106e6f015:L0:000002",
+    "cc2399aca11eb631:L0:000062",
+    "ba3cd068cf9ac2e4:L0:000000",
+    "20496f59538deb41:L0:000095",
+    "81fc433d55d23b4c:L0:000009"
+  ],
+  "filtered_ids": [
+    "838c0e0106e6f015:L0:000002",
+    "cc2399aca11eb631:L0:000062",
+    "ba3cd068cf9ac2e4:L0:000000",
+    "20496f59538deb41:L0:000095",
+    "81fc433d55d23b4c:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:22:58.368323+00:00",
+      "call_id": "b3666e52d69e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "aaf82e27314e7ea3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c5e153d066fb4285"
+    },
+    {
+      "ts": "2026-11-13T14:23:15.152007+00:00",
+      "call_id": "84a7583ae3a7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "aaf8e4edad95392e",
+      "prompt_tokens": 1074,
+      "completion_tokens": 65,
+      "latency_ms": 10696.03,
+      "server_ms": 10678.02,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "c5e153d066fb4285"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1074,
+    "completion_tokens": 65,
+    "total_ms": 16793.62
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "trace_id": "6e074273a2b14be5",
+  "created_at": "2026-11-13T11:12:16.407041+00:00",
+  "query": "Who is the maternal grandmother of Flavia Julia Constantia?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.37
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.43
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11206.01
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.75,
+      "bm25_ms": 4.33,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 39
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "53c7288bdcd3837a:L0:000096",
+          "score": 0.7945162831216871,
+          "fused": 0.7945162831216871,
+          "dense_rank": 22,
+          "bm25_rank": 1
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000190",
+          "score": 0.6048086430527959,
+          "fused": 0.6048086430527959,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000127",
+          "score": 0.5295223413902392,
+          "fused": 0.5295223413902392,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000136",
+          "score": 0.3522750356480231,
+          "fused": 0.3522750356480231,
+          "dense_rank": 6,
+          "bm25_rank": 12
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000076",
+          "score": 0.32773615551038787,
+          "fused": 0.32773615551038787,
+          "dense_rank": 2,
+          "bm25_rank": 21
+        }
+      ],
+      "latency_ms": 7.33
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 571,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11198.5
+    }
+  },
+  "retrieved_ids": [
+    "53c7288bdcd3837a:L0:000096",
+    "b04ce6dd2d95fb80:L0:000190",
+    "b04ce6dd2d95fb80:L0:000127",
+    "6af2db6cb86d77e2:L0:000136",
+    "c73b757f0eb66f37:L0:000076"
+  ],
+  "filtered_ids": [
+    "53c7288bdcd3837a:L0:000096",
+    "b04ce6dd2d95fb80:L0:000190",
+    "b04ce6dd2d95fb80:L0:000127",
+    "6af2db6cb86d77e2:L0:000136",
+    "c73b757f0eb66f37:L0:000076"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:12:16.408218+00:00",
+      "call_id": "dbe74cc31ac7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "21ce9d0897097991",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6e074273a2b14be5"
+    },
+    {
+      "ts": "2026-11-13T11:12:27.611333+00:00",
+      "call_id": "b6a6e33f5204",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "38b8116218d7144d",
+      "prompt_tokens": 1259,
+      "completion_tokens": 45,
+      "latency_ms": 11197.4,
+      "server_ms": 11165.55,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "6e074273a2b14be5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1259,
+    "completion_tokens": 45,
+    "total_ms": 11207.7
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

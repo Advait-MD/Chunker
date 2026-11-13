@@ -1,0 +1,182 @@
+{
+  "trace_id": "f0e98054b2ed42ee",
+  "created_at": "2026-11-13T13:53:11.025642+00:00",
+  "query": "What edge did the Americans have over the Reds in the air?\n\nOptions:\n(A) Faster and more efficient ships\n(B) Rockets instead of guns\n(C) Stronger radar technology\n(D) More quantity of troops and ships\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 20561.92
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 20562.27
+    },
+    {
+      "state": "DONE",
+      "t_ms": 40174.26
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.77,
+      "bm25_ms": 21.43,
+      "n_candidates": {
+        "dense": 18,
+        "bm25": 16
+      },
+      "n_fused": 18,
+      "rerank": {
+        "n": 18,
+        "n_computed": 18,
+        "latency_ms": 20527.76
+      },
+      "hits": [
+        {
+          "id": "a4b518a2c42bd878:L0:000003",
+          "score": -1.0655473470687866,
+          "fused": 0.9715804401284749,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": -1.0655473470687866
+        },
+        {
+          "id": "a4b518a2c42bd878:L0:000004",
+          "score": -4.886054039001465,
+          "fused": 0.4535709368902091,
+          "dense_rank": 11,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": -4.886054039001465
+        },
+        {
+          "id": "a4b518a2c42bd878:L0:000006",
+          "score": -5.305661678314209,
+          "fused": 0.5639836650045391,
+          "dense_rank": 4,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -5.305661678314209
+        },
+        {
+          "id": "a4b518a2c42bd878:L0:000005",
+          "score": -5.33846378326416,
+          "fused": 0.43562773713260317,
+          "dense_rank": 15,
+          "bm25_rank": 7,
+          "fused_rank": 11,
+          "rerank": -5.33846378326416
+        },
+        {
+          "id": "a4b518a2c42bd878:L0:000009",
+          "score": -5.470374584197998,
+          "fused": 0.5697612613928851,
+          "dense_rank": 3,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": -5.470374584197998
+        }
+      ],
+      "latency_ms": 20561.86
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1960,
+      "latency_ms": 0.31
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19611.89
+    }
+  },
+  "retrieved_ids": [
+    "a4b518a2c42bd878:L0:000003",
+    "a4b518a2c42bd878:L0:000004",
+    "a4b518a2c42bd878:L0:000006",
+    "a4b518a2c42bd878:L0:000005",
+    "a4b518a2c42bd878:L0:000009"
+  ],
+  "filtered_ids": [
+    "a4b518a2c42bd878:L0:000003",
+    "a4b518a2c42bd878:L0:000004",
+    "a4b518a2c42bd878:L0:000006",
+    "a4b518a2c42bd878:L0:000005",
+    "a4b518a2c42bd878:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:53:11.026644+00:00",
+      "call_id": "4d260b48dabe",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d0ca167c28741341",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f0e98054b2ed42ee"
+    },
+    {
+      "ts": "2026-11-13T13:53:51.192067+00:00",
+      "call_id": "87438a28e89b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "224d9aa3963b78f9",
+      "prompt_tokens": 2522,
+      "completion_tokens": 66,
+      "latency_ms": 19610.73,
+      "server_ms": 19590.57,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f0e98054b2ed42ee"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2522,
+    "completion_tokens": 66,
+    "total_ms": 40175.57
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "(C) The Americans had an edge over the Reds in the air due to better radar technology.",
+        "The passage states, 'In this crazy"
+      ]
+    }
+  }
+}

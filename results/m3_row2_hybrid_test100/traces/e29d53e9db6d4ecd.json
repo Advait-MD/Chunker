@@ -1,0 +1,167 @@
+{
+  "trace_id": "e29d53e9db6d4ecd",
+  "created_at": "2026-11-13T10:07:36.453280+00:00",
+  "query": "How does the author likely feel about the present?\n\nOptions:\n(A) He is optimistic\n(B) He is cynical\n(C) This is an impossible question to answer based on the article\n(D) He does not feel anything\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.46
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17.51
+    },
+    {
+      "state": "DONE",
+      "t_ms": 28522.96
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.22,
+      "bm25_ms": 15.05,
+      "n_candidates": {
+        "dense": 9,
+        "bm25": 8
+      },
+      "n_fused": 9,
+      "hits": [
+        {
+          "id": "2bb222b2352cb268:L0:000003",
+          "score": 0.9243609323266782,
+          "fused": 0.9243609323266782,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "2bb222b2352cb268:L0:000007",
+          "score": 0.8661466333117576,
+          "fused": 0.8661466333117576,
+          "dense_rank": 8,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2bb222b2352cb268:L0:000008",
+          "score": 0.7469017485644158,
+          "fused": 0.7469017485644158,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "2bb222b2352cb268:L0:000000",
+          "score": 0.45922498615237384,
+          "fused": 0.45922498615237384,
+          "dense_rank": 7,
+          "bm25_rank": 4
+        },
+        {
+          "id": "2bb222b2352cb268:L0:000004",
+          "score": 0.30001401509238335,
+          "fused": 0.30001401509238335,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 17.42
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1618,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 28505.31
+    }
+  },
+  "retrieved_ids": [
+    "2bb222b2352cb268:L0:000003",
+    "2bb222b2352cb268:L0:000007",
+    "2bb222b2352cb268:L0:000008",
+    "2bb222b2352cb268:L0:000000",
+    "2bb222b2352cb268:L0:000004"
+  ],
+  "filtered_ids": [
+    "2bb222b2352cb268:L0:000003",
+    "2bb222b2352cb268:L0:000007",
+    "2bb222b2352cb268:L0:000008",
+    "2bb222b2352cb268:L0:000000",
+    "2bb222b2352cb268:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:07:36.454277+00:00",
+      "call_id": "d30529b230ed",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e6351ff597adad68",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e29d53e9db6d4ecd"
+    },
+    {
+      "ts": "2026-11-13T10:08:04.975678+00:00",
+      "call_id": "6bc5997afafe",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3e6d96aea728d077",
+      "prompt_tokens": 2285,
+      "completion_tokens": 106,
+      "latency_ms": 28504.18,
+      "server_ms": 28467.25,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "e29d53e9db6d4ecd"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2285,
+    "completion_tokens": 106,
+    "total_ms": 28524.85
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The author believes that a participatory culture where most people see themselves as creators as well as consumers of culture is more likely to generate freedom and wealth for more people.",
+        "He also emphasizes the importance of literacy and the potential for people to use technology to create wealth, secure freedom, and resist tyranny."
+      ]
+    }
+  }
+}

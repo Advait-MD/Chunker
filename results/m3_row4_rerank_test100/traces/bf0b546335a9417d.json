@@ -1,0 +1,181 @@
+{
+  "trace_id": "bf0b546335a9417d",
+  "created_at": "2026-11-13T13:24:32.674685+00:00",
+  "query": "Predict: was Ravdin and Dana’s plan successful?\n\nOptions:\n(A) No, because the Hunters will never change their hostile ways. \n(B) Yes, because Frankle decided to declare peace. \n(C) No, because they were left in the jungle, separated from the rest of their people. \n(D) Yes, because they planted the seed in Frankle’s mind to change their hostile ways. \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.0
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16747.55
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16748.68
+    },
+    {
+      "state": "DONE",
+      "t_ms": 37466.2
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.1,
+      "bm25_ms": 14.93,
+      "n_candidates": {
+        "dense": 22,
+        "bm25": 22
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 16726.76
+      },
+      "hits": [
+        {
+          "id": "8c71e38fb019ad99:L0:000015",
+          "score": -0.030733756721019745,
+          "fused": 0.8706870071763305,
+          "dense_rank": 15,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.030733756721019745
+        },
+        {
+          "id": "8c71e38fb019ad99:L0:000016",
+          "score": -0.13902483880519867,
+          "fused": 0.8381114800277016,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.13902483880519867
+        },
+        {
+          "id": "8c71e38fb019ad99:L0:000009",
+          "score": -1.272497534751892,
+          "fused": 0.6567576705679694,
+          "dense_rank": 8,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": -1.272497534751892
+        },
+        {
+          "id": "8c71e38fb019ad99:L0:000012",
+          "score": -1.5350388288497925,
+          "fused": 0.5777013130039663,
+          "dense_rank": 11,
+          "bm25_rank": 10,
+          "fused_rank": 9,
+          "rerank": -1.5350388288497925
+        },
+        {
+          "id": "8c71e38fb019ad99:L0:000013",
+          "score": -1.5703482627868652,
+          "fused": 0.6368419407619067,
+          "dense_rank": 5,
+          "bm25_rank": 8,
+          "fused_rank": 6,
+          "rerank": -1.5703482627868652
+        }
+      ],
+      "latency_ms": 16747.52
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1954,
+      "latency_ms": 1.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20717.42
+    }
+  },
+  "retrieved_ids": [
+    "8c71e38fb019ad99:L0:000015",
+    "8c71e38fb019ad99:L0:000016",
+    "8c71e38fb019ad99:L0:000009",
+    "8c71e38fb019ad99:L0:000012",
+    "8c71e38fb019ad99:L0:000013"
+  ],
+  "filtered_ids": [
+    "8c71e38fb019ad99:L0:000015",
+    "8c71e38fb019ad99:L0:000016",
+    "8c71e38fb019ad99:L0:000009",
+    "8c71e38fb019ad99:L0:000012",
+    "8c71e38fb019ad99:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:24:32.675690+00:00",
+      "call_id": "2b16fff67042",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "01a31a28373274d2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "bf0b546335a9417d"
+    },
+    {
+      "ts": "2026-11-13T13:25:10.132802+00:00",
+      "call_id": "0095da56cddb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8ba405ecac16dba1",
+      "prompt_tokens": 2530,
+      "completion_tokens": 57,
+      "latency_ms": 20716.07,
+      "server_ms": 20687.68,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "bf0b546335a9417d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2530,
+    "completion_tokens": 57,
+    "total_ms": 37468.31
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        4
+      ],
+      "uncited_sentences": [
+        "(C) No, because they were left in the jungle, separated from the rest of their people."
+      ]
+    }
+  }
+}

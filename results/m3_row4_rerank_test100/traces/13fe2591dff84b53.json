@@ -1,0 +1,178 @@
+{
+  "trace_id": "13fe2591dff84b53",
+  "created_at": "2026-11-13T12:53:04.392525+00:00",
+  "query": "For what did the singer of Moon River in Breakfast at Tiffany's win a Tony?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4646.64
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4647.28
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 18025.76
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.53,
+      "bm25_ms": 12.37,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4629.16
+      },
+      "hits": [
+        {
+          "id": "5a1a5bbda9db013e:L0:000000",
+          "score": 5.061013698577881,
+          "fused": 0.7879415634526615,
+          "dense_rank": 15,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.061013698577881
+        },
+        {
+          "id": "dd498e0082847164:L0:000120",
+          "score": 1.9021342992782593,
+          "fused": 0.44767407765565453,
+          "dense_rank": 11,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 1.9021342992782593
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000078",
+          "score": -2.503621816635132,
+          "fused": 0.2635467961010149,
+          "dense_rank": 3,
+          "bm25_rank": 27,
+          "fused_rank": 5,
+          "rerank": -2.503621816635132
+        },
+        {
+          "id": "ce57fdde2baaba9c:L0:000016",
+          "score": -2.9272520542144775,
+          "fused": 0.4468280244688145,
+          "dense_rank": 1,
+          "bm25_rank": 11,
+          "fused_rank": 4,
+          "rerank": -2.9272520542144775
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000074",
+          "score": -3.4859726428985596,
+          "fused": 0.4671444729945116,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -3.4859726428985596
+        }
+      ],
+      "latency_ms": 4646.6
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 476,
+      "latency_ms": 0.59
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13378.37
+    }
+  },
+  "retrieved_ids": [
+    "5a1a5bbda9db013e:L0:000000",
+    "dd498e0082847164:L0:000120",
+    "ad11b6e85f908fb3:L0:000078",
+    "ce57fdde2baaba9c:L0:000016",
+    "4fcce431f5d22d1d:L0:000074"
+  ],
+  "filtered_ids": [
+    "5a1a5bbda9db013e:L0:000000",
+    "dd498e0082847164:L0:000120",
+    "ad11b6e85f908fb3:L0:000078",
+    "ce57fdde2baaba9c:L0:000016",
+    "4fcce431f5d22d1d:L0:000074"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:53:04.392525+00:00",
+      "call_id": "e7e1972188bf",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4eaf2134be484752",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "13fe2591dff84b53"
+    },
+    {
+      "ts": "2026-11-13T12:53:22.421619+00:00",
+      "call_id": "a49f31a4aee2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b8e1991d9e066adc",
+      "prompt_tokens": 1068,
+      "completion_tokens": 79,
+      "latency_ms": 13377.22,
+      "server_ms": 13358.96,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "13fe2591dff84b53"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1068,
+    "completion_tokens": 79,
+    "total_ms": 18029.74
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

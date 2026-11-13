@@ -1,0 +1,178 @@
+{
+  "trace_id": "05598ac5c20b4e60",
+  "created_at": "2026-11-13T14:37:51.728182+00:00",
+  "query": "The Dogwoman telemovies were created by an actress born in what year?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5237.66
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5237.76
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19251.9
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.8,
+      "bm25_ms": 7.39,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5225.08
+      },
+      "hits": [
+        {
+          "id": "634431bb1e27714f:L0:000136",
+          "score": 6.776385307312012,
+          "fused": 0.8906554359048036,
+          "dense_rank": 6,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.776385307312012
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000004",
+          "score": 0.06124154105782509,
+          "fused": 0.23334763709002926,
+          "dense_rank": 4,
+          "bm25_rank": 38,
+          "fused_rank": 5,
+          "rerank": 0.06124154105782509
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000150",
+          "score": -0.22328396141529083,
+          "fused": 0.15815093368794206,
+          "dense_rank": 11,
+          "bm25_rank": null,
+          "fused_rank": 20,
+          "rerank": -0.22328396141529083
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000098",
+          "score": -0.3114490211009979,
+          "fused": 0.16170526266551286,
+          "dense_rank": 8,
+          "bm25_rank": null,
+          "fused_rank": 17,
+          "rerank": -0.3114490211009979
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000149",
+          "score": -0.7569150924682617,
+          "fused": 0.20434417986147538,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 10,
+          "rerank": -0.7569150924682617
+        }
+      ],
+      "latency_ms": 5237.61
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 706,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14014.02
+    }
+  },
+  "retrieved_ids": [
+    "634431bb1e27714f:L0:000136",
+    "90976421f3f2bea2:L0:000004",
+    "90976421f3f2bea2:L0:000150",
+    "81fc433d55d23b4c:L0:000098",
+    "8e50522b7cb636d8:L0:000149"
+  ],
+  "filtered_ids": [
+    "634431bb1e27714f:L0:000136",
+    "90976421f3f2bea2:L0:000004",
+    "90976421f3f2bea2:L0:000150",
+    "81fc433d55d23b4c:L0:000098",
+    "8e50522b7cb636d8:L0:000149"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:37:51.728182+00:00",
+      "call_id": "69f14673c512",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1f11b3042a0297ab",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "05598ac5c20b4e60"
+    },
+    {
+      "ts": "2026-11-13T14:38:10.976549+00:00",
+      "call_id": "08335a33c9d2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e2ed01deb1a542af",
+      "prompt_tokens": 1382,
+      "completion_tokens": 67,
+      "latency_ms": 14012.81,
+      "server_ms": 13988.4,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "05598ac5c20b4e60"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1382,
+    "completion_tokens": 67,
+    "total_ms": 19253.77
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

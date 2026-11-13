@@ -1,0 +1,163 @@
+{
+  "trace_id": "1059a9d5cd87456b",
+  "created_at": "2026-11-13T09:47:25.522496+00:00",
+  "query": "Who is the Vice-President of the organization that controls the monetary policy of the EU?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.78
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.84
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11144.76
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.14,
+      "bm25_ms": 11.3,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "15abb5e49dced915:L0:000099",
+          "score": 0.9340368763612552,
+          "fused": 0.9340368763612552,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000054",
+          "score": 0.8336730825961147,
+          "fused": 0.8336730825961147,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "dd498e0082847164:L0:000098",
+          "score": 0.7409994158056875,
+          "fused": 0.7409994158056875,
+          "dense_rank": 23,
+          "bm25_rank": 1
+        },
+        {
+          "id": "dd498e0082847164:L0:000040",
+          "score": 0.6438116248118255,
+          "fused": 0.6438116248118255,
+          "dense_rank": 5,
+          "bm25_rank": 5
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000014",
+          "score": 0.6129979664074179,
+          "fused": 0.6129979664074179,
+          "dense_rank": 3,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 15.74
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 630,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11128.81
+    }
+  },
+  "retrieved_ids": [
+    "15abb5e49dced915:L0:000099",
+    "f109b032e24ab27a:L0:000054",
+    "dd498e0082847164:L0:000098",
+    "dd498e0082847164:L0:000040",
+    "8679484d23bfd3a0:L0:000014"
+  ],
+  "filtered_ids": [
+    "15abb5e49dced915:L0:000099",
+    "f109b032e24ab27a:L0:000054",
+    "dd498e0082847164:L0:000098",
+    "dd498e0082847164:L0:000040",
+    "8679484d23bfd3a0:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:47:25.524494+00:00",
+      "call_id": "872e3acf4148",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "17388774d0af6548",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1059a9d5cd87456b"
+    },
+    {
+      "ts": "2026-11-13T09:47:36.665359+00:00",
+      "call_id": "62d34963b2eb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9d9c4b094420e000",
+      "prompt_tokens": 1210,
+      "completion_tokens": 61,
+      "latency_ms": 11127.9,
+      "server_ms": 11103.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "1059a9d5cd87456b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1210,
+    "completion_tokens": 61,
+    "total_ms": 11147.6
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

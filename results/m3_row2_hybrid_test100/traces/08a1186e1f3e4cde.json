@@ -1,0 +1,167 @@
+{
+  "trace_id": "08a1186e1f3e4cde",
+  "created_at": "2026-11-13T11:16:29.361153+00:00",
+  "query": "Which film has the director who was born earlier, Legend Of The Inca Bridge or Gangs Of New York?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.26
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.31
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22924.6
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.85,
+      "bm25_ms": 6.08,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000140",
+          "score": 0.9407243705489274,
+          "fused": 0.9407243705489274,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000014",
+          "score": 0.5774245435806837,
+          "fused": 0.5774245435806837,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "0eac870d43736f51:L0:000053",
+          "score": 0.5346654969246832,
+          "fused": 0.5346654969246832,
+          "dense_rank": 7,
+          "bm25_rank": 2
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": 0.24321412675531995,
+          "fused": 0.24321412675531995,
+          "dense_rank": 4,
+          "bm25_rank": 38
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000153",
+          "score": 0.23002529932066013,
+          "fused": 0.23002529932066013,
+          "dense_rank": 10,
+          "bm25_rank": 20
+        }
+      ],
+      "latency_ms": 9.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1040,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22915.13
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000140",
+    "c73b757f0eb66f37:L0:000014",
+    "0eac870d43736f51:L0:000053",
+    "b04ce6dd2d95fb80:L0:000152",
+    "b04ce6dd2d95fb80:L0:000153"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000140",
+    "c73b757f0eb66f37:L0:000014",
+    "0eac870d43736f51:L0:000053",
+    "b04ce6dd2d95fb80:L0:000152",
+    "b04ce6dd2d95fb80:L0:000153"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:16:29.362153+00:00",
+      "call_id": "4a3f919b49c9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "037f73e2cdedbb23",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "08a1186e1f3e4cde"
+    },
+    {
+      "ts": "2026-11-13T11:16:52.284165+00:00",
+      "call_id": "5557f4d0c992",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0ea830426d782f07",
+      "prompt_tokens": 1779,
+      "completion_tokens": 121,
+      "latency_ms": 22914.04,
+      "server_ms": 22885.95,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "08a1186e1f3e4cde"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1779,
+    "completion_tokens": 121,
+    "total_ms": 22926.12
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, Gangs of New York was directed by a person born earlier."
+      ]
+    }
+  }
+}

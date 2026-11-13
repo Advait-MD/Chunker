@@ -1,0 +1,163 @@
+{
+  "trace_id": "b4f7ae83c03e4218",
+  "created_at": "2026-11-13T10:48:07.400944+00:00",
+  "query": "Which dog is believed to dispel ghosts and evil spirits, Segugio Italiano or Sapsali?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.46
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.52
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13992.8
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.45,
+      "bm25_ms": 8.7,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "838c0e0106e6f015:L0:000070",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000166",
+          "score": 0.5382883103807072,
+          "fused": 0.5382883103807072,
+          "dense_rank": 5,
+          "bm25_rank": 2
+        },
+        {
+          "id": "b120b09075017d08:L0:000153",
+          "score": 0.4427902687754837,
+          "fused": 0.4427902687754837,
+          "dense_rank": 6,
+          "bm25_rank": 3
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000003",
+          "score": 0.33827481785043867,
+          "fused": 0.33827481785043867,
+          "dense_rank": 3,
+          "bm25_rank": 12
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000104",
+          "score": 0.27606621673631443,
+          "fused": 0.27606621673631443,
+          "dense_rank": 2,
+          "bm25_rank": 50
+        }
+      ],
+      "latency_ms": 12.42
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 891,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13980.18
+    }
+  },
+  "retrieved_ids": [
+    "838c0e0106e6f015:L0:000070",
+    "838c0e0106e6f015:L0:000166",
+    "b120b09075017d08:L0:000153",
+    "9794e842cc9565f0:L0:000003",
+    "81fc433d55d23b4c:L0:000104"
+  ],
+  "filtered_ids": [
+    "838c0e0106e6f015:L0:000070",
+    "838c0e0106e6f015:L0:000166",
+    "b120b09075017d08:L0:000153",
+    "9794e842cc9565f0:L0:000003",
+    "81fc433d55d23b4c:L0:000104"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:48:07.403326+00:00",
+      "call_id": "442d5bd73784",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "11f644b14aed56c2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b4f7ae83c03e4218"
+    },
+    {
+      "ts": "2026-11-13T10:48:21.392602+00:00",
+      "call_id": "e89db30b6a6d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "396534bdec787184",
+      "prompt_tokens": 1575,
+      "completion_tokens": 50,
+      "latency_ms": 13978.84,
+      "server_ms": 13954.52,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "b4f7ae83c03e4218"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1575,
+    "completion_tokens": 50,
+    "total_ms": 13994.94
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

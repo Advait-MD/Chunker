@@ -1,0 +1,178 @@
+{
+  "trace_id": "46d52df6bdc64534",
+  "created_at": "2026-11-13T14:10:03.632474+00:00",
+  "query": "Why did Roy not sign on with the commercial fishing companies?\n\nOptions:\n(A) They did not pay a high enough percentage\n(B) They only fished for Snapper which was very difficult\n(C) They only worked out of Fort Meyers\n(D) They did not allow him to move around as he pleased\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 20760.14
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 20760.26
+    },
+    {
+      "state": "DONE",
+      "t_ms": 42053.21
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 8.57,
+      "bm25_ms": 45.32,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 20699.13
+      },
+      "hits": [
+        {
+          "id": "d229f0b1fa6722b4:L0:000006",
+          "score": 1.121856451034546,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.121856451034546
+        },
+        {
+          "id": "d229f0b1fa6722b4:L0:000018",
+          "score": -2.7082743644714355,
+          "fused": 0.2905509378898658,
+          "dense_rank": 17,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": -2.7082743644714355
+        },
+        {
+          "id": "d229f0b1fa6722b4:L0:000017",
+          "score": -3.322864055633545,
+          "fused": 0.32467214525887206,
+          "dense_rank": 6,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -3.322864055633545
+        },
+        {
+          "id": "d229f0b1fa6722b4:L0:000003",
+          "score": -3.681769847869873,
+          "fused": 0.28892913153681826,
+          "dense_rank": 4,
+          "bm25_rank": 8,
+          "fused_rank": 5,
+          "rerank": -3.681769847869873
+        },
+        {
+          "id": "d229f0b1fa6722b4:L0:000000",
+          "score": -3.7102153301239014,
+          "fused": 0.11488806241809568,
+          "dense_rank": 19,
+          "bm25_rank": 14,
+          "fused_rank": 16,
+          "rerank": -3.7102153301239014
+        }
+      ],
+      "latency_ms": 20760.04
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1895,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21292.84
+    }
+  },
+  "retrieved_ids": [
+    "d229f0b1fa6722b4:L0:000006",
+    "d229f0b1fa6722b4:L0:000018",
+    "d229f0b1fa6722b4:L0:000017",
+    "d229f0b1fa6722b4:L0:000003",
+    "d229f0b1fa6722b4:L0:000000"
+  ],
+  "filtered_ids": [
+    "d229f0b1fa6722b4:L0:000006",
+    "d229f0b1fa6722b4:L0:000018",
+    "d229f0b1fa6722b4:L0:000017",
+    "d229f0b1fa6722b4:L0:000003",
+    "d229f0b1fa6722b4:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:10:03.636501+00:00",
+      "call_id": "0c62d3a4fd89",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4d035426b567f61a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "46d52df6bdc64534"
+    },
+    {
+      "ts": "2026-11-13T14:10:45.686557+00:00",
+      "call_id": "23b7de58b7be",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ce0d365f4686fe97",
+      "prompt_tokens": 2414,
+      "completion_tokens": 65,
+      "latency_ms": 21291.26,
+      "server_ms": 21261.52,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "46d52df6bdc64534"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2414,
+    "completion_tokens": 65,
+    "total_ms": 42055.77
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

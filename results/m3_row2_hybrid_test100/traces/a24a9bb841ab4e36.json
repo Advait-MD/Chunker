@@ -1,0 +1,165 @@
+{
+  "trace_id": "a24a9bb841ab4e36",
+  "created_at": "2026-11-13T11:04:54.540367+00:00",
+  "query": "Where did the director of film Search And Destroy (1995 Film) study?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.05
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.12
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10098.59
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.3,
+      "bm25_ms": 6.4,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "460e441179bec402:L0:000024",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "0eac870d43736f51:L0:000136",
+          "score": 0.37884054874792306,
+          "fused": 0.37884054874792306,
+          "dense_rank": 6,
+          "bm25_rank": 5
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000034",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "99628090500247e3:L0:000190",
+          "score": 0.25350161529456555,
+          "fused": 0.25350161529456555,
+          "dense_rank": 2,
+          "bm25_rank": 40
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000065",
+          "score": 0.24743610366714092,
+          "fused": 0.24743610366714092,
+          "dense_rank": 11,
+          "bm25_rank": 15
+        }
+      ],
+      "latency_ms": 10.01
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 324,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10088.38
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000024",
+    "0eac870d43736f51:L0:000136",
+    "317e12ccd417c0d7:L0:000034",
+    "99628090500247e3:L0:000190",
+    "317e12ccd417c0d7:L0:000065"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000024",
+    "0eac870d43736f51:L0:000136",
+    "317e12ccd417c0d7:L0:000034",
+    "99628090500247e3:L0:000190",
+    "317e12ccd417c0d7:L0:000065"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:04:54.542370+00:00",
+      "call_id": "09ac4b98ac7b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "909629fd0ad988bc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a24a9bb841ab4e36"
+    },
+    {
+      "ts": "2026-11-13T11:05:04.638673+00:00",
+      "call_id": "fdf47b9a0b0e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8f9f7b3ed01bd489",
+      "prompt_tokens": 939,
+      "completion_tokens": 68,
+      "latency_ms": 10087.36,
+      "server_ms": 10062.66,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a24a9bb841ab4e36"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 939,
+    "completion_tokens": 68,
+    "total_ms": 10101.42
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "The director of the film Search and Destroy (1995) is David Salle, who did not study at any institution mentioned in the provided passages."
+      ]
+    }
+  }
+}

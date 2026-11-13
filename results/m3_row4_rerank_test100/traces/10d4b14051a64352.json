@@ -1,0 +1,178 @@
+{
+  "trace_id": "10d4b14051a64352",
+  "created_at": "2026-11-13T15:14:04.948054+00:00",
+  "query": "Which award the performer of song Constantemente Mía got?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9108.16
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9108.74
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 25742.14
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.97,
+      "bm25_ms": 9.08,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 9090.98
+      },
+      "hits": [
+        {
+          "id": "99628090500247e3:L0:000040",
+          "score": 5.931370258331299,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.931370258331299
+        },
+        {
+          "id": "99628090500247e3:L0:000046",
+          "score": -2.039578437805176,
+          "fused": 0.14826771566337782,
+          "dense_rank": 7,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -2.039578437805176
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000020",
+          "score": -2.165663719177246,
+          "fused": 0.13002058584518947,
+          "dense_rank": 11,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -2.165663719177246
+        },
+        {
+          "id": "abe982d210232c3f:L0:000045",
+          "score": -2.46003794670105,
+          "fused": 0.22796442400472905,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 6,
+          "rerank": -2.46003794670105
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000026",
+          "score": -2.856407403945923,
+          "fused": 0.2925064477857411,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 3,
+          "rerank": -2.856407403945923
+        }
+      ],
+      "latency_ms": 9108.1
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1605,
+      "latency_ms": 0.54
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16633.32
+    }
+  },
+  "retrieved_ids": [
+    "99628090500247e3:L0:000040",
+    "99628090500247e3:L0:000046",
+    "53c7288bdcd3837a:L0:000020",
+    "abe982d210232c3f:L0:000045",
+    "4a757779abfb4ba1:L0:000026"
+  ],
+  "filtered_ids": [
+    "99628090500247e3:L0:000040",
+    "99628090500247e3:L0:000046",
+    "53c7288bdcd3837a:L0:000020",
+    "abe982d210232c3f:L0:000045",
+    "4a757779abfb4ba1:L0:000026"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:14:04.948054+00:00",
+      "call_id": "4615bea0a460",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9e7d00e92c602810",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "10d4b14051a64352"
+    },
+    {
+      "ts": "2026-11-13T15:14:30.684081+00:00",
+      "call_id": "ae46182564f7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "73f8ae6ab3cf28b0",
+      "prompt_tokens": 2417,
+      "completion_tokens": 45,
+      "latency_ms": 16632.06,
+      "server_ms": 16607.57,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "10d4b14051a64352"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2417,
+    "completion_tokens": 45,
+    "total_ms": 25742.82
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

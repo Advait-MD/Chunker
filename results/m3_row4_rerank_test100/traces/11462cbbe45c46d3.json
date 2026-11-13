@@ -1,0 +1,182 @@
+{
+  "trace_id": "11462cbbe45c46d3",
+  "created_at": "2026-11-13T13:12:13.000470+00:00",
+  "query": "How does Slate morally consider the implications of being loyal or unloyal to Clinton in the scandal?\n\nOptions:\n(A) It's consistently seen as a bad thing.\n(B) It's consistently seen as a good thing.\n(C) Loyalty or lack thereof isn't referenced enough within the article to make any generalizations.\n(D) Loyalty or lack thereof can be seen as a plus or minus depending on the context.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10945.52
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10946.0
+    },
+    {
+      "state": "DONE",
+      "t_ms": 33554.57
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.54,
+      "bm25_ms": 37.58,
+      "n_candidates": {
+        "dense": 10,
+        "bm25": 10
+      },
+      "n_fused": 10,
+      "rerank": {
+        "n": 10,
+        "n_computed": 10,
+        "latency_ms": 10902.47
+      },
+      "hits": [
+        {
+          "id": "8ae96e39396635aa:L0:000005",
+          "score": 0.82569819688797,
+          "fused": 0.9491520374466493,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.82569819688797
+        },
+        {
+          "id": "8ae96e39396635aa:L0:000004",
+          "score": 0.7271580696105957,
+          "fused": 0.5755913301907652,
+          "dense_rank": 10,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": 0.7271580696105957
+        },
+        {
+          "id": "8ae96e39396635aa:L0:000008",
+          "score": 0.43083128333091736,
+          "fused": 0.848637164519938,
+          "dense_rank": 2,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": 0.43083128333091736
+        },
+        {
+          "id": "8ae96e39396635aa:L0:000009",
+          "score": 0.21519164741039276,
+          "fused": 0.47391017043790534,
+          "dense_rank": 7,
+          "bm25_rank": 9,
+          "fused_rank": 9,
+          "rerank": 0.21519164741039276
+        },
+        {
+          "id": "8ae96e39396635aa:L0:000002",
+          "score": 0.04050866514444351,
+          "fused": 0.6615567093039109,
+          "dense_rank": 6,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": 0.04050866514444351
+        }
+      ],
+      "latency_ms": 10945.47
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1792,
+      "latency_ms": 0.45
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22608.47
+    }
+  },
+  "retrieved_ids": [
+    "8ae96e39396635aa:L0:000005",
+    "8ae96e39396635aa:L0:000004",
+    "8ae96e39396635aa:L0:000008",
+    "8ae96e39396635aa:L0:000009",
+    "8ae96e39396635aa:L0:000002"
+  ],
+  "filtered_ids": [
+    "8ae96e39396635aa:L0:000005",
+    "8ae96e39396635aa:L0:000004",
+    "8ae96e39396635aa:L0:000008",
+    "8ae96e39396635aa:L0:000009",
+    "8ae96e39396635aa:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:12:13.002479+00:00",
+      "call_id": "198d10400dbc",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fb3878c4a5475590",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "11462cbbe45c46d3"
+    },
+    {
+      "ts": "2026-11-13T13:12:46.553397+00:00",
+      "call_id": "76223b386fde",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8615df4e886d75ae",
+      "prompt_tokens": 2541,
+      "completion_tokens": 94,
+      "latency_ms": 22607.44,
+      "server_ms": 22591.3,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "11462cbbe45c46d3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2541,
+    "completion_tokens": 94,
+    "total_ms": 33555.81
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

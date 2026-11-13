@@ -1,0 +1,163 @@
+{
+  "trace_id": "8235b318bf4f433e",
+  "created_at": "2026-11-13T09:43:16.916291+00:00",
+  "query": "What is the direction of flow of the body of water by the city where Uni-Systems is headquartered?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.0
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17.09
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13398.91
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.86,
+      "bm25_ms": 13.79,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "a168352d83e925b5:L0:000132",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000172",
+          "score": 0.5339679476222688,
+          "fused": 0.5339679476222688,
+          "dense_rank": 39,
+          "bm25_rank": 2
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000033",
+          "score": 0.4421888013201615,
+          "fused": 0.4421888013201615,
+          "dense_rank": 22,
+          "bm25_rank": 4
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000177",
+          "score": 0.42467323615241215,
+          "fused": 0.42467323615241215,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000191",
+          "score": 0.34556305817515554,
+          "fused": 0.34556305817515554,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 16.96
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 564,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13381.71
+    }
+  },
+  "retrieved_ids": [
+    "a168352d83e925b5:L0:000132",
+    "f109b032e24ab27a:L0:000172",
+    "cc1bdb3bf430bd0d:L0:000033",
+    "5a1a5bbda9db013e:L0:000177",
+    "f109b032e24ab27a:L0:000191"
+  ],
+  "filtered_ids": [
+    "a168352d83e925b5:L0:000132",
+    "f109b032e24ab27a:L0:000172",
+    "cc1bdb3bf430bd0d:L0:000033",
+    "5a1a5bbda9db013e:L0:000177",
+    "f109b032e24ab27a:L0:000191"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:43:16.918292+00:00",
+      "call_id": "a40522c1b784",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8b5e2ffd6990ea1b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8235b318bf4f433e"
+    },
+    {
+      "ts": "2026-11-13T09:43:30.314238+00:00",
+      "call_id": "ff463ddfd464",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e3d4f4d1b3470ac1",
+      "prompt_tokens": 1137,
+      "completion_tokens": 72,
+      "latency_ms": 13380.67,
+      "server_ms": 13356.23,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "8235b318bf4f433e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1137,
+    "completion_tokens": 72,
+    "total_ms": 13400.16
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

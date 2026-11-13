@@ -1,0 +1,178 @@
+{
+  "trace_id": "f73126dbbb824782",
+  "created_at": "2026-11-13T13:50:34.334636+00:00",
+  "query": "Why does the Earth have no moon?\n\nOptions:\n(A) The moon disintegrated in the battle between stars\n(B) The moon was stolen by a dark star\n(C) The moon stayed with the sun\n(D) The moon was flung off into space on its own\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19337.5
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19337.68
+    },
+    {
+      "state": "DONE",
+      "t_ms": 40145.44
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.44,
+      "bm25_ms": 23.64,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 18
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 19303.8
+      },
+      "hits": [
+        {
+          "id": "a3e91ed7338e9e41:L0:000011",
+          "score": -0.8413496613502502,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.8413496613502502
+        },
+        {
+          "id": "a3e91ed7338e9e41:L0:000010",
+          "score": -1.8217447996139526,
+          "fused": 0.6213311218244207,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -1.8217447996139526
+        },
+        {
+          "id": "a3e91ed7338e9e41:L0:000013",
+          "score": -3.2611467838287354,
+          "fused": 0.31178374225299066,
+          "dense_rank": 10,
+          "bm25_rank": 9,
+          "fused_rank": 9,
+          "rerank": -3.2611467838287354
+        },
+        {
+          "id": "a3e91ed7338e9e41:L0:000000",
+          "score": -3.440317153930664,
+          "fused": 0.37868310988494697,
+          "dense_rank": 8,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -3.440317153930664
+        },
+        {
+          "id": "a3e91ed7338e9e41:L0:000008",
+          "score": -3.458878755569458,
+          "fused": 0.3770411037545972,
+          "dense_rank": 5,
+          "bm25_rank": 8,
+          "fused_rank": 7,
+          "rerank": -3.458878755569458
+        }
+      ],
+      "latency_ms": 19337.44
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1840,
+      "latency_ms": 0.14
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20807.61
+    }
+  },
+  "retrieved_ids": [
+    "a3e91ed7338e9e41:L0:000011",
+    "a3e91ed7338e9e41:L0:000010",
+    "a3e91ed7338e9e41:L0:000013",
+    "a3e91ed7338e9e41:L0:000000",
+    "a3e91ed7338e9e41:L0:000008"
+  ],
+  "filtered_ids": [
+    "a3e91ed7338e9e41:L0:000011",
+    "a3e91ed7338e9e41:L0:000010",
+    "a3e91ed7338e9e41:L0:000013",
+    "a3e91ed7338e9e41:L0:000000",
+    "a3e91ed7338e9e41:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:50:34.334636+00:00",
+      "call_id": "2ded5742a8f3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b994d9bb072f563e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f73126dbbb824782"
+    },
+    {
+      "ts": "2026-11-13T13:51:14.483545+00:00",
+      "call_id": "39f0d8c64cad",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7bf6352101108759",
+      "prompt_tokens": 2428,
+      "completion_tokens": 53,
+      "latency_ms": 20805.5,
+      "server_ms": 20780.48,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f73126dbbb824782"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2428,
+    "completion_tokens": 53,
+    "total_ms": 40147.55
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

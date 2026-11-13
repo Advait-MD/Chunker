@@ -1,0 +1,164 @@
+{
+  "trace_id": "0d3a9876b3024b18",
+  "created_at": "2026-11-13T10:09:45.460365+00:00",
+  "query": "Given the description of the natural setting of Eros, will it be likely that the family can survive with the available resources on the planetoid?\n\nOptions:\n(A) Yes, it appears Eros has the same resources and species of animals on Earth to survive off of.\n(B) No, Eros is too underdeveloped for a family to survive on.\n(C) No, Eros is not identical to Earth, and neither are its resources.\n(D) Yes, Eros has usable food sources, for example, but not exactly like what appears on Earth.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16.02
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16.24
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21905.63
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.19,
+      "bm25_ms": 13.56,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 19
+      },
+      "n_fused": 19,
+      "hits": [
+        {
+          "id": "40b523f2ab33bb5f:L0:000014",
+          "score": 0.9428355102299504,
+          "fused": 0.9428355102299504,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "40b523f2ab33bb5f:L0:000006",
+          "score": 0.9352068278277988,
+          "fused": 0.9352068278277988,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "40b523f2ab33bb5f:L0:000013",
+          "score": 0.9024503727578899,
+          "fused": 0.9024503727578899,
+          "dense_rank": 6,
+          "bm25_rank": 1
+        },
+        {
+          "id": "40b523f2ab33bb5f:L0:000007",
+          "score": 0.7936225771980447,
+          "fused": 0.7936225771980447,
+          "dense_rank": 4,
+          "bm25_rank": 6
+        },
+        {
+          "id": "40b523f2ab33bb5f:L0:000008",
+          "score": 0.7856763709864866,
+          "fused": 0.7856763709864866,
+          "dense_rank": 5,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 16.0
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1949,
+      "latency_ms": 0.21
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21889.26
+    }
+  },
+  "retrieved_ids": [
+    "40b523f2ab33bb5f:L0:000014",
+    "40b523f2ab33bb5f:L0:000006",
+    "40b523f2ab33bb5f:L0:000013",
+    "40b523f2ab33bb5f:L0:000007",
+    "40b523f2ab33bb5f:L0:000008"
+  ],
+  "filtered_ids": [
+    "40b523f2ab33bb5f:L0:000014",
+    "40b523f2ab33bb5f:L0:000006",
+    "40b523f2ab33bb5f:L0:000013",
+    "40b523f2ab33bb5f:L0:000007",
+    "40b523f2ab33bb5f:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:09:45.461367+00:00",
+      "call_id": "496d7827ca5f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a500c69398f804ef",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0d3a9876b3024b18"
+    },
+    {
+      "ts": "2026-11-13T10:10:07.365420+00:00",
+      "call_id": "d5686e8af001",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "06055e804899ea2a",
+      "prompt_tokens": 2652,
+      "completion_tokens": 74,
+      "latency_ms": 21888.69,
+      "server_ms": 21868.06,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0d3a9876b3024b18"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2652,
+    "completion_tokens": 74,
+    "total_ms": 21906.19
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

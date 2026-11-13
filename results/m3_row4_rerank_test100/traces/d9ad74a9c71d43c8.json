@@ -1,0 +1,182 @@
+{
+  "trace_id": "d9ad74a9c71d43c8",
+  "created_at": "2026-11-13T14:23:32.253551+00:00",
+  "query": "The town of Sinclair, West Virginia, is named after the founder of the local oil drilling company. What is on Sinclair Oil's famous logo?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6255.29
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6255.49
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 18480.5
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.69,
+      "bm25_ms": 19.85,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6228.88
+      },
+      "hits": [
+        {
+          "id": "9794e842cc9565f0:L0:000188",
+          "score": 1.2531760931015015,
+          "fused": 0.8011894009767583,
+          "dense_rank": 13,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.2531760931015015
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000008",
+          "score": -0.43357229232788086,
+          "fused": 0.7161484086712107,
+          "dense_rank": 6,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -0.43357229232788086
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000052",
+          "score": -4.305855751037598,
+          "fused": 0.3442716959619382,
+          "dense_rank": 2,
+          "bm25_rank": 22,
+          "fused_rank": 10,
+          "rerank": -4.305855751037598
+        },
+        {
+          "id": "20496f59538deb41:L0:000087",
+          "score": -4.881674766540527,
+          "fused": 0.31842350909025974,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 12,
+          "rerank": -4.881674766540527
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000142",
+          "score": -5.778920650482178,
+          "fused": 0.7819037926698924,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -5.778920650482178
+        }
+      ],
+      "latency_ms": 6255.24
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 499,
+      "latency_ms": 0.16
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12224.81
+    }
+  },
+  "retrieved_ids": [
+    "9794e842cc9565f0:L0:000188",
+    "81fc433d55d23b4c:L0:000008",
+    "cb96563b0747a6ba:L0:000052",
+    "20496f59538deb41:L0:000087",
+    "8e50522b7cb636d8:L0:000142"
+  ],
+  "filtered_ids": [
+    "9794e842cc9565f0:L0:000188",
+    "81fc433d55d23b4c:L0:000008",
+    "cb96563b0747a6ba:L0:000052",
+    "20496f59538deb41:L0:000087",
+    "8e50522b7cb636d8:L0:000142"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:23:32.255562+00:00",
+      "call_id": "7ddd194ebcd3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b47188d150497c53",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d9ad74a9c71d43c8"
+    },
+    {
+      "ts": "2026-11-13T14:23:50.728877+00:00",
+      "call_id": "88ab2a553a6d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "fbf3a09a5b28e818",
+      "prompt_tokens": 1124,
+      "completion_tokens": 73,
+      "latency_ms": 12223.54,
+      "server_ms": 12203.29,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d9ad74a9c71d43c8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1124,
+    "completion_tokens": 73,
+    "total_ms": 18483.29
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

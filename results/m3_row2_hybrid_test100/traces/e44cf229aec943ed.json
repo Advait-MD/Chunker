@@ -1,0 +1,165 @@
+{
+  "trace_id": "e44cf229aec943ed",
+  "created_at": "2026-11-13T09:30:15.845867+00:00",
+  "query": "What package was used to build the ngram language models?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 20.13
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 20.19
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15255.11
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.35,
+      "bm25_ms": 14.18,
+      "n_candidates": {
+        "dense": 13,
+        "bm25": 11
+      },
+      "n_fused": 13,
+      "hits": [
+        {
+          "id": "5113513d66b8be17:L0:000010",
+          "score": 0.9897236133647522,
+          "fused": 0.9897236133647522,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "5113513d66b8be17:L0:000006",
+          "score": 0.6794835824645973,
+          "fused": 0.6794835824645973,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "5113513d66b8be17:L0:000009",
+          "score": 0.5617964079666594,
+          "fused": 0.5617964079666594,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "5113513d66b8be17:L0:000000",
+          "score": 0.45185745294986357,
+          "fused": 0.45185745294986357,
+          "dense_rank": 5,
+          "bm25_rank": 5
+        },
+        {
+          "id": "5113513d66b8be17:L0:000007",
+          "score": 0.4297406983092837,
+          "fused": 0.4297406983092837,
+          "dense_rank": 4,
+          "bm25_rank": 8
+        }
+      ],
+      "latency_ms": 20.09
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1018,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15234.86
+    }
+  },
+  "retrieved_ids": [
+    "5113513d66b8be17:L0:000010",
+    "5113513d66b8be17:L0:000006",
+    "5113513d66b8be17:L0:000009",
+    "5113513d66b8be17:L0:000000",
+    "5113513d66b8be17:L0:000007"
+  ],
+  "filtered_ids": [
+    "5113513d66b8be17:L0:000010",
+    "5113513d66b8be17:L0:000006",
+    "5113513d66b8be17:L0:000009",
+    "5113513d66b8be17:L0:000000",
+    "5113513d66b8be17:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:30:15.847865+00:00",
+      "call_id": "6895735faaf0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "eb851295f77f7d83",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e44cf229aec943ed"
+    },
+    {
+      "ts": "2026-11-13T09:30:31.100365+00:00",
+      "call_id": "fed873935a7f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "df085b83366b0338",
+      "prompt_tokens": 1625,
+      "completion_tokens": 52,
+      "latency_ms": 15234.15,
+      "server_ms": 15218.59,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "e44cf229aec943ed"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1625,
+    "completion_tokens": 52,
+    "total_ms": 15255.62
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2
+      ],
+      "uncited_sentences": [
+        "We used the KenLM Toolkit to train the N-gram language models on each corpus."
+      ]
+    }
+  }
+}

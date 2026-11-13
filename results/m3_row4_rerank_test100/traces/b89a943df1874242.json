@@ -1,0 +1,180 @@
+{
+  "trace_id": "b89a943df1874242",
+  "created_at": "2026-11-13T13:03:24.116306+00:00",
+  "query": "In what region of the country where Lam Thao is located is the city where the Zone 5 Military Museum can be found?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19155.93
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19156.53
+    },
+    {
+      "state": "DONE",
+      "t_ms": 29416.31
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.22,
+      "bm25_ms": 18.07,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 19132.53
+      },
+      "hits": [
+        {
+          "id": "dbcbda865eee9c7b:L0:000032",
+          "score": 4.7126665115356445,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.7126665115356445
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000060",
+          "score": 3.3842008113861084,
+          "fused": 0.3221976241178579,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 3.3842008113861084
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000117",
+          "score": -0.8719435334205627,
+          "fused": 0.1261966065790356,
+          "dense_rank": 4,
+          "bm25_rank": 44,
+          "fused_rank": 15,
+          "rerank": -0.8719435334205627
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000095",
+          "score": -2.657097101211548,
+          "fused": 0.1267572335679623,
+          "dense_rank": 17,
+          "bm25_rank": 20,
+          "fused_rank": 14,
+          "rerank": -2.657097101211548
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000014",
+          "score": -3.4285082817077637,
+          "fused": 0.15430240524928426,
+          "dense_rank": 3,
+          "bm25_rank": 30,
+          "fused_rank": 9,
+          "rerank": -3.4285082817077637
+        }
+      ],
+      "latency_ms": 19155.87
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 442,
+      "latency_ms": 0.56
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10259.7
+    }
+  },
+  "retrieved_ids": [
+    "dbcbda865eee9c7b:L0:000032",
+    "f59bbbdacaf7ffe4:L0:000060",
+    "f59bbbdacaf7ffe4:L0:000117",
+    "8b31d5859eb3d77a:L0:000095",
+    "e182527d2b1ecac3:L0:000014"
+  ],
+  "filtered_ids": [
+    "dbcbda865eee9c7b:L0:000032",
+    "f59bbbdacaf7ffe4:L0:000060",
+    "f59bbbdacaf7ffe4:L0:000117",
+    "8b31d5859eb3d77a:L0:000095",
+    "e182527d2b1ecac3:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:03:24.116306+00:00",
+      "call_id": "53cd5ddfa713",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4b52ef4a231779a2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b89a943df1874242"
+    },
+    {
+      "ts": "2026-11-13T13:03:53.534258+00:00",
+      "call_id": "d0a39db284eb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0c2e7f2c285df5b9",
+      "prompt_tokens": 1047,
+      "completion_tokens": 61,
+      "latency_ms": 10258.91,
+      "server_ms": 10246.52,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "b89a943df1874242"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1047,
+    "completion_tokens": 61,
+    "total_ms": 29459.22
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "The Zone 5 Military Museum can be found in Da Nang, which is located in the Central region of Vietnam."
+      ]
+    }
+  }
+}

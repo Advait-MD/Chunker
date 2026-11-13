@@ -1,0 +1,183 @@
+{
+  "trace_id": "2855231d0f194fd6",
+  "created_at": "2026-11-13T13:49:56.912461+00:00",
+  "query": "What would best describe the terrestrials' attitudes towards the reddies on Mars?\n\nOptions:\n(A) The terrestrials want to help the reddies claim their own freedom.\n(B) The terrestrials have complete disdain for the reddies and want to completely eradicate them.\n(C) The terrestrials want to help them be successful on Mars, so they provide motivating propaganda for them.\n(D) The terrestrials want to control the reddies so that the terrestrials can stay in control of Mars.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13607.12
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13607.75
+    },
+    {
+      "state": "DONE",
+      "t_ms": 37400.53
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.69,
+      "bm25_ms": 31.52,
+      "n_candidates": {
+        "dense": 16,
+        "bm25": 11
+      },
+      "n_fused": 16,
+      "rerank": {
+        "n": 16,
+        "n_computed": 16,
+        "latency_ms": 13567.29
+      },
+      "hits": [
+        {
+          "id": "d3a647dd40be4ba7:L0:000001",
+          "score": -0.0823267251253128,
+          "fused": 0.6666522848394326,
+          "dense_rank": 3,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -0.0823267251253128
+        },
+        {
+          "id": "d3a647dd40be4ba7:L0:000013",
+          "score": -0.25777485966682434,
+          "fused": 0.2157312148125063,
+          "dense_rank": 5,
+          "bm25_rank": 8,
+          "fused_rank": 7,
+          "rerank": -0.25777485966682434
+        },
+        {
+          "id": "d3a647dd40be4ba7:L0:000000",
+          "score": -0.33967673778533936,
+          "fused": 0.7777923865799559,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.33967673778533936
+        },
+        {
+          "id": "d3a647dd40be4ba7:L0:000003",
+          "score": -0.45859748125076294,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.45859748125076294
+        },
+        {
+          "id": "d3a647dd40be4ba7:L0:000002",
+          "score": -0.6382879614830017,
+          "fused": 0.5934796641718894,
+          "dense_rank": 4,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -0.6382879614830017
+        }
+      ],
+      "latency_ms": 13607.06
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1980,
+      "latency_ms": 0.57
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23792.66
+    }
+  },
+  "retrieved_ids": [
+    "d3a647dd40be4ba7:L0:000001",
+    "d3a647dd40be4ba7:L0:000013",
+    "d3a647dd40be4ba7:L0:000000",
+    "d3a647dd40be4ba7:L0:000003",
+    "d3a647dd40be4ba7:L0:000002"
+  ],
+  "filtered_ids": [
+    "d3a647dd40be4ba7:L0:000001",
+    "d3a647dd40be4ba7:L0:000013",
+    "d3a647dd40be4ba7:L0:000000",
+    "d3a647dd40be4ba7:L0:000003",
+    "d3a647dd40be4ba7:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:49:56.912461+00:00",
+      "call_id": "48d79d76489f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f40bf01a66e7353a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2855231d0f194fd6"
+    },
+    {
+      "ts": "2026-11-13T13:50:34.313353+00:00",
+      "call_id": "531f9fa1faa3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "dea2352fff9030ae",
+      "prompt_tokens": 2668,
+      "completion_tokens": 70,
+      "latency_ms": 23791.35,
+      "server_ms": 23758.61,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2855231d0f194fd6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2668,
+    "completion_tokens": 70,
+    "total_ms": 37427.05
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "(D) The terrestrials want to control the reddies so that the terrestrials can stay in control of Mars."
+      ]
+    }
+  }
+}

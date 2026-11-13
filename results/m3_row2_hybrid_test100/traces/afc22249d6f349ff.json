@@ -1,0 +1,167 @@
+{
+  "trace_id": "afc22249d6f349ff",
+  "created_at": "2026-11-13T11:11:31.439867+00:00",
+  "query": "Which film has the director died later, The Man From Lost River or Mcveagh Of The South Seas?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.96
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.03
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13037.18
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.2,
+      "bm25_ms": 7.45,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "6af2db6cb86d77e2:L0:000171",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000128",
+          "score": 0.5393056900002255,
+          "fused": 0.5393056900002255,
+          "dense_rank": 38,
+          "bm25_rank": 2
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000069",
+          "score": 0.4199378824268072,
+          "fused": 0.4199378824268072,
+          "dense_rank": 39,
+          "bm25_rank": 3
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000025",
+          "score": 0.31124494306522926,
+          "fused": 0.31124494306522926,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "99628090500247e3:L0:000110",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 10.92
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 358,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13026.03
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000171",
+    "b04ce6dd2d95fb80:L0:000128",
+    "c73b757f0eb66f37:L0:000069",
+    "6af2db6cb86d77e2:L0:000025",
+    "99628090500247e3:L0:000110"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000171",
+    "b04ce6dd2d95fb80:L0:000128",
+    "c73b757f0eb66f37:L0:000069",
+    "6af2db6cb86d77e2:L0:000025",
+    "99628090500247e3:L0:000110"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:11:31.441867+00:00",
+      "call_id": "8da8d3e2caa5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7b2e5fb25cbebd50",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "afc22249d6f349ff"
+    },
+    {
+      "ts": "2026-11-13T11:11:44.476468+00:00",
+      "call_id": "8181a5208020",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e9d6ee141964bd17",
+      "prompt_tokens": 963,
+      "completion_tokens": 94,
+      "latency_ms": 13024.95,
+      "server_ms": 13003.23,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "afc22249d6f349ff"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 963,
+    "completion_tokens": 94,
+    "total_ms": 13038.54
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "The Man from Lost River was directed by Frank Lloyd, while McVeagh of the South Seas was directed by and starring Harry Carey.",
+        "There is no information about the death dates of the directors in the provided passages, so this question cannot be answered based on the given evidence."
+      ]
+    }
+  }
+}

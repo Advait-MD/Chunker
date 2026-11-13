@@ -1,0 +1,163 @@
+{
+  "trace_id": "b71a241b99c240c8",
+  "created_at": "2026-11-13T11:18:52.883017+00:00",
+  "query": "Where did Baha Al-Dawla's father die?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.3
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.36
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11293.31
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.56,
+      "bm25_ms": 4.42,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000116",
+          "score": 0.8903098628048207,
+          "fused": 0.8903098628048207,
+          "dense_rank": 6,
+          "bm25_rank": 1
+        },
+        {
+          "id": "0eac870d43736f51:L0:000134",
+          "score": 0.8491517303013675,
+          "fused": 0.8491517303013675,
+          "dense_rank": 4,
+          "bm25_rank": 6
+        },
+        {
+          "id": "abe982d210232c3f:L0:000154",
+          "score": 0.8440043118766514,
+          "fused": 0.8440043118766514,
+          "dense_rank": 9,
+          "bm25_rank": 2
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000148",
+          "score": 0.8258495407752844,
+          "fused": 0.8258495407752844,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000117",
+          "score": 0.8140742861358196,
+          "fused": 0.8140742861358196,
+          "dense_rank": 10,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 7.26
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 689,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11285.84
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000116",
+    "0eac870d43736f51:L0:000134",
+    "abe982d210232c3f:L0:000154",
+    "6af2db6cb86d77e2:L0:000148",
+    "317e12ccd417c0d7:L0:000117"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000116",
+    "0eac870d43736f51:L0:000134",
+    "abe982d210232c3f:L0:000154",
+    "6af2db6cb86d77e2:L0:000148",
+    "317e12ccd417c0d7:L0:000117"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:18:52.884247+00:00",
+      "call_id": "9c4610dd92fd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bb70fea9b5d9249c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b71a241b99c240c8"
+    },
+    {
+      "ts": "2026-11-13T11:19:04.174872+00:00",
+      "call_id": "73d2c1d5bd52",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8e8c79ca442c45d9",
+      "prompt_tokens": 1433,
+      "completion_tokens": 45,
+      "latency_ms": 11284.74,
+      "server_ms": 11260.22,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "b71a241b99c240c8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1433,
+    "completion_tokens": 45,
+    "total_ms": 11297.03
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

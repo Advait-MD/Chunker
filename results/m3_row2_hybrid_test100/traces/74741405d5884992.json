@@ -1,0 +1,167 @@
+{
+  "trace_id": "74741405d5884992",
+  "created_at": "2026-11-13T10:21:01.385130+00:00",
+  "query": "What is Serenus?\n\nOptions:\n(A) A galaxy\n(B) A planet\n(C) A spaceship\n(D) An alien race\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.98
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18.81
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18730.82
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.52,
+      "bm25_ms": 12.62,
+      "n_candidates": {
+        "dense": 16,
+        "bm25": 14
+      },
+      "n_fused": 16,
+      "hits": [
+        {
+          "id": "000ccf97cce5a847:L0:000015",
+          "score": 0.9012539222911045,
+          "fused": 0.9012539222911045,
+          "dense_rank": 7,
+          "bm25_rank": 1
+        },
+        {
+          "id": "000ccf97cce5a847:L0:000002",
+          "score": 0.8940400676351801,
+          "fused": 0.8940400676351801,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "000ccf97cce5a847:L0:000013",
+          "score": 0.6681979707901536,
+          "fused": 0.6681979707901536,
+          "dense_rank": 6,
+          "bm25_rank": 3
+        },
+        {
+          "id": "000ccf97cce5a847:L0:000014",
+          "score": 0.6425506586492692,
+          "fused": 0.6425506586492692,
+          "dense_rank": 3,
+          "bm25_rank": 5
+        },
+        {
+          "id": "000ccf97cce5a847:L0:000004",
+          "score": 0.5558167860022053,
+          "fused": 0.5558167860022053,
+          "dense_rank": 12,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 17.94
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1826,
+      "latency_ms": 0.8
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18711.9
+    }
+  },
+  "retrieved_ids": [
+    "000ccf97cce5a847:L0:000015",
+    "000ccf97cce5a847:L0:000002",
+    "000ccf97cce5a847:L0:000013",
+    "000ccf97cce5a847:L0:000014",
+    "000ccf97cce5a847:L0:000004"
+  ],
+  "filtered_ids": [
+    "000ccf97cce5a847:L0:000015",
+    "000ccf97cce5a847:L0:000002",
+    "000ccf97cce5a847:L0:000013",
+    "000ccf97cce5a847:L0:000014",
+    "000ccf97cce5a847:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:21:01.386132+00:00",
+      "call_id": "b8672507ed1b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0714eccb1faf8cd6",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "74741405d5884992"
+    },
+    {
+      "ts": "2026-11-13T10:21:20.114275+00:00",
+      "call_id": "55ddd0e83890",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7c81240e9d088fe5",
+      "prompt_tokens": 2373,
+      "completion_tokens": 49,
+      "latency_ms": 18710.38,
+      "server_ms": 18673.98,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "74741405d5884992"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2373,
+    "completion_tokens": 49,
+    "total_ms": 18732.43
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2,
+        3,
+        4
+      ],
+      "uncited_sentences": [
+        "(C) Serenus is a spaceship."
+      ]
+    }
+  }
+}

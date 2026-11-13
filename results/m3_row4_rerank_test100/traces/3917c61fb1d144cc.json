@@ -1,0 +1,178 @@
+{
+  "trace_id": "3917c61fb1d144cc",
+  "created_at": "2026-11-13T14:15:19.907019+00:00",
+  "query": "Who was the great grandfather of Franklin Seaver Pratt's wife?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7469.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7470.69
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 17725.49
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.43,
+      "bm25_ms": 18.43,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 7434.42
+      },
+      "hits": [
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000097",
+          "score": 4.578013896942139,
+          "fused": 0.9383674634495307,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.578013896942139
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000062",
+          "score": -3.48835825920105,
+          "fused": 0.4136001424917228,
+          "dense_rank": 16,
+          "bm25_rank": 2,
+          "fused_rank": 5,
+          "rerank": -3.48835825920105
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000003",
+          "score": -3.832946538925171,
+          "fused": 0.2337984282930684,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 11,
+          "rerank": -3.832946538925171
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000077",
+          "score": -5.080124378204346,
+          "fused": 0.4595347642225416,
+          "dense_rank": 10,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -5.080124378204346
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000052",
+          "score": -5.210519313812256,
+          "fused": 0.3129009495869151,
+          "dense_rank": 29,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -5.210519313812256
+        }
+      ],
+      "latency_ms": 7469.34
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 509,
+      "latency_ms": 1.24
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10254.72
+    }
+  },
+  "retrieved_ids": [
+    "c8fd2b3ea47eb07f:L0:000097",
+    "9794e842cc9565f0:L0:000062",
+    "bc1dba3471045f02:L0:000003",
+    "ec3410ef955c5c93:L0:000077",
+    "cc2399aca11eb631:L0:000052"
+  ],
+  "filtered_ids": [
+    "c8fd2b3ea47eb07f:L0:000097",
+    "9794e842cc9565f0:L0:000062",
+    "bc1dba3471045f02:L0:000003",
+    "ec3410ef955c5c93:L0:000077",
+    "cc2399aca11eb631:L0:000052"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:15:19.907019+00:00",
+      "call_id": "15fd85c70580",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2483b0c183c2d2f5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "3917c61fb1d144cc"
+    },
+    {
+      "ts": "2026-11-13T14:15:37.634804+00:00",
+      "call_id": "c77444d51e25",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b4b64affac66e62b",
+      "prompt_tokens": 1152,
+      "completion_tokens": 52,
+      "latency_ms": 10253.55,
+      "server_ms": 10242.22,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "3917c61fb1d144cc"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1152,
+    "completion_tokens": 52,
+    "total_ms": 17729.59
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The evidence does not provide information about the great grandfather of Franklin Seaver Pratt's wife."
+      ]
+    }
+  }
+}

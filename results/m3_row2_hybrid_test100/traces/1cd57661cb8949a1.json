@@ -1,0 +1,166 @@
+{
+  "trace_id": "1cd57661cb8949a1",
+  "created_at": "2026-11-13T09:50:34.954303+00:00",
+  "query": "Where does the ocean adjacent to Miami meet the ocean basin at where the tropical Storm Allison ended up?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.85
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.89
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12829.29
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.18,
+      "bm25_ms": 9.44,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "8b31d5859eb3d77a:L0:000178",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000105",
+          "score": 0.36473565823421433,
+          "fused": 0.36473565823421433,
+          "dense_rank": 3,
+          "bm25_rank": 18
+        },
+        {
+          "id": "dd498e0082847164:L0:000186",
+          "score": 0.3545871878608893,
+          "fused": 0.3545871878608893,
+          "dense_rank": 6,
+          "bm25_rank": 6
+        },
+        {
+          "id": "ad4ace752e719bab:L0:000161",
+          "score": 0.33070865962261264,
+          "fused": 0.33070865962261264,
+          "dense_rank": 4,
+          "bm25_rank": 21
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000188",
+          "score": 0.30269042356762954,
+          "fused": 0.30269042356762954,
+          "dense_rank": 38,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 11.82
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 846,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12817.31
+    }
+  },
+  "retrieved_ids": [
+    "8b31d5859eb3d77a:L0:000178",
+    "dbcbda865eee9c7b:L0:000105",
+    "dd498e0082847164:L0:000186",
+    "ad4ace752e719bab:L0:000161",
+    "e182527d2b1ecac3:L0:000188"
+  ],
+  "filtered_ids": [
+    "8b31d5859eb3d77a:L0:000178",
+    "dbcbda865eee9c7b:L0:000105",
+    "dd498e0082847164:L0:000186",
+    "ad4ace752e719bab:L0:000161",
+    "e182527d2b1ecac3:L0:000188"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:50:34.955301+00:00",
+      "call_id": "3615f0d9684c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0674c80ece4e8c7a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1cd57661cb8949a1"
+    },
+    {
+      "ts": "2026-11-13T09:50:47.782906+00:00",
+      "call_id": "92b49758b933",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bdcb2fb137bab491",
+      "prompt_tokens": 1487,
+      "completion_tokens": 77,
+      "latency_ms": 12816.7,
+      "server_ms": 12799.49,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "1cd57661cb8949a1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1487,
+    "completion_tokens": 77,
+    "total_ms": 12829.82
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

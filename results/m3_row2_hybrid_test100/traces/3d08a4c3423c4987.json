@@ -1,0 +1,168 @@
+{
+  "trace_id": "3d08a4c3423c4987",
+  "created_at": "2026-11-13T10:15:30.704682+00:00",
+  "query": "Which is not true?\n\nOptions:\n(A) Some ballparks are subsidized by taxpayers\n(B) People get more affordable tickets because the ballpark is subsidized\n(C) Some ballparks are built in urban locations\n(D) Some team owners pay to build their own ballparks\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 26.08
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 26.83
+    },
+    {
+      "state": "DONE",
+      "t_ms": 28446.09
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.93,
+      "bm25_ms": 21.9,
+      "n_candidates": {
+        "dense": 7,
+        "bm25": 7
+      },
+      "n_fused": 7,
+      "hits": [
+        {
+          "id": "dedb8964eb5aff3f:L0:000006",
+          "score": 0.9427108707005325,
+          "fused": 0.9427108707005325,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "dedb8964eb5aff3f:L0:000003",
+          "score": 0.7487911728563552,
+          "fused": 0.7487911728563552,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "dedb8964eb5aff3f:L0:000004",
+          "score": 0.5075211877012242,
+          "fused": 0.5075211877012242,
+          "dense_rank": 1,
+          "bm25_rank": 6
+        },
+        {
+          "id": "dedb8964eb5aff3f:L0:000005",
+          "score": 0.49919892147850414,
+          "fused": 0.49919892147850414,
+          "dense_rank": 4,
+          "bm25_rank": 5
+        },
+        {
+          "id": "dedb8964eb5aff3f:L0:000002",
+          "score": 0.47855126546014426,
+          "fused": 0.47855126546014426,
+          "dense_rank": 5,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 26.04
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1801,
+      "latency_ms": 0.72
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 28419.15
+    }
+  },
+  "retrieved_ids": [
+    "dedb8964eb5aff3f:L0:000006",
+    "dedb8964eb5aff3f:L0:000003",
+    "dedb8964eb5aff3f:L0:000004",
+    "dedb8964eb5aff3f:L0:000005",
+    "dedb8964eb5aff3f:L0:000002"
+  ],
+  "filtered_ids": [
+    "dedb8964eb5aff3f:L0:000006",
+    "dedb8964eb5aff3f:L0:000003",
+    "dedb8964eb5aff3f:L0:000004",
+    "dedb8964eb5aff3f:L0:000005",
+    "dedb8964eb5aff3f:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:15:30.706679+00:00",
+      "call_id": "d9a9e194af28",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c866d7bf3f79ed7a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "3d08a4c3423c4987"
+    },
+    {
+      "ts": "2026-11-13T10:15:59.150045+00:00",
+      "call_id": "ab097997bc13",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d4a4843531a2c6ee",
+      "prompt_tokens": 2443,
+      "completion_tokens": 95,
+      "latency_ms": 28417.87,
+      "server_ms": 28379.67,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "3d08a4c3423c4987"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2443,
+    "completion_tokens": 95,
+    "total_ms": 28447.73
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2,
+        4
+      ],
+      "uncited_sentences": [
+        "(B) People get more affordable tickets because the ballpark is subsidized.",
+        "This is not true.",
+        "Independent economists discount the claim that new stadiums spur regional economic growth, and the average admission price (not counting club seats and suites) rises about 35 percent when a team moves into new digs."
+      ]
+    }
+  }
+}

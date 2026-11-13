@@ -1,0 +1,163 @@
+{
+  "trace_id": "a9fd6ccee63d4d66",
+  "created_at": "2026-11-13T09:31:05.686397+00:00",
+  "query": "Which labeling scheme do they use?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.49
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.63
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18530.38
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.02,
+      "bm25_ms": 7.85,
+      "n_candidates": {
+        "dense": 12,
+        "bm25": 6
+      },
+      "n_fused": 12,
+      "hits": [
+        {
+          "id": "e957b563ea679311:L0:000000",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "e957b563ea679311:L0:000008",
+          "score": 0.6526656497506992,
+          "fused": 0.6526656497506992,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "e957b563ea679311:L0:000006",
+          "score": 0.6121977725449109,
+          "fused": 0.6121977725449109,
+          "dense_rank": 5,
+          "bm25_rank": 2
+        },
+        {
+          "id": "e957b563ea679311:L0:000003",
+          "score": 0.5686375057019895,
+          "fused": 0.5686375057019895,
+          "dense_rank": 2,
+          "bm25_rank": 4
+        },
+        {
+          "id": "e957b563ea679311:L0:000005",
+          "score": 0.24455121361901114,
+          "fused": 0.24455121361901114,
+          "dense_rank": 8,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 13.44
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1220,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18515.99
+    }
+  },
+  "retrieved_ids": [
+    "e957b563ea679311:L0:000000",
+    "e957b563ea679311:L0:000008",
+    "e957b563ea679311:L0:000006",
+    "e957b563ea679311:L0:000003",
+    "e957b563ea679311:L0:000005"
+  ],
+  "filtered_ids": [
+    "e957b563ea679311:L0:000000",
+    "e957b563ea679311:L0:000008",
+    "e957b563ea679311:L0:000006",
+    "e957b563ea679311:L0:000003",
+    "e957b563ea679311:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:31:05.689396+00:00",
+      "call_id": "97bea4ef3502",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "28eaaa3103f8035d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a9fd6ccee63d4d66"
+    },
+    {
+      "ts": "2026-11-13T09:31:24.214557+00:00",
+      "call_id": "9ed2b72026d7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8edc3de0a8725d56",
+      "prompt_tokens": 1876,
+      "completion_tokens": 81,
+      "latency_ms": 18509.63,
+      "server_ms": 18476.27,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a9fd6ccee63d4d66"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1876,
+    "completion_tokens": 81,
+    "total_ms": 18532.08
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "trace_id": "cc431b0974054c7d",
+  "created_at": "2026-11-13T10:18:20.447498+00:00",
+  "query": "Of the following descriptions, which best describe Meek?\n\nOptions:\n(A) nosy and cautious\n(B) confident and handsome\n(C) funny and charismatic\n(D) clumsy and inexperienced\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 23.26
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 23.7
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24439.45
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.62,
+      "bm25_ms": 19.37,
+      "n_candidates": {
+        "dense": 18,
+        "bm25": 14
+      },
+      "n_fused": 18,
+      "hits": [
+        {
+          "id": "d0e00aef59ec5db1:L0:000010",
+          "score": 0.8363005495717861,
+          "fused": 0.8363005495717861,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000003",
+          "score": 0.7897956672220369,
+          "fused": 0.7897956672220369,
+          "dense_rank": 14,
+          "bm25_rank": 1
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000002",
+          "score": 0.7894362512750662,
+          "fused": 0.7894362512750662,
+          "dense_rank": 7,
+          "bm25_rank": 4
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000011",
+          "score": 0.7756507418746358,
+          "fused": 0.7756507418746358,
+          "dense_rank": 10,
+          "bm25_rank": 2
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000014",
+          "score": 0.7138051553187125,
+          "fused": 0.7138051553187125,
+          "dense_rank": 13,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 23.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1967,
+      "latency_ms": 0.42
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24415.56
+    }
+  },
+  "retrieved_ids": [
+    "d0e00aef59ec5db1:L0:000010",
+    "d0e00aef59ec5db1:L0:000003",
+    "d0e00aef59ec5db1:L0:000002",
+    "d0e00aef59ec5db1:L0:000011",
+    "d0e00aef59ec5db1:L0:000014"
+  ],
+  "filtered_ids": [
+    "d0e00aef59ec5db1:L0:000010",
+    "d0e00aef59ec5db1:L0:000003",
+    "d0e00aef59ec5db1:L0:000002",
+    "d0e00aef59ec5db1:L0:000011",
+    "d0e00aef59ec5db1:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:18:20.449505+00:00",
+      "call_id": "04b27f3df839",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5926ff532be4df41",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cc431b0974054c7d"
+    },
+    {
+      "ts": "2026-11-13T10:18:44.881773+00:00",
+      "call_id": "ceec652945f5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f8eafd88b4881db6",
+      "prompt_tokens": 2557,
+      "completion_tokens": 67,
+      "latency_ms": 24409.27,
+      "server_ms": 24374.12,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "cc431b0974054c7d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2557,
+    "completion_tokens": 67,
+    "total_ms": 24440.95
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

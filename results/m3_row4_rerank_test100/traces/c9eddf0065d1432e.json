@@ -1,0 +1,181 @@
+{
+  "trace_id": "c9eddf0065d1432e",
+  "created_at": "2026-11-13T15:17:40.756548+00:00",
+  "query": "Which school was founded first, Colegio Israelita De México or Waldorf University?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7195.56
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7196.25
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22798.03
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.07,
+      "bm25_ms": 10.87,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 7174.81
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000001",
+          "score": 8.668755531311035,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.668755531311035
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000153",
+          "score": 7.777763843536377,
+          "fused": 0.5849593819392975,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 7.777763843536377
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000115",
+          "score": -6.536050319671631,
+          "fused": 0.2692455077989553,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 7,
+          "rerank": -6.536050319671631
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000136",
+          "score": -8.241681098937988,
+          "fused": 0.10761905007886512,
+          "dense_rank": null,
+          "bm25_rank": 13,
+          "fused_rank": 16,
+          "rerank": -8.241681098937988
+        },
+        {
+          "id": "0eac870d43736f51:L0:000065",
+          "score": -8.723899841308594,
+          "fused": 0.11407605740273274,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 14,
+          "rerank": -8.723899841308594
+        }
+      ],
+      "latency_ms": 7195.5
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 580,
+      "latency_ms": 0.64
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15601.64
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000001",
+    "53c7288bdcd3837a:L0:000153",
+    "b04ce6dd2d95fb80:L0:000115",
+    "4a757779abfb4ba1:L0:000136",
+    "0eac870d43736f51:L0:000065"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000001",
+    "53c7288bdcd3837a:L0:000153",
+    "b04ce6dd2d95fb80:L0:000115",
+    "4a757779abfb4ba1:L0:000136",
+    "0eac870d43736f51:L0:000065"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:17:40.756548+00:00",
+      "call_id": "c0f7bc5ce8b1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5d5fcf35ce749e51",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c9eddf0065d1432e"
+    },
+    {
+      "ts": "2026-11-13T15:18:03.562146+00:00",
+      "call_id": "1e30ee6130cb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7a400044655637f7",
+      "prompt_tokens": 1302,
+      "completion_tokens": 80,
+      "latency_ms": 15600.37,
+      "server_ms": 15577.49,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "c9eddf0065d1432e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1302,
+    "completion_tokens": 80,
+    "total_ms": 22799.93
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, Waldorf University was founded first."
+      ]
+    }
+  }
+}

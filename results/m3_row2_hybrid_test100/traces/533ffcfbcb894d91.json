@@ -1,0 +1,164 @@
+{
+  "trace_id": "533ffcfbcb894d91",
+  "created_at": "2026-11-13T11:28:52.522139+00:00",
+  "query": "What was the name of Odysseus' faithful dog who recognized him upon his return to Ithaca?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.55
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.66
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21297.96
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.81,
+      "bm25_ms": 9.32,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "f9add743188fc69e:L0:000116",
+          "score": 0.9101328197000249,
+          "fused": 0.9101328197000249,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f9add743188fc69e:L0:000595",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "f9add743188fc69e:L0:000600",
+          "score": 0.6560187570624765,
+          "fused": 0.6560187570624765,
+          "dense_rank": 20,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f9add743188fc69e:L0:000442",
+          "score": 0.5099523912352517,
+          "fused": 0.5099523912352517,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "f9add743188fc69e:L0:000619",
+          "score": 0.415985048887767,
+          "fused": 0.415985048887767,
+          "dense_rank": 23,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 13.5
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1691,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21284.16
+    }
+  },
+  "retrieved_ids": [
+    "f9add743188fc69e:L0:000116",
+    "f9add743188fc69e:L0:000595",
+    "f9add743188fc69e:L0:000600",
+    "f9add743188fc69e:L0:000442",
+    "f9add743188fc69e:L0:000619"
+  ],
+  "filtered_ids": [
+    "f9add743188fc69e:L0:000116",
+    "f9add743188fc69e:L0:000595",
+    "f9add743188fc69e:L0:000600",
+    "f9add743188fc69e:L0:000442",
+    "f9add743188fc69e:L0:000619"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:28:52.524523+00:00",
+      "call_id": "0d7d1851a5d8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "984187ec17ed8fb4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "533ffcfbcb894d91"
+    },
+    {
+      "ts": "2026-11-13T11:29:13.819432+00:00",
+      "call_id": "80941085aa66",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "eadbbd30bb6b9c9b",
+      "prompt_tokens": 2475,
+      "completion_tokens": 62,
+      "latency_ms": 21283.02,
+      "server_ms": 21246.85,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "533ffcfbcb894d91"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2475,
+    "completion_tokens": 62,
+    "total_ms": 21299.72
+  },
+  "config_hash": "da9c6a093c0d",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

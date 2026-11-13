@@ -1,0 +1,166 @@
+{
+  "trace_id": "80c0885d5006498a",
+  "created_at": "2026-11-13T11:21:41.689282+00:00",
+  "query": "Who lived longer, Octavius Hammond or Curumsey Damjee?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.46
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.52
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14723.93
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.73,
+      "bm25_ms": 4.39,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 43
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000202",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "0eac870d43736f51:L0:000164",
+          "score": 0.514933770333695,
+          "fused": 0.514933770333695,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "0eac870d43736f51:L0:000059",
+          "score": 0.3481190080795001,
+          "fused": 0.3481190080795001,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "abe982d210232c3f:L0:000129",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "99628090500247e3:L0:000147",
+          "score": 0.2968358602818236,
+          "fused": 0.2968358602818236,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 7.41
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 545,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14716.26
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000202",
+    "0eac870d43736f51:L0:000164",
+    "0eac870d43736f51:L0:000059",
+    "abe982d210232c3f:L0:000129",
+    "99628090500247e3:L0:000147"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000202",
+    "0eac870d43736f51:L0:000164",
+    "0eac870d43736f51:L0:000059",
+    "abe982d210232c3f:L0:000129",
+    "99628090500247e3:L0:000147"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:21:41.691283+00:00",
+      "call_id": "3d33e105ac16",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "118451c58b86a483",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "80c0885d5006498a"
+    },
+    {
+      "ts": "2026-11-13T11:21:56.412928+00:00",
+      "call_id": "63213a07debb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4f3031ae0709487e",
+      "prompt_tokens": 1189,
+      "completion_tokens": 87,
+      "latency_ms": 14715.2,
+      "server_ms": 14693.96,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "80c0885d5006498a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1189,
+    "completion_tokens": 87,
+    "total_ms": 14725.8
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Curumsey Damjee lived longer than Octavius Hammond."
+      ]
+    }
+  }
+}

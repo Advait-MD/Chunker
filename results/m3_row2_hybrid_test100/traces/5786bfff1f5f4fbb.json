@@ -1,0 +1,163 @@
+{
+  "trace_id": "5786bfff1f5f4fbb",
+  "created_at": "2026-11-13T11:02:04.303417+00:00",
+  "query": "What nationality is Prince Napoléon Bonaparte's father?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.39
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.45
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17669.21
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.26,
+      "bm25_ms": 3.84,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000147",
+          "score": 0.7519177493968436,
+          "fused": 0.7519177493968436,
+          "dense_rank": 22,
+          "bm25_rank": 1
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000147",
+          "score": 0.49886461767923945,
+          "fused": 0.49886461767923945,
+          "dense_rank": 40,
+          "bm25_rank": 2
+        },
+        {
+          "id": "abe982d210232c3f:L0:000041",
+          "score": 0.36023385705750394,
+          "fused": 0.36023385705750394,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000000",
+          "score": 0.3600782058523014,
+          "fused": 0.3600782058523014,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "abe982d210232c3f:L0:000034",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 7.35
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 588,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17661.63
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000147",
+    "4a757779abfb4ba1:L0:000147",
+    "abe982d210232c3f:L0:000041",
+    "317e12ccd417c0d7:L0:000000",
+    "abe982d210232c3f:L0:000034"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000147",
+    "4a757779abfb4ba1:L0:000147",
+    "abe982d210232c3f:L0:000041",
+    "317e12ccd417c0d7:L0:000000",
+    "abe982d210232c3f:L0:000034"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:02:04.305415+00:00",
+      "call_id": "26d5bf0440a0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d4a20eca3ffe89fc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5786bfff1f5f4fbb"
+    },
+    {
+      "ts": "2026-11-13T11:02:21.971829+00:00",
+      "call_id": "817cc7da6e2d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6f0f88e3dfd27212",
+      "prompt_tokens": 1375,
+      "completion_tokens": 63,
+      "latency_ms": 17660.65,
+      "server_ms": 17641.27,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "5786bfff1f5f4fbb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1375,
+    "completion_tokens": 63,
+    "total_ms": 17671.1
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

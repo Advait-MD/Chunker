@@ -1,0 +1,167 @@
+{
+  "trace_id": "eecc85291dbc46ec",
+  "created_at": "2026-11-13T09:13:50.267746+00:00",
+  "query": "What datasets they used for evaluation?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.03
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.1
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22095.9
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.31,
+      "bm25_ms": 7.47,
+      "n_candidates": {
+        "dense": 31,
+        "bm25": 9
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "74bd71a556fa81c1:L0:000025",
+          "score": 0.9307072447266653,
+          "fused": 0.9307072447266653,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "74bd71a556fa81c1:L0:000024",
+          "score": 0.8808738433160265,
+          "fused": 0.8808738433160265,
+          "dense_rank": 10,
+          "bm25_rank": 1
+        },
+        {
+          "id": "74bd71a556fa81c1:L0:000008",
+          "score": 0.8203515314278398,
+          "fused": 0.8203515314278398,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "74bd71a556fa81c1:L0:000007",
+          "score": 0.5402880808931965,
+          "fused": 0.5402880808931965,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "74bd71a556fa81c1:L0:000026",
+          "score": 0.4933733680547603,
+          "fused": 0.4933733680547603,
+          "dense_rank": 4,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 11.99
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 921,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22083.7
+    }
+  },
+  "retrieved_ids": [
+    "74bd71a556fa81c1:L0:000025",
+    "74bd71a556fa81c1:L0:000024",
+    "74bd71a556fa81c1:L0:000008",
+    "74bd71a556fa81c1:L0:000007",
+    "74bd71a556fa81c1:L0:000026"
+  ],
+  "filtered_ids": [
+    "74bd71a556fa81c1:L0:000025",
+    "74bd71a556fa81c1:L0:000024",
+    "74bd71a556fa81c1:L0:000008",
+    "74bd71a556fa81c1:L0:000007",
+    "74bd71a556fa81c1:L0:000026"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:13:50.269747+00:00",
+      "call_id": "fd2a45166eb8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1f9af2d07d21ed78",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "eecc85291dbc46ec"
+    },
+    {
+      "ts": "2026-11-13T09:14:12.362642+00:00",
+      "call_id": "59065a387d9d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "042611d21a2af35f",
+      "prompt_tokens": 1692,
+      "completion_tokens": 132,
+      "latency_ms": 22082.76,
+      "server_ms": 22057.07,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "eecc85291dbc46ec"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1692,
+    "completion_tokens": 132,
+    "total_ms": 22097.02
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        4
+      ],
+      "uncited_sentences": [
+        "For En-De, the dataset consists of around 4.5 million sentence pairs.",
+        "For En-Vi, the dataset consists of around 133K sentence pairs from translated TED talks.",
+        "For De-En, the training set contains 160K sentence pairs and the validation set contains 7K sentences."
+      ]
+    }
+  }
+}

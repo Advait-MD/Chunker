@@ -1,0 +1,163 @@
+{
+  "trace_id": "df81609548c94c2b",
+  "created_at": "2026-11-13T11:27:39.739076+00:00",
+  "query": "In The Book of Five Rings, what are the names of the five books or scrolls?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.43
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.48
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21074.53
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.73,
+      "bm25_ms": 6.38,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "54e450272e768455:L0:000009",
+          "score": 0.9602081673362202,
+          "fused": 0.9602081673362202,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "54e450272e768455:L0:000000",
+          "score": 0.7683584815267829,
+          "fused": 0.7683584815267829,
+          "dense_rank": 11,
+          "bm25_rank": 1
+        },
+        {
+          "id": "54e450272e768455:L0:000002",
+          "score": 0.6369036540900461,
+          "fused": 0.6369036540900461,
+          "dense_rank": 2,
+          "bm25_rank": 6
+        },
+        {
+          "id": "54e450272e768455:L0:000021",
+          "score": 0.6234054492746393,
+          "fused": 0.6234054492746393,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "54e450272e768455:L0:000004",
+          "score": 0.5932804145400622,
+          "fused": 0.5932804145400622,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 10.39
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1131,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21063.97
+    }
+  },
+  "retrieved_ids": [
+    "54e450272e768455:L0:000009",
+    "54e450272e768455:L0:000000",
+    "54e450272e768455:L0:000002",
+    "54e450272e768455:L0:000021",
+    "54e450272e768455:L0:000004"
+  ],
+  "filtered_ids": [
+    "54e450272e768455:L0:000009",
+    "54e450272e768455:L0:000000",
+    "54e450272e768455:L0:000002",
+    "54e450272e768455:L0:000021",
+    "54e450272e768455:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:27:39.741619+00:00",
+      "call_id": "34c0455047c8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e8eb02ea2e3ef1ef",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "df81609548c94c2b"
+    },
+    {
+      "ts": "2026-11-13T11:28:00.813319+00:00",
+      "call_id": "5813b5b2bb88",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8dae9ccecd3a85d4",
+      "prompt_tokens": 1830,
+      "completion_tokens": 96,
+      "latency_ms": 21063.33,
+      "server_ms": 21046.2,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "df81609548c94c2b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1830,
+    "completion_tokens": 96,
+    "total_ms": 21075.43
+  },
+  "config_hash": "da9c6a093c0d",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

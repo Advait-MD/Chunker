@@ -1,0 +1,166 @@
+{
+  "trace_id": "1116679e171b4551",
+  "created_at": "2026-11-13T10:54:10.928373+00:00",
+  "query": "Which was built first Woolworth Building or 1 New York Plaza?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.51
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.58
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13835.82
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.47,
+      "bm25_ms": 9.68,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "20496f59538deb41:L0:000061",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000139",
+          "score": 0.6550412190560878,
+          "fused": 0.6550412190560878,
+          "dense_rank": 2,
+          "bm25_rank": 4
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000097",
+          "score": 0.5898746761459187,
+          "fused": 0.5898746761459187,
+          "dense_rank": 6,
+          "bm25_rank": 3
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000032",
+          "score": 0.5670791058829204,
+          "fused": 0.5670791058829204,
+          "dense_rank": 25,
+          "bm25_rank": 2
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000157",
+          "score": 0.4956344557569983,
+          "fused": 0.4956344557569983,
+          "dense_rank": 4,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 15.47
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 483,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13820.01
+    }
+  },
+  "retrieved_ids": [
+    "20496f59538deb41:L0:000061",
+    "8e50522b7cb636d8:L0:000139",
+    "5d0f6cf59ee42566:L0:000097",
+    "90976421f3f2bea2:L0:000032",
+    "90976421f3f2bea2:L0:000157"
+  ],
+  "filtered_ids": [
+    "20496f59538deb41:L0:000061",
+    "8e50522b7cb636d8:L0:000139",
+    "5d0f6cf59ee42566:L0:000097",
+    "90976421f3f2bea2:L0:000032",
+    "90976421f3f2bea2:L0:000157"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:54:10.931387+00:00",
+      "call_id": "dc53a5fc1db6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2e68f50b77d4fd85",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1116679e171b4551"
+    },
+    {
+      "ts": "2026-11-13T10:54:24.762371+00:00",
+      "call_id": "a7998504a442",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ae253d3651e5fece",
+      "prompt_tokens": 1107,
+      "completion_tokens": 88,
+      "latency_ms": 13818.17,
+      "server_ms": 13790.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "1116679e171b4551"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1107,
+    "completion_tokens": 88,
+    "total_ms": 13838.68
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, the Woolworth Building was built first."
+      ]
+    }
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "trace_id": "42a8c457c9024348",
+  "created_at": "2026-11-13T10:51:41.306920+00:00",
+  "query": "Mía Maestro had a role in the 2002 biopic directed by whom?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.06
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.12
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10531.45
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.71,
+      "bm25_ms": 6.04,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ec3410ef955c5c93:L0:000104",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000128",
+          "score": 0.6756011864094559,
+          "fused": 0.6756011864094559,
+          "dense_rank": 1,
+          "bm25_rank": 9
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000089",
+          "score": 0.5650941291776639,
+          "fused": 0.5650941291776639,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000023",
+          "score": 0.5025778333752506,
+          "fused": 0.5025778333752506,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000197",
+          "score": 0.4698286246516039,
+          "fused": 0.4698286246516039,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 11.02
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 286,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10520.22
+    }
+  },
+  "retrieved_ids": [
+    "ec3410ef955c5c93:L0:000104",
+    "ba3cd068cf9ac2e4:L0:000128",
+    "bc1dba3471045f02:L0:000089",
+    "8e50522b7cb636d8:L0:000023",
+    "81fc433d55d23b4c:L0:000197"
+  ],
+  "filtered_ids": [
+    "ec3410ef955c5c93:L0:000104",
+    "ba3cd068cf9ac2e4:L0:000128",
+    "bc1dba3471045f02:L0:000089",
+    "8e50522b7cb636d8:L0:000023",
+    "81fc433d55d23b4c:L0:000197"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:51:41.309918+00:00",
+      "call_id": "ab48e119fec7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "32d1d1d77b37b628",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "42a8c457c9024348"
+    },
+    {
+      "ts": "2026-11-13T10:51:51.837933+00:00",
+      "call_id": "98215cb81c1c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1452ea8ec75a2013",
+      "prompt_tokens": 892,
+      "completion_tokens": 67,
+      "latency_ms": 10519.28,
+      "server_ms": 10492.25,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "42a8c457c9024348"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 892,
+    "completion_tokens": 67,
+    "total_ms": 10532.95
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

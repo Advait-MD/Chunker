@@ -1,0 +1,166 @@
+{
+  "trace_id": "dfd94ad387894c09",
+  "created_at": "2026-11-13T09:50:09.159326+00:00",
+  "query": "What continent is the country located near the country of citizenship of The Book Thief's author part of?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.68
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.74
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14485.66
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.28,
+      "bm25_ms": 16.08,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ce57fdde2baaba9c:L0:000175",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000034",
+          "score": 0.6755231864670496,
+          "fused": 0.6755231864670496,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000180",
+          "score": 0.4905166271453264,
+          "fused": 0.4905166271453264,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "dd498e0082847164:L0:000051",
+          "score": 0.48846267014580036,
+          "fused": 0.48846267014580036,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "dd498e0082847164:L0:000032",
+          "score": 0.4550867552263278,
+          "fused": 0.4550867552263278,
+          "dense_rank": 6,
+          "bm25_rank": 18
+        }
+      ],
+      "latency_ms": 19.64
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 716,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14465.78
+    }
+  },
+  "retrieved_ids": [
+    "ce57fdde2baaba9c:L0:000175",
+    "ad11b6e85f908fb3:L0:000034",
+    "5a1a5bbda9db013e:L0:000180",
+    "dd498e0082847164:L0:000051",
+    "dd498e0082847164:L0:000032"
+  ],
+  "filtered_ids": [
+    "ce57fdde2baaba9c:L0:000175",
+    "ad11b6e85f908fb3:L0:000034",
+    "5a1a5bbda9db013e:L0:000180",
+    "dd498e0082847164:L0:000051",
+    "dd498e0082847164:L0:000032"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:50:09.160326+00:00",
+      "call_id": "ce5e550423bf",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7a74b27592f55605",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "dfd94ad387894c09"
+    },
+    {
+      "ts": "2026-11-13T09:50:23.643785+00:00",
+      "call_id": "d6d522046461",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3219948a642d7400",
+      "prompt_tokens": 1329,
+      "completion_tokens": 66,
+      "latency_ms": 14464.82,
+      "server_ms": 14440.64,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "dfd94ad387894c09"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1329,
+    "completion_tokens": 66,
+    "total_ms": 14487.08
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, the continent is Europe."
+      ]
+    }
+  }
+}

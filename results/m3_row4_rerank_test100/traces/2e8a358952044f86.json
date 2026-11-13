@@ -1,0 +1,181 @@
+{
+  "trace_id": "2e8a358952044f86",
+  "created_at": "2026-11-13T14:55:07.266946+00:00",
+  "query": "Where was the wife of Otto I, Count Of Guelders born?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7505.88
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7507.38
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17503.99
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.95,
+      "bm25_ms": 2.27,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 7498.93
+      },
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000176",
+          "score": 4.886196136474609,
+          "fused": 0.6722880051213737,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 4.886196136474609
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000145",
+          "score": -0.7748739123344421,
+          "fused": 0.564659652998545,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -0.7748739123344421
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000002",
+          "score": -0.8671244382858276,
+          "fused": 0.5430295308466504,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -0.8671244382858276
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000124",
+          "score": -1.8561111688613892,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.8561111688613892
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000025",
+          "score": -2.319474697113037,
+          "fused": 0.5658200692879719,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -2.319474697113037
+        }
+      ],
+      "latency_ms": 7505.84
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 335,
+      "latency_ms": 1.44
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9996.5
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000176",
+    "b04ce6dd2d95fb80:L0:000145",
+    "6af2db6cb86d77e2:L0:000002",
+    "c73b757f0eb66f37:L0:000124",
+    "b04ce6dd2d95fb80:L0:000025"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000176",
+    "b04ce6dd2d95fb80:L0:000145",
+    "6af2db6cb86d77e2:L0:000002",
+    "c73b757f0eb66f37:L0:000124",
+    "b04ce6dd2d95fb80:L0:000025"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:55:07.266946+00:00",
+      "call_id": "d9b5854030e6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "95451f6364ab3a7f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2e8a358952044f86"
+    },
+    {
+      "ts": "2026-11-13T14:55:24.771436+00:00",
+      "call_id": "c4c9c717cfa4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2b2fc63facc97453",
+      "prompt_tokens": 1022,
+      "completion_tokens": 50,
+      "latency_ms": 9995.19,
+      "server_ms": 9976.12,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2e8a358952044f86"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1022,
+    "completion_tokens": 50,
+    "total_ms": 17505.51
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        3
+      ],
+      "uncited_sentences": [
+        "Richardis of Bavaria was born in Bavaria."
+      ]
+    }
+  }
+}

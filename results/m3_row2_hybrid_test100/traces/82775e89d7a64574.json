@@ -1,0 +1,165 @@
+{
+  "trace_id": "82775e89d7a64574",
+  "created_at": "2026-11-13T10:41:28.124823+00:00",
+  "query": "Are Phlebodium and Pieris both species of ferns?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.79
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.87
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11689.06
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.26,
+      "bm25_ms": 7.19,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "634431bb1e27714f:L0:000150",
+          "score": 0.9796376002374451,
+          "fused": 0.9796376002374451,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000131",
+          "score": 0.6583688237033938,
+          "fused": 0.6583688237033938,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000182",
+          "score": 0.6423058442176278,
+          "fused": 0.6423058442176278,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000022",
+          "score": 0.6288085680167463,
+          "fused": 0.6288085680167463,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000115",
+          "score": 0.5125767004999846,
+          "fused": 0.5125767004999846,
+          "dense_rank": 9,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 10.75
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 479,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11678.07
+    }
+  },
+  "retrieved_ids": [
+    "634431bb1e27714f:L0:000150",
+    "8e50522b7cb636d8:L0:000131",
+    "ba3cd068cf9ac2e4:L0:000182",
+    "bc1dba3471045f02:L0:000022",
+    "81fc433d55d23b4c:L0:000115"
+  ],
+  "filtered_ids": [
+    "634431bb1e27714f:L0:000150",
+    "8e50522b7cb636d8:L0:000131",
+    "ba3cd068cf9ac2e4:L0:000182",
+    "bc1dba3471045f02:L0:000022",
+    "81fc433d55d23b4c:L0:000115"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:41:28.126287+00:00",
+      "call_id": "83b84dfabf4c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f13fbeddf35e6082",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "82775e89d7a64574"
+    },
+    {
+      "ts": "2026-11-13T10:41:39.810281+00:00",
+      "call_id": "787e2a3f3c94",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "153ad1b8b82124f7",
+      "prompt_tokens": 1164,
+      "completion_tokens": 67,
+      "latency_ms": 11677.07,
+      "server_ms": 11653.94,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "82775e89d7a64574"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1164,
+    "completion_tokens": 67,
+    "total_ms": 11690.18
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

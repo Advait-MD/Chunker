@@ -1,0 +1,165 @@
+{
+  "trace_id": "769927d4f24e4a81",
+  "created_at": "2026-11-13T11:15:37.837984+00:00",
+  "query": "Do both films, Humko Deewana Kar Gaye and Dozakh In Search Of Heaven, have the directors who are from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.89
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.95
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18859.69
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.14,
+      "bm25_ms": 6.42,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000005",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "abe982d210232c3f:L0:000033",
+          "score": 0.6139682915848292,
+          "fused": 0.6139682915848292,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "0eac870d43736f51:L0:000075",
+          "score": 0.5904792985873893,
+          "fused": 0.5904792985873893,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000178",
+          "score": 0.41920527612453945,
+          "fused": 0.41920527612453945,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "99628090500247e3:L0:000155",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 10.85
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 732,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18848.61
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000005",
+    "abe982d210232c3f:L0:000033",
+    "0eac870d43736f51:L0:000075",
+    "6af2db6cb86d77e2:L0:000178",
+    "99628090500247e3:L0:000155"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000005",
+    "abe982d210232c3f:L0:000033",
+    "0eac870d43736f51:L0:000075",
+    "6af2db6cb86d77e2:L0:000178",
+    "99628090500247e3:L0:000155"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:15:37.839986+00:00",
+      "call_id": "9a4df0ca2d9d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d539f555413d1317",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "769927d4f24e4a81"
+    },
+    {
+      "ts": "2026-11-13T11:15:56.697591+00:00",
+      "call_id": "1694284ce467",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a1274da41ff6cc78",
+      "prompt_tokens": 1500,
+      "completion_tokens": 107,
+      "latency_ms": 18847.67,
+      "server_ms": 18821.55,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "769927d4f24e4a81"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1500,
+    "completion_tokens": 107,
+    "total_ms": 18860.87
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

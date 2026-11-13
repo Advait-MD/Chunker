@@ -1,0 +1,163 @@
+{
+  "trace_id": "243bf21a2fdc4445",
+  "created_at": "2026-11-13T09:49:32.076738+00:00",
+  "query": "Which affiliate left the employer of Don Newman due to an agreement with CHBC?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.01
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14.07
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14301.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.26,
+      "bm25_ms": 10.43,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ad4ace752e719bab:L0:000147",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "a168352d83e925b5:L0:000145",
+          "score": 0.3734527998310733,
+          "fused": 0.3734527998310733,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000091",
+          "score": 0.34111615210888013,
+          "fused": 0.34111615210888013,
+          "dense_rank": 8,
+          "bm25_rank": 7
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000184",
+          "score": 0.3379543112548936,
+          "fused": 0.3379543112548936,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000040",
+          "score": 0.31489235138524097,
+          "fused": 0.31489235138524097,
+          "dense_rank": 16,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 13.97
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 650,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14287.73
+    }
+  },
+  "retrieved_ids": [
+    "ad4ace752e719bab:L0:000147",
+    "a168352d83e925b5:L0:000145",
+    "4fcce431f5d22d1d:L0:000091",
+    "66f5caec1369ebaf:L0:000184",
+    "5a1a5bbda9db013e:L0:000040"
+  ],
+  "filtered_ids": [
+    "ad4ace752e719bab:L0:000147",
+    "a168352d83e925b5:L0:000145",
+    "4fcce431f5d22d1d:L0:000091",
+    "66f5caec1369ebaf:L0:000184",
+    "5a1a5bbda9db013e:L0:000040"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:49:32.078735+00:00",
+      "call_id": "05e1ac4b3cee",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "365581551597c149",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "243bf21a2fdc4445"
+    },
+    {
+      "ts": "2026-11-13T09:49:46.378070+00:00",
+      "call_id": "4aafa11c86ed",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "301af1041d047615",
+      "prompt_tokens": 1291,
+      "completion_tokens": 70,
+      "latency_ms": 14286.54,
+      "server_ms": 14261.61,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "243bf21a2fdc4445"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1291,
+    "completion_tokens": 70,
+    "total_ms": 14304.37
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

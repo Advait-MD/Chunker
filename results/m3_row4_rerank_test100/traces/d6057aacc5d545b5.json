@@ -1,0 +1,178 @@
+{
+  "trace_id": "d6057aacc5d545b5",
+  "created_at": "2026-11-13T13:02:52.917984+00:00",
+  "query": "What is the record label of the Metalworks Studio founder?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4369.07
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4369.81
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12797.16
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.75,
+      "bm25_ms": 8.32,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4355.63
+      },
+      "hits": [
+        {
+          "id": "4fcce431f5d22d1d:L0:000015",
+          "score": -0.1825219690799713,
+          "fused": 0.7764325853305198,
+          "dense_rank": 24,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.1825219690799713
+        },
+        {
+          "id": "dd498e0082847164:L0:000156",
+          "score": -2.9358572959899902,
+          "fused": 0.40274889112266343,
+          "dense_rank": 8,
+          "bm25_rank": 20,
+          "fused_rank": 14,
+          "rerank": -2.9358572959899902
+        },
+        {
+          "id": "a168352d83e925b5:L0:000064",
+          "score": -3.8164608478546143,
+          "fused": 0.379014219258788,
+          "dense_rank": 4,
+          "bm25_rank": 32,
+          "fused_rank": 16,
+          "rerank": -3.8164608478546143
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000115",
+          "score": -3.8332605361938477,
+          "fused": 0.48980464686545433,
+          "dense_rank": 2,
+          "bm25_rank": 19,
+          "fused_rank": 6,
+          "rerank": -3.8332605361938477
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000086",
+          "score": -4.339634418487549,
+          "fused": 0.39454743909499623,
+          "dense_rank": 13,
+          "bm25_rank": 14,
+          "fused_rank": 15,
+          "rerank": -4.339634418487549
+        }
+      ],
+      "latency_ms": 4369.01
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 323,
+      "latency_ms": 0.69
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8427.26
+    }
+  },
+  "retrieved_ids": [
+    "4fcce431f5d22d1d:L0:000015",
+    "dd498e0082847164:L0:000156",
+    "a168352d83e925b5:L0:000064",
+    "5a1a5bbda9db013e:L0:000115",
+    "73dfa6a9bfcab050:L0:000086"
+  ],
+  "filtered_ids": [
+    "4fcce431f5d22d1d:L0:000015",
+    "dd498e0082847164:L0:000156",
+    "a168352d83e925b5:L0:000064",
+    "5a1a5bbda9db013e:L0:000115",
+    "73dfa6a9bfcab050:L0:000086"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:02:52.917984+00:00",
+      "call_id": "2d27aa2ac9ee",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9e3ab520e71cb8e9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d6057aacc5d545b5"
+    },
+    {
+      "ts": "2026-11-13T13:03:05.724084+00:00",
+      "call_id": "d2c1088bf92c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9be0fa8db247c6f5",
+      "prompt_tokens": 863,
+      "completion_tokens": 55,
+      "latency_ms": 8425.99,
+      "server_ms": 8400.45,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d6057aacc5d545b5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 863,
+    "completion_tokens": 55,
+    "total_ms": 12798.84
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The record label of the Metalworks Studio founder, Gil Moore, is not mentioned in the provided passages."
+      ]
+    }
+  }
+}

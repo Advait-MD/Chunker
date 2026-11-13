@@ -1,0 +1,182 @@
+{
+  "trace_id": "096de0e270d04a9c",
+  "created_at": "2026-11-13T13:35:48.685300+00:00",
+  "query": "What made father realize he couldn't memory-wash Ronnie?\n\nOptions:\n(A) Others would notice and it would hurt Dad's reputation\n(B) Ronnie would just learn to read again\n(C) The technology wouldn't work on someone so young\n(D) Ronnie had already ingrained reading in his memory permanently \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 20528.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 20528.49
+    },
+    {
+      "state": "DONE",
+      "t_ms": 44449.37
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.4,
+      "bm25_ms": 51.97,
+      "n_candidates": {
+        "dense": 12,
+        "bm25": 12
+      },
+      "n_fused": 12,
+      "rerank": {
+        "n": 12,
+        "n_computed": 12,
+        "latency_ms": 20467.9
+      },
+      "hits": [
+        {
+          "id": "2e3993d4866f16ac:L0:000006",
+          "score": 0.4346255958080292,
+          "fused": 0.9778729342899282,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.4346255958080292
+        },
+        {
+          "id": "2e3993d4866f16ac:L0:000007",
+          "score": 0.27751415967941284,
+          "fused": 0.6730150632612488,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 0.27751415967941284
+        },
+        {
+          "id": "2e3993d4866f16ac:L0:000008",
+          "score": 0.24808137118816376,
+          "fused": 0.5544076197334765,
+          "dense_rank": 6,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": 0.24808137118816376
+        },
+        {
+          "id": "2e3993d4866f16ac:L0:000003",
+          "score": -0.6577709913253784,
+          "fused": 0.6004463215873496,
+          "dense_rank": 3,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": -0.6577709913253784
+        },
+        {
+          "id": "2e3993d4866f16ac:L0:000002",
+          "score": -0.7469127178192139,
+          "fused": 0.621994508083314,
+          "dense_rank": 4,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -0.7469127178192139
+        }
+      ],
+      "latency_ms": 20528.32
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1982,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23920.74
+    }
+  },
+  "retrieved_ids": [
+    "2e3993d4866f16ac:L0:000006",
+    "2e3993d4866f16ac:L0:000007",
+    "2e3993d4866f16ac:L0:000008",
+    "2e3993d4866f16ac:L0:000003",
+    "2e3993d4866f16ac:L0:000002"
+  ],
+  "filtered_ids": [
+    "2e3993d4866f16ac:L0:000006",
+    "2e3993d4866f16ac:L0:000007",
+    "2e3993d4866f16ac:L0:000008",
+    "2e3993d4866f16ac:L0:000003",
+    "2e3993d4866f16ac:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:35:48.687317+00:00",
+      "call_id": "a59f675cdcba",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2fa892a9f3102e5e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "096de0e270d04a9c"
+    },
+    {
+      "ts": "2026-11-13T13:36:33.120992+00:00",
+      "call_id": "298be7cb9c47",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "378b4c6658543fae",
+      "prompt_tokens": 2475,
+      "completion_tokens": 79,
+      "latency_ms": 23919.35,
+      "server_ms": 23873.06,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "096de0e270d04a9c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2475,
+    "completion_tokens": 79,
+    "total_ms": 44451.06
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

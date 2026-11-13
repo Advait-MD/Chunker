@@ -1,4 +1,5 @@
 """Query pipelines. M1: the naive baseline (flat leaves → dense top-k → cited generation).
+M3: the retriever is chosen by `retrieval.mode` (dense HNSW, or BM25/IVF hybrid with fusion and rerank).
 
 Later milestones add hybrid retrieval, the RAPTOR tree, the evidence filter, the DSM router
 and the multi-hop controller as separate, ablatable stages behind the same `answer()` contract.
@@ -16,6 +17,8 @@ from apex.index.chroma_store import NodeStore
 from apex.index.embedder import Embedder
 from apex.llm import OllamaClient
 from apex.retrieve.dense import DenseRetriever
+from apex.retrieve.hybrid import HybridRetriever
+from apex.retrieve.rerank import build_reranker
 from apex.trace import Tracer
 
 
@@ -30,12 +33,23 @@ class Components:
         self.tracer = Tracer(cfg)
 
 
+def build_retriever(comps: Components):
+    """`retrieval.mode: dense` keeps the M1 Chroma-HNSW retriever unchanged; other modes are hybrid.py."""
+    cfg = comps.cfg
+    if cfg["retrieval"]["mode"] == "dense":
+        if cfg.get("rerank", {}).get("enabled"):
+            raise ValueError("rerank.enabled needs retrieval.mode hybrid, dense_ivf or bm25")
+        return DenseRetriever(cfg, comps.store, comps.embedder)
+    return HybridRetriever(cfg, comps.store, comps.embedder, reranker=build_reranker(cfg))
+
+
 class NaivePipeline:
     name = "naive"
 
     def __init__(self, comps: Components):
         self.c = comps
-        self.retriever = DenseRetriever(comps.cfg, comps.store, comps.embedder)
+        self.retriever = build_retriever(comps)
+        self.retriever_name = getattr(self.retriever, "name", "dense_hnsw")
         self.generator = Generator(comps.cfg, comps.client)
         self.budget = int(comps.cfg["generation"]["context_token_budget"])
 
@@ -49,10 +63,13 @@ class NaivePipeline:
         self.c.client.bind_trace(trace)
         try:
             trace.enter("RETRIEVING")
-            with trace.stage("retrieve", retriever="dense_hnsw", k=self.retriever.top_k) as st:
+            with trace.stage("retrieve", retriever=self.retriever_name, k=self.retriever.top_k) as st:
                 hits = self.retriever.retrieve(query, source=source)
                 trace.retrieved_ids = [h.node.id for h in hits]
                 st["n_hits"] = len(hits)
+                st.update(getattr(self.retriever, "last", {}) or {})
+                if hits and hits[0].detail:
+                    st["hits"] = [{"id": h.node.id, "score": h.score, **h.detail} for h in hits]
 
             trace.enter("FILTERING")  # pass-through in M1; only budget packing
             with trace.stage("pack", token_budget=self.budget) as st:

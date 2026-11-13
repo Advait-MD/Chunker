@@ -1,0 +1,169 @@
+{
+  "trace_id": "d2fc83758a58412b",
+  "created_at": "2026-11-13T10:35:00.985556+00:00",
+  "query": "What was the passage of time over the course of the story?\n\nOptions:\n(A) Days\n(B) Months\n(C) Hours\n(D) Weeks\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.76
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.83
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20828.35
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.01,
+      "bm25_ms": 16.46,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 17
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ef846b5c8602cdfe:L0:000008",
+          "score": 0.8078330510936818,
+          "fused": 0.8078330510936818,
+          "dense_rank": 11,
+          "bm25_rank": 1
+        },
+        {
+          "id": "ef846b5c8602cdfe:L0:000002",
+          "score": 0.7876078439190335,
+          "fused": 0.7876078439190335,
+          "dense_rank": 10,
+          "bm25_rank": 2
+        },
+        {
+          "id": "ef846b5c8602cdfe:L0:000003",
+          "score": 0.7029747708338789,
+          "fused": 0.7029747708338789,
+          "dense_rank": 18,
+          "bm25_rank": 3
+        },
+        {
+          "id": "ef846b5c8602cdfe:L0:000016",
+          "score": 0.6708992562825318,
+          "fused": 0.6708992562825318,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        },
+        {
+          "id": "ef846b5c8602cdfe:L0:000005",
+          "score": 0.5856531557219784,
+          "fused": 0.5856531557219784,
+          "dense_rank": 14,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 19.73
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1964,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20808.41
+    }
+  },
+  "retrieved_ids": [
+    "ef846b5c8602cdfe:L0:000008",
+    "ef846b5c8602cdfe:L0:000002",
+    "ef846b5c8602cdfe:L0:000003",
+    "ef846b5c8602cdfe:L0:000016",
+    "ef846b5c8602cdfe:L0:000005"
+  ],
+  "filtered_ids": [
+    "ef846b5c8602cdfe:L0:000008",
+    "ef846b5c8602cdfe:L0:000002",
+    "ef846b5c8602cdfe:L0:000003",
+    "ef846b5c8602cdfe:L0:000016",
+    "ef846b5c8602cdfe:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:35:00.987564+00:00",
+      "call_id": "66d98c22d93f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b20a8d608902e0e7",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d2fc83758a58412b"
+    },
+    {
+      "ts": "2026-11-13T10:35:21.812897+00:00",
+      "call_id": "75bca0dae7d7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2ae9c2ef2d4ea2b0",
+      "prompt_tokens": 2537,
+      "completion_tokens": 61,
+      "latency_ms": 20806.4,
+      "server_ms": 20766.05,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d2fc83758a58412b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2537,
+    "completion_tokens": 61,
+    "total_ms": 20832.7
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "(C) The passage of time over the course of the story is Hours."
+      ]
+    }
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "trace_id": "d80110e1b119470d",
+  "created_at": "2026-11-13T13:19:57.912480+00:00",
+  "query": "Given the description of the natural setting of Eros, will it be likely that the family can survive with the available resources on the planetoid?\n\nOptions:\n(A) Yes, it appears Eros has the same resources and species of animals on Earth to survive off of.\n(B) No, Eros is too underdeveloped for a family to survive on.\n(C) No, Eros is not identical to Earth, and neither are its resources.\n(D) Yes, Eros has usable food sources, for example, but not exactly like what appears on Earth.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18801.16
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18801.3
+    },
+    {
+      "state": "DONE",
+      "t_ms": 42210.14
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.59,
+      "bm25_ms": 31.82,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 19
+      },
+      "n_fused": 19,
+      "rerank": {
+        "n": 19,
+        "n_computed": 19,
+        "latency_ms": 18758.67
+      },
+      "hits": [
+        {
+          "id": "40b523f2ab33bb5f:L0:000000",
+          "score": 0.924188494682312,
+          "fused": 0.5267395323497295,
+          "dense_rank": 12,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": 0.924188494682312
+        },
+        {
+          "id": "40b523f2ab33bb5f:L0:000007",
+          "score": 0.8110394477844238,
+          "fused": 0.7936225771980447,
+          "dense_rank": 4,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": 0.8110394477844238
+        },
+        {
+          "id": "40b523f2ab33bb5f:L0:000006",
+          "score": 0.6613351106643677,
+          "fused": 0.9352068278277988,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 0.6613351106643677
+        },
+        {
+          "id": "40b523f2ab33bb5f:L0:000013",
+          "score": 0.2604972720146179,
+          "fused": 0.9024503727578899,
+          "dense_rank": 6,
+          "bm25_rank": 1,
+          "fused_rank": 3,
+          "rerank": 0.2604972720146179
+        },
+        {
+          "id": "40b523f2ab33bb5f:L0:000014",
+          "score": -0.1738663762807846,
+          "fused": 0.9428355102299504,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": -0.1738663762807846
+        }
+      ],
+      "latency_ms": 18801.11
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1946,
+      "latency_ms": 0.1
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23406.44
+    }
+  },
+  "retrieved_ids": [
+    "40b523f2ab33bb5f:L0:000000",
+    "40b523f2ab33bb5f:L0:000007",
+    "40b523f2ab33bb5f:L0:000006",
+    "40b523f2ab33bb5f:L0:000013",
+    "40b523f2ab33bb5f:L0:000014"
+  ],
+  "filtered_ids": [
+    "40b523f2ab33bb5f:L0:000000",
+    "40b523f2ab33bb5f:L0:000007",
+    "40b523f2ab33bb5f:L0:000006",
+    "40b523f2ab33bb5f:L0:000013",
+    "40b523f2ab33bb5f:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:19:57.912480+00:00",
+      "call_id": "c71c96bf7e1e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a500c69398f804ef",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d80110e1b119470d"
+    },
+    {
+      "ts": "2026-11-13T13:20:40.117814+00:00",
+      "call_id": "922a4516e6c8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f7d4a4e81563b8a2",
+      "prompt_tokens": 2684,
+      "completion_tokens": 84,
+      "latency_ms": 23405.29,
+      "server_ms": 23380.12,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d80110e1b119470d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2684,
+    "completion_tokens": 84,
+    "total_ms": 42212.39
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

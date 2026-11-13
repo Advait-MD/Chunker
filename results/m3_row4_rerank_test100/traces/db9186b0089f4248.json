@@ -1,0 +1,186 @@
+{
+  "trace_id": "db9186b0089f4248",
+  "created_at": "2026-11-13T11:38:19.847200+00:00",
+  "query": "How are the tweets selected?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9677.52
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9677.63
+    },
+    {
+      "state": "DONE",
+      "t_ms": 38369.32
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.8,
+      "bm25_ms": 4.58,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 9667.64
+      },
+      "hits": [
+        {
+          "id": "d96e7fdc6d06a63b:L0:000011",
+          "score": 1.712005376815796,
+          "fused": 0.992157110791507,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.712005376815796
+        },
+        {
+          "id": "d96e7fdc6d06a63b:L0:000016",
+          "score": 0.907670795917511,
+          "fused": 0.7570509799079094,
+          "dense_rank": 10,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.907670795917511
+        },
+        {
+          "id": "d96e7fdc6d06a63b:L0:000010",
+          "score": 0.8196576237678528,
+          "fused": 0.7396927522956929,
+          "dense_rank": 8,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 0.8196576237678528
+        },
+        {
+          "id": "d96e7fdc6d06a63b:L0:000007",
+          "score": 0.39197513461112976,
+          "fused": 0.49288982401867243,
+          "dense_rank": 5,
+          "bm25_rank": 11,
+          "fused_rank": 7,
+          "rerank": 0.39197513461112976
+        },
+        {
+          "id": "d96e7fdc6d06a63b:L0:000013",
+          "score": -0.37335875630378723,
+          "fused": 0.8871886772106103,
+          "dense_rank": 7,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.37335875630378723
+        }
+      ],
+      "latency_ms": 9677.45
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1314,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 28691.31
+    }
+  },
+  "retrieved_ids": [
+    "d96e7fdc6d06a63b:L0:000011",
+    "d96e7fdc6d06a63b:L0:000016",
+    "d96e7fdc6d06a63b:L0:000010",
+    "d96e7fdc6d06a63b:L0:000007",
+    "d96e7fdc6d06a63b:L0:000013"
+  ],
+  "filtered_ids": [
+    "d96e7fdc6d06a63b:L0:000011",
+    "d96e7fdc6d06a63b:L0:000016",
+    "d96e7fdc6d06a63b:L0:000010",
+    "d96e7fdc6d06a63b:L0:000007",
+    "d96e7fdc6d06a63b:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:38:19.849103+00:00",
+      "call_id": "1faf167e2a0a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5c4d6db4be55e35c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "db9186b0089f4248"
+    },
+    {
+      "ts": "2026-11-13T11:38:58.215182+00:00",
+      "call_id": "5e908932ccf2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "063b6d0f2438366c",
+      "prompt_tokens": 1970,
+      "completion_tokens": 178,
+      "latency_ms": 28689.62,
+      "server_ms": 28656.01,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "db9186b0089f4248"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1970,
+    "completion_tokens": 178,
+    "total_ms": 38371.31
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Tweets are selected through multiple rounds of crowdsourced annotations.",
+        "In the first round (R1), 2,400 tweets from the top 80th percentile of confidence scores in the positive class and 800 tweets from the negative side with confidence scores closest to zero are selected.",
+        "In the second round (R2), 2,000 tweets labeled as positive by INLINEFORM1 and never used previously are chosen."
+      ]
+    }
+  }
+}

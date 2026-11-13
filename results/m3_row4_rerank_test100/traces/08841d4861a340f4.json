@@ -1,0 +1,179 @@
+{
+  "trace_id": "08841d4861a340f4",
+  "created_at": "2026-11-13T15:02:14.538727+00:00",
+  "query": "Which film has the director who was born earlier, Toto In Paris or The Railroad Man?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4752.07
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4753.23
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14725.45
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.08,
+      "bm25_ms": 4.81,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4744.4
+      },
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000168",
+          "score": 7.535714149475098,
+          "fused": 0.62478278147214,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 7.535714149475098
+        },
+        {
+          "id": "99628090500247e3:L0:000095",
+          "score": 7.504237174987793,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.504237174987793
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000126",
+          "score": -0.5308680534362793,
+          "fused": 0.3281000976097826,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -0.5308680534362793
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000184",
+          "score": -3.4812710285186768,
+          "fused": 0.32265535260962525,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -3.4812710285186768
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000068",
+          "score": -4.599509239196777,
+          "fused": 0.22914192270702996,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 8,
+          "rerank": -4.599509239196777
+        }
+      ],
+      "latency_ms": 4752.03
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 259,
+      "latency_ms": 1.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9972.05
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000168",
+    "99628090500247e3:L0:000095",
+    "6af2db6cb86d77e2:L0:000126",
+    "b04ce6dd2d95fb80:L0:000184",
+    "6af2db6cb86d77e2:L0:000068"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000168",
+    "99628090500247e3:L0:000095",
+    "6af2db6cb86d77e2:L0:000126",
+    "b04ce6dd2d95fb80:L0:000184",
+    "6af2db6cb86d77e2:L0:000068"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:02:14.538727+00:00",
+      "call_id": "ff9f5e5211f4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6f35d9831e99c945",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "08841d4861a340f4"
+    },
+    {
+      "ts": "2026-11-13T15:02:29.263415+00:00",
+      "call_id": "c7295e8f9984",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ec16b38dfe1fe06e",
+      "prompt_tokens": 844,
+      "completion_tokens": 80,
+      "latency_ms": 9970.89,
+      "server_ms": 9945.79,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "08841d4861a340f4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 844,
+    "completion_tokens": 80,
+    "total_ms": 14727.08
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

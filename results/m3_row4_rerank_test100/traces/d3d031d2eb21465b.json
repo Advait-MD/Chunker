@@ -1,0 +1,181 @@
+{
+  "trace_id": "d3d031d2eb21465b",
+  "created_at": "2026-11-13T13:11:37.199819+00:00",
+  "query": "Why was Ronnie hoping that something bad would happen to his father?\n\nOptions:\n(A) So that his father would not hit Ronnie's mother anymore\n(B) So that his father would not find out that Ronnie was secretly reading\n(C) So that him and his mother could return to reading books with one another\n(D) So that Mr. Davis could move into Ronnie's house\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11389.13
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11389.7
+    },
+    {
+      "state": "DONE",
+      "t_ms": 35792.33
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.06,
+      "bm25_ms": 33.77,
+      "n_candidates": {
+        "dense": 12,
+        "bm25": 12
+      },
+      "n_fused": 12,
+      "rerank": {
+        "n": 12,
+        "n_computed": 12,
+        "latency_ms": 11347.02
+      },
+      "hits": [
+        {
+          "id": "2e3993d4866f16ac:L0:000002",
+          "score": -0.590395450592041,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.590395450592041
+        },
+        {
+          "id": "2e3993d4866f16ac:L0:000009",
+          "score": -1.6760358810424805,
+          "fused": 0.19033817307367001,
+          "dense_rank": 5,
+          "bm25_rank": 11,
+          "fused_rank": 11,
+          "rerank": -1.6760358810424805
+        },
+        {
+          "id": "2e3993d4866f16ac:L0:000003",
+          "score": -1.774285912513733,
+          "fused": 0.5308718557627874,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -1.774285912513733
+        },
+        {
+          "id": "2e3993d4866f16ac:L0:000007",
+          "score": -1.931915283203125,
+          "fused": 0.3391429329741016,
+          "dense_rank": 3,
+          "bm25_rank": 10,
+          "fused_rank": 4,
+          "rerank": -1.931915283203125
+        },
+        {
+          "id": "2e3993d4866f16ac:L0:000000",
+          "score": -1.9320505857467651,
+          "fused": 0.19640289236885164,
+          "dense_rank": 11,
+          "bm25_rank": 7,
+          "fused_rank": 10,
+          "rerank": -1.9320505857467651
+        }
+      ],
+      "latency_ms": 11389.08
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1964,
+      "latency_ms": 0.52
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24402.45
+    }
+  },
+  "retrieved_ids": [
+    "2e3993d4866f16ac:L0:000002",
+    "2e3993d4866f16ac:L0:000009",
+    "2e3993d4866f16ac:L0:000003",
+    "2e3993d4866f16ac:L0:000007",
+    "2e3993d4866f16ac:L0:000000"
+  ],
+  "filtered_ids": [
+    "2e3993d4866f16ac:L0:000002",
+    "2e3993d4866f16ac:L0:000009",
+    "2e3993d4866f16ac:L0:000003",
+    "2e3993d4866f16ac:L0:000007",
+    "2e3993d4866f16ac:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:11:37.199819+00:00",
+      "call_id": "b98169af59e9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8e6f7d2da39223cc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d3d031d2eb21465b"
+    },
+    {
+      "ts": "2026-11-13T13:12:12.995319+00:00",
+      "call_id": "fbf4a547bf83",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4a3a43b905210426",
+      "prompt_tokens": 2503,
+      "completion_tokens": 80,
+      "latency_ms": 24400.95,
+      "server_ms": 24374.12,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d3d031d2eb21465b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2503,
+    "completion_tokens": 80,
+    "total_ms": 35794.66
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        5,
+        4,
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

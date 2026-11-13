@@ -1,0 +1,181 @@
+{
+  "trace_id": "e69407c0c4904a8e",
+  "created_at": "2026-11-13T13:31:01.197145+00:00",
+  "query": "What does Maitland think when he is finally told where he is?\n\nOptions:\n(A) He is angry to find out that time travel is not yet possible\n(B) He is thrilled because he did not know space travel was possible\n(C) He suspected it all along\n(D) He is surprised that the world is so developed in the surrounding area\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 20822.01
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 20822.14
+    },
+    {
+      "state": "DONE",
+      "t_ms": 45014.62
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.19,
+      "bm25_ms": 27.24,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 20
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 20782.15
+      },
+      "hits": [
+        {
+          "id": "7b80582cae4e102a:L0:000008",
+          "score": -0.3771365284919739,
+          "fused": 0.8314497785870811,
+          "dense_rank": 13,
+          "bm25_rank": 1,
+          "fused_rank": 3,
+          "rerank": -0.3771365284919739
+        },
+        {
+          "id": "7b80582cae4e102a:L0:000007",
+          "score": -0.7028278112411499,
+          "fused": 0.8159460480662336,
+          "dense_rank": 10,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -0.7028278112411499
+        },
+        {
+          "id": "7b80582cae4e102a:L0:000012",
+          "score": -0.8061609864234924,
+          "fused": 0.7100491530026541,
+          "dense_rank": 4,
+          "bm25_rank": 7,
+          "fused_rank": 6,
+          "rerank": -0.8061609864234924
+        },
+        {
+          "id": "7b80582cae4e102a:L0:000011",
+          "score": -0.8579461574554443,
+          "fused": 0.32097162016415076,
+          "dense_rank": 14,
+          "bm25_rank": 16,
+          "fused_rank": 17,
+          "rerank": -0.8579461574554443
+        },
+        {
+          "id": "7b80582cae4e102a:L0:000003",
+          "score": -1.026085376739502,
+          "fused": 0.3215920607450552,
+          "dense_rank": 8,
+          "bm25_rank": 17,
+          "fused_rank": 16,
+          "rerank": -1.026085376739502
+        }
+      ],
+      "latency_ms": 20821.96
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1958,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24192.19
+    }
+  },
+  "retrieved_ids": [
+    "7b80582cae4e102a:L0:000008",
+    "7b80582cae4e102a:L0:000007",
+    "7b80582cae4e102a:L0:000012",
+    "7b80582cae4e102a:L0:000011",
+    "7b80582cae4e102a:L0:000003"
+  ],
+  "filtered_ids": [
+    "7b80582cae4e102a:L0:000008",
+    "7b80582cae4e102a:L0:000007",
+    "7b80582cae4e102a:L0:000012",
+    "7b80582cae4e102a:L0:000011",
+    "7b80582cae4e102a:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:31:01.199148+00:00",
+      "call_id": "57db0e6bc873",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "25b9108250b3f48c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e69407c0c4904a8e"
+    },
+    {
+      "ts": "2026-11-13T13:31:46.203884+00:00",
+      "call_id": "052dda92e61d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "65eb1e1b2f282df9",
+      "prompt_tokens": 2613,
+      "completion_tokens": 67,
+      "latency_ms": 24189.41,
+      "server_ms": 24126.23,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "e69407c0c4904a8e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2613,
+    "completion_tokens": 67,
+    "total_ms": 45018.65
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

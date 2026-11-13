@@ -1,0 +1,164 @@
+{
+  "trace_id": "2c8d612608e7474b",
+  "created_at": "2026-11-13T10:05:58.057321+00:00",
+  "query": "Why was the painting so clear?\n\nOptions:\n(A) Broom had never seen a painting\n(B) Broom's fuzziness made it look clearer than it was\n(C) It was special future paint\n(D) It was a photograph\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 22.8
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 22.87
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22114.24
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.81,
+      "bm25_ms": 19.76,
+      "n_candidates": {
+        "dense": 14,
+        "bm25": 14
+      },
+      "n_fused": 14,
+      "hits": [
+        {
+          "id": "fce4ea1168a4a062:L0:000005",
+          "score": 0.9407090153846893,
+          "fused": 0.9407090153846893,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "fce4ea1168a4a062:L0:000004",
+          "score": 0.7141586314586148,
+          "fused": 0.7141586314586148,
+          "dense_rank": 7,
+          "bm25_rank": 2
+        },
+        {
+          "id": "fce4ea1168a4a062:L0:000011",
+          "score": 0.6469529052148504,
+          "fused": 0.6469529052148504,
+          "dense_rank": 4,
+          "bm25_rank": 3
+        },
+        {
+          "id": "fce4ea1168a4a062:L0:000010",
+          "score": 0.5138826115412779,
+          "fused": 0.5138826115412779,
+          "dense_rank": 8,
+          "bm25_rank": 6
+        },
+        {
+          "id": "fce4ea1168a4a062:L0:000000",
+          "score": 0.4975860303917937,
+          "fused": 0.4975860303917937,
+          "dense_rank": 10,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 22.76
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1924,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22091.24
+    }
+  },
+  "retrieved_ids": [
+    "fce4ea1168a4a062:L0:000005",
+    "fce4ea1168a4a062:L0:000004",
+    "fce4ea1168a4a062:L0:000011",
+    "fce4ea1168a4a062:L0:000010",
+    "fce4ea1168a4a062:L0:000000"
+  ],
+  "filtered_ids": [
+    "fce4ea1168a4a062:L0:000005",
+    "fce4ea1168a4a062:L0:000004",
+    "fce4ea1168a4a062:L0:000011",
+    "fce4ea1168a4a062:L0:000010",
+    "fce4ea1168a4a062:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:05:58.058317+00:00",
+      "call_id": "69605c7d512a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5441259e2e88aa76",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2c8d612608e7474b"
+    },
+    {
+      "ts": "2026-11-13T10:06:20.170732+00:00",
+      "call_id": "36fa06048022",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "42c4a0175f500027",
+      "prompt_tokens": 2524,
+      "completion_tokens": 57,
+      "latency_ms": 22090.19,
+      "server_ms": 22058.47,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2c8d612608e7474b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2524,
+    "completion_tokens": 57,
+    "total_ms": 22115.32
+  },
+  "config_hash": "99ef20938ab5",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

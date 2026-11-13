@@ -1,0 +1,178 @@
+{
+  "trace_id": "7ccc27e43f1245ea",
+  "created_at": "2026-11-13T12:42:36.873252+00:00",
+  "query": "Who is the owner of the record label of the performer of What Kind of Love?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4266.01
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4267.09
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13699.12
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.11,
+      "bm25_ms": 11.95,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4246.37
+      },
+      "hits": [
+        {
+          "id": "4b634e52029ddab4:L0:000039",
+          "score": 4.527561664581299,
+          "fused": 0.5195155398274907,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 11,
+          "rerank": 4.527561664581299
+        },
+        {
+          "id": "a168352d83e925b5:L0:000170",
+          "score": 1.925615668296814,
+          "fused": 0.8100999562090675,
+          "dense_rank": 18,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 1.925615668296814
+        },
+        {
+          "id": "dd498e0082847164:L0:000156",
+          "score": 1.621636152267456,
+          "fused": 0.9650980791183212,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.621636152267456
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000050",
+          "score": 0.3412811756134033,
+          "fused": 0.8572489751775786,
+          "dense_rank": 4,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": 0.3412811756134033
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000028",
+          "score": -0.3875463306903839,
+          "fused": 0.7623914028401776,
+          "dense_rank": 7,
+          "bm25_rank": 8,
+          "fused_rank": 5,
+          "rerank": -0.3875463306903839
+        }
+      ],
+      "latency_ms": 4265.97
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 336,
+      "latency_ms": 1.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9431.89
+    }
+  },
+  "retrieved_ids": [
+    "4b634e52029ddab4:L0:000039",
+    "a168352d83e925b5:L0:000170",
+    "dd498e0082847164:L0:000156",
+    "4fcce431f5d22d1d:L0:000050",
+    "6bddce8aaad42fea:L0:000028"
+  ],
+  "filtered_ids": [
+    "4b634e52029ddab4:L0:000039",
+    "a168352d83e925b5:L0:000170",
+    "dd498e0082847164:L0:000156",
+    "4fcce431f5d22d1d:L0:000050",
+    "6bddce8aaad42fea:L0:000028"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:42:36.873252+00:00",
+      "call_id": "b76d8db5203d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cee807f02fd0f472",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7ccc27e43f1245ea"
+    },
+    {
+      "ts": "2026-11-13T12:42:50.562822+00:00",
+      "call_id": "3f95c55cb08a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d5c12a7c7d73e8a4",
+      "prompt_tokens": 908,
+      "completion_tokens": 68,
+      "latency_ms": 9430.93,
+      "server_ms": 9405.17,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "7ccc27e43f1245ea"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 908,
+    "completion_tokens": 68,
+    "total_ms": 13702.04
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

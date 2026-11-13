@@ -1,0 +1,163 @@
+{
+  "trace_id": "0666e3ac84de4368",
+  "created_at": "2026-11-13T10:00:40.427725+00:00",
+  "query": "What did the director of \"A Stitch for Time\" win at the 54th Academy Awards?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8.77
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.27
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 8701.11
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.86,
+      "bm25_ms": 6.74,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "f3503d3d186f0f90:L0:000097",
+          "score": 0.8430709649576336,
+          "fused": 0.8430709649576336,
+          "dense_rank": 1,
+          "bm25_rank": 5
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000194",
+          "score": 0.7891591545897535,
+          "fused": 0.7891591545897535,
+          "dense_rank": 13,
+          "bm25_rank": 2
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000111",
+          "score": 0.7353034243297193,
+          "fused": 0.7353034243297193,
+          "dense_rank": 29,
+          "bm25_rank": 1
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000026",
+          "score": 0.601882163955659,
+          "fused": 0.601882163955659,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000164",
+          "score": 0.5938285234404467,
+          "fused": 0.5938285234404467,
+          "dense_rank": 43,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 8.75
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 563,
+      "latency_ms": 0.49
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8691.71
+    }
+  },
+  "retrieved_ids": [
+    "f3503d3d186f0f90:L0:000097",
+    "4fcce431f5d22d1d:L0:000194",
+    "178c7e3e6ef6ae87:L0:000111",
+    "4fcce431f5d22d1d:L0:000026",
+    "cc1bdb3bf430bd0d:L0:000164"
+  ],
+  "filtered_ids": [
+    "f3503d3d186f0f90:L0:000097",
+    "4fcce431f5d22d1d:L0:000194",
+    "178c7e3e6ef6ae87:L0:000111",
+    "4fcce431f5d22d1d:L0:000026",
+    "cc1bdb3bf430bd0d:L0:000164"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:00:40.428723+00:00",
+      "call_id": "8bf5f4c9fe05",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a79a94d0047d90c9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0666e3ac84de4368"
+    },
+    {
+      "ts": "2026-11-13T10:00:49.127316+00:00",
+      "call_id": "b53b05ad56b1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1d798c1a14953244",
+      "prompt_tokens": 1228,
+      "completion_tokens": 38,
+      "latency_ms": 8689.89,
+      "server_ms": 8637.45,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0666e3ac84de4368"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1228,
+    "completion_tokens": 38,
+    "total_ms": 8703.09
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Abstained"
+      ]
+    }
+  }
+}

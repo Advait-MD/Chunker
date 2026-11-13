@@ -1,0 +1,180 @@
+{
+  "trace_id": "c4ffadaf971b48a1",
+  "created_at": "2026-11-13T13:27:50.938908+00:00",
+  "query": "What was the blue spectral vehicle Dan acquired?\n\nOptions:\n(A) A time machine.\n(B) A UFO.\n(C) An inter-dimensional cage.\n(D) A flying car.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 21924.87
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 21924.99
+    },
+    {
+      "state": "DONE",
+      "t_ms": 41881.76
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.53,
+      "bm25_ms": 17.93,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 19
+      },
+      "n_fused": 19,
+      "rerank": {
+        "n": 19,
+        "n_computed": 19,
+        "latency_ms": 21901.91
+      },
+      "hits": [
+        {
+          "id": "e7190ee11203481e:L0:000007",
+          "score": -0.22965285181999207,
+          "fused": 0.9392883441493645,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.22965285181999207
+        },
+        {
+          "id": "e7190ee11203481e:L0:000013",
+          "score": -1.9539028406143188,
+          "fused": 0.6364799859078318,
+          "dense_rank": 1,
+          "bm25_rank": 8,
+          "fused_rank": 4,
+          "rerank": -1.9539028406143188
+        },
+        {
+          "id": "e7190ee11203481e:L0:000003",
+          "score": -2.237236976623535,
+          "fused": 0.6961878153751091,
+          "dense_rank": 6,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -2.237236976623535
+        },
+        {
+          "id": "e7190ee11203481e:L0:000015",
+          "score": -2.429680824279785,
+          "fused": 0.5559941288848704,
+          "dense_rank": 2,
+          "bm25_rank": 12,
+          "fused_rank": 7,
+          "rerank": -2.429680824279785
+        },
+        {
+          "id": "e7190ee11203481e:L0:000012",
+          "score": -2.504964828491211,
+          "fused": 0.5530531221285525,
+          "dense_rank": 3,
+          "bm25_rank": 11,
+          "fused_rank": 8,
+          "rerank": -2.504964828491211
+        }
+      ],
+      "latency_ms": 21924.82
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1970,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19956.68
+    }
+  },
+  "retrieved_ids": [
+    "e7190ee11203481e:L0:000007",
+    "e7190ee11203481e:L0:000013",
+    "e7190ee11203481e:L0:000003",
+    "e7190ee11203481e:L0:000015",
+    "e7190ee11203481e:L0:000012"
+  ],
+  "filtered_ids": [
+    "e7190ee11203481e:L0:000007",
+    "e7190ee11203481e:L0:000013",
+    "e7190ee11203481e:L0:000003",
+    "e7190ee11203481e:L0:000015",
+    "e7190ee11203481e:L0:000012"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:27:50.938908+00:00",
+      "call_id": "7b274e5c4925",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fcae755b40df44ba",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c4ffadaf971b48a1"
+    },
+    {
+      "ts": "2026-11-13T13:28:32.815468+00:00",
+      "call_id": "6cc7f45b68d3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "91b5f72591d3b652",
+      "prompt_tokens": 2530,
+      "completion_tokens": 60,
+      "latency_ms": 19955.53,
+      "server_ms": 19938.0,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "c4ffadaf971b48a1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2530,
+    "completion_tokens": 60,
+    "total_ms": 41882.64
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

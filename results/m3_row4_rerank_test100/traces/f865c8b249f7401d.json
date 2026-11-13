@@ -1,0 +1,179 @@
+{
+  "trace_id": "f865c8b249f7401d",
+  "created_at": "2026-11-13T14:35:48.016066+00:00",
+  "query": "The Nike Mercurial Vapor is endorsed by a Stoke City football player who also plays for what national team?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4427.53
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4427.6
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13896.77
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.9,
+      "bm25_ms": 6.2,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4418.22
+      },
+      "hits": [
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000013",
+          "score": 8.021089553833008,
+          "fused": 0.8195159643103228,
+          "dense_rank": 14,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.021089553833008
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000046",
+          "score": 5.307676315307617,
+          "fused": 0.6066225596320782,
+          "dense_rank": 1,
+          "bm25_rank": 5,
+          "fused_rank": 2,
+          "rerank": 5.307676315307617
+        },
+        {
+          "id": "634431bb1e27714f:L0:000041",
+          "score": 1.3716906309127808,
+          "fused": 0.4839843895893142,
+          "dense_rank": 21,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 1.3716906309127808
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000055",
+          "score": 0.24550548195838928,
+          "fused": 0.32489473917068246,
+          "dense_rank": 12,
+          "bm25_rank": 12,
+          "fused_rank": 9,
+          "rerank": 0.24550548195838928
+        },
+        {
+          "id": "b120b09075017d08:L0:000082",
+          "score": -0.9969102144241333,
+          "fused": 0.3665983645658815,
+          "dense_rank": 16,
+          "bm25_rank": 7,
+          "fused_rank": 5,
+          "rerank": -0.9969102144241333
+        }
+      ],
+      "latency_ms": 4427.49
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 402,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9469.09
+    }
+  },
+  "retrieved_ids": [
+    "ba3cd068cf9ac2e4:L0:000013",
+    "bc1dba3471045f02:L0:000046",
+    "634431bb1e27714f:L0:000041",
+    "5d0f6cf59ee42566:L0:000055",
+    "b120b09075017d08:L0:000082"
+  ],
+  "filtered_ids": [
+    "ba3cd068cf9ac2e4:L0:000013",
+    "bc1dba3471045f02:L0:000046",
+    "634431bb1e27714f:L0:000041",
+    "5d0f6cf59ee42566:L0:000055",
+    "b120b09075017d08:L0:000082"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:35:48.016066+00:00",
+      "call_id": "b63755867ea5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "94b7dc7db583e441",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f865c8b249f7401d"
+    },
+    {
+      "ts": "2026-11-13T14:36:01.907747+00:00",
+      "call_id": "2726db6f6ff4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "10e15f1f960879d1",
+      "prompt_tokens": 1042,
+      "completion_tokens": 68,
+      "latency_ms": 9468.4,
+      "server_ms": 9446.15,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "f865c8b249f7401d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1042,
+    "completion_tokens": 68,
+    "total_ms": 13897.89
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

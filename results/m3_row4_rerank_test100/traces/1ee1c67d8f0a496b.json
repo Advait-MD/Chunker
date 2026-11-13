@@ -1,0 +1,181 @@
+{
+  "trace_id": "1ee1c67d8f0a496b",
+  "created_at": "2026-11-13T15:00:32.690851+00:00",
+  "query": "Which film whose director is younger, Return Of The Hero or Home In Indiana?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4058.06
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4058.18
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19017.91
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.76,
+      "bm25_ms": 8.57,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4043.04
+      },
+      "hits": [
+        {
+          "id": "460e441179bec402:L0:000116",
+          "score": 8.785218238830566,
+          "fused": 0.6412410531442629,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 8.785218238830566
+        },
+        {
+          "id": "0eac870d43736f51:L0:000168",
+          "score": 6.904687881469727,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.904687881469727
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000068",
+          "score": -6.458864212036133,
+          "fused": 0.13654082737784382,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -6.458864212036133
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000097",
+          "score": -7.023985385894775,
+          "fused": 0.18634174637500833,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -7.023985385894775
+        },
+        {
+          "id": "abe982d210232c3f:L0:000187",
+          "score": -7.150237083435059,
+          "fused": 0.13285830509689964,
+          "dense_rank": null,
+          "bm25_rank": 16,
+          "fused_rank": 20,
+          "rerank": -7.150237083435059
+        }
+      ],
+      "latency_ms": 4058.0
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 565,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14959.54
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000116",
+    "0eac870d43736f51:L0:000168",
+    "6af2db6cb86d77e2:L0:000068",
+    "c73b757f0eb66f37:L0:000097",
+    "abe982d210232c3f:L0:000187"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000116",
+    "0eac870d43736f51:L0:000168",
+    "6af2db6cb86d77e2:L0:000068",
+    "c73b757f0eb66f37:L0:000097",
+    "abe982d210232c3f:L0:000187"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:00:32.692859+00:00",
+      "call_id": "fb7cff805590",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cfbeb3d232ee5f61",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1ee1c67d8f0a496b"
+    },
+    {
+      "ts": "2026-11-13T15:00:51.707661+00:00",
+      "call_id": "bded08296bd0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0cc33ed346405e56",
+      "prompt_tokens": 1204,
+      "completion_tokens": 98,
+      "latency_ms": 14958.15,
+      "server_ms": 14932.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "1ee1c67d8f0a496b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1204,
+    "completion_tokens": 98,
+    "total_ms": 19019.75
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, Return of the Hero has a younger director."
+      ]
+    }
+  }
+}

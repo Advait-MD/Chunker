@@ -1,0 +1,180 @@
+{
+  "trace_id": "d1dbd9225d7b4388",
+  "created_at": "2026-11-13T13:14:17.105529+00:00",
+  "query": "Why does Bo say that rockhounds will never become rich?\n\nOptions:\n(A) He says that they spend their money on women rather than saving it.\n(B) He says that they spend all of their money.\n(C) He does not say that at all because he is aware that they make a lot of money.\n(D) He knows that the government takes huge taxes from their wages.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17819.16
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17820.07
+    },
+    {
+      "state": "DONE",
+      "t_ms": 40509.57
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.13,
+      "bm25_ms": 12.54,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 17
+      },
+      "n_fused": 17,
+      "rerank": {
+        "n": 17,
+        "n_computed": 17,
+        "latency_ms": 17800.72
+      },
+      "hits": [
+        {
+          "id": "935f43b995902b70:L0:000004",
+          "score": -0.2741807699203491,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.2741807699203491
+        },
+        {
+          "id": "935f43b995902b70:L0:000011",
+          "score": -3.1542913913726807,
+          "fused": 0.298028060274948,
+          "dense_rank": 5,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -3.1542913913726807
+        },
+        {
+          "id": "935f43b995902b70:L0:000008",
+          "score": -3.7281811237335205,
+          "fused": 0.10654516858611224,
+          "dense_rank": 13,
+          "bm25_rank": 14,
+          "fused_rank": 13,
+          "rerank": -3.7281811237335205
+        },
+        {
+          "id": "935f43b995902b70:L0:000009",
+          "score": -3.997636318206787,
+          "fused": 0.13353525165764552,
+          "dense_rank": 11,
+          "bm25_rank": 11,
+          "fused_rank": 11,
+          "rerank": -3.997636318206787
+        },
+        {
+          "id": "935f43b995902b70:L0:000003",
+          "score": -4.224531173706055,
+          "fused": 0.4484082779106845,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -4.224531173706055
+        }
+      ],
+      "latency_ms": 17819.12
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1972,
+      "latency_ms": 0.84
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22689.36
+    }
+  },
+  "retrieved_ids": [
+    "935f43b995902b70:L0:000004",
+    "935f43b995902b70:L0:000011",
+    "935f43b995902b70:L0:000008",
+    "935f43b995902b70:L0:000009",
+    "935f43b995902b70:L0:000003"
+  ],
+  "filtered_ids": [
+    "935f43b995902b70:L0:000004",
+    "935f43b995902b70:L0:000011",
+    "935f43b995902b70:L0:000008",
+    "935f43b995902b70:L0:000009",
+    "935f43b995902b70:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:14:17.105529+00:00",
+      "call_id": "ce9f039ffce0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "15725ca320e175b6",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d1dbd9225d7b4388"
+    },
+    {
+      "ts": "2026-11-13T13:14:57.608254+00:00",
+      "call_id": "7f082a7b8e28",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bcef77f687470fde",
+      "prompt_tokens": 2641,
+      "completion_tokens": 46,
+      "latency_ms": 22687.84,
+      "server_ms": 22654.76,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "d1dbd9225d7b4388"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2641,
+    "completion_tokens": 46,
+    "total_ms": 40511.36
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "(B) He says that they spend all of their money."
+      ]
+    }
+  }
+}

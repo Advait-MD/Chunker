@@ -1,0 +1,182 @@
+{
+  "trace_id": "9f28247dc48d45a4",
+  "created_at": "2026-11-13T15:05:35.644211+00:00",
+  "query": "Are the directors of films Who Are You, Polly Maggoo? and Mother Night (Film) both from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9024.08
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9024.15
+    },
+    {
+      "state": "DONE",
+      "t_ms": 29927.59
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.05,
+      "bm25_ms": 4.66,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 9016.65
+      },
+      "hits": [
+        {
+          "id": "460e441179bec402:L0:000165",
+          "score": 8.410684585571289,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.410684585571289
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": -2.9484703540802,
+          "fused": 0.20165183235686984,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 14,
+          "rerank": -2.9484703540802
+        },
+        {
+          "id": "460e441179bec402:L0:000159",
+          "score": -3.1508820056915283,
+          "fused": 0.35258879252314934,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -3.1508820056915283
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000054",
+          "score": -3.9432756900787354,
+          "fused": 0.36091169368766096,
+          "dense_rank": 20,
+          "bm25_rank": 6,
+          "fused_rank": 2,
+          "rerank": -3.9432756900787354
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -4.063827037811279,
+          "fused": 0.1778852842765133,
+          "dense_rank": 9,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": -4.063827037811279
+        }
+      ],
+      "latency_ms": 9024.05
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1068,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20903.32
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000165",
+    "abe982d210232c3f:L0:000151",
+    "460e441179bec402:L0:000159",
+    "b04ce6dd2d95fb80:L0:000054",
+    "b04ce6dd2d95fb80:L0:000152"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000165",
+    "abe982d210232c3f:L0:000151",
+    "460e441179bec402:L0:000159",
+    "b04ce6dd2d95fb80:L0:000054",
+    "b04ce6dd2d95fb80:L0:000152"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:05:35.646220+00:00",
+      "call_id": "d2f40ed43a39",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "12b4dc832372dd1c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9f28247dc48d45a4"
+    },
+    {
+      "ts": "2026-11-13T15:06:05.566098+00:00",
+      "call_id": "35db107c3bfe",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0c3d32519ad1e121",
+      "prompt_tokens": 1817,
+      "completion_tokens": 136,
+      "latency_ms": 20902.24,
+      "server_ms": 20874.83,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "9f28247dc48d45a4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1817,
+    "completion_tokens": 136,
+    "total_ms": 29929.48
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "No, the directors of 'Who Are You, Polly Maggoo?' and 'Mother Night (Film)' are not from the same country."
+      ]
+    }
+  }
+}

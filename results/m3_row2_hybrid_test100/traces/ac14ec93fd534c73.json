@@ -1,0 +1,170 @@
+{
+  "trace_id": "ac14ec93fd534c73",
+  "created_at": "2026-11-13T09:10:14.145381+00:00",
+  "query": "How are the tweets selected?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4.96
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4.99
+    },
+    {
+      "state": "DONE",
+      "t_ms": 32735.82
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.18,
+      "bm25_ms": 2.65,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "d96e7fdc6d06a63b:L0:000011",
+          "score": 0.992157110791507,
+          "fused": 0.992157110791507,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "d96e7fdc6d06a63b:L0:000013",
+          "score": 0.8871886772106103,
+          "fused": 0.8871886772106103,
+          "dense_rank": 7,
+          "bm25_rank": 2
+        },
+        {
+          "id": "d96e7fdc6d06a63b:L0:000016",
+          "score": 0.7570509799079094,
+          "fused": 0.7570509799079094,
+          "dense_rank": 10,
+          "bm25_rank": 3
+        },
+        {
+          "id": "d96e7fdc6d06a63b:L0:000010",
+          "score": 0.7396927522956929,
+          "fused": 0.7396927522956929,
+          "dense_rank": 8,
+          "bm25_rank": 4
+        },
+        {
+          "id": "d96e7fdc6d06a63b:L0:000019",
+          "score": 0.5752379657909804,
+          "fused": 0.5752379657909804,
+          "dense_rank": 3,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 4.93
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1482,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 32730.72
+    }
+  },
+  "retrieved_ids": [
+    "d96e7fdc6d06a63b:L0:000011",
+    "d96e7fdc6d06a63b:L0:000013",
+    "d96e7fdc6d06a63b:L0:000016",
+    "d96e7fdc6d06a63b:L0:000010",
+    "d96e7fdc6d06a63b:L0:000019"
+  ],
+  "filtered_ids": [
+    "d96e7fdc6d06a63b:L0:000011",
+    "d96e7fdc6d06a63b:L0:000013",
+    "d96e7fdc6d06a63b:L0:000016",
+    "d96e7fdc6d06a63b:L0:000010",
+    "d96e7fdc6d06a63b:L0:000019"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:10:14.146477+00:00",
+      "call_id": "2d339d895fd3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5c4d6db4be55e35c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ac14ec93fd534c73"
+    },
+    {
+      "ts": "2026-11-13T09:10:46.880148+00:00",
+      "call_id": "01c0f6d9af4b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "579c920e955cf235",
+      "prompt_tokens": 2144,
+      "completion_tokens": 192,
+      "latency_ms": 32729.81,
+      "server_ms": 32691.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ac14ec93fd534c73"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2144,
+    "completion_tokens": 192,
+    "total_ms": 32737.07
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        3
+      ],
+      "uncited_sentences": [
+        "Tweets are selected through multiple rounds of crowdsourced annotations.",
+        "In the first round (R1), 2,400 tweets from the top 80th percentile of confidence scores in the positive class are chosen.",
+        "Type-1 tweets are automatically classified as positive but may not be job-related.",
+        "In the second round (R2), 800 tweets with confidence scores closest to zero from the positive side and 800 from the negative side are selected.",
+        "In the fourth round (R4), about 2,000 tweets labeled as positive by INLINEFORM1 and never used before are chosen."
+      ]
+    }
+  }
+}

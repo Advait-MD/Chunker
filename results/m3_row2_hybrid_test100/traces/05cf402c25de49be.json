@@ -1,0 +1,163 @@
+{
+  "trace_id": "05cf402c25de49be",
+  "created_at": "2026-11-13T09:56:01.921506+00:00",
+  "query": "Who is the president of the newly declared independent country that is part of the Commission of Truth and Friendship with the country where Sambas is located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.75
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18.94
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15402.67
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.69,
+      "bm25_ms": 15.71,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "4fcce431f5d22d1d:L0:000055",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "ce57fdde2baaba9c:L0:000179",
+          "score": 0.3391425754081444,
+          "fused": 0.3391425754081444,
+          "dense_rank": 7,
+          "bm25_rank": 5
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000066",
+          "score": 0.3040039296556071,
+          "fused": 0.3040039296556071,
+          "dense_rank": 14,
+          "bm25_rank": 7
+        },
+        {
+          "id": "4b634e52029ddab4:L0:000012",
+          "score": 0.29609428073614397,
+          "fused": 0.29609428073614397,
+          "dense_rank": 4,
+          "bm25_rank": 11
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000014",
+          "score": 0.29078531005568015,
+          "fused": 0.29078531005568015,
+          "dense_rank": null,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 18.71
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 600,
+      "latency_ms": 0.18
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15383.62
+    }
+  },
+  "retrieved_ids": [
+    "4fcce431f5d22d1d:L0:000055",
+    "ce57fdde2baaba9c:L0:000179",
+    "8b31d5859eb3d77a:L0:000066",
+    "4b634e52029ddab4:L0:000012",
+    "f109b032e24ab27a:L0:000014"
+  ],
+  "filtered_ids": [
+    "4fcce431f5d22d1d:L0:000055",
+    "ce57fdde2baaba9c:L0:000179",
+    "8b31d5859eb3d77a:L0:000066",
+    "4b634e52029ddab4:L0:000012",
+    "f109b032e24ab27a:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:56:01.922506+00:00",
+      "call_id": "1b5d12ac1685",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6dd48e7a93f25300",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "05cf402c25de49be"
+    },
+    {
+      "ts": "2026-11-13T09:56:17.322808+00:00",
+      "call_id": "11afe442f554",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1c97700f7e4fabfa",
+      "prompt_tokens": 1254,
+      "completion_tokens": 85,
+      "latency_ms": 15382.64,
+      "server_ms": 15355.66,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "05cf402c25de49be"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1254,
+    "completion_tokens": 85,
+    "total_ms": 15404.48
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

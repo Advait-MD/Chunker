@@ -1,0 +1,181 @@
+{
+  "trace_id": "a5a5e7262880459e",
+  "created_at": "2026-11-13T11:53:26.366224+00:00",
+  "query": "In what way does each classifier evaluate one of the syntactic or social properties which are salient for a tweet?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 23578.83
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 23579.21
+    },
+    {
+      "state": "DONE",
+      "t_ms": 53412.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.26,
+      "bm25_ms": 42.52,
+      "n_candidates": {
+        "dense": 18,
+        "bm25": 15
+      },
+      "n_fused": 18,
+      "rerank": {
+        "n": 18,
+        "n_computed": 18,
+        "latency_ms": 23528.18
+      },
+      "hits": [
+        {
+          "id": "7555dff3e5c2bf70:L0:000000",
+          "score": 6.742593288421631,
+          "fused": 0.9688080098838827,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.742593288421631
+        },
+        {
+          "id": "7555dff3e5c2bf70:L0:000001",
+          "score": 2.89479660987854,
+          "fused": 0.7709400623143188,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 2.89479660987854
+        },
+        {
+          "id": "7555dff3e5c2bf70:L0:000013",
+          "score": -0.5689026713371277,
+          "fused": 0.6383005967356048,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.5689026713371277
+        },
+        {
+          "id": "7555dff3e5c2bf70:L0:000002",
+          "score": -0.6256754994392395,
+          "fused": 0.5905075556496491,
+          "dense_rank": 4,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -0.6256754994392395
+        },
+        {
+          "id": "7555dff3e5c2bf70:L0:000006",
+          "score": -2.5873444080352783,
+          "fused": 0.278179438548604,
+          "dense_rank": 10,
+          "bm25_rank": 9,
+          "fused_rank": 9,
+          "rerank": -2.5873444080352783
+        }
+      ],
+      "latency_ms": 23578.76
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1193,
+      "latency_ms": 0.31
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 29833.08
+    }
+  },
+  "retrieved_ids": [
+    "7555dff3e5c2bf70:L0:000000",
+    "7555dff3e5c2bf70:L0:000001",
+    "7555dff3e5c2bf70:L0:000013",
+    "7555dff3e5c2bf70:L0:000002",
+    "7555dff3e5c2bf70:L0:000006"
+  ],
+  "filtered_ids": [
+    "7555dff3e5c2bf70:L0:000000",
+    "7555dff3e5c2bf70:L0:000001",
+    "7555dff3e5c2bf70:L0:000013",
+    "7555dff3e5c2bf70:L0:000002",
+    "7555dff3e5c2bf70:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:53:26.369222+00:00",
+      "call_id": "ad4e2c6dcdd6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "68ac8918501cc825",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a5a5e7262880459e"
+    },
+    {
+      "ts": "2026-11-13T11:54:19.777144+00:00",
+      "call_id": "6ea1b049428e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6d31732939a74af5",
+      "prompt_tokens": 1766,
+      "completion_tokens": 106,
+      "latency_ms": 29830.13,
+      "server_ms": 29795.67,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a5a5e7262880459e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1766,
+    "completion_tokens": 106,
+    "total_ms": 53414.53
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Each classifier evaluates one of the syntactic or social properties which are salient for a tweet by taking the tweet representation as input and predicting the property."
+      ]
+    }
+  }
+}

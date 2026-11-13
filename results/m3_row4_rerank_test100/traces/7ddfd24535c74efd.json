@@ -1,0 +1,180 @@
+{
+  "trace_id": "7ddfd24535c74efd",
+  "created_at": "2026-11-13T15:10:24.258999+00:00",
+  "query": "Which album was released earlier, American Tunes or I'M In Love Again?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7345.43
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7345.72
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22753.0
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.44,
+      "bm25_ms": 5.06,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 7335.53
+      },
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000011",
+          "score": -3.6468868255615234,
+          "fused": 0.4922254927328545,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -3.6468868255615234
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000167",
+          "score": -5.500348091125488,
+          "fused": 0.3631849721439531,
+          "dense_rank": 5,
+          "bm25_rank": 18,
+          "fused_rank": 8,
+          "rerank": -5.500348091125488
+        },
+        {
+          "id": "abe982d210232c3f:L0:000092",
+          "score": -5.695900917053223,
+          "fused": 0.2488636664402234,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": -5.695900917053223
+        },
+        {
+          "id": "99628090500247e3:L0:000060",
+          "score": -6.059572219848633,
+          "fused": 0.26797066908318196,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 14,
+          "rerank": -6.059572219848633
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000026",
+          "score": -6.108404159545898,
+          "fused": 0.21589946926568096,
+          "dense_rank": 10,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -6.108404159545898
+        }
+      ],
+      "latency_ms": 7345.37
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1044,
+      "latency_ms": 0.24
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15407.15
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000011",
+    "53c7288bdcd3837a:L0:000167",
+    "abe982d210232c3f:L0:000092",
+    "99628090500247e3:L0:000060",
+    "4a757779abfb4ba1:L0:000026"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000011",
+    "53c7288bdcd3837a:L0:000167",
+    "abe982d210232c3f:L0:000092",
+    "99628090500247e3:L0:000060",
+    "4a757779abfb4ba1:L0:000026"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:10:24.258999+00:00",
+      "call_id": "465933a190e2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a34cc4f2b4fcb60d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7ddfd24535c74efd"
+    },
+    {
+      "ts": "2026-11-13T15:10:47.011928+00:00",
+      "call_id": "2563b332424b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ab6b926eabdee72f",
+      "prompt_tokens": 1747,
+      "completion_tokens": 70,
+      "latency_ms": 15405.49,
+      "server_ms": 15374.81,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "7ddfd24535c74efd"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1747,
+    "completion_tokens": 70,
+    "total_ms": 22755.52
+  },
+  "config_hash": "9234f32cdf09",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "I'M In Love Again! was released earlier in 1964, while the release date of American Tunes is not mentioned in the provided passages."
+      ]
+    }
+  }
+}

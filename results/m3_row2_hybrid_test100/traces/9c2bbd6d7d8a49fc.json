@@ -1,0 +1,163 @@
+{
+  "trace_id": "9c2bbd6d7d8a49fc",
+  "created_at": "2026-11-13T10:58:36.663036+00:00",
+  "query": "What actor replaced the Welch actor born in 1978 who played Robin Hood in the first season of \"Once upon a Time\"?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.33
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.44
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13428.41
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.63,
+      "bm25_ms": 15.22,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ec3410ef955c5c93:L0:000178",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "b120b09075017d08:L0:000045",
+          "score": 0.4981439405857295,
+          "fused": 0.4981439405857295,
+          "dense_rank": 3,
+          "bm25_rank": 4
+        },
+        {
+          "id": "634431bb1e27714f:L0:000119",
+          "score": 0.3086659215754704,
+          "fused": 0.3086659215754704,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000063",
+          "score": 0.3076084572019385,
+          "fused": 0.3076084572019385,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000039",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 18.27
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 718,
+      "latency_ms": 1.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13408.63
+    }
+  },
+  "retrieved_ids": [
+    "ec3410ef955c5c93:L0:000178",
+    "b120b09075017d08:L0:000045",
+    "634431bb1e27714f:L0:000119",
+    "ba3cd068cf9ac2e4:L0:000063",
+    "81fc433d55d23b4c:L0:000039"
+  ],
+  "filtered_ids": [
+    "ec3410ef955c5c93:L0:000178",
+    "b120b09075017d08:L0:000045",
+    "634431bb1e27714f:L0:000119",
+    "ba3cd068cf9ac2e4:L0:000063",
+    "81fc433d55d23b4c:L0:000039"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:58:36.664043+00:00",
+      "call_id": "83bab0271a61",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0678e8bb28b4f4ca",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9c2bbd6d7d8a49fc"
+    },
+    {
+      "ts": "2026-11-13T10:58:50.089289+00:00",
+      "call_id": "befde25d8c74",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1ba5f135cd4faa73",
+      "prompt_tokens": 1397,
+      "completion_tokens": 71,
+      "latency_ms": 13406.72,
+      "server_ms": 13360.26,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "9c2bbd6d7d8a49fc"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1397,
+    "completion_tokens": 71,
+    "total_ms": 13431.45
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

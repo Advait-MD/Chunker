@@ -1,0 +1,163 @@
+{
+  "trace_id": "fdd9d1242e0049d0",
+  "created_at": "2026-11-13T09:59:56.648009+00:00",
+  "query": "When was the last time Duane Courtney's team beat the winner of the 1894-95 FA Cup?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 24.1
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 24.23
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12938.59
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.25,
+      "bm25_ms": 20.44,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000096",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "4b634e52029ddab4:L0:000033",
+          "score": 0.7732945718020843,
+          "fused": 0.7732945718020843,
+          "dense_rank": 8,
+          "bm25_rank": 4
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000073",
+          "score": 0.7111294001404649,
+          "fused": 0.7111294001404649,
+          "dense_rank": 3,
+          "bm25_rank": 8
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000071",
+          "score": 0.6739993824791288,
+          "fused": 0.6739993824791288,
+          "dense_rank": 14,
+          "bm25_rank": 5
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000090",
+          "score": 0.6307388261965445,
+          "fused": 0.6307388261965445,
+          "dense_rank": null,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 24.06
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 765,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12914.29
+    }
+  },
+  "retrieved_ids": [
+    "cc1bdb3bf430bd0d:L0:000096",
+    "4b634e52029ddab4:L0:000033",
+    "dbcbda865eee9c7b:L0:000073",
+    "dbcbda865eee9c7b:L0:000071",
+    "8679484d23bfd3a0:L0:000090"
+  ],
+  "filtered_ids": [
+    "cc1bdb3bf430bd0d:L0:000096",
+    "4b634e52029ddab4:L0:000033",
+    "dbcbda865eee9c7b:L0:000073",
+    "dbcbda865eee9c7b:L0:000071",
+    "8679484d23bfd3a0:L0:000090"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:59:56.649008+00:00",
+      "call_id": "7f6a2ccb7999",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e634d9b3008ace76",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fdd9d1242e0049d0"
+    },
+    {
+      "ts": "2026-11-13T10:00:09.586095+00:00",
+      "call_id": "32923d4d2339",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e6fd5c1fe9710a56",
+      "prompt_tokens": 1405,
+      "completion_tokens": 45,
+      "latency_ms": 12913.32,
+      "server_ms": 12872.84,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "fdd9d1242e0049d0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1405,
+    "completion_tokens": 45,
+    "total_ms": 12939.7
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "split": "dev",
+  "variants": {
+    "row2": {
+      "run": {
+        "name": "row2_hybrid"
+      },
+      "retrieval": {
+        "mode": "hybrid",
+        "fusion": "weighted",
+        "weights": {
+          "dense": 0.3,
+          "bm25": 0.7
+        }
+      }
+    },
+    "row4": {
+      "run": {
+        "name": "row4_rerank"
+      },
+      "retrieval": {
+        "mode": "hybrid",
+        "fusion": "weighted",
+        "weights": {
+          "dense": 0.3,
+          "bm25": 0.7
+        }
+      },
+      "rerank": {
+        "enabled": true
+      }
+    }
+  },
+  "datasets": {
+    "hotpotqa": {
+      "row2": {
+        "recall@5": {
+          "mean": 0.8333333333333334,
+          "lo": 0.6666666666666666,
+          "hi": 1.0,
+          "n": 6
+        },
+        "recall@10": {
+          "mean": 0.9166666666666666,
+          "lo": 0.75,
+          "hi": 1.0,
+          "n": 6
+        },
+        "recall@20": {
+          "mean": 0.9166666666666666,
+          "lo": 0.75,
+          "hi": 1.0,
+          "n": 6
+        },
+        "mrr": {
+          "mean": 0.888888888888889,
+          "lo": 0.6666666666666666,
+          "hi": 1.0,
+          "n": 6
+        },
+        "ndcg@10": {
+          "mean": 0.8138775923635393,
+          "lo": 0.6642427921625799,
+          "hi": 0.9464805260987917,
+          "n": 6
+        },
+        "n": 6,
+        "latency_ms_p50": 7.925500000055763,
+        "latency_ms_p95": 9.042599999702361,
+        "retriever": "bm25+dense_ivf|weighted",
+        "build_s": 0.62,
+        "build": {
+          "n_nodes": 2943,
+          "build_s": 0.614,
+          "ivf": {
+            "n": 2943,
+            "nlist": 75,
+            "build_s": 0.031
+          }
+        }
+      },
+      "row4": {
+        "recall@5": {
+          "mean": 0.9166666666666666,
+          "lo": 0.75,
+          "hi": 1.0,
+          "n": 6
+        },
+        "recall@10": {
+          "mean": 0.9166666666666666,
+          "lo": 0.75,
+          "hi": 1.0,
+          "n": 6
+        },
+        "recall@20": {
+          "mean": 0.9166666666666666,
+          "lo": 0.75,
+          "hi": 1.0,
+          "n": 6
+        },
+        "mrr": {
+          "mean": 0.8888888888888888,
+          "lo": 0.6666666666666666,
+          "hi": 1.0,
+          "n": 6
+        },
+        "ndcg@10": {
+          "mean": 0.8435007045098045,
+          "lo": 0.6123585699707145,
+          "hi": 0.9795358858896749,
+          "n": 6
+        },
+        "n": 6,
+        "latency_ms_p50": 17686.782400000084,
+        "latency_ms_p95": 27773.107699999855,
+        "retriever": "bm25+dense_ivf|weighted|rerank",
+        "build_s": 0.54,
+        "build": {
+          "n_nodes": 2943,
+          "build_s": 0.519,
+          "ivf": {
+            "n": 2943,
+            "nlist": 75,
+            "build_s": 0.034
+          }
+        }
+      }
+    }
+  }
+}

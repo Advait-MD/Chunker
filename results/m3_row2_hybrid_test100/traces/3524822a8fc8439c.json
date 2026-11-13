@@ -1,0 +1,164 @@
+{
+  "trace_id": "3524822a8fc8439c",
+  "created_at": "2026-11-13T10:46:31.322692+00:00",
+  "query": "What kind of musicians are Mark Gaudet and Jan Axel Blomberg?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.88
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.07
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13389.4
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.24,
+      "bm25_ms": 8.14,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "8e50522b7cb636d8:L0:000158",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000114",
+          "score": 0.6914363855165901,
+          "fused": 0.6914363855165901,
+          "dense_rank": 27,
+          "bm25_rank": 2
+        },
+        {
+          "id": "634431bb1e27714f:L0:000096",
+          "score": 0.5490199445454147,
+          "fused": 0.5490199445454147,
+          "dense_rank": 19,
+          "bm25_rank": 3
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000071",
+          "score": 0.47060321072672723,
+          "fused": 0.47060321072672723,
+          "dense_rank": 26,
+          "bm25_rank": 7
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000002",
+          "score": 0.4253553442842191,
+          "fused": 0.4253553442842191,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 11.84
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 428,
+      "latency_ms": 0.15
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13377.16
+    }
+  },
+  "retrieved_ids": [
+    "8e50522b7cb636d8:L0:000158",
+    "9794e842cc9565f0:L0:000114",
+    "634431bb1e27714f:L0:000096",
+    "90976421f3f2bea2:L0:000071",
+    "ba3cd068cf9ac2e4:L0:000002"
+  ],
+  "filtered_ids": [
+    "8e50522b7cb636d8:L0:000158",
+    "9794e842cc9565f0:L0:000114",
+    "634431bb1e27714f:L0:000096",
+    "90976421f3f2bea2:L0:000071",
+    "ba3cd068cf9ac2e4:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:46:31.324007+00:00",
+      "call_id": "9c47799f30c0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d7dac65c526685c1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "3524822a8fc8439c"
+    },
+    {
+      "ts": "2026-11-13T10:46:44.710194+00:00",
+      "call_id": "16e5d67d63f5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3cc41aa94a55f963",
+      "prompt_tokens": 1106,
+      "completion_tokens": 96,
+      "latency_ms": 13375.75,
+      "server_ms": 13354.47,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "3524822a8fc8439c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1106,
+    "completion_tokens": 96,
+    "total_ms": 13390.87
+  },
+  "config_hash": "f083f77eaa82",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

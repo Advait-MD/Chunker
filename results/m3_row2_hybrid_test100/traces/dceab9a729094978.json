@@ -1,0 +1,163 @@
+{
+  "trace_id": "dceab9a729094978",
+  "created_at": "2026-11-13T11:04:46.458860+00:00",
+  "query": "Who is the paternal grandfather of Diarmait Ua Briain?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.67
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.73
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 8078.72
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.33,
+      "bm25_ms": 4.03,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 35
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "b04ce6dd2d95fb80:L0:000176",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000193",
+          "score": 0.584863256003873,
+          "fused": 0.584863256003873,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000187",
+          "score": 0.5715338883935268,
+          "fused": 0.5715338883935268,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "43d5059060d4defa:L0:000021",
+          "score": 0.3960443429151253,
+          "fused": 0.3960443429151253,
+          "dense_rank": 3,
+          "bm25_rank": 9
+        },
+        {
+          "id": "99628090500247e3:L0:000097",
+          "score": 0.39572435936100114,
+          "fused": 0.39572435936100114,
+          "dense_rank": 2,
+          "bm25_rank": 17
+        }
+      ],
+      "latency_ms": 7.64
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 300,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8070.91
+    }
+  },
+  "retrieved_ids": [
+    "b04ce6dd2d95fb80:L0:000176",
+    "c73b757f0eb66f37:L0:000193",
+    "317e12ccd417c0d7:L0:000187",
+    "43d5059060d4defa:L0:000021",
+    "99628090500247e3:L0:000097"
+  ],
+  "filtered_ids": [
+    "b04ce6dd2d95fb80:L0:000176",
+    "c73b757f0eb66f37:L0:000193",
+    "317e12ccd417c0d7:L0:000187",
+    "43d5059060d4defa:L0:000021",
+    "99628090500247e3:L0:000097"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:04:46.460867+00:00",
+      "call_id": "bd3ec5be62b3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "dfd734f7f735a986",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "dceab9a729094978"
+    },
+    {
+      "ts": "2026-11-13T11:04:54.536366+00:00",
+      "call_id": "4f4a446cfe9c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2c0df393bc0e4f71",
+      "prompt_tokens": 951,
+      "completion_tokens": 45,
+      "latency_ms": 8069.89,
+      "server_ms": 8041.54,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "dceab9a729094978"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 951,
+    "completion_tokens": 45,
+    "total_ms": 8080.55
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

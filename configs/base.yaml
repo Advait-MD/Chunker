@@ -45,9 +45,36 @@ store:
   space: cosine
 
 retrieval:
-  mode: dense             # M1 naive baseline: flat leaves, dense top-k only
-  top_k: 5
+  mode: dense             # dense = M1 naive baseline (Chroma HNSW top-k) | dense_ivf | bm25 | hybrid (M3)
+  top_k: 5                # hits handed to the generator (all M3 rows, so ablations stay budget-matched)
   levels: [0]
+  # --- M3 hybrid retrieval (spec §2.4); unused when mode is dense ---
+  dense_backend: ivf      # ivf (FAISS IndexIVFFlat) | flat (exact) | hnsw (Chroma)
+  candidates: 50          # top-n from each retriever before fusion
+  fused_k: 20             # fused list kept (and reranked); also the depth scored by retrieval metrics
+  fusion: rrf             # rrf | weighted (ablation)
+  rrf_k: 60
+  weights: {dense: 0.5, bm25: 0.5}   # weighted fusion only (min-max normalised scores)
+
+bm25:
+  k1: 1.2
+  b: 0.75
+
+ivf:
+  nlist: null             # null = min(round(nlist_factor * sqrt(N)), N // min_points_per_centroid)
+  nlist_factor: 4
+  min_points_per_centroid: 39
+  nprobe: 32              # dev-tuned (results/m3_ivf_curve_dev): ANN recall@10 98.7-99.8% vs exact, ~0.1-0.2 ms
+
+rerank:
+  enabled: false
+  model: BAAI/bge-reranker-v2-m3
+  revision: 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e   # HF commit, 2024-06-24
+  max_length: 512
+  batch_size: 1           # no padding waste; faster than 4 or 20 on this CPU
+  quantize: int8          # none | int8 (dynamic int8 Linear layers: ~2x faster on CPU, same top 5 on probes)
+  threads: 0              # 0 = torch default
+  cache_path: .apex_cache/rerank_cache.sqlite
 
 generation:
   temperature: 0.0

@@ -1,0 +1,163 @@
+{
+  "trace_id": "0b371337820d4e82",
+  "created_at": "2026-11-13T11:14:05.355024+00:00",
+  "query": "Which museum was founded first, Casoria Contemporary Art Museum or Leverian Collection?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.0
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4.77
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4.8
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 7005.06
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.7,
+      "bm25_ms": 2.91,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "b04ce6dd2d95fb80:L0:000181",
+          "score": 0.9453431750045251,
+          "fused": 0.9453431750045251,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "abe982d210232c3f:L0:000061",
+          "score": 0.926257206866386,
+          "fused": 0.926257206866386,
+          "dense_rank": 5,
+          "bm25_rank": 2
+        },
+        {
+          "id": "99628090500247e3:L0:000066",
+          "score": 0.886086483928638,
+          "fused": 0.886086483928638,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000176",
+          "score": 0.796063414918694,
+          "fused": 0.796063414918694,
+          "dense_rank": 2,
+          "bm25_rank": 6
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000142",
+          "score": 0.7823767158157,
+          "fused": 0.7823767158157,
+          "dense_rank": 3,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 4.75
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 218,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 7000.22
+    }
+  },
+  "retrieved_ids": [
+    "b04ce6dd2d95fb80:L0:000181",
+    "abe982d210232c3f:L0:000061",
+    "99628090500247e3:L0:000066",
+    "53c7288bdcd3837a:L0:000176",
+    "53c7288bdcd3837a:L0:000142"
+  ],
+  "filtered_ids": [
+    "b04ce6dd2d95fb80:L0:000181",
+    "abe982d210232c3f:L0:000061",
+    "99628090500247e3:L0:000066",
+    "53c7288bdcd3837a:L0:000176",
+    "53c7288bdcd3837a:L0:000142"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:14:05.356020+00:00",
+      "call_id": "2be9689cfc1d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d1b270dd5d0ffc50",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0b371337820d4e82"
+    },
+    {
+      "ts": "2026-11-13T11:14:12.359600+00:00",
+      "call_id": "52552298bac3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "33a201b839cf8ef9",
+      "prompt_tokens": 801,
+      "completion_tokens": 45,
+      "latency_ms": 6999.68,
+      "server_ms": 6983.41,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "0b371337820d4e82"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 801,
+    "completion_tokens": 45,
+    "total_ms": 7008.82
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

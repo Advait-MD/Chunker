@@ -1,0 +1,180 @@
+{
+  "trace_id": "801977155226438c",
+  "created_at": "2026-11-13T12:20:36.352715+00:00",
+  "query": "Does proposed approach use neural networks?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 37574.87
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 37574.96
+    },
+    {
+      "state": "DONE",
+      "t_ms": 51355.43
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 8.12,
+      "bm25_ms": 24.72,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 14
+      },
+      "n_fused": 19,
+      "rerank": {
+        "n": 19,
+        "n_computed": 19,
+        "latency_ms": 37538.01
+      },
+      "hits": [
+        {
+          "id": "18621578c2ef7f99:L0:000015",
+          "score": -1.4417248964309692,
+          "fused": 0.8721712661487226,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -1.4417248964309692
+        },
+        {
+          "id": "18621578c2ef7f99:L0:000002",
+          "score": -2.3937411308288574,
+          "fused": 0.8658291369421135,
+          "dense_rank": 7,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -2.3937411308288574
+        },
+        {
+          "id": "18621578c2ef7f99:L0:000013",
+          "score": -3.543166160583496,
+          "fused": 0.7741808464478646,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -3.543166160583496
+        },
+        {
+          "id": "18621578c2ef7f99:L0:000003",
+          "score": -4.004209518432617,
+          "fused": 0.6867308846248034,
+          "dense_rank": 4,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -4.004209518432617
+        },
+        {
+          "id": "18621578c2ef7f99:L0:000012",
+          "score": -4.0797529220581055,
+          "fused": 0.35541122176669326,
+          "dense_rank": 14,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -4.0797529220581055
+        }
+      ],
+      "latency_ms": 37574.8
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1059,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13780.38
+    }
+  },
+  "retrieved_ids": [
+    "18621578c2ef7f99:L0:000015",
+    "18621578c2ef7f99:L0:000002",
+    "18621578c2ef7f99:L0:000013",
+    "18621578c2ef7f99:L0:000003",
+    "18621578c2ef7f99:L0:000012"
+  ],
+  "filtered_ids": [
+    "18621578c2ef7f99:L0:000015",
+    "18621578c2ef7f99:L0:000002",
+    "18621578c2ef7f99:L0:000013",
+    "18621578c2ef7f99:L0:000003",
+    "18621578c2ef7f99:L0:000012"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:20:36.368455+00:00",
+      "call_id": "676abd54eab6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d1feb58faff8373c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "801977155226438c"
+    },
+    {
+      "ts": "2026-11-13T12:21:27.722105+00:00",
+      "call_id": "588f10c968d1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c60ae8321a93fa47",
+      "prompt_tokens": 1706,
+      "completion_tokens": 65,
+      "latency_ms": 13779.74,
+      "server_ms": 13757.64,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "801977155226438c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1706,
+    "completion_tokens": 65,
+    "total_ms": 51356.09
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Yes, the proposed approach uses both SMT and NMT approaches."
+      ]
+    }
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "trace_id": "68888fed5374425d",
+  "created_at": "2026-11-13T13:08:28.926653+00:00",
+  "query": "Why does they author write about these two different movies within the same article?\n\nOptions:\n(A) The movies have a similar theme\n(B) The directors have a similar process\n(C) The directors worked together\n(D) The movies have similar criticisms\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7365.86
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7366.03
+    },
+    {
+      "state": "DONE",
+      "t_ms": 40056.48
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.6,
+      "bm25_ms": 38.15,
+      "n_candidates": {
+        "dense": 7,
+        "bm25": 7
+      },
+      "n_fused": 7,
+      "rerank": {
+        "n": 7,
+        "n_computed": 7,
+        "latency_ms": 7319.99
+      },
+      "hits": [
+        {
+          "id": "33f3974d6e263a41:L0:000002",
+          "score": -4.843569278717041,
+          "fused": 0.26296853871217674,
+          "dense_rank": 7,
+          "bm25_rank": 3,
+          "fused_rank": 5,
+          "rerank": -4.843569278717041
+        },
+        {
+          "id": "33f3974d6e263a41:L0:000000",
+          "score": -4.9888691902160645,
+          "fused": 0.9000525505567267,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -4.9888691902160645
+        },
+        {
+          "id": "33f3974d6e263a41:L0:000001",
+          "score": -5.14443826675415,
+          "fused": 0.6207428669434127,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -5.14443826675415
+        },
+        {
+          "id": "33f3974d6e263a41:L0:000003",
+          "score": -5.608945369720459,
+          "fused": 0.23948203258180317,
+          "dense_rank": 3,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -5.608945369720459
+        },
+        {
+          "id": "33f3974d6e263a41:L0:000004",
+          "score": -5.8876237869262695,
+          "fused": 0.17118745710947209,
+          "dense_rank": 6,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -5.8876237869262695
+        }
+      ],
+      "latency_ms": 7365.81
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1947,
+      "latency_ms": 0.13
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 32690.24
+    }
+  },
+  "retrieved_ids": [
+    "33f3974d6e263a41:L0:000002",
+    "33f3974d6e263a41:L0:000000",
+    "33f3974d6e263a41:L0:000001",
+    "33f3974d6e263a41:L0:000003",
+    "33f3974d6e263a41:L0:000004"
+  ],
+  "filtered_ids": [
+    "33f3974d6e263a41:L0:000002",
+    "33f3974d6e263a41:L0:000000",
+    "33f3974d6e263a41:L0:000001",
+    "33f3974d6e263a41:L0:000003",
+    "33f3974d6e263a41:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:08:28.926653+00:00",
+      "call_id": "591145e800c0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9c8facafce266ac2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "68888fed5374425d"
+    },
+    {
+      "ts": "2026-11-13T13:09:08.992923+00:00",
+      "call_id": "8f600288a37a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "52dbc502301bd94b",
+      "prompt_tokens": 2638,
+      "completion_tokens": 155,
+      "latency_ms": 32687.86,
+      "server_ms": 32655.26,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "68888fed5374425d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2638,
+    "completion_tokens": 155,
+    "total_ms": 40059.55
+  },
+  "config_hash": "c4e4be308edb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "(B) The directors have a similar process.",
+        "The author writes about these two different movies within the same article to highlight the similar process both directors, Mike Leigh and Errol Morris, use in their filmmaking.",
+        "Mike Leigh's Topsy-Turvy and Errol Morris's Mr.",
+        "Death: The Rise and Fall of Fred D.",
+        "Leuchter, Jr., are both described as projects that don't begin with a clear idea of what the directors want them to be, and they both end up in a state where the directors are not entirely sure of the final direction of the project."
+      ]
+    }
+  }
+}

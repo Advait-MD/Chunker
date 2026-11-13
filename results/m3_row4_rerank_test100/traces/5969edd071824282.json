@@ -1,0 +1,178 @@
+{
+  "trace_id": "5969edd071824282",
+  "created_at": "2026-11-13T12:08:42.370062+00:00",
+  "query": "Does the SESAME dataset include discontiguous entities?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7429.61
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7429.73
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 21735.56
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.69,
+      "bm25_ms": 10.86,
+      "n_candidates": {
+        "dense": 29,
+        "bm25": 23
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 7412.76
+      },
+      "hits": [
+        {
+          "id": "fce081454ba0ef60:L0:000001",
+          "score": 0.09883347153663635,
+          "fused": 0.5376544074929224,
+          "dense_rank": 12,
+          "bm25_rank": 7,
+          "fused_rank": 6,
+          "rerank": 0.09883347153663635
+        },
+        {
+          "id": "fce081454ba0ef60:L0:000019",
+          "score": -0.5074524283409119,
+          "fused": 0.9756852626977053,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": -0.5074524283409119
+        },
+        {
+          "id": "fce081454ba0ef60:L0:000021",
+          "score": -0.7690580487251282,
+          "fused": 0.6223322566433778,
+          "dense_rank": 3,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": -0.7690580487251282
+        },
+        {
+          "id": "fce081454ba0ef60:L0:000027",
+          "score": -1.1224603652954102,
+          "fused": 0.7776087665117599,
+          "dense_rank": 11,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -1.1224603652954102
+        },
+        {
+          "id": "fce081454ba0ef60:L0:000000",
+          "score": -1.682782769203186,
+          "fused": 0.4273400878514579,
+          "dense_rank": 16,
+          "bm25_rank": 9,
+          "fused_rank": 11,
+          "rerank": -1.682782769203186
+        }
+      ],
+      "latency_ms": 7429.56
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1011,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14305.69
+    }
+  },
+  "retrieved_ids": [
+    "fce081454ba0ef60:L0:000001",
+    "fce081454ba0ef60:L0:000019",
+    "fce081454ba0ef60:L0:000021",
+    "fce081454ba0ef60:L0:000027",
+    "fce081454ba0ef60:L0:000000"
+  ],
+  "filtered_ids": [
+    "fce081454ba0ef60:L0:000001",
+    "fce081454ba0ef60:L0:000019",
+    "fce081454ba0ef60:L0:000021",
+    "fce081454ba0ef60:L0:000027",
+    "fce081454ba0ef60:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:08:42.371591+00:00",
+      "call_id": "c5f32709f5da",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f9a780bcfc475374",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5969edd071824282"
+    },
+    {
+      "ts": "2026-11-13T12:09:04.104046+00:00",
+      "call_id": "589a2c8261fb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "30d4e2f6cd1b6ad6",
+      "prompt_tokens": 1593,
+      "completion_tokens": 45,
+      "latency_ms": 14303.92,
+      "server_ms": 14278.95,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "5969edd071824282"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1593,
+    "completion_tokens": 45,
+    "total_ms": 21737.3
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The answer is not explicitly stated in the provided passages."
+      ]
+    }
+  }
+}

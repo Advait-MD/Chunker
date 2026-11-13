@@ -1,0 +1,179 @@
+{
+  "trace_id": "2df42d9aabf147d2",
+  "created_at": "2026-11-13T13:05:38.194582+00:00",
+  "query": "Who brought the language Hokkien to the country on the natural boundary between the country that hosted the tournament and the country where A Don is from?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5905.38
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5905.72
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22335.87
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.43,
+      "bm25_ms": 38.0,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5856.18
+      },
+      "hits": [
+        {
+          "id": "4b634e52029ddab4:L0:000071",
+          "score": 1.344607949256897,
+          "fused": 0.5979417732224906,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 1.344607949256897
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000170",
+          "score": -1.5298038721084595,
+          "fused": 0.3356565704862584,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 11,
+          "rerank": -1.5298038721084595
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000002",
+          "score": -3.111112594604492,
+          "fused": 0.30009285101210026,
+          "dense_rank": 11,
+          "bm25_rank": 25,
+          "fused_rank": 14,
+          "rerank": -3.111112594604492
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000095",
+          "score": -3.201340436935425,
+          "fused": 0.5515075674530974,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -3.201340436935425
+        },
+        {
+          "id": "15abb5e49dced915:L0:000170",
+          "score": -4.358990669250488,
+          "fused": 0.47851307289622724,
+          "dense_rank": 27,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": -4.358990669250488
+        }
+      ],
+      "latency_ms": 5905.28
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 647,
+      "latency_ms": 0.32
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16430.01
+    }
+  },
+  "retrieved_ids": [
+    "4b634e52029ddab4:L0:000071",
+    "dbcbda865eee9c7b:L0:000170",
+    "178c7e3e6ef6ae87:L0:000002",
+    "178c7e3e6ef6ae87:L0:000095",
+    "15abb5e49dced915:L0:000170"
+  ],
+  "filtered_ids": [
+    "4b634e52029ddab4:L0:000071",
+    "dbcbda865eee9c7b:L0:000170",
+    "178c7e3e6ef6ae87:L0:000002",
+    "178c7e3e6ef6ae87:L0:000095",
+    "15abb5e49dced915:L0:000170"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:05:38.199570+00:00",
+      "call_id": "5cd5abe073a7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "553b7ad2a4638dba",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2df42d9aabf147d2"
+    },
+    {
+      "ts": "2026-11-13T13:06:00.529086+00:00",
+      "call_id": "370e06995dba",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2163b2ff5b3a1e6b",
+      "prompt_tokens": 1291,
+      "completion_tokens": 105,
+      "latency_ms": 16428.87,
+      "server_ms": 16400.98,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2df42d9aabf147d2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1291,
+    "completion_tokens": 105,
+    "total_ms": 22337.86
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

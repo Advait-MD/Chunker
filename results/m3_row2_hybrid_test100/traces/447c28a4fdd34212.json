@@ -1,0 +1,163 @@
+{
+  "trace_id": "447c28a4fdd34212",
+  "created_at": "2026-11-13T09:49:54.838598+00:00",
+  "query": "What is the population in 2010 of they city popular with tourists?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.32
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.39
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14310.44
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.58,
+      "bm25_ms": 9.32,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000059",
+          "score": 0.7779443296941083,
+          "fused": 0.7779443296941083,
+          "dense_rank": 33,
+          "bm25_rank": 1
+        },
+        {
+          "id": "a168352d83e925b5:L0:000104",
+          "score": 0.7475787154782949,
+          "fused": 0.7475787154782949,
+          "dense_rank": 15,
+          "bm25_rank": 2
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000152",
+          "score": 0.44046036480258544,
+          "fused": 0.44046036480258544,
+          "dense_rank": 5,
+          "bm25_rank": 6
+        },
+        {
+          "id": "ce57fdde2baaba9c:L0:000174",
+          "score": 0.4223712093168653,
+          "fused": 0.4223712093168653,
+          "dense_rank": 21,
+          "bm25_rank": 4
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000198",
+          "score": 0.4203230557846458,
+          "fused": 0.4203230557846458,
+          "dense_rank": 3,
+          "bm25_rank": 15
+        }
+      ],
+      "latency_ms": 13.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 444,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14296.92
+    }
+  },
+  "retrieved_ids": [
+    "cc1bdb3bf430bd0d:L0:000059",
+    "a168352d83e925b5:L0:000104",
+    "73dfa6a9bfcab050:L0:000152",
+    "ce57fdde2baaba9c:L0:000174",
+    "8b31d5859eb3d77a:L0:000198"
+  ],
+  "filtered_ids": [
+    "cc1bdb3bf430bd0d:L0:000059",
+    "a168352d83e925b5:L0:000104",
+    "73dfa6a9bfcab050:L0:000152",
+    "ce57fdde2baaba9c:L0:000174",
+    "8b31d5859eb3d77a:L0:000198"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:49:54.840607+00:00",
+      "call_id": "de45c4dfea17",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3d3a2c9b6a9f08d5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "447c28a4fdd34212"
+    },
+    {
+      "ts": "2026-11-13T09:50:09.148898+00:00",
+      "call_id": "6075263adb38",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9e66d6c0a0ca5853",
+      "prompt_tokens": 1040,
+      "completion_tokens": 91,
+      "latency_ms": 14295.83,
+      "server_ms": 14270.94,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "447c28a4fdd34212"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1040,
+    "completion_tokens": 91,
+    "total_ms": 14311.51
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

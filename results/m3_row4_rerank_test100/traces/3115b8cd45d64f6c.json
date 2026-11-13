@@ -1,0 +1,178 @@
+{
+  "trace_id": "3115b8cd45d64f6c",
+  "created_at": "2026-11-13T12:46:26.697613+00:00",
+  "query": "In 2010, what was the population of the city where the Yongle emperor greeted the person to whom the edict was addressed?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6214.52
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6216.21
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18688.02
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.87,
+      "bm25_ms": 19.11,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6184.64
+      },
+      "hits": [
+        {
+          "id": "f3503d3d186f0f90:L0:000192",
+          "score": -1.0767852067947388,
+          "fused": 0.3621190789669477,
+          "dense_rank": 22,
+          "bm25_rank": 7,
+          "fused_rank": 5,
+          "rerank": -1.0767852067947388
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000198",
+          "score": -1.6060088872909546,
+          "fused": 0.29815206851734266,
+          "dense_rank": 2,
+          "bm25_rank": 28,
+          "fused_rank": 8,
+          "rerank": -1.6060088872909546
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000096",
+          "score": -2.065061569213867,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -2.065061569213867
+        },
+        {
+          "id": "15abb5e49dced915:L0:000160",
+          "score": -2.4197614192962646,
+          "fused": 0.2649703198482145,
+          "dense_rank": 50,
+          "bm25_rank": 8,
+          "fused_rank": 11,
+          "rerank": -2.4197614192962646
+        },
+        {
+          "id": "4b634e52029ddab4:L0:000141",
+          "score": -2.654547691345215,
+          "fused": 0.2022051947877214,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": -2.654547691345215
+        }
+      ],
+      "latency_ms": 6214.48
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 739,
+      "latency_ms": 1.66
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12471.69
+    }
+  },
+  "retrieved_ids": [
+    "f3503d3d186f0f90:L0:000192",
+    "8b31d5859eb3d77a:L0:000198",
+    "6bddce8aaad42fea:L0:000096",
+    "15abb5e49dced915:L0:000160",
+    "4b634e52029ddab4:L0:000141"
+  ],
+  "filtered_ids": [
+    "f3503d3d186f0f90:L0:000192",
+    "8b31d5859eb3d77a:L0:000198",
+    "6bddce8aaad42fea:L0:000096",
+    "15abb5e49dced915:L0:000160",
+    "4b634e52029ddab4:L0:000141"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:46:26.697613+00:00",
+      "call_id": "2076d40cf97c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bc154c900dad8423",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "3115b8cd45d64f6c"
+    },
+    {
+      "ts": "2026-11-13T12:46:45.374518+00:00",
+      "call_id": "927e5e82b40a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d64dc7036103462b",
+      "prompt_tokens": 1457,
+      "completion_tokens": 61,
+      "latency_ms": 12470.55,
+      "server_ms": 12446.79,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "3115b8cd45d64f6c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1457,
+    "completion_tokens": 61,
+    "total_ms": 18690.2
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

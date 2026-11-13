@@ -1,0 +1,181 @@
+{
+  "trace_id": "88880af7eca74b9f",
+  "created_at": "2026-11-13T14:38:58.665292+00:00",
+  "query": "Which town near the county border with North Yorkshire was this Lancashire mill (closed in 1979 and demolished) located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6561.64
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6561.77
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19966.51
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.21,
+      "bm25_ms": 11.21,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6545.74
+      },
+      "hits": [
+        {
+          "id": "bc1dba3471045f02:L0:000134",
+          "score": 5.637574672698975,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.637574672698975
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000150",
+          "score": 5.176248550415039,
+          "fused": 0.7050389766217873,
+          "dense_rank": 12,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 5.176248550415039
+        },
+        {
+          "id": "634431bb1e27714f:L0:000132",
+          "score": 0.5390987992286682,
+          "fused": 0.6148750414457308,
+          "dense_rank": 9,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.5390987992286682
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000019",
+          "score": 0.5380929708480835,
+          "fused": 0.39461047632399754,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 0.5380929708480835
+        },
+        {
+          "id": "634431bb1e27714f:L0:000185",
+          "score": 0.25396955013275146,
+          "fused": 0.3133987172651155,
+          "dense_rank": 26,
+          "bm25_rank": 9,
+          "fused_rank": 9,
+          "rerank": 0.25396955013275146
+        }
+      ],
+      "latency_ms": 6561.59
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 449,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13404.65
+    }
+  },
+  "retrieved_ids": [
+    "bc1dba3471045f02:L0:000134",
+    "ec3410ef955c5c93:L0:000150",
+    "634431bb1e27714f:L0:000132",
+    "8e50522b7cb636d8:L0:000019",
+    "634431bb1e27714f:L0:000185"
+  ],
+  "filtered_ids": [
+    "bc1dba3471045f02:L0:000134",
+    "ec3410ef955c5c93:L0:000150",
+    "634431bb1e27714f:L0:000132",
+    "8e50522b7cb636d8:L0:000019",
+    "634431bb1e27714f:L0:000185"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:38:58.665292+00:00",
+      "call_id": "2d4250bc105d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "edece6cffca1289d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "88880af7eca74b9f"
+    },
+    {
+      "ts": "2026-11-13T14:39:18.620013+00:00",
+      "call_id": "478fe72f0596",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6f01e63f332e4763",
+      "prompt_tokens": 1090,
+      "completion_tokens": 76,
+      "latency_ms": 13403.43,
+      "server_ms": 13354.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "88880af7eca74b9f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1090,
+    "completion_tokens": 76,
+    "total_ms": 19968.08
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "Barnoldswick, Lancashire, England, was the town where the Bancroft Shed mill, which closed in 1979 and was demolished, was located."
+      ]
+    }
+  }
+}

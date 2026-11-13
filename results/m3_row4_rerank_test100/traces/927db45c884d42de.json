@@ -1,0 +1,179 @@
+{
+  "trace_id": "927db45c884d42de",
+  "created_at": "2026-11-13T14:20:02.929668+00:00",
+  "query": "Who wrote the lyrics for Linda Eder's Broadway debut?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6618.41
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6619.55
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19638.16
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.32,
+      "bm25_ms": 7.65,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6604.71
+      },
+      "hits": [
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000131",
+          "score": 2.90671443939209,
+          "fused": 0.9792619633671372,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.90671443939209
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000170",
+          "score": -0.11719699203968048,
+          "fused": 0.9608437217952424,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.11719699203968048
+        },
+        {
+          "id": "634431bb1e27714f:L0:000071",
+          "score": -0.9145921468734741,
+          "fused": 0.6571595772126348,
+          "dense_rank": 23,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.9145921468734741
+        },
+        {
+          "id": "b120b09075017d08:L0:000177",
+          "score": -2.468528985977173,
+          "fused": 0.3139795863263739,
+          "dense_rank": 10,
+          "bm25_rank": 14,
+          "fused_rank": 9,
+          "rerank": -2.468528985977173
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000070",
+          "score": -3.7108030319213867,
+          "fused": 0.40769198997743394,
+          "dense_rank": 12,
+          "bm25_rank": 7,
+          "fused_rank": 6,
+          "rerank": -3.7108030319213867
+        }
+      ],
+      "latency_ms": 6618.36
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 597,
+      "latency_ms": 1.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13018.08
+    }
+  },
+  "retrieved_ids": [
+    "ba3cd068cf9ac2e4:L0:000131",
+    "8e50522b7cb636d8:L0:000170",
+    "634431bb1e27714f:L0:000071",
+    "b120b09075017d08:L0:000177",
+    "90976421f3f2bea2:L0:000070"
+  ],
+  "filtered_ids": [
+    "ba3cd068cf9ac2e4:L0:000131",
+    "8e50522b7cb636d8:L0:000170",
+    "634431bb1e27714f:L0:000071",
+    "b120b09075017d08:L0:000177",
+    "90976421f3f2bea2:L0:000070"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:20:02.929668+00:00",
+      "call_id": "70009495d5c2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "73d94a25d6755c9f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "927db45c884d42de"
+    },
+    {
+      "ts": "2026-11-13T14:20:22.569592+00:00",
+      "call_id": "d67f98bffe6f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a9655af38d4b845c",
+      "prompt_tokens": 1211,
+      "completion_tokens": 82,
+      "latency_ms": 13016.77,
+      "server_ms": 12995.53,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "927db45c884d42de"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1211,
+    "completion_tokens": 82,
+    "total_ms": 19640.5
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

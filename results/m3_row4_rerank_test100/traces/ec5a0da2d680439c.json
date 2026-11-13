@@ -1,0 +1,178 @@
+{
+  "trace_id": "ec5a0da2d680439c",
+  "created_at": "2026-11-13T13:05:21.260763+00:00",
+  "query": "Who is the president of the organization Julio Maglione is located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4365.09
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4365.86
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 16904.07
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.31,
+      "bm25_ms": 8.53,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 4351.52
+      },
+      "hits": [
+        {
+          "id": "4fcce431f5d22d1d:L0:000069",
+          "score": 3.288159132003784,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.288159132003784
+        },
+        {
+          "id": "15abb5e49dced915:L0:000099",
+          "score": -3.768118143081665,
+          "fused": 0.23001812978636202,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 5,
+          "rerank": -3.768118143081665
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000105",
+          "score": -4.842283248901367,
+          "fused": 0.17999763757966455,
+          "dense_rank": 9,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -4.842283248901367
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000021",
+          "score": -4.9850239753723145,
+          "fused": 0.18812087359440463,
+          "dense_rank": 8,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": -4.9850239753723145
+        },
+        {
+          "id": "ad4ace752e719bab:L0:000017",
+          "score": -6.056183815002441,
+          "fused": 0.21046212163243244,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 6,
+          "rerank": -6.056183815002441
+        }
+      ],
+      "latency_ms": 4365.04
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 490,
+      "latency_ms": 0.73
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12538.01
+    }
+  },
+  "retrieved_ids": [
+    "4fcce431f5d22d1d:L0:000069",
+    "15abb5e49dced915:L0:000099",
+    "8b31d5859eb3d77a:L0:000105",
+    "f3503d3d186f0f90:L0:000021",
+    "ad4ace752e719bab:L0:000017"
+  ],
+  "filtered_ids": [
+    "4fcce431f5d22d1d:L0:000069",
+    "15abb5e49dced915:L0:000099",
+    "8b31d5859eb3d77a:L0:000105",
+    "f3503d3d186f0f90:L0:000021",
+    "ad4ace752e719bab:L0:000017"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:05:21.262775+00:00",
+      "call_id": "c0949065e663",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "74d3a9adcc4b3ced",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ec5a0da2d680439c"
+    },
+    {
+      "ts": "2026-11-13T13:05:38.159807+00:00",
+      "call_id": "da40c16d0ca8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0f4fca8fdd583171",
+      "prompt_tokens": 1112,
+      "completion_tokens": 79,
+      "latency_ms": 12536.19,
+      "server_ms": 12510.51,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "ec5a0da2d680439c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1112,
+    "completion_tokens": 79,
+    "total_ms": 16906.2
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

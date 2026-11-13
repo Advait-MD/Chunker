@@ -1,0 +1,163 @@
+{
+  "trace_id": "54cd18e8ad8b4e87",
+  "created_at": "2026-11-13T09:49:46.397610+00:00",
+  "query": "What publisher was formed from the owner of the The Daily News?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.72
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.78
+    },
+    {
+      "state": "DONE",
+      "t_ms": 8431.99
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.9,
+      "bm25_ms": 8.49,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ce290c1e5d5c6641:L0:000110",
+          "score": 0.8321172866384672,
+          "fused": 0.8321172866384672,
+          "dense_rank": 10,
+          "bm25_rank": 1
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000173",
+          "score": 0.7583211660724201,
+          "fused": 0.7583211660724201,
+          "dense_rank": 7,
+          "bm25_rank": 3
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000027",
+          "score": 0.7415474963367198,
+          "fused": 0.7415474963367198,
+          "dense_rank": 1,
+          "bm25_rank": 9
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000194",
+          "score": 0.6423276635713635,
+          "fused": 0.6423276635713635,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000098",
+          "score": 0.6198530467000227,
+          "fused": 0.6198530467000227,
+          "dense_rank": 11,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 13.68
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 349,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8418.1
+    }
+  },
+  "retrieved_ids": [
+    "ce290c1e5d5c6641:L0:000110",
+    "8679484d23bfd3a0:L0:000173",
+    "5a1a5bbda9db013e:L0:000027",
+    "e182527d2b1ecac3:L0:000194",
+    "dbcbda865eee9c7b:L0:000098"
+  ],
+  "filtered_ids": [
+    "ce290c1e5d5c6641:L0:000110",
+    "8679484d23bfd3a0:L0:000173",
+    "5a1a5bbda9db013e:L0:000027",
+    "e182527d2b1ecac3:L0:000194",
+    "dbcbda865eee9c7b:L0:000098"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:49:46.399609+00:00",
+      "call_id": "51ed5ae0105e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "75ea5a36f08aab30",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "54cd18e8ad8b4e87"
+    },
+    {
+      "ts": "2026-11-13T09:49:54.828340+00:00",
+      "call_id": "06f908f26e6c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "23181443ecaaf2af",
+      "prompt_tokens": 907,
+      "completion_tokens": 41,
+      "latency_ms": 8417.23,
+      "server_ms": 8394.78,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "54cd18e8ad8b4e87"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 907,
+    "completion_tokens": 41,
+    "total_ms": 8433.13
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

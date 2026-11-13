@@ -1,0 +1,178 @@
+{
+  "trace_id": "c263a271667347e3",
+  "created_at": "2026-11-13T14:39:35.217465+00:00",
+  "query": "At what height does State Route 160 start?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5730.9
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5731.02
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14860.37
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.74,
+      "bm25_ms": 5.56,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5721.38
+      },
+      "hits": [
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000177",
+          "score": 1.6022471189498901,
+          "fused": 0.921961054529703,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": 1.6022471189498901
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000191",
+          "score": 1.4369187355041504,
+          "fused": 0.9898965904840784,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.4369187355041504
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000005",
+          "score": 0.936976969242096,
+          "fused": 0.9268350360764318,
+          "dense_rank": 4,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 0.936976969242096
+        },
+        {
+          "id": "20496f59538deb41:L0:000115",
+          "score": 0.536290168762207,
+          "fused": 0.9834986083276839,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 0.536290168762207
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000051",
+          "score": -0.47369128465652466,
+          "fused": 0.9643127522080248,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.47369128465652466
+        }
+      ],
+      "latency_ms": 5730.84
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 486,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9129.28
+    }
+  },
+  "retrieved_ids": [
+    "ba3cd068cf9ac2e4:L0:000177",
+    "90976421f3f2bea2:L0:000191",
+    "5d0f6cf59ee42566:L0:000005",
+    "20496f59538deb41:L0:000115",
+    "c8fd2b3ea47eb07f:L0:000051"
+  ],
+  "filtered_ids": [
+    "ba3cd068cf9ac2e4:L0:000177",
+    "90976421f3f2bea2:L0:000191",
+    "5d0f6cf59ee42566:L0:000005",
+    "20496f59538deb41:L0:000115",
+    "c8fd2b3ea47eb07f:L0:000051"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T14:39:35.217465+00:00",
+      "call_id": "5a34cec2e833",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "babc613d9dbfd6ce",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c263a271667347e3"
+    },
+    {
+      "ts": "2026-11-13T14:39:50.085518+00:00",
+      "call_id": "65b05a8adc3d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ba4e4122c791915c",
+      "prompt_tokens": 1137,
+      "completion_tokens": 53,
+      "latency_ms": 9128.24,
+      "server_ms": 9108.33,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "c263a271667347e3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1137,
+    "completion_tokens": 53,
+    "total_ms": 14861.54
+  },
+  "config_hash": "caee8cabf304",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The height at which State Route 160 starts is not mentioned in the provided passages."
+      ]
+    }
+  }
+}

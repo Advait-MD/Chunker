@@ -1,0 +1,166 @@
+{
+  "trace_id": "2cb1b7e5dccf4b4f",
+  "created_at": "2026-11-13T09:11:41.692235+00:00",
+  "query": "What are the baseline models?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.9
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.96
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22738.59
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.51,
+      "bm25_ms": 4.18,
+      "n_candidates": {
+        "dense": 31,
+        "bm25": 24
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "107b2a26a3716ca7:L0:000018",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "107b2a26a3716ca7:L0:000030",
+          "score": 0.8368517823917183,
+          "fused": 0.8368517823917183,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "107b2a26a3716ca7:L0:000027",
+          "score": 0.7808511408712293,
+          "fused": 0.7808511408712293,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "107b2a26a3716ca7:L0:000024",
+          "score": 0.7426280335655154,
+          "fused": 0.7426280335655154,
+          "dense_rank": 9,
+          "bm25_rank": 3
+        },
+        {
+          "id": "107b2a26a3716ca7:L0:000023",
+          "score": 0.6682689302479898,
+          "fused": 0.6682689302479898,
+          "dense_rank": 14,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 7.87
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 872,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22730.56
+    }
+  },
+  "retrieved_ids": [
+    "107b2a26a3716ca7:L0:000018",
+    "107b2a26a3716ca7:L0:000030",
+    "107b2a26a3716ca7:L0:000027",
+    "107b2a26a3716ca7:L0:000024",
+    "107b2a26a3716ca7:L0:000023"
+  ],
+  "filtered_ids": [
+    "107b2a26a3716ca7:L0:000018",
+    "107b2a26a3716ca7:L0:000030",
+    "107b2a26a3716ca7:L0:000027",
+    "107b2a26a3716ca7:L0:000024",
+    "107b2a26a3716ca7:L0:000023"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T09:11:41.694234+00:00",
+      "call_id": "29f2210e8377",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c41eae46799badfd",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2cb1b7e5dccf4b4f"
+    },
+    {
+      "ts": "2026-11-13T09:12:04.430216+00:00",
+      "call_id": "3a6fc0b02ca2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0e0c08865f381afe",
+      "prompt_tokens": 1456,
+      "completion_tokens": 147,
+      "latency_ms": 22729.98,
+      "server_ms": 22714.3,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "2cb1b7e5dccf4b4f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1456,
+    "completion_tokens": 147,
+    "total_ms": 22739.06
+  },
+  "config_hash": "804ae06274aa",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The baseline models include an MLE model trained on the Conceptual Captions training split alone, and a model called Baseline$+(t)$, which merges positively-rated captions from the Caption-Quality training split with the Conceptual Captions examples and finetunes the baseline model."
+      ]
+    }
+  }
+}

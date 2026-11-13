@@ -1,0 +1,178 @@
+{
+  "trace_id": "07f446896b8c44bf",
+  "created_at": "2026-11-13T13:03:53.585868+00:00",
+  "query": "When was the last time Duane Courtney's team beat the winner of the 1894-95 FA Cup?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6643.45
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6644.11
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 16432.67
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.24,
+      "bm25_ms": 10.92,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6625.87
+      },
+      "hits": [
+        {
+          "id": "dbcbda865eee9c7b:L0:000073",
+          "score": 0.02199130319058895,
+          "fused": 0.7111294001404649,
+          "dense_rank": 3,
+          "bm25_rank": 8,
+          "fused_rank": 3,
+          "rerank": 0.02199130319058895
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000126",
+          "score": -0.14386959373950958,
+          "fused": 0.34426884497015675,
+          "dense_rank": null,
+          "bm25_rank": 16,
+          "fused_rank": 20,
+          "rerank": -0.14386959373950958
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000096",
+          "score": -1.4123870134353638,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.4123870134353638
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000022",
+          "score": -3.3899757862091064,
+          "fused": 0.5493758779051592,
+          "dense_rank": 6,
+          "bm25_rank": 15,
+          "fused_rank": 10,
+          "rerank": -3.3899757862091064
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000136",
+          "score": -3.5701472759246826,
+          "fused": 0.6214837043225298,
+          "dense_rank": 10,
+          "bm25_rank": 9,
+          "fused_rank": 6,
+          "rerank": -3.5701472759246826
+        }
+      ],
+      "latency_ms": 6643.4
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 718,
+      "latency_ms": 0.62
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9788.5
+    }
+  },
+  "retrieved_ids": [
+    "dbcbda865eee9c7b:L0:000073",
+    "cc1bdb3bf430bd0d:L0:000126",
+    "cc1bdb3bf430bd0d:L0:000096",
+    "e182527d2b1ecac3:L0:000022",
+    "e182527d2b1ecac3:L0:000136"
+  ],
+  "filtered_ids": [
+    "dbcbda865eee9c7b:L0:000073",
+    "cc1bdb3bf430bd0d:L0:000126",
+    "cc1bdb3bf430bd0d:L0:000096",
+    "e182527d2b1ecac3:L0:000022",
+    "e182527d2b1ecac3:L0:000136"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T13:03:53.585868+00:00",
+      "call_id": "e9c591cab910",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e634d9b3008ace76",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "07f446896b8c44bf"
+    },
+    {
+      "ts": "2026-11-13T13:04:10.017750+00:00",
+      "call_id": "d2143a188778",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d8badaf4557895a9",
+      "prompt_tokens": 1384,
+      "completion_tokens": 45,
+      "latency_ms": 9787.55,
+      "server_ms": 9767.17,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "07f446896b8c44bf"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1384,
+    "completion_tokens": 45,
+    "total_ms": 16435.18
+  },
+  "config_hash": "69eba3dc273e",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

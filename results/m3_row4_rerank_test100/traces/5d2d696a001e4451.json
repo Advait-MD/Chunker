@@ -1,0 +1,181 @@
+{
+  "trace_id": "5d2d696a001e4451",
+  "created_at": "2026-11-13T12:24:42.370020+00:00",
+  "query": "What is the training objective in the method introduced in this paper?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14172.0
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14172.73
+    },
+    {
+      "state": "DONE",
+      "t_ms": 42592.39
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.88,
+      "bm25_ms": 23.41,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 11
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 14136.78
+      },
+      "hits": [
+        {
+          "id": "abcbc67736d9ecb3:L0:000000",
+          "score": -2.7393832206726074,
+          "fused": 0.5936193772340279,
+          "dense_rank": 15,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -2.7393832206726074
+        },
+        {
+          "id": "abcbc67736d9ecb3:L0:000001",
+          "score": -2.883687973022461,
+          "fused": 0.4578655940577242,
+          "dense_rank": 21,
+          "bm25_rank": 3,
+          "fused_rank": 6,
+          "rerank": -2.883687973022461
+        },
+        {
+          "id": "abcbc67736d9ecb3:L0:000006",
+          "score": -3.5626790523529053,
+          "fused": 0.8642778823382014,
+          "dense_rank": 7,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -3.5626790523529053
+        },
+        {
+          "id": "abcbc67736d9ecb3:L0:000011",
+          "score": -4.218979358673096,
+          "fused": 0.5345083681205294,
+          "dense_rank": 6,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": -4.218979358673096
+        },
+        {
+          "id": "abcbc67736d9ecb3:L0:000019",
+          "score": -4.2382659912109375,
+          "fused": 0.5490959880910347,
+          "dense_rank": 5,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -4.2382659912109375
+        }
+      ],
+      "latency_ms": 14171.95
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1747,
+      "latency_ms": 0.68
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 28419.47
+    }
+  },
+  "retrieved_ids": [
+    "abcbc67736d9ecb3:L0:000000",
+    "abcbc67736d9ecb3:L0:000001",
+    "abcbc67736d9ecb3:L0:000006",
+    "abcbc67736d9ecb3:L0:000011",
+    "abcbc67736d9ecb3:L0:000019"
+  ],
+  "filtered_ids": [
+    "abcbc67736d9ecb3:L0:000000",
+    "abcbc67736d9ecb3:L0:000001",
+    "abcbc67736d9ecb3:L0:000006",
+    "abcbc67736d9ecb3:L0:000011",
+    "abcbc67736d9ecb3:L0:000019"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T12:24:42.370020+00:00",
+      "call_id": "ef090c49fdf8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1f1b55703bb850d0",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5d2d696a001e4451"
+    },
+    {
+      "ts": "2026-11-13T12:25:24.969719+00:00",
+      "call_id": "a3f7d69b1b42",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "cfa9860360498bd4",
+      "prompt_tokens": 2401,
+      "completion_tokens": 127,
+      "latency_ms": 28417.91,
+      "server_ms": 28395.46,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "5d2d696a001e4451"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2401,
+    "completion_tokens": 127,
+    "total_ms": 42594.31
+  },
+  "config_hash": "db2dec7e88fe",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The training objective in the method introduced in this paper is to predict the position of the starting and ending indices of the answer words in the context for QANet, and to add 2 additional output layers to predict the start/end indices for BERT."
+      ]
+    }
+  }
+}

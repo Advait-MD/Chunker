@@ -1,0 +1,182 @@
+{
+  "trace_id": "786c907517784d78",
+  "created_at": "2026-11-13T15:21:27.662437+00:00",
+  "query": "Who authored 'The Book of Five Rings'?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15857.02
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15858.44
+    },
+    {
+      "state": "DONE",
+      "t_ms": 33415.77
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.8,
+      "bm25_ms": 24.4,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 15823.85
+      },
+      "hits": [
+        {
+          "id": "54e450272e768455:L0:000000",
+          "score": 4.340742588043213,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.340742588043213
+        },
+        {
+          "id": "54e450272e768455:L0:000002",
+          "score": 3.2079951763153076,
+          "fused": 0.3552392133800612,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": 3.2079951763153076
+        },
+        {
+          "id": "54e450272e768455:L0:000024",
+          "score": 2.981355905532837,
+          "fused": 0.6310200339038531,
+          "dense_rank": 2,
+          "bm25_rank": 7,
+          "fused_rank": 2,
+          "rerank": 2.981355905532837
+        },
+        {
+          "id": "54e450272e768455:L0:000011",
+          "score": 2.2811479568481445,
+          "fused": 0.48507627255124963,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": 2.2811479568481445
+        },
+        {
+          "id": "54e450272e768455:L0:000021",
+          "score": 2.1701319217681885,
+          "fused": 0.617016569746734,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 2.1701319217681885
+        }
+      ],
+      "latency_ms": 15856.98
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1443,
+      "latency_ms": 1.36
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17557.18
+    }
+  },
+  "retrieved_ids": [
+    "54e450272e768455:L0:000000",
+    "54e450272e768455:L0:000002",
+    "54e450272e768455:L0:000024",
+    "54e450272e768455:L0:000011",
+    "54e450272e768455:L0:000021"
+  ],
+  "filtered_ids": [
+    "54e450272e768455:L0:000000",
+    "54e450272e768455:L0:000002",
+    "54e450272e768455:L0:000024",
+    "54e450272e768455:L0:000011",
+    "54e450272e768455:L0:000021"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T15:21:27.668756+00:00",
+      "call_id": "11605a224c7d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fd9beda8097c6389",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "786c907517784d78"
+    },
+    {
+      "ts": "2026-11-13T15:22:01.076183+00:00",
+      "call_id": "ffb680a41bb8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2a4ecfd4a9feea76",
+      "prompt_tokens": 2105,
+      "completion_tokens": 72,
+      "latency_ms": 17550.98,
+      "server_ms": 17520.47,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "786c907517784d78"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2105,
+    "completion_tokens": 72,
+    "total_ms": 33417.82
+  },
+  "config_hash": "bc54ffd33529",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

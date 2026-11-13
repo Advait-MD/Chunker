@@ -1,0 +1,166 @@
+{
+  "trace_id": "179d30808d224b20",
+  "created_at": "2026-11-13T11:19:28.919074+00:00",
+  "query": "Do both films The Dust Of Naples and Col Cuore In Gola have the directors that share the same nationality?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.98
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.04
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13072.64
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.66,
+      "bm25_ms": 6.96,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "6af2db6cb86d77e2:L0:000188",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "99628090500247e3:L0:000135",
+          "score": 0.44044010005003453,
+          "fused": 0.44044010005003453,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "43d5059060d4defa:L0:000006",
+          "score": 0.18054630551126172,
+          "fused": 0.18054630551126172,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000106",
+          "score": 0.14853994966467535,
+          "fused": 0.14853994966467535,
+          "dense_rank": 2,
+          "bm25_rank": null
+        },
+        {
+          "id": "99628090500247e3:L0:000085",
+          "score": 0.14706296974074393,
+          "fused": 0.14706296974074393,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 10.93
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 497,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13061.48
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000188",
+    "99628090500247e3:L0:000135",
+    "43d5059060d4defa:L0:000006",
+    "6af2db6cb86d77e2:L0:000106",
+    "99628090500247e3:L0:000085"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000188",
+    "99628090500247e3:L0:000135",
+    "43d5059060d4defa:L0:000006",
+    "6af2db6cb86d77e2:L0:000106",
+    "99628090500247e3:L0:000085"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T11:19:28.921075+00:00",
+      "call_id": "f32ea64f7f10",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "844ae879bfdaca70",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "179d30808d224b20"
+    },
+    {
+      "ts": "2026-11-13T11:19:41.990606+00:00",
+      "call_id": "463f30e94b30",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3cbd95dc185c64ef",
+      "prompt_tokens": 1118,
+      "completion_tokens": 92,
+      "latency_ms": 13060.52,
+      "server_ms": 13033.67,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "179d30808d224b20"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1118,
+    "completion_tokens": 92,
+    "total_ms": 13073.94
+  },
+  "config_hash": "2e2fe43a08eb",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The Dust of Naples was directed by Antonio Capuano, while Col Cuore in Gola was directed by Tinto Brass."
+      ]
+    }
+  }
+}

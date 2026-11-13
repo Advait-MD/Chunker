@@ -5,6 +5,8 @@
   python -m apex.eval.suite run     [--config C] [--datasets a,b] [--split test] [--run-id R] [--limit N] [--no-judge]
   python -m apex.eval.suite judge   <run_dir> [--datasets a,b]
   python -m apex.eval.suite compare <run_dir_A> <run_dir_baseline>
+  python -m apex.eval.suite retrieval --variants name=overlay.yaml,... [--datasets a,b] [--split dev] --out DIR
+  python -m apex.eval.suite ivf-curve [--datasets musique,hotpotqa,2wiki] [--split dev] --out DIR
 """
 
 from __future__ import annotations
@@ -34,6 +36,13 @@ def main(argv=None):
     s.add_argument("--limit", type=int); s.add_argument("--no-judge", action="store_true")
     s = sub.add_parser("judge"); s.add_argument("run_dir"); s.add_argument("--datasets")
     s = sub.add_parser("compare"); s.add_argument("run_a"); s.add_argument("run_b"); s.add_argument("--out")
+    s = sub.add_parser("retrieval", help="retrieval-only metrics for several configs (no generation)")
+    s.add_argument("--variants", required=True, help="name=overlay.yaml pairs; 'base' alone means configs/base.yaml")
+    s.add_argument("--datasets", default=",".join(DEFAULT)); s.add_argument("--split", default="dev", choices=["dev", "test"])
+    s.add_argument("--limit", type=int); s.add_argument("--out", required=True)
+    s = sub.add_parser("ivf-curve", help="FAISS IVF Recall@10 vs latency over nprobe")
+    s.add_argument("--datasets", default="musique,hotpotqa,2wiki"); s.add_argument("--split", default="dev", choices=["dev", "test"])
+    s.add_argument("--out", required=True)
     a = ap.parse_args(argv)
 
     if a.cmd == "splits":
@@ -58,6 +67,20 @@ def main(argv=None):
     elif a.cmd == "judge":
         from apex.eval.run import judge_run
         judge_run(Path(a.run_dir), a.datasets.split(",") if a.datasets else None)
+    elif a.cmd == "retrieval":
+        import yaml
+        from apex.eval.retrieval_bench import compare_retrievers
+        variants = {}
+        for pair in a.variants.split(","):
+            name, _, path = pair.partition("=")
+            variants[name] = (yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}) if path else {}
+        compare_retrievers(variants, [x for x in a.datasets.split(",") if x], split=a.split, limit=a.limit,
+                           out_dir=Path(a.out))
+        print("\nwrote", Path(a.out) / "retrieval.md")
+    elif a.cmd == "ivf-curve":
+        from apex.eval.retrieval_bench import ivf_curve
+        ivf_curve([x for x in a.datasets.split(",") if x], split=a.split, out_dir=Path(a.out))
+        print("\nwrote", Path(a.out) / "ivf_curve.png")
     elif a.cmd == "compare":
         from apex.eval.report import compare
         text = compare(Path(a.run_a), Path(a.run_b))

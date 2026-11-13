@@ -1,0 +1,163 @@
+{
+  "trace_id": "a601d67e7a2842fc",
+  "created_at": "2026-11-13T10:00:49.137706+00:00",
+  "query": "Who is the president of the organization Julio Maglione is located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.68
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18.13
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 9803.89
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.23,
+      "bm25_ms": 11.85,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "4fcce431f5d22d1d:L0:000069",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000157",
+          "score": 0.3284191420766075,
+          "fused": 0.3284191420766075,
+          "dense_rank": 3,
+          "bm25_rank": 13
+        },
+        {
+          "id": "a168352d83e925b5:L0:000076",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000079",
+          "score": 0.24022250325590336,
+          "fused": 0.24022250325590336,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "15abb5e49dced915:L0:000099",
+          "score": 0.23001812978636202,
+          "fused": 0.23001812978636202,
+          "dense_rank": 2,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 17.6
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 487,
+      "latency_ms": 0.42
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9785.67
+    }
+  },
+  "retrieved_ids": [
+    "4fcce431f5d22d1d:L0:000069",
+    "8679484d23bfd3a0:L0:000157",
+    "a168352d83e925b5:L0:000076",
+    "f109b032e24ab27a:L0:000079",
+    "15abb5e49dced915:L0:000099"
+  ],
+  "filtered_ids": [
+    "4fcce431f5d22d1d:L0:000069",
+    "8679484d23bfd3a0:L0:000157",
+    "a168352d83e925b5:L0:000076",
+    "f109b032e24ab27a:L0:000079",
+    "15abb5e49dced915:L0:000099"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-13T10:00:49.140824+00:00",
+      "call_id": "d91c7680d770",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "74d3a9adcc4b3ced",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a601d67e7a2842fc"
+    },
+    {
+      "ts": "2026-11-13T10:00:58.940528+00:00",
+      "call_id": "8cb71bbbe202",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f89c5b49444572ec",
+      "prompt_tokens": 1082,
+      "completion_tokens": 54,
+      "latency_ms": 9784.64,
+      "server_ms": 9763.98,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "trace_id": "a601d67e7a2842fc"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1082,
+    "completion_tokens": 54,
+    "total_ms": 9805.07
+  },
+  "config_hash": "b59ea5ff9555",
+  "git_sha": "387e1de2bff7fe25bd117218cec729c7d32e4d36-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The president of the organization Julio Maglione is located in is not mentioned in the provided evidence."
+      ]
+    }
+  }
+}
