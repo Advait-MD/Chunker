@@ -106,3 +106,11 @@ def test_tree_build_links_cache_and_collapsed_retrieval(tree_cfg, fake):
     assert trav.name == "tree_traversal" and trav.last["layers"] == 2  # the root, then 2 of its 6 leaves
     assert {h.node.id for h in hits} == {root.id} | {h.node.id for h in hits if h.node.level == 0}
     assert len(hits) == 3 and any("E1234" in h.node.text for h in hits)
+
+
+def test_trim_to_sentence_drops_only_the_unfinished_tail():
+    from apex.index.raptor import trim_to_sentence
+    assert trim_to_sentence('Sony agreed. The deal "worked." It ultimately had') == 'Sony agreed. The deal "worked."'
+    assert trim_to_sentence("Mr. Jobs met Sony. The relationship") == "Mr. Jobs met Sony."
+    assert trim_to_sentence("Complete summary.") == "Complete summary."
+    assert trim_to_sentence("no sentence end at all") == "no sentence end at all"

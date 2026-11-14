@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import math
 import time
 from dataclasses import dataclass, field
@@ -181,6 +182,7 @@ class TreeReport:
     summaries_per_level: Dict[int, int] = field(default_factory=dict)
     children_per_summary: List[int] = field(default_factory=list)
     truncated_summaries: int = 0
+    trimmed_summaries: int = 0
     llm_calls: int = 0
     llm_cache_hits: int = 0
     llm_s: float = 0.0
@@ -196,10 +198,20 @@ class TreeReport:
                 "summaries": sum(self.summaries_per_level.values()),
                 "children_per_summary_mean": round(float(np.mean(c)), 2) if c else None,
                 "children_per_summary_max": max(c) if c else None,
-                "truncated_summaries": self.truncated_summaries, "llm_calls": self.llm_calls,
+                "truncated_summaries": self.truncated_summaries,
+                "trimmed_summaries": self.trimmed_summaries, "llm_calls": self.llm_calls,
                 "llm_cache_hits": self.llm_cache_hits, "llm_s": round(self.llm_s, 1), "cluster_s": round(self.cluster_s, 1),
                 "argmax_assigned": self.stats.argmax_assigned, "forced_splits": self.stats.forced_splits,
                 "recursions": self.stats.recursions}
+
+
+_SENT_END = re.compile(r"[.!?][\"')\]]*(?=\s|$)")
+
+
+def trim_to_sentence(text: str) -> str:
+    """Drop a trailing unfinished sentence. Keeps the text whole if no sentence ends in it."""
+    ends = [m.end() for m in _SENT_END.finditer(text)]
+    return text[:ends[-1]].rstrip() if ends else text
 
 
 def _sha(*parts: str) -> str:
@@ -215,7 +227,7 @@ def tree_build_hash(cfg: Dict[str, Any], leaf_hashes: Sequence[str], prompt: str
                                   "cluster_max_tokens", "max_depth", "min_clusters", "scope",
                                   "summarizer", "summary_max_tokens", "num_ctx")}
     material.update({"leaves": sorted(set(leaf_hashes)), "prompt": _sha(prompt), "embedder": cfg["models"]["embedder"],
-                     "schema": 1})
+                     "schema": 2})  # 2: length-capped summaries are trimmed to the last full sentence
     return _sha(json.dumps(material, sort_keys=True))[:16]
 
 
@@ -242,9 +254,13 @@ class TreeBuilder:
         rep.llm_calls += 1
         rep.llm_cache_hits += int(res.cache_hit)
         rep.llm_s += res.latency_ms / 1000.0
-        if res.raw.get("done_reason") == "length":
-            rep.truncated_summaries += 1
         text = res.text.strip()
+        if res.raw.get("done_reason") == "length":  # hit summary_max_tokens: cut back to the last full sentence
+            rep.truncated_summaries += 1
+            trimmed = trim_to_sentence(text)
+            if trimmed != text:
+                rep.trimmed_summaries += 1
+            text = trimmed
         if not text:
             raise RuntimeError(f"Empty summary from {self.model} (call {res.call_id})")
         return text
