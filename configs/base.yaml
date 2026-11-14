@@ -55,6 +55,25 @@ retrieval:
   fusion: rrf             # rrf | weighted (ablation)
   rrf_k: 60
   weights: {dense: 0.5, bm25: 0.5}   # weighted fusion only (min-max normalised scores)
+  # --- M4 RAPTOR tree search; unused unless raptor.enabled ---
+  tree_search: collapsed  # collapsed (all levels one pool, via `levels`) | traversal (RAPTOR top-down, M4 ablation)
+  traversal_k: 5          # nodes kept per layer when traversing
+
+raptor:                   # M4 hierarchical summary tree (spec §2.3); built by `suite tree`
+  enabled: false          # true = read the tree collection <store.collection>__<tag>_s<seed>
+  tag: raptor
+  seed: 42                # UMAP + GMM
+  scope: per_source       # per_source: one tree per document (QASPER, QuALITY, custom) | collection: pooled corpora
+  summarizer: qwen2.5:3b  # faster than the 7B generator (fast plan); digest 357c53fb659c
+  summary_max_tokens: 256 # prompt asks for ~100-150 tokens; the cap only guards runaways (truncations are counted)
+  num_ctx: 6144           # 3500 tokens of children + prompt + summary
+  umap_dim: 10            # RAPTOR paper / reference code
+  local_neighbors: 10
+  max_clusters: 50
+  threshold: 0.1          # soft GMM assignment
+  cluster_max_tokens: 3500
+  max_depth: 4
+  min_clusters: 3         # stop when a level yields fewer clusters
 
 bm25:
   k1: 1.2

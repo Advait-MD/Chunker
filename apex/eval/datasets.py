@@ -349,7 +349,10 @@ def bench_overrides(name: str) -> Dict[str, Any]:
     """Config overrides that point the pipeline at a benchmark's own collection and corpus format."""
     if name == "custom":
         return {}
-    return {"store": {"collection": collection_name(name)}, "ingest": {"extensions": [".jsonl"]}}
+    ov = {"store": {"collection": collection_name(name)}, "ingest": {"extensions": [".jsonl"]}}
+    if name in POOLED:  # corpus-wide questions: one RAPTOR tree over the whole pooled corpus
+        ov["raptor"] = {"scope": "collection"}
+    return ov
 
 
 def item_to_dict(it: EvalItem) -> Dict[str, Any]:

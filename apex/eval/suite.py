@@ -7,6 +7,7 @@
   python -m apex.eval.suite compare <run_dir_A> <run_dir_baseline>
   python -m apex.eval.suite retrieval --variants name=overlay.yaml,... [--datasets a,b] [--split dev] --out DIR
   python -m apex.eval.suite ivf-curve [--datasets musique,hotpotqa,2wiki] [--split dev] --out DIR
+  python -m apex.eval.suite tree    <datasets...> [--config C] [--seed N] [--force]   build RAPTOR trees (M4)
 """
 
 from __future__ import annotations
@@ -43,6 +44,9 @@ def main(argv=None):
     s = sub.add_parser("ivf-curve", help="FAISS IVF Recall@10 vs latency over nprobe")
     s.add_argument("--datasets", default="musique,hotpotqa,2wiki"); s.add_argument("--split", default="dev", choices=["dev", "test"])
     s.add_argument("--out", required=True)
+    s = sub.add_parser("tree", help="build the RAPTOR tree collection for each dataset (M4)")
+    s.add_argument("datasets", nargs="+"); s.add_argument("--config"); s.add_argument("--seed", type=int)
+    s.add_argument("--force", action="store_true", help="rebuild even if the manifest says it is up to date")
     a = ap.parse_args(argv)
 
     if a.cmd == "splits":
@@ -81,6 +85,19 @@ def main(argv=None):
         from apex.eval.retrieval_bench import ivf_curve
         ivf_curve([x for x in a.datasets.split(",") if x], split=a.split, out_dir=Path(a.out))
         print("\nwrote", Path(a.out) / "ivf_curve.png")
+    elif a.cmd == "tree":
+        import json
+        from apex.config import deep_merge
+        from apex.index.raptor import TreeBuilder
+        from apex.pipeline import Components
+        for n in a.datasets:
+            ov = deep_merge(D.bench_overrides(n), {"raptor": {"enabled": False}})  # read the leaf collection
+            if a.seed is not None:
+                ov = deep_merge(ov, {"raptor": {"seed": a.seed}})
+            cfg = load_config(a.config, overrides=ov)
+            comps, t = Components(cfg), time.time()
+            rep = TreeBuilder(cfg, comps.store, comps.embedder, comps.client).build(force=a.force)
+            print(f"[{n}] {json.dumps(rep)} ({time.time() - t:.0f}s)")
     elif a.cmd == "compare":
         from apex.eval.report import compare
         text = compare(Path(a.run_a), Path(a.run_b))
