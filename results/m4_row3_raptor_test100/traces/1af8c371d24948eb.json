@@ -1,0 +1,164 @@
+{
+  "trace_id": "1af8c371d24948eb",
+  "created_at": "2026-11-16T10:29:56.546501+00:00",
+  "query": "What was the name of Odysseus' faithful dog who recognized him upon his return to Ithaca?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.48
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17.55
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15076.96
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.65,
+      "bm25_ms": 11.95,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "f9add743188fc69e:L0:000116",
+          "score": 0.7451877263684511,
+          "fused": 0.7451877263684511,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "raptor:da9c117e:L3:1c3317aa1209af63",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:da9c117e:L1:5e0b03f6bac9c60d",
+          "score": 0.6543990095483155,
+          "fused": 0.6543990095483155,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f9add743188fc69e:L0:000600",
+          "score": 0.5272069855915563,
+          "fused": 0.5272069855915563,
+          "dense_rank": 20,
+          "bm25_rank": 7
+        },
+        {
+          "id": "f9add743188fc69e:L0:000595",
+          "score": 0.5224528663439786,
+          "fused": 0.5224528663439786,
+          "dense_rank": null,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 17.25
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1378,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15059.26
+    }
+  },
+  "retrieved_ids": [
+    "f9add743188fc69e:L0:000116",
+    "raptor:da9c117e:L3:1c3317aa1209af63",
+    "raptor:da9c117e:L1:5e0b03f6bac9c60d",
+    "f9add743188fc69e:L0:000600",
+    "f9add743188fc69e:L0:000595"
+  ],
+  "filtered_ids": [
+    "f9add743188fc69e:L0:000116",
+    "raptor:da9c117e:L3:1c3317aa1209af63",
+    "raptor:da9c117e:L1:5e0b03f6bac9c60d",
+    "f9add743188fc69e:L0:000600",
+    "f9add743188fc69e:L0:000595"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:29:56.549502+00:00",
+      "call_id": "6cbc00514c66",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "984187ec17ed8fb4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1af8c371d24948eb"
+    },
+    {
+      "ts": "2026-11-16T10:30:11.623011+00:00",
+      "call_id": "39e04043c0d6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "19e3b64dc5f4bec1",
+      "prompt_tokens": 2123,
+      "completion_tokens": 48,
+      "latency_ms": 15058.4,
+      "server_ms": 15015.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1af8c371d24948eb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2123,
+    "completion_tokens": 48,
+    "total_ms": 15079.03
+  },
+  "config_hash": "e1774ef76b1f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "trace_id": "c81cc318347e456c",
+  "created_at": "2026-11-15T09:43:53.592234+00:00",
+  "query": "Where did Ernie live?\n\nOptions:\n(A) In a small town\n(B) In the country\n(C) In a medium-sized town\n(D) In a big city\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 21.56
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 21.71
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14878.99
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.77,
+      "bm25_ms": 17.48,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 24
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "de9de8d3c22b17cd:L0:000014",
+          "score": 0.8444244719871502,
+          "fused": 0.8444244719871502,
+          "dense_rank": 9,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:e1d5b414:L2:a65ef532c365e7ee",
+          "score": 0.6330330365750861,
+          "fused": 0.6330330365750861,
+          "dense_rank": 1,
+          "bm25_rank": 6
+        },
+        {
+          "id": "de9de8d3c22b17cd:L0:000008",
+          "score": 0.6143045189565488,
+          "fused": 0.6143045189565488,
+          "dense_rank": 16,
+          "bm25_rank": 2
+        },
+        {
+          "id": "de9de8d3c22b17cd:L0:000016",
+          "score": 0.5819951701850075,
+          "fused": 0.5819951701850075,
+          "dense_rank": 4,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:e1d5b414:L1:a0144d63d740a0d1",
+          "score": 0.549511805734254,
+          "fused": 0.549511805734254,
+          "dense_rank": 5,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 21.51
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1379,
+      "latency_ms": 0.13
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14857.12
+    }
+  },
+  "retrieved_ids": [
+    "de9de8d3c22b17cd:L0:000014",
+    "raptor:e1d5b414:L2:a65ef532c365e7ee",
+    "de9de8d3c22b17cd:L0:000008",
+    "de9de8d3c22b17cd:L0:000016",
+    "raptor:e1d5b414:L1:a0144d63d740a0d1"
+  ],
+  "filtered_ids": [
+    "de9de8d3c22b17cd:L0:000014",
+    "raptor:e1d5b414:L2:a65ef532c365e7ee",
+    "de9de8d3c22b17cd:L0:000008",
+    "de9de8d3c22b17cd:L0:000016",
+    "raptor:e1d5b414:L1:a0144d63d740a0d1"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:43:53.594234+00:00",
+      "call_id": "20f7c50d108d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9c3dcb901a59930f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c81cc318347e456c"
+    },
+    {
+      "ts": "2026-11-15T09:44:08.469228+00:00",
+      "call_id": "1e5cdf7e88b4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9ebc2ace1c99d9eb",
+      "prompt_tokens": 1920,
+      "completion_tokens": 52,
+      "latency_ms": 14855.81,
+      "server_ms": 14820.99,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "c81cc318347e456c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1920,
+    "completion_tokens": 52,
+    "total_ms": 14880.85
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

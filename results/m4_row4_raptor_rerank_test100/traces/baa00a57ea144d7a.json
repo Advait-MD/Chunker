@@ -1,0 +1,183 @@
+{
+  "trace_id": "baa00a57ea144d7a",
+  "created_at": "2026-11-16T11:05:50.069109+00:00",
+  "query": "What languages did they use?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2060.15
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2061.47
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23410.71
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.17,
+      "bm25_ms": 7.13,
+      "n_candidates": {
+        "dense": 22,
+        "bm25": 17
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2041.36
+      },
+      "hits": [
+        {
+          "id": "0b0ebc0d961209ab:L0:000006",
+          "score": -0.23606610298156738,
+          "fused": 0.9335681153647386,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": -0.23606610298156738
+        },
+        {
+          "id": "raptor:732c8c1b:L1:930beb5089785c82",
+          "score": -1.4480758905410767,
+          "fused": 0.8610229961319409,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -1.4480758905410767
+        },
+        {
+          "id": "0b0ebc0d961209ab:L0:000002",
+          "score": -1.7055999040603638,
+          "fused": 0.7765130047115736,
+          "dense_rank": 14,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -1.7055999040603638
+        },
+        {
+          "id": "0b0ebc0d961209ab:L0:000010",
+          "score": -2.4070050716400146,
+          "fused": 0.5379701119884726,
+          "dense_rank": 17,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -2.4070050716400146
+        },
+        {
+          "id": "0b0ebc0d961209ab:L0:000011",
+          "score": -2.5018177032470703,
+          "fused": 0.4495097437136896,
+          "dense_rank": 5,
+          "bm25_rank": 10,
+          "fused_rank": 9,
+          "rerank": -2.5018177032470703
+        }
+      ],
+      "latency_ms": 2060.1
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1520,
+      "latency_ms": 1.29
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21349.14
+    }
+  },
+  "retrieved_ids": [
+    "0b0ebc0d961209ab:L0:000006",
+    "raptor:732c8c1b:L1:930beb5089785c82",
+    "0b0ebc0d961209ab:L0:000002",
+    "0b0ebc0d961209ab:L0:000010",
+    "0b0ebc0d961209ab:L0:000011"
+  ],
+  "filtered_ids": [
+    "0b0ebc0d961209ab:L0:000006",
+    "raptor:732c8c1b:L1:930beb5089785c82",
+    "0b0ebc0d961209ab:L0:000002",
+    "0b0ebc0d961209ab:L0:000010",
+    "0b0ebc0d961209ab:L0:000011"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:05:50.071109+00:00",
+      "call_id": "bd6c5463516b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3e11dd12cda577a4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "baa00a57ea144d7a"
+    },
+    {
+      "ts": "2026-11-16T11:06:13.479200+00:00",
+      "call_id": "8a2e77386a35",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "260f45e027f49ae1",
+      "prompt_tokens": 2225,
+      "completion_tokens": 93,
+      "latency_ms": 21348.1,
+      "server_ms": 21274.88,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "baa00a57ea144d7a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2225,
+    "completion_tokens": 93,
+    "total_ms": 23413.13
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3
+      ],
+      "uncited_sentences": [
+        "They used Spanish, Chinese (Mandarin), Croatian, Czech, French, Polish, Portuguese, Swedish, and also combined GlobalPhone languages for multilingual pretraining."
+      ]
+    }
+  }
+}

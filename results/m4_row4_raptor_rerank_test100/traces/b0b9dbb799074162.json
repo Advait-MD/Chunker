@@ -1,0 +1,180 @@
+{
+  "trace_id": "b0b9dbb799074162",
+  "created_at": "2026-11-16T11:14:12.917944+00:00",
+  "query": "What is the distance in miles from Nashville to the place where Hemlock Semiconductor produces electronic components?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2693.12
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2694.54
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13972.43
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.11,
+      "bm25_ms": 19.32,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 2665.25
+      },
+      "hits": [
+        {
+          "id": "ce290c1e5d5c6641:L0:000121",
+          "score": 0.18730796873569489,
+          "fused": 0.8841616811147934,
+          "dense_rank": 7,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.18730796873569489
+        },
+        {
+          "id": "ad4ace752e719bab:L0:000163",
+          "score": -0.9222909212112427,
+          "fused": 0.3463239647025739,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.9222909212112427
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000145",
+          "score": -2.9927406311035156,
+          "fused": 0.21686562314677413,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 9,
+          "rerank": -2.9927406311035156
+        },
+        {
+          "id": "15abb5e49dced915:L0:000162",
+          "score": -3.686664581298828,
+          "fused": 0.2962205548215232,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -3.686664581298828
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000132",
+          "score": -4.710751533508301,
+          "fused": 0.13139778144031602,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 20,
+          "rerank": -4.710751533508301
+        }
+      ],
+      "latency_ms": 2693.07
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 493,
+      "latency_ms": 1.38
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11277.75
+    }
+  },
+  "retrieved_ids": [
+    "ce290c1e5d5c6641:L0:000121",
+    "ad4ace752e719bab:L0:000163",
+    "ce290c1e5d5c6641:L0:000145",
+    "15abb5e49dced915:L0:000162",
+    "5a1a5bbda9db013e:L0:000132"
+  ],
+  "filtered_ids": [
+    "ce290c1e5d5c6641:L0:000121",
+    "ad4ace752e719bab:L0:000163",
+    "ce290c1e5d5c6641:L0:000145",
+    "15abb5e49dced915:L0:000162",
+    "5a1a5bbda9db013e:L0:000132"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:14:12.919952+00:00",
+      "call_id": "1dfe9daa6d5d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2b41fa7ac1635b2e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b0b9dbb799074162"
+    },
+    {
+      "ts": "2026-11-16T11:14:26.889552+00:00",
+      "call_id": "eb2924cf4047",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "29e04079aaf02fde",
+      "prompt_tokens": 1096,
+      "completion_tokens": 76,
+      "latency_ms": 11276.7,
+      "server_ms": 11253.97,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b0b9dbb799074162"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1096,
+    "completion_tokens": 76,
+    "total_ms": 13975.15
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

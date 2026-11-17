@@ -1,0 +1,165 @@
+{
+  "trace_id": "a0c0c91ad2bf4aee",
+  "created_at": "2026-11-15T09:32:34.566773+00:00",
+  "query": "Who married the person telling the story in how i met your mother?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.02
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.09
+    },
+    {
+      "state": "DONE",
+      "t_ms": 9695.83
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.14,
+      "bm25_ms": 11.47,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "178c7e3e6ef6ae87:L0:000062",
+          "score": 0.7345186388185972,
+          "fused": 0.7345186388185972,
+          "dense_rank": 24,
+          "bm25_rank": 1
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000046",
+          "score": 0.552215218479415,
+          "fused": 0.552215218479415,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:3077646e281d2f3d",
+          "score": 0.5370500643505474,
+          "fused": 0.5370500643505474,
+          "dense_rank": 2,
+          "bm25_rank": 6
+        },
+        {
+          "id": "raptor:67600e79:L1:1b64d8b1d595bf47",
+          "score": 0.4824781510353627,
+          "fused": 0.4824781510353627,
+          "dense_rank": 3,
+          "bm25_rank": 9
+        },
+        {
+          "id": "raptor:67600e79:L1:6de6dfa287aaf9d7",
+          "score": 0.37599732909647854,
+          "fused": 0.37599732909647854,
+          "dense_rank": 1,
+          "bm25_rank": 23
+        }
+      ],
+      "latency_ms": 14.98
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 600,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9680.63
+    }
+  },
+  "retrieved_ids": [
+    "178c7e3e6ef6ae87:L0:000062",
+    "8679484d23bfd3a0:L0:000046",
+    "raptor:67600e79:L1:3077646e281d2f3d",
+    "raptor:67600e79:L1:1b64d8b1d595bf47",
+    "raptor:67600e79:L1:6de6dfa287aaf9d7"
+  ],
+  "filtered_ids": [
+    "178c7e3e6ef6ae87:L0:000062",
+    "8679484d23bfd3a0:L0:000046",
+    "raptor:67600e79:L1:3077646e281d2f3d",
+    "raptor:67600e79:L1:1b64d8b1d595bf47",
+    "raptor:67600e79:L1:6de6dfa287aaf9d7"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:32:34.568773+00:00",
+      "call_id": "a504e632c3cd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4e56339cc3a17043",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a0c0c91ad2bf4aee"
+    },
+    {
+      "ts": "2026-11-15T09:32:44.262358+00:00",
+      "call_id": "233140436594",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f68a51bf0b7fb45d",
+      "prompt_tokens": 1109,
+      "completion_tokens": 47,
+      "latency_ms": 9679.73,
+      "server_ms": 9653.78,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a0c0c91ad2bf4aee"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1109,
+    "completion_tokens": 47,
+    "total_ms": 9696.92
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

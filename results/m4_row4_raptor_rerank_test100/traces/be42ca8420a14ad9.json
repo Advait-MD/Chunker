@@ -1,0 +1,179 @@
+{
+  "trace_id": "be42ca8420a14ad9",
+  "created_at": "2026-11-16T11:21:29.929890+00:00",
+  "query": "Where does the ocean adjacent to Miami meet the body of water where the Mississippi River empties into the sea?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2233.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2233.94
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14306.88
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.83,
+      "bm25_ms": 17.48,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2211.06
+      },
+      "hits": [
+        {
+          "id": "a168352d83e925b5:L0:000103",
+          "score": 4.1293792724609375,
+          "fused": 0.5616264686571854,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 8,
+          "rerank": 4.1293792724609375
+        },
+        {
+          "id": "raptor:67600e79:L1:3245b011cc3b9512",
+          "score": -1.0654290914535522,
+          "fused": 0.3774413782760945,
+          "dense_rank": 2,
+          "bm25_rank": 25,
+          "fused_rank": 12,
+          "rerank": -1.0654290914535522
+        },
+        {
+          "id": "raptor:67600e79:L1:e4ec64bed82e4fd2",
+          "score": -1.8353029489517212,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.8353029489517212
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000020",
+          "score": -2.491201162338257,
+          "fused": 0.6217120365132658,
+          "dense_rank": 9,
+          "bm25_rank": 7,
+          "fused_rank": 6,
+          "rerank": -2.491201162338257
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000004",
+          "score": -2.8952856063842773,
+          "fused": 0.6223214450677619,
+          "dense_rank": 8,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": -2.8952856063842773
+        }
+      ],
+      "latency_ms": 2233.35
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 728,
+      "latency_ms": 0.49
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12072.74
+    }
+  },
+  "retrieved_ids": [
+    "a168352d83e925b5:L0:000103",
+    "raptor:67600e79:L1:3245b011cc3b9512",
+    "raptor:67600e79:L1:e4ec64bed82e4fd2",
+    "dbcbda865eee9c7b:L0:000020",
+    "178c7e3e6ef6ae87:L0:000004"
+  ],
+  "filtered_ids": [
+    "a168352d83e925b5:L0:000103",
+    "raptor:67600e79:L1:3245b011cc3b9512",
+    "raptor:67600e79:L1:e4ec64bed82e4fd2",
+    "dbcbda865eee9c7b:L0:000020",
+    "178c7e3e6ef6ae87:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:21:29.931897+00:00",
+      "call_id": "cf1ae591a2b4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4b9936c439648539",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "be42ca8420a14ad9"
+    },
+    {
+      "ts": "2026-11-16T11:21:44.235772+00:00",
+      "call_id": "104d0d1da077",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6fb05e4aa1917b9a",
+      "prompt_tokens": 1257,
+      "completion_tokens": 70,
+      "latency_ms": 12071.17,
+      "server_ms": 12042.67,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "be42ca8420a14ad9"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1257,
+    "completion_tokens": 70,
+    "total_ms": 14333.77
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

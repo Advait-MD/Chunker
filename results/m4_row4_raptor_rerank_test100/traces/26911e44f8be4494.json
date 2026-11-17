@@ -1,0 +1,185 @@
+{
+  "trace_id": "26911e44f8be4494",
+  "created_at": "2026-11-16T12:57:58.405608+00:00",
+  "query": "Which film has the director born earlier, High Society Blues or Counterblast?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4094.03
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4094.68
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22358.49
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.08,
+      "bm25_ms": 10.76,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 11,
+        "latency_ms": 4078.76
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000100",
+          "score": 8.545905113220215,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.545905113220215
+        },
+        {
+          "id": "abe982d210232c3f:L0:000127",
+          "score": 7.909138202667236,
+          "fused": 0.36426908270956115,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": 7.909138202667236
+        },
+        {
+          "id": "raptor:67600e79:L1:7334f650872ffdc5",
+          "score": 3.325577735900879,
+          "fused": 0.5984015469328405,
+          "dense_rank": 1,
+          "bm25_rank": 7,
+          "fused_rank": 2,
+          "rerank": 3.325577735900879
+        },
+        {
+          "id": "raptor:67600e79:L3:a3cd2b84b0cab146",
+          "score": 2.2872731685638428,
+          "fused": 0.4985045849363437,
+          "dense_rank": 10,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 2.2872731685638428
+        },
+        {
+          "id": "raptor:67600e79:L4:f0046daf7014f3c4",
+          "score": 2.2872731685638428,
+          "fused": 0.4985045849363437,
+          "dense_rank": 9,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 2.2872731685638428
+        }
+      ],
+      "latency_ms": 4093.98
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 665,
+      "latency_ms": 0.61
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18263.62
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000100",
+    "abe982d210232c3f:L0:000127",
+    "raptor:67600e79:L1:7334f650872ffdc5",
+    "raptor:67600e79:L3:a3cd2b84b0cab146",
+    "raptor:67600e79:L4:f0046daf7014f3c4"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000100",
+    "abe982d210232c3f:L0:000127",
+    "raptor:67600e79:L1:7334f650872ffdc5",
+    "raptor:67600e79:L3:a3cd2b84b0cab146",
+    "raptor:67600e79:L4:f0046daf7014f3c4"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:57:58.407606+00:00",
+      "call_id": "61323cd11934",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "59da7bdb4b58760f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "26911e44f8be4494"
+    },
+    {
+      "ts": "2026-11-16T12:58:20.763094+00:00",
+      "call_id": "dc8172d80d72",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3a0419a681231743",
+      "prompt_tokens": 1289,
+      "completion_tokens": 125,
+      "latency_ms": 18261.93,
+      "server_ms": 18231.69,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "26911e44f8be4494"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1289,
+    "completion_tokens": 125,
+    "total_ms": 22360.5
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "High Society Blues was directed by David Butler, while the director of Counterblast, Paul L.",
+        "Stein, is not mentioned in the passages.",
+        "Therefore, David Butler, the director of High Society Blues, was born earlier than Paul L.",
+        "Stein, the director of Counterblast."
+      ]
+    }
+  }
+}

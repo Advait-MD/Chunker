@@ -1,0 +1,165 @@
+{
+  "trace_id": "b98d090eb5d04180",
+  "created_at": "2026-11-16T10:27:08.542671+00:00",
+  "query": "Who held Odysseus captive on the island of Ogygia?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.47
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.53
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16572.83
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.21,
+      "bm25_ms": 7.89,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:da9c117e:L1:15a79a35267dcc74",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:da9c117e:L2:3c911a849f280deb",
+          "score": 0.6756723724228775,
+          "fused": 0.6756723724228775,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f9add743188fc69e:L0:000622",
+          "score": 0.6662226243488569,
+          "fused": 0.6662226243488569,
+          "dense_rank": 1,
+          "bm25_rank": 6
+        },
+        {
+          "id": "raptor:da9c117e:L1:e0d708e94cdf5b37",
+          "score": 0.5857284569437904,
+          "fused": 0.5857284569437904,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:da9c117e:L1:42a02915647db1eb",
+          "score": 0.5405317554495852,
+          "fused": 0.5405317554495852,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 11.42
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1084,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16561.12
+    }
+  },
+  "retrieved_ids": [
+    "raptor:da9c117e:L1:15a79a35267dcc74",
+    "raptor:da9c117e:L2:3c911a849f280deb",
+    "f9add743188fc69e:L0:000622",
+    "raptor:da9c117e:L1:e0d708e94cdf5b37",
+    "raptor:da9c117e:L1:42a02915647db1eb"
+  ],
+  "filtered_ids": [
+    "raptor:da9c117e:L1:15a79a35267dcc74",
+    "raptor:da9c117e:L2:3c911a849f280deb",
+    "f9add743188fc69e:L0:000622",
+    "raptor:da9c117e:L1:e0d708e94cdf5b37",
+    "raptor:da9c117e:L1:42a02915647db1eb"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:27:08.544673+00:00",
+      "call_id": "5b1abb74da1d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "29aa2c1853ec4ad2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b98d090eb5d04180"
+    },
+    {
+      "ts": "2026-11-16T10:27:25.114839+00:00",
+      "call_id": "8087f77ecdea",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4d64dd71972f1da4",
+      "prompt_tokens": 1785,
+      "completion_tokens": 74,
+      "latency_ms": 16559.85,
+      "server_ms": 16531.59,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b98d090eb5d04180"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1785,
+    "completion_tokens": 74,
+    "total_ms": 16575.11
+  },
+  "config_hash": "e1774ef76b1f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

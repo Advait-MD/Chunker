@@ -1,0 +1,179 @@
+{
+  "trace_id": "d519f4c859bc4140",
+  "created_at": "2026-11-16T11:31:03.329145+00:00",
+  "query": "What shares a border with the city where the person who went to the state where the planes were originally going on 9/11 during the gold rush works?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2464.89
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2465.3
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11789.17
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.75,
+      "bm25_ms": 16.36,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2442.78
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L2:3b9efff943b61b00",
+          "score": -1.0656896829605103,
+          "fused": 0.16728009052266607,
+          "dense_rank": 3,
+          "bm25_rank": 44,
+          "fused_rank": 20,
+          "rerank": -1.0656896829605103
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000015",
+          "score": -1.6956101655960083,
+          "fused": 0.23610247280031457,
+          "dense_rank": null,
+          "bm25_rank": 12,
+          "fused_rank": 15,
+          "rerank": -1.6956101655960083
+        },
+        {
+          "id": "dd498e0082847164:L0:000085",
+          "score": -2.700813055038452,
+          "fused": 0.5875167427025773,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -2.700813055038452
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000148",
+          "score": -3.1694276332855225,
+          "fused": 0.21546325486270507,
+          "dense_rank": null,
+          "bm25_rank": 15,
+          "fused_rank": 17,
+          "rerank": -3.1694276332855225
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000149",
+          "score": -3.2076244354248047,
+          "fused": 0.2862417012701844,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 12,
+          "rerank": -3.2076244354248047
+        }
+      ],
+      "latency_ms": 2464.84
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 672,
+      "latency_ms": 0.38
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9323.3
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L2:3b9efff943b61b00",
+    "f59bbbdacaf7ffe4:L0:000015",
+    "dd498e0082847164:L0:000085",
+    "178c7e3e6ef6ae87:L0:000148",
+    "8679484d23bfd3a0:L0:000149"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L2:3b9efff943b61b00",
+    "f59bbbdacaf7ffe4:L0:000015",
+    "dd498e0082847164:L0:000085",
+    "178c7e3e6ef6ae87:L0:000148",
+    "8679484d23bfd3a0:L0:000149"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:31:03.330145+00:00",
+      "call_id": "d16604243b24",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cf83cc49d15bf5bf",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d519f4c859bc4140"
+    },
+    {
+      "ts": "2026-11-16T11:31:15.116651+00:00",
+      "call_id": "08cadf51fa8f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3bd12964a693deff",
+      "prompt_tokens": 1315,
+      "completion_tokens": 43,
+      "latency_ms": 9322.57,
+      "server_ms": 9302.86,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d519f4c859bc4140"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1315,
+    "completion_tokens": 43,
+    "total_ms": 11790.03
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

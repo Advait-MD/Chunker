@@ -1,0 +1,181 @@
+{
+  "trace_id": "9cd467a4f2514b0c",
+  "created_at": "2026-11-16T11:29:53.306475+00:00",
+  "query": "When was the ruler that was dissolved after the Indian Rebellion of 1857 established?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1005.96
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1007.3
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20817.08
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.34,
+      "bm25_ms": 16.12,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 2,
+        "latency_ms": 980.26
+      },
+      "hits": [
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000168",
+          "score": 2.6208291053771973,
+          "fused": 0.47752450035464955,
+          "dense_rank": 12,
+          "bm25_rank": 16,
+          "fused_rank": 15,
+          "rerank": 2.6208291053771973
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000146",
+          "score": 1.9069030284881592,
+          "fused": 0.9247194722799292,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.9069030284881592
+        },
+        {
+          "id": "raptor:67600e79:L1:f051b08ddcf45a87",
+          "score": 1.5417263507843018,
+          "fused": 0.7728267616951088,
+          "dense_rank": 1,
+          "bm25_rank": 11,
+          "fused_rank": 4,
+          "rerank": 1.5417263507843018
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000153",
+          "score": 1.4992820024490356,
+          "fused": 0.8845534331376953,
+          "dense_rank": 5,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.4992820024490356
+        },
+        {
+          "id": "ad4ace752e719bab:L0:000176",
+          "score": 1.2454872131347656,
+          "fused": 0.33892835157761636,
+          "dense_rank": 11,
+          "bm25_rank": 21,
+          "fused_rank": 19,
+          "rerank": 1.2454872131347656
+        }
+      ],
+      "latency_ms": 1005.9
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1032,
+      "latency_ms": 1.29
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19809.63
+    }
+  },
+  "retrieved_ids": [
+    "cc1bdb3bf430bd0d:L0:000168",
+    "cc1bdb3bf430bd0d:L0:000146",
+    "raptor:67600e79:L1:f051b08ddcf45a87",
+    "8679484d23bfd3a0:L0:000153",
+    "ad4ace752e719bab:L0:000176"
+  ],
+  "filtered_ids": [
+    "cc1bdb3bf430bd0d:L0:000168",
+    "cc1bdb3bf430bd0d:L0:000146",
+    "raptor:67600e79:L1:f051b08ddcf45a87",
+    "8679484d23bfd3a0:L0:000153",
+    "ad4ace752e719bab:L0:000176"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:29:53.307475+00:00",
+      "call_id": "bd84f0bd00e6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "467f3394dd8d0b21",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9cd467a4f2514b0c"
+    },
+    {
+      "ts": "2026-11-16T11:30:14.122532+00:00",
+      "call_id": "33891b5891b7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "57c987014aa8889e",
+      "prompt_tokens": 1762,
+      "completion_tokens": 101,
+      "latency_ms": 19808.28,
+      "server_ms": 19780.76,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9cd467a4f2514b0c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1762,
+    "completion_tokens": 101,
+    "total_ms": 20818.82
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

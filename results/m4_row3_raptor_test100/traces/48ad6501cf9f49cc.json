@@ -1,0 +1,165 @@
+{
+  "trace_id": "48ad6501cf9f49cc",
+  "created_at": "2026-11-15T09:24:52.149354+00:00",
+  "query": "Who is the mother of Katharine Smith Salisbury's brother?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.89
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.96
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11977.82
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.31,
+      "bm25_ms": 12.12,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000082",
+          "score": 0.734328422096727,
+          "fused": 0.734328422096727,
+          "dense_rank": 33,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:e6bdd07058091694",
+          "score": 0.42007168257979133,
+          "fused": 0.42007168257979133,
+          "dense_rank": 1,
+          "bm25_rank": 12
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000155",
+          "score": 0.3134493299369526,
+          "fused": 0.3134493299369526,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:40d74ecf87b36898",
+          "score": 0.2459013165423653,
+          "fused": 0.2459013165423653,
+          "dense_rank": 27,
+          "bm25_rank": 5
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000139",
+          "score": 0.2400712477481998,
+          "fused": 0.2400712477481998,
+          "dense_rank": null,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 15.85
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 640,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11961.75
+    }
+  },
+  "retrieved_ids": [
+    "cc1bdb3bf430bd0d:L0:000082",
+    "raptor:67600e79:L1:e6bdd07058091694",
+    "cc1bdb3bf430bd0d:L0:000155",
+    "raptor:67600e79:L1:40d74ecf87b36898",
+    "8b31d5859eb3d77a:L0:000139"
+  ],
+  "filtered_ids": [
+    "cc1bdb3bf430bd0d:L0:000082",
+    "raptor:67600e79:L1:e6bdd07058091694",
+    "cc1bdb3bf430bd0d:L0:000155",
+    "raptor:67600e79:L1:40d74ecf87b36898",
+    "8b31d5859eb3d77a:L0:000139"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:24:52.150354+00:00",
+      "call_id": "ca59bc2f82a5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "375f513e6868f338",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "48ad6501cf9f49cc"
+    },
+    {
+      "ts": "2026-11-15T09:25:04.125607+00:00",
+      "call_id": "d1c2b12926d1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d0fea5532b416cda",
+      "prompt_tokens": 1222,
+      "completion_tokens": 61,
+      "latency_ms": 11960.81,
+      "server_ms": 11929.7,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "48ad6501cf9f49cc"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1222,
+    "completion_tokens": 61,
+    "total_ms": 11979.5
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

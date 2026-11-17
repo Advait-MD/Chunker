@@ -1,0 +1,181 @@
+{
+  "trace_id": "dd525e7b47af46c0",
+  "created_at": "2026-11-16T12:19:08.593255+00:00",
+  "query": "Which dog is believed to dispel ghosts and evil spirits, Segugio Italiano or Sapsali?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2455.49
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2456.57
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14844.6
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.63,
+      "bm25_ms": 13.41,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2433.17
+      },
+      "hits": [
+        {
+          "id": "838c0e0106e6f015:L0:000166",
+          "score": 7.439018726348877,
+          "fused": 0.45542335583883614,
+          "dense_rank": 8,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 7.439018726348877
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000070",
+          "score": 7.314824104309082,
+          "fused": 0.9083702205974759,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.314824104309082
+        },
+        {
+          "id": "raptor:67600e79:L2:8a16cd3dba97f8fa",
+          "score": 6.500119209289551,
+          "fused": 0.612198152650556,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": 6.500119209289551
+        },
+        {
+          "id": "raptor:67600e79:L1:42677093ef252b4b",
+          "score": 4.971973419189453,
+          "fused": 0.47003550031097774,
+          "dense_rank": 4,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": 4.971973419189453
+        },
+        {
+          "id": "raptor:67600e79:L1:0a631daa7cfa5cc7",
+          "score": 4.0969085693359375,
+          "fused": 0.5246907838066204,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 4.0969085693359375
+        }
+      ],
+      "latency_ms": 2455.44
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 688,
+      "latency_ms": 1.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12387.86
+    }
+  },
+  "retrieved_ids": [
+    "838c0e0106e6f015:L0:000166",
+    "838c0e0106e6f015:L0:000070",
+    "raptor:67600e79:L2:8a16cd3dba97f8fa",
+    "raptor:67600e79:L1:42677093ef252b4b",
+    "raptor:67600e79:L1:0a631daa7cfa5cc7"
+  ],
+  "filtered_ids": [
+    "838c0e0106e6f015:L0:000166",
+    "838c0e0106e6f015:L0:000070",
+    "raptor:67600e79:L2:8a16cd3dba97f8fa",
+    "raptor:67600e79:L1:42677093ef252b4b",
+    "raptor:67600e79:L1:0a631daa7cfa5cc7"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:19:08.595276+00:00",
+      "call_id": "f02f968e36ef",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "11f644b14aed56c2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "dd525e7b47af46c0"
+    },
+    {
+      "ts": "2026-11-16T12:19:23.436518+00:00",
+      "call_id": "9c4e232be3c4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a98e5728b8dc6510",
+      "prompt_tokens": 1290,
+      "completion_tokens": 62,
+      "latency_ms": 12386.1,
+      "server_ms": 12361.14,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "dd525e7b47af46c0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1290,
+    "completion_tokens": 62,
+    "total_ms": 14849.11
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

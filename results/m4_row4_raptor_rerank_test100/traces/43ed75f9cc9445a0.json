@@ -1,0 +1,179 @@
+{
+  "trace_id": "43ed75f9cc9445a0",
+  "created_at": "2026-11-16T12:56:24.382751+00:00",
+  "query": "Which album was released earlier, American Tunes or I'M In Love Again?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3259.79
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3259.88
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13909.67
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.13,
+      "bm25_ms": 13.95,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 10,
+        "latency_ms": 3240.65
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:59389b3ebb35286e",
+          "score": -3.0052871704101562,
+          "fused": 0.16768689254784555,
+          "dense_rank": 36,
+          "bm25_rank": 16,
+          "fused_rank": 17,
+          "rerank": -3.0052871704101562
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000011",
+          "score": -3.6468868255615234,
+          "fused": 0.4787348806075703,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 7,
+          "rerank": -3.6468868255615234
+        },
+        {
+          "id": "raptor:67600e79:L1:efd9b40d5e011d20",
+          "score": -6.584650993347168,
+          "fused": 0.35562443761395385,
+          "dense_rank": 4,
+          "bm25_rank": 14,
+          "fused_rank": 10,
+          "rerank": -6.584650993347168
+        },
+        {
+          "id": "raptor:67600e79:L2:8e2121db296ea254",
+          "score": -6.758652210235596,
+          "fused": 0.7726314884861409,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 3,
+          "rerank": -6.758652210235596
+        },
+        {
+          "id": "raptor:67600e79:L3:3b27ab7a19e7a795",
+          "score": -6.955242156982422,
+          "fused": 0.29941932148673084,
+          "dense_rank": 9,
+          "bm25_rank": 15,
+          "fused_rank": 12,
+          "rerank": -6.955242156982422
+        }
+      ],
+      "latency_ms": 3259.73
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 762,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10649.7
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:59389b3ebb35286e",
+    "c73b757f0eb66f37:L0:000011",
+    "raptor:67600e79:L1:efd9b40d5e011d20",
+    "raptor:67600e79:L2:8e2121db296ea254",
+    "raptor:67600e79:L3:3b27ab7a19e7a795"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:59389b3ebb35286e",
+    "c73b757f0eb66f37:L0:000011",
+    "raptor:67600e79:L1:efd9b40d5e011d20",
+    "raptor:67600e79:L2:8e2121db296ea254",
+    "raptor:67600e79:L3:3b27ab7a19e7a795"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:56:24.383754+00:00",
+      "call_id": "7cb8db608da8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a34cc4f2b4fcb60d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "43ed75f9cc9445a0"
+    },
+    {
+      "ts": "2026-11-16T12:56:38.292067+00:00",
+      "call_id": "e4ddf4ee9db6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3425627f4b0c8e4f",
+      "prompt_tokens": 1317,
+      "completion_tokens": 45,
+      "latency_ms": 10648.51,
+      "server_ms": 10620.28,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "43ed75f9cc9445a0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1317,
+    "completion_tokens": 45,
+    "total_ms": 13912.08
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

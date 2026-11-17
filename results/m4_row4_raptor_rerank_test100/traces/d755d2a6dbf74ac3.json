@@ -1,0 +1,179 @@
+{
+  "trace_id": "d755d2a6dbf74ac3",
+  "created_at": "2026-11-16T11:27:37.631655+00:00",
+  "query": "When did the place where Mater et Magistra's author died become its own country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3655.06
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3655.64
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13305.03
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.36,
+      "bm25_ms": 10.07,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 3641.11
+      },
+      "hits": [
+        {
+          "id": "8679484d23bfd3a0:L0:000160",
+          "score": 3.491802930831909,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.491802930831909
+        },
+        {
+          "id": "raptor:67600e79:L1:5fe9032c552f196e",
+          "score": -1.3743942975997925,
+          "fused": 0.3627984436069932,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -1.3743942975997925
+        },
+        {
+          "id": "raptor:67600e79:L1:c574e9c0a0c93265",
+          "score": -6.079746246337891,
+          "fused": 0.10949622564703947,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 14,
+          "rerank": -6.079746246337891
+        },
+        {
+          "id": "raptor:67600e79:L1:5208f3dc7fb665ba",
+          "score": -6.17515754699707,
+          "fused": 0.0741341134436146,
+          "dense_rank": 8,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -6.17515754699707
+        },
+        {
+          "id": "raptor:67600e79:L1:c2c8369579f539f3",
+          "score": -6.195346832275391,
+          "fused": 0.07245403599503081,
+          "dense_rank": 9,
+          "bm25_rank": null,
+          "fused_rank": 20,
+          "rerank": -6.195346832275391
+        }
+      ],
+      "latency_ms": 3655.02
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 742,
+      "latency_ms": 0.55
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9649.29
+    }
+  },
+  "retrieved_ids": [
+    "8679484d23bfd3a0:L0:000160",
+    "raptor:67600e79:L1:5fe9032c552f196e",
+    "raptor:67600e79:L1:c574e9c0a0c93265",
+    "raptor:67600e79:L1:5208f3dc7fb665ba",
+    "raptor:67600e79:L1:c2c8369579f539f3"
+  ],
+  "filtered_ids": [
+    "8679484d23bfd3a0:L0:000160",
+    "raptor:67600e79:L1:5fe9032c552f196e",
+    "raptor:67600e79:L1:c574e9c0a0c93265",
+    "raptor:67600e79:L1:5208f3dc7fb665ba",
+    "raptor:67600e79:L1:c2c8369579f539f3"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:27:37.632655+00:00",
+      "call_id": "a6d2d33d659a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a922db9fb036d3fb",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d755d2a6dbf74ac3"
+    },
+    {
+      "ts": "2026-11-16T11:27:50.935695+00:00",
+      "call_id": "53efaf55373c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c1aae1dbaf0548d9",
+      "prompt_tokens": 1342,
+      "completion_tokens": 43,
+      "latency_ms": 9648.0,
+      "server_ms": 9623.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d755d2a6dbf74ac3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1342,
+    "completion_tokens": 43,
+    "total_ms": 13308.0
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "trace_id": "7282792f5e41470b",
+  "created_at": "2026-11-15T09:01:25.718523+00:00",
+  "query": "How big is the self-collected corpus?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 20.29
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 21.33
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15163.02
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.63,
+      "bm25_ms": 11.84,
+      "n_candidates": {
+        "dense": 18,
+        "bm25": 5
+      },
+      "n_fused": 18,
+      "hits": [
+        {
+          "id": "257b1f5daf8f6f31:L0:000010",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:1853963c:L1:b63c37de41c1e44a",
+          "score": 0.8782879325802027,
+          "fused": 0.8782879325802027,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "257b1f5daf8f6f31:L0:000000",
+          "score": 0.6930833162421135,
+          "fused": 0.6930833162421135,
+          "dense_rank": 12,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:1853963c:L2:1817a5a1174b868b",
+          "score": 0.6903140402695591,
+          "fused": 0.6903140402695591,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "257b1f5daf8f6f31:L0:000009",
+          "score": 0.29152572159025103,
+          "fused": 0.29152572159025103,
+          "dense_rank": 2,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 20.24
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 812,
+      "latency_ms": 1.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15141.6
+    }
+  },
+  "retrieved_ids": [
+    "257b1f5daf8f6f31:L0:000010",
+    "raptor:1853963c:L1:b63c37de41c1e44a",
+    "257b1f5daf8f6f31:L0:000000",
+    "raptor:1853963c:L2:1817a5a1174b868b",
+    "257b1f5daf8f6f31:L0:000009"
+  ],
+  "filtered_ids": [
+    "257b1f5daf8f6f31:L0:000010",
+    "raptor:1853963c:L1:b63c37de41c1e44a",
+    "257b1f5daf8f6f31:L0:000000",
+    "raptor:1853963c:L2:1817a5a1174b868b",
+    "257b1f5daf8f6f31:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:01:25.721793+00:00",
+      "call_id": "9e8a2d3c27b7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "dc8d232c817ccc8b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7282792f5e41470b"
+    },
+    {
+      "ts": "2026-11-15T09:01:40.881380+00:00",
+      "call_id": "f4a82b62d656",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6fa77b90b422b9ac",
+      "prompt_tokens": 1399,
+      "completion_tokens": 71,
+      "latency_ms": 15140.41,
+      "server_ms": 15114.55,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7282792f5e41470b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1399,
+    "completion_tokens": 71,
+    "total_ms": 15164.45
+  },
+  "config_hash": "4304b1db8856",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "uncited_sentences": [
+        "The self-collected corpus used by the NJM is the BoketeDB, which contains funny captions for thematic images."
+      ]
+    }
+  }
+}

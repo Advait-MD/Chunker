@@ -1,0 +1,183 @@
+{
+  "trace_id": "8347dda081ef49c8",
+  "created_at": "2026-11-16T11:38:59.948745+00:00",
+  "query": "What is the likely outcome of the polo game?\n\nOptions:\n(A) Don’t know enough about their abilities to say\n(B) Sector twenty-three wins\n(C) Sector thirty-seven wins\n(D) They will likely call a truce\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2744.41
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2745.15
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20692.07
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.97,
+      "bm25_ms": 29.32,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 22
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 2701.33
+      },
+      "hits": [
+        {
+          "id": "raptor:1f717b85:L1:77dddacb67d405ea",
+          "score": -0.4892951250076294,
+          "fused": 0.9496867229349807,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.4892951250076294
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000017",
+          "score": -1.0493619441986084,
+          "fused": 0.6155958601300622,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -1.0493619441986084
+        },
+        {
+          "id": "raptor:1f717b85:L2:1cd49340fe7a4fe6",
+          "score": -1.7175194025039673,
+          "fused": 0.8503368473966567,
+          "dense_rank": 8,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -1.7175194025039673
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000016",
+          "score": -2.6229171752929688,
+          "fused": 0.8660565834674476,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -2.6229171752929688
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000009",
+          "score": -4.571648120880127,
+          "fused": 0.615288263941254,
+          "dense_rank": 1,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -4.571648120880127
+        }
+      ],
+      "latency_ms": 2744.36
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1222,
+      "latency_ms": 0.69
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17946.52
+    }
+  },
+  "retrieved_ids": [
+    "raptor:1f717b85:L1:77dddacb67d405ea",
+    "d0e00aef59ec5db1:L0:000017",
+    "raptor:1f717b85:L2:1cd49340fe7a4fe6",
+    "d0e00aef59ec5db1:L0:000016",
+    "d0e00aef59ec5db1:L0:000009"
+  ],
+  "filtered_ids": [
+    "raptor:1f717b85:L1:77dddacb67d405ea",
+    "d0e00aef59ec5db1:L0:000017",
+    "raptor:1f717b85:L2:1cd49340fe7a4fe6",
+    "d0e00aef59ec5db1:L0:000016",
+    "d0e00aef59ec5db1:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:38:59.950752+00:00",
+      "call_id": "028cd9686c17",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e3b27a8a804567da",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8347dda081ef49c8"
+    },
+    {
+      "ts": "2026-11-16T11:39:20.639405+00:00",
+      "call_id": "6c7f47a3ff30",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4669bf856a8b1b6b",
+      "prompt_tokens": 1749,
+      "completion_tokens": 77,
+      "latency_ms": 17944.6,
+      "server_ms": 17914.13,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8347dda081ef49c8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1749,
+    "completion_tokens": 77,
+    "total_ms": 20694.79
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

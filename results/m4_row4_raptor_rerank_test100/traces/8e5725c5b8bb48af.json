@@ -1,0 +1,179 @@
+{
+  "trace_id": "8e5725c5b8bb48af",
+  "created_at": "2026-11-16T12:41:43.743709+00:00",
+  "query": "When did Thomas Knox, 3Rd Earl Of Ranfurly's father die?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4035.41
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4037.79
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14071.12
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.54,
+      "bm25_ms": 10.23,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 10,
+        "latency_ms": 4018.91
+      },
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000133",
+          "score": 6.140048027038574,
+          "fused": 0.7185101134717916,
+          "dense_rank": 32,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.140048027038574
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000146",
+          "score": 0.7870133519172668,
+          "fused": 0.4960297798724957,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": 0.7870133519172668
+        },
+        {
+          "id": "raptor:67600e79:L1:12bff524dfa48c01",
+          "score": 0.5050637722015381,
+          "fused": 0.6036858659686903,
+          "dense_rank": 1,
+          "bm25_rank": 7,
+          "fused_rank": 2,
+          "rerank": 0.5050637722015381
+        },
+        {
+          "id": "0eac870d43736f51:L0:000113",
+          "score": 0.0665464997291565,
+          "fused": 0.5684620947489517,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 0.0665464997291565
+        },
+        {
+          "id": "raptor:67600e79:L1:d33318c27636310d",
+          "score": -1.0776225328445435,
+          "fused": 0.5449459278680753,
+          "dense_rank": 2,
+          "bm25_rank": 8,
+          "fused_rank": 5,
+          "rerank": -1.0776225328445435
+        }
+      ],
+      "latency_ms": 4035.35
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 447,
+      "latency_ms": 2.33
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10032.67
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000133",
+    "53c7288bdcd3837a:L0:000146",
+    "raptor:67600e79:L1:12bff524dfa48c01",
+    "0eac870d43736f51:L0:000113",
+    "raptor:67600e79:L1:d33318c27636310d"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000133",
+    "53c7288bdcd3837a:L0:000146",
+    "raptor:67600e79:L1:12bff524dfa48c01",
+    "0eac870d43736f51:L0:000113",
+    "raptor:67600e79:L1:d33318c27636310d"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:41:43.745147+00:00",
+      "call_id": "107772efdc4d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8dbed53a6416d4b5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8e5725c5b8bb48af"
+    },
+    {
+      "ts": "2026-11-16T12:41:57.812362+00:00",
+      "call_id": "f43bbda39010",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7a28f9319952f3d2",
+      "prompt_tokens": 1154,
+      "completion_tokens": 45,
+      "latency_ms": 10031.45,
+      "server_ms": 9999.7,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8e5725c5b8bb48af"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1154,
+    "completion_tokens": 45,
+    "total_ms": 14075.48
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

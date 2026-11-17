@@ -1,0 +1,14 @@
+# Ablation row 4 (spec §2.8), cumulative (M4): row 3 (hybrid BM25 + dense IVF, weighted 0.3/0.7, RAPTOR
+# collapsed-tree search) + cross-encoder rerank of the fused top 20 (bge-reranker-v2-m3, pinned in base.yaml);
+# the generator gets the reranked top 5. Replaces M3's row4_rerank.yaml (no tree) as the table's row 4.
+run:
+  name: row4_raptor_rerank
+retrieval:
+  mode: hybrid
+  fusion: weighted
+  weights: {dense: 0.3, bm25: 0.7}
+  levels: [0, 1, 2, 3, 4]
+raptor:
+  enabled: true
+rerank:
+  enabled: true

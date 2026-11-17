@@ -1,0 +1,179 @@
+{
+  "trace_id": "1e856fc994e24a26",
+  "created_at": "2026-11-16T12:48:36.077085+00:00",
+  "query": "Who is the paternal grandmother of Princess Feodora Of Hohenlohe-Langenburg?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3203.04
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3204.73
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18444.63
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.94,
+      "bm25_ms": 6.15,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 3191.6
+      },
+      "hits": [
+        {
+          "id": "b04ce6dd2d95fb80:L0:000016",
+          "score": 5.040032386779785,
+          "fused": 0.7238666391709069,
+          "dense_rank": 37,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.040032386779785
+        },
+        {
+          "id": "460e441179bec402:L0:000027",
+          "score": -1.105712890625,
+          "fused": 0.38578261995482604,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 7,
+          "rerank": -1.105712890625
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000041",
+          "score": -1.2609939575195312,
+          "fused": 0.5215465949292798,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -1.2609939575195312
+        },
+        {
+          "id": "raptor:67600e79:L2:6a4cd24b56cc5b82",
+          "score": -2.1234307289123535,
+          "fused": 0.5191452574776579,
+          "dense_rank": 2,
+          "bm25_rank": 11,
+          "fused_rank": 4,
+          "rerank": -2.1234307289123535
+        },
+        {
+          "id": "raptor:67600e79:L1:558357290c7cf100",
+          "score": -2.5117413997650146,
+          "fused": 0.6282743748943427,
+          "dense_rank": 1,
+          "bm25_rank": 5,
+          "fused_rank": 2,
+          "rerank": -2.5117413997650146
+        }
+      ],
+      "latency_ms": 3202.99
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 654,
+      "latency_ms": 1.65
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15239.7
+    }
+  },
+  "retrieved_ids": [
+    "b04ce6dd2d95fb80:L0:000016",
+    "460e441179bec402:L0:000027",
+    "6af2db6cb86d77e2:L0:000041",
+    "raptor:67600e79:L2:6a4cd24b56cc5b82",
+    "raptor:67600e79:L1:558357290c7cf100"
+  ],
+  "filtered_ids": [
+    "b04ce6dd2d95fb80:L0:000016",
+    "460e441179bec402:L0:000027",
+    "6af2db6cb86d77e2:L0:000041",
+    "raptor:67600e79:L2:6a4cd24b56cc5b82",
+    "raptor:67600e79:L1:558357290c7cf100"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:48:36.078083+00:00",
+      "call_id": "379d661f8d71",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "97d0d181cb963b4e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1e856fc994e24a26"
+    },
+    {
+      "ts": "2026-11-16T12:48:54.520256+00:00",
+      "call_id": "0071e4ab2e1b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "239e4cecc257b71c",
+      "prompt_tokens": 1455,
+      "completion_tokens": 70,
+      "latency_ms": 15237.94,
+      "server_ms": 15212.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1e856fc994e24a26"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1455,
+    "completion_tokens": 70,
+    "total_ms": 18446.51
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

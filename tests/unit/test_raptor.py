@@ -108,6 +108,26 @@ def test_tree_build_links_cache_and_collapsed_retrieval(tree_cfg, fake):
     assert len(hits) == 3 and any("E1234" in h.node.text for h in hits)
 
 
+def test_per_source_build_on_a_source_subset(tree_cfg, fake):
+    fake.answer_fn = _summary
+    cfg = C.deep_merge(tree_cfg, {"raptor": {"scope": "per_source", "seed": 7}})
+    client = OllamaClient(cfg, transport=fake)
+    leaf = Components(cfg, client=client)
+    ingest_path(cfg["_corpus"], cfg, leaf.store, leaf.embedder, log=lambda *_: None)
+    b = TreeBuilder(cfg, leaf.store, leaf.embedder, client, log=lambda *_: None)
+
+    with pytest.raises(ValueError, match="no leaves"):
+        b.build(sources={"d0.txt", "missing.txt"})
+    rep = b.build(sources={"d0.txt", "d1.txt"})  # matched on the file name
+    assert rep["leaves"] == 2 and rep["groups"] == 2
+    nodes, vecs = NodeStore(cfg, collection=tree_collection_name(cfg)).all_nodes()
+    assert {n.source_path.split("\\")[-1].split("/")[-1] for n in nodes} == {"d0.txt", "d1.txt"}
+    assert len(vecs) == len(nodes)
+
+    with pytest.raises(ValueError, match="per_source"):
+        TreeBuilder(tree_cfg, leaf.store, leaf.embedder, client, log=lambda *_: None).build(sources={"d0.txt"})
+
+
 def test_trim_to_sentence_drops_only_the_unfinished_tail():
     from apex.index.raptor import trim_to_sentence
     assert trim_to_sentence('Sony agreed. The deal "worked." It ultimately had') == 'Sony agreed. The deal "worked."'

@@ -1,0 +1,179 @@
+{
+  "trace_id": "4dcc45d42b624e85",
+  "created_at": "2026-11-16T11:10:10.116331+00:00",
+  "query": "Who was married to the creator of Ruby Loftus Screwing a Breech Ring?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3844.15
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3845.59
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16748.28
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.76,
+      "bm25_ms": 19.72,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 11,
+        "latency_ms": 3812.84
+      },
+      "hits": [
+        {
+          "id": "8679484d23bfd3a0:L0:000043",
+          "score": 7.145827293395996,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 7.145827293395996
+        },
+        {
+          "id": "raptor:67600e79:L1:5f849685b9f28a2b",
+          "score": 0.5780770182609558,
+          "fused": 0.7179317199262669,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 0.5780770182609558
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000095",
+          "score": -2.0284366607666016,
+          "fused": 0.12332419975924608,
+          "dense_rank": 12,
+          "bm25_rank": null,
+          "fused_rank": 13,
+          "rerank": -2.0284366607666016
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000181",
+          "score": -2.673553228378296,
+          "fused": 0.24756752083319475,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 5,
+          "rerank": -2.673553228378296
+        },
+        {
+          "id": "raptor:67600e79:L1:f23eadbc3200948a",
+          "score": -2.921828269958496,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 3,
+          "rerank": -2.921828269958496
+        }
+      ],
+      "latency_ms": 3844.1
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 566,
+      "latency_ms": 1.38
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12902.56
+    }
+  },
+  "retrieved_ids": [
+    "8679484d23bfd3a0:L0:000043",
+    "raptor:67600e79:L1:5f849685b9f28a2b",
+    "6bddce8aaad42fea:L0:000095",
+    "cc1bdb3bf430bd0d:L0:000181",
+    "raptor:67600e79:L1:f23eadbc3200948a"
+  ],
+  "filtered_ids": [
+    "8679484d23bfd3a0:L0:000043",
+    "raptor:67600e79:L1:5f849685b9f28a2b",
+    "6bddce8aaad42fea:L0:000095",
+    "cc1bdb3bf430bd0d:L0:000181",
+    "raptor:67600e79:L1:f23eadbc3200948a"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:10:10.118332+00:00",
+      "call_id": "fe2d53aeb043",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8f52969d74975316",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4dcc45d42b624e85"
+    },
+    {
+      "ts": "2026-11-16T11:10:26.863731+00:00",
+      "call_id": "a92a5b18267f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2cf4da9d783ba110",
+      "prompt_tokens": 1217,
+      "completion_tokens": 84,
+      "latency_ms": 12901.32,
+      "server_ms": 12878.26,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4dcc45d42b624e85"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1217,
+    "completion_tokens": 84,
+    "total_ms": 16750.9
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "trace_id": "163947a24bc54279",
+  "created_at": "2026-11-16T12:06:29.112642+00:00",
+  "query": "Which planets have living populations on them from descriptions in the story?\n\nOptions:\n(A) Mars, Venus, Earth\n(B) Mars, Earth\n(C) Mars, Venus\n(D) Earth, Kal-Jmar, Venus\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2894.16
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2894.29
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18582.33
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.84,
+      "bm25_ms": 22.5,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 14
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2865.8
+      },
+      "hits": [
+        {
+          "id": "041c7ab2b3369dd4:L0:000000",
+          "score": -1.3158323764801025,
+          "fused": 0.5460188954392573,
+          "dense_rank": 9,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": -1.3158323764801025
+        },
+        {
+          "id": "041c7ab2b3369dd4:L0:000014",
+          "score": -2.019214630126953,
+          "fused": 0.9085140450385846,
+          "dense_rank": 5,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -2.019214630126953
+        },
+        {
+          "id": "raptor:0883d9af:L1:c882e5f1c79cce23",
+          "score": -2.3968234062194824,
+          "fused": 0.6172771784939524,
+          "dense_rank": 2,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": -2.3968234062194824
+        },
+        {
+          "id": "041c7ab2b3369dd4:L0:000006",
+          "score": -2.4052534103393555,
+          "fused": 0.6812893023543498,
+          "dense_rank": 6,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -2.4052534103393555
+        },
+        {
+          "id": "raptor:0883d9af:L1:e4d60bcbe5df27ad",
+          "score": -2.4512205123901367,
+          "fused": 0.45401791570937894,
+          "dense_rank": 1,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -2.4512205123901367
+        }
+      ],
+      "latency_ms": 2894.09
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1508,
+      "latency_ms": 0.09
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15687.97
+    }
+  },
+  "retrieved_ids": [
+    "041c7ab2b3369dd4:L0:000000",
+    "041c7ab2b3369dd4:L0:000014",
+    "raptor:0883d9af:L1:c882e5f1c79cce23",
+    "041c7ab2b3369dd4:L0:000006",
+    "raptor:0883d9af:L1:e4d60bcbe5df27ad"
+  ],
+  "filtered_ids": [
+    "041c7ab2b3369dd4:L0:000000",
+    "041c7ab2b3369dd4:L0:000014",
+    "raptor:0883d9af:L1:c882e5f1c79cce23",
+    "041c7ab2b3369dd4:L0:000006",
+    "raptor:0883d9af:L1:e4d60bcbe5df27ad"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:06:29.113637+00:00",
+      "call_id": "2fe2992fdebd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6684499bb5808a05",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "163947a24bc54279"
+    },
+    {
+      "ts": "2026-11-16T12:06:47.694200+00:00",
+      "call_id": "95575f77daca",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "19237f4b1773eee6",
+      "prompt_tokens": 2116,
+      "completion_tokens": 53,
+      "latency_ms": 15686.89,
+      "server_ms": 15665.11,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "163947a24bc54279"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2116,
+    "completion_tokens": 53,
+    "total_ms": 18582.84
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "(C) Mars, Venus"
+      ]
+    }
+  }
+}

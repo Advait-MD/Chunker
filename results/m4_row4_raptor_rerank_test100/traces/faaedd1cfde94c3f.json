@@ -1,0 +1,181 @@
+{
+  "trace_id": "faaedd1cfde94c3f",
+  "created_at": "2026-11-16T11:29:32.340207+00:00",
+  "query": "Who won the Indy Car Race in the largest populated city of the state where the performer of Mingus Three is from?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3027.29
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3028.05
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 20946.11
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.59,
+      "bm25_ms": 18.97,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 3001.19
+      },
+      "hits": [
+        {
+          "id": "4b634e52029ddab4:L0:000051",
+          "score": 5.7738356590271,
+          "fused": 0.25029195127866904,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 11,
+          "rerank": 5.7738356590271
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000146",
+          "score": -1.3635798692703247,
+          "fused": 0.29067969879625016,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 8,
+          "rerank": -1.3635798692703247
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000167",
+          "score": -2.218695640563965,
+          "fused": 0.2759187287607698,
+          "dense_rank": 32,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": -2.218695640563965
+        },
+        {
+          "id": "raptor:67600e79:L1:234fe96ec6b37205",
+          "score": -2.7931387424468994,
+          "fused": 0.2959377824023361,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 6,
+          "rerank": -2.7931387424468994
+        },
+        {
+          "id": "15abb5e49dced915:L0:000168",
+          "score": -3.1215832233428955,
+          "fused": 0.29469852570884864,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 7,
+          "rerank": -3.1215832233428955
+        }
+      ],
+      "latency_ms": 3027.24
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 568,
+      "latency_ms": 0.72
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17917.9
+    }
+  },
+  "retrieved_ids": [
+    "4b634e52029ddab4:L0:000051",
+    "ce290c1e5d5c6641:L0:000146",
+    "e182527d2b1ecac3:L0:000167",
+    "raptor:67600e79:L1:234fe96ec6b37205",
+    "15abb5e49dced915:L0:000168"
+  ],
+  "filtered_ids": [
+    "4b634e52029ddab4:L0:000051",
+    "ce290c1e5d5c6641:L0:000146",
+    "e182527d2b1ecac3:L0:000167",
+    "raptor:67600e79:L1:234fe96ec6b37205",
+    "15abb5e49dced915:L0:000168"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:29:32.342219+00:00",
+      "call_id": "fdc391f88eba",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9b05c2f7e60cab5b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "faaedd1cfde94c3f"
+    },
+    {
+      "ts": "2026-11-16T11:29:53.285691+00:00",
+      "call_id": "4ee0c0108308",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8091a891b5c96fea",
+      "prompt_tokens": 1162,
+      "completion_tokens": 130,
+      "latency_ms": 17916.63,
+      "server_ms": 17890.02,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "faaedd1cfde94c3f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1162,
+    "completion_tokens": 130,
+    "total_ms": 20948.72
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The largest populated city of the state where the performer of Mingus Three is from is not mentioned in the evidence.",
+        "Mingus Three features Charles Mingus, an American bassist, composer, and bandleader, who is from the state of Alabama, which does not have a city as its largest populated city mentioned in the evidence.",
+        "Therefore, there is insufficient evidence to determine who won the Indy Car Race in the largest populated city of the state where Charles Mingus is from."
+      ]
+    }
+  }
+}

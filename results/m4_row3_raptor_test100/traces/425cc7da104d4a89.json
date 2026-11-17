@@ -1,0 +1,165 @@
+{
+  "trace_id": "425cc7da104d4a89",
+  "created_at": "2026-11-16T10:10:58.901681+00:00",
+  "query": "Who is younger, Empress Xiaoshurui or Goran Veselinovski?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8.96
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.06
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16016.62
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.22,
+      "bm25_ms": 5.25,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000119",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:a6083993637e9d71",
+          "score": 0.6200777253655241,
+          "fused": 0.6200777253655241,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000167",
+          "score": 0.5769842372934315,
+          "fused": 0.5769842372934315,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:310d78962b5ef64d",
+          "score": 0.42721708134913405,
+          "fused": 0.42721708134913405,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000134",
+          "score": 0.3799296518055713,
+          "fused": 0.3799296518055713,
+          "dense_rank": null,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 8.9
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 394,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16007.43
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000119",
+    "raptor:67600e79:L1:a6083993637e9d71",
+    "317e12ccd417c0d7:L0:000167",
+    "raptor:67600e79:L1:310d78962b5ef64d",
+    "4a757779abfb4ba1:L0:000134"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000119",
+    "raptor:67600e79:L1:a6083993637e9d71",
+    "317e12ccd417c0d7:L0:000167",
+    "raptor:67600e79:L1:310d78962b5ef64d",
+    "4a757779abfb4ba1:L0:000134"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:10:58.903683+00:00",
+      "call_id": "3aed9e6d445b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ac97e2ee49a2d40a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "425cc7da104d4a89"
+    },
+    {
+      "ts": "2026-11-16T10:11:14.917767+00:00",
+      "call_id": "37994f738418",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1474dc762d2f58da",
+      "prompt_tokens": 1085,
+      "completion_tokens": 113,
+      "latency_ms": 16006.29,
+      "server_ms": 15984.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "425cc7da104d4a89"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1085,
+    "completion_tokens": 113,
+    "total_ms": 16020.39
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

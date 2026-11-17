@@ -1,0 +1,165 @@
+{
+  "trace_id": "195ba6167ed248f1",
+  "created_at": "2026-11-15T09:47:36.946167+00:00",
+  "query": "Why did the Blonde Icicle melt?\n\nOptions:\n(A) She saw value where she didn't see it before.\n(B) She was so happy about how much money they would make.\n(C) She sang the theme for Puffy Products.\n(D) She stopped being angry about the floating bread.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 29.7
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 30.77
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20179.15
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.36,
+      "bm25_ms": 25.4,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 24
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:9ae9993f:L2:b7ccf7873b3b1da2",
+          "score": 0.9730953572875356,
+          "fused": 0.9730953572875356,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:9ae9993f:L1:d23756697d48557b",
+          "score": 0.936671668600238,
+          "fused": 0.936671668600238,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f3eb6c80c1c23120:L0:000002",
+          "score": 0.8091136293188279,
+          "fused": 0.8091136293188279,
+          "dense_rank": 19,
+          "bm25_rank": 1
+        },
+        {
+          "id": "f3eb6c80c1c23120:L0:000017",
+          "score": 0.7844626552509764,
+          "fused": 0.7844626552509764,
+          "dense_rank": 13,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:9ae9993f:L1:7011c54f5192ba45",
+          "score": 0.7249867435216862,
+          "fused": 0.7249867435216862,
+          "dense_rank": 6,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 29.65
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1363,
+      "latency_ms": 1.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20148.26
+    }
+  },
+  "retrieved_ids": [
+    "raptor:9ae9993f:L2:b7ccf7873b3b1da2",
+    "raptor:9ae9993f:L1:d23756697d48557b",
+    "f3eb6c80c1c23120:L0:000002",
+    "f3eb6c80c1c23120:L0:000017",
+    "raptor:9ae9993f:L1:7011c54f5192ba45"
+  ],
+  "filtered_ids": [
+    "raptor:9ae9993f:L2:b7ccf7873b3b1da2",
+    "raptor:9ae9993f:L1:d23756697d48557b",
+    "f3eb6c80c1c23120:L0:000002",
+    "f3eb6c80c1c23120:L0:000017",
+    "raptor:9ae9993f:L1:7011c54f5192ba45"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:47:36.948165+00:00",
+      "call_id": "8945fdb0c91b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "13a432c7d6e7ae49",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "195ba6167ed248f1"
+    },
+    {
+      "ts": "2026-11-15T09:47:57.124715+00:00",
+      "call_id": "2d3503932f75",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4610879ba4787e1d",
+      "prompt_tokens": 2027,
+      "completion_tokens": 60,
+      "latency_ms": 20146.68,
+      "server_ms": 20084.47,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "195ba6167ed248f1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2027,
+    "completion_tokens": 60,
+    "total_ms": 20180.32
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

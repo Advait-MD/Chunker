@@ -1,0 +1,169 @@
+{
+  "trace_id": "2eeff89a904b4c3b",
+  "created_at": "2026-11-15T09:46:34.409140+00:00",
+  "query": "What is strange about how the titanium company operates?\n\nOptions:\n(A) The workers are richer than management. \n(B) The company is owned and operated by the government. \n(C) The company is owned by the union leader. \n(D) The company is owned by the workers and management has little control. \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 30.84
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 31.12
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19579.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.2,
+      "bm25_ms": 26.39,
+      "n_candidates": {
+        "dense": 26,
+        "bm25": 26
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:7ab1bd40:L1:cb07ea2203d905c6",
+          "score": 0.8621241465239203,
+          "fused": 0.8621241465239203,
+          "dense_rank": 10,
+          "bm25_rank": 2
+        },
+        {
+          "id": "04343b75bb276c99:L0:000017",
+          "score": 0.838136015672932,
+          "fused": 0.838136015672932,
+          "dense_rank": 13,
+          "bm25_rank": 1
+        },
+        {
+          "id": "04343b75bb276c99:L0:000005",
+          "score": 0.8309130956017219,
+          "fused": 0.8309130956017219,
+          "dense_rank": 5,
+          "bm25_rank": 3
+        },
+        {
+          "id": "04343b75bb276c99:L0:000013",
+          "score": 0.7301611247013092,
+          "fused": 0.7301611247013092,
+          "dense_rank": 2,
+          "bm25_rank": 7
+        },
+        {
+          "id": "raptor:7ab1bd40:L1:0055e0eb1df708b7",
+          "score": 0.7206838174146988,
+          "fused": 0.7206838174146988,
+          "dense_rank": 1,
+          "bm25_rank": 10
+        }
+      ],
+      "latency_ms": 30.8
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1560,
+      "latency_ms": 0.25
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19548.75
+    }
+  },
+  "retrieved_ids": [
+    "raptor:7ab1bd40:L1:cb07ea2203d905c6",
+    "04343b75bb276c99:L0:000017",
+    "04343b75bb276c99:L0:000005",
+    "04343b75bb276c99:L0:000013",
+    "raptor:7ab1bd40:L1:0055e0eb1df708b7"
+  ],
+  "filtered_ids": [
+    "raptor:7ab1bd40:L1:cb07ea2203d905c6",
+    "04343b75bb276c99:L0:000017",
+    "04343b75bb276c99:L0:000005",
+    "04343b75bb276c99:L0:000013",
+    "raptor:7ab1bd40:L1:0055e0eb1df708b7"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:46:34.410535+00:00",
+      "call_id": "0273bf752d82",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3682908b28f5d984",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2eeff89a904b4c3b"
+    },
+    {
+      "ts": "2026-11-15T09:46:53.988207+00:00",
+      "call_id": "805a4e975f50",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ca84a602d9739725",
+      "prompt_tokens": 2139,
+      "completion_tokens": 58,
+      "latency_ms": 19547.6,
+      "server_ms": 19511.97,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2eeff89a904b4c3b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2139,
+    "completion_tokens": 58,
+    "total_ms": 19581.1
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "uncited_sentences": [
+        "(D) The company is owned by the workers and management has little control."
+      ]
+    }
+  }
+}

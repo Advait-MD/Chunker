@@ -1,0 +1,180 @@
+{
+  "trace_id": "6b3374886cea46a5",
+  "created_at": "2026-11-16T11:31:59.890381+00:00",
+  "query": "In what region of the country where Lam Thao is located is the city where the Zone 5 Military Museum can be found?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2721.79
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2722.42
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14533.62
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.03,
+      "bm25_ms": 20.43,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2695.3
+      },
+      "hits": [
+        {
+          "id": "dbcbda865eee9c7b:L0:000032",
+          "score": 4.7126665115356445,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.7126665115356445
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000060",
+          "score": 3.3842008113861084,
+          "fused": 0.32747864894643725,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 3.3842008113861084
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000014",
+          "score": -3.4285082817077637,
+          "fused": 0.12558378733972297,
+          "dense_rank": 8,
+          "bm25_rank": 34,
+          "fused_rank": 14,
+          "rerank": -3.4285082817077637
+        },
+        {
+          "id": "raptor:67600e79:L1:b15fdde60ecfd2b1",
+          "score": -3.487675428390503,
+          "fused": 0.10219317740405127,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -3.487675428390503
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000168",
+          "score": -3.8801746368408203,
+          "fused": 0.12067472479816083,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 16,
+          "rerank": -3.8801746368408203
+        }
+      ],
+      "latency_ms": 2721.73
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 491,
+      "latency_ms": 0.59
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11810.99
+    }
+  },
+  "retrieved_ids": [
+    "dbcbda865eee9c7b:L0:000032",
+    "f59bbbdacaf7ffe4:L0:000060",
+    "e182527d2b1ecac3:L0:000014",
+    "raptor:67600e79:L1:b15fdde60ecfd2b1",
+    "5a1a5bbda9db013e:L0:000168"
+  ],
+  "filtered_ids": [
+    "dbcbda865eee9c7b:L0:000032",
+    "f59bbbdacaf7ffe4:L0:000060",
+    "e182527d2b1ecac3:L0:000014",
+    "raptor:67600e79:L1:b15fdde60ecfd2b1",
+    "5a1a5bbda9db013e:L0:000168"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:31:59.891380+00:00",
+      "call_id": "4c00198a65c3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4b52ef4a231779a2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6b3374886cea46a5"
+    },
+    {
+      "ts": "2026-11-16T11:32:14.421951+00:00",
+      "call_id": "5096d18920e8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6e8690b07a5f61a8",
+      "prompt_tokens": 1045,
+      "completion_tokens": 76,
+      "latency_ms": 11809.16,
+      "server_ms": 11780.25,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "6b3374886cea46a5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1045,
+    "completion_tokens": 76,
+    "total_ms": 14535.77
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

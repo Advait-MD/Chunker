@@ -1,0 +1,187 @@
+{
+  "trace_id": "0f16c7afd1a0497c",
+  "created_at": "2026-11-16T10:59:40.753825+00:00",
+  "query": "Which labeling scheme do they use?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1018.08
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1018.16
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22506.24
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.2,
+      "bm25_ms": 13.58,
+      "n_candidates": {
+        "dense": 14,
+        "bm25": 8
+      },
+      "n_fused": 14,
+      "rerank": {
+        "n": 14,
+        "n_computed": 2,
+        "latency_ms": 995.05
+      },
+      "hits": [
+        {
+          "id": "e957b563ea679311:L0:000000",
+          "score": -2.806475877761841,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -2.806475877761841
+        },
+        {
+          "id": "raptor:8ebc4707:L1:99496169e3388042",
+          "score": -2.830662250518799,
+          "fused": 0.7309040001924629,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -2.830662250518799
+        },
+        {
+          "id": "e957b563ea679311:L0:000008",
+          "score": -3.4398417472839355,
+          "fused": 0.640487172019681,
+          "dense_rank": 4,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -3.4398417472839355
+        },
+        {
+          "id": "e957b563ea679311:L0:000004",
+          "score": -3.6373252868652344,
+          "fused": 0.2344551373590789,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -3.6373252868652344
+        },
+        {
+          "id": "e957b563ea679311:L0:000003",
+          "score": -3.9061248302459717,
+          "fused": 0.5664820743763082,
+          "dense_rank": 3,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -3.9061248302459717
+        }
+      ],
+      "latency_ms": 1018.03
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 871,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21487.93
+    }
+  },
+  "retrieved_ids": [
+    "e957b563ea679311:L0:000000",
+    "raptor:8ebc4707:L1:99496169e3388042",
+    "e957b563ea679311:L0:000008",
+    "e957b563ea679311:L0:000004",
+    "e957b563ea679311:L0:000003"
+  ],
+  "filtered_ids": [
+    "e957b563ea679311:L0:000000",
+    "raptor:8ebc4707:L1:99496169e3388042",
+    "e957b563ea679311:L0:000008",
+    "e957b563ea679311:L0:000004",
+    "e957b563ea679311:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:59:40.755828+00:00",
+      "call_id": "a527f6e09c5f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "28eaaa3103f8035d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0f16c7afd1a0497c"
+    },
+    {
+      "ts": "2026-11-16T11:00:03.258782+00:00",
+      "call_id": "3ece8b17a91a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1029222a4ccd4174",
+      "prompt_tokens": 1469,
+      "completion_tokens": 134,
+      "latency_ms": 21486.43,
+      "server_ms": 21453.29,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0f16c7afd1a0497c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1469,
+    "completion_tokens": 134,
+    "total_ms": 22509.14
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "They use a sequence labeling scheme where the input is the raw sentence and the output for each token is a single label.",
+        "For constituency parsing, three partial and separate labels are generated through task-dependent feed-forward networks on top of the stacked biLSTMs.",
+        "For dependency parsing, the first task consists in predicting the head of a word, and the second task predicts the type of the relation.",
+        "The loss is computed as the sum of the main task loss and an auxiliary loss for the other parsing paradigm."
+      ]
+    }
+  }
+}

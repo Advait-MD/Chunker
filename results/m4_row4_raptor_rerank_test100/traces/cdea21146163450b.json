@@ -1,0 +1,182 @@
+{
+  "trace_id": "cdea21146163450b",
+  "created_at": "2026-11-16T11:15:12.762087+00:00",
+  "query": "Who was in charge of the place where Bergen is located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1787.14
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1787.75
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15545.38
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.59,
+      "bm25_ms": 10.38,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 1768.56
+      },
+      "hits": [
+        {
+          "id": "f3503d3d186f0f90:L0:000103",
+          "score": -1.399568796157837,
+          "fused": 0.3621278941149588,
+          "dense_rank": null,
+          "bm25_rank": 13,
+          "fused_rank": 14,
+          "rerank": -1.399568796157837
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000195",
+          "score": -2.310997486114502,
+          "fused": 0.41525998732913916,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": -2.310997486114502
+        },
+        {
+          "id": "raptor:67600e79:L1:3d31c01d7730187a",
+          "score": -3.185957431793213,
+          "fused": 0.5545347473738442,
+          "dense_rank": 1,
+          "bm25_rank": 14,
+          "fused_rank": 4,
+          "rerank": -3.185957431793213
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000080",
+          "score": -4.3307929039001465,
+          "fused": 0.6319354117383024,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -4.3307929039001465
+        },
+        {
+          "id": "dd498e0082847164:L0:000107",
+          "score": -5.262449264526367,
+          "fused": 0.3978218636579337,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 12,
+          "rerank": -5.262449264526367
+        }
+      ],
+      "latency_ms": 1787.08
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 367,
+      "latency_ms": 0.56
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13757.46
+    }
+  },
+  "retrieved_ids": [
+    "f3503d3d186f0f90:L0:000103",
+    "8679484d23bfd3a0:L0:000195",
+    "raptor:67600e79:L1:3d31c01d7730187a",
+    "8679484d23bfd3a0:L0:000080",
+    "dd498e0082847164:L0:000107"
+  ],
+  "filtered_ids": [
+    "f3503d3d186f0f90:L0:000103",
+    "8679484d23bfd3a0:L0:000195",
+    "raptor:67600e79:L1:3d31c01d7730187a",
+    "8679484d23bfd3a0:L0:000080",
+    "dd498e0082847164:L0:000107"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:15:12.765088+00:00",
+      "call_id": "e17e408c0189",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e2c498cfb4690f05",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cdea21146163450b"
+    },
+    {
+      "ts": "2026-11-16T11:15:28.306646+00:00",
+      "call_id": "7bc52948a388",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b5bbf7eb039b8298",
+      "prompt_tokens": 956,
+      "completion_tokens": 108,
+      "latency_ms": 13756.35,
+      "server_ms": 13733.68,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "cdea21146163450b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 956,
+    "completion_tokens": 108,
+    "total_ms": 15547.13
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "However, the question does not specify which Bergen is being referred to, so the answer is unanswerable based on the given information."
+      ]
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "trace_id": "f82522158aa74421",
+  "created_at": "2026-11-16T13:08:59.661002+00:00",
+  "query": "What are React Hooks, why were they introduced, and how did they replace class lifecycle methods?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3354.64
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3355.63
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20949.71
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.96,
+      "bm25_ms": 20.04,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 3324.59
+      },
+      "hits": [
+        {
+          "id": "cd94466555d7bec7:L0:000098",
+          "score": 0.4216066300868988,
+          "fused": 0.18344991992007745,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 20,
+          "rerank": 0.4216066300868988
+        },
+        {
+          "id": "cd94466555d7bec7:L0:000101",
+          "score": -0.5172592401504517,
+          "fused": 0.42677303658268395,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -0.5172592401504517
+        },
+        {
+          "id": "cd94466555d7bec7:L0:000105",
+          "score": -0.833466649055481,
+          "fused": 0.24828943894470054,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 12,
+          "rerank": -0.833466649055481
+        },
+        {
+          "id": "raptor:bf28f10d:L1:0fe6266faeefa52b",
+          "score": -1.5884144306182861,
+          "fused": 0.20052287349952952,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 16,
+          "rerank": -1.5884144306182861
+        },
+        {
+          "id": "raptor:bf28f10d:L2:b693bd50e36c2acb",
+          "score": -1.893164873123169,
+          "fused": 0.5372775099357778,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -1.893164873123169
+        }
+      ],
+      "latency_ms": 3354.59
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1114,
+      "latency_ms": 0.96
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17593.35
+    }
+  },
+  "retrieved_ids": [
+    "cd94466555d7bec7:L0:000098",
+    "cd94466555d7bec7:L0:000101",
+    "cd94466555d7bec7:L0:000105",
+    "raptor:bf28f10d:L1:0fe6266faeefa52b",
+    "raptor:bf28f10d:L2:b693bd50e36c2acb"
+  ],
+  "filtered_ids": [
+    "cd94466555d7bec7:L0:000098",
+    "cd94466555d7bec7:L0:000101",
+    "cd94466555d7bec7:L0:000105",
+    "raptor:bf28f10d:L1:0fe6266faeefa52b",
+    "raptor:bf28f10d:L2:b693bd50e36c2acb"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:08:59.662004+00:00",
+      "call_id": "5d0c7a2607ba",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "05c298843e746230",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f82522158aa74421"
+    },
+    {
+      "ts": "2026-11-16T13:09:20.608752+00:00",
+      "call_id": "fbe9f876cae2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "041665176ac85ed8",
+      "prompt_tokens": 1584,
+      "completion_tokens": 100,
+      "latency_ms": 17592.03,
+      "server_ms": 17561.1,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "f82522158aa74421"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1584,
+    "completion_tokens": 100,
+    "total_ms": 20951.59
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "React Hooks were introduced to allow state and other React features to be used in function components, replacing class lifecycle methods."
+      ]
+    }
+  }
+}

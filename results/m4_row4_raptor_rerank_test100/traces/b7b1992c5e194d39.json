@@ -1,0 +1,179 @@
+{
+  "trace_id": "b7b1992c5e194d39",
+  "created_at": "2026-11-16T11:09:14.076889+00:00",
+  "query": "Who was the mother of the person who found the sacred writings that became the Book of Mormon?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2042.06
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2042.51
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11352.09
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 39.25,
+      "bm25_ms": 83.58,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 1910.58
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:baf833fb0d2710ec",
+          "score": 0.49511581659317017,
+          "fused": 0.45832537269272505,
+          "dense_rank": 1,
+          "bm25_rank": 15,
+          "fused_rank": 6,
+          "rerank": 0.49511581659317017
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000089",
+          "score": 0.0808875784277916,
+          "fused": 0.34496856417647914,
+          "dense_rank": 25,
+          "bm25_rank": 8,
+          "fused_rank": 7,
+          "rerank": 0.0808875784277916
+        },
+        {
+          "id": "15abb5e49dced915:L0:000032",
+          "score": -1.2329649925231934,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.2329649925231934
+        },
+        {
+          "id": "raptor:67600e79:L2:df9b801e23b9dc44",
+          "score": -1.7492257356643677,
+          "fused": 0.24752105012890474,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -1.7492257356643677
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000074",
+          "score": -1.799180507659912,
+          "fused": 0.5295757583612546,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -1.799180507659912
+        }
+      ],
+      "latency_ms": 2041.92
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 583,
+      "latency_ms": 0.43
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9309.47
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:baf833fb0d2710ec",
+    "6bddce8aaad42fea:L0:000089",
+    "15abb5e49dced915:L0:000032",
+    "raptor:67600e79:L2:df9b801e23b9dc44",
+    "178c7e3e6ef6ae87:L0:000074"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:baf833fb0d2710ec",
+    "6bddce8aaad42fea:L0:000089",
+    "15abb5e49dced915:L0:000032",
+    "raptor:67600e79:L2:df9b801e23b9dc44",
+    "178c7e3e6ef6ae87:L0:000074"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:09:14.079891+00:00",
+      "call_id": "120abb8b022c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "354f3327b9b94083",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b7b1992c5e194d39"
+    },
+    {
+      "ts": "2026-11-16T11:09:25.428529+00:00",
+      "call_id": "5d8b448eb95f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c5f3b5a2758fa260",
+      "prompt_tokens": 1162,
+      "completion_tokens": 45,
+      "latency_ms": 9307.95,
+      "server_ms": 9274.07,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b7b1992c5e194d39"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1162,
+    "completion_tokens": 45,
+    "total_ms": 11356.0
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

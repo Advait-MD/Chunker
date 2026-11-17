@@ -1,0 +1,185 @@
+{
+  "trace_id": "cf2e0cffe1674970",
+  "created_at": "2026-11-16T13:12:56.260284+00:00",
+  "query": "How did Steve Jobs' design philosophy at Apple align with the Japanese aesthetic of simplicity and Zen Buddhism?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4489.1
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4490.3
+    },
+    {
+      "state": "DONE",
+      "t_ms": 30455.04
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.32,
+      "bm25_ms": 22.88,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 11,
+        "latency_ms": 4453.49
+      },
+      "hits": [
+        {
+          "id": "raptor:7d5dec53:L1:40fbdb8477078425",
+          "score": 3.490633010864258,
+          "fused": 0.6836006114802092,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 3.490633010864258
+        },
+        {
+          "id": "17581cb533e90c48:L0:000337",
+          "score": 2.093404769897461,
+          "fused": 0.9924387561514656,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.093404769897461
+        },
+        {
+          "id": "raptor:7d5dec53:L1:116ffa47af9d79e5",
+          "score": 1.925870418548584,
+          "fused": 0.5087269433207798,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": 1.925870418548584
+        },
+        {
+          "id": "raptor:7d5dec53:L2:b92345ebdbabc529",
+          "score": 1.7444796562194824,
+          "fused": 0.36229342141628357,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": 1.7444796562194824
+        },
+        {
+          "id": "raptor:7d5dec53:L2:0165554267da2ab2",
+          "score": 1.251774549484253,
+          "fused": 0.5172025154937717,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": 1.251774549484253
+        }
+      ],
+      "latency_ms": 4489.05
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1143,
+      "latency_ms": 1.15
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25964.48
+    }
+  },
+  "retrieved_ids": [
+    "raptor:7d5dec53:L1:40fbdb8477078425",
+    "17581cb533e90c48:L0:000337",
+    "raptor:7d5dec53:L1:116ffa47af9d79e5",
+    "raptor:7d5dec53:L2:b92345ebdbabc529",
+    "raptor:7d5dec53:L2:0165554267da2ab2"
+  ],
+  "filtered_ids": [
+    "raptor:7d5dec53:L1:40fbdb8477078425",
+    "17581cb533e90c48:L0:000337",
+    "raptor:7d5dec53:L1:116ffa47af9d79e5",
+    "raptor:7d5dec53:L2:b92345ebdbabc529",
+    "raptor:7d5dec53:L2:0165554267da2ab2"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:12:56.261283+00:00",
+      "call_id": "93f0e1098560",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4043e135488bcec2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cf2e0cffe1674970"
+    },
+    {
+      "ts": "2026-11-16T13:13:26.712836+00:00",
+      "call_id": "e1836db89465",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4fa5cca2dc1e441d",
+      "prompt_tokens": 1608,
+      "completion_tokens": 158,
+      "latency_ms": 25963.25,
+      "server_ms": 25935.79,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "cf2e0cffe1674970"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1608,
+    "completion_tokens": 158,
+    "total_ms": 30458.59
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Steve Jobs' design philosophy at Apple was deeply influenced by the Japanese aesthetic of simplicity and Zen Buddhism.",
+        "He admired the industrial design of Sony products and was inspired by the Italian design conference in Aspen, but his design sensibility was particularly attracted to the Japanese style, especially that of Issey Miyake and I.",
+        "M.",
+        "His design philosophy emphasized simplicity, as epitomized by his maxim"
+      ]
+    }
+  }
+}

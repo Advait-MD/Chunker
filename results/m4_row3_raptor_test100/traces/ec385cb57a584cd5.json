@@ -1,0 +1,166 @@
+{
+  "trace_id": "ec385cb57a584cd5",
+  "created_at": "2026-11-15T09:50:02.748464+00:00",
+  "query": "What is Serenus?\n\nOptions:\n(A) A galaxy\n(B) A planet\n(C) A spaceship\n(D) An alien race\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.36
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.72
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18320.76
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.24,
+      "bm25_ms": 15.51,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 18
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "000ccf97cce5a847:L0:000015",
+          "score": 0.9012539222911045,
+          "fused": 0.9012539222911045,
+          "dense_rank": 11,
+          "bm25_rank": 1
+        },
+        {
+          "id": "000ccf97cce5a847:L0:000002",
+          "score": 0.8779408328279623,
+          "fused": 0.8779408328279623,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "000ccf97cce5a847:L0:000013",
+          "score": 0.6636981663510391,
+          "fused": 0.6636981663510391,
+          "dense_rank": 9,
+          "bm25_rank": 3
+        },
+        {
+          "id": "000ccf97cce5a847:L0:000014",
+          "score": 0.6164884885394037,
+          "fused": 0.6164884885394037,
+          "dense_rank": 6,
+          "bm25_rank": 5
+        },
+        {
+          "id": "raptor:d14a0daa:L1:e0f9acb4aac863d9",
+          "score": 0.60301096331259,
+          "fused": 0.60301096331259,
+          "dense_rank": 2,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 19.32
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1550,
+      "latency_ms": 0.33
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18300.9
+    }
+  },
+  "retrieved_ids": [
+    "000ccf97cce5a847:L0:000015",
+    "000ccf97cce5a847:L0:000002",
+    "000ccf97cce5a847:L0:000013",
+    "000ccf97cce5a847:L0:000014",
+    "raptor:d14a0daa:L1:e0f9acb4aac863d9"
+  ],
+  "filtered_ids": [
+    "000ccf97cce5a847:L0:000015",
+    "000ccf97cce5a847:L0:000002",
+    "000ccf97cce5a847:L0:000013",
+    "000ccf97cce5a847:L0:000014",
+    "raptor:d14a0daa:L1:e0f9acb4aac863d9"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:50:02.750465+00:00",
+      "call_id": "2e075ece5d3e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0714eccb1faf8cd6",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ec385cb57a584cd5"
+    },
+    {
+      "ts": "2026-11-15T09:50:21.069107+00:00",
+      "call_id": "49f8c14e9928",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a6792a5fed1478ad",
+      "prompt_tokens": 2095,
+      "completion_tokens": 54,
+      "latency_ms": 18299.11,
+      "server_ms": 18271.17,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ec385cb57a584cd5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2095,
+    "completion_tokens": 54,
+    "total_ms": 18322.91
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

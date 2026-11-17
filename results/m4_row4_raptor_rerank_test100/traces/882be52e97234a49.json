@@ -1,0 +1,182 @@
+{
+  "trace_id": "882be52e97234a49",
+  "created_at": "2026-11-16T11:44:38.895360+00:00",
+  "query": "What is Pashkov’s assignment?\n\nOptions:\n(A) To kill Colonel James. \n(B) To take Colonel James to Stockholm. \n(C) To kidnap Boris Knackenpast and impersonate him. \n(D) To kidnap Colonel James and then impersonate him. \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3581.26
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3582.04
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18597.5
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.79,
+      "bm25_ms": 22.22,
+      "n_candidates": {
+        "dense": 27,
+        "bm25": 27
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 3543.83
+      },
+      "hits": [
+        {
+          "id": "raptor:b53eda83:L2:8c9a05aca736bf73",
+          "score": 3.168015480041504,
+          "fused": 0.9718270299702791,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.168015480041504
+        },
+        {
+          "id": "raptor:b53eda83:L1:71ab3bf9d501e0a0",
+          "score": 2.755934476852417,
+          "fused": 0.7088223598561223,
+          "dense_rank": 2,
+          "bm25_rank": 13,
+          "fused_rank": 6,
+          "rerank": 2.755934476852417
+        },
+        {
+          "id": "raptor:b53eda83:L1:6b8afc1f12d6f353",
+          "score": 1.4734148979187012,
+          "fused": 0.9032501994041656,
+          "dense_rank": 5,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.4734148979187012
+        },
+        {
+          "id": "raptor:b53eda83:L1:dbd2a560876c6864",
+          "score": 1.464590072631836,
+          "fused": 0.8870609058527483,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 1.464590072631836
+        },
+        {
+          "id": "raptor:b53eda83:L1:3734bc55a734cc03",
+          "score": 0.9903463125228882,
+          "fused": 0.7336477366915548,
+          "dense_rank": 6,
+          "bm25_rank": 9,
+          "fused_rank": 5,
+          "rerank": 0.9903463125228882
+        }
+      ],
+      "latency_ms": 3581.2
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 854,
+      "latency_ms": 0.72
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15015.16
+    }
+  },
+  "retrieved_ids": [
+    "raptor:b53eda83:L2:8c9a05aca736bf73",
+    "raptor:b53eda83:L1:71ab3bf9d501e0a0",
+    "raptor:b53eda83:L1:6b8afc1f12d6f353",
+    "raptor:b53eda83:L1:dbd2a560876c6864",
+    "raptor:b53eda83:L1:3734bc55a734cc03"
+  ],
+  "filtered_ids": [
+    "raptor:b53eda83:L2:8c9a05aca736bf73",
+    "raptor:b53eda83:L1:71ab3bf9d501e0a0",
+    "raptor:b53eda83:L1:6b8afc1f12d6f353",
+    "raptor:b53eda83:L1:dbd2a560876c6864",
+    "raptor:b53eda83:L1:3734bc55a734cc03"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:44:38.896353+00:00",
+      "call_id": "8e08a807cb0a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "85059c5142f8f640",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "882be52e97234a49"
+    },
+    {
+      "ts": "2026-11-16T11:44:57.491029+00:00",
+      "call_id": "9cbf434fe06c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ab2b9a02874f91e0",
+      "prompt_tokens": 1555,
+      "completion_tokens": 65,
+      "latency_ms": 15013.45,
+      "server_ms": 14980.62,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "882be52e97234a49"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1555,
+    "completion_tokens": 65,
+    "total_ms": 18601.8
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

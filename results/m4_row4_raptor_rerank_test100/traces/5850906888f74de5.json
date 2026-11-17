@@ -1,0 +1,180 @@
+{
+  "trace_id": "5850906888f74de5",
+  "created_at": "2026-11-16T12:23:52.774649+00:00",
+  "query": "What 1876 battle featured the Other Magpie?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2831.07
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2832.94
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16309.44
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.78,
+      "bm25_ms": 10.49,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2813.65
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:5104de8640a76dce",
+          "score": 5.811471462249756,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.811471462249756
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000190",
+          "score": 4.301360130310059,
+          "fused": 0.6468889154875792,
+          "dense_rank": 12,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 4.301360130310059
+        },
+        {
+          "id": "raptor:67600e79:L2:0c11bdb4f09de4bf",
+          "score": 1.1927722692489624,
+          "fused": 0.1432458311445083,
+          "dense_rank": 9,
+          "bm25_rank": 18,
+          "fused_rank": 16,
+          "rerank": 1.1927722692489624
+        },
+        {
+          "id": "raptor:67600e79:L1:b1e59bab1091daf7",
+          "score": -0.2986675202846527,
+          "fused": 0.24444057948772668,
+          "dense_rank": 6,
+          "bm25_rank": 14,
+          "fused_rank": 12,
+          "rerank": -0.2986675202846527
+        },
+        {
+          "id": "634431bb1e27714f:L0:000060",
+          "score": -0.6885433793067932,
+          "fused": 0.1918422535918368,
+          "dense_rank": null,
+          "bm25_rank": 13,
+          "fused_rank": 14,
+          "rerank": -0.6885433793067932
+        }
+      ],
+      "latency_ms": 2831.02
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 834,
+      "latency_ms": 1.83
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13476.31
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:5104de8640a76dce",
+    "838c0e0106e6f015:L0:000190",
+    "raptor:67600e79:L2:0c11bdb4f09de4bf",
+    "raptor:67600e79:L1:b1e59bab1091daf7",
+    "634431bb1e27714f:L0:000060"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:5104de8640a76dce",
+    "838c0e0106e6f015:L0:000190",
+    "raptor:67600e79:L2:0c11bdb4f09de4bf",
+    "raptor:67600e79:L1:b1e59bab1091daf7",
+    "634431bb1e27714f:L0:000060"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:23:52.775646+00:00",
+      "call_id": "8a2fa02dddc3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c2b663ec57670c83",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5850906888f74de5"
+    },
+    {
+      "ts": "2026-11-16T12:24:09.082914+00:00",
+      "call_id": "8094d69c611e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "34ab8bd434f254de",
+      "prompt_tokens": 1406,
+      "completion_tokens": 59,
+      "latency_ms": 13475.02,
+      "server_ms": 13447.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "5850906888f74de5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1406,
+    "completion_tokens": 59,
+    "total_ms": 16338.09
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

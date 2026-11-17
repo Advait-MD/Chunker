@@ -1,0 +1,179 @@
+{
+  "trace_id": "12471f46f6db4236",
+  "created_at": "2026-11-16T12:40:18.393327+00:00",
+  "query": "Who is the paternal grandmother of Renaud Iii, Count Of Soissons?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2277.8
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2278.56
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14252.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.45,
+      "bm25_ms": 11.33,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2257.08
+      },
+      "hits": [
+        {
+          "id": "53c7288bdcd3837a:L0:000136",
+          "score": 2.9434423446655273,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 2.9434423446655273
+        },
+        {
+          "id": "raptor:67600e79:L1:6a1e3a5b2d99a6e9",
+          "score": 0.8456844687461853,
+          "fused": 0.8360865177764261,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 1,
+          "rerank": 0.8456844687461853
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000106",
+          "score": -0.2715301215648651,
+          "fused": 0.5650480319824187,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": -0.2715301215648651
+        },
+        {
+          "id": "raptor:67600e79:L2:48d19925b28e9ee7",
+          "score": -0.40578722953796387,
+          "fused": 0.6142709524342842,
+          "dense_rank": 2,
+          "bm25_rank": 10,
+          "fused_rank": 3,
+          "rerank": -0.40578722953796387
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000087",
+          "score": -1.026005506515503,
+          "fused": 0.519081225441711,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -1.026005506515503
+        }
+      ],
+      "latency_ms": 2277.73
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 653,
+      "latency_ms": 0.71
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11974.27
+    }
+  },
+  "retrieved_ids": [
+    "53c7288bdcd3837a:L0:000136",
+    "raptor:67600e79:L1:6a1e3a5b2d99a6e9",
+    "c73b757f0eb66f37:L0:000106",
+    "raptor:67600e79:L2:48d19925b28e9ee7",
+    "c73b757f0eb66f37:L0:000087"
+  ],
+  "filtered_ids": [
+    "53c7288bdcd3837a:L0:000136",
+    "raptor:67600e79:L1:6a1e3a5b2d99a6e9",
+    "c73b757f0eb66f37:L0:000106",
+    "raptor:67600e79:L2:48d19925b28e9ee7",
+    "c73b757f0eb66f37:L0:000087"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:40:18.395805+00:00",
+      "call_id": "09bea1d2179c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a02ec9bcee89d485",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "12471f46f6db4236"
+    },
+    {
+      "ts": "2026-11-16T12:40:32.645098+00:00",
+      "call_id": "65f2bebd25c9",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2d2155bf9745c92c",
+      "prompt_tokens": 1377,
+      "completion_tokens": 56,
+      "latency_ms": 11972.75,
+      "server_ms": 11941.5,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "12471f46f6db4236"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1377,
+    "completion_tokens": 56,
+    "total_ms": 14255.92
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The paternal grandmother of Renaud III, Count of Soissons, is not mentioned in the provided evidence."
+      ]
+    }
+  }
+}

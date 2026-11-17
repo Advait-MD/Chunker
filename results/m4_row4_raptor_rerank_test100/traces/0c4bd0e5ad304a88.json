@@ -1,0 +1,182 @@
+{
+  "trace_id": "0c4bd0e5ad304a88",
+  "created_at": "2026-11-16T12:22:30.349126+00:00",
+  "query": "Mooreville, Mississippi is located on which Interstate highway that follows US Route 78?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1049.73
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1051.61
+    },
+    {
+      "state": "DONE",
+      "t_ms": 1055.91
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.24,
+      "bm25_ms": 12.33,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 2,
+        "latency_ms": 1029.44
+      },
+      "hits": [
+        {
+          "id": "ec3410ef955c5c93:L0:000064",
+          "score": 6.058136940002441,
+          "fused": 0.6522481213174672,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 6.058136940002441
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000181",
+          "score": 4.118900299072266,
+          "fused": 0.8405571452617404,
+          "dense_rank": 8,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.118900299072266
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000055",
+          "score": 0.01290221605449915,
+          "fused": 0.7982174343685225,
+          "dense_rank": 11,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 0.01290221605449915
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000155",
+          "score": -0.7745587825775146,
+          "fused": 0.6472978535796998,
+          "dense_rank": 3,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -0.7745587825775146
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000088",
+          "score": -1.813445806503296,
+          "fused": 0.6333831593474946,
+          "dense_rank": 2,
+          "bm25_rank": 11,
+          "fused_rank": 6,
+          "rerank": -1.813445806503296
+        }
+      ],
+      "latency_ms": 1049.67
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 650,
+      "latency_ms": 1.78
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 3.99
+    }
+  },
+  "retrieved_ids": [
+    "ec3410ef955c5c93:L0:000064",
+    "81fc433d55d23b4c:L0:000181",
+    "ec3410ef955c5c93:L0:000055",
+    "81fc433d55d23b4c:L0:000155",
+    "cb96563b0747a6ba:L0:000088"
+  ],
+  "filtered_ids": [
+    "ec3410ef955c5c93:L0:000064",
+    "81fc433d55d23b4c:L0:000181",
+    "ec3410ef955c5c93:L0:000055",
+    "81fc433d55d23b4c:L0:000155",
+    "cb96563b0747a6ba:L0:000088"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:22:30.351135+00:00",
+      "call_id": "f75f7e2dd0ba",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "99496b207840a78a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0c4bd0e5ad304a88"
+    },
+    {
+      "ts": "2026-11-16T12:22:31.403979+00:00",
+      "call_id": "c1c29b5166d1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c8925f0b39a9ec38",
+      "prompt_tokens": 1313,
+      "completion_tokens": 77,
+      "latency_ms": 2.32,
+      "server_ms": 12964.88,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0c4bd0e5ad304a88"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 1313,
+    "completion_tokens": 77,
+    "total_ms": 1058.37
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Mooreville, Mississippi is located on Interstate 22, which follows the U.S."
+      ]
+    }
+  }
+}

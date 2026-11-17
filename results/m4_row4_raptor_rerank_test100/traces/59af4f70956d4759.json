@@ -1,0 +1,179 @@
+{
+  "trace_id": "59af4f70956d4759",
+  "created_at": "2026-11-16T12:10:49.224031+00:00",
+  "query": "The Nike Hoop Summit has had many current NBA players as former participants, including what German player from the Dallas Mavericks?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2621.29
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2623.54
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11928.85
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.8,
+      "bm25_ms": 49.63,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2555.43
+      },
+      "hits": [
+        {
+          "id": "20496f59538deb41:L0:000049",
+          "score": -1.9113140106201172,
+          "fused": 0.7834298030660322,
+          "dense_rank": 19,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -1.9113140106201172
+        },
+        {
+          "id": "raptor:67600e79:L2:2cbff4d768b83c3c",
+          "score": -2.160304069519043,
+          "fused": 0.3981528672587424,
+          "dense_rank": 2,
+          "bm25_rank": 21,
+          "fused_rank": 12,
+          "rerank": -2.160304069519043
+        },
+        {
+          "id": "raptor:67600e79:L1:1e6c4b653086e865",
+          "score": -2.3485107421875,
+          "fused": 0.5559417440154337,
+          "dense_rank": 1,
+          "bm25_rank": 14,
+          "fused_rank": 8,
+          "rerank": -2.3485107421875
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000075",
+          "score": -3.036109209060669,
+          "fused": 0.5315232100271039,
+          "dense_rank": 8,
+          "bm25_rank": 10,
+          "fused_rank": 10,
+          "rerank": -3.036109209060669
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000068",
+          "score": -3.3283493518829346,
+          "fused": 0.8287291541787569,
+          "dense_rank": 15,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -3.3283493518829346
+        }
+      ],
+      "latency_ms": 2621.24
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 567,
+      "latency_ms": 2.19
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9305.22
+    }
+  },
+  "retrieved_ids": [
+    "20496f59538deb41:L0:000049",
+    "raptor:67600e79:L2:2cbff4d768b83c3c",
+    "raptor:67600e79:L1:1e6c4b653086e865",
+    "cc2399aca11eb631:L0:000075",
+    "cb96563b0747a6ba:L0:000068"
+  ],
+  "filtered_ids": [
+    "20496f59538deb41:L0:000049",
+    "raptor:67600e79:L2:2cbff4d768b83c3c",
+    "raptor:67600e79:L1:1e6c4b653086e865",
+    "cc2399aca11eb631:L0:000075",
+    "cb96563b0747a6ba:L0:000068"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:10:49.225994+00:00",
+      "call_id": "1629aaf1ded7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c9ac6c240d8ec5ad",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "59af4f70956d4759"
+    },
+    {
+      "ts": "2026-11-16T12:11:01.151705+00:00",
+      "call_id": "10e9dd511823",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "633e19c4ef9e0591",
+      "prompt_tokens": 1187,
+      "completion_tokens": 43,
+      "latency_ms": 9304.1,
+      "server_ms": 9276.67,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "59af4f70956d4759"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1187,
+    "completion_tokens": 43,
+    "total_ms": 11933.5
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

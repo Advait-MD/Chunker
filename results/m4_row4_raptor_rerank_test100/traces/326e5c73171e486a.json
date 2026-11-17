@@ -1,0 +1,183 @@
+{
+  "trace_id": "326e5c73171e486a",
+  "created_at": "2026-11-16T10:36:40.558768+00:00",
+  "query": "How can an existing bot detection system by customized for health-related research?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 43881.16
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 43881.25
+    },
+    {
+      "state": "DONE",
+      "t_ms": 59734.19
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.8,
+      "bm25_ms": 10.47,
+      "n_candidates": {
+        "dense": 16,
+        "bm25": 16
+      },
+      "n_fused": 16,
+      "rerank": {
+        "n": 16,
+        "n_computed": 4,
+        "latency_ms": 43857.77
+      },
+      "hits": [
+        {
+          "id": "raptor:e6a501ac:L1:c206e02a1f781b19",
+          "score": 5.450447082519531,
+          "fused": 0.868633276606644,
+          "dense_rank": 4,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 5.450447082519531
+        },
+        {
+          "id": "raptor:e6a501ac:L2:4b71194b09d8cfb8",
+          "score": 5.348996162414551,
+          "fused": 0.8777765294861712,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 5.348996162414551
+        },
+        {
+          "id": "f146cb4aaaa09114:L0:000000",
+          "score": 5.157073974609375,
+          "fused": 0.9542712531282465,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 5.157073974609375
+        },
+        {
+          "id": "f146cb4aaaa09114:L0:000009",
+          "score": 4.952351093292236,
+          "fused": 0.9977726348038568,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.952351093292236
+        },
+        {
+          "id": "f146cb4aaaa09114:L0:000002",
+          "score": 2.8695425987243652,
+          "fused": 0.7392036503510946,
+          "dense_rank": 5,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": 2.8695425987243652
+        }
+      ],
+      "latency_ms": 43881.12
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1064,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15852.77
+    }
+  },
+  "retrieved_ids": [
+    "raptor:e6a501ac:L1:c206e02a1f781b19",
+    "raptor:e6a501ac:L2:4b71194b09d8cfb8",
+    "f146cb4aaaa09114:L0:000000",
+    "f146cb4aaaa09114:L0:000009",
+    "f146cb4aaaa09114:L0:000002"
+  ],
+  "filtered_ids": [
+    "raptor:e6a501ac:L1:c206e02a1f781b19",
+    "raptor:e6a501ac:L2:4b71194b09d8cfb8",
+    "f146cb4aaaa09114:L0:000000",
+    "f146cb4aaaa09114:L0:000009",
+    "f146cb4aaaa09114:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:36:40.565867+00:00",
+      "call_id": "1a0d3a258ed1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9f4955cc3aca1489",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "326e5c73171e486a"
+    },
+    {
+      "ts": "2026-11-16T10:37:40.290930+00:00",
+      "call_id": "b1a43f1a492e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d466210dd7d6ebed",
+      "prompt_tokens": 1623,
+      "completion_tokens": 90,
+      "latency_ms": 15789.12,
+      "server_ms": 15760.53,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "326e5c73171e486a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1623,
+    "completion_tokens": 90,
+    "total_ms": 59735.29
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

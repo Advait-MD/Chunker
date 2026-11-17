@@ -1,0 +1,179 @@
+{
+  "trace_id": "5a3f98aed76a4db7",
+  "created_at": "2026-11-16T12:10:24.552012+00:00",
+  "query": "What Cantonese slang term can mean both \"ghost man\" and to refer to Westerners?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1382.07
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1383.0
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11796.89
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.68,
+      "bm25_ms": 15.86,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 1351.33
+      },
+      "hits": [
+        {
+          "id": "81fc433d55d23b4c:L0:000154",
+          "score": 3.381667375564575,
+          "fused": 0.8548592825879782,
+          "dense_rank": 16,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.381667375564575
+        },
+        {
+          "id": "b120b09075017d08:L0:000155",
+          "score": 3.380972146987915,
+          "fused": 0.479521468135785,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 5,
+          "rerank": 3.380972146987915
+        },
+        {
+          "id": "raptor:67600e79:L2:8a16cd3dba97f8fa",
+          "score": 0.8092440366744995,
+          "fused": 0.5364538453946961,
+          "dense_rank": 12,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 0.8092440366744995
+        },
+        {
+          "id": "raptor:67600e79:L1:0a631daa7cfa5cc7",
+          "score": 0.014130332507193089,
+          "fused": 0.7014726017699742,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 0.014130332507193089
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000101",
+          "score": -1.4426676034927368,
+          "fused": 0.2984057186024072,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 10,
+          "rerank": -1.4426676034927368
+        }
+      ],
+      "latency_ms": 1382.02
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 480,
+      "latency_ms": 0.87
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10413.73
+    }
+  },
+  "retrieved_ids": [
+    "81fc433d55d23b4c:L0:000154",
+    "b120b09075017d08:L0:000155",
+    "raptor:67600e79:L2:8a16cd3dba97f8fa",
+    "raptor:67600e79:L1:0a631daa7cfa5cc7",
+    "ec3410ef955c5c93:L0:000101"
+  ],
+  "filtered_ids": [
+    "81fc433d55d23b4c:L0:000154",
+    "b120b09075017d08:L0:000155",
+    "raptor:67600e79:L2:8a16cd3dba97f8fa",
+    "raptor:67600e79:L1:0a631daa7cfa5cc7",
+    "ec3410ef955c5c93:L0:000101"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:10:24.555009+00:00",
+      "call_id": "c58cdb5eb7bb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "55bd5a5028154fd1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5a3f98aed76a4db7"
+    },
+    {
+      "ts": "2026-11-16T12:10:36.347477+00:00",
+      "call_id": "022e495d17e0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5376d2820a240fa6",
+      "prompt_tokens": 1073,
+      "completion_tokens": 61,
+      "latency_ms": 10412.37,
+      "server_ms": 10388.99,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "5a3f98aed76a4db7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1073,
+    "completion_tokens": 61,
+    "total_ms": 11801.04
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

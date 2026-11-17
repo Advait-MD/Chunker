@@ -1,0 +1,180 @@
+{
+  "trace_id": "f7a6cbbbb3ac41ca",
+  "created_at": "2026-11-16T13:08:02.961280+00:00",
+  "query": "What company did Steve Jobs acquire from George Lucas that revolutionized computer animation?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2506.39
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2508.02
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15416.39
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.94,
+      "bm25_ms": 9.57,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2490.95
+      },
+      "hits": [
+        {
+          "id": "raptor:7d5dec53:L1:38aa184c23515a91",
+          "score": 3.62838077545166,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 3.62838077545166
+        },
+        {
+          "id": "17581cb533e90c48:L0:001090",
+          "score": 2.396160364151001,
+          "fused": 0.18516347950789588,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": 2.396160364151001
+        },
+        {
+          "id": "17581cb533e90c48:L0:000628",
+          "score": 1.8286769390106201,
+          "fused": 0.33959360264627575,
+          "dense_rank": 1,
+          "bm25_rank": 24,
+          "fused_rank": 8,
+          "rerank": 1.8286769390106201
+        },
+        {
+          "id": "raptor:7d5dec53:L1:1b619f4711901eb2",
+          "score": 0.7623228430747986,
+          "fused": 0.5223305991121535,
+          "dense_rank": 34,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 0.7623228430747986
+        },
+        {
+          "id": "raptor:7d5dec53:L1:81d73aa98a4a1bd9",
+          "score": 0.1575244665145874,
+          "fused": 0.19772673206897848,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 15,
+          "rerank": 0.1575244665145874
+        }
+      ],
+      "latency_ms": 2506.35
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 985,
+      "latency_ms": 1.58
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12908.24
+    }
+  },
+  "retrieved_ids": [
+    "raptor:7d5dec53:L1:38aa184c23515a91",
+    "17581cb533e90c48:L0:001090",
+    "17581cb533e90c48:L0:000628",
+    "raptor:7d5dec53:L1:1b619f4711901eb2",
+    "raptor:7d5dec53:L1:81d73aa98a4a1bd9"
+  ],
+  "filtered_ids": [
+    "raptor:7d5dec53:L1:38aa184c23515a91",
+    "17581cb533e90c48:L0:001090",
+    "17581cb533e90c48:L0:000628",
+    "raptor:7d5dec53:L1:1b619f4711901eb2",
+    "raptor:7d5dec53:L1:81d73aa98a4a1bd9"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:08:02.961280+00:00",
+      "call_id": "4e8bf057e659",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b304a846c4557de9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f7a6cbbbb3ac41ca"
+    },
+    {
+      "ts": "2026-11-16T13:08:18.376112+00:00",
+      "call_id": "eeb0ac733a46",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6bb2dede17a169a8",
+      "prompt_tokens": 1458,
+      "completion_tokens": 57,
+      "latency_ms": 12906.6,
+      "server_ms": 12881.38,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "f7a6cbbbb3ac41ca"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1458,
+    "completion_tokens": 57,
+    "total_ms": 15419.43
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

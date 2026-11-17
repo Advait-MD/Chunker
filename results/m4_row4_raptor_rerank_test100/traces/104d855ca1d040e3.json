@@ -1,0 +1,185 @@
+{
+  "trace_id": "104d855ca1d040e3",
+  "created_at": "2026-11-16T11:50:15.158263+00:00",
+  "query": "Why did Robert want to go to space?\n\nOptions:\n(A) He wanted to follow in his father’s footsteps and fly to space like him\n(B) He needed to escape his life on Earth\n(C) He was after eternal youth himself\n(D) We don’t know for sure from the story\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2072.06
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2072.19
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19943.3
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.83,
+      "bm25_ms": 30.77,
+      "n_candidates": {
+        "dense": 22,
+        "bm25": 22
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 3,
+        "latency_ms": 2031.61
+      },
+      "hits": [
+        {
+          "id": "2fd46b2152775681:L0:000005",
+          "score": 0.0013386011123657227,
+          "fused": 0.6721281134708753,
+          "dense_rank": 6,
+          "bm25_rank": 8,
+          "fused_rank": 6,
+          "rerank": 0.0013386011123657227
+        },
+        {
+          "id": "raptor:5f45bc09:L1:14d326a4d23528a6",
+          "score": -0.21563495695590973,
+          "fused": 0.442578899169189,
+          "dense_rank": 2,
+          "bm25_rank": 18,
+          "fused_rank": 14,
+          "rerank": -0.21563495695590973
+        },
+        {
+          "id": "raptor:5f45bc09:L1:102033b0debd65af",
+          "score": -0.2837206721305847,
+          "fused": 0.6260077506277539,
+          "dense_rank": 5,
+          "bm25_rank": 9,
+          "fused_rank": 8,
+          "rerank": -0.2837206721305847
+        },
+        {
+          "id": "raptor:5f45bc09:L2:a46b4d01bfe55273",
+          "score": -0.42645710706710815,
+          "fused": 0.29968129719804176,
+          "dense_rank": 15,
+          "bm25_rank": 19,
+          "fused_rank": 19,
+          "rerank": -0.42645710706710815
+        },
+        {
+          "id": "2fd46b2152775681:L0:000003",
+          "score": -0.7597737312316895,
+          "fused": 0.7892677350244464,
+          "dense_rank": 4,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -0.7597737312316895
+        }
+      ],
+      "latency_ms": 2072.0
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1429,
+      "latency_ms": 0.09
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17871.0
+    }
+  },
+  "retrieved_ids": [
+    "2fd46b2152775681:L0:000005",
+    "raptor:5f45bc09:L1:14d326a4d23528a6",
+    "raptor:5f45bc09:L1:102033b0debd65af",
+    "raptor:5f45bc09:L2:a46b4d01bfe55273",
+    "2fd46b2152775681:L0:000003"
+  ],
+  "filtered_ids": [
+    "2fd46b2152775681:L0:000005",
+    "raptor:5f45bc09:L1:14d326a4d23528a6",
+    "raptor:5f45bc09:L1:102033b0debd65af",
+    "raptor:5f45bc09:L2:a46b4d01bfe55273",
+    "2fd46b2152775681:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:50:15.160261+00:00",
+      "call_id": "3b95d8a64f8c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bae216c080c75b99",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "104d855ca1d040e3"
+    },
+    {
+      "ts": "2026-11-16T11:50:35.101074+00:00",
+      "call_id": "630fce8b2417",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "364a379ed32266de",
+      "prompt_tokens": 1936,
+      "completion_tokens": 66,
+      "latency_ms": 17869.56,
+      "server_ms": 17836.88,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "104d855ca1d040e3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1936,
+    "completion_tokens": 66,
+    "total_ms": 19945.37
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "(D) We don’t know for sure from the story."
+      ]
+    }
+  }
+}

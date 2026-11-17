@@ -1,0 +1,164 @@
+{
+  "trace_id": "1e217b5a451f4335",
+  "created_at": "2026-11-16T10:01:08.468240+00:00",
+  "query": "Who is the film dedicated to that Paramount Classics and MTV Films co-purchased the rights to?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.25
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.28
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10658.7
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.84,
+      "bm25_ms": 5.22,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "9794e842cc9565f0:L0:000107",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:84a85a4acd187204",
+          "score": 0.5836153342540135,
+          "fused": 0.5836153342540135,
+          "dense_rank": 1,
+          "bm25_rank": 8
+        },
+        {
+          "id": "raptor:67600e79:L1:1c850c93bb1bda56",
+          "score": 0.5222040919397589,
+          "fused": 0.5222040919397589,
+          "dense_rank": 9,
+          "bm25_rank": 4
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000006",
+          "score": 0.3883645548381866,
+          "fused": 0.3883645548381866,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:4c8c03bb1415e3e2",
+          "score": 0.3752160880670982,
+          "fused": 0.3752160880670982,
+          "dense_rank": 14,
+          "bm25_rank": 11
+        }
+      ],
+      "latency_ms": 7.23
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 663,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10651.36
+    }
+  },
+  "retrieved_ids": [
+    "9794e842cc9565f0:L0:000107",
+    "raptor:67600e79:L1:84a85a4acd187204",
+    "raptor:67600e79:L1:1c850c93bb1bda56",
+    "5d0f6cf59ee42566:L0:000006",
+    "raptor:67600e79:L1:4c8c03bb1415e3e2"
+  ],
+  "filtered_ids": [
+    "9794e842cc9565f0:L0:000107",
+    "raptor:67600e79:L1:84a85a4acd187204",
+    "raptor:67600e79:L1:1c850c93bb1bda56",
+    "5d0f6cf59ee42566:L0:000006",
+    "raptor:67600e79:L1:4c8c03bb1415e3e2"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:01:08.469247+00:00",
+      "call_id": "33ca0f93bb9a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0eceb0d6023421de",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1e217b5a451f4335"
+    },
+    {
+      "ts": "2026-11-16T10:01:19.126081+00:00",
+      "call_id": "4d832eb94078",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "352c3508bbc6a51c",
+      "prompt_tokens": 1209,
+      "completion_tokens": 64,
+      "latency_ms": 10650.53,
+      "server_ms": 10634.45,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1e217b5a451f4335"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1209,
+    "completion_tokens": 64,
+    "total_ms": 10659.24
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "trace_id": "52f5c316b28e447d",
+  "created_at": "2026-11-16T12:30:01.981369+00:00",
+  "query": "The Prodigal Daughter, though a book about an American, is by a novelist of what nationality?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4989.19
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4989.25
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16031.87
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.06,
+      "bm25_ms": 20.04,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 10,
+        "latency_ms": 4960.95
+      },
+      "hits": [
+        {
+          "id": "5d0f6cf59ee42566:L0:000003",
+          "score": 8.833745002746582,
+          "fused": 0.5513524644061015,
+          "dense_rank": 21,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": 8.833745002746582
+        },
+        {
+          "id": "raptor:67600e79:L1:a4f34435f7730e2c",
+          "score": 6.065127372741699,
+          "fused": 0.752230991918647,
+          "dense_rank": 1,
+          "bm25_rank": 7,
+          "fused_rank": 2,
+          "rerank": 6.065127372741699
+        },
+        {
+          "id": "raptor:67600e79:L1:ddc5fe61c9cb164a",
+          "score": -1.90657377243042,
+          "fused": 0.5216241718161181,
+          "dense_rank": 3,
+          "bm25_rank": 10,
+          "fused_rank": 6,
+          "rerank": -1.90657377243042
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000078",
+          "score": -2.471784830093384,
+          "fused": 0.393809763672944,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": -2.471784830093384
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000171",
+          "score": -3.195603370666504,
+          "fused": 0.8279303706755807,
+          "dense_rank": 6,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -3.195603370666504
+        }
+      ],
+      "latency_ms": 4989.11
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 598,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11042.51
+    }
+  },
+  "retrieved_ids": [
+    "5d0f6cf59ee42566:L0:000003",
+    "raptor:67600e79:L1:a4f34435f7730e2c",
+    "raptor:67600e79:L1:ddc5fe61c9cb164a",
+    "ec3410ef955c5c93:L0:000078",
+    "cc2399aca11eb631:L0:000171"
+  ],
+  "filtered_ids": [
+    "5d0f6cf59ee42566:L0:000003",
+    "raptor:67600e79:L1:a4f34435f7730e2c",
+    "raptor:67600e79:L1:ddc5fe61c9cb164a",
+    "ec3410ef955c5c93:L0:000078",
+    "cc2399aca11eb631:L0:000171"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:30:01.984427+00:00",
+      "call_id": "a2d62753c930",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "39f4e18bd1cc349c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "52f5c316b28e447d"
+    },
+    {
+      "ts": "2026-11-16T12:30:18.012942+00:00",
+      "call_id": "47ca741a20e6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8d9a3fd6864d8b86",
+      "prompt_tokens": 1223,
+      "completion_tokens": 63,
+      "latency_ms": 11041.7,
+      "server_ms": 11013.13,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "52f5c316b28e447d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1223,
+    "completion_tokens": 63,
+    "total_ms": 16033.29
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

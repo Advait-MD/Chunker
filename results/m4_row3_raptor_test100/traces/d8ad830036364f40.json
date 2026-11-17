@@ -1,0 +1,168 @@
+{
+  "trace_id": "d8ad830036364f40",
+  "created_at": "2026-11-16T10:15:33.891918+00:00",
+  "query": "Which museum was founded first, Casoria Contemporary Art Museum or Leverian Collection?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.18
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.21
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12652.89
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.27,
+      "bm25_ms": 3.76,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:142b88f4480aa6ef",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000181",
+          "score": 0.7605311191839714,
+          "fused": 0.7605311191839714,
+          "dense_rank": 7,
+          "bm25_rank": 2
+        },
+        {
+          "id": "abe982d210232c3f:L0:000061",
+          "score": 0.7491947309123225,
+          "fused": 0.7491947309123225,
+          "dense_rank": 8,
+          "bm25_rank": 3
+        },
+        {
+          "id": "99628090500247e3:L0:000066",
+          "score": 0.70875301467323,
+          "fused": 0.70875301467323,
+          "dense_rank": 2,
+          "bm25_rank": 4
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000176",
+          "score": 0.626387262527238,
+          "fused": 0.626387262527238,
+          "dense_rank": 3,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 6.16
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 407,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12645.89
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:142b88f4480aa6ef",
+    "b04ce6dd2d95fb80:L0:000181",
+    "abe982d210232c3f:L0:000061",
+    "99628090500247e3:L0:000066",
+    "53c7288bdcd3837a:L0:000176"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:142b88f4480aa6ef",
+    "b04ce6dd2d95fb80:L0:000181",
+    "abe982d210232c3f:L0:000061",
+    "99628090500247e3:L0:000066",
+    "53c7288bdcd3837a:L0:000176"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:15:33.892918+00:00",
+      "call_id": "ea3bf9f9b1c4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d1b270dd5d0ffc50",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d8ad830036364f40"
+    },
+    {
+      "ts": "2026-11-16T10:15:46.543156+00:00",
+      "call_id": "e4a653bfc251",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a0d57450a377e5e7",
+      "prompt_tokens": 1000,
+      "completion_tokens": 98,
+      "latency_ms": 12645.38,
+      "server_ms": 12628.71,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d8ad830036364f40"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1000,
+    "completion_tokens": 98,
+    "total_ms": 12653.88
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "trace_id": "fe2bbdbe5fde4819",
+  "created_at": "2026-11-15T09:24:42.487954+00:00",
+  "query": "In the movie A League of their Own, who played the husband of the person who also played Thelma in the movie Thelma and Louise?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 24.2
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 24.27
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 9646.17
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.34,
+      "bm25_ms": 20.51,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000015",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "4b634e52029ddab4:L0:000078",
+          "score": 0.3366166521685526,
+          "fused": 0.3366166521685526,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "ad4ace752e719bab:L0:000002",
+          "score": 0.3351824252281013,
+          "fused": 0.3351824252281013,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000188",
+          "score": 0.32029855739515556,
+          "fused": 0.32029855739515556,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000039",
+          "score": 0.319452039319422,
+          "fused": 0.319452039319422,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 24.16
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 509,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9621.83
+    }
+  },
+  "retrieved_ids": [
+    "cc1bdb3bf430bd0d:L0:000015",
+    "4b634e52029ddab4:L0:000078",
+    "ad4ace752e719bab:L0:000002",
+    "6683bfc7dec06e2a:L0:000188",
+    "f3503d3d186f0f90:L0:000039"
+  ],
+  "filtered_ids": [
+    "cc1bdb3bf430bd0d:L0:000015",
+    "4b634e52029ddab4:L0:000078",
+    "ad4ace752e719bab:L0:000002",
+    "6683bfc7dec06e2a:L0:000188",
+    "f3503d3d186f0f90:L0:000039"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:24:42.489955+00:00",
+      "call_id": "2bc6e6e67594",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "784e46b77c61cfdc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fe2bbdbe5fde4819"
+    },
+    {
+      "ts": "2026-11-15T09:24:52.133601+00:00",
+      "call_id": "6f82f9e7a24f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "90cb2c01f40f11d5",
+      "prompt_tokens": 1128,
+      "completion_tokens": 43,
+      "latency_ms": 9620.93,
+      "server_ms": 9598.52,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "fe2bbdbe5fde4819"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1128,
+    "completion_tokens": 43,
+    "total_ms": 9647.49
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

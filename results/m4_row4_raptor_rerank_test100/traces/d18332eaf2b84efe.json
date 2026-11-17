@@ -1,0 +1,182 @@
+{
+  "trace_id": "d18332eaf2b84efe",
+  "created_at": "2026-11-16T11:54:03.059612+00:00",
+  "query": "Why did Zubb want the men to go visit the Qornt?\n\nOptions:\n(A) He wanted to report their crimes against him\n(B) He thought they would be ignored\n(C) He wanted the men to be honored guests\n(D) He wanted them to negotiate a surrender\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2411.78
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2411.86
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25440.18
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.19,
+      "bm25_ms": 31.67,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 25
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 2369.1
+      },
+      "hits": [
+        {
+          "id": "6344ae855cee9a61:L0:000015",
+          "score": 0.1713826209306717,
+          "fused": 0.9963085515537426,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.1713826209306717
+        },
+        {
+          "id": "raptor:53b91b4f:L1:bdc171caf5cace8b",
+          "score": -0.6954774260520935,
+          "fused": 0.6925360069251901,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 3,
+          "rerank": -0.6954774260520935
+        },
+        {
+          "id": "6344ae855cee9a61:L0:000006",
+          "score": -0.8155907392501831,
+          "fused": 0.5234191054343873,
+          "dense_rank": 13,
+          "bm25_rank": 9,
+          "fused_rank": 8,
+          "rerank": -0.8155907392501831
+        },
+        {
+          "id": "6344ae855cee9a61:L0:000011",
+          "score": -0.822023868560791,
+          "fused": 0.5626210144083756,
+          "dense_rank": 7,
+          "bm25_rank": 8,
+          "fused_rank": 6,
+          "rerank": -0.822023868560791
+        },
+        {
+          "id": "6344ae855cee9a61:L0:000008",
+          "score": -1.485217809677124,
+          "fused": 0.6612190955813216,
+          "dense_rank": 8,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -1.485217809677124
+        }
+      ],
+      "latency_ms": 2411.73
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1765,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23028.2
+    }
+  },
+  "retrieved_ids": [
+    "6344ae855cee9a61:L0:000015",
+    "raptor:53b91b4f:L1:bdc171caf5cace8b",
+    "6344ae855cee9a61:L0:000006",
+    "6344ae855cee9a61:L0:000011",
+    "6344ae855cee9a61:L0:000008"
+  ],
+  "filtered_ids": [
+    "6344ae855cee9a61:L0:000015",
+    "raptor:53b91b4f:L1:bdc171caf5cace8b",
+    "6344ae855cee9a61:L0:000006",
+    "6344ae855cee9a61:L0:000011",
+    "6344ae855cee9a61:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:54:03.060612+00:00",
+      "call_id": "8ffb4710f685",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "df4a193a97bdd5d1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d18332eaf2b84efe"
+    },
+    {
+      "ts": "2026-11-16T11:54:28.498068+00:00",
+      "call_id": "86f863878e55",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e87a76cb45d72ef4",
+      "prompt_tokens": 2422,
+      "completion_tokens": 55,
+      "latency_ms": 23026.43,
+      "server_ms": 22984.41,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d18332eaf2b84efe"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2422,
+    "completion_tokens": 55,
+    "total_ms": 25442.24
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2,
+        4
+      ],
+      "uncited_sentences": [
+        "(C) He wanted the men to be honored guests"
+      ]
+    }
+  }
+}

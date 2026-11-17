@@ -1,0 +1,182 @@
+{
+  "trace_id": "22a98c34e0ff49e7",
+  "created_at": "2026-11-16T12:26:06.108381+00:00",
+  "query": "The 249th episode of \"The Simpsons\" was aired on what date?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1902.92
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1903.0
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16512.94
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.84,
+      "bm25_ms": 6.07,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 1891.8
+      },
+      "hits": [
+        {
+          "id": "838c0e0106e6f015:L0:000153",
+          "score": 0.8923531770706177,
+          "fused": 0.7796979253395755,
+          "dense_rank": 8,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.8923531770706177
+        },
+        {
+          "id": "20496f59538deb41:L0:000157",
+          "score": -2.1593029499053955,
+          "fused": 0.281394755964548,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 18,
+          "rerank": -2.1593029499053955
+        },
+        {
+          "id": "raptor:67600e79:L1:e5abc32105d13e6f",
+          "score": -2.6357686519622803,
+          "fused": 0.35213749815127016,
+          "dense_rank": 3,
+          "bm25_rank": 26,
+          "fused_rank": 13,
+          "rerank": -2.6357686519622803
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000100",
+          "score": -2.844024896621704,
+          "fused": 0.5459227733988197,
+          "dense_rank": 25,
+          "bm25_rank": 5,
+          "fused_rank": 7,
+          "rerank": -2.844024896621704
+        },
+        {
+          "id": "raptor:67600e79:L2:25c20ce00ae3f629",
+          "score": -3.0998735427856445,
+          "fused": 0.4606548134870303,
+          "dense_rank": 4,
+          "bm25_rank": 18,
+          "fused_rank": 9,
+          "rerank": -3.0998735427856445
+        }
+      ],
+      "latency_ms": 1902.86
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 764,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14609.88
+    }
+  },
+  "retrieved_ids": [
+    "838c0e0106e6f015:L0:000153",
+    "20496f59538deb41:L0:000157",
+    "raptor:67600e79:L1:e5abc32105d13e6f",
+    "cb96563b0747a6ba:L0:000100",
+    "raptor:67600e79:L2:25c20ce00ae3f629"
+  ],
+  "filtered_ids": [
+    "838c0e0106e6f015:L0:000153",
+    "20496f59538deb41:L0:000157",
+    "raptor:67600e79:L1:e5abc32105d13e6f",
+    "cb96563b0747a6ba:L0:000100",
+    "raptor:67600e79:L2:25c20ce00ae3f629"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:26:06.110376+00:00",
+      "call_id": "29fe00d4c33b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "45ff1bb8e0d528ac",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "22a98c34e0ff49e7"
+    },
+    {
+      "ts": "2026-11-16T12:26:22.621650+00:00",
+      "call_id": "debfc5574edb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "18cb40ceeaca5ee8",
+      "prompt_tokens": 1408,
+      "completion_tokens": 86,
+      "latency_ms": 14609.14,
+      "server_ms": 14587.79,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "22a98c34e0ff49e7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1408,
+    "completion_tokens": 86,
+    "total_ms": 16513.87
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "The 249th episode of 'The Simpsons', 'Treehouse of Horror XI', was the first episode of the twelfth season and aired on November 1, 2000."
+      ]
+    }
+  }
+}

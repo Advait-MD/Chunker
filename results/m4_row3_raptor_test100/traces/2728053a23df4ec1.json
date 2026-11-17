@@ -1,0 +1,165 @@
+{
+  "trace_id": "2728053a23df4ec1",
+  "created_at": "2026-11-15T09:33:49.474533+00:00",
+  "query": "Who is the president of the organization Julio Maglione is located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.17
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.22
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15523.65
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.53,
+      "bm25_ms": 9.28,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "4fcce431f5d22d1d:L0:000069",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:686c9c619a925fd6",
+          "score": 0.6168980956719994,
+          "fused": 0.6168980956719994,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:535f716cd7800768",
+          "score": 0.2572857074619522,
+          "fused": 0.2572857074619522,
+          "dense_rank": 2,
+          "bm25_rank": null
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000079",
+          "score": 0.2296529610047401,
+          "fused": 0.2296529610047401,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:67600e79:L2:9a81922f24fe4eab",
+          "score": 0.2082150244099058,
+          "fused": 0.2082150244099058,
+          "dense_rank": 3,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 13.13
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 602,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15510.29
+    }
+  },
+  "retrieved_ids": [
+    "4fcce431f5d22d1d:L0:000069",
+    "raptor:67600e79:L1:686c9c619a925fd6",
+    "raptor:67600e79:L1:535f716cd7800768",
+    "f109b032e24ab27a:L0:000079",
+    "raptor:67600e79:L2:9a81922f24fe4eab"
+  ],
+  "filtered_ids": [
+    "4fcce431f5d22d1d:L0:000069",
+    "raptor:67600e79:L1:686c9c619a925fd6",
+    "raptor:67600e79:L1:535f716cd7800768",
+    "f109b032e24ab27a:L0:000079",
+    "raptor:67600e79:L2:9a81922f24fe4eab"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:33:49.476541+00:00",
+      "call_id": "851e3e7172a9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "74d3a9adcc4b3ced",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2728053a23df4ec1"
+    },
+    {
+      "ts": "2026-11-15T09:34:04.997593+00:00",
+      "call_id": "a5a00b6e73e3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a52deee2c7b77186",
+      "prompt_tokens": 1250,
+      "completion_tokens": 84,
+      "latency_ms": 15509.4,
+      "server_ms": 15487.67,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2728053a23df4ec1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1250,
+    "completion_tokens": 84,
+    "total_ms": 15524.67
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

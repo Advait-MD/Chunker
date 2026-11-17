@@ -1,0 +1,179 @@
+{
+  "trace_id": "cdec483b85bf4c86",
+  "created_at": "2026-11-16T12:42:52.734653+00:00",
+  "query": "Who is the spouse of the composer of film Kalle Stropp, Grodan Boll Och Deras Vänner?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7026.03
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7026.18
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 18704.52
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.98,
+      "bm25_ms": 4.82,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 17,
+        "latency_ms": 7017.28
+      },
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000120",
+          "score": 1.6774306297302246,
+          "fused": 0.3419837116478927,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.6774306297302246
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000104",
+          "score": 0.1783197522163391,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.1783197522163391
+        },
+        {
+          "id": "raptor:67600e79:L1:a4cbccc321a2996b",
+          "score": -0.5050697326660156,
+          "fused": 0.33704738528040507,
+          "dense_rank": 39,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.5050697326660156
+        },
+        {
+          "id": "raptor:67600e79:L1:40b07d24eb91ddd8",
+          "score": -5.552267074584961,
+          "fused": 0.14418268399860265,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 10,
+          "rerank": -5.552267074584961
+        },
+        {
+          "id": "raptor:67600e79:L1:01b8252e42c76505",
+          "score": -5.863157272338867,
+          "fused": 0.12093702770780856,
+          "dense_rank": 11,
+          "bm25_rank": null,
+          "fused_rank": 14,
+          "rerank": -5.863157272338867
+        }
+      ],
+      "latency_ms": 7026.0
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 736,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11678.23
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000120",
+    "53c7288bdcd3837a:L0:000104",
+    "raptor:67600e79:L1:a4cbccc321a2996b",
+    "raptor:67600e79:L1:40b07d24eb91ddd8",
+    "raptor:67600e79:L1:01b8252e42c76505"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000120",
+    "53c7288bdcd3837a:L0:000104",
+    "raptor:67600e79:L1:a4cbccc321a2996b",
+    "raptor:67600e79:L1:40b07d24eb91ddd8",
+    "raptor:67600e79:L1:01b8252e42c76505"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:42:52.735654+00:00",
+      "call_id": "0b109fe13bbd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ca52de9742f04d68",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cdec483b85bf4c86"
+    },
+    {
+      "ts": "2026-11-16T12:43:11.438127+00:00",
+      "call_id": "5c86d1905972",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bdd69eab6489b497",
+      "prompt_tokens": 1437,
+      "completion_tokens": 45,
+      "latency_ms": 11677.11,
+      "server_ms": 11613.5,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "cdec483b85bf4c86"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1437,
+    "completion_tokens": 45,
+    "total_ms": 18706.97
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

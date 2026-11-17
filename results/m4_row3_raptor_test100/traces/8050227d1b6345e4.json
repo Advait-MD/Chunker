@@ -1,0 +1,165 @@
+{
+  "trace_id": "8050227d1b6345e4",
+  "created_at": "2026-11-16T10:04:05.554359+00:00",
+  "query": "Where was the place of death of the director of film Sensational Janine?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5.24
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5.27
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12600.54
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.95,
+      "bm25_ms": 3.14,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000039",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:48ed6daa850a875a",
+          "score": 0.3519816426783301,
+          "fused": 0.3519816426783301,
+          "dense_rank": 29,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:c5cbcc5bd2bdbee2",
+          "score": 0.33642218404688173,
+          "fused": 0.33642218404688173,
+          "dense_rank": 2,
+          "bm25_rank": 20
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000020",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "460e441179bec402:L0:000087",
+          "score": 0.24718485352337363,
+          "fused": 0.24718485352337363,
+          "dense_rank": 11,
+          "bm25_rank": 19
+        }
+      ],
+      "latency_ms": 5.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 603,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12595.11
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000039",
+    "raptor:67600e79:L1:48ed6daa850a875a",
+    "raptor:67600e79:L1:c5cbcc5bd2bdbee2",
+    "317e12ccd417c0d7:L0:000020",
+    "460e441179bec402:L0:000087"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000039",
+    "raptor:67600e79:L1:48ed6daa850a875a",
+    "raptor:67600e79:L1:c5cbcc5bd2bdbee2",
+    "317e12ccd417c0d7:L0:000020",
+    "460e441179bec402:L0:000087"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:04:05.555464+00:00",
+      "call_id": "6ca7279d211e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fd844792b73ad44b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8050227d1b6345e4"
+    },
+    {
+      "ts": "2026-11-16T10:04:18.153865+00:00",
+      "call_id": "a0b11f46fb8c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3ff31d99c94aca4f",
+      "prompt_tokens": 1233,
+      "completion_tokens": 66,
+      "latency_ms": 12594.27,
+      "server_ms": 12544.88,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8050227d1b6345e4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1233,
+    "completion_tokens": 66,
+    "total_ms": 12602.1
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

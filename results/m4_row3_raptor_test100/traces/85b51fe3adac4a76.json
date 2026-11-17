@@ -1,0 +1,164 @@
+{
+  "trace_id": "85b51fe3adac4a76",
+  "created_at": "2026-11-16T10:03:54.295290+00:00",
+  "query": "What nationality is Prince Napoléon Bonaparte's father?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5.43
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5.46
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11251.71
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.1,
+      "bm25_ms": 3.12,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000147",
+          "score": 0.7394563598257108,
+          "fused": 0.7394563598257108,
+          "dense_rank": 29,
+          "bm25_rank": 1
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000147",
+          "score": 0.48872872736610035,
+          "fused": 0.48872872736610035,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000000",
+          "score": 0.36000658578032824,
+          "fused": 0.36000658578032824,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "abe982d210232c3f:L0:000041",
+          "score": 0.35547003656194753,
+          "fused": 0.35547003656194753,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:67600e79:L1:96b934f323cf157e",
+          "score": 0.3515796264741769,
+          "fused": 0.3515796264741769,
+          "dense_rank": 2,
+          "bm25_rank": 25
+        }
+      ],
+      "latency_ms": 5.4
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 582,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11246.18
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000147",
+    "4a757779abfb4ba1:L0:000147",
+    "317e12ccd417c0d7:L0:000000",
+    "abe982d210232c3f:L0:000041",
+    "raptor:67600e79:L1:96b934f323cf157e"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000147",
+    "4a757779abfb4ba1:L0:000147",
+    "317e12ccd417c0d7:L0:000000",
+    "abe982d210232c3f:L0:000041",
+    "raptor:67600e79:L1:96b934f323cf157e"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:03:54.297290+00:00",
+      "call_id": "cded8a555dd7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d4a20eca3ffe89fc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "85b51fe3adac4a76"
+    },
+    {
+      "ts": "2026-11-16T10:04:05.546935+00:00",
+      "call_id": "3c2c12a528c8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "49cb384e014f4379",
+      "prompt_tokens": 1345,
+      "completion_tokens": 63,
+      "latency_ms": 11245.6,
+      "server_ms": 11215.57,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "85b51fe3adac4a76"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1345,
+    "completion_tokens": 63,
+    "total_ms": 11252.95
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

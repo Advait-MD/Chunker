@@ -1,0 +1,179 @@
+{
+  "trace_id": "5498ae282c3d488d",
+  "created_at": "2026-11-16T11:16:43.069336+00:00",
+  "query": "Who is the Vice-President of the organization that controls the monetary policy of the EU?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 981.97
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 982.65
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15135.29
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.24,
+      "bm25_ms": 14.97,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 2,
+        "latency_ms": 959.25
+      },
+      "hits": [
+        {
+          "id": "f109b032e24ab27a:L0:000054",
+          "score": 3.1056604385375977,
+          "fused": 0.8283472942312557,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 3.1056604385375977
+        },
+        {
+          "id": "15abb5e49dced915:L0:000099",
+          "score": 2.1975879669189453,
+          "fused": 0.9402785125893387,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": 2.1975879669189453
+        },
+        {
+          "id": "raptor:67600e79:L1:97acb407fbf621e7",
+          "score": 0.20112080872058868,
+          "fused": 0.8131093982627304,
+          "dense_rank": 2,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": 0.20112080872058868
+        },
+        {
+          "id": "15abb5e49dced915:L0:000083",
+          "score": -1.491705298423767,
+          "fused": 0.5611315063002058,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 7,
+          "rerank": -1.491705298423767
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000064",
+          "score": -2.820857286453247,
+          "fused": 0.36412475655374194,
+          "dense_rank": null,
+          "bm25_rank": 16,
+          "fused_rank": 18,
+          "rerank": -2.820857286453247
+        }
+      ],
+      "latency_ms": 981.92
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 733,
+      "latency_ms": 0.63
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14152.5
+    }
+  },
+  "retrieved_ids": [
+    "f109b032e24ab27a:L0:000054",
+    "15abb5e49dced915:L0:000099",
+    "raptor:67600e79:L1:97acb407fbf621e7",
+    "15abb5e49dced915:L0:000083",
+    "66f5caec1369ebaf:L0:000064"
+  ],
+  "filtered_ids": [
+    "f109b032e24ab27a:L0:000054",
+    "15abb5e49dced915:L0:000099",
+    "raptor:67600e79:L1:97acb407fbf621e7",
+    "15abb5e49dced915:L0:000083",
+    "66f5caec1369ebaf:L0:000064"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:16:43.070336+00:00",
+      "call_id": "1497669549d2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "17388774d0af6548",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5498ae282c3d488d"
+    },
+    {
+      "ts": "2026-11-16T11:16:58.203168+00:00",
+      "call_id": "b0762e46862c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "13f5257b64220e06",
+      "prompt_tokens": 1333,
+      "completion_tokens": 74,
+      "latency_ms": 14151.14,
+      "server_ms": 14124.58,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "5498ae282c3d488d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1333,
+    "completion_tokens": 74,
+    "total_ms": 15138.01
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

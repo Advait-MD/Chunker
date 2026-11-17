@@ -1,0 +1,182 @@
+{
+  "trace_id": "fd7b55c93b8743e0",
+  "created_at": "2026-11-16T10:47:55.778883+00:00",
+  "query": "Do they compare to non-lexicon methods?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1792.74
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1793.64
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20712.55
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.52,
+      "bm25_ms": 11.91,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 13
+      },
+      "n_fused": 17,
+      "rerank": {
+        "n": 17,
+        "n_computed": 4,
+        "latency_ms": 1771.67
+      },
+      "hits": [
+        {
+          "id": "raptor:84fceb6f:L2:4ec49bfab70d3027",
+          "score": -1.4999374151229858,
+          "fused": 0.22913513349842768,
+          "dense_rank": 10,
+          "bm25_rank": 13,
+          "fused_rank": 14,
+          "rerank": -1.4999374151229858
+        },
+        {
+          "id": "d4a3708bcec8b7c9:L0:000008",
+          "score": -2.5742053985595703,
+          "fused": 0.7060184950491011,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -2.5742053985595703
+        },
+        {
+          "id": "raptor:84fceb6f:L1:32818611edee20fe",
+          "score": -3.6931345462799072,
+          "fused": 0.24090064919087434,
+          "dense_rank": 12,
+          "bm25_rank": 12,
+          "fused_rank": 13,
+          "rerank": -3.6931345462799072
+        },
+        {
+          "id": "d4a3708bcec8b7c9:L0:000004",
+          "score": -3.988399028778076,
+          "fused": 0.6085837035760274,
+          "dense_rank": 8,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -3.988399028778076
+        },
+        {
+          "id": "d4a3708bcec8b7c9:L0:000002",
+          "score": -4.080083847045898,
+          "fused": 0.45646136310242946,
+          "dense_rank": 9,
+          "bm25_rank": 10,
+          "fused_rank": 10,
+          "rerank": -4.080083847045898
+        }
+      ],
+      "latency_ms": 1792.68
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1279,
+      "latency_ms": 0.84
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18918.77
+    }
+  },
+  "retrieved_ids": [
+    "raptor:84fceb6f:L2:4ec49bfab70d3027",
+    "d4a3708bcec8b7c9:L0:000008",
+    "raptor:84fceb6f:L1:32818611edee20fe",
+    "d4a3708bcec8b7c9:L0:000004",
+    "d4a3708bcec8b7c9:L0:000002"
+  ],
+  "filtered_ids": [
+    "raptor:84fceb6f:L2:4ec49bfab70d3027",
+    "d4a3708bcec8b7c9:L0:000008",
+    "raptor:84fceb6f:L1:32818611edee20fe",
+    "d4a3708bcec8b7c9:L0:000004",
+    "d4a3708bcec8b7c9:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:47:55.781537+00:00",
+      "call_id": "6732486ae748",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "821f70b9065686b2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fd7b55c93b8743e0"
+    },
+    {
+      "ts": "2026-11-16T10:48:16.491264+00:00",
+      "call_id": "b3fc80be41d8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7d14fefda884c6e9",
+      "prompt_tokens": 1875,
+      "completion_tokens": 88,
+      "latency_ms": 18917.41,
+      "server_ms": 18882.04,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "fd7b55c93b8743e0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1875,
+    "completion_tokens": 88,
+    "total_ms": 20714.11
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Yes, they compare to non-lexicon methods."
+      ]
+    }
+  }
+}

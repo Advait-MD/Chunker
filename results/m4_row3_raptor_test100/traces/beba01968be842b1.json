@@ -1,0 +1,164 @@
+{
+  "trace_id": "beba01968be842b1",
+  "created_at": "2026-11-16T10:14:52.975670+00:00",
+  "query": "Where was the place of death of Anne Devereux's husband?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.83
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.91
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10479.21
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.23,
+      "bm25_ms": 6.24,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:214a540fe7821b0f",
+          "score": 0.7039294079975296,
+          "fused": 0.7039294079975296,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "0eac870d43736f51:L0:000084",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "460e441179bec402:L0:000086",
+          "score": 0.671301394536124,
+          "fused": 0.671301394536124,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000015",
+          "score": 0.32787458871339364,
+          "fused": 0.32787458871339364,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "abe982d210232c3f:L0:000135",
+          "score": 0.2398346878517393,
+          "fused": 0.2398346878517393,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 9.79
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 518,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10469.22
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:214a540fe7821b0f",
+    "0eac870d43736f51:L0:000084",
+    "460e441179bec402:L0:000086",
+    "53c7288bdcd3837a:L0:000015",
+    "abe982d210232c3f:L0:000135"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:214a540fe7821b0f",
+    "0eac870d43736f51:L0:000084",
+    "460e441179bec402:L0:000086",
+    "53c7288bdcd3837a:L0:000015",
+    "abe982d210232c3f:L0:000135"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:14:52.976668+00:00",
+      "call_id": "8e8006694510",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ba184d9c989642da",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "beba01968be842b1"
+    },
+    {
+      "ts": "2026-11-16T10:15:03.453396+00:00",
+      "call_id": "c9d1cd742f10",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e459f259132c5b1a",
+      "prompt_tokens": 1137,
+      "completion_tokens": 45,
+      "latency_ms": 10468.23,
+      "server_ms": 10442.62,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "beba01968be842b1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1137,
+    "completion_tokens": 45,
+    "total_ms": 10481.36
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

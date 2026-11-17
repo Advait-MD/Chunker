@@ -1,0 +1,182 @@
+{
+  "trace_id": "1bfeb3814b684d1e",
+  "created_at": "2026-11-16T13:02:05.148104+00:00",
+  "query": "Which school was founded first, Colegio Israelita De México or Waldorf University?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3025.14
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3025.29
+    },
+    {
+      "state": "DONE",
+      "t_ms": 3030.38
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.99,
+      "bm25_ms": 8.34,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 3010.8
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:1e98bd65039257f6",
+          "score": 9.339295387268066,
+          "fused": 0.9769020641749788,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 9.339295387268066
+        },
+        {
+          "id": "raptor:67600e79:L2:12ea63ea70bf0844",
+          "score": 9.260669708251953,
+          "fused": 0.8825996743769078,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 9.260669708251953
+        },
+        {
+          "id": "raptor:67600e79:L3:b8faddafbc8446e8",
+          "score": 8.872994422912598,
+          "fused": 0.8307520469702705,
+          "dense_rank": 3,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": 8.872994422912598
+        },
+        {
+          "id": "0eac870d43736f51:L0:000001",
+          "score": 8.668755531311035,
+          "fused": 0.7372933552844341,
+          "dense_rank": 7,
+          "bm25_rank": 1,
+          "fused_rank": 4,
+          "rerank": 8.668755531311035
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000153",
+          "score": 7.777763843536377,
+          "fused": 0.34586844650371296,
+          "dense_rank": 14,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 7.777763843536377
+        }
+      ],
+      "latency_ms": 3025.08
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 879,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 4.85
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:1e98bd65039257f6",
+    "raptor:67600e79:L2:12ea63ea70bf0844",
+    "raptor:67600e79:L3:b8faddafbc8446e8",
+    "0eac870d43736f51:L0:000001",
+    "53c7288bdcd3837a:L0:000153"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:1e98bd65039257f6",
+    "raptor:67600e79:L2:12ea63ea70bf0844",
+    "raptor:67600e79:L3:b8faddafbc8446e8",
+    "0eac870d43736f51:L0:000001",
+    "53c7288bdcd3837a:L0:000153"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:02:05.149101+00:00",
+      "call_id": "e8f770135523",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5d5fcf35ce749e51",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1bfeb3814b684d1e"
+    },
+    {
+      "ts": "2026-11-16T13:02:08.176892+00:00",
+      "call_id": "27352299dd1d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "08f7097a819ab692",
+      "prompt_tokens": 1583,
+      "completion_tokens": 72,
+      "latency_ms": 2.67,
+      "server_ms": 15805.04,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1bfeb3814b684d1e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 1583,
+    "completion_tokens": 72,
+    "total_ms": 3033.04
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

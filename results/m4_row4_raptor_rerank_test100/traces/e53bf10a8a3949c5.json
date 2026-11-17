@@ -1,0 +1,180 @@
+{
+  "trace_id": "e53bf10a8a3949c5",
+  "created_at": "2026-11-16T11:26:34.186437+00:00",
+  "query": "From whom did the Huguenots in the state encompassing Zubly Cemetery purchase land from?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4073.21
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4074.44
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 18084.22
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.89,
+      "bm25_ms": 15.58,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 9,
+        "latency_ms": 4051.22
+      },
+      "hits": [
+        {
+          "id": "f3503d3d186f0f90:L0:000159",
+          "score": 2.282958507537842,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.282958507537842
+        },
+        {
+          "id": "raptor:67600e79:L1:cbdd20954e4be1f4",
+          "score": -1.3109174966812134,
+          "fused": 0.6687777670406903,
+          "dense_rank": 5,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -1.3109174966812134
+        },
+        {
+          "id": "ce57fdde2baaba9c:L0:000143",
+          "score": -1.9896268844604492,
+          "fused": 0.2509048546627983,
+          "dense_rank": 37,
+          "bm25_rank": 8,
+          "fused_rank": 11,
+          "rerank": -1.9896268844604492
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000077",
+          "score": -2.7992050647735596,
+          "fused": 0.1936630015127933,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 17,
+          "rerank": -2.7992050647735596
+        },
+        {
+          "id": "raptor:67600e79:L1:bb69e16a284c3eec",
+          "score": -3.9691641330718994,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 8,
+          "rerank": -3.9691641330718994
+        }
+      ],
+      "latency_ms": 4073.14
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 730,
+      "latency_ms": 1.14
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14009.61
+    }
+  },
+  "retrieved_ids": [
+    "f3503d3d186f0f90:L0:000159",
+    "raptor:67600e79:L1:cbdd20954e4be1f4",
+    "ce57fdde2baaba9c:L0:000143",
+    "5a1a5bbda9db013e:L0:000077",
+    "raptor:67600e79:L1:bb69e16a284c3eec"
+  ],
+  "filtered_ids": [
+    "f3503d3d186f0f90:L0:000159",
+    "raptor:67600e79:L1:cbdd20954e4be1f4",
+    "ce57fdde2baaba9c:L0:000143",
+    "5a1a5bbda9db013e:L0:000077",
+    "raptor:67600e79:L1:bb69e16a284c3eec"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:26:34.188437+00:00",
+      "call_id": "d4f276d40307",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f7b085abcb8170c4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e53bf10a8a3949c5"
+    },
+    {
+      "ts": "2026-11-16T11:26:52.269875+00:00",
+      "call_id": "71c746c1e456",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5e404fddf0a768c4",
+      "prompt_tokens": 1379,
+      "completion_tokens": 69,
+      "latency_ms": 14008.36,
+      "server_ms": 13976.04,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e53bf10a8a3949c5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1379,
+    "completion_tokens": 69,
+    "total_ms": 18086.15
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

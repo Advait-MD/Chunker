@@ -1,0 +1,184 @@
+{
+  "trace_id": "b016fbbea6304717",
+  "created_at": "2026-11-16T11:25:57.532373+00:00",
+  "query": "When did the town WIZE is licensed in become capitol of the state where Ward Township is located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2632.02
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2633.01
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 20061.7
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.21,
+      "bm25_ms": 17.46,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2609.12
+      },
+      "hits": [
+        {
+          "id": "ce290c1e5d5c6641:L0:000116",
+          "score": -1.3048171997070312,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.3048171997070312
+        },
+        {
+          "id": "raptor:67600e79:L1:2d80c033e7b37e4a",
+          "score": -3.888545513153076,
+          "fused": 0.31155113399647977,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -3.888545513153076
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000010",
+          "score": -5.363535404205322,
+          "fused": 0.4155310859489339,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -5.363535404205322
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000154",
+          "score": -5.942495346069336,
+          "fused": 0.2160872473072016,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": -5.942495346069336
+        },
+        {
+          "id": "raptor:67600e79:L1:7e07db0023f8d028",
+          "score": -6.602924346923828,
+          "fused": 0.2525458560572029,
+          "dense_rank": 10,
+          "bm25_rank": 34,
+          "fused_rank": 12,
+          "rerank": -6.602924346923828
+        }
+      ],
+      "latency_ms": 2631.95
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 583,
+      "latency_ms": 0.96
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17428.52
+    }
+  },
+  "retrieved_ids": [
+    "ce290c1e5d5c6641:L0:000116",
+    "raptor:67600e79:L1:2d80c033e7b37e4a",
+    "66f5caec1369ebaf:L0:000010",
+    "178c7e3e6ef6ae87:L0:000154",
+    "raptor:67600e79:L1:7e07db0023f8d028"
+  ],
+  "filtered_ids": [
+    "ce290c1e5d5c6641:L0:000116",
+    "raptor:67600e79:L1:2d80c033e7b37e4a",
+    "66f5caec1369ebaf:L0:000010",
+    "178c7e3e6ef6ae87:L0:000154",
+    "raptor:67600e79:L1:7e07db0023f8d028"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:25:57.533395+00:00",
+      "call_id": "c191e0593e52",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4a419760707b2658",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b016fbbea6304717"
+    },
+    {
+      "ts": "2026-11-16T11:26:17.592876+00:00",
+      "call_id": "419182c89515",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "556da4d5645d7746",
+      "prompt_tokens": 1205,
+      "completion_tokens": 122,
+      "latency_ms": 17427.33,
+      "server_ms": 17401.47,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b016fbbea6304717"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1205,
+    "completion_tokens": 122,
+    "total_ms": 20065.28
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4,
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, there is insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

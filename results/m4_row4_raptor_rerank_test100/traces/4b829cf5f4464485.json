@@ -1,0 +1,181 @@
+{
+  "trace_id": "4b829cf5f4464485",
+  "created_at": "2026-11-16T11:35:47.005168+00:00",
+  "query": "Why was Harper strongly in favor of automation?\n\nOptions:\n(A) New technology was a sign of sophistication.\n(B) He appreciated machine silence and accuracy.\n(C) He wanted to do less work and maximize profits.\n(D) It potentially would save him a lot of money.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2799.39
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2799.53
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18242.37
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.88,
+      "bm25_ms": 34.6,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 23
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2748.28
+      },
+      "hits": [
+        {
+          "id": "raptor:d6781876:L2:646e744315b110a3",
+          "score": 1.0286697149276733,
+          "fused": 0.6839205118925553,
+          "dense_rank": 1,
+          "bm25_rank": 7,
+          "fused_rank": 3,
+          "rerank": 1.0286697149276733
+        },
+        {
+          "id": "raptor:d6781876:L1:f97a9be1413dbc31",
+          "score": 0.8210005760192871,
+          "fused": 0.5638071689312677,
+          "dense_rank": 2,
+          "bm25_rank": 12,
+          "fused_rank": 8,
+          "rerank": 0.8210005760192871
+        },
+        {
+          "id": "d30c407f908e14ca:L0:000004",
+          "score": 0.6346322298049927,
+          "fused": 0.5050279079523565,
+          "dense_rank": 8,
+          "bm25_rank": 10,
+          "fused_rank": 10,
+          "rerank": 0.6346322298049927
+        },
+        {
+          "id": "raptor:d6781876:L1:3facf3b5aaa3c802",
+          "score": -0.3101957142353058,
+          "fused": 0.6313749359096004,
+          "dense_rank": 5,
+          "bm25_rank": 8,
+          "fused_rank": 6,
+          "rerank": -0.3101957142353058
+        },
+        {
+          "id": "raptor:d6781876:L1:c11b9df651fc1fc7",
+          "score": -0.659930408000946,
+          "fused": 0.9875551568443502,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.659930408000946
+        }
+      ],
+      "latency_ms": 2799.33
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1108,
+      "latency_ms": 0.1
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15442.69
+    }
+  },
+  "retrieved_ids": [
+    "raptor:d6781876:L2:646e744315b110a3",
+    "raptor:d6781876:L1:f97a9be1413dbc31",
+    "d30c407f908e14ca:L0:000004",
+    "raptor:d6781876:L1:3facf3b5aaa3c802",
+    "raptor:d6781876:L1:c11b9df651fc1fc7"
+  ],
+  "filtered_ids": [
+    "raptor:d6781876:L2:646e744315b110a3",
+    "raptor:d6781876:L1:f97a9be1413dbc31",
+    "d30c407f908e14ca:L0:000004",
+    "raptor:d6781876:L1:3facf3b5aaa3c802",
+    "raptor:d6781876:L1:c11b9df651fc1fc7"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:35:47.007167+00:00",
+      "call_id": "069a73cd7c6a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "da38c9d9b4e4af70",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4b829cf5f4464485"
+    },
+    {
+      "ts": "2026-11-16T11:36:05.246832+00:00",
+      "call_id": "58e5dde2f86f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0e4b5e4d67c5837f",
+      "prompt_tokens": 1674,
+      "completion_tokens": 61,
+      "latency_ms": 15440.4,
+      "server_ms": 15407.05,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4b829cf5f4464485"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1674,
+    "completion_tokens": 61,
+    "total_ms": 18245.81
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

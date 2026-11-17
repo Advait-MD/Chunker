@@ -1,0 +1,180 @@
+{
+  "trace_id": "082358997c444b32",
+  "created_at": "2026-11-16T11:49:37.576046+00:00",
+  "query": "Why does the stranger land on Venus?\n\nOptions:\n(A) To enlighten the people of Venus by showing them advanced technology\n(B) To take Koroby back to his planet\n(C) To observe the people of Venus and send his observations back home\n(D) He lands there by mistake\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2222.47
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2222.59
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18636.6
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.1,
+      "bm25_ms": 27.61,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 2184.29
+      },
+      "hits": [
+        {
+          "id": "raptor:ce4da183:L1:e4609e99cc7b5d01",
+          "score": 2.077695369720459,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.077695369720459
+        },
+        {
+          "id": "raptor:ce4da183:L2:26cb4971513e051a",
+          "score": -0.4415504038333893,
+          "fused": 0.7657536788731547,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.4415504038333893
+        },
+        {
+          "id": "raptor:ce4da183:L1:f29bd95541dd55e4",
+          "score": -0.805619478225708,
+          "fused": 0.6006900076834653,
+          "dense_rank": 3,
+          "bm25_rank": 7,
+          "fused_rank": 4,
+          "rerank": -0.805619478225708
+        },
+        {
+          "id": "3c1dafeffd094309:L0:000010",
+          "score": -0.8288863897323608,
+          "fused": 0.6423276520755739,
+          "dense_rank": 6,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.8288863897323608
+        },
+        {
+          "id": "3c1dafeffd094309:L0:000000",
+          "score": -0.8860819339752197,
+          "fused": 0.5735570203711121,
+          "dense_rank": 10,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": -0.8860819339752197
+        }
+      ],
+      "latency_ms": 2222.42
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1372,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16413.88
+    }
+  },
+  "retrieved_ids": [
+    "raptor:ce4da183:L1:e4609e99cc7b5d01",
+    "raptor:ce4da183:L2:26cb4971513e051a",
+    "raptor:ce4da183:L1:f29bd95541dd55e4",
+    "3c1dafeffd094309:L0:000010",
+    "3c1dafeffd094309:L0:000000"
+  ],
+  "filtered_ids": [
+    "raptor:ce4da183:L1:e4609e99cc7b5d01",
+    "raptor:ce4da183:L2:26cb4971513e051a",
+    "raptor:ce4da183:L1:f29bd95541dd55e4",
+    "3c1dafeffd094309:L0:000010",
+    "3c1dafeffd094309:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:49:37.577051+00:00",
+      "call_id": "3f4407ca47b8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "84e5216e54d874d2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "082358997c444b32"
+    },
+    {
+      "ts": "2026-11-16T11:49:56.211610+00:00",
+      "call_id": "ad677150f89d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ae62daab5ff216f9",
+      "prompt_tokens": 1961,
+      "completion_tokens": 54,
+      "latency_ms": 16412.47,
+      "server_ms": 16382.24,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "082358997c444b32"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1961,
+    "completion_tokens": 54,
+    "total_ms": 18639.01
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

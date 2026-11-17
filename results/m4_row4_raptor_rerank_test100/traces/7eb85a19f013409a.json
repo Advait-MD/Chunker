@@ -1,0 +1,185 @@
+{
+  "trace_id": "7eb85a19f013409a",
+  "created_at": "2026-11-16T11:47:46.970446+00:00",
+  "query": "What did the Ludmilla drop?\n\nOptions:\n(A) Nothing\n(B) An egg\n(C) A live bomb\n(D) A dead bomb\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2092.45
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2092.61
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24722.96
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.36,
+      "bm25_ms": 18.95,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 20
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 2064.21
+      },
+      "hits": [
+        {
+          "id": "raptor:b49d4508:L2:a6abddae1a83802e",
+          "score": 1.922160267829895,
+          "fused": 0.8908910925715834,
+          "dense_rank": 8,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.922160267829895
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000016",
+          "score": 0.659871518611908,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.659871518611908
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000001",
+          "score": 0.19909778237342834,
+          "fused": 0.7570482910765721,
+          "dense_rank": 4,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 0.19909778237342834
+        },
+        {
+          "id": "raptor:b49d4508:L1:519a241e1d475172",
+          "score": -0.45587021112442017,
+          "fused": 0.7958072586730448,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.45587021112442017
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000000",
+          "score": -0.7511257529258728,
+          "fused": 0.5243193015255616,
+          "dense_rank": 15,
+          "bm25_rank": 9,
+          "fused_rank": 9,
+          "rerank": -0.7511257529258728
+        }
+      ],
+      "latency_ms": 2092.4
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1470,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22630.07
+    }
+  },
+  "retrieved_ids": [
+    "raptor:b49d4508:L2:a6abddae1a83802e",
+    "e2aaf883e15e64c8:L0:000016",
+    "e2aaf883e15e64c8:L0:000001",
+    "raptor:b49d4508:L1:519a241e1d475172",
+    "e2aaf883e15e64c8:L0:000000"
+  ],
+  "filtered_ids": [
+    "raptor:b49d4508:L2:a6abddae1a83802e",
+    "e2aaf883e15e64c8:L0:000016",
+    "e2aaf883e15e64c8:L0:000001",
+    "raptor:b49d4508:L1:519a241e1d475172",
+    "e2aaf883e15e64c8:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:47:46.971443+00:00",
+      "call_id": "3ff1e40e7b49",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9571d9198fb0da3a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7eb85a19f013409a"
+    },
+    {
+      "ts": "2026-11-16T11:48:11.691661+00:00",
+      "call_id": "85c766a1d070",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "43a585536c3d55bc",
+      "prompt_tokens": 1969,
+      "completion_tokens": 102,
+      "latency_ms": 22628.52,
+      "server_ms": 22581.26,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7eb85a19f013409a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1969,
+    "completion_tokens": 102,
+    "total_ms": 24725.04
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "This egg was initially identified as a defective compartment bulkhead by Harry Anderton, the Harbor Defense chief."
+      ]
+    }
+  }
+}

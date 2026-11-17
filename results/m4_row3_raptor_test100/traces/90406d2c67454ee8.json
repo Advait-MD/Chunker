@@ -1,0 +1,167 @@
+{
+  "trace_id": "90406d2c67454ee8",
+  "created_at": "2026-11-16T09:53:09.221143+00:00",
+  "query": "Which has more species, Lysiloma or Hydrocotyle umbellata?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5.39
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5.41
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12992.29
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.95,
+      "bm25_ms": 3.28,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000126",
+          "score": 0.9645188271941753,
+          "fused": 0.9645188271941753,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:27d4358dc7ea8351",
+          "score": 0.9421689569201335,
+          "fused": 0.9421689569201335,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000052",
+          "score": 0.578657869755274,
+          "fused": 0.578657869755274,
+          "dense_rank": 4,
+          "bm25_rank": 4
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000159",
+          "score": 0.5686065504369953,
+          "fused": 0.5686065504369953,
+          "dense_rank": 2,
+          "bm25_rank": 11
+        },
+        {
+          "id": "raptor:67600e79:L1:50f48f211abdc589",
+          "score": 0.4897111402752551,
+          "fused": 0.4897111402752551,
+          "dense_rank": 6,
+          "bm25_rank": 9
+        }
+      ],
+      "latency_ms": 5.36
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 525,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12986.81
+    }
+  },
+  "retrieved_ids": [
+    "ba3cd068cf9ac2e4:L0:000126",
+    "raptor:67600e79:L1:27d4358dc7ea8351",
+    "5d0f6cf59ee42566:L0:000052",
+    "81fc433d55d23b4c:L0:000159",
+    "raptor:67600e79:L1:50f48f211abdc589"
+  ],
+  "filtered_ids": [
+    "ba3cd068cf9ac2e4:L0:000126",
+    "raptor:67600e79:L1:27d4358dc7ea8351",
+    "5d0f6cf59ee42566:L0:000052",
+    "81fc433d55d23b4c:L0:000159",
+    "raptor:67600e79:L1:50f48f211abdc589"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:53:09.222143+00:00",
+      "call_id": "5b649e690c08",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2d2be08ec6f654d4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "90406d2c67454ee8"
+    },
+    {
+      "ts": "2026-11-16T09:53:22.213321+00:00",
+      "call_id": "a656c24f1d97",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d81a3ddb35761ad0",
+      "prompt_tokens": 1165,
+      "completion_tokens": 94,
+      "latency_ms": 12986.23,
+      "server_ms": 12968.77,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "90406d2c67454ee8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1165,
+    "completion_tokens": 94,
+    "total_ms": 12993.2
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Hydrocotyle umbellata has more species."
+      ]
+    }
+  }
+}

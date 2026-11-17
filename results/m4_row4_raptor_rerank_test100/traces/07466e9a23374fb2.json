@@ -1,0 +1,180 @@
+{
+  "trace_id": "07466e9a23374fb2",
+  "created_at": "2026-11-16T12:12:46.988719+00:00",
+  "query": "Which American comedian born on March 21, 1962, appeared in the movie \"Sleepless in Seattle?\"",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2500.79
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2502.78
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14716.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.77,
+      "bm25_ms": 42.95,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2448.69
+      },
+      "hits": [
+        {
+          "id": "ec3410ef955c5c93:L0:000027",
+          "score": 7.301424503326416,
+          "fused": 0.5131813246239716,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 7.301424503326416
+        },
+        {
+          "id": "b120b09075017d08:L0:000150",
+          "score": 6.607762336730957,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.607762336730957
+        },
+        {
+          "id": "raptor:67600e79:L1:b18241d3c2713dee",
+          "score": 4.986462593078613,
+          "fused": 0.6786928253732046,
+          "dense_rank": 12,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 4.986462593078613
+        },
+        {
+          "id": "raptor:67600e79:L1:c4d3a30885b4b958",
+          "score": 2.6452651023864746,
+          "fused": 0.4860435560415659,
+          "dense_rank": 16,
+          "bm25_rank": 7,
+          "fused_rank": 5,
+          "rerank": 2.6452651023864746
+        },
+        {
+          "id": "raptor:67600e79:L2:d266c199b534d640",
+          "score": -3.3996922969818115,
+          "fused": 0.24755590416006865,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 14,
+          "rerank": -3.3996922969818115
+        }
+      ],
+      "latency_ms": 2500.74
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 631,
+      "latency_ms": 1.94
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12213.98
+    }
+  },
+  "retrieved_ids": [
+    "ec3410ef955c5c93:L0:000027",
+    "b120b09075017d08:L0:000150",
+    "raptor:67600e79:L1:b18241d3c2713dee",
+    "raptor:67600e79:L1:c4d3a30885b4b958",
+    "raptor:67600e79:L2:d266c199b534d640"
+  ],
+  "filtered_ids": [
+    "ec3410ef955c5c93:L0:000027",
+    "b120b09075017d08:L0:000150",
+    "raptor:67600e79:L1:b18241d3c2713dee",
+    "raptor:67600e79:L1:c4d3a30885b4b958",
+    "raptor:67600e79:L2:d266c199b534d640"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:12:46.990720+00:00",
+      "call_id": "8ba1f80b7935",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ba9c34e5cd84eeac",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "07466e9a23374fb2"
+    },
+    {
+      "ts": "2026-11-16T12:13:01.704885+00:00",
+      "call_id": "32eed4be0a43",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6849072d198efdd2",
+      "prompt_tokens": 1246,
+      "completion_tokens": 62,
+      "latency_ms": 12212.52,
+      "server_ms": 12189.37,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "07466e9a23374fb2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1246,
+    "completion_tokens": 62,
+    "total_ms": 14721.7
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

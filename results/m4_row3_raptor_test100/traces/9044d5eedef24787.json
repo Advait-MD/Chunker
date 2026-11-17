@@ -1,0 +1,164 @@
+{
+  "trace_id": "9044d5eedef24787",
+  "created_at": "2026-11-15T08:44:55.868036+00:00",
+  "query": "what previous work do they also look at?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.79
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18.86
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19115.95
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.49,
+      "bm25_ms": 14.97,
+      "n_candidates": {
+        "dense": 30,
+        "bm25": 16
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "dbd4baea7b7b2cd1:L0:000009",
+          "score": 0.8415561139295477,
+          "fused": 0.8415561139295477,
+          "dense_rank": 10,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:46fd353f:L1:10a521934ab56b5a",
+          "score": 0.44853794463955327,
+          "fused": 0.44853794463955327,
+          "dense_rank": 16,
+          "bm25_rank": 2
+        },
+        {
+          "id": "dbd4baea7b7b2cd1:L0:000006",
+          "score": 0.38610655687409356,
+          "fused": 0.38610655687409356,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "dbd4baea7b7b2cd1:L0:000018",
+          "score": 0.366220460869619,
+          "fused": 0.366220460869619,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "dbd4baea7b7b2cd1:L0:000017",
+          "score": 0.3169728152278798,
+          "fused": 0.3169728152278798,
+          "dense_rank": 19,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 18.74
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1094,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19097.02
+    }
+  },
+  "retrieved_ids": [
+    "dbd4baea7b7b2cd1:L0:000009",
+    "raptor:46fd353f:L1:10a521934ab56b5a",
+    "dbd4baea7b7b2cd1:L0:000006",
+    "dbd4baea7b7b2cd1:L0:000018",
+    "dbd4baea7b7b2cd1:L0:000017"
+  ],
+  "filtered_ids": [
+    "dbd4baea7b7b2cd1:L0:000009",
+    "raptor:46fd353f:L1:10a521934ab56b5a",
+    "dbd4baea7b7b2cd1:L0:000006",
+    "dbd4baea7b7b2cd1:L0:000018",
+    "dbd4baea7b7b2cd1:L0:000017"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T08:44:55.870341+00:00",
+      "call_id": "01d840cbb3aa",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c5f39df29bf46d1a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9044d5eedef24787"
+    },
+    {
+      "ts": "2026-11-15T08:45:14.983636+00:00",
+      "call_id": "0714e7b35135",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "701260466a1321dc",
+      "prompt_tokens": 1801,
+      "completion_tokens": 74,
+      "latency_ms": 19096.3,
+      "server_ms": 19070.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9044d5eedef24787"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1801,
+    "completion_tokens": 74,
+    "total_ms": 19116.42
+  },
+  "config_hash": "4304b1db8856",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

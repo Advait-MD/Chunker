@@ -1,0 +1,165 @@
+{
+  "trace_id": "11e7cdcebabd4c1e",
+  "created_at": "2026-11-16T09:51:12.829021+00:00",
+  "query": "Which dog is believed to dispel ghosts and evil spirits, Segugio Italiano or Sapsali?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.65
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14.71
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12491.84
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.42,
+      "bm25_ms": 10.88,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "838c0e0106e6f015:L0:000070",
+          "score": 0.9083702205974759,
+          "fused": 0.9083702205974759,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L2:8a16cd3dba97f8fa",
+          "score": 0.612198152650556,
+          "fused": 0.612198152650556,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:67600e79:L1:0a631daa7cfa5cc7",
+          "score": 0.5246907838066204,
+          "fused": 0.5246907838066204,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:67600e79:L1:42677093ef252b4b",
+          "score": 0.47003550031097774,
+          "fused": 0.47003550031097774,
+          "dense_rank": 4,
+          "bm25_rank": 6
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000166",
+          "score": 0.45542335583883614,
+          "fused": 0.45542335583883614,
+          "dense_rank": 8,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 14.61
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 688,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12476.96
+    }
+  },
+  "retrieved_ids": [
+    "838c0e0106e6f015:L0:000070",
+    "raptor:67600e79:L2:8a16cd3dba97f8fa",
+    "raptor:67600e79:L1:0a631daa7cfa5cc7",
+    "raptor:67600e79:L1:42677093ef252b4b",
+    "838c0e0106e6f015:L0:000166"
+  ],
+  "filtered_ids": [
+    "838c0e0106e6f015:L0:000070",
+    "raptor:67600e79:L2:8a16cd3dba97f8fa",
+    "raptor:67600e79:L1:0a631daa7cfa5cc7",
+    "raptor:67600e79:L1:42677093ef252b4b",
+    "838c0e0106e6f015:L0:000166"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:51:12.830378+00:00",
+      "call_id": "9cf2d26c005b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "11f644b14aed56c2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "11e7cdcebabd4c1e"
+    },
+    {
+      "ts": "2026-11-16T09:51:25.319628+00:00",
+      "call_id": "14dcd30c69ac",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0ae75c95f2c7a244",
+      "prompt_tokens": 1290,
+      "completion_tokens": 55,
+      "latency_ms": 12475.95,
+      "server_ms": 12449.62,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "11e7cdcebabd4c1e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1290,
+    "completion_tokens": 55,
+    "total_ms": 12493.4
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

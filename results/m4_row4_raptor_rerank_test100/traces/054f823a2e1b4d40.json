@@ -1,0 +1,180 @@
+{
+  "trace_id": "054f823a2e1b4d40",
+  "created_at": "2026-11-16T12:16:51.731873+00:00",
+  "query": "What genre is the novel from which the fast-food restaurant specializing in seafood derives its name?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2301.67
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2302.0
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13900.63
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.3,
+      "bm25_ms": 12.78,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2281.33
+      },
+      "hits": [
+        {
+          "id": "81fc433d55d23b4c:L0:000021",
+          "score": 5.618835926055908,
+          "fused": 0.8937740193601222,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 5.618835926055908
+        },
+        {
+          "id": "raptor:67600e79:L1:5dcf199bb3d327ce",
+          "score": 2.8946259021759033,
+          "fused": 0.9947238616927057,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.8946259021759033
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000141",
+          "score": 0.7257313132286072,
+          "fused": 0.7710610946837179,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.7257313132286072
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000021",
+          "score": -3.9475514888763428,
+          "fused": 0.5440015697609895,
+          "dense_rank": 4,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": -3.9475514888763428
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000073",
+          "score": -4.191704273223877,
+          "fused": 0.08047576207502878,
+          "dense_rank": 12,
+          "bm25_rank": null,
+          "fused_rank": 20,
+          "rerank": -4.191704273223877
+        }
+      ],
+      "latency_ms": 2301.62
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 483,
+      "latency_ms": 0.28
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11598.5
+    }
+  },
+  "retrieved_ids": [
+    "81fc433d55d23b4c:L0:000021",
+    "raptor:67600e79:L1:5dcf199bb3d327ce",
+    "81fc433d55d23b4c:L0:000141",
+    "8e50522b7cb636d8:L0:000021",
+    "bc1dba3471045f02:L0:000073"
+  ],
+  "filtered_ids": [
+    "81fc433d55d23b4c:L0:000021",
+    "raptor:67600e79:L1:5dcf199bb3d327ce",
+    "81fc433d55d23b4c:L0:000141",
+    "8e50522b7cb636d8:L0:000021",
+    "bc1dba3471045f02:L0:000073"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:16:51.733870+00:00",
+      "call_id": "6562a83cb539",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "25fd0af4f1d6eb5a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "054f823a2e1b4d40"
+    },
+    {
+      "ts": "2026-11-16T12:17:05.631929+00:00",
+      "call_id": "40e5c1eed954",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b8b9afb6fd1c4e20",
+      "prompt_tokens": 1028,
+      "completion_tokens": 71,
+      "latency_ms": 11597.29,
+      "server_ms": 11566.59,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "054f823a2e1b4d40"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1028,
+    "completion_tokens": 71,
+    "total_ms": 13904.42
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

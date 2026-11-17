@@ -1,0 +1,165 @@
+{
+  "trace_id": "d7aaba3846614c89",
+  "created_at": "2026-11-16T10:18:51.484527+00:00",
+  "query": "Which film has the director who was born first, The Gigolos or More About The Children Of Noisy Village?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.71
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.83
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14149.48
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.93,
+      "bm25_ms": 4.61,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000131",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000141",
+          "score": 0.6622052120818988,
+          "fused": 0.6622052120818988,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:d66ab1f496076d0e",
+          "score": 0.3934238964156757,
+          "fused": 0.3934238964156757,
+          "dense_rank": 44,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:67600e79:L1:7019fa82b4f8fa51",
+          "score": 0.30683985407181014,
+          "fused": 0.30683985407181014,
+          "dense_rank": 3,
+          "bm25_rank": 15
+        },
+        {
+          "id": "raptor:67600e79:L1:0c50581c78a447f5",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 6.69
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 663,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14142.52
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000131",
+    "317e12ccd417c0d7:L0:000141",
+    "raptor:67600e79:L1:d66ab1f496076d0e",
+    "raptor:67600e79:L1:7019fa82b4f8fa51",
+    "raptor:67600e79:L1:0c50581c78a447f5"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000131",
+    "317e12ccd417c0d7:L0:000141",
+    "raptor:67600e79:L1:d66ab1f496076d0e",
+    "raptor:67600e79:L1:7019fa82b4f8fa51",
+    "raptor:67600e79:L1:0c50581c78a447f5"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:18:51.485529+00:00",
+      "call_id": "4f6f649707fe",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b0aa55bfcb2916d3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d7aaba3846614c89"
+    },
+    {
+      "ts": "2026-11-16T10:19:05.633471+00:00",
+      "call_id": "30368a41dd3a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4a43b94704320744",
+      "prompt_tokens": 1313,
+      "completion_tokens": 93,
+      "latency_ms": 14141.59,
+      "server_ms": 14118.98,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d7aaba3846614c89"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1313,
+    "completion_tokens": 93,
+    "total_ms": 14151.07
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

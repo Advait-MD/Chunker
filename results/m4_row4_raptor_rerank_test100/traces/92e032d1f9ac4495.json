@@ -1,0 +1,187 @@
+{
+  "trace_id": "92e032d1f9ac4495",
+  "created_at": "2026-11-16T11:48:51.803799+00:00",
+  "query": "Of the following descriptions, which best describe Meek?\n\nOptions:\n(A) nosy and cautious\n(B) confident and handsome\n(C) funny and charismatic\n(D) clumsy and inexperienced\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2485.09
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2485.2
+    },
+    {
+      "state": "DONE",
+      "t_ms": 26533.08
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.24,
+      "bm25_ms": 19.22,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 19
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2460.77
+      },
+      "hits": [
+        {
+          "id": "raptor:1f717b85:L2:1cd49340fe7a4fe6",
+          "score": -2.78861665725708,
+          "fused": 0.7044946146109451,
+          "dense_rank": 2,
+          "bm25_rank": 11,
+          "fused_rank": 6,
+          "rerank": -2.78861665725708
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000001",
+          "score": -2.9853620529174805,
+          "fused": 0.49339711592734226,
+          "dense_rank": 20,
+          "bm25_rank": 16,
+          "fused_rank": 16,
+          "rerank": -2.9853620529174805
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000011",
+          "score": -3.095460891723633,
+          "fused": 0.72760403028861,
+          "dense_rank": 15,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -3.095460891723633
+        },
+        {
+          "id": "raptor:1f717b85:L1:81fee15de27f960b",
+          "score": -3.1800308227539062,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -3.1800308227539062
+        },
+        {
+          "id": "d0e00aef59ec5db1:L0:000010",
+          "score": -3.30155873298645,
+          "fused": 0.7586108254958989,
+          "dense_rank": 4,
+          "bm25_rank": 6,
+          "fused_rank": 2,
+          "rerank": -3.30155873298645
+        }
+      ],
+      "latency_ms": 2485.04
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1501,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24046.95
+    }
+  },
+  "retrieved_ids": [
+    "raptor:1f717b85:L2:1cd49340fe7a4fe6",
+    "d0e00aef59ec5db1:L0:000001",
+    "d0e00aef59ec5db1:L0:000011",
+    "raptor:1f717b85:L1:81fee15de27f960b",
+    "d0e00aef59ec5db1:L0:000010"
+  ],
+  "filtered_ids": [
+    "raptor:1f717b85:L2:1cd49340fe7a4fe6",
+    "d0e00aef59ec5db1:L0:000001",
+    "d0e00aef59ec5db1:L0:000011",
+    "raptor:1f717b85:L1:81fee15de27f960b",
+    "d0e00aef59ec5db1:L0:000010"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:48:51.805205+00:00",
+      "call_id": "4404d5d05bf4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5926ff532be4df41",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "92e032d1f9ac4495"
+    },
+    {
+      "ts": "2026-11-16T11:49:18.334857+00:00",
+      "call_id": "19f6e7343e0e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b5066cd73f1bfa62",
+      "prompt_tokens": 2084,
+      "completion_tokens": 127,
+      "latency_ms": 24045.48,
+      "server_ms": 24009.56,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "92e032d1f9ac4495"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2084,
+    "completion_tokens": 127,
+    "total_ms": 26535.56
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "(D) Mr.",
+        "He stumbles in his spacesuit, has to be careful due to low gravity, and admits he is not an expert at using stilts.",
+        "He also expresses uncertainty and hesitation in his interactions, such as when he doubts his piloting skills and his ability to approach the bugs."
+      ]
+    }
+  }
+}

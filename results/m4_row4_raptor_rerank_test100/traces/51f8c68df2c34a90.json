@@ -1,0 +1,183 @@
+{
+  "trace_id": "51f8c68df2c34a90",
+  "created_at": "2026-11-16T12:05:05.365238+00:00",
+  "query": "How does the author feel about mathematicians?\n\nOptions:\n(A) They scare him\n(B) He relates because he used to be one\n(C) He's never been around them\n(D) He's not interested in knowing more about them\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 610.08
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 610.43
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20996.25
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.28,
+      "bm25_ms": 13.37,
+      "n_candidates": {
+        "dense": 8,
+        "bm25": 8
+      },
+      "n_fused": 8,
+      "rerank": {
+        "n": 8,
+        "n_computed": 1,
+        "latency_ms": 591.85
+      },
+      "hits": [
+        {
+          "id": "bb0e284a66bbcba4:L0:000001",
+          "score": -2.404710531234741,
+          "fused": 0.8038105554496642,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -2.404710531234741
+        },
+        {
+          "id": "bb0e284a66bbcba4:L0:000000",
+          "score": -2.9874463081359863,
+          "fused": 0.504723003896095,
+          "dense_rank": 5,
+          "bm25_rank": 7,
+          "fused_rank": 6,
+          "rerank": -2.9874463081359863
+        },
+        {
+          "id": "raptor:ecae6402:L1:7df88657eeb9ca89",
+          "score": -3.016658067703247,
+          "fused": 0.9288126666118632,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -3.016658067703247
+        },
+        {
+          "id": "bb0e284a66bbcba4:L0:000003",
+          "score": -3.7397069931030273,
+          "fused": 0.597262525341821,
+          "dense_rank": 6,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -3.7397069931030273
+        },
+        {
+          "id": "bb0e284a66bbcba4:L0:000004",
+          "score": -3.836710214614868,
+          "fused": 0.6009601468646351,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": -3.836710214614868
+        }
+      ],
+      "latency_ms": 610.05
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1701,
+      "latency_ms": 0.31
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20384.88
+    }
+  },
+  "retrieved_ids": [
+    "bb0e284a66bbcba4:L0:000001",
+    "bb0e284a66bbcba4:L0:000000",
+    "raptor:ecae6402:L1:7df88657eeb9ca89",
+    "bb0e284a66bbcba4:L0:000003",
+    "bb0e284a66bbcba4:L0:000004"
+  ],
+  "filtered_ids": [
+    "bb0e284a66bbcba4:L0:000001",
+    "bb0e284a66bbcba4:L0:000000",
+    "raptor:ecae6402:L1:7df88657eeb9ca89",
+    "bb0e284a66bbcba4:L0:000003",
+    "bb0e284a66bbcba4:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:05:05.366563+00:00",
+      "call_id": "6d6049b8b4eb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "460ef42139372994",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "51f8c68df2c34a90"
+    },
+    {
+      "ts": "2026-11-16T12:05:26.359940+00:00",
+      "call_id": "7698bebb92a4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a6517afa08f91274",
+      "prompt_tokens": 2362,
+      "completion_tokens": 75,
+      "latency_ms": 20383.6,
+      "server_ms": 20330.15,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "51f8c68df2c34a90"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2362,
+    "completion_tokens": 75,
+    "total_ms": 20998.29
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

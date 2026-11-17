@@ -1,0 +1,165 @@
+{
+  "trace_id": "b205914a9d654a07",
+  "created_at": "2026-11-16T09:44:18.414429+00:00",
+  "query": "Who was the great grandfather of Franklin Seaver Pratt's wife?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.2
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.27
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15021.63
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.66,
+      "bm25_ms": 9.17,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000097",
+          "score": 0.8155921537978335,
+          "fused": 0.8155921537978335,
+          "dense_rank": 9,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:5274c113a17581c3",
+          "score": 0.5294843261828631,
+          "fused": 0.5294843261828631,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000031",
+          "score": 0.43484534616051207,
+          "fused": 0.43484534616051207,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000077",
+          "score": 0.34934677344332626,
+          "fused": 0.34934677344332626,
+          "dense_rank": 18,
+          "bm25_rank": 5
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000062",
+          "score": 0.33467080903562557,
+          "fused": 0.33467080903562557,
+          "dense_rank": 36,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 13.16
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 525,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15008.23
+    }
+  },
+  "retrieved_ids": [
+    "c8fd2b3ea47eb07f:L0:000097",
+    "raptor:67600e79:L1:5274c113a17581c3",
+    "cc2399aca11eb631:L0:000031",
+    "ec3410ef955c5c93:L0:000077",
+    "9794e842cc9565f0:L0:000062"
+  ],
+  "filtered_ids": [
+    "c8fd2b3ea47eb07f:L0:000097",
+    "raptor:67600e79:L1:5274c113a17581c3",
+    "cc2399aca11eb631:L0:000031",
+    "ec3410ef955c5c93:L0:000077",
+    "9794e842cc9565f0:L0:000062"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:44:18.416420+00:00",
+      "call_id": "76521f4837f5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2483b0c183c2d2f5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b205914a9d654a07"
+    },
+    {
+      "ts": "2026-11-16T09:44:33.435648+00:00",
+      "call_id": "66026791da95",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a10e7fd7a854d80e",
+      "prompt_tokens": 1200,
+      "completion_tokens": 87,
+      "latency_ms": 15007.25,
+      "server_ms": 14985.72,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b205914a9d654a07"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1200,
+    "completion_tokens": 87,
+    "total_ms": 15023.49
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

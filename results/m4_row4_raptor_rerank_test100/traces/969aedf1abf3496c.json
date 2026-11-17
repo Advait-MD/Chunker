@@ -1,0 +1,182 @@
+{
+  "trace_id": "969aedf1abf3496c",
+  "created_at": "2026-11-16T11:36:05.253831+00:00",
+  "query": "Why did the Russians want to send cars into space?\n\nOptions:\n(A) They didn't want to\n(B) They have strategic value\n(C) To get revenge on the Americans\n(D) To compete with the Americans\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1343.91
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1344.27
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22641.96
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.16,
+      "bm25_ms": 26.06,
+      "n_candidates": {
+        "dense": 16,
+        "bm25": 16
+      },
+      "n_fused": 16,
+      "rerank": {
+        "n": 16,
+        "n_computed": 2,
+        "latency_ms": 1307.51
+      },
+      "hits": [
+        {
+          "id": "raptor:0c479c7b:L1:79657a2f0ad9c472",
+          "score": -1.6430836915969849,
+          "fused": 0.4228309844359794,
+          "dense_rank": 10,
+          "bm25_rank": 5,
+          "fused_rank": 8,
+          "rerank": -1.6430836915969849
+        },
+        {
+          "id": "2a07e554c74cf095:L0:000011",
+          "score": -1.678924560546875,
+          "fused": 0.9269235173589951,
+          "dense_rank": 5,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.678924560546875
+        },
+        {
+          "id": "raptor:0c479c7b:L1:4946931d1130eb88",
+          "score": -1.7663778066635132,
+          "fused": 0.5566187920062988,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": -1.7663778066635132
+        },
+        {
+          "id": "2a07e554c74cf095:L0:000000",
+          "score": -2.0494823455810547,
+          "fused": 0.6847068305157737,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -2.0494823455810547
+        },
+        {
+          "id": "2a07e554c74cf095:L0:000001",
+          "score": -3.571730852127075,
+          "fused": 0.2505792505951774,
+          "dense_rank": 7,
+          "bm25_rank": 15,
+          "fused_rank": 11,
+          "rerank": -3.571730852127075
+        }
+      ],
+      "latency_ms": 1343.85
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1577,
+      "latency_ms": 0.31
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21297.48
+    }
+  },
+  "retrieved_ids": [
+    "raptor:0c479c7b:L1:79657a2f0ad9c472",
+    "2a07e554c74cf095:L0:000011",
+    "raptor:0c479c7b:L1:4946931d1130eb88",
+    "2a07e554c74cf095:L0:000000",
+    "2a07e554c74cf095:L0:000001"
+  ],
+  "filtered_ids": [
+    "raptor:0c479c7b:L1:79657a2f0ad9c472",
+    "2a07e554c74cf095:L0:000011",
+    "raptor:0c479c7b:L1:4946931d1130eb88",
+    "2a07e554c74cf095:L0:000000",
+    "2a07e554c74cf095:L0:000001"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:36:05.255831+00:00",
+      "call_id": "5f662400a150",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cde15d102da365ef",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "969aedf1abf3496c"
+    },
+    {
+      "ts": "2026-11-16T11:36:27.894947+00:00",
+      "call_id": "9d4d207fb495",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6210cad6c2ed1854",
+      "prompt_tokens": 2113,
+      "completion_tokens": 86,
+      "latency_ms": 21295.82,
+      "server_ms": 21257.67,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "969aedf1abf3496c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2113,
+    "completion_tokens": 86,
+    "total_ms": 22644.13
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "(C) To get revenge on the Americans."
+      ]
+    }
+  }
+}

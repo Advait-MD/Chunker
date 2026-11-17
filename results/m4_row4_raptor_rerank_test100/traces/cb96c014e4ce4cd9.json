@@ -1,0 +1,180 @@
+{
+  "trace_id": "cb96c014e4ce4cd9",
+  "created_at": "2026-11-16T12:10:06.332428+00:00",
+  "query": "The Distribution of Industry act was passed by a man who was prime minister when?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2840.72
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2842.94
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18198.66
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.7,
+      "bm25_ms": 22.06,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2800.95
+      },
+      "hits": [
+        {
+          "id": "ec3410ef955c5c93:L0:000166",
+          "score": 4.753418922424316,
+          "fused": 0.7199197533726335,
+          "dense_rank": 35,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 4.753418922424316
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000040",
+          "score": 1.72927725315094,
+          "fused": 0.3319714231017459,
+          "dense_rank": 3,
+          "bm25_rank": 22,
+          "fused_rank": 16,
+          "rerank": 1.72927725315094
+        },
+        {
+          "id": "634431bb1e27714f:L0:000106",
+          "score": 0.26412343978881836,
+          "fused": 0.9046880058286941,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 1,
+          "rerank": 0.26412343978881836
+        },
+        {
+          "id": "raptor:67600e79:L1:f6d7804ba5ec2125",
+          "score": -0.3768942058086395,
+          "fused": 0.3027848865561056,
+          "dense_rank": null,
+          "bm25_rank": 14,
+          "fused_rank": 17,
+          "rerank": -0.3768942058086395
+        },
+        {
+          "id": "raptor:67600e79:L1:56e1044d199ba70c",
+          "score": -0.47836995124816895,
+          "fused": 0.439420692699173,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 12,
+          "rerank": -0.47836995124816895
+        }
+      ],
+      "latency_ms": 2840.66
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 838,
+      "latency_ms": 2.16
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15355.58
+    }
+  },
+  "retrieved_ids": [
+    "ec3410ef955c5c93:L0:000166",
+    "8e50522b7cb636d8:L0:000040",
+    "634431bb1e27714f:L0:000106",
+    "raptor:67600e79:L1:f6d7804ba5ec2125",
+    "raptor:67600e79:L1:56e1044d199ba70c"
+  ],
+  "filtered_ids": [
+    "ec3410ef955c5c93:L0:000166",
+    "8e50522b7cb636d8:L0:000040",
+    "634431bb1e27714f:L0:000106",
+    "raptor:67600e79:L1:f6d7804ba5ec2125",
+    "raptor:67600e79:L1:56e1044d199ba70c"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:10:06.334427+00:00",
+      "call_id": "ee62a15aa1cc",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5c3c1919ff1d371b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cb96c014e4ce4cd9"
+    },
+    {
+      "ts": "2026-11-16T12:10:24.530380+00:00",
+      "call_id": "99987319883d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "cf7692d5dc1436e5",
+      "prompt_tokens": 1470,
+      "completion_tokens": 88,
+      "latency_ms": 15353.34,
+      "server_ms": 15326.54,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "cb96c014e4ce4cd9"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1470,
+    "completion_tokens": 88,
+    "total_ms": 18201.19
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

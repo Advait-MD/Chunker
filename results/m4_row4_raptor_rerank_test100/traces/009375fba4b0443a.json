@@ -1,0 +1,185 @@
+{
+  "trace_id": "009375fba4b0443a",
+  "created_at": "2026-11-16T13:13:55.877816+00:00",
+  "query": "What specific React hooks did Steve Jobs implement when launching the original Macintosh computer in 1984?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3313.81
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3313.92
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 24568.61
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.45,
+      "bm25_ms": 23.57,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 3281.16
+      },
+      "hits": [
+        {
+          "id": "raptor:7d5dec53:L2:fdd6e3f3b836c050",
+          "score": -0.3135973811149597,
+          "fused": 0.3816622208825436,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 12,
+          "rerank": -0.3135973811149597
+        },
+        {
+          "id": "raptor:7d5dec53:L1:d8e9c936a22822c8",
+          "score": -1.0922390222549438,
+          "fused": 0.6290045983028008,
+          "dense_rank": 8,
+          "bm25_rank": 8,
+          "fused_rank": 3,
+          "rerank": -1.0922390222549438
+        },
+        {
+          "id": "raptor:7d5dec53:L1:e24b0c28db25ee9c",
+          "score": -1.353420376777649,
+          "fused": 0.3182985237988603,
+          "dense_rank": null,
+          "bm25_rank": 14,
+          "fused_rank": 15,
+          "rerank": -1.353420376777649
+        },
+        {
+          "id": "raptor:7d5dec53:L1:7c71cabf64d4dbb1",
+          "score": -1.6679154634475708,
+          "fused": 0.3737804153008049,
+          "dense_rank": 23,
+          "bm25_rank": 17,
+          "fused_rank": 13,
+          "rerank": -1.6679154634475708
+        },
+        {
+          "id": "17581cb533e90c48:L0:000881",
+          "score": -1.772136926651001,
+          "fused": 0.3030407420955174,
+          "dense_rank": 50,
+          "bm25_rank": 16,
+          "fused_rank": 17,
+          "rerank": -1.772136926651001
+        }
+      ],
+      "latency_ms": 3313.76
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1090,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21254.5
+    }
+  },
+  "retrieved_ids": [
+    "raptor:7d5dec53:L2:fdd6e3f3b836c050",
+    "raptor:7d5dec53:L1:d8e9c936a22822c8",
+    "raptor:7d5dec53:L1:e24b0c28db25ee9c",
+    "raptor:7d5dec53:L1:7c71cabf64d4dbb1",
+    "17581cb533e90c48:L0:000881"
+  ],
+  "filtered_ids": [
+    "raptor:7d5dec53:L2:fdd6e3f3b836c050",
+    "raptor:7d5dec53:L1:d8e9c936a22822c8",
+    "raptor:7d5dec53:L1:e24b0c28db25ee9c",
+    "raptor:7d5dec53:L1:7c71cabf64d4dbb1",
+    "17581cb533e90c48:L0:000881"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:13:55.880819+00:00",
+      "call_id": "c074c7fe065a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "88e55887dcc8a674",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "009375fba4b0443a"
+    },
+    {
+      "ts": "2026-11-16T13:14:20.445056+00:00",
+      "call_id": "07ac888391d1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "21045517e749627e",
+      "prompt_tokens": 1620,
+      "completion_tokens": 112,
+      "latency_ms": 21253.04,
+      "server_ms": 21220.26,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "009375fba4b0443a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1620,
+    "completion_tokens": 112,
+    "total_ms": 24570.08
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Steve Jobs did not implement any specific React hooks when launching the original Macintosh computer in 1984."
+      ]
+    }
+  }
+}

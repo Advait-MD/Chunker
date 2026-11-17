@@ -1,0 +1,169 @@
+{
+  "trace_id": "85245dd567c242ee",
+  "created_at": "2026-11-15T09:20:01.429742+00:00",
+  "query": "In 2010, what was the population of the city where the Yongle emperor greeted the person to whom the edict was addressed?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16.77
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16.83
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 23721.57
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.45,
+      "bm25_ms": 13.0,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "6bddce8aaad42fea:L0:000096",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:a7e9e307d1514997",
+          "score": 0.6990146404029054,
+          "fused": 0.6990146404029054,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000107",
+          "score": 0.6061937116016934,
+          "fused": 0.6061937116016934,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "15abb5e49dced915:L0:000024",
+          "score": 0.5715037802203621,
+          "fused": 0.5715037802203621,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000061",
+          "score": 0.5582051897642503,
+          "fused": 0.5582051897642503,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 16.73
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 619,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23704.61
+    }
+  },
+  "retrieved_ids": [
+    "6bddce8aaad42fea:L0:000096",
+    "raptor:67600e79:L1:a7e9e307d1514997",
+    "178c7e3e6ef6ae87:L0:000107",
+    "15abb5e49dced915:L0:000024",
+    "73dfa6a9bfcab050:L0:000061"
+  ],
+  "filtered_ids": [
+    "6bddce8aaad42fea:L0:000096",
+    "raptor:67600e79:L1:a7e9e307d1514997",
+    "178c7e3e6ef6ae87:L0:000107",
+    "15abb5e49dced915:L0:000024",
+    "73dfa6a9bfcab050:L0:000061"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:20:01.431878+00:00",
+      "call_id": "c39e1e67a88c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bc154c900dad8423",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "85245dd567c242ee"
+    },
+    {
+      "ts": "2026-11-15T09:20:25.150976+00:00",
+      "call_id": "67206954a468",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8f3586d4db6c99b6",
+      "prompt_tokens": 1310,
+      "completion_tokens": 159,
+      "latency_ms": 23703.92,
+      "server_ms": 23682.88,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "85245dd567c242ee"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1310,
+    "completion_tokens": 159,
+    "total_ms": 23722.52
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        1,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "However, there is no evidence that the Yongle Emperor greeted the person to whom the edict was addressed in Bloomingdale, Florida."
+      ]
+    }
+  }
+}

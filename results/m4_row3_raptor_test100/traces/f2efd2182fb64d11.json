@@ -1,0 +1,164 @@
+{
+  "trace_id": "f2efd2182fb64d11",
+  "created_at": "2026-11-15T09:00:45.312393+00:00",
+  "query": "What knowledge base do they rely on?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.88
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.16
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14518.3
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.77,
+      "bm25_ms": 8.51,
+      "n_candidates": {
+        "dense": 27,
+        "bm25": 3
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "6f186980a2becfbd:L0:000001",
+          "score": 0.9935346856710714,
+          "fused": 0.9935346856710714,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:d87efcd4:L1:0f9de7bfc8f950c9",
+          "score": 0.41850908333534487,
+          "fused": 0.41850908333534487,
+          "dense_rank": 24,
+          "bm25_rank": 2
+        },
+        {
+          "id": "6f186980a2becfbd:L0:000018",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "6f186980a2becfbd:L0:000000",
+          "score": 0.25628657856932424,
+          "fused": 0.25628657856932424,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "6f186980a2becfbd:L0:000008",
+          "score": 0.24683848786813944,
+          "fused": 0.24683848786813944,
+          "dense_rank": 4,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 13.84
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1091,
+      "latency_ms": 1.24
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14503.0
+    }
+  },
+  "retrieved_ids": [
+    "6f186980a2becfbd:L0:000001",
+    "raptor:d87efcd4:L1:0f9de7bfc8f950c9",
+    "6f186980a2becfbd:L0:000018",
+    "6f186980a2becfbd:L0:000000",
+    "6f186980a2becfbd:L0:000008"
+  ],
+  "filtered_ids": [
+    "6f186980a2becfbd:L0:000001",
+    "raptor:d87efcd4:L1:0f9de7bfc8f950c9",
+    "6f186980a2becfbd:L0:000018",
+    "6f186980a2becfbd:L0:000000",
+    "6f186980a2becfbd:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:00:45.314393+00:00",
+      "call_id": "80cb8bba51b8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "371d85b44df4c7e2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f2efd2182fb64d11"
+    },
+    {
+      "ts": "2026-11-15T09:00:59.830070+00:00",
+      "call_id": "439a1575b68d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6c4db2c018c7aaaa",
+      "prompt_tokens": 1706,
+      "completion_tokens": 52,
+      "latency_ms": 14501.72,
+      "server_ms": 14468.32,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "f2efd2182fb64d11"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1706,
+    "completion_tokens": 52,
+    "total_ms": 14519.94
+  },
+  "config_hash": "4304b1db8856",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

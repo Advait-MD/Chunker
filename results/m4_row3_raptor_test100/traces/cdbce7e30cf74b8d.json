@@ -1,0 +1,167 @@
+{
+  "trace_id": "cdbce7e30cf74b8d",
+  "created_at": "2026-11-15T09:35:15.794523+00:00",
+  "query": "Why does they author write about these two different movies within the same article?\n\nOptions:\n(A) The movies have a similar theme\n(B) The directors have a similar process\n(C) The directors worked together\n(D) The movies have similar criticisms\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 26.8
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 26.86
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18988.45
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.02,
+      "bm25_ms": 23.61,
+      "n_candidates": {
+        "dense": 8,
+        "bm25": 8
+      },
+      "n_fused": 8,
+      "hits": [
+        {
+          "id": "33f3974d6e263a41:L0:000000",
+          "score": 0.9000525505567267,
+          "fused": 0.9000525505567267,
+          "dense_rank": 5,
+          "bm25_rank": 1
+        },
+        {
+          "id": "33f3974d6e263a41:L0:000001",
+          "score": 0.6394459358123288,
+          "fused": 0.6394459358123288,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "33f3974d6e263a41:L0:000005",
+          "score": 0.4372786136463931,
+          "fused": 0.4372786136463931,
+          "dense_rank": 6,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:32bc7f9d:L1:52a54bd95c31691c",
+          "score": 0.39241001130769193,
+          "fused": 0.39241001130769193,
+          "dense_rank": 3,
+          "bm25_rank": 5
+        },
+        {
+          "id": "33f3974d6e263a41:L0:000006",
+          "score": 0.3745598376441861,
+          "fused": 0.3745598376441861,
+          "dense_rank": 2,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 26.76
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1668,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18961.5
+    }
+  },
+  "retrieved_ids": [
+    "33f3974d6e263a41:L0:000000",
+    "33f3974d6e263a41:L0:000001",
+    "33f3974d6e263a41:L0:000005",
+    "raptor:32bc7f9d:L1:52a54bd95c31691c",
+    "33f3974d6e263a41:L0:000006"
+  ],
+  "filtered_ids": [
+    "33f3974d6e263a41:L0:000000",
+    "33f3974d6e263a41:L0:000001",
+    "33f3974d6e263a41:L0:000005",
+    "raptor:32bc7f9d:L1:52a54bd95c31691c",
+    "33f3974d6e263a41:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:35:15.796516+00:00",
+      "call_id": "7d625861ac5e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9c8facafce266ac2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cdbce7e30cf74b8d"
+    },
+    {
+      "ts": "2026-11-15T09:35:34.782151+00:00",
+      "call_id": "8e3cc0de6c53",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "101a1813f5ab8f8b",
+      "prompt_tokens": 2306,
+      "completion_tokens": 51,
+      "latency_ms": 18960.47,
+      "server_ms": 18923.6,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "cdbce7e30cf74b8d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2306,
+    "completion_tokens": 51,
+    "total_ms": 18989.64
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        4
+      ],
+      "uncited_sentences": [
+        "(A) The movies have a similar theme"
+      ]
+    }
+  }
+}

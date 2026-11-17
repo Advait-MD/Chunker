@@ -38,7 +38,7 @@ import time
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple
+from typing import Any, Callable, Dict, List, Optional, Sequence, Set, Tuple
 
 import numpy as np
 
@@ -265,11 +265,23 @@ class TreeBuilder:
             raise RuntimeError(f"Empty summary from {self.model} (call {res.call_id})")
         return text
 
-    def build(self, force: bool = False) -> Dict[str, Any]:
+    def build(self, force: bool = False, sources: Optional[Set[str]] = None) -> Dict[str, Any]:
+        """Build (or reuse) the tree. `sources` restricts a per_source build to those documents (matched on the
+        source path or its file name); the seed check uses it to re-seed only the dev documents."""
         cfg = self.cfg
         leaves, vecs = self.leaf_store.all_nodes({"level": 0})
         if not leaves:
             raise RuntimeError(f"Leaf collection {self.leaf_store.col.name} is empty: ingest first")
+        if sources is not None:
+            if self.r["scope"] != "per_source":
+                raise ValueError("a source subset only makes sense for raptor.scope = per_source")
+            keep = [i for i, n in enumerate(leaves) if n.source_path in sources or Path(n.source_path).name in sources]
+            found = {Path(leaves[i].source_path).name for i in keep} | {leaves[i].source_path for i in keep}
+            missing = sorted(s for s in sources if s not in found)
+            if missing:
+                raise ValueError(f"{len(missing)} requested sources have no leaves (e.g. {missing[:3]})")
+            leaves, vecs = [leaves[i] for i in keep], np.asarray(vecs)[keep]
+            self.log(f"  source subset: {len(sources)} documents, {len(leaves)} leaves")
         collection = tree_collection(cfg)
         th = tree_build_hash(cfg, [n.build_hash for n in leaves], self.prompt)
         manifest = self._manifest_path(collection)

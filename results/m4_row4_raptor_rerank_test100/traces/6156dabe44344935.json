@@ -1,0 +1,179 @@
+{
+  "trace_id": "6156dabe44344935",
+  "created_at": "2026-11-16T13:02:08.206891+00:00",
+  "query": "Where does the director of film The Witnesses work at?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3931.89
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3932.01
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 16333.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.03,
+      "bm25_ms": 9.74,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 10,
+        "latency_ms": 3914.45
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:f49e6f6121bbb86a",
+          "score": -4.782050132751465,
+          "fused": 0.7068306383840868,
+          "dense_rank": 2,
+          "bm25_rank": 11,
+          "fused_rank": 3,
+          "rerank": -4.782050132751465
+        },
+        {
+          "id": "abe982d210232c3f:L0:000137",
+          "score": -5.549314498901367,
+          "fused": 0.5258451823955574,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": -5.549314498901367
+        },
+        {
+          "id": "raptor:67600e79:L1:602c46bea6a3491f",
+          "score": -6.115640640258789,
+          "fused": 0.788047972398204,
+          "dense_rank": 16,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -6.115640640258789
+        },
+        {
+          "id": "raptor:67600e79:L1:3ecca4c1613e3652",
+          "score": -6.1541571617126465,
+          "fused": 0.3786597725084284,
+          "dense_rank": 24,
+          "bm25_rank": 17,
+          "fused_rank": 16,
+          "rerank": -6.1541571617126465
+        },
+        {
+          "id": "raptor:67600e79:L1:c5cbcc5bd2bdbee2",
+          "score": -6.202823638916016,
+          "fused": 0.8912996121403629,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 1,
+          "rerank": -6.202823638916016
+        }
+      ],
+      "latency_ms": 3931.81
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 864,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12401.4
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:f49e6f6121bbb86a",
+    "abe982d210232c3f:L0:000137",
+    "raptor:67600e79:L1:602c46bea6a3491f",
+    "raptor:67600e79:L1:3ecca4c1613e3652",
+    "raptor:67600e79:L1:c5cbcc5bd2bdbee2"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:f49e6f6121bbb86a",
+    "abe982d210232c3f:L0:000137",
+    "raptor:67600e79:L1:602c46bea6a3491f",
+    "raptor:67600e79:L1:3ecca4c1613e3652",
+    "raptor:67600e79:L1:c5cbcc5bd2bdbee2"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:02:08.208896+00:00",
+      "call_id": "97ed47ab2b48",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a60c496bd630a79b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6156dabe44344935"
+    },
+    {
+      "ts": "2026-11-16T13:02:24.539237+00:00",
+      "call_id": "5d96f71fdfe9",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "35961365a6727a48",
+      "prompt_tokens": 1445,
+      "completion_tokens": 54,
+      "latency_ms": 12400.46,
+      "server_ms": 12373.42,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "6156dabe44344935"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1445,
+    "completion_tokens": 54,
+    "total_ms": 16334.62
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The evidence does not provide information about the director of the film 'The Witnesses' or their workplace."
+      ]
+    }
+  }
+}

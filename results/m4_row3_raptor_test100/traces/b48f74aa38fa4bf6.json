@@ -1,0 +1,164 @@
+{
+  "trace_id": "b48f74aa38fa4bf6",
+  "created_at": "2026-11-16T09:42:35.747051+00:00",
+  "query": "What is the title of the memoir written by the honoree of the Black and White Ball?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.68
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.73
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11299.41
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.34,
+      "bm25_ms": 8.05,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000189",
+          "score": 0.8634617999395244,
+          "fused": 0.8634617999395244,
+          "dense_rank": 11,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:9d79bd788f6ea426",
+          "score": 0.6474670048508615,
+          "fused": 0.6474670048508615,
+          "dense_rank": 1,
+          "bm25_rank": 8
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000028",
+          "score": 0.5670698154962069,
+          "fused": 0.5670698154962069,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000080",
+          "score": 0.5270421734622719,
+          "fused": 0.5270421734622719,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000020",
+          "score": 0.5270421734622719,
+          "fused": 0.5270421734622719,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 11.64
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 405,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11287.57
+    }
+  },
+  "retrieved_ids": [
+    "c8fd2b3ea47eb07f:L0:000189",
+    "raptor:67600e79:L1:9d79bd788f6ea426",
+    "838c0e0106e6f015:L0:000028",
+    "90976421f3f2bea2:L0:000080",
+    "ec3410ef955c5c93:L0:000020"
+  ],
+  "filtered_ids": [
+    "c8fd2b3ea47eb07f:L0:000189",
+    "raptor:67600e79:L1:9d79bd788f6ea426",
+    "838c0e0106e6f015:L0:000028",
+    "90976421f3f2bea2:L0:000080",
+    "ec3410ef955c5c93:L0:000020"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:42:35.748550+00:00",
+      "call_id": "9846f0f4e38d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "232dca46e622c0aa",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b48f74aa38fa4bf6"
+    },
+    {
+      "ts": "2026-11-16T09:42:47.045775+00:00",
+      "call_id": "e0713340a011",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7b8b071d568b36d5",
+      "prompt_tokens": 991,
+      "completion_tokens": 67,
+      "latency_ms": 11286.65,
+      "server_ms": 11264.19,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b48f74aa38fa4bf6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 991,
+    "completion_tokens": 67,
+    "total_ms": 11301.31
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

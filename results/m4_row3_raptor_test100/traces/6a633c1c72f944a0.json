@@ -1,0 +1,169 @@
+{
+  "trace_id": "6a633c1c72f944a0",
+  "created_at": "2026-11-16T10:12:45.445350+00:00",
+  "query": "Are the directors of both films Captain Calamity (Film) and Heaven Only Knows (Film) from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.04
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.08
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14896.76
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.92,
+      "bm25_ms": 4.96,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000067",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000127",
+          "score": 0.47581617211835686,
+          "fused": 0.47581617211835686,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:66c5d8ff194baea3",
+          "score": 0.36561591204732946,
+          "fused": 0.36561591204732946,
+          "dense_rank": 13,
+          "bm25_rank": 8
+        },
+        {
+          "id": "raptor:67600e79:L1:6e7d847a144e42f2",
+          "score": 0.30523706024815156,
+          "fused": 0.30523706024815156,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:67600e79:L1:be4180f850a9e50f",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 7.02
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 549,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14889.59
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000067",
+    "4a757779abfb4ba1:L0:000127",
+    "raptor:67600e79:L1:66c5d8ff194baea3",
+    "raptor:67600e79:L1:6e7d847a144e42f2",
+    "raptor:67600e79:L1:be4180f850a9e50f"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000067",
+    "4a757779abfb4ba1:L0:000127",
+    "raptor:67600e79:L1:66c5d8ff194baea3",
+    "raptor:67600e79:L1:6e7d847a144e42f2",
+    "raptor:67600e79:L1:be4180f850a9e50f"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:12:45.446344+00:00",
+      "call_id": "03e7c9b214ac",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b316cfae54e69d28",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6a633c1c72f944a0"
+    },
+    {
+      "ts": "2026-11-16T10:13:00.341712+00:00",
+      "call_id": "898395f6aa67",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3833b4779e786393",
+      "prompt_tokens": 1154,
+      "completion_tokens": 99,
+      "latency_ms": 14888.75,
+      "server_ms": 14831.34,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "6a633c1c72f944a0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1154,
+    "completion_tokens": 99,
+    "total_ms": 14898.92
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        4
+      ],
+      "uncited_sentences": [
+        "No, the directors of both films are not from the same country.",
+        "Captain Calamity was directed by John Reinhardt, who is not specified as being from a particular country, while Heaven Only Knows was directed by Albert S.",
+        "Rogell, who is also not specified as being from a particular country."
+      ]
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "trace_id": "dfbae082add741c3",
+  "created_at": "2026-11-16T10:00:11.485376+00:00",
+  "query": "The Prodigal Daughter, though a book about an American, is by a novelist of what nationality?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.08
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14.27
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10767.13
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.5,
+      "bm25_ms": 10.24,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "cc2399aca11eb631:L0:000171",
+          "score": 0.8279303706755807,
+          "fused": 0.8279303706755807,
+          "dense_rank": 6,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:a4f34435f7730e2c",
+          "score": 0.752230991918647,
+          "fused": 0.752230991918647,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        },
+        {
+          "id": "634431bb1e27714f:L0:000108",
+          "score": 0.6273729168542366,
+          "fused": 0.6273729168542366,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000093",
+          "score": 0.5854183681060972,
+          "fused": 0.5854183681060972,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000003",
+          "score": 0.5513524644061015,
+          "fused": 0.5513524644061015,
+          "dense_rank": 21,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 14.04
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 376,
+      "latency_ms": 0.17
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10752.74
+    }
+  },
+  "retrieved_ids": [
+    "cc2399aca11eb631:L0:000171",
+    "raptor:67600e79:L1:a4f34435f7730e2c",
+    "634431bb1e27714f:L0:000108",
+    "ba3cd068cf9ac2e4:L0:000093",
+    "5d0f6cf59ee42566:L0:000003"
+  ],
+  "filtered_ids": [
+    "cc2399aca11eb631:L0:000171",
+    "raptor:67600e79:L1:a4f34435f7730e2c",
+    "634431bb1e27714f:L0:000108",
+    "ba3cd068cf9ac2e4:L0:000093",
+    "5d0f6cf59ee42566:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:00:11.487618+00:00",
+      "call_id": "9ace9e7dcd43",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "39f4e18bd1cc349c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "dfbae082add741c3"
+    },
+    {
+      "ts": "2026-11-16T10:00:22.251177+00:00",
+      "call_id": "60496d1019f2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1e33c665770e257c",
+      "prompt_tokens": 972,
+      "completion_tokens": 63,
+      "latency_ms": 10751.7,
+      "server_ms": 10725.67,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "dfbae082add741c3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 972,
+    "completion_tokens": 63,
+    "total_ms": 10769.07
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

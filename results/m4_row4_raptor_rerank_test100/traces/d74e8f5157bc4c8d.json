@@ -1,0 +1,180 @@
+{
+  "trace_id": "d74e8f5157bc4c8d",
+  "created_at": "2026-11-16T12:28:46.337249+00:00",
+  "query": "In the 1970s, which group acquired this department store group in the United Kingdom whose co-founding director is the father of Lieutenant Colonel Donald Swain Lewis?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2556.72
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2556.84
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17764.17
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.26,
+      "bm25_ms": 20.2,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2530.79
+      },
+      "hits": [
+        {
+          "id": "cb96563b0747a6ba:L0:000188",
+          "score": 8.956060409545898,
+          "fused": 0.7612816543491495,
+          "dense_rank": 20,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.956060409545898
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000029",
+          "score": 1.3569167852401733,
+          "fused": 0.5905077167665262,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 1.3569167852401733
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000080",
+          "score": 0.7237387299537659,
+          "fused": 0.439155666618525,
+          "dense_rank": 4,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": 0.7237387299537659
+        },
+        {
+          "id": "raptor:67600e79:L1:e193bf2e11f430f3",
+          "score": -0.5682287216186523,
+          "fused": 0.2687528513077808,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 9,
+          "rerank": -0.5682287216186523
+        },
+        {
+          "id": "raptor:67600e79:L1:f96159ae96b008e4",
+          "score": -1.1303447484970093,
+          "fused": 0.6247039982514218,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -1.1303447484970093
+        }
+      ],
+      "latency_ms": 2556.66
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 844,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15207.19
+    }
+  },
+  "retrieved_ids": [
+    "cb96563b0747a6ba:L0:000188",
+    "bc1dba3471045f02:L0:000029",
+    "cb96563b0747a6ba:L0:000080",
+    "raptor:67600e79:L1:e193bf2e11f430f3",
+    "raptor:67600e79:L1:f96159ae96b008e4"
+  ],
+  "filtered_ids": [
+    "cb96563b0747a6ba:L0:000188",
+    "bc1dba3471045f02:L0:000029",
+    "cb96563b0747a6ba:L0:000080",
+    "raptor:67600e79:L1:e193bf2e11f430f3",
+    "raptor:67600e79:L1:f96159ae96b008e4"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:28:46.339248+00:00",
+      "call_id": "96941b6879a9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "85ba430c212ea4aa",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d74e8f5157bc4c8d"
+    },
+    {
+      "ts": "2026-11-16T12:29:04.100565+00:00",
+      "call_id": "9ad9e2cfead2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6d72862321a916eb",
+      "prompt_tokens": 1515,
+      "completion_tokens": 70,
+      "latency_ms": 15205.92,
+      "server_ms": 15174.61,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d74e8f5157bc4c8d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1515,
+    "completion_tokens": 70,
+    "total_ms": 17767.59
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

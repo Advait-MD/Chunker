@@ -1,0 +1,182 @@
+{
+  "trace_id": "40fc407f539943f2",
+  "created_at": "2026-11-16T12:27:40.280459+00:00",
+  "query": "Which aired first, Life After People or Werner Herzog Eats His Shoe?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2412.86
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2412.94
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16085.91
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.65,
+      "bm25_ms": 13.4,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 2394.45
+      },
+      "hits": [
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000053",
+          "score": 7.991467475891113,
+          "fused": 0.766047045853559,
+          "dense_rank": 10,
+          "bm25_rank": 1,
+          "fused_rank": 3,
+          "rerank": 7.991467475891113
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000126",
+          "score": 7.2202982902526855,
+          "fused": 0.24063357234368643,
+          "dense_rank": 31,
+          "bm25_rank": 11,
+          "fused_rank": 10,
+          "rerank": 7.2202982902526855
+        },
+        {
+          "id": "raptor:67600e79:L1:f1e7ca99bd818d82",
+          "score": 2.9383554458618164,
+          "fused": 0.8578694284450548,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 2.9383554458618164
+        },
+        {
+          "id": "raptor:67600e79:L2:19ee9c6c807d774b",
+          "score": 2.655475616455078,
+          "fused": 0.8875511200651434,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": 2.655475616455078
+        },
+        {
+          "id": "raptor:67600e79:L1:f127323bc20bcaa7",
+          "score": 1.6061497926712036,
+          "fused": 0.1805045484386748,
+          "dense_rank": 12,
+          "bm25_rank": 14,
+          "fused_rank": 15,
+          "rerank": 1.6061497926712036
+        }
+      ],
+      "latency_ms": 2412.82
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 635,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13672.85
+    }
+  },
+  "retrieved_ids": [
+    "c8fd2b3ea47eb07f:L0:000053",
+    "5d0f6cf59ee42566:L0:000126",
+    "raptor:67600e79:L1:f1e7ca99bd818d82",
+    "raptor:67600e79:L2:19ee9c6c807d774b",
+    "raptor:67600e79:L1:f127323bc20bcaa7"
+  ],
+  "filtered_ids": [
+    "c8fd2b3ea47eb07f:L0:000053",
+    "5d0f6cf59ee42566:L0:000126",
+    "raptor:67600e79:L1:f1e7ca99bd818d82",
+    "raptor:67600e79:L2:19ee9c6c807d774b",
+    "raptor:67600e79:L1:f127323bc20bcaa7"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:27:40.282457+00:00",
+      "call_id": "39863f6dd406",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7ef303594bee09f2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "40fc407f539943f2"
+    },
+    {
+      "ts": "2026-11-16T12:27:56.366269+00:00",
+      "call_id": "504d5591ad3c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "cecca3695ef5aa59",
+      "prompt_tokens": 1237,
+      "completion_tokens": 86,
+      "latency_ms": 13671.84,
+      "server_ms": 13649.16,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "40fc407f539943f2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1237,
+    "completion_tokens": 86,
+    "total_ms": 16088.86
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        4,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

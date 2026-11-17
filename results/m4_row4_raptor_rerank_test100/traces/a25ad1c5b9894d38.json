@@ -1,0 +1,180 @@
+{
+  "trace_id": "a25ad1c5b9894d38",
+  "created_at": "2026-11-16T12:35:07.166787+00:00",
+  "query": "Where did the director of film Journal Of A Crime die?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1181.59
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1182.32
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 1190.37
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 30.72,
+      "bm25_ms": 20.12,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 3,
+        "latency_ms": 1123.97
+      },
+      "hits": [
+        {
+          "id": "53c7288bdcd3837a:L0:000019",
+          "score": -4.739073753356934,
+          "fused": 0.28614716755510017,
+          "dense_rank": 6,
+          "bm25_rank": 25,
+          "fused_rank": 13,
+          "rerank": -4.739073753356934
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -5.311896324157715,
+          "fused": 0.3446553386558304,
+          "dense_rank": 2,
+          "bm25_rank": 21,
+          "fused_rank": 8,
+          "rerank": -5.311896324157715
+        },
+        {
+          "id": "0eac870d43736f51:L0:000053",
+          "score": -5.365233898162842,
+          "fused": 0.19633082832535018,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": -5.365233898162842
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000106",
+          "score": -5.762801647186279,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": -5.762801647186279
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000137",
+          "score": -5.948559284210205,
+          "fused": 0.37689787976504385,
+          "dense_rank": 10,
+          "bm25_rank": 12,
+          "fused_rank": 5,
+          "rerank": -5.948559284210205
+        }
+      ],
+      "latency_ms": 1181.5
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1269,
+      "latency_ms": 0.68
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 7.79
+    }
+  },
+  "retrieved_ids": [
+    "53c7288bdcd3837a:L0:000019",
+    "b04ce6dd2d95fb80:L0:000152",
+    "0eac870d43736f51:L0:000053",
+    "6af2db6cb86d77e2:L0:000106",
+    "317e12ccd417c0d7:L0:000137"
+  ],
+  "filtered_ids": [
+    "53c7288bdcd3837a:L0:000019",
+    "b04ce6dd2d95fb80:L0:000152",
+    "0eac870d43736f51:L0:000053",
+    "6af2db6cb86d77e2:L0:000106",
+    "317e12ccd417c0d7:L0:000137"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:35:07.169785+00:00",
+      "call_id": "87ac401829db",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "11dcb3ba3e667805",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a25ad1c5b9894d38"
+    },
+    {
+      "ts": "2026-11-16T12:35:08.353652+00:00",
+      "call_id": "2419e3317853",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a853dd0fdb6b6d20",
+      "prompt_tokens": 2046,
+      "completion_tokens": 64,
+      "latency_ms": 3.22,
+      "server_ms": 17064.24,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a25ad1c5b9894d38"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 2046,
+    "completion_tokens": 64,
+    "total_ms": 1196.52
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The director of the film 'Journal of a Crime' is not mentioned in the provided passages.",
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

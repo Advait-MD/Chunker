@@ -1,0 +1,166 @@
+{
+  "trace_id": "6789070cdb0b476d",
+  "created_at": "2026-11-16T10:22:14.320368+00:00",
+  "query": "Who is the spouse of the director of film Confidentially Connie?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.7
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.76
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13377.48
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.35,
+      "bm25_ms": 5.99,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000117",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000042",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "raptor:67600e79:L1:5c66cace28db0e6f",
+          "score": 0.27908695003273604,
+          "fused": 0.27908695003273604,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000085",
+          "score": 0.2735671372641339,
+          "fused": 0.2735671372641339,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000007",
+          "score": 0.26382094135792766,
+          "fused": 0.26382094135792766,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 9.65
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 804,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13367.62
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000117",
+    "317e12ccd417c0d7:L0:000042",
+    "raptor:67600e79:L1:5c66cace28db0e6f",
+    "4a757779abfb4ba1:L0:000085",
+    "317e12ccd417c0d7:L0:000007"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000117",
+    "317e12ccd417c0d7:L0:000042",
+    "raptor:67600e79:L1:5c66cace28db0e6f",
+    "4a757779abfb4ba1:L0:000085",
+    "317e12ccd417c0d7:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:22:14.322380+00:00",
+      "call_id": "055c1a2cecd2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5dc3700d0e67d24d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6789070cdb0b476d"
+    },
+    {
+      "ts": "2026-11-16T10:22:27.695875+00:00",
+      "call_id": "78eed799785a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9173cef40c6be4b6",
+      "prompt_tokens": 1482,
+      "completion_tokens": 62,
+      "latency_ms": 13365.41,
+      "server_ms": 13338.02,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "6789070cdb0b476d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1482,
+    "completion_tokens": 62,
+    "total_ms": 13379.25
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "The director of film Confidentially Connie is Edward Buzzell, and there is no information provided about his spouse in the given passages."
+      ]
+    }
+  }
+}

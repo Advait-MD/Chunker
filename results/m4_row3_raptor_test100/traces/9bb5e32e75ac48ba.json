@@ -1,0 +1,165 @@
+{
+  "trace_id": "9bb5e32e75ac48ba",
+  "created_at": "2026-11-16T09:49:09.776588+00:00",
+  "query": "What genre is the novel from which the fast-food restaurant specializing in seafood derives its name?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.99
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.05
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12821.28
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.19,
+      "bm25_ms": 11.45,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:5dcf199bb3d327ce",
+          "score": 0.9947238616927057,
+          "fused": 0.9947238616927057,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000021",
+          "score": 0.8937740193601222,
+          "fused": 0.8937740193601222,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000141",
+          "score": 0.7710610946837179,
+          "fused": 0.7710610946837179,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000125",
+          "score": 0.6007398544193255,
+          "fused": 0.6007398544193255,
+          "dense_rank": 5,
+          "bm25_rank": 5
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000021",
+          "score": 0.5440015697609895,
+          "fused": 0.5440015697609895,
+          "dense_rank": 4,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 14.95
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 542,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12806.03
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:5dcf199bb3d327ce",
+    "81fc433d55d23b4c:L0:000021",
+    "81fc433d55d23b4c:L0:000141",
+    "cc2399aca11eb631:L0:000125",
+    "8e50522b7cb636d8:L0:000021"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:5dcf199bb3d327ce",
+    "81fc433d55d23b4c:L0:000021",
+    "81fc433d55d23b4c:L0:000141",
+    "cc2399aca11eb631:L0:000125",
+    "8e50522b7cb636d8:L0:000021"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:49:09.778585+00:00",
+      "call_id": "0ddce78777d0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "25fd0af4f1d6eb5a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9bb5e32e75ac48ba"
+    },
+    {
+      "ts": "2026-11-16T09:49:22.596456+00:00",
+      "call_id": "abcfb17d4773",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1e8a8d88c2303b19",
+      "prompt_tokens": 1083,
+      "completion_tokens": 67,
+      "latency_ms": 12804.33,
+      "server_ms": 12781.23,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9bb5e32e75ac48ba"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1083,
+    "completion_tokens": 67,
+    "total_ms": 12824.32
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "trace_id": "26639dc655b84160",
+  "created_at": "2026-11-16T10:50:49.821666+00:00",
+  "query": "did they test with other pretrained models besides bert?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1993.22
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1994.14
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21751.19
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.14,
+      "bm25_ms": 23.15,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 20
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 1956.12
+      },
+      "hits": [
+        {
+          "id": "31e8fbdf228da53d:L0:000010",
+          "score": 1.6152167320251465,
+          "fused": 0.7348081843390332,
+          "dense_rank": 18,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.6152167320251465
+        },
+        {
+          "id": "31e8fbdf228da53d:L0:000001",
+          "score": 1.08267343044281,
+          "fused": 0.5610043171409743,
+          "dense_rank": 4,
+          "bm25_rank": 9,
+          "fused_rank": 8,
+          "rerank": 1.08267343044281
+        },
+        {
+          "id": "raptor:caeeea80:L1:203f6c64d2976a5d",
+          "score": 0.8784195780754089,
+          "fused": 0.5857247224772256,
+          "dense_rank": 3,
+          "bm25_rank": 14,
+          "fused_rank": 7,
+          "rerank": 0.8784195780754089
+        },
+        {
+          "id": "raptor:caeeea80:L2:32c25ddb2264f894",
+          "score": 0.619795560836792,
+          "fused": 0.6936814783422294,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 2,
+          "rerank": 0.619795560836792
+        },
+        {
+          "id": "31e8fbdf228da53d:L0:000005",
+          "score": 0.6151635050773621,
+          "fused": 0.5025677608434846,
+          "dense_rank": 14,
+          "bm25_rank": 5,
+          "fused_rank": 10,
+          "rerank": 0.6151635050773621
+        }
+      ],
+      "latency_ms": 1993.17
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1290,
+      "latency_ms": 0.87
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19756.92
+    }
+  },
+  "retrieved_ids": [
+    "31e8fbdf228da53d:L0:000010",
+    "31e8fbdf228da53d:L0:000001",
+    "raptor:caeeea80:L1:203f6c64d2976a5d",
+    "raptor:caeeea80:L2:32c25ddb2264f894",
+    "31e8fbdf228da53d:L0:000005"
+  ],
+  "filtered_ids": [
+    "31e8fbdf228da53d:L0:000010",
+    "31e8fbdf228da53d:L0:000001",
+    "raptor:caeeea80:L1:203f6c64d2976a5d",
+    "raptor:caeeea80:L2:32c25ddb2264f894",
+    "31e8fbdf228da53d:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:50:49.823630+00:00",
+      "call_id": "604c9c5fc163",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3f28845d1fafa167",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "26639dc655b84160"
+    },
+    {
+      "ts": "2026-11-16T10:51:11.571766+00:00",
+      "call_id": "c0d5e98b1540",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4c0e72152db31aaa",
+      "prompt_tokens": 1931,
+      "completion_tokens": 88,
+      "latency_ms": 19755.45,
+      "server_ms": 19724.27,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "26639dc655b84160"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1931,
+    "completion_tokens": 88,
+    "total_ms": 21752.83
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "No, the study did not test with other pretrained models besides BERT.",
+        "The research focuses on BERT and compares different strategies for adapting it, such as stack-and-finetune and fine-tune-only."
+      ]
+    }
+  }
+}

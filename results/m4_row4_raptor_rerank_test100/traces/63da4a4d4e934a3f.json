@@ -1,0 +1,180 @@
+{
+  "trace_id": "63da4a4d4e934a3f",
+  "created_at": "2026-11-16T11:42:13.334038+00:00",
+  "query": "Where did Dan bring Blote in the carrier?\n\nOptions:\n(A) A prison.\n(B) The time machine sales office.\n(C) Mr. Snithian's home.\n(D) The time machine factory.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2354.5
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2354.62
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18488.29
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.21,
+      "bm25_ms": 10.89,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 24
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2335.98
+      },
+      "hits": [
+        {
+          "id": "e7190ee11203481e:L0:000015",
+          "score": -0.05281361937522888,
+          "fused": 0.8890520614571792,
+          "dense_rank": 6,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.05281361937522888
+        },
+        {
+          "id": "e7190ee11203481e:L0:000014",
+          "score": -0.8148884177207947,
+          "fused": 0.7557950525241914,
+          "dense_rank": 10,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.8148884177207947
+        },
+        {
+          "id": "raptor:98a1b091:L2:976eefb969f803d4",
+          "score": -0.9798561930656433,
+          "fused": 0.7306473472907569,
+          "dense_rank": 4,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -0.9798561930656433
+        },
+        {
+          "id": "raptor:98a1b091:L1:574625ac028d4635",
+          "score": -1.1135884523391724,
+          "fused": 0.7239164916808891,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": -1.1135884523391724
+        },
+        {
+          "id": "e7190ee11203481e:L0:000016",
+          "score": -1.2232451438903809,
+          "fused": 0.7518393499478462,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -1.2232451438903809
+        }
+      ],
+      "latency_ms": 2354.47
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1546,
+      "latency_ms": 0.09
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16133.47
+    }
+  },
+  "retrieved_ids": [
+    "e7190ee11203481e:L0:000015",
+    "e7190ee11203481e:L0:000014",
+    "raptor:98a1b091:L2:976eefb969f803d4",
+    "raptor:98a1b091:L1:574625ac028d4635",
+    "e7190ee11203481e:L0:000016"
+  ],
+  "filtered_ids": [
+    "e7190ee11203481e:L0:000015",
+    "e7190ee11203481e:L0:000014",
+    "raptor:98a1b091:L2:976eefb969f803d4",
+    "raptor:98a1b091:L1:574625ac028d4635",
+    "e7190ee11203481e:L0:000016"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:42:13.335285+00:00",
+      "call_id": "2e8bac0cdd44",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a636ec18aac2286c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "63da4a4d4e934a3f"
+    },
+    {
+      "ts": "2026-11-16T11:42:31.820679+00:00",
+      "call_id": "1dba3b252da6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "22acceceee195d92",
+      "prompt_tokens": 2126,
+      "completion_tokens": 54,
+      "latency_ms": 16132.31,
+      "server_ms": 16105.46,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "63da4a4d4e934a3f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2126,
+    "completion_tokens": 54,
+    "total_ms": 18490.73
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

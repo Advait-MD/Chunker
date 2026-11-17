@@ -1,0 +1,171 @@
+{
+  "trace_id": "7a3651ca4d364c22",
+  "created_at": "2026-11-16T09:42:20.726037+00:00",
+  "query": "Do both Korematsu v. United States and Chaplinsky v. New Hampshire cases regard the rights of U. S. citizens?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.26
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.29
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15005.8
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.96,
+      "bm25_ms": 8.12,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "cc2399aca11eb631:L0:000060",
+          "score": 0.7949750635826667,
+          "fused": 0.7949750635826667,
+          "dense_rank": 6,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:b74b4f8a089bf051",
+          "score": 0.713427122507619,
+          "fused": 0.713427122507619,
+          "dense_rank": 1,
+          "bm25_rank": 6
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000046",
+          "score": 0.6171128581669307,
+          "fused": 0.6171128581669307,
+          "dense_rank": 2,
+          "bm25_rank": 4
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000192",
+          "score": 0.5873521832016155,
+          "fused": 0.5873521832016155,
+          "dense_rank": 17,
+          "bm25_rank": 2
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000051",
+          "score": 0.5739293111004076,
+          "fused": 0.5739293111004076,
+          "dense_rank": 12,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 10.23
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 635,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14995.36
+    }
+  },
+  "retrieved_ids": [
+    "cc2399aca11eb631:L0:000060",
+    "raptor:67600e79:L1:b74b4f8a089bf051",
+    "838c0e0106e6f015:L0:000046",
+    "838c0e0106e6f015:L0:000192",
+    "81fc433d55d23b4c:L0:000051"
+  ],
+  "filtered_ids": [
+    "cc2399aca11eb631:L0:000060",
+    "raptor:67600e79:L1:b74b4f8a089bf051",
+    "838c0e0106e6f015:L0:000046",
+    "838c0e0106e6f015:L0:000192",
+    "81fc433d55d23b4c:L0:000051"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:42:20.727034+00:00",
+      "call_id": "f1746b5b0dc4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "822b4d4a4d48aca1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7a3651ca4d364c22"
+    },
+    {
+      "ts": "2026-11-16T09:42:35.730623+00:00",
+      "call_id": "035fa6fe6a13",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "fbe21874a33d0476",
+      "prompt_tokens": 1271,
+      "completion_tokens": 107,
+      "latency_ms": 14994.3,
+      "server_ms": 14974.42,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7a3651ca4d364c22"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1271,
+    "completion_tokens": 107,
+    "total_ms": 15007.15
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "No, both Korematsu v.",
+        "Korematsu v.",
+        "United States dealt with wartime internment, while Chaplinsky v.",
+        "New Hampshire dealt with the fighting words doctrine."
+      ]
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "trace_id": "769577103b2c477d",
+  "created_at": "2026-11-15T10:00:13.853460+00:00",
+  "query": "What is Ludmilla?\n\nOptions:\n(A) A chicken\n(B) A city\n(C) An American submarine \n(D) A Polish ship\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 31.89
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 31.99
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24726.89
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.67,
+      "bm25_ms": 25.78,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 18
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "e2aaf883e15e64c8:L0:000000",
+          "score": 0.871835819643703,
+          "fused": 0.871835819643703,
+          "dense_rank": 7,
+          "bm25_rank": 1
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000001",
+          "score": 0.7777639708943779,
+          "fused": 0.7777639708943779,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:b49d4508:L1:519a241e1d475172",
+          "score": 0.7753209727928755,
+          "fused": 0.7753209727928755,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:b49d4508:L2:a6abddae1a83802e",
+          "score": 0.7289275772258226,
+          "fused": 0.7289275772258226,
+          "dense_rank": 3,
+          "bm25_rank": 4
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000002",
+          "score": 0.5726282191338096,
+          "fused": 0.5726282191338096,
+          "dense_rank": 4,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 31.82
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1437,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24694.72
+    }
+  },
+  "retrieved_ids": [
+    "e2aaf883e15e64c8:L0:000000",
+    "e2aaf883e15e64c8:L0:000001",
+    "raptor:b49d4508:L1:519a241e1d475172",
+    "raptor:b49d4508:L2:a6abddae1a83802e",
+    "e2aaf883e15e64c8:L0:000002"
+  ],
+  "filtered_ids": [
+    "e2aaf883e15e64c8:L0:000000",
+    "e2aaf883e15e64c8:L0:000001",
+    "raptor:b49d4508:L1:519a241e1d475172",
+    "raptor:b49d4508:L2:a6abddae1a83802e",
+    "e2aaf883e15e64c8:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T10:00:13.855354+00:00",
+      "call_id": "69854403e94a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7260bd549abdf25a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "769577103b2c477d"
+    },
+    {
+      "ts": "2026-11-15T10:00:38.574192+00:00",
+      "call_id": "d6941f1ddbfc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "13873d737a3e3633",
+      "prompt_tokens": 1930,
+      "completion_tokens": 49,
+      "latency_ms": 24692.06,
+      "server_ms": 24596.22,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "769577103b2c477d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1930,
+    "completion_tokens": 49,
+    "total_ms": 24729.72
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "uncited_sentences": [
+        "(D) A Polish ship"
+      ]
+    }
+  }
+}

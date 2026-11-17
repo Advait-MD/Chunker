@@ -1,0 +1,180 @@
+{
+  "trace_id": "8d8e947721594460",
+  "created_at": "2026-11-16T12:13:17.968801+00:00",
+  "query": "What American indie rock group first had Jesse Sandoval as the drummer and now has Jon Sortland on drums?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2680.44
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2681.15
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14929.13
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.16,
+      "bm25_ms": 30.05,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2639.89
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:ddf44dbe2a1f7233",
+          "score": 8.696661949157715,
+          "fused": 0.7574103411656796,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 8.696661949157715
+        },
+        {
+          "id": "634431bb1e27714f:L0:000078",
+          "score": 8.121509552001953,
+          "fused": 0.8246421243170825,
+          "dense_rank": 7,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.121509552001953
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000043",
+          "score": 7.9243268966674805,
+          "fused": 0.792946473805529,
+          "dense_rank": 6,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 7.9243268966674805
+        },
+        {
+          "id": "raptor:67600e79:L2:1018ef14d4bc78f1",
+          "score": 4.713087558746338,
+          "fused": 0.5831738015959842,
+          "dense_rank": 3,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 4.713087558746338
+        },
+        {
+          "id": "raptor:67600e79:L3:ea31352efbb4ba1d",
+          "score": 4.713087558746338,
+          "fused": 0.5831738015959842,
+          "dense_rank": 2,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": 4.713087558746338
+        }
+      ],
+      "latency_ms": 2680.39
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 795,
+      "latency_ms": 0.66
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12247.85
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:ddf44dbe2a1f7233",
+    "634431bb1e27714f:L0:000078",
+    "ec3410ef955c5c93:L0:000043",
+    "raptor:67600e79:L2:1018ef14d4bc78f1",
+    "raptor:67600e79:L3:ea31352efbb4ba1d"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:ddf44dbe2a1f7233",
+    "634431bb1e27714f:L0:000078",
+    "ec3410ef955c5c93:L0:000043",
+    "raptor:67600e79:L2:1018ef14d4bc78f1",
+    "raptor:67600e79:L3:ea31352efbb4ba1d"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:13:17.970801+00:00",
+      "call_id": "484424809f99",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "da4a5a81efad1b59",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8d8e947721594460"
+    },
+    {
+      "ts": "2026-11-16T12:13:32.897249+00:00",
+      "call_id": "367bc0f2e638",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "320f5f5c1f308ed2",
+      "prompt_tokens": 1403,
+      "completion_tokens": 46,
+      "latency_ms": 12246.75,
+      "server_ms": 12220.66,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8d8e947721594460"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1403,
+    "completion_tokens": 46,
+    "total_ms": 14931.97
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "trace_id": "d4fe827a066b4bce",
+  "created_at": "2026-11-16T12:35:25.076254+00:00",
+  "query": "What is the place of birth of the composer of song Bullet (Misfits Song)?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1287.45
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1287.85
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15224.68
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.34,
+      "bm25_ms": 7.89,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 1267.12
+      },
+      "hits": [
+        {
+          "id": "53c7288bdcd3837a:L0:000105",
+          "score": 3.8147809505462646,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 3.8147809505462646
+        },
+        {
+          "id": "raptor:67600e79:L1:8101e1ef1d58f063",
+          "score": 0.02724379487335682,
+          "fused": 0.9333309990863807,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 0.02724379487335682
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000052",
+          "score": -3.288567543029785,
+          "fused": 0.29001805283560106,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -3.288567543029785
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000103",
+          "score": -4.569169998168945,
+          "fused": 0.2437052769924832,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -4.569169998168945
+        },
+        {
+          "id": "460e441179bec402:L0:000123",
+          "score": -4.611466407775879,
+          "fused": 0.20167357623501794,
+          "dense_rank": null,
+          "bm25_rank": 12,
+          "fused_rank": 14,
+          "rerank": -4.611466407775879
+        }
+      ],
+      "latency_ms": 1287.4
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 659,
+      "latency_ms": 0.35
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13936.63
+    }
+  },
+  "retrieved_ids": [
+    "53c7288bdcd3837a:L0:000105",
+    "raptor:67600e79:L1:8101e1ef1d58f063",
+    "6af2db6cb86d77e2:L0:000052",
+    "317e12ccd417c0d7:L0:000103",
+    "460e441179bec402:L0:000123"
+  ],
+  "filtered_ids": [
+    "53c7288bdcd3837a:L0:000105",
+    "raptor:67600e79:L1:8101e1ef1d58f063",
+    "6af2db6cb86d77e2:L0:000052",
+    "317e12ccd417c0d7:L0:000103",
+    "460e441179bec402:L0:000123"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:35:25.078254+00:00",
+      "call_id": "2e80aa2f7f52",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f6440db5b7f8bb22",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d4fe827a066b4bce"
+    },
+    {
+      "ts": "2026-11-16T12:35:40.299835+00:00",
+      "call_id": "4ca8707d47f2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "af586b2dff7105d3",
+      "prompt_tokens": 1218,
+      "completion_tokens": 86,
+      "latency_ms": 13935.24,
+      "server_ms": 13900.97,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d4fe827a066b4bce"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1218,
+    "completion_tokens": 86,
+    "total_ms": 15227.15
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The place of birth of the composer of song 'Bullet' (Misfits song) is not explicitly stated in the provided passages."
+      ]
+    }
+  }
+}

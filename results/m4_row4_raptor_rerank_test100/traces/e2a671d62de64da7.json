@@ -1,0 +1,179 @@
+{
+  "trace_id": "e2a671d62de64da7",
+  "created_at": "2026-11-16T11:33:05.945061+00:00",
+  "query": "What did the director of \"A Stitch for Time\" win at the 54th Academy Awards?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2392.71
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2393.19
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13226.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.19,
+      "bm25_ms": 14.58,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2369.56
+      },
+      "hits": [
+        {
+          "id": "f3503d3d186f0f90:L0:000097",
+          "score": -2.624934434890747,
+          "fused": 0.8041904547549568,
+          "dense_rank": 2,
+          "bm25_rank": 6,
+          "fused_rank": 2,
+          "rerank": -2.624934434890747
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000024",
+          "score": -3.7029762268066406,
+          "fused": 0.2806562577755868,
+          "dense_rank": 24,
+          "bm25_rank": 19,
+          "fused_rank": 15,
+          "rerank": -3.7029762268066406
+        },
+        {
+          "id": "raptor:67600e79:L1:ded0614e52306c03",
+          "score": -3.7290852069854736,
+          "fused": 0.6664633228157184,
+          "dense_rank": 1,
+          "bm25_rank": 10,
+          "fused_rank": 5,
+          "rerank": -3.7290852069854736
+        },
+        {
+          "id": "raptor:67600e79:L1:3d4aab68dee05495",
+          "score": -4.561880111694336,
+          "fused": 0.31669727718205065,
+          "dense_rank": 30,
+          "bm25_rank": 13,
+          "fused_rank": 13,
+          "rerank": -4.561880111694336
+        },
+        {
+          "id": "raptor:67600e79:L1:b0234ab216eafd16",
+          "score": -4.692002296447754,
+          "fused": 0.25842709758977905,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -4.692002296447754
+        }
+      ],
+      "latency_ms": 2392.66
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 623,
+      "latency_ms": 0.44
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10832.71
+    }
+  },
+  "retrieved_ids": [
+    "f3503d3d186f0f90:L0:000097",
+    "6683bfc7dec06e2a:L0:000024",
+    "raptor:67600e79:L1:ded0614e52306c03",
+    "raptor:67600e79:L1:3d4aab68dee05495",
+    "raptor:67600e79:L1:b0234ab216eafd16"
+  ],
+  "filtered_ids": [
+    "f3503d3d186f0f90:L0:000097",
+    "6683bfc7dec06e2a:L0:000024",
+    "raptor:67600e79:L1:ded0614e52306c03",
+    "raptor:67600e79:L1:3d4aab68dee05495",
+    "raptor:67600e79:L1:b0234ab216eafd16"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:33:05.948054+00:00",
+      "call_id": "0a2218e901d3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a79a94d0047d90c9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e2a671d62de64da7"
+    },
+    {
+      "ts": "2026-11-16T11:33:19.170524+00:00",
+      "call_id": "134163d317cf",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6c8a8f5d65f2fa4a",
+      "prompt_tokens": 1207,
+      "completion_tokens": 45,
+      "latency_ms": 10831.64,
+      "server_ms": 10806.57,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e2a671d62de64da7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1207,
+    "completion_tokens": 45,
+    "total_ms": 13228.61
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

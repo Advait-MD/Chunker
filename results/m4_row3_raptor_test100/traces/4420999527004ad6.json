@@ -1,0 +1,164 @@
+{
+  "trace_id": "4420999527004ad6",
+  "created_at": "2026-11-16T10:03:24.522108+00:00",
+  "query": "What is the place of birth of the director of film Growing Up Smith?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.67
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.73
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 18548.96
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.74,
+      "bm25_ms": 6.63,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000090",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:04a191b08047b5ac",
+          "score": 0.552949274303463,
+          "fused": 0.552949274303463,
+          "dense_rank": 10,
+          "bm25_rank": 5
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000052",
+          "score": 0.524793313850557,
+          "fused": 0.524793313850557,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L2:ce0c118281e05483",
+          "score": 0.4881580023270716,
+          "fused": 0.4881580023270716,
+          "dense_rank": 3,
+          "bm25_rank": 12
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000053",
+          "score": 0.4877868555087758,
+          "fused": 0.4877868555087758,
+          "dense_rank": null,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 9.63
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1269,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18539.15
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000090",
+    "raptor:67600e79:L1:04a191b08047b5ac",
+    "6af2db6cb86d77e2:L0:000052",
+    "raptor:67600e79:L2:ce0c118281e05483",
+    "6af2db6cb86d77e2:L0:000053"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000090",
+    "raptor:67600e79:L1:04a191b08047b5ac",
+    "6af2db6cb86d77e2:L0:000052",
+    "raptor:67600e79:L2:ce0c118281e05483",
+    "6af2db6cb86d77e2:L0:000053"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:03:24.523125+00:00",
+      "call_id": "70682c2caad7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0e8372dda6ac9136",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4420999527004ad6"
+    },
+    {
+      "ts": "2026-11-16T10:03:43.070537+00:00",
+      "call_id": "c9a7aff45262",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "016b2ca3bd3a0042",
+      "prompt_tokens": 1858,
+      "completion_tokens": 54,
+      "latency_ms": 18538.09,
+      "server_ms": 18505.32,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4420999527004ad6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1858,
+    "completion_tokens": 54,
+    "total_ms": 18550.62
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The place of birth of the director of film Growing Up Smith is not mentioned in the provided passages."
+      ]
+    }
+  }
+}

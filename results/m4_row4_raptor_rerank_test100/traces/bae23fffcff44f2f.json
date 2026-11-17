@@ -1,0 +1,181 @@
+{
+  "trace_id": "bae23fffcff44f2f",
+  "created_at": "2026-11-16T10:54:45.111744+00:00",
+  "query": "Which of two design architectures have better performance?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2948.94
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2949.86
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21820.06
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.29,
+      "bm25_ms": 9.53,
+      "n_candidates": {
+        "dense": 29,
+        "bm25": 20
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2933.07
+      },
+      "hits": [
+        {
+          "id": "raptor:d4f2281f:L2:bf8aca7a8d5e82da",
+          "score": -0.8179603815078735,
+          "fused": 0.7697558525418678,
+          "dense_rank": 13,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.8179603815078735
+        },
+        {
+          "id": "raptor:d4f2281f:L1:680d91f545c2d639",
+          "score": -0.8857284188270569,
+          "fused": 0.8075326131986128,
+          "dense_rank": 12,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.8857284188270569
+        },
+        {
+          "id": "ec354b94e4875d1d:L0:000015",
+          "score": -1.514072299003601,
+          "fused": 0.5967721502708121,
+          "dense_rank": 1,
+          "bm25_rank": 9,
+          "fused_rank": 6,
+          "rerank": -1.514072299003601
+        },
+        {
+          "id": "raptor:d4f2281f:L1:7727928207fe2852",
+          "score": -1.6754307746887207,
+          "fused": 0.5544433070249293,
+          "dense_rank": 3,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": -1.6754307746887207
+        },
+        {
+          "id": "ec354b94e4875d1d:L0:000014",
+          "score": -2.4742162227630615,
+          "fused": 0.5746773681781645,
+          "dense_rank": 2,
+          "bm25_rank": 10,
+          "fused_rank": 7,
+          "rerank": -2.4742162227630615
+        }
+      ],
+      "latency_ms": 2948.89
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1166,
+      "latency_ms": 0.86
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18870.0
+    }
+  },
+  "retrieved_ids": [
+    "raptor:d4f2281f:L2:bf8aca7a8d5e82da",
+    "raptor:d4f2281f:L1:680d91f545c2d639",
+    "ec354b94e4875d1d:L0:000015",
+    "raptor:d4f2281f:L1:7727928207fe2852",
+    "ec354b94e4875d1d:L0:000014"
+  ],
+  "filtered_ids": [
+    "raptor:d4f2281f:L2:bf8aca7a8d5e82da",
+    "raptor:d4f2281f:L1:680d91f545c2d639",
+    "ec354b94e4875d1d:L0:000015",
+    "raptor:d4f2281f:L1:7727928207fe2852",
+    "ec354b94e4875d1d:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:54:45.112738+00:00",
+      "call_id": "abd987352297",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "52f7428a07397238",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "bae23fffcff44f2f"
+    },
+    {
+      "ts": "2026-11-16T10:55:06.930792+00:00",
+      "call_id": "10d7a749e71f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "57389d7b7e27bb39",
+      "prompt_tokens": 1719,
+      "completion_tokens": 98,
+      "latency_ms": 18868.63,
+      "server_ms": 18835.45,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "bae23fffcff44f2f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1719,
+    "completion_tokens": 98,
+    "total_ms": 21822.1
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

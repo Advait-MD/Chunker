@@ -1,0 +1,165 @@
+{
+  "trace_id": "bda58be7631147fb",
+  "created_at": "2026-11-16T09:42:47.061439+00:00",
+  "query": "What country is the theme park served by the Huis Ten Bosch train service themed on?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16.28
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16.34
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14096.08
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.94,
+      "bm25_ms": 12.99,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "634431bb1e27714f:L0:000100",
+          "score": 0.8263454903808597,
+          "fused": 0.8263454903808597,
+          "dense_rank": 5,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:48a083feca26d09d",
+          "score": 0.8230747443223645,
+          "fused": 0.8230747443223645,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000049",
+          "score": 0.6662792397360251,
+          "fused": 0.6662792397360251,
+          "dense_rank": 4,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:67600e79:L1:cbdb950d76098da0",
+          "score": 0.44956639113647495,
+          "fused": 0.44956639113647495,
+          "dense_rank": 2,
+          "bm25_rank": 9
+        },
+        {
+          "id": "634431bb1e27714f:L0:000081",
+          "score": 0.3504935912275903,
+          "fused": 0.3504935912275903,
+          "dense_rank": 9,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 16.24
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 587,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14079.58
+    }
+  },
+  "retrieved_ids": [
+    "634431bb1e27714f:L0:000100",
+    "raptor:67600e79:L1:48a083feca26d09d",
+    "81fc433d55d23b4c:L0:000049",
+    "raptor:67600e79:L1:cbdb950d76098da0",
+    "634431bb1e27714f:L0:000081"
+  ],
+  "filtered_ids": [
+    "634431bb1e27714f:L0:000100",
+    "raptor:67600e79:L1:48a083feca26d09d",
+    "81fc433d55d23b4c:L0:000049",
+    "raptor:67600e79:L1:cbdb950d76098da0",
+    "634431bb1e27714f:L0:000081"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:42:47.062939+00:00",
+      "call_id": "ddf77e7081c5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5d2c4a8b00d15b40",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "bda58be7631147fb"
+    },
+    {
+      "ts": "2026-11-16T09:43:01.155661+00:00",
+      "call_id": "41aba147598e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d0006a267621cf86",
+      "prompt_tokens": 1159,
+      "completion_tokens": 61,
+      "latency_ms": 14077.33,
+      "server_ms": 14044.29,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "bda58be7631147fb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1159,
+    "completion_tokens": 61,
+    "total_ms": 14097.91
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

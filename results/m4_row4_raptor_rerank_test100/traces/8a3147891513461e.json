@@ -1,0 +1,183 @@
+{
+  "trace_id": "8a3147891513461e",
+  "created_at": "2026-11-16T12:47:22.806738+00:00",
+  "query": "Which film has the director died later, The Man From Lost River or Mcveagh Of The South Seas?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3897.97
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3898.62
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 20282.22
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.93,
+      "bm25_ms": 6.45,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 12,
+        "latency_ms": 3887.97
+      },
+      "hits": [
+        {
+          "id": "6af2db6cb86d77e2:L0:000171",
+          "score": 9.052983283996582,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 9.052983283996582
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000128",
+          "score": 8.434568405151367,
+          "fused": 0.49550812579374476,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 8.434568405151367
+        },
+        {
+          "id": "raptor:67600e79:L1:f89d8e7186b20f89",
+          "score": 3.649920701980591,
+          "fused": 0.5705233723352221,
+          "dense_rank": 1,
+          "bm25_rank": 7,
+          "fused_rank": 2,
+          "rerank": 3.649920701980591
+        },
+        {
+          "id": "raptor:67600e79:L2:861c648c1dfc4982",
+          "score": 3.092954158782959,
+          "fused": 0.3192152311206204,
+          "dense_rank": 2,
+          "bm25_rank": 16,
+          "fused_rank": 6,
+          "rerank": 3.092954158782959
+        },
+        {
+          "id": "raptor:67600e79:L1:dc0a60799c532774",
+          "score": 0.8309427499771118,
+          "fused": 0.4048899812269463,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 0.8309427499771118
+        }
+      ],
+      "latency_ms": 3897.93
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 550,
+      "latency_ms": 0.6
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16383.51
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000171",
+    "b04ce6dd2d95fb80:L0:000128",
+    "raptor:67600e79:L1:f89d8e7186b20f89",
+    "raptor:67600e79:L2:861c648c1dfc4982",
+    "raptor:67600e79:L1:dc0a60799c532774"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000171",
+    "b04ce6dd2d95fb80:L0:000128",
+    "raptor:67600e79:L1:f89d8e7186b20f89",
+    "raptor:67600e79:L2:861c648c1dfc4982",
+    "raptor:67600e79:L1:dc0a60799c532774"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:47:22.807727+00:00",
+      "call_id": "4b0f7789e869",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7b2e5fb25cbebd50",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8a3147891513461e"
+    },
+    {
+      "ts": "2026-11-16T12:47:43.088022+00:00",
+      "call_id": "95db59dd80f9",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "909082a58695bddc",
+      "prompt_tokens": 1159,
+      "completion_tokens": 123,
+      "latency_ms": 16382.5,
+      "server_ms": 16365.0,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8a3147891513461e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1159,
+    "completion_tokens": 123,
+    "total_ms": 20283.15
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "There is no information about the directors' lifespans in the provided passages, so it cannot be determined which director died later."
+      ]
+    }
+  }
+}

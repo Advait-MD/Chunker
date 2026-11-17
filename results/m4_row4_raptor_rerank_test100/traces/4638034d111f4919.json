@@ -1,0 +1,179 @@
+{
+  "trace_id": "4638034d111f4919",
+  "created_at": "2026-11-16T11:19:29.889332+00:00",
+  "query": "Which affiliate left the employer of Don Newman due to an agreement with CHBC?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1868.13
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1869.45
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13683.34
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.96,
+      "bm25_ms": 8.6,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 1855.8
+      },
+      "hits": [
+        {
+          "id": "ad4ace752e719bab:L0:000147",
+          "score": -0.03122134506702423,
+          "fused": 0.8322423935461302,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.03122134506702423
+        },
+        {
+          "id": "raptor:67600e79:L1:bdfc67fd6e6ce116",
+          "score": -2.3774187564849854,
+          "fused": 0.4063938029452253,
+          "dense_rank": 1,
+          "bm25_rank": 20,
+          "fused_rank": 3,
+          "rerank": -2.3774187564849854
+        },
+        {
+          "id": "raptor:67600e79:L1:54e8bea210cac937",
+          "score": -4.344908237457275,
+          "fused": 0.7969205323040418,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -4.344908237457275
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000184",
+          "score": -4.41903829574585,
+          "fused": 0.3103999609189296,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 7,
+          "rerank": -4.41903829574585
+        },
+        {
+          "id": "a168352d83e925b5:L0:000145",
+          "score": -6.709738731384277,
+          "fused": 0.3694443372128315,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 5,
+          "rerank": -6.709738731384277
+        }
+      ],
+      "latency_ms": 1868.09
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 700,
+      "latency_ms": 1.28
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11813.79
+    }
+  },
+  "retrieved_ids": [
+    "ad4ace752e719bab:L0:000147",
+    "raptor:67600e79:L1:bdfc67fd6e6ce116",
+    "raptor:67600e79:L1:54e8bea210cac937",
+    "66f5caec1369ebaf:L0:000184",
+    "a168352d83e925b5:L0:000145"
+  ],
+  "filtered_ids": [
+    "ad4ace752e719bab:L0:000147",
+    "raptor:67600e79:L1:bdfc67fd6e6ce116",
+    "raptor:67600e79:L1:54e8bea210cac937",
+    "66f5caec1369ebaf:L0:000184",
+    "a168352d83e925b5:L0:000145"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:19:29.889332+00:00",
+      "call_id": "97e3ab6cc5f1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "365581551597c149",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4638034d111f4919"
+    },
+    {
+      "ts": "2026-11-16T11:19:43.572542+00:00",
+      "call_id": "aeaa15b95b64",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d7544bb081441a84",
+      "prompt_tokens": 1289,
+      "completion_tokens": 70,
+      "latency_ms": 11813.05,
+      "server_ms": 11784.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4638034d111f4919"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1289,
+    "completion_tokens": 70,
+    "total_ms": 13684.63
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

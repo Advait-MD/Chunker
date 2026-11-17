@@ -1,0 +1,170 @@
+{
+  "trace_id": "5fcab7dd93a94e77",
+  "created_at": "2026-11-15T09:38:38.920034+00:00",
+  "query": "What martial art does the author think is best overall?\n\nOptions:\n(A) Jujistui\n(B) Tae kwon do\n(C) Karate\n(D) Different martial arts for different purposes\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 20.98
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 21.04
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24721.45
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.5,
+      "bm25_ms": 18.32,
+      "n_candidates": {
+        "dense": 8,
+        "bm25": 8
+      },
+      "n_fused": 8,
+      "hits": [
+        {
+          "id": "e69f506283d8e1fc:L0:000000",
+          "score": 0.9316500302282633,
+          "fused": 0.9316500302282633,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "e69f506283d8e1fc:L0:000002",
+          "score": 0.8779407657763254,
+          "fused": 0.8779407657763254,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:ca616a59:L1:8a6d711d32112b07",
+          "score": 0.8192524345326844,
+          "fused": 0.8192524345326844,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "e69f506283d8e1fc:L0:000003",
+          "score": 0.756134680317151,
+          "fused": 0.756134680317151,
+          "dense_rank": 3,
+          "bm25_rank": 4
+        },
+        {
+          "id": "e69f506283d8e1fc:L0:000001",
+          "score": 0.21148300350157656,
+          "fused": 0.21148300350157656,
+          "dense_rank": 5,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 20.94
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1727,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24700.32
+    }
+  },
+  "retrieved_ids": [
+    "e69f506283d8e1fc:L0:000000",
+    "e69f506283d8e1fc:L0:000002",
+    "raptor:ca616a59:L1:8a6d711d32112b07",
+    "e69f506283d8e1fc:L0:000003",
+    "e69f506283d8e1fc:L0:000001"
+  ],
+  "filtered_ids": [
+    "e69f506283d8e1fc:L0:000000",
+    "e69f506283d8e1fc:L0:000002",
+    "raptor:ca616a59:L1:8a6d711d32112b07",
+    "e69f506283d8e1fc:L0:000003",
+    "e69f506283d8e1fc:L0:000001"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:38:38.922036+00:00",
+      "call_id": "c2ecdb7f1dfa",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "59c39093aea7f254",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5fcab7dd93a94e77"
+    },
+    {
+      "ts": "2026-11-15T09:39:03.640456+00:00",
+      "call_id": "fe455e7494d8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "042a75e2cbbf41af",
+      "prompt_tokens": 2373,
+      "completion_tokens": 75,
+      "latency_ms": 24699.23,
+      "server_ms": 24666.16,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "5fcab7dd93a94e77"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2373,
+    "completion_tokens": 75,
+    "total_ms": 24723.02
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "(D) The author does not think any single martial art is best overall; they suggest different martial arts for different purposes."
+      ]
+    }
+  }
+}

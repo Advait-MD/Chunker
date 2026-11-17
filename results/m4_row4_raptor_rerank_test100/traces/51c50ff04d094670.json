@@ -1,0 +1,179 @@
+{
+  "trace_id": "51c50ff04d094670",
+  "created_at": "2026-11-16T12:40:46.277250+00:00",
+  "query": "What is the place of birth of Geoffrey Plantagenet, Count Of Anjou's wife?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2748.69
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2750.02
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15339.04
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.17,
+      "bm25_ms": 13.23,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2726.85
+      },
+      "hits": [
+        {
+          "id": "b04ce6dd2d95fb80:L0:000112",
+          "score": 3.4137375354766846,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.4137375354766846
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000121",
+          "score": 1.0067229270935059,
+          "fused": 0.3026593436037727,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 10,
+          "rerank": 1.0067229270935059
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000000",
+          "score": 0.8238200545310974,
+          "fused": 0.38095604615127654,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 9,
+          "rerank": 0.8238200545310974
+        },
+        {
+          "id": "raptor:67600e79:L1:c75c8a357faf6d7a",
+          "score": -1.178881287574768,
+          "fused": 0.439179506826116,
+          "dense_rank": 14,
+          "bm25_rank": 8,
+          "fused_rank": 7,
+          "rerank": -1.178881287574768
+        },
+        {
+          "id": "raptor:67600e79:L1:b618acb6f24d57dc",
+          "score": -1.3534293174743652,
+          "fused": 0.2846001562948522,
+          "dense_rank": 20,
+          "bm25_rank": 15,
+          "fused_rank": 12,
+          "rerank": -1.3534293174743652
+        }
+      ],
+      "latency_ms": 2748.64
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 849,
+      "latency_ms": 1.28
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12588.92
+    }
+  },
+  "retrieved_ids": [
+    "b04ce6dd2d95fb80:L0:000112",
+    "53c7288bdcd3837a:L0:000121",
+    "b04ce6dd2d95fb80:L0:000000",
+    "raptor:67600e79:L1:c75c8a357faf6d7a",
+    "raptor:67600e79:L1:b618acb6f24d57dc"
+  ],
+  "filtered_ids": [
+    "b04ce6dd2d95fb80:L0:000112",
+    "53c7288bdcd3837a:L0:000121",
+    "b04ce6dd2d95fb80:L0:000000",
+    "raptor:67600e79:L1:c75c8a357faf6d7a",
+    "raptor:67600e79:L1:b618acb6f24d57dc"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:40:46.279256+00:00",
+      "call_id": "daadbb00b68b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cbc48a600b72bd40",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "51c50ff04d094670"
+    },
+    {
+      "ts": "2026-11-16T12:41:01.614543+00:00",
+      "call_id": "84f93a1b8aea",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "be5540bcac1590df",
+      "prompt_tokens": 1614,
+      "completion_tokens": 43,
+      "latency_ms": 12587.04,
+      "server_ms": 12545.29,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "51c50ff04d094670"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1614,
+    "completion_tokens": 43,
+    "total_ms": 15343.01
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

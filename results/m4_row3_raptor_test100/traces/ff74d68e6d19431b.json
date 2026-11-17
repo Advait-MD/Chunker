@@ -1,0 +1,165 @@
+{
+  "trace_id": "ff74d68e6d19431b",
+  "created_at": "2026-11-16T09:59:30.749922+00:00",
+  "query": "The Dogwoman telemovies were created by an actress born in what year?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.16
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.23
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11865.01
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.67,
+      "bm25_ms": 8.11,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "634431bb1e27714f:L0:000136",
+          "score": 0.8822256796829265,
+          "fused": 0.8822256796829265,
+          "dense_rank": 7,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:f127323bc20bcaa7",
+          "score": 0.4103772313421809,
+          "fused": 0.4103772313421809,
+          "dense_rank": 43,
+          "bm25_rank": 2
+        },
+        {
+          "id": "20496f59538deb41:L0:000080",
+          "score": 0.37205809943478413,
+          "fused": 0.37205809943478413,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000065",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000075",
+          "score": 0.28259234097356545,
+          "fused": 0.28259234097356545,
+          "dense_rank": 3,
+          "bm25_rank": 15
+        }
+      ],
+      "latency_ms": 12.12
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 413,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11852.65
+    }
+  },
+  "retrieved_ids": [
+    "634431bb1e27714f:L0:000136",
+    "raptor:67600e79:L1:f127323bc20bcaa7",
+    "20496f59538deb41:L0:000080",
+    "bc1dba3471045f02:L0:000065",
+    "5d0f6cf59ee42566:L0:000075"
+  ],
+  "filtered_ids": [
+    "634431bb1e27714f:L0:000136",
+    "raptor:67600e79:L1:f127323bc20bcaa7",
+    "20496f59538deb41:L0:000080",
+    "bc1dba3471045f02:L0:000065",
+    "5d0f6cf59ee42566:L0:000075"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:59:30.751924+00:00",
+      "call_id": "d4db28a1d5cb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1f11b3042a0297ab",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ff74d68e6d19431b"
+    },
+    {
+      "ts": "2026-11-16T09:59:42.614684+00:00",
+      "call_id": "60d66acd09be",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6190ad57d07aa781",
+      "prompt_tokens": 1041,
+      "completion_tokens": 69,
+      "latency_ms": 11851.53,
+      "server_ms": 11821.87,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ff74d68e6d19431b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1041,
+    "completion_tokens": 69,
+    "total_ms": 11866.71
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

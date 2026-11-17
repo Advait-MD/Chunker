@@ -1,0 +1,181 @@
+{
+  "trace_id": "9b497c6cf9a3467a",
+  "created_at": "2026-11-16T11:56:17.252385+00:00",
+  "query": "What is the main goal of the EU?\n\nOptions:\n(A) Bribery\n(B) Increase financial gain and power\n(C) Simplify immigration\n(D) Take care of the environment\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 841.72
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 842.68
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25936.5
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.13,
+      "bm25_ms": 20.62,
+      "n_candidates": {
+        "dense": 8,
+        "bm25": 6
+      },
+      "n_fused": 8,
+      "rerank": {
+        "n": 8,
+        "n_computed": 1,
+        "latency_ms": 815.69
+      },
+      "hits": [
+        {
+          "id": "65c3cf9f119e5f7e:L0:000005",
+          "score": -1.0522465705871582,
+          "fused": 0.8955620597715079,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -1.0522465705871582
+        },
+        {
+          "id": "raptor:b8e0eccb:L1:1f47ca2faf31f211",
+          "score": -1.1611700057983398,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.1611700057983398
+        },
+        {
+          "id": "65c3cf9f119e5f7e:L0:000000",
+          "score": -4.846174240112305,
+          "fused": 0.4038907705279017,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -4.846174240112305
+        },
+        {
+          "id": "65c3cf9f119e5f7e:L0:000001",
+          "score": -6.505916118621826,
+          "fused": 0.12027830735763452,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 6,
+          "rerank": -6.505916118621826
+        },
+        {
+          "id": "65c3cf9f119e5f7e:L0:000006",
+          "score": -7.151879787445068,
+          "fused": 0.06336154179094015,
+          "dense_rank": 8,
+          "bm25_rank": 5,
+          "fused_rank": 8,
+          "rerank": -7.151879787445068
+        }
+      ],
+      "latency_ms": 841.66
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1494,
+      "latency_ms": 0.9
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25093.57
+    }
+  },
+  "retrieved_ids": [
+    "65c3cf9f119e5f7e:L0:000005",
+    "raptor:b8e0eccb:L1:1f47ca2faf31f211",
+    "65c3cf9f119e5f7e:L0:000000",
+    "65c3cf9f119e5f7e:L0:000001",
+    "65c3cf9f119e5f7e:L0:000006"
+  ],
+  "filtered_ids": [
+    "65c3cf9f119e5f7e:L0:000005",
+    "raptor:b8e0eccb:L1:1f47ca2faf31f211",
+    "65c3cf9f119e5f7e:L0:000000",
+    "65c3cf9f119e5f7e:L0:000001",
+    "65c3cf9f119e5f7e:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:56:17.254395+00:00",
+      "call_id": "f86850788b17",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "684a1325261c9676",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9b497c6cf9a3467a"
+    },
+    {
+      "ts": "2026-11-16T11:56:43.187722+00:00",
+      "call_id": "402cefab7df0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0e5724f1570f1489",
+      "prompt_tokens": 2141,
+      "completion_tokens": 107,
+      "latency_ms": 25092.05,
+      "server_ms": 25052.1,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9b497c6cf9a3467a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2141,
+    "completion_tokens": 107,
+    "total_ms": 25938.79
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "trace_id": "377c40fa66d543ee",
+  "created_at": "2026-11-16T12:55:54.714271+00:00",
+  "query": "Are Guancangping Railway Station and Yangquan North Railway Station both located in the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1484.74
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1485.6
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11778.45
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.83,
+      "bm25_ms": 9.12,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 1468.48
+      },
+      "hits": [
+        {
+          "id": "460e441179bec402:L0:000114",
+          "score": 9.924630165100098,
+          "fused": 0.6598199907782593,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 9.924630165100098
+        },
+        {
+          "id": "raptor:67600e79:L1:1c14099c68ac441a",
+          "score": 8.240762710571289,
+          "fused": 0.9304736706908991,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 8.240762710571289
+        },
+        {
+          "id": "abe982d210232c3f:L0:000116",
+          "score": 8.191874504089355,
+          "fused": 0.7432273045237636,
+          "dense_rank": 7,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 8.191874504089355
+        },
+        {
+          "id": "raptor:67600e79:L2:990ee9e1c316ef8b",
+          "score": 3.0585031509399414,
+          "fused": 0.24788758075570821,
+          "dense_rank": 6,
+          "bm25_rank": 13,
+          "fused_rank": 13,
+          "rerank": 3.0585031509399414
+        },
+        {
+          "id": "99628090500247e3:L0:000067",
+          "score": -5.837611198425293,
+          "fused": 0.5928440140247133,
+          "dense_rank": 11,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": -5.837611198425293
+        }
+      ],
+      "latency_ms": 1484.68
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 441,
+      "latency_ms": 0.83
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10292.63
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000114",
+    "raptor:67600e79:L1:1c14099c68ac441a",
+    "abe982d210232c3f:L0:000116",
+    "raptor:67600e79:L2:990ee9e1c316ef8b",
+    "99628090500247e3:L0:000067"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000114",
+    "raptor:67600e79:L1:1c14099c68ac441a",
+    "abe982d210232c3f:L0:000116",
+    "raptor:67600e79:L2:990ee9e1c316ef8b",
+    "99628090500247e3:L0:000067"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:55:54.716263+00:00",
+      "call_id": "ee70e9f416a0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f2677babb2d374a4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "377c40fa66d543ee"
+    },
+    {
+      "ts": "2026-11-16T12:56:06.492083+00:00",
+      "call_id": "170112901748",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4ca0fcc110abfd04",
+      "prompt_tokens": 1046,
+      "completion_tokens": 68,
+      "latency_ms": 10291.46,
+      "server_ms": 10254.38,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "377c40fa66d543ee"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1046,
+    "completion_tokens": 68,
+    "total_ms": 11780.37
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        3
+      ],
+      "uncited_sentences": [
+        "No, Guancangping Railway Station is in Hubei, China, while Yangquan North Railway Station is in China, on Shitai Passenger Railway."
+      ]
+    }
+  }
+}

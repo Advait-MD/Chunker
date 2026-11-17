@@ -1,0 +1,165 @@
+{
+  "trace_id": "633a557f69ad4262",
+  "created_at": "2026-11-15T09:21:59.339959+00:00",
+  "query": "The actor who plays the father in I Can Only Imagine has a wife played by who in another film?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 22.97
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 23.08
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17144.07
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.93,
+      "bm25_ms": 18.55,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "4b634e52029ddab4:L0:000131",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:47bbae7e531527ae",
+          "score": 0.4187213577755711,
+          "fused": 0.4187213577755711,
+          "dense_rank": 4,
+          "bm25_rank": 16
+        },
+        {
+          "id": "raptor:67600e79:L1:5ee10996eb6bdc2d",
+          "score": 0.362693447732886,
+          "fused": 0.362693447732886,
+          "dense_rank": 44,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:67600e79:L1:4450b64481beda68",
+          "score": 0.361222990233803,
+          "fused": 0.361222990233803,
+          "dense_rank": 3,
+          "bm25_rank": 27
+        },
+        {
+          "id": "dd498e0082847164:L0:000067",
+          "score": 0.3601238193780333,
+          "fused": 0.3601238193780333,
+          "dense_rank": null,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 22.92
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 713,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17120.87
+    }
+  },
+  "retrieved_ids": [
+    "4b634e52029ddab4:L0:000131",
+    "raptor:67600e79:L1:47bbae7e531527ae",
+    "raptor:67600e79:L1:5ee10996eb6bdc2d",
+    "raptor:67600e79:L1:4450b64481beda68",
+    "dd498e0082847164:L0:000067"
+  ],
+  "filtered_ids": [
+    "4b634e52029ddab4:L0:000131",
+    "raptor:67600e79:L1:47bbae7e531527ae",
+    "raptor:67600e79:L1:5ee10996eb6bdc2d",
+    "raptor:67600e79:L1:4450b64481beda68",
+    "dd498e0082847164:L0:000067"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:21:59.341368+00:00",
+      "call_id": "8e2e34a8f4e4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "81f120fb3f7e1022",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "633a557f69ad4262"
+    },
+    {
+      "ts": "2026-11-15T09:22:16.481802+00:00",
+      "call_id": "0e19b8350f74",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "418040bae9af9176",
+      "prompt_tokens": 1326,
+      "completion_tokens": 74,
+      "latency_ms": 17119.57,
+      "server_ms": 17093.55,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "633a557f69ad4262"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1326,
+    "completion_tokens": 74,
+    "total_ms": 17146.28
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

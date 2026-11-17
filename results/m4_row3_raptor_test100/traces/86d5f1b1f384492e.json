@@ -1,0 +1,168 @@
+{
+  "trace_id": "86d5f1b1f384492e",
+  "created_at": "2026-11-16T09:38:11.480340+00:00",
+  "query": "What was the passage of time over the course of the story?\n\nOptions:\n(A) Days\n(B) Months\n(C) Hours\n(D) Weeks\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.3
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.34
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17918.81
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.96,
+      "bm25_ms": 8.21,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 18
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ef846b5c8602cdfe:L0:000008",
+          "score": 0.8282385363470481,
+          "fused": 0.8282385363470481,
+          "dense_rank": 12,
+          "bm25_rank": 1
+        },
+        {
+          "id": "ef846b5c8602cdfe:L0:000002",
+          "score": 0.8025689294250026,
+          "fused": 0.8025689294250026,
+          "dense_rank": 11,
+          "bm25_rank": 3
+        },
+        {
+          "id": "ef846b5c8602cdfe:L0:000003",
+          "score": 0.7566180827690013,
+          "fused": 0.7566180827690013,
+          "dense_rank": 20,
+          "bm25_rank": 2
+        },
+        {
+          "id": "ef846b5c8602cdfe:L0:000016",
+          "score": 0.6853419569223785,
+          "fused": 0.6853419569223785,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        },
+        {
+          "id": "ef846b5c8602cdfe:L0:000018",
+          "score": 0.6363016397293922,
+          "fused": 0.6363016397293922,
+          "dense_rank": 10,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 10.28
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1961,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17908.42
+    }
+  },
+  "retrieved_ids": [
+    "ef846b5c8602cdfe:L0:000008",
+    "ef846b5c8602cdfe:L0:000002",
+    "ef846b5c8602cdfe:L0:000003",
+    "ef846b5c8602cdfe:L0:000016",
+    "ef846b5c8602cdfe:L0:000018"
+  ],
+  "filtered_ids": [
+    "ef846b5c8602cdfe:L0:000008",
+    "ef846b5c8602cdfe:L0:000002",
+    "ef846b5c8602cdfe:L0:000003",
+    "ef846b5c8602cdfe:L0:000016",
+    "ef846b5c8602cdfe:L0:000018"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:38:11.481340+00:00",
+      "call_id": "eb122fc25955",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b20a8d608902e0e7",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "86d5f1b1f384492e"
+    },
+    {
+      "ts": "2026-11-16T09:38:29.398554+00:00",
+      "call_id": "761f640dfeb0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "eb99df5e1d1f48de",
+      "prompt_tokens": 2489,
+      "completion_tokens": 44,
+      "latency_ms": 17907.85,
+      "server_ms": 17882.4,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "86d5f1b1f384492e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2489,
+    "completion_tokens": 44,
+    "total_ms": 17919.33
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "(C) Hours"
+      ]
+    }
+  }
+}

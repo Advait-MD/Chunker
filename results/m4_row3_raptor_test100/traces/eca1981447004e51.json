@@ -1,0 +1,170 @@
+{
+  "trace_id": "eca1981447004e51",
+  "created_at": "2026-11-16T10:21:33.142272+00:00",
+  "query": "Which film has the director born earlier, High Society Blues or Counterblast?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.15
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.34
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15595.77
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.91,
+      "bm25_ms": 7.93,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000100",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:7334f650872ffdc5",
+          "score": 0.5984015469328405,
+          "fused": 0.5984015469328405,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        },
+        {
+          "id": "raptor:67600e79:L3:a3cd2b84b0cab146",
+          "score": 0.4985045849363437,
+          "fused": 0.4985045849363437,
+          "dense_rank": 10,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:67600e79:L4:f0046daf7014f3c4",
+          "score": 0.4985045849363437,
+          "fused": 0.4985045849363437,
+          "dense_rank": 9,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:67600e79:L2:3ef99ea0028e4d61",
+          "score": 0.40782675235404237,
+          "fused": 0.40782675235404237,
+          "dense_rank": 26,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 11.11
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 805,
+      "latency_ms": 0.17
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15584.35
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000100",
+    "raptor:67600e79:L1:7334f650872ffdc5",
+    "raptor:67600e79:L3:a3cd2b84b0cab146",
+    "raptor:67600e79:L4:f0046daf7014f3c4",
+    "raptor:67600e79:L2:3ef99ea0028e4d61"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000100",
+    "raptor:67600e79:L1:7334f650872ffdc5",
+    "raptor:67600e79:L3:a3cd2b84b0cab146",
+    "raptor:67600e79:L4:f0046daf7014f3c4",
+    "raptor:67600e79:L2:3ef99ea0028e4d61"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:21:33.143976+00:00",
+      "call_id": "f80ed6adb4f6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "59da7bdb4b58760f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "eca1981447004e51"
+    },
+    {
+      "ts": "2026-11-16T10:21:48.738172+00:00",
+      "call_id": "93d6e6ffe1a4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "72f6a36022a42884",
+      "prompt_tokens": 1443,
+      "completion_tokens": 103,
+      "latency_ms": 15583.6,
+      "server_ms": 15559.1,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "eca1981447004e51"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1443,
+    "completion_tokens": 103,
+    "total_ms": 15596.4
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, the question cannot be answered based on the given information."
+      ]
+    }
+  }
+}

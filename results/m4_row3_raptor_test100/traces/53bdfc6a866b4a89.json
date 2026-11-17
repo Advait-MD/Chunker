@@ -1,0 +1,165 @@
+{
+  "trace_id": "53bdfc6a866b4a89",
+  "created_at": "2026-11-15T08:51:53.182125+00:00",
+  "query": "What type of weight pruning do they use?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.94
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16.01
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20033.39
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.59,
+      "bm25_ms": 12.07,
+      "n_candidates": {
+        "dense": 26,
+        "bm25": 11
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "3d5f78a6650b8155:L0:000015",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:560de310:L1:91cb69d085b2dd54",
+          "score": 0.8785463571790569,
+          "fused": 0.8785463571790569,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "3d5f78a6650b8155:L0:000017",
+          "score": 0.8733980061940969,
+          "fused": 0.8733980061940969,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:560de310:L1:d7ffb87a85c94e65",
+          "score": 0.6241391863017787,
+          "fused": 0.6241391863017787,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "3d5f78a6650b8155:L0:000000",
+          "score": 0.5348772309085766,
+          "fused": 0.5348772309085766,
+          "dense_rank": 6,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 15.89
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1217,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20017.27
+    }
+  },
+  "retrieved_ids": [
+    "3d5f78a6650b8155:L0:000015",
+    "raptor:560de310:L1:91cb69d085b2dd54",
+    "3d5f78a6650b8155:L0:000017",
+    "raptor:560de310:L1:d7ffb87a85c94e65",
+    "3d5f78a6650b8155:L0:000000"
+  ],
+  "filtered_ids": [
+    "3d5f78a6650b8155:L0:000015",
+    "raptor:560de310:L1:91cb69d085b2dd54",
+    "3d5f78a6650b8155:L0:000017",
+    "raptor:560de310:L1:d7ffb87a85c94e65",
+    "3d5f78a6650b8155:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T08:51:53.184122+00:00",
+      "call_id": "d77ce5fd2d5a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4c035a3c4367674b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "53bdfc6a866b4a89"
+    },
+    {
+      "ts": "2026-11-15T08:52:13.214448+00:00",
+      "call_id": "1984bc468a69",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "aa3777b77b325ae9",
+      "prompt_tokens": 1964,
+      "completion_tokens": 64,
+      "latency_ms": 20016.19,
+      "server_ms": 19990.48,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "53bdfc6a866b4a89"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1964,
+    "completion_tokens": 64,
+    "total_ms": 20034.36
+  },
+  "config_hash": "4304b1db8856",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

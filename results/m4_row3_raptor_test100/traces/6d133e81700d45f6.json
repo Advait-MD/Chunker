@@ -1,0 +1,164 @@
+{
+  "trace_id": "6d133e81700d45f6",
+  "created_at": "2026-11-15T09:13:20.131236+00:00",
+  "query": "Who was Suzanne Farrington's mother's spouse?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.23
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.28
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13468.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.08,
+      "bm25_ms": 11.76,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "f3503d3d186f0f90:L0:000048",
+          "score": 0.803662326213018,
+          "fused": 0.803662326213018,
+          "dense_rank": 14,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:983ae8046757900a",
+          "score": 0.6486108298454155,
+          "fused": 0.6486108298454155,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:3cf1b15c251244e5",
+          "score": 0.30273965234259687,
+          "fused": 0.30273965234259687,
+          "dense_rank": 4,
+          "bm25_rank": 18
+        },
+        {
+          "id": "raptor:67600e79:L2:060b3a8166d3babe",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "raptor:67600e79:L1:e10bfe00377755cf",
+          "score": 0.2647197353710505,
+          "fused": 0.2647197353710505,
+          "dense_rank": 8,
+          "bm25_rank": 14
+        }
+      ],
+      "latency_ms": 15.19
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 715,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13453.08
+    }
+  },
+  "retrieved_ids": [
+    "f3503d3d186f0f90:L0:000048",
+    "raptor:67600e79:L1:983ae8046757900a",
+    "raptor:67600e79:L1:3cf1b15c251244e5",
+    "raptor:67600e79:L2:060b3a8166d3babe",
+    "raptor:67600e79:L1:e10bfe00377755cf"
+  ],
+  "filtered_ids": [
+    "f3503d3d186f0f90:L0:000048",
+    "raptor:67600e79:L1:983ae8046757900a",
+    "raptor:67600e79:L1:3cf1b15c251244e5",
+    "raptor:67600e79:L2:060b3a8166d3babe",
+    "raptor:67600e79:L1:e10bfe00377755cf"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:13:20.132227+00:00",
+      "call_id": "26eafa71d806",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9519307b27641d86",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6d133e81700d45f6"
+    },
+    {
+      "ts": "2026-11-15T09:13:33.598869+00:00",
+      "call_id": "bde7a7b6d0b2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9dd1e033f3c33e2f",
+      "prompt_tokens": 1386,
+      "completion_tokens": 54,
+      "latency_ms": 13452.1,
+      "server_ms": 13423.78,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "6d133e81700d45f6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1386,
+    "completion_tokens": 54,
+    "total_ms": 13470.31
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

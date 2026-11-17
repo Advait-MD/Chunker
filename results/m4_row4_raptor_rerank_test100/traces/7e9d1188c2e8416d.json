@@ -1,0 +1,180 @@
+{
+  "trace_id": "7e9d1188c2e8416d",
+  "created_at": "2026-11-16T11:47:06.101119+00:00",
+  "query": "Why didn't Joey get a new dog when Charlie disappeared?\n\nOptions:\n(A) Joey refused to believe that Charlie was actually gone\n(B) Joey's mother would not let him get another dog \n(C) Joey did not like any other dogs that he met\n(D) Joey did not want to get a new dog to honor Charlie\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2966.73
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2966.83
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19557.11
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.93,
+      "bm25_ms": 35.1,
+      "n_candidates": {
+        "dense": 26,
+        "bm25": 26
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2925.94
+      },
+      "hits": [
+        {
+          "id": "raptor:96660398:L2:dbba0f7454643a96",
+          "score": 2.988642454147339,
+          "fused": 0.9881899341851852,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 2.988642454147339
+        },
+        {
+          "id": "raptor:96660398:L1:bfff84e7572428bb",
+          "score": 1.8083926439285278,
+          "fused": 0.7688115846741576,
+          "dense_rank": 7,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": 1.8083926439285278
+        },
+        {
+          "id": "raptor:96660398:L1:44f8b805a791f0c8",
+          "score": 1.4123542308807373,
+          "fused": 0.884453368890254,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 1.4123542308807373
+        },
+        {
+          "id": "d229f0b1fa6722b4:L0:000007",
+          "score": 1.2272322177886963,
+          "fused": 0.9992167733656849,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 1.2272322177886963
+        },
+        {
+          "id": "d229f0b1fa6722b4:L0:000011",
+          "score": 0.05945085734128952,
+          "fused": 0.6944097966645237,
+          "dense_rank": 11,
+          "bm25_rank": 7,
+          "fused_rank": 9,
+          "rerank": 0.05945085734128952
+        }
+      ],
+      "latency_ms": 2966.68
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1362,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16590.12
+    }
+  },
+  "retrieved_ids": [
+    "raptor:96660398:L2:dbba0f7454643a96",
+    "raptor:96660398:L1:bfff84e7572428bb",
+    "raptor:96660398:L1:44f8b805a791f0c8",
+    "d229f0b1fa6722b4:L0:000007",
+    "d229f0b1fa6722b4:L0:000011"
+  ],
+  "filtered_ids": [
+    "raptor:96660398:L2:dbba0f7454643a96",
+    "raptor:96660398:L1:bfff84e7572428bb",
+    "raptor:96660398:L1:44f8b805a791f0c8",
+    "d229f0b1fa6722b4:L0:000007",
+    "d229f0b1fa6722b4:L0:000011"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:47:06.102120+00:00",
+      "call_id": "6d34daa43608",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "167a91f59a5b6db7",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7e9d1188c2e8416d"
+    },
+    {
+      "ts": "2026-11-16T11:47:25.657172+00:00",
+      "call_id": "7a9f7b1a54c0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1681c92e759d51c5",
+      "prompt_tokens": 1887,
+      "completion_tokens": 55,
+      "latency_ms": 16588.73,
+      "server_ms": 16544.56,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7e9d1188c2e8416d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1887,
+    "completion_tokens": 55,
+    "total_ms": 19559.16
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

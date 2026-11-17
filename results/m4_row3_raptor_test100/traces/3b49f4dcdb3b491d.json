@@ -1,0 +1,165 @@
+{
+  "trace_id": "3b49f4dcdb3b491d",
+  "created_at": "2026-11-15T09:29:31.838418+00:00",
+  "query": "Who is the spouse of the actor portraying Jerry Lee Lewis in Great Balls of Fire?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 20.53
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 20.6
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14688.75
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.53,
+      "bm25_ms": 16.65,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "66f5caec1369ebaf:L0:000091",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:0e6563a6270b1194",
+          "score": 0.5003700134181166,
+          "fused": 0.5003700134181166,
+          "dense_rank": 14,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000146",
+          "score": 0.3662442024895859,
+          "fused": 0.3662442024895859,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:67600e79:L2:060b3a8166d3babe",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "raptor:67600e79:L1:3fc0aad7f788311c",
+          "score": 0.2655923761659509,
+          "fused": 0.2655923761659509,
+          "dense_rank": 2,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 20.49
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 684,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14668.02
+    }
+  },
+  "retrieved_ids": [
+    "66f5caec1369ebaf:L0:000091",
+    "raptor:67600e79:L1:0e6563a6270b1194",
+    "f59bbbdacaf7ffe4:L0:000146",
+    "raptor:67600e79:L2:060b3a8166d3babe",
+    "raptor:67600e79:L1:3fc0aad7f788311c"
+  ],
+  "filtered_ids": [
+    "66f5caec1369ebaf:L0:000091",
+    "raptor:67600e79:L1:0e6563a6270b1194",
+    "f59bbbdacaf7ffe4:L0:000146",
+    "raptor:67600e79:L2:060b3a8166d3babe",
+    "raptor:67600e79:L1:3fc0aad7f788311c"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:29:31.840417+00:00",
+      "call_id": "40e7badaf613",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e81f03b992d7c989",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "3b49f4dcdb3b491d"
+    },
+    {
+      "ts": "2026-11-15T09:29:46.526269+00:00",
+      "call_id": "4bd04677bc09",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7b79e6e283bbb1d5",
+      "prompt_tokens": 1340,
+      "completion_tokens": 67,
+      "latency_ms": 14667.01,
+      "server_ms": 14640.6,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "3b49f4dcdb3b491d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1340,
+    "completion_tokens": 67,
+    "total_ms": 14690.42
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

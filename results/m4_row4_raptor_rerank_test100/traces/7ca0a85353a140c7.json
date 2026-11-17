@@ -1,0 +1,179 @@
+{
+  "trace_id": "7ca0a85353a140c7",
+  "created_at": "2026-11-16T12:56:40.244616+00:00",
+  "query": "Where did Baha Al-Dawla's father die?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1512.77
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1512.87
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12734.17
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.47,
+      "bm25_ms": 9.19,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 1494.34
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000134",
+          "score": 2.404090642929077,
+          "fused": 0.6793879256789461,
+          "dense_rank": 8,
+          "bm25_rank": 9,
+          "fused_rank": 9,
+          "rerank": 2.404090642929077
+        },
+        {
+          "id": "raptor:67600e79:L2:42cff0161fcb88a4",
+          "score": 1.9304025173187256,
+          "fused": 0.9303639628332105,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 1,
+          "rerank": 1.9304025173187256
+        },
+        {
+          "id": "raptor:67600e79:L1:414caadaa538b28d",
+          "score": 1.1220422983169556,
+          "fused": 0.8989322920630493,
+          "dense_rank": 2,
+          "bm25_rank": 8,
+          "fused_rank": 2,
+          "rerank": 1.1220422983169556
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000117",
+          "score": -0.5002276301383972,
+          "fused": 0.702375094045686,
+          "dense_rank": 18,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -0.5002276301383972
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000094",
+          "score": -0.6542503833770752,
+          "fused": 0.684813733079621,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 8,
+          "rerank": -0.6542503833770752
+        }
+      ],
+      "latency_ms": 1512.69
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 687,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11221.22
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000134",
+    "raptor:67600e79:L2:42cff0161fcb88a4",
+    "raptor:67600e79:L1:414caadaa538b28d",
+    "317e12ccd417c0d7:L0:000117",
+    "4a757779abfb4ba1:L0:000094"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000134",
+    "raptor:67600e79:L2:42cff0161fcb88a4",
+    "raptor:67600e79:L1:414caadaa538b28d",
+    "317e12ccd417c0d7:L0:000117",
+    "4a757779abfb4ba1:L0:000094"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:56:40.246612+00:00",
+      "call_id": "806a3a92ff2c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bb70fea9b5d9249c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7ca0a85353a140c7"
+    },
+    {
+      "ts": "2026-11-16T12:56:52.978617+00:00",
+      "call_id": "2502761ffb42",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "beaf13f4a4776107",
+      "prompt_tokens": 1446,
+      "completion_tokens": 45,
+      "latency_ms": 11220.09,
+      "server_ms": 11189.09,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7ca0a85353a140c7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1446,
+    "completion_tokens": 45,
+    "total_ms": 12735.61
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

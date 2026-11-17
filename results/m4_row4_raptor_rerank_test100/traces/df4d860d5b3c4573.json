@@ -1,0 +1,180 @@
+{
+  "trace_id": "df4d860d5b3c4573",
+  "created_at": "2026-11-16T12:33:01.251050+00:00",
+  "query": "Which award David Hersey had got for Equus a play by Peter Shaffer ?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3610.98
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3611.14
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16808.78
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.27,
+      "bm25_ms": 9.25,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 3596.65
+      },
+      "hits": [
+        {
+          "id": "bc1dba3471045f02:L0:000139",
+          "score": 6.337464809417725,
+          "fused": 0.6564615621797227,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": 6.337464809417725
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000156",
+          "score": 6.049195766448975,
+          "fused": 0.7121679999111581,
+          "dense_rank": 36,
+          "bm25_rank": 1,
+          "fused_rank": 3,
+          "rerank": 6.049195766448975
+        },
+        {
+          "id": "raptor:67600e79:L2:8da5b0402dc61faf",
+          "score": 3.9078612327575684,
+          "fused": 0.7275236371867219,
+          "dense_rank": 2,
+          "bm25_rank": 7,
+          "fused_rank": 2,
+          "rerank": 3.9078612327575684
+        },
+        {
+          "id": "raptor:67600e79:L1:1b9362d8c42c4260",
+          "score": 3.5183839797973633,
+          "fused": 0.890842410806794,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": 3.5183839797973633
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000103",
+          "score": 2.758251905441284,
+          "fused": 0.5794765018590892,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 7,
+          "rerank": 2.758251905441284
+        }
+      ],
+      "latency_ms": 3610.89
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 504,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13197.43
+    }
+  },
+  "retrieved_ids": [
+    "bc1dba3471045f02:L0:000139",
+    "cc2399aca11eb631:L0:000156",
+    "raptor:67600e79:L2:8da5b0402dc61faf",
+    "raptor:67600e79:L1:1b9362d8c42c4260",
+    "ec3410ef955c5c93:L0:000103"
+  ],
+  "filtered_ids": [
+    "bc1dba3471045f02:L0:000139",
+    "cc2399aca11eb631:L0:000156",
+    "raptor:67600e79:L2:8da5b0402dc61faf",
+    "raptor:67600e79:L1:1b9362d8c42c4260",
+    "ec3410ef955c5c93:L0:000103"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:33:01.253082+00:00",
+      "call_id": "73e96468dbbc",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8e43fb150ff5e528",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "df4d860d5b3c4573"
+    },
+    {
+      "ts": "2026-11-16T12:33:18.058464+00:00",
+      "call_id": "104793fe06af",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c50514801a8f0925",
+      "prompt_tokens": 1133,
+      "completion_tokens": 65,
+      "latency_ms": 13195.45,
+      "server_ms": 13169.53,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "df4d860d5b3c4573"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1133,
+    "completion_tokens": 65,
+    "total_ms": 16810.45
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

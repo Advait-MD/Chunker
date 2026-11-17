@@ -1,0 +1,180 @@
+{
+  "trace_id": "021a49a4ad084fa1",
+  "created_at": "2026-11-16T12:22:51.574292+00:00",
+  "query": "What type of license is the open source roguelike video game video released 2012, in which a subset of it's pricing model is a called free-to-play, licensed under?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2718.18
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2718.37
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15263.28
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.88,
+      "bm25_ms": 12.78,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2701.62
+      },
+      "hits": [
+        {
+          "id": "838c0e0106e6f015:L0:000076",
+          "score": 5.16398286819458,
+          "fused": 0.706619647316357,
+          "dense_rank": 6,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 5.16398286819458
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000128",
+          "score": 2.3346827030181885,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.3346827030181885
+        },
+        {
+          "id": "raptor:67600e79:L1:d96da6fc7087dd57",
+          "score": 0.9236357808113098,
+          "fused": 0.6432323426862638,
+          "dense_rank": 2,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": 0.9236357808113098
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000042",
+          "score": -1.6702446937561035,
+          "fused": 0.6754511892755555,
+          "dense_rank": 4,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -1.6702446937561035
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000172",
+          "score": -3.28539776802063,
+          "fused": 0.5143824027779055,
+          "dense_rank": 8,
+          "bm25_rank": 6,
+          "fused_rank": 8,
+          "rerank": -3.28539776802063
+        }
+      ],
+      "latency_ms": 2718.15
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 737,
+      "latency_ms": 0.16
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12544.83
+    }
+  },
+  "retrieved_ids": [
+    "838c0e0106e6f015:L0:000076",
+    "5d0f6cf59ee42566:L0:000128",
+    "raptor:67600e79:L1:d96da6fc7087dd57",
+    "cc2399aca11eb631:L0:000042",
+    "cc2399aca11eb631:L0:000172"
+  ],
+  "filtered_ids": [
+    "838c0e0106e6f015:L0:000076",
+    "5d0f6cf59ee42566:L0:000128",
+    "raptor:67600e79:L1:d96da6fc7087dd57",
+    "cc2399aca11eb631:L0:000042",
+    "cc2399aca11eb631:L0:000172"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:22:51.575290+00:00",
+      "call_id": "e409506cd7ea",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fbbb6e65544e2b38",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "021a49a4ad084fa1"
+    },
+    {
+      "ts": "2026-11-16T12:23:06.836580+00:00",
+      "call_id": "54a11d5f94db",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "534bd95428d65d3e",
+      "prompt_tokens": 1312,
+      "completion_tokens": 75,
+      "latency_ms": 12544.09,
+      "server_ms": 12526.91,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "021a49a4ad084fa1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1312,
+    "completion_tokens": 75,
+    "total_ms": 15264.82
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

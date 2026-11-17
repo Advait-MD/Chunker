@@ -1,0 +1,164 @@
+{
+  "trace_id": "6f32dc1587754157",
+  "created_at": "2026-11-16T09:47:05.055973+00:00",
+  "query": "What type of television show did Dylan Everett star in, in 2015?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.46
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.53
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12051.13
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.99,
+      "bm25_ms": 10.13,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ec3410ef955c5c93:L0:000081",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000102",
+          "score": 0.5676955981054338,
+          "fused": 0.5676955981054338,
+          "dense_rank": 40,
+          "bm25_rank": 2
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000136",
+          "score": 0.5207970795036837,
+          "fused": 0.5207970795036837,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000145",
+          "score": 0.4475194945659442,
+          "fused": 0.4475194945659442,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "634431bb1e27714f:L0:000006",
+          "score": 0.42277636930022144,
+          "fused": 0.42277636930022144,
+          "dense_rank": 17,
+          "bm25_rank": 8
+        }
+      ],
+      "latency_ms": 13.42
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 568,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12037.42
+    }
+  },
+  "retrieved_ids": [
+    "ec3410ef955c5c93:L0:000081",
+    "90976421f3f2bea2:L0:000102",
+    "8e50522b7cb636d8:L0:000136",
+    "81fc433d55d23b4c:L0:000145",
+    "634431bb1e27714f:L0:000006"
+  ],
+  "filtered_ids": [
+    "ec3410ef955c5c93:L0:000081",
+    "90976421f3f2bea2:L0:000102",
+    "8e50522b7cb636d8:L0:000136",
+    "81fc433d55d23b4c:L0:000145",
+    "634431bb1e27714f:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:47:05.057974+00:00",
+      "call_id": "50bbe143d254",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c29318fffbe5b6ac",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6f32dc1587754157"
+    },
+    {
+      "ts": "2026-11-16T09:47:17.106508+00:00",
+      "call_id": "33b645d972d7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "65add255c8b55ff5",
+      "prompt_tokens": 1148,
+      "completion_tokens": 62,
+      "latency_ms": 12036.42,
+      "server_ms": 11984.54,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "6f32dc1587754157"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1148,
+    "completion_tokens": 62,
+    "total_ms": 12054.62
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

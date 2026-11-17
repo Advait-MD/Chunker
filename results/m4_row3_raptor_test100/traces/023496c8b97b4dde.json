@@ -1,0 +1,164 @@
+{
+  "trace_id": "023496c8b97b4dde",
+  "created_at": "2026-11-16T10:09:02.370923+00:00",
+  "query": "Who is Antoine-Charles Taschereau's paternal grandfather?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.92
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.98
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13875.35
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.98,
+      "bm25_ms": 4.67,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:5823e138655c2697",
+          "score": 0.879698473702391,
+          "fused": 0.879698473702391,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "0eac870d43736f51:L0:000166",
+          "score": 0.7178879611121011,
+          "fused": 0.7178879611121011,
+          "dense_rank": 20,
+          "bm25_rank": 1
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000187",
+          "score": 0.5484176205612196,
+          "fused": 0.5484176205612196,
+          "dense_rank": 8,
+          "bm25_rank": 3
+        },
+        {
+          "id": "460e441179bec402:L0:000076",
+          "score": 0.4591131140740604,
+          "fused": 0.4591131140740604,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000016",
+          "score": 0.43479640940490766,
+          "fused": 0.43479640940490766,
+          "dense_rank": 14,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 7.89
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 727,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13867.26
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:5823e138655c2697",
+    "0eac870d43736f51:L0:000166",
+    "317e12ccd417c0d7:L0:000187",
+    "460e441179bec402:L0:000076",
+    "317e12ccd417c0d7:L0:000016"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:5823e138655c2697",
+    "0eac870d43736f51:L0:000166",
+    "317e12ccd417c0d7:L0:000187",
+    "460e441179bec402:L0:000076",
+    "317e12ccd417c0d7:L0:000016"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:09:02.372259+00:00",
+      "call_id": "45245945f3ba",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "906636c796810dd4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "023496c8b97b4dde"
+    },
+    {
+      "ts": "2026-11-16T10:09:16.244789+00:00",
+      "call_id": "fd16df3bdbf6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d86fae5f79130452",
+      "prompt_tokens": 1550,
+      "completion_tokens": 45,
+      "latency_ms": 13866.29,
+      "server_ms": 13836.94,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "023496c8b97b4dde"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1550,
+    "completion_tokens": 45,
+    "total_ms": 13877.74
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

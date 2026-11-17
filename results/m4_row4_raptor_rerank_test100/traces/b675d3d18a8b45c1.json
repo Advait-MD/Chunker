@@ -1,0 +1,182 @@
+{
+  "trace_id": "b675d3d18a8b45c1",
+  "created_at": "2026-11-16T13:10:05.495834+00:00",
+  "query": "How did Penelope test the identity of Odysseus to prove he was truly her husband after slaying the suitors?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6492.14
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6492.86
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23437.94
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.91,
+      "bm25_ms": 42.98,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 13,
+        "latency_ms": 6438.47
+      },
+      "hits": [
+        {
+          "id": "raptor:da9c117e:L1:b6370ada6eeeae7d",
+          "score": 3.489180088043213,
+          "fused": 0.6127583168562039,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 3.489180088043213
+        },
+        {
+          "id": "raptor:da9c117e:L2:1d2c77f6bd0d0673",
+          "score": 2.7787466049194336,
+          "fused": 0.5884210719983929,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 2.7787466049194336
+        },
+        {
+          "id": "raptor:da9c117e:L1:db7fda5da2187ce5",
+          "score": 2.756070852279663,
+          "fused": 0.4414647765221734,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 2.756070852279663
+        },
+        {
+          "id": "f9add743188fc69e:L0:000117",
+          "score": 2.249551296234131,
+          "fused": 0.4040945796807839,
+          "dense_rank": 4,
+          "bm25_rank": 12,
+          "fused_rank": 8,
+          "rerank": 2.249551296234131
+        },
+        {
+          "id": "raptor:da9c117e:L3:d49cab82fcfac169",
+          "score": 2.2070260047912598,
+          "fused": 0.4936136998987472,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 2.2070260047912598
+        }
+      ],
+      "latency_ms": 6492.09
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 925,
+      "latency_ms": 0.66
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16944.95
+    }
+  },
+  "retrieved_ids": [
+    "raptor:da9c117e:L1:b6370ada6eeeae7d",
+    "raptor:da9c117e:L2:1d2c77f6bd0d0673",
+    "raptor:da9c117e:L1:db7fda5da2187ce5",
+    "f9add743188fc69e:L0:000117",
+    "raptor:da9c117e:L3:d49cab82fcfac169"
+  ],
+  "filtered_ids": [
+    "raptor:da9c117e:L1:b6370ada6eeeae7d",
+    "raptor:da9c117e:L2:1d2c77f6bd0d0673",
+    "raptor:da9c117e:L1:db7fda5da2187ce5",
+    "f9add743188fc69e:L0:000117",
+    "raptor:da9c117e:L3:d49cab82fcfac169"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:10:05.496834+00:00",
+      "call_id": "4c8283d69e4e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bbe56d24f1d42c87",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b675d3d18a8b45c1"
+    },
+    {
+      "ts": "2026-11-16T13:10:28.932513+00:00",
+      "call_id": "920b60458e28",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bffe7c18d836a833",
+      "prompt_tokens": 1474,
+      "completion_tokens": 93,
+      "latency_ms": 16943.55,
+      "server_ms": 16916.83,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b675d3d18a8b45c1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1474,
+    "completion_tokens": 93,
+    "total_ms": 23440.12
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Penelope tested Odysseus' identity by asking Eurycleia to make up the bed for him outside the bedroom, which enraged him, as he asked, 'Woman!"
+      ]
+    }
+  }
+}

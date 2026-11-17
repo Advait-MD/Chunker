@@ -1,0 +1,167 @@
+{
+  "trace_id": "fd4ed66fe8fd4416",
+  "created_at": "2026-11-15T09:54:53.293330+00:00",
+  "query": "Of the following options, which best describe Captain Homer Fogarty?\n\nOptions:\n(A) Dumb and kind\n(B) Handsome and brave\n(C) Brave and desperate\n(D) Rash and impatient\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 39.73
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 40.99
+    },
+    {
+      "state": "DONE",
+      "t_ms": 28458.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.98,
+      "bm25_ms": 30.1,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 23
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "369294acde117c7a:L0:000000",
+          "score": 0.7489607641983155,
+          "fused": 0.7489607641983155,
+          "dense_rank": 17,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:5057bc3f:L1:81dc3c1e14735f9a",
+          "score": 0.7364922036357237,
+          "fused": 0.7364922036357237,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        },
+        {
+          "id": "raptor:5057bc3f:L1:f76139194c486538",
+          "score": 0.6944694291827076,
+          "fused": 0.6944694291827076,
+          "dense_rank": 2,
+          "bm25_rank": 9
+        },
+        {
+          "id": "369294acde117c7a:L0:000001",
+          "score": 0.6605390915302417,
+          "fused": 0.6605390915302417,
+          "dense_rank": 3,
+          "bm25_rank": 8
+        },
+        {
+          "id": "raptor:5057bc3f:L2:20115d6169c7d87c",
+          "score": 0.6102868739572836,
+          "fused": 0.6102868739572836,
+          "dense_rank": 4,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 39.64
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1232,
+      "latency_ms": 1.23
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 28417.15
+    }
+  },
+  "retrieved_ids": [
+    "369294acde117c7a:L0:000000",
+    "raptor:5057bc3f:L1:81dc3c1e14735f9a",
+    "raptor:5057bc3f:L1:f76139194c486538",
+    "369294acde117c7a:L0:000001",
+    "raptor:5057bc3f:L2:20115d6169c7d87c"
+  ],
+  "filtered_ids": [
+    "369294acde117c7a:L0:000000",
+    "raptor:5057bc3f:L1:81dc3c1e14735f9a",
+    "raptor:5057bc3f:L1:f76139194c486538",
+    "369294acde117c7a:L0:000001",
+    "raptor:5057bc3f:L2:20115d6169c7d87c"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:54:53.293330+00:00",
+      "call_id": "d27abff40f3d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d00060fbd068fe67",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fd4ed66fe8fd4416"
+    },
+    {
+      "ts": "2026-11-15T09:55:21.749475+00:00",
+      "call_id": "7e03f9ff7da8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4266fe910af69c62",
+      "prompt_tokens": 1788,
+      "completion_tokens": 81,
+      "latency_ms": 28415.32,
+      "server_ms": 28386.8,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "fd4ed66fe8fd4416"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1788,
+    "completion_tokens": 81,
+    "total_ms": 28462.59
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "(D) Captain Fogarty was rash and impatient, as evidenced by his dismissive attitude towards Mrs."
+      ]
+    }
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "trace_id": "fad54eefd5fd4d5c",
+  "created_at": "2026-11-15T08:49:16.159550+00:00",
+  "query": "Do they have an elementary unit of text?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.93
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.96
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17580.13
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.95,
+      "bm25_ms": 4.83,
+      "n_candidates": {
+        "dense": 49,
+        "bm25": 33
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "eefcb145320afed2:L0:000005",
+          "score": 0.9187502615772327,
+          "fused": 0.9187502615772327,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "eefcb145320afed2:L0:000006",
+          "score": 0.9124050964123384,
+          "fused": 0.9124050964123384,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "eefcb145320afed2:L0:000004",
+          "score": 0.4738673292872295,
+          "fused": 0.4738673292872295,
+          "dense_rank": 34,
+          "bm25_rank": 3
+        },
+        {
+          "id": "eefcb145320afed2:L0:000000",
+          "score": 0.400976860990741,
+          "fused": 0.400976860990741,
+          "dense_rank": 2,
+          "bm25_rank": 6
+        },
+        {
+          "id": "eefcb145320afed2:L0:000033",
+          "score": 0.387154607324912,
+          "fused": 0.387154607324912,
+          "dense_rank": 3,
+          "bm25_rank": 8
+        }
+      ],
+      "latency_ms": 6.91
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1119,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17573.03
+    }
+  },
+  "retrieved_ids": [
+    "eefcb145320afed2:L0:000005",
+    "eefcb145320afed2:L0:000006",
+    "eefcb145320afed2:L0:000004",
+    "eefcb145320afed2:L0:000000",
+    "eefcb145320afed2:L0:000033"
+  ],
+  "filtered_ids": [
+    "eefcb145320afed2:L0:000005",
+    "eefcb145320afed2:L0:000006",
+    "eefcb145320afed2:L0:000004",
+    "eefcb145320afed2:L0:000000",
+    "eefcb145320afed2:L0:000033"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T08:49:16.160800+00:00",
+      "call_id": "03de56e02860",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1692f35de61677c1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fad54eefd5fd4d5c"
+    },
+    {
+      "ts": "2026-11-15T08:49:33.738782+00:00",
+      "call_id": "c544d3f5b073",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "28fffcbcb53bb383",
+      "prompt_tokens": 1737,
+      "completion_tokens": 95,
+      "latency_ms": 17572.17,
+      "server_ms": 17535.61,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "fad54eefd5fd4d5c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1737,
+    "completion_tokens": 95,
+    "total_ms": 17581.25
+  },
+  "config_hash": "4304b1db8856",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Yes, they use character ngrams as the elementary unit of text."
+      ]
+    }
+  }
+}

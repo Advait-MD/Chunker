@@ -1,0 +1,180 @@
+{
+  "trace_id": "445f84d144b54303",
+  "created_at": "2026-11-16T10:54:24.402942+00:00",
+  "query": "What are baselines used?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1433.65
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1434.57
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20690.4
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.52,
+      "bm25_ms": 7.81,
+      "n_candidates": {
+        "dense": 35,
+        "bm25": 7
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 1416.71
+      },
+      "hits": [
+        {
+          "id": "d46d8762a48eb7ab:L0:000023",
+          "score": -0.5177339911460876,
+          "fused": 0.8061076407562155,
+          "dense_rank": 24,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.5177339911460876
+        },
+        {
+          "id": "raptor:de250aef:L1:0f051605faee08d5",
+          "score": -0.9385286569595337,
+          "fused": 0.18664212137508793,
+          "dense_rank": 9,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -0.9385286569595337
+        },
+        {
+          "id": "raptor:de250aef:L1:2bfb6e2ae37f9457",
+          "score": -7.09523868560791,
+          "fused": 0.5215106010222886,
+          "dense_rank": 2,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -7.09523868560791
+        },
+        {
+          "id": "d46d8762a48eb7ab:L0:000022",
+          "score": -7.499485015869141,
+          "fused": 0.5999656442757313,
+          "dense_rank": 11,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -7.499485015869141
+        },
+        {
+          "id": "d46d8762a48eb7ab:L0:000001",
+          "score": -7.514059066772461,
+          "fused": 0.6852478764894732,
+          "dense_rank": 35,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -7.514059066772461
+        }
+      ],
+      "latency_ms": 1433.6
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1552,
+      "latency_ms": 0.88
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19255.75
+    }
+  },
+  "retrieved_ids": [
+    "d46d8762a48eb7ab:L0:000023",
+    "raptor:de250aef:L1:0f051605faee08d5",
+    "raptor:de250aef:L1:2bfb6e2ae37f9457",
+    "d46d8762a48eb7ab:L0:000022",
+    "d46d8762a48eb7ab:L0:000001"
+  ],
+  "filtered_ids": [
+    "d46d8762a48eb7ab:L0:000023",
+    "raptor:de250aef:L1:0f051605faee08d5",
+    "raptor:de250aef:L1:2bfb6e2ae37f9457",
+    "d46d8762a48eb7ab:L0:000022",
+    "d46d8762a48eb7ab:L0:000001"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:54:24.404227+00:00",
+      "call_id": "5181ee8b94fa",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "da6398db47f916b0",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "445f84d144b54303"
+    },
+    {
+      "ts": "2026-11-16T10:54:45.091864+00:00",
+      "call_id": "442cd3eb6958",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "340fc336319d151c",
+      "prompt_tokens": 2234,
+      "completion_tokens": 89,
+      "latency_ms": 19254.86,
+      "server_ms": 19233.63,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "445f84d144b54303"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2234,
+    "completion_tokens": 89,
+    "total_ms": 20691.08
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

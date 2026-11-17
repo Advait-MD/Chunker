@@ -1,0 +1,164 @@
+{
+  "trace_id": "baf52edbf41b4360",
+  "created_at": "2026-11-16T09:47:38.852317+00:00",
+  "query": "Who wrote the lyrics for Linda Eder's Broadway debut?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.84
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.87
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10686.12
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.09,
+      "bm25_ms": 4.59,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000131",
+          "score": 0.764033126739226,
+          "fused": 0.764033126739226,
+          "dense_rank": 26,
+          "bm25_rank": 1
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000170",
+          "score": 0.7507239133858583,
+          "fused": 0.7507239133858583,
+          "dense_rank": 24,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:6d9e3286525c2364",
+          "score": 0.6084878715650346,
+          "fused": 0.6084878715650346,
+          "dense_rank": 1,
+          "bm25_rank": 5
+        },
+        {
+          "id": "634431bb1e27714f:L0:000071",
+          "score": 0.569620789447472,
+          "fused": 0.569620789447472,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:67600e79:L1:b6ae7662f1e839ee",
+          "score": 0.5335529828996322,
+          "fused": 0.5335529828996322,
+          "dense_rank": 2,
+          "bm25_rank": 9
+        }
+      ],
+      "latency_ms": 6.82
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 564,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10679.14
+    }
+  },
+  "retrieved_ids": [
+    "ba3cd068cf9ac2e4:L0:000131",
+    "8e50522b7cb636d8:L0:000170",
+    "raptor:67600e79:L1:6d9e3286525c2364",
+    "634431bb1e27714f:L0:000071",
+    "raptor:67600e79:L1:b6ae7662f1e839ee"
+  ],
+  "filtered_ids": [
+    "ba3cd068cf9ac2e4:L0:000131",
+    "8e50522b7cb636d8:L0:000170",
+    "raptor:67600e79:L1:6d9e3286525c2364",
+    "634431bb1e27714f:L0:000071",
+    "raptor:67600e79:L1:b6ae7662f1e839ee"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:47:38.854475+00:00",
+      "call_id": "d22f4ee10200",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "73d94a25d6755c9f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "baf52edbf41b4360"
+    },
+    {
+      "ts": "2026-11-16T09:47:49.537481+00:00",
+      "call_id": "0bbf0fe40853",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5c7890e48e1c7da7",
+      "prompt_tokens": 1102,
+      "completion_tokens": 62,
+      "latency_ms": 10678.23,
+      "server_ms": 10657.52,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "baf52edbf41b4360"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1102,
+    "completion_tokens": 62,
+    "total_ms": 10688.1
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

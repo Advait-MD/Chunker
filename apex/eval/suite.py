@@ -47,6 +47,8 @@ def main(argv=None):
     s = sub.add_parser("tree", help="build the RAPTOR tree collection for each dataset (M4)")
     s.add_argument("datasets", nargs="+"); s.add_argument("--config"); s.add_argument("--seed", type=int)
     s.add_argument("--force", action="store_true", help="rebuild even if the manifest says it is up to date")
+    s.add_argument("--only-split", choices=["dev", "test"],
+                   help="per_source datasets only: build the tree for that split's documents (seed check)")
     a = ap.parse_args(argv)
 
     if a.cmd == "splits":
@@ -95,8 +97,13 @@ def main(argv=None):
             if a.seed is not None:
                 ov = deep_merge(ov, {"raptor": {"seed": a.seed}})
             cfg = load_config(a.config, overrides=ov)
+            sources = None
+            if a.only_split:
+                sources = {it.scope for it in D.load_split(n, a.only_split, cfg)}
+                if None in sources:
+                    raise SystemExit(f"{n}: --only-split needs per-document questions (QASPER, QuALITY, custom)")
             comps, t = Components(cfg), time.time()
-            rep = TreeBuilder(cfg, comps.store, comps.embedder, comps.client).build(force=a.force)
+            rep = TreeBuilder(cfg, comps.store, comps.embedder, comps.client).build(force=a.force, sources=sources)
             print(f"[{n}] {json.dumps(rep)} ({time.time() - t:.0f}s)")
     elif a.cmd == "compare":
         from apex.eval.report import compare

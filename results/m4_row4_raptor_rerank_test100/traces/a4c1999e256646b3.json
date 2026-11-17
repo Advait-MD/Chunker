@@ -1,0 +1,185 @@
+{
+  "trace_id": "a4c1999e256646b3",
+  "created_at": "2026-11-16T12:59:35.219469+00:00",
+  "query": "Which film has the director who died later, The Devil And Miss Jones or The Man In The Funny Suit?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3498.57
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3498.66
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22605.07
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.94,
+      "bm25_ms": 9.28,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 3481.75
+      },
+      "hits": [
+        {
+          "id": "99628090500247e3:L0:000121",
+          "score": 8.690716743469238,
+          "fused": 0.7,
+          "dense_rank": 50,
+          "bm25_rank": 1,
+          "fused_rank": 3,
+          "rerank": 8.690716743469238
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000152",
+          "score": 7.709774494171143,
+          "fused": 0.6126113045572599,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": 7.709774494171143
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000132",
+          "score": 6.970754623413086,
+          "fused": 0.5316992076764135,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": 6.970754623413086
+        },
+        {
+          "id": "raptor:67600e79:L1:b6ecd497b258bd7a",
+          "score": 5.20162296295166,
+          "fused": 0.4864073114900278,
+          "dense_rank": 3,
+          "bm25_rank": 13,
+          "fused_rank": 8,
+          "rerank": 5.20162296295166
+        },
+        {
+          "id": "raptor:67600e79:L1:d08d543a533df419",
+          "score": 3.8045477867126465,
+          "fused": 0.7586971272094294,
+          "dense_rank": 2,
+          "bm25_rank": 6,
+          "fused_rank": 1,
+          "rerank": 3.8045477867126465
+        }
+      ],
+      "latency_ms": 3498.52
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 964,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19106.29
+    }
+  },
+  "retrieved_ids": [
+    "99628090500247e3:L0:000121",
+    "c73b757f0eb66f37:L0:000152",
+    "4a757779abfb4ba1:L0:000132",
+    "raptor:67600e79:L1:b6ecd497b258bd7a",
+    "raptor:67600e79:L1:d08d543a533df419"
+  ],
+  "filtered_ids": [
+    "99628090500247e3:L0:000121",
+    "c73b757f0eb66f37:L0:000152",
+    "4a757779abfb4ba1:L0:000132",
+    "raptor:67600e79:L1:b6ecd497b258bd7a",
+    "raptor:67600e79:L1:d08d543a533df419"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:59:35.220780+00:00",
+      "call_id": "0ed6720200fc",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3e5e25d40ce65e9f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a4c1999e256646b3"
+    },
+    {
+      "ts": "2026-11-16T12:59:57.823628+00:00",
+      "call_id": "c1709c8ee195",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a005d411b27cd830",
+      "prompt_tokens": 1619,
+      "completion_tokens": 123,
+      "latency_ms": 19104.98,
+      "server_ms": 19083.44,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a4c1999e256646b3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1619,
+    "completion_tokens": 123,
+    "total_ms": 22606.37
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5,
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Sam Wood died in 1974, while Ralph Nelson died in 1985.",
+        "Therefore, the director of 'The Man in the Funny Suit' died later."
+      ]
+    }
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "trace_id": "9a3036247b4c4d20",
+  "created_at": "2026-11-16T10:38:00.347677+00:00",
+  "query": "How are the tweets selected?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2513.19
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2513.28
+    },
+    {
+      "state": "DONE",
+      "t_ms": 31982.49
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.54,
+      "bm25_ms": 9.66,
+      "n_candidates": {
+        "dense": 30,
+        "bm25": 27
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2491.0
+      },
+      "hits": [
+        {
+          "id": "d96e7fdc6d06a63b:L0:000011",
+          "score": 1.712005376815796,
+          "fused": 0.992157110791507,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.712005376815796
+        },
+        {
+          "id": "raptor:4d020008:L1:cb39f25d0736a9ed",
+          "score": 1.1564158201217651,
+          "fused": 0.5480754018709257,
+          "dense_rank": 4,
+          "bm25_rank": 8,
+          "fused_rank": 7,
+          "rerank": 1.1564158201217651
+        },
+        {
+          "id": "d96e7fdc6d06a63b:L0:000016",
+          "score": 0.907670795917511,
+          "fused": 0.7553712446383529,
+          "dense_rank": 14,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 0.907670795917511
+        },
+        {
+          "id": "d96e7fdc6d06a63b:L0:000010",
+          "score": 0.8196576237678528,
+          "fused": 0.7400601208588578,
+          "dense_rank": 12,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 0.8196576237678528
+        },
+        {
+          "id": "d96e7fdc6d06a63b:L0:000007",
+          "score": 0.39197513461112976,
+          "fused": 0.4871805244588613,
+          "dense_rank": 6,
+          "bm25_rank": 16,
+          "fused_rank": 11,
+          "rerank": 0.39197513461112976
+        }
+      ],
+      "latency_ms": 2513.12
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1334,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 29469.09
+    }
+  },
+  "retrieved_ids": [
+    "d96e7fdc6d06a63b:L0:000011",
+    "raptor:4d020008:L1:cb39f25d0736a9ed",
+    "d96e7fdc6d06a63b:L0:000016",
+    "d96e7fdc6d06a63b:L0:000010",
+    "d96e7fdc6d06a63b:L0:000007"
+  ],
+  "filtered_ids": [
+    "d96e7fdc6d06a63b:L0:000011",
+    "raptor:4d020008:L1:cb39f25d0736a9ed",
+    "d96e7fdc6d06a63b:L0:000016",
+    "d96e7fdc6d06a63b:L0:000010",
+    "d96e7fdc6d06a63b:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:38:00.351076+00:00",
+      "call_id": "63b559ab0d57",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5c4d6db4be55e35c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9a3036247b4c4d20"
+    },
+    {
+      "ts": "2026-11-16T10:38:32.330077+00:00",
+      "call_id": "d2345b91d90c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "682f73483cf29d05",
+      "prompt_tokens": 1960,
+      "completion_tokens": 183,
+      "latency_ms": 29467.8,
+      "server_ms": 29434.09,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9a3036247b4c4d20"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1960,
+    "completion_tokens": 183,
+    "total_ms": 31983.93
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3
+      ],
+      "uncited_sentences": [
+        "Tweets are selected through multiple rounds of annotation.",
+        "Initially, a classifier (INLINEFORM0) is used to label the data, and then a helper system is employed to label a subset of the data.",
+        "Afterward, crowdworkers spot-check the tweets to estimate the frequency of job-related tweets as the confidence score changes.",
+        "Based on this, Type-1 and Type-2 tweets are selected for further annotation.",
+        "Type-1 tweets are those with high confidence scores, while Type-2 tweets are those with very low confidence scores.",
+        "Finally, additional tweets are selected from the job-likely set and those labeled as positive by the helper system but not used in previous rounds for further annotation."
+      ]
+    }
+  }
+}

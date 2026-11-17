@@ -1,0 +1,182 @@
+{
+  "trace_id": "0f7c7462161c4fb4",
+  "created_at": "2026-11-16T10:48:16.521499+00:00",
+  "query": "Does their model use MFCC?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1623.87
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1624.2
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19758.18
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.06,
+      "bm25_ms": 11.62,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 6
+      },
+      "n_fused": 19,
+      "rerank": {
+        "n": 19,
+        "n_computed": 4,
+        "latency_ms": 1603.95
+      },
+      "hits": [
+        {
+          "id": "c65c414c3e5ee33e:L0:000003",
+          "score": -6.96563196182251,
+          "fused": 0.09705635562901896,
+          "dense_rank": 16,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": -6.96563196182251
+        },
+        {
+          "id": "c65c414c3e5ee33e:L0:000006",
+          "score": -7.220853328704834,
+          "fused": 0.7415431040437823,
+          "dense_rank": 14,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -7.220853328704834
+        },
+        {
+          "id": "raptor:9293f779:L2:b05768feaeda0ed0",
+          "score": -7.405355930328369,
+          "fused": 0.8313318125120591,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -7.405355930328369
+        },
+        {
+          "id": "c65c414c3e5ee33e:L0:000014",
+          "score": -7.511798858642578,
+          "fused": 0.2779297229955902,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -7.511798858642578
+        },
+        {
+          "id": "c65c414c3e5ee33e:L0:000004",
+          "score": -7.751421928405762,
+          "fused": 0.15671976449782057,
+          "dense_rank": 11,
+          "bm25_rank": 6,
+          "fused_rank": 12,
+          "rerank": -7.751421928405762
+        }
+      ],
+      "latency_ms": 1623.81
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1253,
+      "latency_ms": 0.3
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18133.79
+    }
+  },
+  "retrieved_ids": [
+    "c65c414c3e5ee33e:L0:000003",
+    "c65c414c3e5ee33e:L0:000006",
+    "raptor:9293f779:L2:b05768feaeda0ed0",
+    "c65c414c3e5ee33e:L0:000014",
+    "c65c414c3e5ee33e:L0:000004"
+  ],
+  "filtered_ids": [
+    "c65c414c3e5ee33e:L0:000003",
+    "c65c414c3e5ee33e:L0:000006",
+    "raptor:9293f779:L2:b05768feaeda0ed0",
+    "c65c414c3e5ee33e:L0:000014",
+    "c65c414c3e5ee33e:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:48:16.523499+00:00",
+      "call_id": "40216424caf3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b5f8b25da16161c3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0f7c7462161c4fb4"
+    },
+    {
+      "ts": "2026-11-16T10:48:36.278788+00:00",
+      "call_id": "3a301f89904f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b3f4000a083ddf81",
+      "prompt_tokens": 1931,
+      "completion_tokens": 68,
+      "latency_ms": 18132.02,
+      "server_ms": 18099.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0f7c7462161c4fb4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1931,
+    "completion_tokens": 68,
+    "total_ms": 19760.0
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "No, their model does not use MFCC."
+      ]
+    }
+  }
+}

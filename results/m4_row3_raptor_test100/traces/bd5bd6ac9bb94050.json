@@ -1,0 +1,165 @@
+{
+  "trace_id": "bd5bd6ac9bb94050",
+  "created_at": "2026-11-15T09:20:59.391884+00:00",
+  "query": "Which affiliate left the employer of Don Newman due to an agreement with CHBC?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.78
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.84
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15517.15
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.02,
+      "bm25_ms": 15.34,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ad4ace752e719bab:L0:000147",
+          "score": 0.8322423935461302,
+          "fused": 0.8322423935461302,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:54e8bea210cac937",
+          "score": 0.7969205323040418,
+          "fused": 0.7969205323040418,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:bdfc67fd6e6ce116",
+          "score": 0.4063938029452253,
+          "fused": 0.4063938029452253,
+          "dense_rank": 1,
+          "bm25_rank": 20
+        },
+        {
+          "id": "raptor:67600e79:L2:b2819060704aaaf3",
+          "score": 0.3811551638223691,
+          "fused": 0.3811551638223691,
+          "dense_rank": 3,
+          "bm25_rank": 10
+        },
+        {
+          "id": "a168352d83e925b5:L0:000145",
+          "score": 0.3694443372128315,
+          "fused": 0.3694443372128315,
+          "dense_rank": null,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 19.74
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 789,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15497.11
+    }
+  },
+  "retrieved_ids": [
+    "ad4ace752e719bab:L0:000147",
+    "raptor:67600e79:L1:54e8bea210cac937",
+    "raptor:67600e79:L1:bdfc67fd6e6ce116",
+    "raptor:67600e79:L2:b2819060704aaaf3",
+    "a168352d83e925b5:L0:000145"
+  ],
+  "filtered_ids": [
+    "ad4ace752e719bab:L0:000147",
+    "raptor:67600e79:L1:54e8bea210cac937",
+    "raptor:67600e79:L1:bdfc67fd6e6ce116",
+    "raptor:67600e79:L2:b2819060704aaaf3",
+    "a168352d83e925b5:L0:000145"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:20:59.394276+00:00",
+      "call_id": "c7bb720b451f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "365581551597c149",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "bd5bd6ac9bb94050"
+    },
+    {
+      "ts": "2026-11-15T09:21:14.906374+00:00",
+      "call_id": "dcf2ff94f7aa",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "64d83be0499fcb12",
+      "prompt_tokens": 1399,
+      "completion_tokens": 75,
+      "latency_ms": 15494.68,
+      "server_ms": 15467.08,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "bd5bd6ac9bb94050"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1399,
+    "completion_tokens": 75,
+    "total_ms": 15519.99
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

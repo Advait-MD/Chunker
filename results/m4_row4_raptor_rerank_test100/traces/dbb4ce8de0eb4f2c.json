@@ -1,0 +1,180 @@
+{
+  "trace_id": "dbb4ce8de0eb4f2c",
+  "created_at": "2026-11-16T12:24:25.825124+00:00",
+  "query": "Who covered the song I Love You by Chris Write?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3150.39
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3150.56
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19406.3
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.96,
+      "bm25_ms": 8.54,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 3134.7
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:e84fb749f64845a7",
+          "score": 4.710458278656006,
+          "fused": 0.8033206474532746,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": 4.710458278656006
+        },
+        {
+          "id": "20496f59538deb41:L0:000084",
+          "score": 2.562377452850342,
+          "fused": 0.7457477487935523,
+          "dense_rank": 21,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 2.562377452850342
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000163",
+          "score": -3.389852523803711,
+          "fused": 0.21212826886486838,
+          "dense_rank": 31,
+          "bm25_rank": 12,
+          "fused_rank": 12,
+          "rerank": -3.389852523803711
+        },
+        {
+          "id": "20496f59538deb41:L0:000182",
+          "score": -3.9694669246673584,
+          "fused": 0.2727449148351646,
+          "dense_rank": 10,
+          "bm25_rank": 10,
+          "fused_rank": 10,
+          "rerank": -3.9694669246673584
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000186",
+          "score": -4.214680194854736,
+          "fused": 0.44449932107235157,
+          "dense_rank": 35,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -4.214680194854736
+        }
+      ],
+      "latency_ms": 3150.32
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 819,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16255.6
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:e84fb749f64845a7",
+    "20496f59538deb41:L0:000084",
+    "90976421f3f2bea2:L0:000163",
+    "20496f59538deb41:L0:000182",
+    "cb96563b0747a6ba:L0:000186"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:e84fb749f64845a7",
+    "20496f59538deb41:L0:000084",
+    "90976421f3f2bea2:L0:000163",
+    "20496f59538deb41:L0:000182",
+    "cb96563b0747a6ba:L0:000186"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:24:25.826125+00:00",
+      "call_id": "8025a5bd33f2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "63c030a592102bbf",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "dbb4ce8de0eb4f2c"
+    },
+    {
+      "ts": "2026-11-16T12:24:45.230403+00:00",
+      "call_id": "6401388cdc73",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a169a5880d8a375d",
+      "prompt_tokens": 1419,
+      "completion_tokens": 81,
+      "latency_ms": 16254.26,
+      "server_ms": 16224.81,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "dbb4ce8de0eb4f2c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1419,
+    "completion_tokens": 81,
+    "total_ms": 19409.39
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

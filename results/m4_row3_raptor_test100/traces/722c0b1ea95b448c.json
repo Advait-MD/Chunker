@@ -1,0 +1,165 @@
+{
+  "trace_id": "722c0b1ea95b448c",
+  "created_at": "2026-11-15T09:53:56.421173+00:00",
+  "query": "What is the main goal of the EU?\n\nOptions:\n(A) Bribery\n(B) Increase financial gain and power\n(C) Simplify immigration\n(D) Take care of the environment\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 26.46
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 26.85
+    },
+    {
+      "state": "DONE",
+      "t_ms": 26839.36
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.07,
+      "bm25_ms": 21.75,
+      "n_candidates": {
+        "dense": 8,
+        "bm25": 6
+      },
+      "n_fused": 8,
+      "hits": [
+        {
+          "id": "raptor:b8e0eccb:L1:1f47ca2faf31f211",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "65c3cf9f119e5f7e:L0:000005",
+          "score": 0.8955620597715079,
+          "fused": 0.8955620597715079,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "65c3cf9f119e5f7e:L0:000000",
+          "score": 0.4038907705279017,
+          "fused": 0.4038907705279017,
+          "dense_rank": 5,
+          "bm25_rank": 3
+        },
+        {
+          "id": "65c3cf9f119e5f7e:L0:000004",
+          "score": 0.3614580526878345,
+          "fused": 0.3614580526878345,
+          "dense_rank": 3,
+          "bm25_rank": 4
+        },
+        {
+          "id": "65c3cf9f119e5f7e:L0:000002",
+          "score": 0.1868564173034124,
+          "fused": 0.1868564173034124,
+          "dense_rank": 4,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 26.41
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1711,
+      "latency_ms": 0.37
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 26812.38
+    }
+  },
+  "retrieved_ids": [
+    "raptor:b8e0eccb:L1:1f47ca2faf31f211",
+    "65c3cf9f119e5f7e:L0:000005",
+    "65c3cf9f119e5f7e:L0:000000",
+    "65c3cf9f119e5f7e:L0:000004",
+    "65c3cf9f119e5f7e:L0:000002"
+  ],
+  "filtered_ids": [
+    "raptor:b8e0eccb:L1:1f47ca2faf31f211",
+    "65c3cf9f119e5f7e:L0:000005",
+    "65c3cf9f119e5f7e:L0:000000",
+    "65c3cf9f119e5f7e:L0:000004",
+    "65c3cf9f119e5f7e:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:53:56.423481+00:00",
+      "call_id": "a69a4fdc31d8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "684a1325261c9676",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "722c0b1ea95b448c"
+    },
+    {
+      "ts": "2026-11-15T09:54:23.259466+00:00",
+      "call_id": "51f7b71b4a03",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c34f558fbd04122d",
+      "prompt_tokens": 2369,
+      "completion_tokens": 102,
+      "latency_ms": 26810.64,
+      "server_ms": 26772.25,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "722c0b1ea95b448c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2369,
+    "completion_tokens": 102,
+    "total_ms": 26840.9
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

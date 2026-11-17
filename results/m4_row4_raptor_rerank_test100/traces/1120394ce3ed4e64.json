@@ -1,0 +1,182 @@
+{
+  "trace_id": "1120394ce3ed4e64",
+  "created_at": "2026-11-16T11:59:34.222258+00:00",
+  "query": "What was Boris Knackenpast's great accomplishment?\n\nOptions:\n(A) Evading capture by the Americans\n(B) Evading capture by the Russians\n(C) Pretending to be a robot\n(D) Nobel prize for literature\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3330.73
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3330.93
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24903.88
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.56,
+      "bm25_ms": 18.66,
+      "n_candidates": {
+        "dense": 27,
+        "bm25": 26
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 3306.91
+      },
+      "hits": [
+        {
+          "id": "raptor:b53eda83:L2:8c9a05aca736bf73",
+          "score": 0.16084371507167816,
+          "fused": 0.7818655523988718,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.16084371507167816
+        },
+        {
+          "id": "1347e212fd21afeb:L0:000014",
+          "score": -0.2258196771144867,
+          "fused": 0.8711192034955725,
+          "dense_rank": 10,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": -0.2258196771144867
+        },
+        {
+          "id": "1347e212fd21afeb:L0:000000",
+          "score": -0.4152931869029999,
+          "fused": 0.4816925734786558,
+          "dense_rank": 13,
+          "bm25_rank": 8,
+          "fused_rank": 7,
+          "rerank": -0.4152931869029999
+        },
+        {
+          "id": "raptor:b53eda83:L1:3e21a0ef3d798f24",
+          "score": -0.6025100350379944,
+          "fused": 0.879231071825916,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": -0.6025100350379944
+        },
+        {
+          "id": "1347e212fd21afeb:L0:000019",
+          "score": -0.9248174428939819,
+          "fused": 0.44298251602963795,
+          "dense_rank": 21,
+          "bm25_rank": 6,
+          "fused_rank": 9,
+          "rerank": -0.9248174428939819
+        }
+      ],
+      "latency_ms": 3330.67
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1493,
+      "latency_ms": 0.15
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21572.82
+    }
+  },
+  "retrieved_ids": [
+    "raptor:b53eda83:L2:8c9a05aca736bf73",
+    "1347e212fd21afeb:L0:000014",
+    "1347e212fd21afeb:L0:000000",
+    "raptor:b53eda83:L1:3e21a0ef3d798f24",
+    "1347e212fd21afeb:L0:000019"
+  ],
+  "filtered_ids": [
+    "raptor:b53eda83:L2:8c9a05aca736bf73",
+    "1347e212fd21afeb:L0:000014",
+    "1347e212fd21afeb:L0:000000",
+    "raptor:b53eda83:L1:3e21a0ef3d798f24",
+    "1347e212fd21afeb:L0:000019"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:59:34.224253+00:00",
+      "call_id": "1e7de3357ae5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "86d1e0d19d103f98",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1120394ce3ed4e64"
+    },
+    {
+      "ts": "2026-11-16T11:59:59.125804+00:00",
+      "call_id": "a40e6f1ac92b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1118fc8621a8b95e",
+      "prompt_tokens": 2250,
+      "completion_tokens": 60,
+      "latency_ms": 21571.36,
+      "server_ms": 21513.2,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1120394ce3ed4e64"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2250,
+    "completion_tokens": 60,
+    "total_ms": 24905.27
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2,
+        3
+      ],
+      "uncited_sentences": [
+        "(C) Boris Knackenpast's great accomplishment was pretending to be a robot."
+      ]
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "trace_id": "90ce6e549c734f3e",
+  "created_at": "2026-11-16T12:51:55.653773+00:00",
+  "query": "What nationality is Julia Parker (Astrologer)'s husband?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3343.83
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3343.97
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13331.67
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.22,
+      "bm25_ms": 6.37,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 3332.18
+      },
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000118",
+          "score": 7.388753414154053,
+          "fused": 0.9074633608525134,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.388753414154053
+        },
+        {
+          "id": "raptor:67600e79:L1:c188ce2c4ab7cd3d",
+          "score": 5.580246925354004,
+          "fused": 0.6559945383958666,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 5.580246925354004
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000103",
+          "score": 0.7810338735580444,
+          "fused": 0.41958132953227695,
+          "dense_rank": 4,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": 0.7810338735580444
+        },
+        {
+          "id": "raptor:67600e79:L2:33f9635dbd5372ca",
+          "score": 0.7802521586418152,
+          "fused": 0.35124120712781737,
+          "dense_rank": 5,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": 0.7802521586418152
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000017",
+          "score": 0.33550095558166504,
+          "fused": 0.29959501773761604,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": 0.33550095558166504
+        }
+      ],
+      "latency_ms": 3343.78
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 530,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9987.55
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000118",
+    "raptor:67600e79:L1:c188ce2c4ab7cd3d",
+    "c73b757f0eb66f37:L0:000103",
+    "raptor:67600e79:L2:33f9635dbd5372ca",
+    "53c7288bdcd3837a:L0:000017"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000118",
+    "raptor:67600e79:L1:c188ce2c4ab7cd3d",
+    "c73b757f0eb66f37:L0:000103",
+    "raptor:67600e79:L2:33f9635dbd5372ca",
+    "53c7288bdcd3837a:L0:000017"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:51:55.656048+00:00",
+      "call_id": "96cb5a781493",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cb31380f48b26371",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "90ce6e549c734f3e"
+    },
+    {
+      "ts": "2026-11-16T12:52:08.984859+00:00",
+      "call_id": "246cc6cc5221",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "13bae0055f02509e",
+      "prompt_tokens": 1090,
+      "completion_tokens": 48,
+      "latency_ms": 9985.28,
+      "server_ms": 9960.61,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "90ce6e549c734f3e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1090,
+    "completion_tokens": 48,
+    "total_ms": 13335.91
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

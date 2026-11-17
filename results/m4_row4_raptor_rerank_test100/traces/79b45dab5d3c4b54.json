@@ -1,0 +1,183 @@
+{
+  "trace_id": "79b45dab5d3c4b54",
+  "created_at": "2026-11-16T13:13:26.740942+00:00",
+  "query": "In The Odyssey, how did the goddess Athena aid Telemachus and Odysseus in disguise throughout their journeys?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5982.21
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5982.32
+    },
+    {
+      "state": "DONE",
+      "t_ms": 29108.68
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.89,
+      "bm25_ms": 23.49,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 12,
+        "latency_ms": 5950.08
+      },
+      "hits": [
+        {
+          "id": "raptor:da9c117e:L3:3ad43022545ee158",
+          "score": 4.609068870544434,
+          "fused": 0.6008986772349002,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 4.609068870544434
+        },
+        {
+          "id": "raptor:da9c117e:L1:6ac5bf39d66a72df",
+          "score": 2.869004726409912,
+          "fused": 0.3759224862981894,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": 2.869004726409912
+        },
+        {
+          "id": "raptor:da9c117e:L1:7544df22ef25afee",
+          "score": 2.814420700073242,
+          "fused": 0.2294835617387104,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": 2.814420700073242
+        },
+        {
+          "id": "raptor:da9c117e:L2:e4a579a4edb8ffb6",
+          "score": 2.739713191986084,
+          "fused": 0.42566845533734354,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": 2.739713191986084
+        },
+        {
+          "id": "raptor:da9c117e:L1:44c9b0f9df69b1ef",
+          "score": 2.6985206604003906,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.6985206604003906
+        }
+      ],
+      "latency_ms": 5982.14
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 800,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23126.08
+    }
+  },
+  "retrieved_ids": [
+    "raptor:da9c117e:L3:3ad43022545ee158",
+    "raptor:da9c117e:L1:6ac5bf39d66a72df",
+    "raptor:da9c117e:L1:7544df22ef25afee",
+    "raptor:da9c117e:L2:e4a579a4edb8ffb6",
+    "raptor:da9c117e:L1:44c9b0f9df69b1ef"
+  ],
+  "filtered_ids": [
+    "raptor:da9c117e:L3:3ad43022545ee158",
+    "raptor:da9c117e:L1:6ac5bf39d66a72df",
+    "raptor:da9c117e:L1:7544df22ef25afee",
+    "raptor:da9c117e:L2:e4a579a4edb8ffb6",
+    "raptor:da9c117e:L1:44c9b0f9df69b1ef"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:13:26.744942+00:00",
+      "call_id": "a3e2f81b316e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "18fed0a20e395a44",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "79b45dab5d3c4b54"
+    },
+    {
+      "ts": "2026-11-16T13:13:55.850446+00:00",
+      "call_id": "bcab5c29fed2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1ff6e525727aee20",
+      "prompt_tokens": 1501,
+      "completion_tokens": 138,
+      "latency_ms": 23124.52,
+      "server_ms": 23094.73,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "79b45dab5d3c4b54"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1501,
+    "completion_tokens": 138,
+    "total_ms": 29110.6
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "In The Odyssey, the goddess Athena aided Telemachus and Odysseus in disguise in several ways."
+      ]
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "trace_id": "03eb51635cc843c4",
+  "created_at": "2026-11-16T12:00:33.118090+00:00",
+  "query": "What is the relationship between Caldwell and Johnson?\n\nOptions:\n(A) They're strangers\n(B) They're coworkers\n(C) They're new acquaintances\n(D) They're old friends\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1956.62
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1956.75
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19665.09
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.6,
+      "bm25_ms": 20.37,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 1928.93
+      },
+      "hits": [
+        {
+          "id": "raptor:2b085d19:L1:69634f0d2d78114c",
+          "score": 0.16725674271583557,
+          "fused": 0.9062194455421515,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 1,
+          "rerank": 0.16725674271583557
+        },
+        {
+          "id": "raptor:2b085d19:L2:c0cb24a7a39f0682",
+          "score": -1.1177338361740112,
+          "fused": 0.7921178441255349,
+          "dense_rank": 2,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": -1.1177338361740112
+        },
+        {
+          "id": "386249fc4b7966ab:L0:000003",
+          "score": -1.1796720027923584,
+          "fused": 0.650117385503124,
+          "dense_rank": 5,
+          "bm25_rank": 8,
+          "fused_rank": 7,
+          "rerank": -1.1796720027923584
+        },
+        {
+          "id": "386249fc4b7966ab:L0:000008",
+          "score": -1.1867748498916626,
+          "fused": 0.7855531374309203,
+          "dense_rank": 10,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": -1.1867748498916626
+        },
+        {
+          "id": "386249fc4b7966ab:L0:000009",
+          "score": -1.3824924230575562,
+          "fused": 0.556260834550525,
+          "dense_rank": 13,
+          "bm25_rank": 11,
+          "fused_rank": 9,
+          "rerank": -1.3824924230575562
+        }
+      ],
+      "latency_ms": 1956.56
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1492,
+      "latency_ms": 0.1
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17708.19
+    }
+  },
+  "retrieved_ids": [
+    "raptor:2b085d19:L1:69634f0d2d78114c",
+    "raptor:2b085d19:L2:c0cb24a7a39f0682",
+    "386249fc4b7966ab:L0:000003",
+    "386249fc4b7966ab:L0:000008",
+    "386249fc4b7966ab:L0:000009"
+  ],
+  "filtered_ids": [
+    "raptor:2b085d19:L1:69634f0d2d78114c",
+    "raptor:2b085d19:L2:c0cb24a7a39f0682",
+    "386249fc4b7966ab:L0:000003",
+    "386249fc4b7966ab:L0:000008",
+    "386249fc4b7966ab:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:00:33.119091+00:00",
+      "call_id": "a8923a3c9bb0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c7873b2ae3c7f780",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "03eb51635cc843c4"
+    },
+    {
+      "ts": "2026-11-16T12:00:52.782027+00:00",
+      "call_id": "b1a8ef3d66ec",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ffe076567984bf67",
+      "prompt_tokens": 2057,
+      "completion_tokens": 63,
+      "latency_ms": 17706.9,
+      "server_ms": 17678.62,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "03eb51635cc843c4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2057,
+    "completion_tokens": 63,
+    "total_ms": 19666.94
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

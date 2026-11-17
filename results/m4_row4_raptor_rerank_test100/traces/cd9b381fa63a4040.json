@@ -1,0 +1,179 @@
+{
+  "trace_id": "cd9b381fa63a4040",
+  "created_at": "2026-11-16T12:22:31.431150+00:00",
+  "query": "Where is the casino that Summer Nights takes place in?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 933.39
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 934.78
+    },
+    {
+      "state": "DONE",
+      "t_ms": 938.74
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.26,
+      "bm25_ms": 11.91,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 2,
+        "latency_ms": 911.75
+      },
+      "hits": [
+        {
+          "id": "90976421f3f2bea2:L0:000020",
+          "score": 3.2726755142211914,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.2726755142211914
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000018",
+          "score": -0.27856650948524475,
+          "fused": 0.29045474546192873,
+          "dense_rank": 7,
+          "bm25_rank": 27,
+          "fused_rank": 19,
+          "rerank": -0.27856650948524475
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000167",
+          "score": -0.9487602710723877,
+          "fused": 0.4060898880466982,
+          "dense_rank": 3,
+          "bm25_rank": 22,
+          "fused_rank": 6,
+          "rerank": -0.9487602710723877
+        },
+        {
+          "id": "634431bb1e27714f:L0:000088",
+          "score": -1.3448774814605713,
+          "fused": 0.37125839594084786,
+          "dense_rank": 8,
+          "bm25_rank": 16,
+          "fused_rank": 10,
+          "rerank": -1.3448774814605713
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000117",
+          "score": -1.910211443901062,
+          "fused": 0.3898108342955613,
+          "dense_rank": 5,
+          "bm25_rank": 20,
+          "fused_rank": 8,
+          "rerank": -1.910211443901062
+        }
+      ],
+      "latency_ms": 933.3
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 349,
+      "latency_ms": 1.33
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 3.76
+    }
+  },
+  "retrieved_ids": [
+    "90976421f3f2bea2:L0:000020",
+    "c8fd2b3ea47eb07f:L0:000018",
+    "cb96563b0747a6ba:L0:000167",
+    "634431bb1e27714f:L0:000088",
+    "bc1dba3471045f02:L0:000117"
+  ],
+  "filtered_ids": [
+    "90976421f3f2bea2:L0:000020",
+    "c8fd2b3ea47eb07f:L0:000018",
+    "cb96563b0747a6ba:L0:000167",
+    "634431bb1e27714f:L0:000088",
+    "bc1dba3471045f02:L0:000117"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:22:31.433153+00:00",
+      "call_id": "5f1baa68d793",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2cf0d547c8fd27a2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cd9b381fa63a4040"
+    },
+    {
+      "ts": "2026-11-16T12:22:32.368086+00:00",
+      "call_id": "8a23c33fb58a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e471eaee0b3976ec",
+      "prompt_tokens": 923,
+      "completion_tokens": 60,
+      "latency_ms": 1.91,
+      "server_ms": 8383.47,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "cd9b381fa63a4040"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 923,
+    "completion_tokens": 60,
+    "total_ms": 941.4
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

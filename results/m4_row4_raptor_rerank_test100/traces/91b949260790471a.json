@@ -1,0 +1,180 @@
+{
+  "trace_id": "91b949260790471a",
+  "created_at": "2026-11-16T11:23:35.468453+00:00",
+  "query": "Who is the mother of Katharine Smith Salisbury's brother?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5256.21
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5257.25
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 16086.13
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.74,
+      "bm25_ms": 12.93,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 14,
+        "latency_ms": 5237.02
+      },
+      "hits": [
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000082",
+          "score": 2.237309694290161,
+          "fused": 0.734328422096727,
+          "dense_rank": 33,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.237309694290161
+        },
+        {
+          "id": "raptor:67600e79:L1:40d74ecf87b36898",
+          "score": -0.33256950974464417,
+          "fused": 0.2459013165423653,
+          "dense_rank": 27,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": -0.33256950974464417
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000084",
+          "score": -2.3524510860443115,
+          "fused": 0.11825184080858844,
+          "dense_rank": null,
+          "bm25_rank": 13,
+          "fused_rank": 20,
+          "rerank": -2.3524510860443115
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000125",
+          "score": -2.9164912700653076,
+          "fused": 0.13452167286193858,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 13,
+          "rerank": -2.9164912700653076
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000064",
+          "score": -3.37660551071167,
+          "fused": 0.2120023800848621,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": -3.37660551071167
+        }
+      ],
+      "latency_ms": 5256.15
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 444,
+      "latency_ms": 0.98
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10828.73
+    }
+  },
+  "retrieved_ids": [
+    "cc1bdb3bf430bd0d:L0:000082",
+    "raptor:67600e79:L1:40d74ecf87b36898",
+    "f109b032e24ab27a:L0:000084",
+    "6683bfc7dec06e2a:L0:000125",
+    "cc1bdb3bf430bd0d:L0:000064"
+  ],
+  "filtered_ids": [
+    "cc1bdb3bf430bd0d:L0:000082",
+    "raptor:67600e79:L1:40d74ecf87b36898",
+    "f109b032e24ab27a:L0:000084",
+    "6683bfc7dec06e2a:L0:000125",
+    "cc1bdb3bf430bd0d:L0:000064"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:23:35.469450+00:00",
+      "call_id": "02f93d4c64c6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "375f513e6868f338",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "91b949260790471a"
+    },
+    {
+      "ts": "2026-11-16T11:23:51.553797+00:00",
+      "call_id": "c11cfd38a647",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "197ea2e2e457ed71",
+      "prompt_tokens": 1038,
+      "completion_tokens": 61,
+      "latency_ms": 10827.48,
+      "server_ms": 10807.46,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "91b949260790471a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1038,
+    "completion_tokens": 61,
+    "total_ms": 16088.09
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

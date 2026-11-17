@@ -1,0 +1,180 @@
+{
+  "trace_id": "d025a0f320bc4253",
+  "created_at": "2026-11-16T13:06:36.468810+00:00",
+  "query": "What is the name of the monster with six heads who ate Odysseus' men?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 634.52
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 636.1
+    },
+    {
+      "state": "DONE",
+      "t_ms": 640.84
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.09,
+      "bm25_ms": 33.24,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 1,
+        "latency_ms": 584.97
+      },
+      "hits": [
+        {
+          "id": "f9add743188fc69e:L0:000051",
+          "score": 3.83659291267395,
+          "fused": 0.21931542048887423,
+          "dense_rank": 4,
+          "bm25_rank": 27,
+          "fused_rank": 16,
+          "rerank": 3.83659291267395
+        },
+        {
+          "id": "f9add743188fc69e:L0:000587",
+          "score": 3.4648075103759766,
+          "fused": 0.8475708821576458,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": 3.4648075103759766
+        },
+        {
+          "id": "f9add743188fc69e:L0:000130",
+          "score": 1.976241946220398,
+          "fused": 0.31647773835081533,
+          "dense_rank": 15,
+          "bm25_rank": 13,
+          "fused_rank": 7,
+          "rerank": 1.976241946220398
+        },
+        {
+          "id": "f9add743188fc69e:L0:000581",
+          "score": 1.3943899869918823,
+          "fused": 0.783492858891494,
+          "dense_rank": 8,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 1.3943899869918823
+        },
+        {
+          "id": "f9add743188fc69e:L0:000351",
+          "score": 0.2145058512687683,
+          "fused": 0.21921267157258417,
+          "dense_rank": null,
+          "bm25_rank": 16,
+          "fused_rank": 17,
+          "rerank": 0.2145058512687683
+        }
+      ],
+      "latency_ms": 634.46
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1621,
+      "latency_ms": 1.54
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 4.58
+    }
+  },
+  "retrieved_ids": [
+    "f9add743188fc69e:L0:000051",
+    "f9add743188fc69e:L0:000587",
+    "f9add743188fc69e:L0:000130",
+    "f9add743188fc69e:L0:000581",
+    "f9add743188fc69e:L0:000351"
+  ],
+  "filtered_ids": [
+    "f9add743188fc69e:L0:000051",
+    "f9add743188fc69e:L0:000587",
+    "f9add743188fc69e:L0:000130",
+    "f9add743188fc69e:L0:000581",
+    "f9add743188fc69e:L0:000351"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:06:36.471548+00:00",
+      "call_id": "686e8049ec52",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5e03d2ce02955b83",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d025a0f320bc4253"
+    },
+    {
+      "ts": "2026-11-16T13:06:37.108927+00:00",
+      "call_id": "6261a8536617",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7b10c27474874ed0",
+      "prompt_tokens": 2335,
+      "completion_tokens": 59,
+      "latency_ms": 2.82,
+      "server_ms": 17531.85,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d025a0f320bc4253"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 2335,
+    "completion_tokens": 59,
+    "total_ms": 646.01
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

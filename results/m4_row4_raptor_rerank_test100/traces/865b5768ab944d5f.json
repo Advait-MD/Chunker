@@ -1,0 +1,183 @@
+{
+  "trace_id": "865b5768ab944d5f",
+  "created_at": "2026-11-16T12:37:46.641009+00:00",
+  "query": "Which film has the director who was born later, Attack Of Life: The Bang Tango Movie or King Kong (2005 Film)?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1772.27
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1772.82
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25556.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.83,
+      "bm25_ms": 18.96,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 1745.22
+      },
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000030",
+          "score": 8.141154289245605,
+          "fused": 0.2016684469657313,
+          "dense_rank": 29,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 8.141154289245605
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000144",
+          "score": 7.99711275100708,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.99711275100708
+        },
+        {
+          "id": "raptor:67600e79:L1:b923c50626654290",
+          "score": 3.851128339767456,
+          "fused": 0.4740866264149668,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": 3.851128339767456
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": 3.7792770862579346,
+          "fused": 0.18364806717990478,
+          "dense_rank": 4,
+          "bm25_rank": 29,
+          "fused_rank": 6,
+          "rerank": 3.7792770862579346
+        },
+        {
+          "id": "raptor:67600e79:L2:1466242da4d12b6a",
+          "score": 2.411421775817871,
+          "fused": 0.4897968027306987,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 2.411421775817871
+        }
+      ],
+      "latency_ms": 1772.2
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1110,
+      "latency_ms": 0.5
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23783.78
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000030",
+    "317e12ccd417c0d7:L0:000144",
+    "raptor:67600e79:L1:b923c50626654290",
+    "abe982d210232c3f:L0:000151",
+    "raptor:67600e79:L2:1466242da4d12b6a"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000030",
+    "317e12ccd417c0d7:L0:000144",
+    "raptor:67600e79:L1:b923c50626654290",
+    "abe982d210232c3f:L0:000151",
+    "raptor:67600e79:L2:1466242da4d12b6a"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:37:46.643010+00:00",
+      "call_id": "9fb136ee64f1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a3c5997b92a2b93a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "865b5768ab944d5f"
+    },
+    {
+      "ts": "2026-11-16T12:38:12.196210+00:00",
+      "call_id": "b64d3d862c6f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "da58dcdf2b2fb772",
+      "prompt_tokens": 1857,
+      "completion_tokens": 119,
+      "latency_ms": 23782.38,
+      "server_ms": 23750.81,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "865b5768ab944d5f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1857,
+    "completion_tokens": 119,
+    "total_ms": 25575.67
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": []
+    }
+  }
+}

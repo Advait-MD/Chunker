@@ -1,0 +1,180 @@
+{
+  "trace_id": "339ec82c49584236",
+  "created_at": "2026-11-16T12:32:47.814494+00:00",
+  "query": "Which film does \"Naked Weapon\" follow in the \"Naked\" series?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3668.08
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3668.17
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13421.23
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.08,
+      "bm25_ms": 3.96,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 9,
+        "latency_ms": 3661.18
+      },
+      "hits": [
+        {
+          "id": "838c0e0106e6f015:L0:000182",
+          "score": 2.1077938079833984,
+          "fused": 0.7450570126478173,
+          "dense_rank": 19,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.1077938079833984
+        },
+        {
+          "id": "raptor:67600e79:L1:8629168cd10e26cf",
+          "score": 1.3046563863754272,
+          "fused": 0.6915756873625247,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 2,
+          "rerank": 1.3046563863754272
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000033",
+          "score": 0.6636390686035156,
+          "fused": 0.6189592051230507,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 0.6636390686035156
+        },
+        {
+          "id": "raptor:67600e79:L1:153fa8cb13bf5516",
+          "score": -3.0679008960723877,
+          "fused": 0.4119765398863624,
+          "dense_rank": 2,
+          "bm25_rank": 17,
+          "fused_rank": 7,
+          "rerank": -3.0679008960723877
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000103",
+          "score": -3.4511404037475586,
+          "fused": 0.48688859399492457,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 5,
+          "rerank": -3.4511404037475586
+        }
+      ],
+      "latency_ms": 3668.04
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 490,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9752.93
+    }
+  },
+  "retrieved_ids": [
+    "838c0e0106e6f015:L0:000182",
+    "raptor:67600e79:L1:8629168cd10e26cf",
+    "5d0f6cf59ee42566:L0:000033",
+    "raptor:67600e79:L1:153fa8cb13bf5516",
+    "838c0e0106e6f015:L0:000103"
+  ],
+  "filtered_ids": [
+    "838c0e0106e6f015:L0:000182",
+    "raptor:67600e79:L1:8629168cd10e26cf",
+    "5d0f6cf59ee42566:L0:000033",
+    "raptor:67600e79:L1:153fa8cb13bf5516",
+    "838c0e0106e6f015:L0:000103"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:32:47.816488+00:00",
+      "call_id": "dad86f4f4c36",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cadc2d72da073faf",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "339ec82c49584236"
+    },
+    {
+      "ts": "2026-11-16T12:33:01.235544+00:00",
+      "call_id": "ffbd15988fca",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f4e13c42fc38e9d9",
+      "prompt_tokens": 1083,
+      "completion_tokens": 58,
+      "latency_ms": 9751.78,
+      "server_ms": 9730.47,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "339ec82c49584236"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1083,
+    "completion_tokens": 58,
+    "total_ms": 13423.37
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

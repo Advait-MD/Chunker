@@ -1,0 +1,180 @@
+{
+  "trace_id": "de3d54f7cf254d1c",
+  "created_at": "2026-11-16T12:25:13.508140+00:00",
+  "query": "Spawn, a fictional character who Mustafa Shakir has expressed interest in playing, was created by?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2008.91
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2008.99
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14066.23
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.04,
+      "bm25_ms": 5.18,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2000.53
+      },
+      "hits": [
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000084",
+          "score": 6.810256004333496,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.810256004333496
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000167",
+          "score": 5.272907733917236,
+          "fused": 0.29612113795716444,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": 5.272907733917236
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000141",
+          "score": 1.1930218935012817,
+          "fused": 0.30397345127847925,
+          "dense_rank": 31,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 1.1930218935012817
+        },
+        {
+          "id": "raptor:67600e79:L1:63eea8ce99552726",
+          "score": -0.04436131566762924,
+          "fused": 0.42230157346808217,
+          "dense_rank": 1,
+          "bm25_rank": 10,
+          "fused_rank": 2,
+          "rerank": -0.04436131566762924
+        },
+        {
+          "id": "raptor:67600e79:L1:20cd4383950dca07",
+          "score": -0.6832959651947021,
+          "fused": 0.2942358462039938,
+          "dense_rank": 2,
+          "bm25_rank": 37,
+          "fused_rank": 5,
+          "rerank": -0.6832959651947021
+        }
+      ],
+      "latency_ms": 2008.87
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 655,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12057.11
+    }
+  },
+  "retrieved_ids": [
+    "c8fd2b3ea47eb07f:L0:000084",
+    "cc2399aca11eb631:L0:000167",
+    "cb96563b0747a6ba:L0:000141",
+    "raptor:67600e79:L1:63eea8ce99552726",
+    "raptor:67600e79:L1:20cd4383950dca07"
+  ],
+  "filtered_ids": [
+    "c8fd2b3ea47eb07f:L0:000084",
+    "cc2399aca11eb631:L0:000167",
+    "cb96563b0747a6ba:L0:000141",
+    "raptor:67600e79:L1:63eea8ce99552726",
+    "raptor:67600e79:L1:20cd4383950dca07"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:25:13.509141+00:00",
+      "call_id": "55628f161772",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9c691f0abd389fbd",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "de3d54f7cf254d1c"
+    },
+    {
+      "ts": "2026-11-16T12:25:27.572615+00:00",
+      "call_id": "bbd52479cc3a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "80766c31a7e1005b",
+      "prompt_tokens": 1209,
+      "completion_tokens": 69,
+      "latency_ms": 12054.97,
+      "server_ms": 11979.94,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "de3d54f7cf254d1c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1209,
+    "completion_tokens": 69,
+    "total_ms": 14067.74
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "trace_id": "42358d464d7143d1",
+  "created_at": "2026-11-16T12:41:01.642514+00:00",
+  "query": "Where was the director of film War Of The Buttons (1994 Film) born?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2639.22
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2640.51
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 18524.27
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.74,
+      "bm25_ms": 15.31,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2615.41
+      },
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000116",
+          "score": 8.556386947631836,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 8.556386947631836
+        },
+        {
+          "id": "abe982d210232c3f:L0:000035",
+          "score": 0.9791346192359924,
+          "fused": 0.5833429422048434,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.9791346192359924
+        },
+        {
+          "id": "raptor:67600e79:L1:2ca9a4492d73a35f",
+          "score": 0.36185505986213684,
+          "fused": 0.7658973646063016,
+          "dense_rank": 27,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 0.36185505986213684
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": -1.3408467769622803,
+          "fused": 0.3540446224588843,
+          "dense_rank": 3,
+          "bm25_rank": 15,
+          "fused_rank": 9,
+          "rerank": -1.3408467769622803
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000043",
+          "score": -2.1646907329559326,
+          "fused": 0.5437876843566511,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -2.1646907329559326
+        }
+      ],
+      "latency_ms": 2639.17
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 981,
+      "latency_ms": 1.26
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15883.65
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000116",
+    "abe982d210232c3f:L0:000035",
+    "raptor:67600e79:L1:2ca9a4492d73a35f",
+    "abe982d210232c3f:L0:000151",
+    "b04ce6dd2d95fb80:L0:000043"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000116",
+    "abe982d210232c3f:L0:000035",
+    "raptor:67600e79:L1:2ca9a4492d73a35f",
+    "abe982d210232c3f:L0:000151",
+    "b04ce6dd2d95fb80:L0:000043"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:41:01.644803+00:00",
+      "call_id": "3afced9de4f5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5a7cdd7d6bf8b580",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "42358d464d7143d1"
+    },
+    {
+      "ts": "2026-11-16T12:41:20.166191+00:00",
+      "call_id": "78fc7023cdfc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6e5a9f55e68ce796",
+      "prompt_tokens": 1650,
+      "completion_tokens": 67,
+      "latency_ms": 15882.03,
+      "server_ms": 15838.12,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "42358d464d7143d1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1650,
+    "completion_tokens": 67,
+    "total_ms": 18526.19
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The director of the 1994 film War of the Buttons, John Roberts, is not mentioned to be born in any specific place in the provided passages."
+      ]
+    }
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "trace_id": "757fc93a1add42a6",
+  "created_at": "2026-11-16T12:38:47.928955+00:00",
+  "query": "Who is the paternal grandfather of Diarmait Ua Briain?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4852.61
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4853.12
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 16153.82
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.73,
+      "bm25_ms": 4.73,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 10,
+        "latency_ms": 4842.13
+      },
+      "hits": [
+        {
+          "id": "b04ce6dd2d95fb80:L0:000176",
+          "score": -0.028809234499931335,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.028809234499931335
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000193",
+          "score": -1.435549020767212,
+          "fused": 0.5759528367053552,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -1.435549020767212
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000187",
+          "score": -3.541689157485962,
+          "fused": 0.5531844541603779,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -3.541689157485962
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000063",
+          "score": -5.291175365447998,
+          "fused": 0.25333416458404495,
+          "dense_rank": 18,
+          "bm25_rank": 11,
+          "fused_rank": 13,
+          "rerank": -5.291175365447998
+        },
+        {
+          "id": "raptor:67600e79:L1:52d9d88df9d1786d",
+          "score": -5.619013786315918,
+          "fused": 0.26560868319980024,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 9,
+          "rerank": -5.619013786315918
+        }
+      ],
+      "latency_ms": 4852.55
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 447,
+      "latency_ms": 0.46
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11300.61
+    }
+  },
+  "retrieved_ids": [
+    "b04ce6dd2d95fb80:L0:000176",
+    "c73b757f0eb66f37:L0:000193",
+    "317e12ccd417c0d7:L0:000187",
+    "c73b757f0eb66f37:L0:000063",
+    "raptor:67600e79:L1:52d9d88df9d1786d"
+  ],
+  "filtered_ids": [
+    "b04ce6dd2d95fb80:L0:000176",
+    "c73b757f0eb66f37:L0:000193",
+    "317e12ccd417c0d7:L0:000187",
+    "c73b757f0eb66f37:L0:000063",
+    "raptor:67600e79:L1:52d9d88df9d1786d"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:38:47.929962+00:00",
+      "call_id": "bf0a37647d2e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "dfd734f7f735a986",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "757fc93a1add42a6"
+    },
+    {
+      "ts": "2026-11-16T12:39:04.081607+00:00",
+      "call_id": "72717f4ae7dd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "73c956fe0d010315",
+      "prompt_tokens": 1085,
+      "completion_tokens": 53,
+      "latency_ms": 11299.28,
+      "server_ms": 11276.59,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "757fc93a1add42a6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1085,
+    "completion_tokens": 53,
+    "total_ms": 16156.95
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The paternal grandfather of Diarmait Ua Briain is not mentioned in the provided passages."
+      ]
+    }
+  }
+}

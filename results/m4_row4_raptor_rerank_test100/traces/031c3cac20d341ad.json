@@ -1,0 +1,179 @@
+{
+  "trace_id": "031c3cac20d341ad",
+  "created_at": "2026-11-16T12:35:41.551121+00:00",
+  "query": "Where was the place of death of the director of film Sensational Janine?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2139.67
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2139.88
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15144.79
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.6,
+      "bm25_ms": 10.53,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2116.71
+      },
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000039",
+          "score": 4.469948768615723,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.469948768615723
+        },
+        {
+          "id": "raptor:67600e79:L1:48ed6daa850a875a",
+          "score": -0.6261870861053467,
+          "fused": 0.3519816426783301,
+          "dense_rank": 29,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.6261870861053467
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000132",
+          "score": -1.718266248703003,
+          "fused": 0.17394554126439488,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 14,
+          "rerank": -1.718266248703003
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000176",
+          "score": -4.0702104568481445,
+          "fused": 0.20709479927298236,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 8,
+          "rerank": -4.0702104568481445
+        },
+        {
+          "id": "460e441179bec402:L0:000130",
+          "score": -4.225949287414551,
+          "fused": 0.20133318452855456,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 9,
+          "rerank": -4.225949287414551
+        }
+      ],
+      "latency_ms": 2139.62
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 721,
+      "latency_ms": 0.17
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13004.84
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000039",
+    "raptor:67600e79:L1:48ed6daa850a875a",
+    "53c7288bdcd3837a:L0:000132",
+    "4a757779abfb4ba1:L0:000176",
+    "460e441179bec402:L0:000130"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000039",
+    "raptor:67600e79:L1:48ed6daa850a875a",
+    "53c7288bdcd3837a:L0:000132",
+    "4a757779abfb4ba1:L0:000176",
+    "460e441179bec402:L0:000130"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:35:41.554122+00:00",
+      "call_id": "c575b076ef3f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fd844792b73ad44b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "031c3cac20d341ad"
+    },
+    {
+      "ts": "2026-11-16T12:35:56.695517+00:00",
+      "call_id": "1de7b6edda32",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8e8df141e4c4e4b6",
+      "prompt_tokens": 1427,
+      "completion_tokens": 62,
+      "latency_ms": 13003.75,
+      "server_ms": 12975.89,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "031c3cac20d341ad"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1427,
+    "completion_tokens": 62,
+    "total_ms": 15148.65
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The director of film Sensational Janine, Hans Billian, is not mentioned to have died in a specific place in the provided evidence."
+      ]
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "trace_id": "2cc0a95e0faf4706",
+  "created_at": "2026-11-16T11:59:10.569301+00:00",
+  "query": "How did Yasak feel towards Robert upon their meeting?\n\nOptions:\n(A) Shocked by his appearance\n(B) A friendly camaraderie\n(C) Threatened by his presence\n(D) Angry he had carried Koroby\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2150.99
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2151.17
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23648.85
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.2,
+      "bm25_ms": 17.7,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 2127.02
+      },
+      "hits": [
+        {
+          "id": "raptor:ce4da183:L1:e4609e99cc7b5d01",
+          "score": 0.9063513875007629,
+          "fused": 0.8473444249731883,
+          "dense_rank": 1,
+          "bm25_rank": 5,
+          "fused_rank": 1,
+          "rerank": 0.9063513875007629
+        },
+        {
+          "id": "raptor:ce4da183:L1:f29bd95541dd55e4",
+          "score": 0.7622303366661072,
+          "fused": 0.838782328199061,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 0.7622303366661072
+        },
+        {
+          "id": "3c1dafeffd094309:L0:000012",
+          "score": 0.5552727580070496,
+          "fused": 0.7941002229803424,
+          "dense_rank": 14,
+          "bm25_rank": 1,
+          "fused_rank": 4,
+          "rerank": 0.5552727580070496
+        },
+        {
+          "id": "raptor:ce4da183:L2:26cb4971513e051a",
+          "score": 0.3192882239818573,
+          "fused": 0.8249821733708081,
+          "dense_rank": 3,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": 0.3192882239818573
+        },
+        {
+          "id": "3c1dafeffd094309:L0:000011",
+          "score": 0.16457189619541168,
+          "fused": 0.6727474157636399,
+          "dense_rank": 15,
+          "bm25_rank": 3,
+          "fused_rank": 5,
+          "rerank": 0.16457189619541168
+        }
+      ],
+      "latency_ms": 2150.93
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1388,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21497.57
+    }
+  },
+  "retrieved_ids": [
+    "raptor:ce4da183:L1:e4609e99cc7b5d01",
+    "raptor:ce4da183:L1:f29bd95541dd55e4",
+    "3c1dafeffd094309:L0:000012",
+    "raptor:ce4da183:L2:26cb4971513e051a",
+    "3c1dafeffd094309:L0:000011"
+  ],
+  "filtered_ids": [
+    "raptor:ce4da183:L1:e4609e99cc7b5d01",
+    "raptor:ce4da183:L1:f29bd95541dd55e4",
+    "3c1dafeffd094309:L0:000012",
+    "raptor:ce4da183:L2:26cb4971513e051a",
+    "3c1dafeffd094309:L0:000011"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:59:10.571300+00:00",
+      "call_id": "3220584afe28",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ddecb95f63ff2ae1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2cc0a95e0faf4706"
+    },
+    {
+      "ts": "2026-11-16T11:59:34.217251+00:00",
+      "call_id": "528239dc748a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c21cb48ea3feadbc",
+      "prompt_tokens": 1939,
+      "completion_tokens": 80,
+      "latency_ms": 21496.43,
+      "server_ms": 21464.74,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2cc0a95e0faf4706"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1939,
+    "completion_tokens": 80,
+    "total_ms": 23650.41
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        3
+      ],
+      "uncited_sentences": [
+        "(A) Yasak felt shocked by Robert's appearance.",
+        "This is evident from Yasak's speculative eyeing of Robert and his furtive glance to see if Robert was impressed by his order."
+      ]
+    }
+  }
+}

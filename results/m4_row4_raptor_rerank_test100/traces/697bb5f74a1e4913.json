@@ -1,0 +1,180 @@
+{
+  "trace_id": "697bb5f74a1e4913",
+  "created_at": "2026-11-16T12:12:31.268012+00:00",
+  "query": "Josh Trank and Mike Valerio both work in what industry?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3742.78
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3742.98
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15700.67
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.79,
+      "bm25_ms": 22.0,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 10,
+        "latency_ms": 3710.08
+      },
+      "hits": [
+        {
+          "id": "634431bb1e27714f:L0:000163",
+          "score": 7.818638801574707,
+          "fused": 0.692457232025982,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 7.818638801574707
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000041",
+          "score": 7.556918144226074,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.556918144226074
+        },
+        {
+          "id": "raptor:67600e79:L2:32cde37d0bd21e8a",
+          "score": 0.6721076369285583,
+          "fused": 0.5416355033776447,
+          "dense_rank": 1,
+          "bm25_rank": 8,
+          "fused_rank": 3,
+          "rerank": 0.6721076369285583
+        },
+        {
+          "id": "raptor:67600e79:L1:13d2d6f11a613416",
+          "score": 0.1569031924009323,
+          "fused": 0.2730887236399366,
+          "dense_rank": 2,
+          "bm25_rank": 17,
+          "fused_rank": 8,
+          "rerank": 0.1569031924009323
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000114",
+          "score": -2.193877696990967,
+          "fused": 0.24236922258169794,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 9,
+          "rerank": -2.193877696990967
+        }
+      ],
+      "latency_ms": 3742.73
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 668,
+      "latency_ms": 0.18
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11957.57
+    }
+  },
+  "retrieved_ids": [
+    "634431bb1e27714f:L0:000163",
+    "ec3410ef955c5c93:L0:000041",
+    "raptor:67600e79:L2:32cde37d0bd21e8a",
+    "raptor:67600e79:L1:13d2d6f11a613416",
+    "8e50522b7cb636d8:L0:000114"
+  ],
+  "filtered_ids": [
+    "634431bb1e27714f:L0:000163",
+    "ec3410ef955c5c93:L0:000041",
+    "raptor:67600e79:L2:32cde37d0bd21e8a",
+    "raptor:67600e79:L1:13d2d6f11a613416",
+    "8e50522b7cb636d8:L0:000114"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:12:31.269017+00:00",
+      "call_id": "eb4d7ef95d55",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5b3aa800b32009cf",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "697bb5f74a1e4913"
+    },
+    {
+      "ts": "2026-11-16T12:12:46.967695+00:00",
+      "call_id": "4115d757c6b6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "60382339bb0484e6",
+      "prompt_tokens": 1260,
+      "completion_tokens": 59,
+      "latency_ms": 11956.06,
+      "server_ms": 11930.4,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "697bb5f74a1e4913"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1260,
+    "completion_tokens": 59,
+    "total_ms": 15705.84
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

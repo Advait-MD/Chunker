@@ -1,0 +1,164 @@
+{
+  "trace_id": "8e50990952d349a9",
+  "created_at": "2026-11-15T09:17:22.987507+00:00",
+  "query": "Who wrote turn me on, which was performed by the person who also performed Chasing Pirates?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.63
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.67
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 8130.56
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.69,
+      "bm25_ms": 7.75,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "8679484d23bfd3a0:L0:000098",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000067",
+          "score": 0.5366790655911066,
+          "fused": 0.5366790655911066,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000151",
+          "score": 0.4406222576237182,
+          "fused": 0.4406222576237182,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000153",
+          "score": 0.37511678842257334,
+          "fused": 0.37511678842257334,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000076",
+          "score": 0.3685757538018265,
+          "fused": 0.3685757538018265,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 9.61
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 419,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8120.84
+    }
+  },
+  "retrieved_ids": [
+    "8679484d23bfd3a0:L0:000098",
+    "5a1a5bbda9db013e:L0:000067",
+    "f3503d3d186f0f90:L0:000151",
+    "ce290c1e5d5c6641:L0:000153",
+    "5a1a5bbda9db013e:L0:000076"
+  ],
+  "filtered_ids": [
+    "8679484d23bfd3a0:L0:000098",
+    "5a1a5bbda9db013e:L0:000067",
+    "f3503d3d186f0f90:L0:000151",
+    "ce290c1e5d5c6641:L0:000153",
+    "5a1a5bbda9db013e:L0:000076"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:17:22.988507+00:00",
+      "call_id": "981bde56d90c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1329eb24189c44f8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8e50990952d349a9"
+    },
+    {
+      "ts": "2026-11-15T09:17:31.116810+00:00",
+      "call_id": "67240cdde0ed",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e9afd3403c951d31",
+      "prompt_tokens": 1007,
+      "completion_tokens": 45,
+      "latency_ms": 8120.31,
+      "server_ms": 8104.88,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8e50990952d349a9"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1007,
+    "completion_tokens": 45,
+    "total_ms": 8131.09
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

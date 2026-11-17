@@ -1,0 +1,182 @@
+{
+  "trace_id": "450ba36942794b74",
+  "created_at": "2026-11-16T12:21:39.073150+00:00",
+  "query": "Are the films Gasland from 2010 and Pumping Iron from 1977 both documentaries?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3482.63
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3482.87
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17995.14
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.91,
+      "bm25_ms": 14.13,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 9,
+        "latency_ms": 3460.79
+      },
+      "hits": [
+        {
+          "id": "cb96563b0747a6ba:L0:000085",
+          "score": 9.645684242248535,
+          "fused": 0.5082445584079559,
+          "dense_rank": 5,
+          "bm25_rank": 12,
+          "fused_rank": 8,
+          "rerank": 9.645684242248535
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000095",
+          "score": 8.91407585144043,
+          "fused": 0.6635531109959116,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 8.91407585144043
+        },
+        {
+          "id": "raptor:67600e79:L1:292fa4c299f1141f",
+          "score": 2.721418857574463,
+          "fused": 0.4445150546264698,
+          "dense_rank": 1,
+          "bm25_rank": 21,
+          "fused_rank": 11,
+          "rerank": 2.721418857574463
+        },
+        {
+          "id": "raptor:67600e79:L2:ae0e125f0c07a769",
+          "score": 2.440829038619995,
+          "fused": 0.46938463605636493,
+          "dense_rank": 4,
+          "bm25_rank": 15,
+          "fused_rank": 10,
+          "rerank": 2.440829038619995
+        },
+        {
+          "id": "raptor:67600e79:L2:901a070aaad7002e",
+          "score": 0.7771963477134705,
+          "fused": 0.8738422180163429,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.7771963477134705
+        }
+      ],
+      "latency_ms": 3482.57
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 678,
+      "latency_ms": 0.17
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14512.14
+    }
+  },
+  "retrieved_ids": [
+    "cb96563b0747a6ba:L0:000085",
+    "90976421f3f2bea2:L0:000095",
+    "raptor:67600e79:L1:292fa4c299f1141f",
+    "raptor:67600e79:L2:ae0e125f0c07a769",
+    "raptor:67600e79:L2:901a070aaad7002e"
+  ],
+  "filtered_ids": [
+    "cb96563b0747a6ba:L0:000085",
+    "90976421f3f2bea2:L0:000095",
+    "raptor:67600e79:L1:292fa4c299f1141f",
+    "raptor:67600e79:L2:ae0e125f0c07a769",
+    "raptor:67600e79:L2:901a070aaad7002e"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:21:39.075151+00:00",
+      "call_id": "c64d6589711d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a474f1cfc41d956c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "450ba36942794b74"
+    },
+    {
+      "ts": "2026-11-16T12:21:57.067356+00:00",
+      "call_id": "081b808c660c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c87878002e2bec71",
+      "prompt_tokens": 1303,
+      "completion_tokens": 77,
+      "latency_ms": 14510.83,
+      "server_ms": 14473.97,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "450ba36942794b74"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1303,
+    "completion_tokens": 77,
+    "total_ms": 17996.61
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4,
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

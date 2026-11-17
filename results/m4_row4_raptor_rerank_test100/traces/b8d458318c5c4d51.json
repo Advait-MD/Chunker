@@ -1,0 +1,180 @@
+{
+  "trace_id": "b8d458318c5c4d51",
+  "created_at": "2026-11-16T12:14:42.336493+00:00",
+  "query": "Saltillo Engine is an engine plant in Ramos Arizpe that belongs to the American subsidiary of what company?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2511.09
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2511.39
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13792.54
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.07,
+      "bm25_ms": 16.78,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2486.92
+      },
+      "hits": [
+        {
+          "id": "cb96563b0747a6ba:L0:000095",
+          "score": 9.197354316711426,
+          "fused": 0.7294215699867833,
+          "dense_rank": 26,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 9.197354316711426
+        },
+        {
+          "id": "raptor:67600e79:L1:4bed1d1dbc055867",
+          "score": 8.20916748046875,
+          "fused": 0.9043439132144198,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 8.20916748046875
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000041",
+          "score": 0.9756343364715576,
+          "fused": 0.3529724170803864,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 5,
+          "rerank": 0.9756343364715576
+        },
+        {
+          "id": "raptor:67600e79:L1:33ca8cae0056f9d2",
+          "score": 0.8051594495773315,
+          "fused": 0.22401812358019857,
+          "dense_rank": 2,
+          "bm25_rank": 25,
+          "fused_rank": 10,
+          "rerank": 0.8051594495773315
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000062",
+          "score": 0.039707109332084656,
+          "fused": 0.19354071952938592,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 12,
+          "rerank": 0.039707109332084656
+        }
+      ],
+      "latency_ms": 2511.03
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 502,
+      "latency_ms": 0.25
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11281.04
+    }
+  },
+  "retrieved_ids": [
+    "cb96563b0747a6ba:L0:000095",
+    "raptor:67600e79:L1:4bed1d1dbc055867",
+    "c8fd2b3ea47eb07f:L0:000041",
+    "raptor:67600e79:L1:33ca8cae0056f9d2",
+    "81fc433d55d23b4c:L0:000062"
+  ],
+  "filtered_ids": [
+    "cb96563b0747a6ba:L0:000095",
+    "raptor:67600e79:L1:4bed1d1dbc055867",
+    "c8fd2b3ea47eb07f:L0:000041",
+    "raptor:67600e79:L1:33ca8cae0056f9d2",
+    "81fc433d55d23b4c:L0:000062"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:14:42.338329+00:00",
+      "call_id": "01675bc179a4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8a4e884e27082c53",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b8d458318c5c4d51"
+    },
+    {
+      "ts": "2026-11-16T12:14:56.128009+00:00",
+      "call_id": "623700855f03",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ec9672f90324ed28",
+      "prompt_tokens": 1096,
+      "completion_tokens": 65,
+      "latency_ms": 11279.76,
+      "server_ms": 11257.41,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b8d458318c5c4d51"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1096,
+    "completion_tokens": 65,
+    "total_ms": 13794.47
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

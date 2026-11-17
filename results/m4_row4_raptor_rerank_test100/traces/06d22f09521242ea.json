@@ -1,0 +1,180 @@
+{
+  "trace_id": "06d22f09521242ea",
+  "created_at": "2026-11-16T12:56:52.996347+00:00",
+  "query": "Who is the spouse of the director of film Fire-Eater (Film)?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2505.01
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2505.1
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16067.53
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.78,
+      "bm25_ms": 6.5,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2492.68
+      },
+      "hits": [
+        {
+          "id": "b04ce6dd2d95fb80:L0:000124",
+          "score": 4.174330711364746,
+          "fused": 0.6080664480240846,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 4.174330711364746
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000042",
+          "score": 1.2168084383010864,
+          "fused": 0.40488357026959154,
+          "dense_rank": 4,
+          "bm25_rank": 12,
+          "fused_rank": 5,
+          "rerank": 1.2168084383010864
+        },
+        {
+          "id": "raptor:67600e79:L1:d0ee5f7ab204ba87",
+          "score": -0.05130762606859207,
+          "fused": 0.5345503654474586,
+          "dense_rank": 3,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -0.05130762606859207
+        },
+        {
+          "id": "abe982d210232c3f:L0:000157",
+          "score": -0.18941792845726013,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.18941792845726013
+        },
+        {
+          "id": "raptor:67600e79:L1:41ce401e6397ffc7",
+          "score": -0.6360762119293213,
+          "fused": 0.26528886224550263,
+          "dense_rank": 37,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": -0.6360762119293213
+        }
+      ],
+      "latency_ms": 2504.94
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 775,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13562.3
+    }
+  },
+  "retrieved_ids": [
+    "b04ce6dd2d95fb80:L0:000124",
+    "317e12ccd417c0d7:L0:000042",
+    "raptor:67600e79:L1:d0ee5f7ab204ba87",
+    "abe982d210232c3f:L0:000157",
+    "raptor:67600e79:L1:41ce401e6397ffc7"
+  ],
+  "filtered_ids": [
+    "b04ce6dd2d95fb80:L0:000124",
+    "317e12ccd417c0d7:L0:000042",
+    "raptor:67600e79:L1:d0ee5f7ab204ba87",
+    "abe982d210232c3f:L0:000157",
+    "raptor:67600e79:L1:41ce401e6397ffc7"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:56:52.998348+00:00",
+      "call_id": "76016e082327",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7aec8533edde2a1a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "06d22f09521242ea"
+    },
+    {
+      "ts": "2026-11-16T12:57:09.063035+00:00",
+      "call_id": "a4ec5c9ec360",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8232a5baa7ffb8e9",
+      "prompt_tokens": 1460,
+      "completion_tokens": 68,
+      "latency_ms": 13561.11,
+      "server_ms": 13526.78,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "06d22f09521242ea"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1460,
+    "completion_tokens": 68,
+    "total_ms": 16068.62
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

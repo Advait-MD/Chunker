@@ -1,0 +1,168 @@
+{
+  "trace_id": "4b1e0cfa7d77482a",
+  "created_at": "2026-11-16T09:44:00.975996+00:00",
+  "query": "Are Phlebodium and Pieris both species of ferns?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.88
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.95
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17424.54
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.91,
+      "bm25_ms": 7.63,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:8ea951a4ed9ac63e",
+          "score": 0.9690154501821728,
+          "fused": 0.9690154501821728,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "634431bb1e27714f:L0:000150",
+          "score": 0.8029606600755084,
+          "fused": 0.8029606600755084,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000131",
+          "score": 0.4803138204500285,
+          "fused": 0.4803138204500285,
+          "dense_rank": 5,
+          "bm25_rank": 3
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000182",
+          "score": 0.45677094407186947,
+          "fused": 0.45677094407186947,
+          "dense_rank": 3,
+          "bm25_rank": 6
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000022",
+          "score": 0.4357423584191964,
+          "fused": 0.4357423584191964,
+          "dense_rank": 2,
+          "bm25_rank": 9
+        }
+      ],
+      "latency_ms": 11.84
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 572,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17412.39
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:8ea951a4ed9ac63e",
+    "634431bb1e27714f:L0:000150",
+    "8e50522b7cb636d8:L0:000131",
+    "ba3cd068cf9ac2e4:L0:000182",
+    "bc1dba3471045f02:L0:000022"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:8ea951a4ed9ac63e",
+    "634431bb1e27714f:L0:000150",
+    "8e50522b7cb636d8:L0:000131",
+    "ba3cd068cf9ac2e4:L0:000182",
+    "bc1dba3471045f02:L0:000022"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:44:00.977999+00:00",
+      "call_id": "1ab60a838a89",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f13fbeddf35e6082",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4b1e0cfa7d77482a"
+    },
+    {
+      "ts": "2026-11-16T09:44:18.399946+00:00",
+      "call_id": "21758363af93",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "deaa6d4b534fc8ae",
+      "prompt_tokens": 1268,
+      "completion_tokens": 88,
+      "latency_ms": 17411.31,
+      "server_ms": 17385.09,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4b1e0cfa7d77482a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1268,
+    "completion_tokens": 88,
+    "total_ms": 17426.47
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        5,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

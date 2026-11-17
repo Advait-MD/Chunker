@@ -1,0 +1,182 @@
+{
+  "trace_id": "eb68d89c045a4e3d",
+  "created_at": "2026-11-16T12:13:32.916846+00:00",
+  "query": "What 3 countries are part of the legal name of the airline that merged with Braathens in 2004?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2471.15
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2472.6
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20162.67
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.71,
+      "bm25_ms": 21.46,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2440.06
+      },
+      "hits": [
+        {
+          "id": "cc2399aca11eb631:L0:000152",
+          "score": 5.409997463226318,
+          "fused": 0.7727004397533372,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 5.409997463226318
+        },
+        {
+          "id": "raptor:67600e79:L1:781b3882a3a9bc26",
+          "score": 4.169466495513916,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.169466495513916
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000055",
+          "score": 3.759779691696167,
+          "fused": 0.7309448555847775,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 3.759779691696167
+        },
+        {
+          "id": "raptor:67600e79:L2:1bc4fe9848f807ce",
+          "score": 3.6567962169647217,
+          "fused": 0.7671304903924054,
+          "dense_rank": 2,
+          "bm25_rank": 7,
+          "fused_rank": 3,
+          "rerank": 3.6567962169647217
+        },
+        {
+          "id": "20496f59538deb41:L0:000148",
+          "score": 1.4567389488220215,
+          "fused": 0.597453108893113,
+          "dense_rank": 12,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": 1.4567389488220215
+        }
+      ],
+      "latency_ms": 2471.1
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 736,
+      "latency_ms": 1.42
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17689.94
+    }
+  },
+  "retrieved_ids": [
+    "cc2399aca11eb631:L0:000152",
+    "raptor:67600e79:L1:781b3882a3a9bc26",
+    "81fc433d55d23b4c:L0:000055",
+    "raptor:67600e79:L2:1bc4fe9848f807ce",
+    "20496f59538deb41:L0:000148"
+  ],
+  "filtered_ids": [
+    "cc2399aca11eb631:L0:000152",
+    "raptor:67600e79:L1:781b3882a3a9bc26",
+    "81fc433d55d23b4c:L0:000055",
+    "raptor:67600e79:L2:1bc4fe9848f807ce",
+    "20496f59538deb41:L0:000148"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:13:32.918849+00:00",
+      "call_id": "b07f5a944124",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3458c60ed22d9ead",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "eb68d89c045a4e3d"
+    },
+    {
+      "ts": "2026-11-16T12:13:53.079282+00:00",
+      "call_id": "848db4821136",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "37220b7f71d23f9b",
+      "prompt_tokens": 1475,
+      "completion_tokens": 92,
+      "latency_ms": 17688.88,
+      "server_ms": 17656.83,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "eb68d89c045a4e3d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1475,
+    "completion_tokens": 92,
+    "total_ms": 20165.49
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

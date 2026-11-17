@@ -1,0 +1,165 @@
+{
+  "trace_id": "cdaa0ae1e3b04b1d",
+  "created_at": "2026-11-16T10:22:39.496232+00:00",
+  "query": "Which film has the director who died later, The Devil And Miss Jones or The Man In The Funny Suit?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.65
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.86
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15517.01
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.6,
+      "bm25_ms": 9.52,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:d08d543a533df419",
+          "score": 0.7586971272094294,
+          "fused": 0.7586971272094294,
+          "dense_rank": 2,
+          "bm25_rank": 6
+        },
+        {
+          "id": "raptor:67600e79:L2:861c648c1dfc4982",
+          "score": 0.720621027845346,
+          "fused": 0.720621027845346,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        },
+        {
+          "id": "99628090500247e3:L0:000121",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": 50,
+          "bm25_rank": 1
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000152",
+          "score": 0.6126113045572599,
+          "fused": 0.6126113045572599,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "0eac870d43736f51:L0:000103",
+          "score": 0.6121808576133544,
+          "fused": 0.6121808576133544,
+          "dense_rank": null,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 13.61
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 902,
+      "latency_ms": 0.18
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15502.95
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:d08d543a533df419",
+    "raptor:67600e79:L2:861c648c1dfc4982",
+    "99628090500247e3:L0:000121",
+    "c73b757f0eb66f37:L0:000152",
+    "0eac870d43736f51:L0:000103"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:d08d543a533df419",
+    "raptor:67600e79:L2:861c648c1dfc4982",
+    "99628090500247e3:L0:000121",
+    "c73b757f0eb66f37:L0:000152",
+    "0eac870d43736f51:L0:000103"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:22:39.497238+00:00",
+      "call_id": "92c3deb8a801",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3e5e25d40ce65e9f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cdaa0ae1e3b04b1d"
+    },
+    {
+      "ts": "2026-11-16T10:22:55.011651+00:00",
+      "call_id": "5e8307819e4c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0ac1da037d520430",
+      "prompt_tokens": 1546,
+      "completion_tokens": 74,
+      "latency_ms": 15501.68,
+      "server_ms": 15467.16,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "cdaa0ae1e3b04b1d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1546,
+    "completion_tokens": 74,
+    "total_ms": 15518.83
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

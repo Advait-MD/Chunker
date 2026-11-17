@@ -1,0 +1,165 @@
+{
+  "trace_id": "e29529eb77374e1f",
+  "created_at": "2026-11-16T09:41:57.628540+00:00",
+  "query": "Who created the NBC sitcom that Johnny Pemberton appears in as the character Bo Thompson?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.28
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.31
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10941.69
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.24,
+      "bm25_ms": 5.85,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "9794e842cc9565f0:L0:000148",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:a9f61141db3c98fa",
+          "score": 0.3633558988846321,
+          "fused": 0.3633558988846321,
+          "dense_rank": 2,
+          "bm25_rank": 8
+        },
+        {
+          "id": "raptor:67600e79:L1:752e6c46b6747aa5",
+          "score": 0.3398264834432016,
+          "fused": 0.3398264834432016,
+          "dense_rank": 6,
+          "bm25_rank": 5
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000012",
+          "score": 0.33948870823045507,
+          "fused": 0.33948870823045507,
+          "dense_rank": 22,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:9e9b919d07d8a50a",
+          "score": 0.3013305808364321,
+          "fused": 0.3013305808364321,
+          "dense_rank": 1,
+          "bm25_rank": 48
+        }
+      ],
+      "latency_ms": 11.25
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 597,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10930.32
+    }
+  },
+  "retrieved_ids": [
+    "9794e842cc9565f0:L0:000148",
+    "raptor:67600e79:L1:a9f61141db3c98fa",
+    "raptor:67600e79:L1:752e6c46b6747aa5",
+    "c8fd2b3ea47eb07f:L0:000012",
+    "raptor:67600e79:L1:9e9b919d07d8a50a"
+  ],
+  "filtered_ids": [
+    "9794e842cc9565f0:L0:000148",
+    "raptor:67600e79:L1:a9f61141db3c98fa",
+    "raptor:67600e79:L1:752e6c46b6747aa5",
+    "c8fd2b3ea47eb07f:L0:000012",
+    "raptor:67600e79:L1:9e9b919d07d8a50a"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:41:57.630084+00:00",
+      "call_id": "e54e14d87ab1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c80053ca230f8954",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e29529eb77374e1f"
+    },
+    {
+      "ts": "2026-11-16T09:42:08.569918+00:00",
+      "call_id": "16dc8eef4c4d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d590115544a726ac",
+      "prompt_tokens": 1159,
+      "completion_tokens": 64,
+      "latency_ms": 10927.0,
+      "server_ms": 10893.3,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e29529eb77374e1f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1159,
+    "completion_tokens": 64,
+    "total_ms": 10942.69
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

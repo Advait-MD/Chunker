@@ -1,0 +1,184 @@
+{
+  "trace_id": "57f6bb11969944c4",
+  "created_at": "2026-11-16T11:43:53.633066+00:00",
+  "query": "What caused Blake to suspect where Sabrina was?\n\nOptions:\n(A) Many criminals had entered his mind before\n(B) He saw his office in disarray\n(C) He saw an embroidered handkerchief\n(D) Sabrina was a total stranger\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1996.64
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1996.75
+    },
+    {
+      "state": "DONE",
+      "t_ms": 28353.62
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.2,
+      "bm25_ms": 27.2,
+      "n_candidates": {
+        "dense": 22,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 1955.29
+      },
+      "hits": [
+        {
+          "id": "raptor:73e14ef7:L1:2090ab180bf16193",
+          "score": 1.7737370729446411,
+          "fused": 0.7116450984943841,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 1.7737370729446411
+        },
+        {
+          "id": "e11049b9efecac12:L0:000014",
+          "score": 1.6181164979934692,
+          "fused": 0.904320030712467,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.6181164979934692
+        },
+        {
+          "id": "raptor:73e14ef7:L1:67aefd498b15f29b",
+          "score": 1.4154314994812012,
+          "fused": 0.5912817974172113,
+          "dense_rank": 2,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": 1.4154314994812012
+        },
+        {
+          "id": "raptor:73e14ef7:L2:6fc89ac767183367",
+          "score": 0.3335980772972107,
+          "fused": 0.5575669193181233,
+          "dense_rank": 3,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 0.3335980772972107
+        },
+        {
+          "id": "e11049b9efecac12:L0:000006",
+          "score": 0.18862801790237427,
+          "fused": 0.45219414893005583,
+          "dense_rank": 11,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": 0.18862801790237427
+        }
+      ],
+      "latency_ms": 1996.58
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1183,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 26356.65
+    }
+  },
+  "retrieved_ids": [
+    "raptor:73e14ef7:L1:2090ab180bf16193",
+    "e11049b9efecac12:L0:000014",
+    "raptor:73e14ef7:L1:67aefd498b15f29b",
+    "raptor:73e14ef7:L2:6fc89ac767183367",
+    "e11049b9efecac12:L0:000006"
+  ],
+  "filtered_ids": [
+    "raptor:73e14ef7:L1:2090ab180bf16193",
+    "e11049b9efecac12:L0:000014",
+    "raptor:73e14ef7:L1:67aefd498b15f29b",
+    "raptor:73e14ef7:L2:6fc89ac767183367",
+    "e11049b9efecac12:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:43:53.635083+00:00",
+      "call_id": "19424e6fd212",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "deef2388111f5fb3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "57f6bb11969944c4"
+    },
+    {
+      "ts": "2026-11-16T11:44:21.985300+00:00",
+      "call_id": "7b4d08ec4106",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "dc9180025a41d6c5",
+      "prompt_tokens": 1736,
+      "completion_tokens": 172,
+      "latency_ms": 26355.26,
+      "server_ms": 26325.01,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "57f6bb11969944c4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1736,
+    "completion_tokens": 172,
+    "total_ms": 28356.07
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2
+      ],
+      "uncited_sentences": [
+        "(B) He saw his office in disarray.",
+        "Specifically, when Blake accepted a case, he invariably thought of the bleak and lonely little room with its thin-gauge steel desk and battered filing cabinets, and when he had done so after accepting his case—or was it before?",
+        "He couldn't quite remember—the mental picture that had come into his mind had revealed open drawers, scattered papers and a general air of disarray.",
+        "He had suspected the truth immediately, and when he had seen the woman's handkerchief with the initials 'SB' embroidered on it lying by one of the filing cabinets he had known definitely that his quarry was hiding out in his mind."
+      ]
+    }
+  }
+}

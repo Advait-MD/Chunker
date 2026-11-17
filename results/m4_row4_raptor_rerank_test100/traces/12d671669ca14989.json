@@ -1,0 +1,180 @@
+{
+  "trace_id": "12d671669ca14989",
+  "created_at": "2026-11-16T11:16:20.712777+00:00",
+  "query": "Who is the spouse of the other president Jenkins Orphanage played for that wasn't Taft?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4042.35
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4043.6
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22335.6
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.97,
+      "bm25_ms": 18.79,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 10,
+        "latency_ms": 4013.86
+      },
+      "hits": [
+        {
+          "id": "6bddce8aaad42fea:L0:000068",
+          "score": 1.0716733932495117,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.0716733932495117
+        },
+        {
+          "id": "raptor:67600e79:L1:b9ef36d603cc6d74",
+          "score": -2.3073813915252686,
+          "fused": 0.44668441398335046,
+          "dense_rank": 20,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -2.3073813915252686
+        },
+        {
+          "id": "raptor:67600e79:L1:e10bfe00377755cf",
+          "score": -2.4556541442871094,
+          "fused": 0.6207796423040839,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": -2.4556541442871094
+        },
+        {
+          "id": "ce57fdde2baaba9c:L0:000153",
+          "score": -2.8653666973114014,
+          "fused": 0.18273272874445104,
+          "dense_rank": null,
+          "bm25_rank": 12,
+          "fused_rank": 13,
+          "rerank": -2.8653666973114014
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000105",
+          "score": -4.306339263916016,
+          "fused": 0.1844293026521256,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 12,
+          "rerank": -4.306339263916016
+        }
+      ],
+      "latency_ms": 4042.28
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1057,
+      "latency_ms": 1.2
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18291.81
+    }
+  },
+  "retrieved_ids": [
+    "6bddce8aaad42fea:L0:000068",
+    "raptor:67600e79:L1:b9ef36d603cc6d74",
+    "raptor:67600e79:L1:e10bfe00377755cf",
+    "ce57fdde2baaba9c:L0:000153",
+    "ce290c1e5d5c6641:L0:000105"
+  ],
+  "filtered_ids": [
+    "6bddce8aaad42fea:L0:000068",
+    "raptor:67600e79:L1:b9ef36d603cc6d74",
+    "raptor:67600e79:L1:e10bfe00377755cf",
+    "ce57fdde2baaba9c:L0:000153",
+    "ce290c1e5d5c6641:L0:000105"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:16:20.714781+00:00",
+      "call_id": "35458a252ad3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "879112846c0e0e67",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "12d671669ca14989"
+    },
+    {
+      "ts": "2026-11-16T11:16:43.047336+00:00",
+      "call_id": "0c09dd6e3552",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6173b14e5f0c1fc0",
+      "prompt_tokens": 1759,
+      "completion_tokens": 92,
+      "latency_ms": 18290.23,
+      "server_ms": 18254.48,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "12d671669ca14989"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1759,
+    "completion_tokens": 92,
+    "total_ms": 22339.78
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

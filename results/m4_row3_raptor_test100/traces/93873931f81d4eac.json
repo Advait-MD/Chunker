@@ -1,0 +1,168 @@
+{
+  "trace_id": "93873931f81d4eac",
+  "created_at": "2026-11-15T09:56:52.255191+00:00",
+  "query": "What are the gender roles like in this community?\n\nOptions:\n(A) The women hunt and the men watch the children\n(B) Men and women do an equal amount of raising the kids\n(C) Women do a lot of the business on behalf of each family\n(D) Men have to protect the group regularly\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 58.5
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 61.61
+    },
+    {
+      "state": "DONE",
+      "t_ms": 35598.03
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.91,
+      "bm25_ms": 50.07,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 20
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "520c73060ae60cb1:L0:000016",
+          "score": 0.9017881710088351,
+          "fused": 0.9017881710088351,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "520c73060ae60cb1:L0:000005",
+          "score": 0.8951611278227953,
+          "fused": 0.8951611278227953,
+          "dense_rank": 5,
+          "bm25_rank": 1
+        },
+        {
+          "id": "520c73060ae60cb1:L0:000003",
+          "score": 0.8323145475518019,
+          "fused": 0.8323145475518019,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "520c73060ae60cb1:L0:000017",
+          "score": 0.6658395346960965,
+          "fused": 0.6658395346960965,
+          "dense_rank": 12,
+          "bm25_rank": 4
+        },
+        {
+          "id": "520c73060ae60cb1:L0:000006",
+          "score": 0.6573504363598328,
+          "fused": 0.6573504363598328,
+          "dense_rank": 6,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 58.41
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1936,
+      "latency_ms": 3.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 35536.12
+    }
+  },
+  "retrieved_ids": [
+    "520c73060ae60cb1:L0:000016",
+    "520c73060ae60cb1:L0:000005",
+    "520c73060ae60cb1:L0:000003",
+    "520c73060ae60cb1:L0:000017",
+    "520c73060ae60cb1:L0:000006"
+  ],
+  "filtered_ids": [
+    "520c73060ae60cb1:L0:000016",
+    "520c73060ae60cb1:L0:000005",
+    "520c73060ae60cb1:L0:000003",
+    "520c73060ae60cb1:L0:000017",
+    "520c73060ae60cb1:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:56:52.258374+00:00",
+      "call_id": "2fda4ef2c7ee",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cf273ebfbc6d4901",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "93873931f81d4eac"
+    },
+    {
+      "ts": "2026-11-15T09:57:27.851745+00:00",
+      "call_id": "0a1a2e266af4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bad5fd253e4a02a3",
+      "prompt_tokens": 2475,
+      "completion_tokens": 73,
+      "latency_ms": 35534.18,
+      "server_ms": 35479.01,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "93873931f81d4eac"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2475,
+    "completion_tokens": 73,
+    "total_ms": 35602.22
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

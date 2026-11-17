@@ -1,0 +1,180 @@
+{
+  "trace_id": "9f7d584aa84b4535",
+  "created_at": "2026-11-16T11:54:28.504447+00:00",
+  "query": "Why was Roger mortified at the news about the cancelled metal-foil wrapper order?\n\nOptions:\n(A) The consumers would now be able to see the product\n(B) The loaves would go stale much more quickly now\n(C) They now had nothing to wrap the loaves with\n(D) The loaves would now be too light and float away\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2249.3
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2249.44
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22863.2
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.71,
+      "bm25_ms": 35.01,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 23
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 3,
+        "latency_ms": 2208.57
+      },
+      "hits": [
+        {
+          "id": "f3eb6c80c1c23120:L0:000008",
+          "score": 1.1282378435134888,
+          "fused": 0.7280028740270437,
+          "dense_rank": 1,
+          "bm25_rank": 10,
+          "fused_rank": 6,
+          "rerank": 1.1282378435134888
+        },
+        {
+          "id": "raptor:9ae9993f:L1:d6ce221143e17aed",
+          "score": 1.080617904663086,
+          "fused": 0.8620681464445195,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 1.080617904663086
+        },
+        {
+          "id": "raptor:9ae9993f:L2:b7ccf7873b3b1da2",
+          "score": 0.384978711605072,
+          "fused": 0.8841354894454593,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.384978711605072
+        },
+        {
+          "id": "f3eb6c80c1c23120:L0:000010",
+          "score": -1.307999849319458,
+          "fused": 0.8588268164322556,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -1.307999849319458
+        },
+        {
+          "id": "f3eb6c80c1c23120:L0:000009",
+          "score": -2.031146764755249,
+          "fused": 0.6196753531323169,
+          "dense_rank": 10,
+          "bm25_rank": 9,
+          "fused_rank": 9,
+          "rerank": -2.031146764755249
+        }
+      ],
+      "latency_ms": 2249.25
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1574,
+      "latency_ms": 0.09
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20613.62
+    }
+  },
+  "retrieved_ids": [
+    "f3eb6c80c1c23120:L0:000008",
+    "raptor:9ae9993f:L1:d6ce221143e17aed",
+    "raptor:9ae9993f:L2:b7ccf7873b3b1da2",
+    "f3eb6c80c1c23120:L0:000010",
+    "f3eb6c80c1c23120:L0:000009"
+  ],
+  "filtered_ids": [
+    "f3eb6c80c1c23120:L0:000008",
+    "raptor:9ae9993f:L1:d6ce221143e17aed",
+    "raptor:9ae9993f:L2:b7ccf7873b3b1da2",
+    "f3eb6c80c1c23120:L0:000010",
+    "f3eb6c80c1c23120:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:54:28.506447+00:00",
+      "call_id": "ee75c8783a2f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "873ec58bdb4e4984",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9f7d584aa84b4535"
+    },
+    {
+      "ts": "2026-11-16T11:54:51.367019+00:00",
+      "call_id": "54d55a8342e8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6b2566308fe605f2",
+      "prompt_tokens": 2229,
+      "completion_tokens": 62,
+      "latency_ms": 20612.05,
+      "server_ms": 20564.61,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9f7d584aa84b4535"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2229,
+    "completion_tokens": 62,
+    "total_ms": 22866.19
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

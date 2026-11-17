@@ -1,0 +1,182 @@
+{
+  "trace_id": "76deb2e2a1f84fae",
+  "created_at": "2026-11-16T13:01:09.798431+00:00",
+  "query": "Who was born later, Park So-Jin or Joseph M. Pettit?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3355.76
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3356.53
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17231.41
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.13,
+      "bm25_ms": 6.58,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 10,
+        "latency_ms": 3344.06
+      },
+      "hits": [
+        {
+          "id": "53c7288bdcd3837a:L0:000198",
+          "score": 8.886558532714844,
+          "fused": 0.5808553207918165,
+          "dense_rank": 20,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": 8.886558532714844
+        },
+        {
+          "id": "abe982d210232c3f:L0:000071",
+          "score": 8.555005073547363,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 8.555005073547363
+        },
+        {
+          "id": "raptor:67600e79:L1:982184c11b097723",
+          "score": 2.1115243434906006,
+          "fused": 0.4661641983148371,
+          "dense_rank": 6,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 2.1115243434906006
+        },
+        {
+          "id": "raptor:67600e79:L1:b40488c64646e031",
+          "score": 0.33220773935317993,
+          "fused": 0.7148001422241016,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": 0.33220773935317993
+        },
+        {
+          "id": "raptor:67600e79:L1:af95c73e4903064e",
+          "score": -0.5208836197853088,
+          "fused": 0.45180990526240616,
+          "dense_rank": 11,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": -0.5208836197853088
+        }
+      ],
+      "latency_ms": 3355.7
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 508,
+      "latency_ms": 0.72
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13874.74
+    }
+  },
+  "retrieved_ids": [
+    "53c7288bdcd3837a:L0:000198",
+    "abe982d210232c3f:L0:000071",
+    "raptor:67600e79:L1:982184c11b097723",
+    "raptor:67600e79:L1:b40488c64646e031",
+    "raptor:67600e79:L1:af95c73e4903064e"
+  ],
+  "filtered_ids": [
+    "53c7288bdcd3837a:L0:000198",
+    "abe982d210232c3f:L0:000071",
+    "raptor:67600e79:L1:982184c11b097723",
+    "raptor:67600e79:L1:b40488c64646e031",
+    "raptor:67600e79:L1:af95c73e4903064e"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:01:09.800432+00:00",
+      "call_id": "8b9cdbea7993",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3d9f781274e30ca1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "76deb2e2a1f84fae"
+    },
+    {
+      "ts": "2026-11-16T13:01:27.028764+00:00",
+      "call_id": "59999d293818",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "600bcb19d4952c37",
+      "prompt_tokens": 1096,
+      "completion_tokens": 90,
+      "latency_ms": 13873.46,
+      "server_ms": 13832.96,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "76deb2e2a1f84fae"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1096,
+    "completion_tokens": 90,
+    "total_ms": 17232.52
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Park So-jin was born on May 21, 1986, while Joseph M."
+      ]
+    }
+  }
+}

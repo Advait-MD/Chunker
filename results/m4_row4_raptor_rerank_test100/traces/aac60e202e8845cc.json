@@ -1,0 +1,182 @@
+{
+  "trace_id": "aac60e202e8845cc",
+  "created_at": "2026-11-16T11:24:14.203245+00:00",
+  "query": "What percentage did the Dow Jones fall in the historical era where the book takes place?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 802.72
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 803.54
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14140.53
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.1,
+      "bm25_ms": 9.8,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 2,
+        "latency_ms": 787.72
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L2:16e6049d325373e2",
+          "score": 0.4941703677177429,
+          "fused": 0.32965858707643536,
+          "dense_rank": 1,
+          "bm25_rank": 36,
+          "fused_rank": 10,
+          "rerank": 0.4941703677177429
+        },
+        {
+          "id": "raptor:67600e79:L1:2acfc7de1452a07f",
+          "score": -0.02944357693195343,
+          "fused": 0.26116572573627306,
+          "dense_rank": 3,
+          "bm25_rank": 33,
+          "fused_rank": 16,
+          "rerank": -0.02944357693195343
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000163",
+          "score": -0.03983263298869133,
+          "fused": 0.27669299760100663,
+          "dense_rank": 7,
+          "bm25_rank": 19,
+          "fused_rank": 14,
+          "rerank": -0.03983263298869133
+        },
+        {
+          "id": "15abb5e49dced915:L0:000138",
+          "score": -0.42178845405578613,
+          "fused": 0.3093596284392989,
+          "dense_rank": 4,
+          "bm25_rank": 17,
+          "fused_rank": 13,
+          "rerank": -0.42178845405578613
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000144",
+          "score": -1.2415539026260376,
+          "fused": 0.9856867504984873,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.2415539026260376
+        }
+      ],
+      "latency_ms": 802.68
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 748,
+      "latency_ms": 0.8
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13336.9
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L2:16e6049d325373e2",
+    "raptor:67600e79:L1:2acfc7de1452a07f",
+    "5a1a5bbda9db013e:L0:000163",
+    "15abb5e49dced915:L0:000138",
+    "e182527d2b1ecac3:L0:000144"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L2:16e6049d325373e2",
+    "raptor:67600e79:L1:2acfc7de1452a07f",
+    "5a1a5bbda9db013e:L0:000163",
+    "15abb5e49dced915:L0:000138",
+    "e182527d2b1ecac3:L0:000144"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:24:14.204244+00:00",
+      "call_id": "fb7bd3adb6f5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "327662f52d4082a6",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "aac60e202e8845cc"
+    },
+    {
+      "ts": "2026-11-16T11:24:28.343482+00:00",
+      "call_id": "e0a3c3d726cc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "cec8197a9930a715",
+      "prompt_tokens": 1379,
+      "completion_tokens": 80,
+      "latency_ms": 13336.17,
+      "server_ms": 13315.64,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "aac60e202e8845cc"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1379,
+    "completion_tokens": 80,
+    "total_ms": 14142.61
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

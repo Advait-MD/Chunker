@@ -1,0 +1,179 @@
+{
+  "trace_id": "b19036d91bf847d8",
+  "created_at": "2026-11-16T12:49:52.079371+00:00",
+  "query": "Where was the place of death of Anne Devereux's husband?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2320.37
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2320.48
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13629.61
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.93,
+      "bm25_ms": 3.63,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2313.29
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000084",
+          "score": 3.906708240509033,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 3.906708240509033
+        },
+        {
+          "id": "raptor:67600e79:L1:214a540fe7821b0f",
+          "score": 2.696754217147827,
+          "fused": 0.7039294079975296,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": 2.696754217147827
+        },
+        {
+          "id": "460e441179bec402:L0:000086",
+          "score": -1.4500988721847534,
+          "fused": 0.671301394536124,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -1.4500988721847534
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000132",
+          "score": -2.5768489837646484,
+          "fused": 0.18337029506206534,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 12,
+          "rerank": -2.5768489837646484
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000068",
+          "score": -3.6205027103424072,
+          "fused": 0.19297616382252025,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": -3.6205027103424072
+        }
+      ],
+      "latency_ms": 2320.33
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 548,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11309.02
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000084",
+    "raptor:67600e79:L1:214a540fe7821b0f",
+    "460e441179bec402:L0:000086",
+    "53c7288bdcd3837a:L0:000132",
+    "6af2db6cb86d77e2:L0:000068"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000084",
+    "raptor:67600e79:L1:214a540fe7821b0f",
+    "460e441179bec402:L0:000086",
+    "53c7288bdcd3837a:L0:000132",
+    "6af2db6cb86d77e2:L0:000068"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:49:52.080364+00:00",
+      "call_id": "c1532e9cf8ba",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ba184d9c989642da",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b19036d91bf847d8"
+    },
+    {
+      "ts": "2026-11-16T12:50:05.708052+00:00",
+      "call_id": "bd18c99b7313",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9070e204ede617f0",
+      "prompt_tokens": 1165,
+      "completion_tokens": 53,
+      "latency_ms": 11307.79,
+      "server_ms": 11274.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b19036d91bf847d8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1165,
+    "completion_tokens": 53,
+    "total_ms": 13631.62
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The place of death of Anne Devereux's husband is not mentioned in the provided passages."
+      ]
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "trace_id": "59b02f731a054a82",
+  "created_at": "2026-11-16T12:44:42.965730+00:00",
+  "query": "Who is younger, Empress Xiaoshurui or Goran Veselinovski?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3707.69
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3707.87
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24037.22
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.88,
+      "bm25_ms": 6.07,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 10,
+        "latency_ms": 3695.67
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000119",
+          "score": 8.79759407043457,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.79759407043457
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000167",
+          "score": 6.864262580871582,
+          "fused": 0.5769842372934315,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 6.864262580871582
+        },
+        {
+          "id": "raptor:67600e79:L1:a6083993637e9d71",
+          "score": 2.158907651901245,
+          "fused": 0.6200777253655241,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": 2.158907651901245
+        },
+        {
+          "id": "raptor:67600e79:L1:310d78962b5ef64d",
+          "score": 1.9000471830368042,
+          "fused": 0.42721708134913405,
+          "dense_rank": 2,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": 1.9000471830368042
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000139",
+          "score": -7.299199104309082,
+          "fused": 0.14024361096409602,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 9,
+          "rerank": -7.299199104309082
+        }
+      ],
+      "latency_ms": 3707.64
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 761,
+      "latency_ms": 0.14
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20328.72
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000119",
+    "317e12ccd417c0d7:L0:000167",
+    "raptor:67600e79:L1:a6083993637e9d71",
+    "raptor:67600e79:L1:310d78962b5ef64d",
+    "4a757779abfb4ba1:L0:000139"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000119",
+    "317e12ccd417c0d7:L0:000167",
+    "raptor:67600e79:L1:a6083993637e9d71",
+    "raptor:67600e79:L1:310d78962b5ef64d",
+    "4a757779abfb4ba1:L0:000139"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:44:42.967730+00:00",
+      "call_id": "f204dee6f7c3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ac97e2ee49a2d40a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "59b02f731a054a82"
+    },
+    {
+      "ts": "2026-11-16T12:45:07.001439+00:00",
+      "call_id": "d0d38e4fc09c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5ea0430a8660292f",
+      "prompt_tokens": 1496,
+      "completion_tokens": 117,
+      "latency_ms": 20326.72,
+      "server_ms": 20299.58,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "59b02f731a054a82"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1496,
+    "completion_tokens": 117,
+    "total_ms": 24039.58
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, Goran Veselinovski is younger."
+      ]
+    }
+  }
+}

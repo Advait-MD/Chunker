@@ -1,0 +1,180 @@
+{
+  "trace_id": "c37d58d9fcfd4cda",
+  "created_at": "2026-11-16T11:58:35.471983+00:00",
+  "query": "If Syme weren't initially helped by Harold, what would've probably happened to him?\n\nOptions:\n(A) Syme would've been protected by the building's safety net.\n(B) Syme would've gotten help from someone else.\n(C) Syme would've fallen to his death.\n(D) Syme would've caught himself with his two backup harpoons.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2913.1
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2913.24
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16286.35
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.92,
+      "bm25_ms": 28.42,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 23
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2878.8
+      },
+      "hits": [
+        {
+          "id": "raptor:0883d9af:L1:c882e5f1c79cce23",
+          "score": 1.290356159210205,
+          "fused": 0.6766525380458579,
+          "dense_rank": 5,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": 1.290356159210205
+        },
+        {
+          "id": "raptor:0883d9af:L2:52fb11f681149120",
+          "score": 1.0615839958190918,
+          "fused": 0.9501602331084515,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.0615839958190918
+        },
+        {
+          "id": "041c7ab2b3369dd4:L0:000003",
+          "score": 1.0203713178634644,
+          "fused": 0.614827586607644,
+          "dense_rank": 4,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": 1.0203713178634644
+        },
+        {
+          "id": "raptor:0883d9af:L1:b5c65a019db96d6c",
+          "score": 0.11508886516094208,
+          "fused": 0.7344150239872688,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 2,
+          "rerank": 0.11508886516094208
+        },
+        {
+          "id": "raptor:0883d9af:L1:ec69b0e6bdcdda16",
+          "score": -0.0819370225071907,
+          "fused": 0.48898080009545264,
+          "dense_rank": 3,
+          "bm25_rank": 11,
+          "fused_rank": 9,
+          "rerank": -0.0819370225071907
+        }
+      ],
+      "latency_ms": 2913.02
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1008,
+      "latency_ms": 0.09
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13373.02
+    }
+  },
+  "retrieved_ids": [
+    "raptor:0883d9af:L1:c882e5f1c79cce23",
+    "raptor:0883d9af:L2:52fb11f681149120",
+    "041c7ab2b3369dd4:L0:000003",
+    "raptor:0883d9af:L1:b5c65a019db96d6c",
+    "raptor:0883d9af:L1:ec69b0e6bdcdda16"
+  ],
+  "filtered_ids": [
+    "raptor:0883d9af:L1:c882e5f1c79cce23",
+    "raptor:0883d9af:L2:52fb11f681149120",
+    "041c7ab2b3369dd4:L0:000003",
+    "raptor:0883d9af:L1:b5c65a019db96d6c",
+    "raptor:0883d9af:L1:ec69b0e6bdcdda16"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:58:35.473987+00:00",
+      "call_id": "0946d44a96ff",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f09a31e2e6a4fff6",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c37d58d9fcfd4cda"
+    },
+    {
+      "ts": "2026-11-16T11:58:51.758010+00:00",
+      "call_id": "73e93fa3a7d9",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d064664b67fef387",
+      "prompt_tokens": 1617,
+      "completion_tokens": 60,
+      "latency_ms": 13371.99,
+      "server_ms": 13348.76,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "c37d58d9fcfd4cda"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1617,
+    "completion_tokens": 60,
+    "total_ms": 16286.93
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

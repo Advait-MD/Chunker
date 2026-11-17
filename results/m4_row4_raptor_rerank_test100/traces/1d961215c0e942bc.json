@@ -1,0 +1,180 @@
+{
+  "trace_id": "1d961215c0e942bc",
+  "created_at": "2026-11-16T11:17:33.254133+00:00",
+  "query": "What does SEAL stand for in the military group that is part of the military branch that operates USS Dour?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2612.28
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2612.45
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18975.73
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.38,
+      "bm25_ms": 18.86,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2586.26
+      },
+      "hits": [
+        {
+          "id": "f3503d3d186f0f90:L0:000110",
+          "score": 0.013325064443051815,
+          "fused": 0.14764512916945322,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": 0.013325064443051815
+        },
+        {
+          "id": "raptor:67600e79:L1:0905e26c9f45b1ab",
+          "score": -1.2852786779403687,
+          "fused": 0.19681178175241115,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 8,
+          "rerank": -1.2852786779403687
+        },
+        {
+          "id": "raptor:67600e79:L2:8388a2680d246ba1",
+          "score": -1.6511815786361694,
+          "fused": 0.9645680331083273,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.6511815786361694
+        },
+        {
+          "id": "15abb5e49dced915:L0:000096",
+          "score": -1.8174829483032227,
+          "fused": 0.5673365498220027,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -1.8174829483032227
+        },
+        {
+          "id": "raptor:67600e79:L1:c900f8c32e91a7bf",
+          "score": -2.5808169841766357,
+          "fused": 0.7721571058038327,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -2.5808169841766357
+        }
+      ],
+      "latency_ms": 2612.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 790,
+      "latency_ms": 0.13
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16363.06
+    }
+  },
+  "retrieved_ids": [
+    "f3503d3d186f0f90:L0:000110",
+    "raptor:67600e79:L1:0905e26c9f45b1ab",
+    "raptor:67600e79:L2:8388a2680d246ba1",
+    "15abb5e49dced915:L0:000096",
+    "raptor:67600e79:L1:c900f8c32e91a7bf"
+  ],
+  "filtered_ids": [
+    "f3503d3d186f0f90:L0:000110",
+    "raptor:67600e79:L1:0905e26c9f45b1ab",
+    "raptor:67600e79:L2:8388a2680d246ba1",
+    "15abb5e49dced915:L0:000096",
+    "raptor:67600e79:L1:c900f8c32e91a7bf"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:17:33.255134+00:00",
+      "call_id": "c6cd3408db49",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "94c571cae1259359",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1d961215c0e942bc"
+    },
+    {
+      "ts": "2026-11-16T11:17:52.228729+00:00",
+      "call_id": "21d037bf775f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4ed13396a353999f",
+      "prompt_tokens": 1421,
+      "completion_tokens": 76,
+      "latency_ms": 16361.27,
+      "server_ms": 16319.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1d961215c0e942bc"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1421,
+    "completion_tokens": 76,
+    "total_ms": 18978.36
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

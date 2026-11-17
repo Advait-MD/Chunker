@@ -1,0 +1,165 @@
+{
+  "trace_id": "a551aba9eb684fd0",
+  "created_at": "2026-11-16T10:22:55.031601+00:00",
+  "query": "What nationality is the performer of song Gone Fishin' (Song)?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.51
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.65
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13154.33
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.2,
+      "bm25_ms": 6.96,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:ef118204f3288eb5",
+          "score": 0.8115047558267645,
+          "fused": 0.8115047558267645,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "0eac870d43736f51:L0:000038",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:11d9143fd89b6029",
+          "score": 0.320333688399655,
+          "fused": 0.320333688399655,
+          "dense_rank": 7,
+          "bm25_rank": 5
+        },
+        {
+          "id": "99628090500247e3:L0:000174",
+          "score": 0.2290107794102703,
+          "fused": 0.2290107794102703,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "460e441179bec402:L0:000020",
+          "score": 0.21435193382556852,
+          "fused": 0.21435193382556852,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 10.47
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 746,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13143.23
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:ef118204f3288eb5",
+    "0eac870d43736f51:L0:000038",
+    "raptor:67600e79:L1:11d9143fd89b6029",
+    "99628090500247e3:L0:000174",
+    "460e441179bec402:L0:000020"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:ef118204f3288eb5",
+    "0eac870d43736f51:L0:000038",
+    "raptor:67600e79:L1:11d9143fd89b6029",
+    "99628090500247e3:L0:000174",
+    "460e441179bec402:L0:000020"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:22:55.033604+00:00",
+      "call_id": "0b4dd5d81c41",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7573452d8a76a670",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a551aba9eb684fd0"
+    },
+    {
+      "ts": "2026-11-16T10:23:08.184553+00:00",
+      "call_id": "e12afddaa635",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1053e2fd15548d0b",
+      "prompt_tokens": 1341,
+      "completion_tokens": 61,
+      "latency_ms": 13141.59,
+      "server_ms": 13112.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a551aba9eb684fd0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1341,
+    "completion_tokens": 61,
+    "total_ms": 13155.74
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

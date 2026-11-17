@@ -1,0 +1,180 @@
+{
+  "trace_id": "5a88bbdc999b44a3",
+  "created_at": "2026-11-16T12:14:12.861218+00:00",
+  "query": "SWX Right Now airs on the station that broadcasts on what channel in Billings, Montana?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3456.05
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3456.86
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14754.21
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.42,
+      "bm25_ms": 14.02,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 3434.23
+      },
+      "hits": [
+        {
+          "id": "8e50522b7cb636d8:L0:000033",
+          "score": 7.410225868225098,
+          "fused": 0.7810522926153369,
+          "dense_rank": 14,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.410225868225098
+        },
+        {
+          "id": "raptor:67600e79:L1:8aaca3658018890b",
+          "score": 3.381516933441162,
+          "fused": 0.7714351314386956,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": 3.381516933441162
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000053",
+          "score": 1.388809084892273,
+          "fused": 0.38095998991928665,
+          "dense_rank": 16,
+          "bm25_rank": 14,
+          "fused_rank": 15,
+          "rerank": 1.388809084892273
+        },
+        {
+          "id": "raptor:67600e79:L2:16a500640abf131f",
+          "score": 0.010737094096839428,
+          "fused": 0.6043931892504076,
+          "dense_rank": 4,
+          "bm25_rank": 11,
+          "fused_rank": 4,
+          "rerank": 0.010737094096839428
+        },
+        {
+          "id": "634431bb1e27714f:L0:000143",
+          "score": 0.0009256703779101372,
+          "fused": 0.4995999875496433,
+          "dense_rank": 19,
+          "bm25_rank": 7,
+          "fused_rank": 9,
+          "rerank": 0.0009256703779101372
+        }
+      ],
+      "latency_ms": 3456.0
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 618,
+      "latency_ms": 0.77
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11297.26
+    }
+  },
+  "retrieved_ids": [
+    "8e50522b7cb636d8:L0:000033",
+    "raptor:67600e79:L1:8aaca3658018890b",
+    "9794e842cc9565f0:L0:000053",
+    "raptor:67600e79:L2:16a500640abf131f",
+    "634431bb1e27714f:L0:000143"
+  ],
+  "filtered_ids": [
+    "8e50522b7cb636d8:L0:000033",
+    "raptor:67600e79:L1:8aaca3658018890b",
+    "9794e842cc9565f0:L0:000053",
+    "raptor:67600e79:L2:16a500640abf131f",
+    "634431bb1e27714f:L0:000143"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:14:12.864222+00:00",
+      "call_id": "6f461514a5fc",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c45bf764552b5517",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5a88bbdc999b44a3"
+    },
+    {
+      "ts": "2026-11-16T12:14:27.615718+00:00",
+      "call_id": "75a3d8d4f1c5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "df1733a6bf28f74b",
+      "prompt_tokens": 1231,
+      "completion_tokens": 67,
+      "latency_ms": 11296.33,
+      "server_ms": 11252.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "5a88bbdc999b44a3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1231,
+    "completion_tokens": 67,
+    "total_ms": 14755.78
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

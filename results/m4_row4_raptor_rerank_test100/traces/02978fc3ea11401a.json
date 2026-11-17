@@ -1,0 +1,180 @@
+{
+  "trace_id": "02978fc3ea11401a",
+  "created_at": "2026-11-16T11:25:22.690877+00:00",
+  "query": "Where did Katrina hit the hardest in the Toussaint performer's birthplace?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2305.03
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2306.14
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15550.95
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.1,
+      "bm25_ms": 15.73,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2283.69
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:d3200a295dfe5466",
+          "score": -2.2243783473968506,
+          "fused": 0.43181344443879516,
+          "dense_rank": 1,
+          "bm25_rank": 20,
+          "fused_rank": 8,
+          "rerank": -2.2243783473968506
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000087",
+          "score": -2.4791996479034424,
+          "fused": 0.21333196440377908,
+          "dense_rank": null,
+          "bm25_rank": 13,
+          "fused_rank": 17,
+          "rerank": -2.4791996479034424
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000180",
+          "score": -3.3340892791748047,
+          "fused": 0.41811736479944434,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": -3.3340892791748047
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000196",
+          "score": -3.5142033100128174,
+          "fused": 0.3350706032662525,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 12,
+          "rerank": -3.5142033100128174
+        },
+        {
+          "id": "raptor:67600e79:L2:9975296d83bde972",
+          "score": -4.545269012451172,
+          "fused": 0.28585468766080063,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": -4.545269012451172
+        }
+      ],
+      "latency_ms": 2304.98
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 622,
+      "latency_ms": 1.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13244.69
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:d3200a295dfe5466",
+    "4fcce431f5d22d1d:L0:000087",
+    "f109b032e24ab27a:L0:000180",
+    "e182527d2b1ecac3:L0:000196",
+    "raptor:67600e79:L2:9975296d83bde972"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:d3200a295dfe5466",
+    "4fcce431f5d22d1d:L0:000087",
+    "f109b032e24ab27a:L0:000180",
+    "e182527d2b1ecac3:L0:000196",
+    "raptor:67600e79:L2:9975296d83bde972"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:25:22.692088+00:00",
+      "call_id": "31d1f21b379a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "00a59829c963682a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "02978fc3ea11401a"
+    },
+    {
+      "ts": "2026-11-16T11:25:38.240334+00:00",
+      "call_id": "56e8baa4370c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "90c6cec522eff964",
+      "prompt_tokens": 1270,
+      "completion_tokens": 79,
+      "latency_ms": 13243.61,
+      "server_ms": 13211.74,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "02978fc3ea11401a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1270,
+    "completion_tokens": 79,
+    "total_ms": 15553.48
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

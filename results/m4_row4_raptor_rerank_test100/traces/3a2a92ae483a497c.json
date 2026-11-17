@@ -1,0 +1,183 @@
+{
+  "trace_id": "3a2a92ae483a497c",
+  "created_at": "2026-11-16T11:18:39.132145+00:00",
+  "query": "who has had the most hits in the league that includes the team that has played the most games of the type played just before the league MVP is awarded?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2800.74
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2801.65
+    },
+    {
+      "state": "DONE",
+      "t_ms": 27028.72
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.06,
+      "bm25_ms": 27.73,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2762.11
+      },
+      "hits": [
+        {
+          "id": "8679484d23bfd3a0:L0:000127",
+          "score": 1.3998228311538696,
+          "fused": 0.42534419260424017,
+          "dense_rank": 6,
+          "bm25_rank": 23,
+          "fused_rank": 8,
+          "rerank": 1.3998228311538696
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000070",
+          "score": -0.2793523967266083,
+          "fused": 0.6268686703495441,
+          "dense_rank": 8,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": -0.2793523967266083
+        },
+        {
+          "id": "raptor:67600e79:L1:01cee61cb4b47760",
+          "score": -1.275550127029419,
+          "fused": 0.5913925994491157,
+          "dense_rank": 2,
+          "bm25_rank": 14,
+          "fused_rank": 6,
+          "rerank": -1.275550127029419
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000073",
+          "score": -1.3150025606155396,
+          "fused": 0.3909219287605306,
+          "dense_rank": 16,
+          "bm25_rank": 17,
+          "fused_rank": 12,
+          "rerank": -1.3150025606155396
+        },
+        {
+          "id": "raptor:67600e79:L2:2e9edb2353e038e3",
+          "score": -1.7774635553359985,
+          "fused": 0.6653818639247506,
+          "dense_rank": 1,
+          "bm25_rank": 10,
+          "fused_rank": 3,
+          "rerank": -1.7774635553359985
+        }
+      ],
+      "latency_ms": 2800.68
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 872,
+      "latency_ms": 0.84
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24226.87
+    }
+  },
+  "retrieved_ids": [
+    "8679484d23bfd3a0:L0:000127",
+    "ce290c1e5d5c6641:L0:000070",
+    "raptor:67600e79:L1:01cee61cb4b47760",
+    "178c7e3e6ef6ae87:L0:000073",
+    "raptor:67600e79:L2:2e9edb2353e038e3"
+  ],
+  "filtered_ids": [
+    "8679484d23bfd3a0:L0:000127",
+    "ce290c1e5d5c6641:L0:000070",
+    "raptor:67600e79:L1:01cee61cb4b47760",
+    "178c7e3e6ef6ae87:L0:000073",
+    "raptor:67600e79:L2:2e9edb2353e038e3"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:18:39.134145+00:00",
+      "call_id": "b48d5696b970",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b1d35423d840ebf3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "3a2a92ae483a497c"
+    },
+    {
+      "ts": "2026-11-16T11:19:06.160130+00:00",
+      "call_id": "116e1e4e4d38",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1a5029abb95ff71b",
+      "prompt_tokens": 1545,
+      "completion_tokens": 153,
+      "latency_ms": 24225.44,
+      "server_ms": 24180.82,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "3a2a92ae483a497c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1545,
+    "completion_tokens": 153,
+    "total_ms": 27033.79
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, Pete Rose, with his record of 4,256 career hits in MLB, has had the most hits in the league that includes the team that has played the most games of the type played just before the league MVP is awarded."
+      ]
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "trace_id": "a37677106c42483b",
+  "created_at": "2026-11-16T11:20:16.548449+00:00",
+  "query": "What continent is the country located near the country of citizenship of The Book Thief's author part of?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2420.63
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2421.68
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18768.23
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.91,
+      "bm25_ms": 19.11,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2393.66
+      },
+      "hits": [
+        {
+          "id": "dd498e0082847164:L0:000051",
+          "score": 0.5442240238189697,
+          "fused": 0.46446660147945545,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": 0.5442240238189697
+        },
+        {
+          "id": "ce57fdde2baaba9c:L0:000175",
+          "score": -1.0225615501403809,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.0225615501403809
+        },
+        {
+          "id": "raptor:67600e79:L1:18660ca7156a0ed5",
+          "score": -2.5644280910491943,
+          "fused": 0.4827264970902274,
+          "dense_rank": 12,
+          "bm25_rank": 7,
+          "fused_rank": 3,
+          "rerank": -2.5644280910491943
+        },
+        {
+          "id": "dd498e0082847164:L0:000032",
+          "score": -2.6182732582092285,
+          "fused": 0.32922979803957586,
+          "dense_rank": 10,
+          "bm25_rank": 21,
+          "fused_rank": 9,
+          "rerank": -2.6182732582092285
+        },
+        {
+          "id": "raptor:67600e79:L2:5b2cba2f8ee49756",
+          "score": -2.7004802227020264,
+          "fused": 0.4310690164717801,
+          "dense_rank": 1,
+          "bm25_rank": 29,
+          "fused_rank": 7,
+          "rerank": -2.7004802227020264
+        }
+      ],
+      "latency_ms": 2420.58
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 833,
+      "latency_ms": 0.96
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16346.4
+    }
+  },
+  "retrieved_ids": [
+    "dd498e0082847164:L0:000051",
+    "ce57fdde2baaba9c:L0:000175",
+    "raptor:67600e79:L1:18660ca7156a0ed5",
+    "dd498e0082847164:L0:000032",
+    "raptor:67600e79:L2:5b2cba2f8ee49756"
+  ],
+  "filtered_ids": [
+    "dd498e0082847164:L0:000051",
+    "ce57fdde2baaba9c:L0:000175",
+    "raptor:67600e79:L1:18660ca7156a0ed5",
+    "dd498e0082847164:L0:000032",
+    "raptor:67600e79:L2:5b2cba2f8ee49756"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:20:16.549449+00:00",
+      "call_id": "ed9179fbe60b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7a74b27592f55605",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a37677106c42483b"
+    },
+    {
+      "ts": "2026-11-16T11:20:35.315662+00:00",
+      "call_id": "474dcf23d7a6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0febc58897cfd82e",
+      "prompt_tokens": 1450,
+      "completion_tokens": 74,
+      "latency_ms": 16345.0,
+      "server_ms": 16304.69,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a37677106c42483b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1450,
+    "completion_tokens": 74,
+    "total_ms": 18773.59
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

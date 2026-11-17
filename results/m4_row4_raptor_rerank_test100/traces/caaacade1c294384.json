@@ -1,0 +1,182 @@
+{
+  "trace_id": "caaacade1c294384",
+  "created_at": "2026-11-16T10:46:30.066664+00:00",
+  "query": "Which datasets do they evaluate on?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2368.22
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2368.33
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17375.16
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.34,
+      "bm25_ms": 11.2,
+      "n_candidates": {
+        "dense": 26,
+        "bm25": 5
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 2345.86
+      },
+      "hits": [
+        {
+          "id": "raptor:1207279a:L2:ed63138c2dfb4f2b",
+          "score": -0.2033115029335022,
+          "fused": 0.5274797241461323,
+          "dense_rank": 22,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -0.2033115029335022
+        },
+        {
+          "id": "raptor:1207279a:L1:3dd523a4b14c7225",
+          "score": -0.2440616488456726,
+          "fused": 0.6038269137697342,
+          "dense_rank": 15,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -0.2440616488456726
+        },
+        {
+          "id": "fcc6b073f6c0e38c:L0:000000",
+          "score": -0.6354572176933289,
+          "fused": 0.9070136322652078,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.6354572176933289
+        },
+        {
+          "id": "fcc6b073f6c0e38c:L0:000005",
+          "score": -2.2080183029174805,
+          "fused": 0.6171313081302234,
+          "dense_rank": 3,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": -2.2080183029174805
+        },
+        {
+          "id": "raptor:1207279a:L1:8b8c39e0fc9d9a7d",
+          "score": -3.682745933532715,
+          "fused": 0.10831834469355435,
+          "dense_rank": 11,
+          "bm25_rank": null,
+          "fused_rank": 13,
+          "rerank": -3.682745933532715
+        }
+      ],
+      "latency_ms": 2368.14
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1011,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15006.74
+    }
+  },
+  "retrieved_ids": [
+    "raptor:1207279a:L2:ed63138c2dfb4f2b",
+    "raptor:1207279a:L1:3dd523a4b14c7225",
+    "fcc6b073f6c0e38c:L0:000000",
+    "fcc6b073f6c0e38c:L0:000005",
+    "raptor:1207279a:L1:8b8c39e0fc9d9a7d"
+  ],
+  "filtered_ids": [
+    "raptor:1207279a:L2:ed63138c2dfb4f2b",
+    "raptor:1207279a:L1:3dd523a4b14c7225",
+    "fcc6b073f6c0e38c:L0:000000",
+    "fcc6b073f6c0e38c:L0:000005",
+    "raptor:1207279a:L1:8b8c39e0fc9d9a7d"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:46:30.068664+00:00",
+      "call_id": "8fc050babc79",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5de97659da7d4f06",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "caaacade1c294384"
+    },
+    {
+      "ts": "2026-11-16T10:46:47.440999+00:00",
+      "call_id": "c755bcd8e92d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "409583478c27ad21",
+      "prompt_tokens": 1586,
+      "completion_tokens": 62,
+      "latency_ms": 15005.46,
+      "server_ms": 14972.89,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "caaacade1c294384"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1586,
+    "completion_tokens": 62,
+    "total_ms": 17376.12
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        5
+      ],
+      "uncited_sentences": [
+        "They evaluate the algorithm on the Open Minds Indoor Common Sense (OMICS) corpus and natural datasets."
+      ]
+    }
+  }
+}
