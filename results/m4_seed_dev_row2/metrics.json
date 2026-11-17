@@ -1,0 +1,191 @@
+{
+  "run": {
+    "run_id": "m4_seed_dev_row2",
+    "created": "2026-11-17T14:43:04.362997+00:00",
+    "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+    "config_path": "configs/ablations/row2_hybrid.yaml",
+    "config_hash": "c2649765878c",
+    "split": "dev",
+    "datasets": [
+      "qasper",
+      "quality"
+    ],
+    "limit": null,
+    "ollama": {
+      "version": "0.40.16",
+      "backend": "vulkan",
+      "models": {
+        "generator": {
+          "name": "qwen2.5:7b",
+          "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e"
+        },
+        "embedder": {
+          "name": "nomic-embed-text",
+          "digest": "0a109f422b47e3a30ba2b10eca18548e944e8a23073ee3f3e947efcf3c45e59f"
+        },
+        "judge": {
+          "name": "gemma3:4b",
+          "digest": "68ceab7e468a31c988b44d5a4984a0e21f58c4f7158c6ce29c1804babac38df7"
+        }
+      }
+    }
+  },
+  "datasets": {
+    "qasper": {
+      "n": 50,
+      "n_answerable": 48,
+      "n_generation_errors": 0,
+      "retrieval": {
+        "recall@5": {
+          "mean": 0.6666666666666667,
+          "lo": 0.5434782608695652,
+          "hi": 0.7934782608695651,
+          "n": 46
+        },
+        "recall@10": {
+          "mean": 0.9695652173913044,
+          "lo": 0.9347826086956522,
+          "hi": 1.0,
+          "n": 46
+        },
+        "recall@20": {
+          "mean": 0.9891304347826086,
+          "lo": 0.967391304347826,
+          "hi": 1.0,
+          "n": 46
+        },
+        "mrr": {
+          "mean": 0.4768202208419599,
+          "lo": 0.3764343944099378,
+          "hi": 0.5722761387163561,
+          "n": 46
+        },
+        "ndcg@10": {
+          "mean": 0.5385152313159601,
+          "lo": 0.47528137512879665,
+          "hi": 0.6018502589940281,
+          "n": 46
+        }
+      },
+      "answer_in_context": {
+        "mean": 0.4117647058823529,
+        "lo": 0.17647058823529413,
+        "hi": 0.6470588235294118,
+        "n": 17
+      },
+      "answer": {
+        "em": {
+          "mean": 0.24,
+          "lo": 0.12,
+          "hi": 0.36,
+          "n": 50
+        },
+        "f1": {
+          "mean": 0.5142733174570482,
+          "lo": 0.4172196084323188,
+          "hi": 0.6099749141734064,
+          "n": 50
+        },
+        "acc": {
+          "mean": 0.32,
+          "lo": 0.2,
+          "hi": 0.44,
+          "n": 50
+        },
+        "f1_answerable": {
+          "mean": 0.4940347056844252,
+          "lo": 0.39145882832599393,
+          "hi": 0.5990770584081747,
+          "n": 48
+        },
+        "f1_long": {
+          "mean": 0.3775191596268774,
+          "lo": 0.2992246576246632,
+          "hi": 0.4539223793782011,
+          "n": 50
+        }
+      },
+      "abstention": {
+        "n_unanswerable": 2,
+        "abstain_precision": 0.5,
+        "abstain_recall": 1.0,
+        "false_abstain_rate": 0.041666666666666664,
+        "abstain_rate": 0.08
+      },
+      "cost": {
+        "llm_calls_per_query": 1.0,
+        "tokens_per_query": 1907.44,
+        "prompt_tokens_per_query": 1819.96,
+        "latency_s_p50": 18.12052,
+        "latency_s_p95": 25.3161135,
+        "n_latency": 42,
+        "pct_routed_without_llm": null
+      }
+    },
+    "quality": {
+      "n": 50,
+      "n_answerable": 50,
+      "n_generation_errors": 0,
+      "answer": {
+        "em": {
+          "mean": 0.6,
+          "lo": 0.46,
+          "hi": 0.74,
+          "n": 50
+        },
+        "f1": {
+          "mean": 0.6451507936507938,
+          "lo": 0.5201091269841271,
+          "hi": 0.764892261904762,
+          "n": 50
+        },
+        "acc": {
+          "mean": 0.74,
+          "lo": 0.6195000000000005,
+          "hi": 0.84,
+          "n": 50
+        },
+        "f1_answerable": {
+          "mean": 0.6451507936507938,
+          "lo": 0.5201091269841271,
+          "hi": 0.764892261904762,
+          "n": 50
+        },
+        "f1_long": {
+          "mean": 0.5249620576335727,
+          "lo": 0.41459075910959875,
+          "hi": 0.6325120951040724,
+          "n": 50
+        },
+        "mc_acc": {
+          "mean": 0.74,
+          "lo": 0.6,
+          "hi": 0.86,
+          "n": 50
+        },
+        "mc_acc_hard": {
+          "mean": 0.7333333333333333,
+          "lo": 0.4666666666666667,
+          "hi": 0.9333333333333333,
+          "n": 15
+        }
+      },
+      "abstention": {
+        "n_unanswerable": 0,
+        "abstain_precision": null,
+        "abstain_recall": null,
+        "false_abstain_rate": 0.0,
+        "abstain_rate": 0.0
+      },
+      "cost": {
+        "llm_calls_per_query": 1.0,
+        "tokens_per_query": 2604.24,
+        "prompt_tokens_per_query": 2530.14,
+        "latency_s_p50": 21.03762,
+        "latency_s_p95": 27.627185999999995,
+        "n_latency": 49,
+        "pct_routed_without_llm": null
+      }
+    }
+  }
+}

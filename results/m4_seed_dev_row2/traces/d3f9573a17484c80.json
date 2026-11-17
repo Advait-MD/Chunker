@@ -1,0 +1,164 @@
+{
+  "trace_id": "d3f9573a17484c80",
+  "created_at": "2026-11-17T14:47:15.522193+00:00",
+  "query": "What is the interannotator agreement for the human evaluation?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.88
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.95
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 19436.25
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.12,
+      "bm25_ms": 8.52,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 9
+      },
+      "n_fused": 19,
+      "hits": [
+        {
+          "id": "bd2251146b05b93b:L0:000015",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000014",
+          "score": 0.5958941584877082,
+          "fused": 0.5958941584877082,
+          "dense_rank": 12,
+          "bm25_rank": 2
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000007",
+          "score": 0.426108733483885,
+          "fused": 0.426108733483885,
+          "dense_rank": 2,
+          "bm25_rank": 4
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000006",
+          "score": 0.3166534572742369,
+          "fused": 0.3166534572742369,
+          "dense_rank": 17,
+          "bm25_rank": 3
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000000",
+          "score": 0.20314695293123902,
+          "fused": 0.20314695293123902,
+          "dense_rank": 5,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 12.83
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1643,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19423.23
+    }
+  },
+  "retrieved_ids": [
+    "bd2251146b05b93b:L0:000015",
+    "bd2251146b05b93b:L0:000014",
+    "bd2251146b05b93b:L0:000007",
+    "bd2251146b05b93b:L0:000006",
+    "bd2251146b05b93b:L0:000000"
+  ],
+  "filtered_ids": [
+    "bd2251146b05b93b:L0:000015",
+    "bd2251146b05b93b:L0:000014",
+    "bd2251146b05b93b:L0:000007",
+    "bd2251146b05b93b:L0:000006",
+    "bd2251146b05b93b:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:47:15.524737+00:00",
+      "call_id": "589217a9ce93",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c2e8eda67ff7e1e1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d3f9573a17484c80"
+    },
+    {
+      "ts": "2026-11-17T14:47:34.957243+00:00",
+      "call_id": "e7d151dfedda",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2c9bea8f54837627",
+      "prompt_tokens": 2296,
+      "completion_tokens": 45,
+      "latency_ms": 19422.21,
+      "server_ms": 19388.93,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d3f9573a17484c80"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2296,
+    "completion_tokens": 45,
+    "total_ms": 19437.43
+  },
+  "config_hash": "d4a047076961",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "trace_id": "775c984c47d649bf",
+  "created_at": "2026-11-17T14:01:26.453786+00:00",
+  "query": "What conclusion does the protagonist come to after his encounter with the police?\n\nOptions:\n(A) He must pursue his nostalgic urges and return to the book store to replace the magazines.\n(B) The police officers are also time travelers from WW1.\n(C) He needs to avoid carrying around pornography\n(D) His memories are untrue and cannot be trusted\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 75.36
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 75.41
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13081.3
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 61.07,
+      "bm25_ms": 14.09,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 22
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:71f5ff57:L1:73e5f1517946a308",
+          "score": 0.8495025369748515,
+          "fused": 0.8495025369748515,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000008",
+          "score": 0.5708087128852343,
+          "fused": 0.5708087128852343,
+          "dense_rank": 5,
+          "bm25_rank": 3
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000012",
+          "score": 0.46478193281060454,
+          "fused": 0.46478193281060454,
+          "dense_rank": 7,
+          "bm25_rank": 6
+        },
+        {
+          "id": "raptor:71f5ff57:L1:0708b07cceeed4f5",
+          "score": 0.45054739654721043,
+          "fused": 0.45054739654721043,
+          "dense_rank": 6,
+          "bm25_rank": 12
+        }
+      ],
+      "latency_ms": 75.34
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1195,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13005.82
+    }
+  },
+  "retrieved_ids": [
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+    "raptor:71f5ff57:L1:73e5f1517946a308",
+    "2ecd3be7264ff150:L0:000008",
+    "2ecd3be7264ff150:L0:000012",
+    "raptor:71f5ff57:L1:0708b07cceeed4f5"
+  ],
+  "filtered_ids": [
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+    "raptor:71f5ff57:L1:73e5f1517946a308",
+    "2ecd3be7264ff150:L0:000008",
+    "2ecd3be7264ff150:L0:000012",
+    "raptor:71f5ff57:L1:0708b07cceeed4f5"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:01:26.514140+00:00",
+      "call_id": "c89b92ec80bd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "69bf43505fbe54c2",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 106,
+      "completion_tokens": 0,
+      "latency_ms": 59.48,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "775c984c47d649bf"
+    },
+    {
+      "ts": "2026-11-17T14:01:39.535010+00:00",
+      "call_id": "ebc6d0eaf98f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7413e1c979992ffd",
+      "prompt_tokens": 1713,
+      "completion_tokens": 60,
+      "latency_ms": 13005.17,
+      "server_ms": 12984.87,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "775c984c47d649bf"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1713,
+    "completion_tokens": 60,
+    "total_ms": 13082.28
+  },
+  "config_hash": "10aa17327d5e",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "trace_id": "447c988f796f4f7a",
+  "created_at": "2026-11-17T13:38:59.801953+00:00",
+  "query": "How did the authors find ironic data on twitter?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.03
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18.1
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17757.7
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.62,
+      "bm25_ms": 14.1,
+      "n_candidates": {
+        "dense": 28,
+        "bm25": 26
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "b674e9583339e06c:L0:000003",
+          "score": 0.9884185697662089,
+          "fused": 0.9884185697662089,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "b674e9583339e06c:L0:000004",
+          "score": 0.8858173540015386,
+          "fused": 0.8858173540015386,
+          "dense_rank": 10,
+          "bm25_rank": 2
+        },
+        {
+          "id": "b674e9583339e06c:L0:000000",
+          "score": 0.8544096559533176,
+          "fused": 0.8544096559533176,
+          "dense_rank": 1,
+          "bm25_rank": 5
+        },
+        {
+          "id": "raptor:f820f50f:L1:399ef7cb0487d6ea",
+          "score": 0.8336426860358975,
+          "fused": 0.8336426860358975,
+          "dense_rank": 4,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:f820f50f:L2:9c51f3eec57ba60b",
+          "score": 0.827632811523382,
+          "fused": 0.827632811523382,
+          "dense_rank": 7,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 17.99
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1116,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17739.51
+    }
+  },
+  "retrieved_ids": [
+    "b674e9583339e06c:L0:000003",
+    "b674e9583339e06c:L0:000004",
+    "b674e9583339e06c:L0:000000",
+    "raptor:f820f50f:L1:399ef7cb0487d6ea",
+    "raptor:f820f50f:L2:9c51f3eec57ba60b"
+  ],
+  "filtered_ids": [
+    "b674e9583339e06c:L0:000003",
+    "b674e9583339e06c:L0:000004",
+    "b674e9583339e06c:L0:000000",
+    "raptor:f820f50f:L1:399ef7cb0487d6ea",
+    "raptor:f820f50f:L2:9c51f3eec57ba60b"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T13:38:59.803953+00:00",
+      "call_id": "eb4be5a4864a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fdaa46559b007ea5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "447c988f796f4f7a"
+    },
+    {
+      "ts": "2026-11-17T13:39:17.558348+00:00",
+      "call_id": "dad035b1b782",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b17d2812ccde6ee9",
+      "prompt_tokens": 1704,
+      "completion_tokens": 80,
+      "latency_ms": 17738.55,
+      "server_ms": 17715.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "447c988f796f4f7a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1704,
+    "completion_tokens": 80,
+    "total_ms": 17758.84
+  },
+  "config_hash": "f5bf8e385908",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "The authors crawled over 2M tweets from Twitter to build a dataset with 262,755 ironic and 112,330 non-ironic tweets."
+      ]
+    }
+  }
+}

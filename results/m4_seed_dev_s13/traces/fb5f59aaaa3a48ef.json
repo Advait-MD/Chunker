@@ -1,0 +1,164 @@
+{
+  "trace_id": "fb5f59aaaa3a48ef",
+  "created_at": "2026-11-17T14:30:55.169436+00:00",
+  "query": "What is the interannotator agreement for the human evaluation?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5.53
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5.57
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 8.2
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.61,
+      "bm25_ms": 1.71,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 13
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:e525a45d:L1:319d45231b106e3a",
+          "score": 0.9640781999232195,
+          "fused": 0.9640781999232195,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000015",
+          "score": 0.8643268719645945,
+          "fused": 0.8643268719645945,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:e525a45d:L2:90224cbf6f1daf4f",
+          "score": 0.5314485774823194,
+          "fused": 0.5314485774823194,
+          "dense_rank": 7,
+          "bm25_rank": 4
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000014",
+          "score": 0.4995305867280655,
+          "fused": 0.4995305867280655,
+          "dense_rank": 16,
+          "bm25_rank": 3
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000007",
+          "score": 0.42917971522037945,
+          "fused": 0.42917971522037945,
+          "dense_rank": 3,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 5.48
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1338,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 2.57
+    }
+  },
+  "retrieved_ids": [
+    "raptor:e525a45d:L1:319d45231b106e3a",
+    "bd2251146b05b93b:L0:000015",
+    "raptor:e525a45d:L2:90224cbf6f1daf4f",
+    "bd2251146b05b93b:L0:000014",
+    "bd2251146b05b93b:L0:000007"
+  ],
+  "filtered_ids": [
+    "raptor:e525a45d:L1:319d45231b106e3a",
+    "bd2251146b05b93b:L0:000015",
+    "raptor:e525a45d:L2:90224cbf6f1daf4f",
+    "bd2251146b05b93b:L0:000014",
+    "bd2251146b05b93b:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:30:55.172152+00:00",
+      "call_id": "f85639a04b36",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c2e8eda67ff7e1e1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fb5f59aaaa3a48ef"
+    },
+    {
+      "ts": "2026-11-17T14:30:55.176943+00:00",
+      "call_id": "45b08cf08a93",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9d6d73a0525b3fbe",
+      "prompt_tokens": 1930,
+      "completion_tokens": 39,
+      "latency_ms": 1.71,
+      "server_ms": 13530.83,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "fb5f59aaaa3a48ef"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 1930,
+    "completion_tokens": 39,
+    "total_ms": 9.15
+  },
+  "config_hash": "3feb6315c18d",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

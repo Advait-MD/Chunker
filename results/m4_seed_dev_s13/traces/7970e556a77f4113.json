@@ -1,0 +1,165 @@
+{
+  "trace_id": "7970e556a77f4113",
+  "created_at": "2026-11-17T14:39:17.616681+00:00",
+  "query": "What is Mr. Turner addicted to?\n\nOptions:\n(A) pornography \n(B) old magazines\n(C) drugs\n(D) cigarettes \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.0
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1.78
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1.8
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15668.75
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.36,
+      "bm25_ms": 0.32,
+      "n_candidates": {
+        "dense": 26,
+        "bm25": 26
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000012",
+          "score": 0.8528333319900381,
+          "fused": 0.8528333319900381,
+          "dense_rank": 12,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000008",
+          "score": 0.8258794463610544,
+          "fused": 0.8258794463610544,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:71f5ff57:L1:3714b3bc9b97b478",
+          "score": 0.8068902033707426,
+          "fused": 0.8068902033707426,
+          "dense_rank": 4,
+          "bm25_rank": 3
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000002",
+          "score": 0.603247767701264,
+          "fused": 0.603247767701264,
+          "dense_rank": 3,
+          "bm25_rank": 9
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000003",
+          "score": 0.6007024829439315,
+          "fused": 0.6007024829439315,
+          "dense_rank": 6,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 1.76
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1744,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15666.66
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000008",
+    "raptor:71f5ff57:L1:3714b3bc9b97b478",
+    "2ecd3be7264ff150:L0:000002",
+    "2ecd3be7264ff150:L0:000003"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000008",
+    "raptor:71f5ff57:L1:3714b3bc9b97b478",
+    "2ecd3be7264ff150:L0:000002",
+    "2ecd3be7264ff150:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:39:17.617763+00:00",
+      "call_id": "566be8850d36",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4f6b080d0f14e52b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7970e556a77f4113"
+    },
+    {
+      "ts": "2026-11-17T14:39:33.284992+00:00",
+      "call_id": "84a65de2a533",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bdae8b4ff73f0198",
+      "prompt_tokens": 2268,
+      "completion_tokens": 48,
+      "latency_ms": 15665.64,
+      "server_ms": 15619.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7970e556a77f4113"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2268,
+    "completion_tokens": 48,
+    "total_ms": 15670.69
+  },
+  "config_hash": "754bdc6d8bb0",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

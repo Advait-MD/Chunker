@@ -1,0 +1,164 @@
+{
+  "trace_id": "4458f371b5c64360",
+  "created_at": "2026-11-17T13:50:55.915299+00:00",
+  "query": "What did the police officers initially pick up the protagonist for?\n\nOptions:\n(A) Reckless driving\n(B) Possession of pornography\n(C) Drunk and disorderly conduct\n(D) Jaywalking\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1940.19
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1940.22
+    },
+    {
+      "state": "DONE",
+      "t_ms": 26173.45
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1929.07,
+      "bm25_ms": 10.95,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 19
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000007",
+          "score": 0.9338231054881512,
+          "fused": 0.9338231054881512,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000008",
+          "score": 0.7192679121560509,
+          "fused": 0.7192679121560509,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+          "score": 0.6247387316586439,
+          "fused": 0.6247387316586439,
+          "dense_rank": 6,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:71f5ff57:L1:73e5f1517946a308",
+          "score": 0.4293011358805452,
+          "fused": 0.4293011358805452,
+          "dense_rank": 4,
+          "bm25_rank": 5
+        },
+        {
+          "id": "raptor:71f5ff57:L1:4ff5b30fbbe8417e",
+          "score": 0.4144025990343827,
+          "fused": 0.4144025990343827,
+          "dense_rank": 3,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 1940.15
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1187,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24233.13
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000007",
+    "2ecd3be7264ff150:L0:000008",
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+    "raptor:71f5ff57:L1:73e5f1517946a308",
+    "raptor:71f5ff57:L1:4ff5b30fbbe8417e"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000007",
+    "2ecd3be7264ff150:L0:000008",
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+    "raptor:71f5ff57:L1:73e5f1517946a308",
+    "raptor:71f5ff57:L1:4ff5b30fbbe8417e"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T13:50:57.843260+00:00",
+      "call_id": "e60db4225f23",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b14fae29219cfee0",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 69,
+      "completion_tokens": 0,
+      "latency_ms": 1927.27,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "4458f371b5c64360"
+    },
+    {
+      "ts": "2026-11-17T13:51:22.086925+00:00",
+      "call_id": "8b2ab6d09f2d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "33c31498cab5b2eb",
+      "prompt_tokens": 1683,
+      "completion_tokens": 45,
+      "latency_ms": 24231.95,
+      "server_ms": 24207.44,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4458f371b5c64360"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1683,
+    "completion_tokens": 45,
+    "total_ms": 26174.74
+  },
+  "config_hash": "10aa17327d5e",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

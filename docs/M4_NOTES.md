@@ -2,7 +2,7 @@
 
 Spec §2.3 and ablation row 3, plus the cumulative row 4 (row 3 + rerank), the collapsed-vs-traversal comparison and the 3-seed check. Built 13–17 Nov 2026 on the laptop (Intel Arc iGPU, Ollama 0.40.16 on Vulkan).
 
-**Headline: the tree does not help.** Adding RAPTOR to row 2 changes F1 by −5.4 to +2.4 points (none significant), and once the reranker is in it adds nothing (−3.3 to +2.1, none significant) while QuALITY multiple-choice accuracy drops 10 points (p = 0.018). The spec's hypothesis "RAPTOR helps thematic and long-document QA" fails on QASPER and QuALITY. Per the honesty clause the result is kept and reported; whether the component stays is the owner's call (see the end).
+**Headline: the tree does not help.** Adding RAPTOR to row 2 changes F1 by −5.4 to +2.4 points (none significant), and once the reranker is in it adds nothing (−3.3 to +2.1, none significant). QuALITY multiple-choice accuracy drops 10 points (p = 0.018 on the seed-42 tree), but the 3-seed check shows a seed-to-seed range just as large, so that drop is not established; no seed beats the no-tree row. The spec's hypothesis "RAPTOR helps thematic and long-document QA" fails on QASPER and QuALITY. Per the honesty clause the result is kept and reported; whether the component stays is the owner's call (see the end).
 
 ## What was built
 
@@ -86,7 +86,7 @@ Retrieval ranking falls significantly everywhere with gold passages (nDCG@10 −
 | 2Wiki | 32.2 | 28.9 | −3.3 (−11.4, +4.7) | 0.41 / 0.34 | +0.5 | 0.89 / 0.81 |
 | custom | 39.4 | 41.5 | +2.1 (−2.5, +7.1) | 0.39 / 0.53 | +5.5 (−0.5, +12.7) | 0.08 / 0.16 |
 
-- **QuALITY multiple-choice accuracy falls from 67 to 57** against M3's row 4 (−10.0, CI −18 to −2, p = 0.018 / 0.018), the one significant answer-level effect of the tree. QuALITY is the long-document set where RAPTOR is supposed to help most.
+- **QuALITY multiple-choice accuracy falls from 67 to 57** against M3's row 4 (−10.0, CI −18 to −2, p = 0.018 / 0.018). QuALITY is the long-document set where RAPTOR is supposed to help most. The test covers the seed-42 tree only; on dev the seed alone moves this metric by up to 10 points (see the 3-seed check), so the drop's size is not established.
 - Row 4 against the M2 naive baseline: MuSiQue +11.6 (p = 0.008), HotpotQA +22.6 (p < 0.001); the other four are not significant. These gains are the same as M3's row 4 without the tree.
 
 ### Why the tree doesn't help
@@ -119,9 +119,20 @@ Tree build cost: about 14.2 h of summarization on this iGPU for 3,668 summaries,
 
 ## 3-seed check (dev, `results/m4_seed_dev_*`)
 
-Seeds 42, 7 and 13 for the QASPER (46 papers) and QuALITY (3 stories) dev documents: QASPER retrieval and QASPER + QuALITY answers with the row 3 config.
+Seeds 42, 7 and 13 for the QASPER (46 papers) and QuALITY (3 stories) dev documents, row 3 config, against the same 100 dev questions with no tree (row 2, `results/m4_seed_dev_row2`). Seeds 7 and 13 rebuilt only those documents: QASPER 210 and 213 summaries (77 and 99 reused from the cache, where clusters came out the same), QuALITY 8 and 9.
 
-*Pending: running on 17 Nov; this section is filled in when it ends.*
+| | No tree (row 2) | Seed 42 | Seed 7 | Seed 13 | Mean of seeds | Seed-averaged Δ vs no tree |
+| --- | --- | --- | --- | --- | --- | --- |
+| QASPER Recall@10 (46) | 97.0 | 85.9 | 88.0 | 90.2 | 88.0 | |
+| QASPER nDCG@10 (46) | 53.9 | 45.1 | 45.3 | 46.6 | 45.7 | |
+| QASPER F1 (50) | 51.4 | 44.8 | 46.2 | 47.0 | 46.0 ± 1.1 | −5.4 (−12.7, +1.1) |
+| QuALITY F1 (50) | 64.5 | 64.9 | 58.6 | 60.6 | 61.4 ± 3.3 | −3.1 (−14.9, +8.9) |
+| QuALITY MC accuracy (50) | 74 | 74 | 64 | 72 | 70.0 ± 5.3 | −4.0 (−14.0, +6.0) |
+
+- **No seed beats the no-tree row** on any measure; the negative result does not depend on the seed. QASPER is stable (F1 spread 2.2 points).
+- **QuALITY swings by seed:** multiple-choice accuracy ranges 64–74 because its 50 dev questions sit on only 3 stories, so one different cluster moves many questions at once.
+- **This qualifies the test result.** The −10 QuALITY multiple-choice drop on test (67 → 57, p = 0.018) was measured on the seed-42 tree only, and the seed-to-seed range on dev is just as large. The direction is consistent (no seed gains), but the size of the drop is not established; it should be read as "no gain, plausibly a loss", not as a significant loss.
+- Seeds on test were not run (fast plan: 3 seeds on dev, 1 on test).
 
 ## Engineering notes
 

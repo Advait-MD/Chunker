@@ -1,0 +1,165 @@
+{
+  "trace_id": "39c923e51952431b",
+  "created_at": "2026-11-17T15:10:57.008584+00:00",
+  "query": "What does Mr. Turner do for a job?\n\nOptions:\n(A) He directs war films.\n(B) He is a mechanic. \n(C) He writes comics.\n(D) He works in advertising. \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.94
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.0
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17952.4
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.57,
+      "bm25_ms": 15.13,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 16
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000012",
+          "score": 0.8235288059998295,
+          "fused": 0.8235288059998295,
+          "dense_rank": 16,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000011",
+          "score": 0.7015202912597086,
+          "fused": 0.7015202912597086,
+          "dense_rank": 12,
+          "bm25_rank": 2
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000018",
+          "score": 0.5952741715655044,
+          "fused": 0.5952741715655044,
+          "dense_rank": 15,
+          "bm25_rank": 3
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000003",
+          "score": 0.5753883879862283,
+          "fused": 0.5753883879862283,
+          "dense_rank": 1,
+          "bm25_rank": 8
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000013",
+          "score": 0.5699684823913027,
+          "fused": 0.5699684823913027,
+          "dense_rank": 17,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 18.91
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1968,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17933.27
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000011",
+    "2ecd3be7264ff150:L0:000018",
+    "2ecd3be7264ff150:L0:000003",
+    "2ecd3be7264ff150:L0:000013"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000011",
+    "2ecd3be7264ff150:L0:000018",
+    "2ecd3be7264ff150:L0:000003",
+    "2ecd3be7264ff150:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T15:10:57.010589+00:00",
+      "call_id": "63b67046a3ef",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6de2dfaf0e8cf6c6",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "39c923e51952431b"
+    },
+    {
+      "ts": "2026-11-17T15:11:14.959946+00:00",
+      "call_id": "e2baa87aaa0a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f56c447840a81567",
+      "prompt_tokens": 2507,
+      "completion_tokens": 52,
+      "latency_ms": 17932.16,
+      "server_ms": 17897.31,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "39c923e51952431b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2507,
+    "completion_tokens": 52,
+    "total_ms": 17954.77
+  },
+  "config_hash": "ed6e9ea8986c",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

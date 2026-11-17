@@ -1,0 +1,165 @@
+{
+  "trace_id": "a5e2c0fddbfa47d2",
+  "created_at": "2026-11-17T14:52:17.854450+00:00",
+  "query": "How large is the collection of COVID-19 literature?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.51
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14.57
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21650.39
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.27,
+      "bm25_ms": 8.86,
+      "n_candidates": {
+        "dense": 13,
+        "bm25": 11
+      },
+      "n_fused": 13,
+      "hits": [
+        {
+          "id": "0a584ba5ecaf0a01:L0:000000",
+          "score": 0.918355785100364,
+          "fused": 0.918355785100364,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "0a584ba5ecaf0a01:L0:000003",
+          "score": 0.6905780398560504,
+          "fused": 0.6905780398560504,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "0a584ba5ecaf0a01:L0:000004",
+          "score": 0.6654873409329377,
+          "fused": 0.6654873409329377,
+          "dense_rank": 5,
+          "bm25_rank": 2
+        },
+        {
+          "id": "0a584ba5ecaf0a01:L0:000001",
+          "score": 0.5529952902709621,
+          "fused": 0.5529952902709621,
+          "dense_rank": 3,
+          "bm25_rank": 5
+        },
+        {
+          "id": "0a584ba5ecaf0a01:L0:000002",
+          "score": 0.5393998318699591,
+          "fused": 0.5393998318699591,
+          "dense_rank": 4,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 14.46
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1205,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21635.65
+    }
+  },
+  "retrieved_ids": [
+    "0a584ba5ecaf0a01:L0:000000",
+    "0a584ba5ecaf0a01:L0:000003",
+    "0a584ba5ecaf0a01:L0:000004",
+    "0a584ba5ecaf0a01:L0:000001",
+    "0a584ba5ecaf0a01:L0:000002"
+  ],
+  "filtered_ids": [
+    "0a584ba5ecaf0a01:L0:000000",
+    "0a584ba5ecaf0a01:L0:000003",
+    "0a584ba5ecaf0a01:L0:000004",
+    "0a584ba5ecaf0a01:L0:000001",
+    "0a584ba5ecaf0a01:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:52:17.858725+00:00",
+      "call_id": "48463a087a07",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a2c05ba99fde50b5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a5e2c0fddbfa47d2"
+    },
+    {
+      "ts": "2026-11-17T14:52:39.504652+00:00",
+      "call_id": "86ca9e9ad585",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b6cf57378409b399",
+      "prompt_tokens": 1861,
+      "completion_tokens": 104,
+      "latency_ms": 21634.58,
+      "server_ms": 21590.24,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a5e2c0fddbfa47d2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1861,
+    "completion_tokens": 104,
+    "total_ms": 21651.5
+  },
+  "config_hash": "d4a047076961",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -9,7 +9,8 @@ M4 report, 17 Nov 2026. Data: `results/m4_raptor_analysis` (per-stage trace, `sc
 The tree was meant to fix naive RAG's first failure: questions about a whole document or theme that no single chunk answers. It didn't:
 
 - **Row 3 vs row 2** (tree added to hybrid retrieval): F1 −5.4 to +2.4 points, none significant.
-- **Row 4 vs M3 row 4** (tree added under the reranker): F1 −3.3 to +2.1 points, none significant. **QuALITY multiple-choice accuracy fell from 67% to 57%** (p = 0.018), the one significant answer-level effect, on the long-story benchmark where RAPTOR should help most.
+- **Row 4 vs M3 row 4** (tree added under the reranker): F1 −3.3 to +2.1 points, none significant. **QuALITY multiple-choice accuracy fell from 67% to 57%** (p = 0.018 on the seed-42 tree), on the long-story benchmark where RAPTOR should help most.
+- **3 seeds on dev:** no seed beats the no-tree row on QASPER or QuALITY (QASPER F1 −4.4 to −6.7; QuALITY multiple-choice 64–74% against 74% without the tree). QASPER is stable across seeds, but QuALITY swings by up to 10 points, as much as the test drop. So the negative result holds for every seed, while the QuALITY drop's size is not established.
 
 In short, summaries take about a third of the five passages the model reads. They are on-topic but vague, so they push out the specific passages most questions need. A smaller model wrote them and some contain errors. They also make citations coarser. The rest of this report traces that stage by stage.
 
@@ -97,7 +98,7 @@ But it can't undo the crowding, so row 4 only catches up to M3's row 4; it doesn
 - The context holds a fixed 5 passages, and summaries fill 27–50% of them.
 - On the long-document sets, the model also sees **less evidence text in total**. QuALITY prompts are 15% shorter, because summaries are shorter than the passages they replace.
 - About as many questions lose the answer from context (2–6%) as gain one that only a summary contains (4–5%), so the trade is roughly zero on fact questions.
-- On QuALITY, a summary in context goes with the multiple-choice losses: all 14 questions that flipped from right to wrong (M3 row 4 → row 4) had summaries in context, an average of 1.9 of 5 passages. Only 4 flipped the other way.
+- On QuALITY, a summary in context goes with the multiple-choice losses: all 14 questions that flipped from right to wrong (M3 row 4 → row 4) had summaries in context, an average of 1.9 of 5 passages. Only 4 flipped the other way. How many flip depends on the tree's seed (dev: 64–74% accuracy across 3 seeds), because QuALITY's questions cluster on a few stories.
 
 ### 2.5 Answers: when do summaries hurt?
 
@@ -168,7 +169,16 @@ F1 is higher when the answer cites a summary on four datasets (for example Hotpo
 
 The counts are small. On 2Wiki, the tree made the model answer 5 more of its 11 unanswerable questions. A summary always offers plausible related text even when the facts are missing, and that encourages a guess. M5's evidence filter is the stage meant to catch this.
 
-### 2.8 Cost and latency
+### 2.8 Seed stability (dev, `docs/M4_NOTES.md` 3-seed check)
+
+| | No tree | Seed 42 | Seed 7 | Seed 13 |
+| --- | --- | --- | --- | --- |
+| QASPER F1 | 51.4 | 44.8 | 46.2 | 47.0 |
+| QuALITY MC accuracy | 74% | 74% | 64% | 72% |
+
+The tree's clustering is random (UMAP and the GMM take a seed). Every seed is at or below the no-tree row, so the failure is not an unlucky tree. But on QuALITY the seed alone decides whether the tree costs 0 or 10 points.
+
+### 2.9 Cost and latency
 
 - **LLM calls:** one per question in every row.
 - **Prompt tokens:** −15% on QuALITY and custom, up to +8% on HotpotQA.

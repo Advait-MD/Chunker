@@ -1,0 +1,165 @@
+{
+  "trace_id": "8f6b1a35858b40ea",
+  "created_at": "2026-11-17T14:12:06.097783+00:00",
+  "query": "How do they identify discussions of LGBTQ people in the New York Times?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.46
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.52
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18280.27
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.11,
+      "bm25_ms": 2.96,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:068ddd5f:L1:724fcd8f9b561aed",
+          "score": 0.9270604551356325,
+          "fused": 0.9270604551356325,
+          "dense_rank": 1,
+          "bm25_rank": 10
+        },
+        {
+          "id": "raptor:068ddd5f:L1:38a8fddac3e8cace",
+          "score": 0.8353899718049711,
+          "fused": 0.8353899718049711,
+          "dense_rank": 3,
+          "bm25_rank": 7
+        },
+        {
+          "id": "raptor:068ddd5f:L2:5b3fd9678365e589",
+          "score": 0.8164490738408948,
+          "fused": 0.8164490738408948,
+          "dense_rank": 10,
+          "bm25_rank": 5
+        },
+        {
+          "id": "6945a67c2ea6d6e5:L0:000021",
+          "score": 0.7888622001810672,
+          "fused": 0.7888622001810672,
+          "dense_rank": 4,
+          "bm25_rank": 13
+        },
+        {
+          "id": "raptor:068ddd5f:L1:4825706c8bd9dcf2",
+          "score": 0.787483470173712,
+          "fused": 0.787483470173712,
+          "dense_rank": 9,
+          "bm25_rank": 9
+        }
+      ],
+      "latency_ms": 7.41
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1135,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18272.61
+    }
+  },
+  "retrieved_ids": [
+    "raptor:068ddd5f:L1:724fcd8f9b561aed",
+    "raptor:068ddd5f:L1:38a8fddac3e8cace",
+    "raptor:068ddd5f:L2:5b3fd9678365e589",
+    "6945a67c2ea6d6e5:L0:000021",
+    "raptor:068ddd5f:L1:4825706c8bd9dcf2"
+  ],
+  "filtered_ids": [
+    "raptor:068ddd5f:L1:724fcd8f9b561aed",
+    "raptor:068ddd5f:L1:38a8fddac3e8cace",
+    "raptor:068ddd5f:L2:5b3fd9678365e589",
+    "6945a67c2ea6d6e5:L0:000021",
+    "raptor:068ddd5f:L1:4825706c8bd9dcf2"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:12:06.099879+00:00",
+      "call_id": "095217801a0d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a6d715494c340cd3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8f6b1a35858b40ea"
+    },
+    {
+      "ts": "2026-11-17T14:12:24.376546+00:00",
+      "call_id": "f8ae1c21d8c2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2235f4953560bf72",
+      "prompt_tokens": 1738,
+      "completion_tokens": 91,
+      "latency_ms": 18271.05,
+      "server_ms": 18227.28,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8f6b1a35858b40ea"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1738,
+    "completion_tokens": 91,
+    "total_ms": 18281.44
+  },
+  "config_hash": "4bfd5d82ddb6",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

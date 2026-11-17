@@ -1,0 +1,170 @@
+{
+  "trace_id": "9ce4bf514f5d4b09",
+  "created_at": "2026-11-17T14:19:46.573728+00:00",
+  "query": "Which answer does the quote from The Lancet best match up with?\n\nOptions:\n(A) 8\n(B) 3\n(C) 6\n(D) 10\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3.74
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3.78
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18755.7
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.92,
+      "bm25_ms": 0.67,
+      "n_candidates": {
+        "dense": 10,
+        "bm25": 8
+      },
+      "n_fused": 10,
+      "hits": [
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000000",
+          "score": 0.8732923784164187,
+          "fused": 0.8732923784164187,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000007",
+          "score": 0.6111087848404642,
+          "fused": 0.6111087848404642,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000003",
+          "score": 0.41590012706621826,
+          "fused": 0.41590012706621826,
+          "dense_rank": 7,
+          "bm25_rank": 3
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000001",
+          "score": 0.3574036415335442,
+          "fused": 0.3574036415335442,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000008",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 3.7
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1654,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18751.83
+    }
+  },
+  "retrieved_ids": [
+    "6a7f3433b6bd8dc9:L0:000000",
+    "6a7f3433b6bd8dc9:L0:000007",
+    "6a7f3433b6bd8dc9:L0:000003",
+    "6a7f3433b6bd8dc9:L0:000001",
+    "6a7f3433b6bd8dc9:L0:000008"
+  ],
+  "filtered_ids": [
+    "6a7f3433b6bd8dc9:L0:000000",
+    "6a7f3433b6bd8dc9:L0:000007",
+    "6a7f3433b6bd8dc9:L0:000003",
+    "6a7f3433b6bd8dc9:L0:000001",
+    "6a7f3433b6bd8dc9:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:19:46.576726+00:00",
+      "call_id": "36e521a237b4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "543688391d1dc1b9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9ce4bf514f5d4b09"
+    },
+    {
+      "ts": "2026-11-17T14:20:05.328862+00:00",
+      "call_id": "688811c0cb94",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "11c4f4308d88707a",
+      "prompt_tokens": 2226,
+      "completion_tokens": 83,
+      "latency_ms": 18750.95,
+      "server_ms": 18718.8,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9ce4bf514f5d4b09"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2226,
+    "completion_tokens": 83,
+    "total_ms": 18757.71
+  },
+  "config_hash": "ffd72ee0a5ce",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        4
+      ],
+      "uncited_sentences": [
+        "(B) The evidence from physics is the most relevant.",
+        "Physics has the highest levels and longest history of green OA.",
+        "The evidence from physics to date is that high levels of green OA don’t cause journal cancellations."
+      ]
+    }
+  }
+}

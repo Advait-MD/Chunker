@@ -1,0 +1,165 @@
+{
+  "trace_id": "66126d755d624339",
+  "created_at": "2026-11-17T14:41:58.273754+00:00",
+  "query": "What was the protaganists reaction to falling from the fourteenth floor?\n\nOptions:\n(A) He was injured and unable to move\n(B) He fled the scene\n(C) He asked the police for help\n(D) He returned to the fourteenth floor to try again\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.0
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1.72
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1.75
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10624.12
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.15,
+      "bm25_ms": 0.46,
+      "n_candidates": {
+        "dense": 26,
+        "bm25": 22
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000014",
+          "score": 0.9211259732110085,
+          "fused": 0.9211259732110085,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000015",
+          "score": 0.7912667380689178,
+          "fused": 0.7912667380689178,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000007",
+          "score": 0.6595735179762305,
+          "fused": 0.6595735179762305,
+          "dense_rank": 11,
+          "bm25_rank": 3
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000018",
+          "score": 0.6528276263505751,
+          "fused": 0.6528276263505751,
+          "dense_rank": 13,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:71f5ff57:L1:0c192126a13eb0ab",
+          "score": 0.5075816502701395,
+          "fused": 0.5075816502701395,
+          "dense_rank": 2,
+          "bm25_rank": 11
+        }
+      ],
+      "latency_ms": 1.71
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1696,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10622.31
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000014",
+    "2ecd3be7264ff150:L0:000015",
+    "2ecd3be7264ff150:L0:000007",
+    "2ecd3be7264ff150:L0:000018",
+    "raptor:71f5ff57:L1:0c192126a13eb0ab"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000014",
+    "2ecd3be7264ff150:L0:000015",
+    "2ecd3be7264ff150:L0:000007",
+    "2ecd3be7264ff150:L0:000018",
+    "raptor:71f5ff57:L1:0c192126a13eb0ab"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:41:58.274911+00:00",
+      "call_id": "e0230d824840",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b16bea283c7befad",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "66126d755d624339"
+    },
+    {
+      "ts": "2026-11-17T14:42:08.897538+00:00",
+      "call_id": "eb3ea9d81072",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7fcaf7888f580fde",
+      "prompt_tokens": 2272,
+      "completion_tokens": 59,
+      "latency_ms": 10621.73,
+      "server_ms": 10604.09,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "66126d755d624339"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2272,
+    "completion_tokens": 59,
+    "total_ms": 10624.59
+  },
+  "config_hash": "754bdc6d8bb0",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "trace_id": "27bbac7529414c6b",
+  "created_at": "2026-11-17T14:03:48.482071+00:00",
+  "query": "What is the strong baseline?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5.45
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5.51
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12664.79
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.11,
+      "bm25_ms": 1.11,
+      "n_candidates": {
+        "dense": 34,
+        "bm25": 9
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "cd0727d78c6fd334:L0:000000",
+          "score": 0.7334996805930045,
+          "fused": 0.7334996805930045,
+          "dense_rank": 29,
+          "bm25_rank": 1
+        },
+        {
+          "id": "cd0727d78c6fd334:L0:000023",
+          "score": 0.4574095870046946,
+          "fused": 0.4574095870046946,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "cd0727d78c6fd334:L0:000012",
+          "score": 0.3443971752117472,
+          "fused": 0.3443971752117472,
+          "dense_rank": 8,
+          "bm25_rank": 2
+        },
+        {
+          "id": "cd0727d78c6fd334:L0:000027",
+          "score": 0.31373752451110226,
+          "fused": 0.31373752451110226,
+          "dense_rank": 3,
+          "bm25_rank": 6
+        },
+        {
+          "id": "raptor:084870d0:L1:ea5dd10499498333",
+          "score": 0.2921663768223972,
+          "fused": 0.2921663768223972,
+          "dense_rank": 12,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 5.4
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1010,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12659.23
+    }
+  },
+  "retrieved_ids": [
+    "cd0727d78c6fd334:L0:000000",
+    "cd0727d78c6fd334:L0:000023",
+    "cd0727d78c6fd334:L0:000012",
+    "cd0727d78c6fd334:L0:000027",
+    "raptor:084870d0:L1:ea5dd10499498333"
+  ],
+  "filtered_ids": [
+    "cd0727d78c6fd334:L0:000000",
+    "cd0727d78c6fd334:L0:000023",
+    "cd0727d78c6fd334:L0:000012",
+    "cd0727d78c6fd334:L0:000027",
+    "raptor:084870d0:L1:ea5dd10499498333"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:03:48.484536+00:00",
+      "call_id": "aec2fd486d69",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5a0aedf69b369503",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "27bbac7529414c6b"
+    },
+    {
+      "ts": "2026-11-17T14:04:01.145639+00:00",
+      "call_id": "660d2eaef58f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "42611fad2c14e8e3",
+      "prompt_tokens": 1544,
+      "completion_tokens": 59,
+      "latency_ms": 12658.54,
+      "server_ms": 12637.86,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "27bbac7529414c6b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1544,
+    "completion_tokens": 59,
+    "total_ms": 12665.32
+  },
+  "config_hash": "4bfd5d82ddb6",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "The strong baseline model is the conditional copy (CC) model."
+      ]
+    }
+  }
+}

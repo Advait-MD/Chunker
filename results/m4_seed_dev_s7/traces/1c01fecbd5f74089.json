@@ -1,0 +1,165 @@
+{
+  "trace_id": "1c01fecbd5f74089",
+  "created_at": "2026-11-17T14:11:24.897360+00:00",
+  "query": "How large is the collection of COVID-19 literature?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5.55
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17927.77
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.87,
+      "bm25_ms": 2.29,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 15
+      },
+      "n_fused": 17,
+      "hits": [
+        {
+          "id": "raptor:7ac64406:L1:adae3d914632df03",
+          "score": 0.9727588460976957,
+          "fused": 0.9727588460976957,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "0a584ba5ecaf0a01:L0:000000",
+          "score": 0.9039898614017103,
+          "fused": 0.9039898614017103,
+          "dense_rank": 5,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:7ac64406:L1:107db04718754b98",
+          "score": 0.8272128348554043,
+          "fused": 0.8272128348554043,
+          "dense_rank": 4,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:7ac64406:L2:35488b0ad430b682",
+          "score": 0.7636425995712213,
+          "fused": 0.7636425995712213,
+          "dense_rank": 3,
+          "bm25_rank": 5
+        },
+        {
+          "id": "0a584ba5ecaf0a01:L0:000004",
+          "score": 0.6751327089628173,
+          "fused": 0.6751327089628173,
+          "dense_rank": 9,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 5.36
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1005,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17922.1
+    }
+  },
+  "retrieved_ids": [
+    "raptor:7ac64406:L1:adae3d914632df03",
+    "0a584ba5ecaf0a01:L0:000000",
+    "raptor:7ac64406:L1:107db04718754b98",
+    "raptor:7ac64406:L2:35488b0ad430b682",
+    "0a584ba5ecaf0a01:L0:000004"
+  ],
+  "filtered_ids": [
+    "raptor:7ac64406:L1:adae3d914632df03",
+    "0a584ba5ecaf0a01:L0:000000",
+    "raptor:7ac64406:L1:107db04718754b98",
+    "raptor:7ac64406:L2:35488b0ad430b682",
+    "0a584ba5ecaf0a01:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:11:24.898872+00:00",
+      "call_id": "a45a65f80d16",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a2c05ba99fde50b5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1c01fecbd5f74089"
+    },
+    {
+      "ts": "2026-11-17T14:11:42.824289+00:00",
+      "call_id": "1223ec0b61ef",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0564c0ccd57f0a5c",
+      "prompt_tokens": 1593,
+      "completion_tokens": 102,
+      "latency_ms": 17921.09,
+      "server_ms": 17887.48,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1c01fecbd5f74089"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1593,
+    "completion_tokens": 102,
+    "total_ms": 17928.8
+  },
+  "config_hash": "4bfd5d82ddb6",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

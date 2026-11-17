@@ -1,0 +1,165 @@
+{
+  "trace_id": "c9c116ea55b84187",
+  "created_at": "2026-11-17T14:50:38.042475+00:00",
+  "query": "What is the McGurk effect?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.81
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.0
+    },
+    {
+      "state": "DONE",
+      "t_ms": 32760.52
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.81,
+      "bm25_ms": 4.74,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 10
+      },
+      "n_fused": 17,
+      "hits": [
+        {
+          "id": "e391d7db6ce14ddd:L0:000010",
+          "score": 0.9388702239251023,
+          "fused": 0.9388702239251023,
+          "dense_rank": 6,
+          "bm25_rank": 1
+        },
+        {
+          "id": "e391d7db6ce14ddd:L0:000000",
+          "score": 0.9113785614715675,
+          "fused": 0.9113785614715675,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "e391d7db6ce14ddd:L0:000004",
+          "score": 0.8786357470504025,
+          "fused": 0.8786357470504025,
+          "dense_rank": 2,
+          "bm25_rank": 4
+        },
+        {
+          "id": "e391d7db6ce14ddd:L0:000011",
+          "score": 0.824425249098829,
+          "fused": 0.824425249098829,
+          "dense_rank": 8,
+          "bm25_rank": 2
+        },
+        {
+          "id": "e391d7db6ce14ddd:L0:000003",
+          "score": 0.7386871891326797,
+          "fused": 0.7386871891326797,
+          "dense_rank": 7,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 9.77
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1348,
+      "latency_ms": 0.17
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 32750.4
+    }
+  },
+  "retrieved_ids": [
+    "e391d7db6ce14ddd:L0:000010",
+    "e391d7db6ce14ddd:L0:000000",
+    "e391d7db6ce14ddd:L0:000004",
+    "e391d7db6ce14ddd:L0:000011",
+    "e391d7db6ce14ddd:L0:000003"
+  ],
+  "filtered_ids": [
+    "e391d7db6ce14ddd:L0:000010",
+    "e391d7db6ce14ddd:L0:000000",
+    "e391d7db6ce14ddd:L0:000004",
+    "e391d7db6ce14ddd:L0:000011",
+    "e391d7db6ce14ddd:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:50:38.045038+00:00",
+      "call_id": "9bb79ffe509a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "817dd4d1866b45aa",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c9c116ea55b84187"
+    },
+    {
+      "ts": "2026-11-17T14:51:10.801900+00:00",
+      "call_id": "d00acb3ab6fc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "72612dcbc4609265",
+      "prompt_tokens": 2000,
+      "completion_tokens": 120,
+      "latency_ms": 32749.39,
+      "server_ms": 32723.34,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "c9c116ea55b84187"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2000,
+    "completion_tokens": 120,
+    "total_ms": 32761.59
+  },
+  "config_hash": "d4a047076961",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

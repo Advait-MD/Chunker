@@ -1,0 +1,170 @@
+{
+  "trace_id": "b16419df82bb476b",
+  "created_at": "2026-11-17T13:42:22.731934+00:00",
+  "query": "How do they identify discussions of LGBTQ people in the New York Times?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 21.88
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 21.96
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19591.15
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.76,
+      "bm25_ms": 16.71,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:068ddd5f:L1:48d5118c8f0480b6",
+          "score": 0.9407081037573758,
+          "fused": 0.9407081037573758,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:068ddd5f:L1:724fcd8f9b561aed",
+          "score": 0.9217551127442598,
+          "fused": 0.9217551127442598,
+          "dense_rank": 1,
+          "bm25_rank": 10
+        },
+        {
+          "id": "raptor:068ddd5f:L2:98017ac2b9b3803d",
+          "score": 0.8897034936032405,
+          "fused": 0.8897034936032405,
+          "dense_rank": 4,
+          "bm25_rank": 3
+        },
+        {
+          "id": "6945a67c2ea6d6e5:L0:000022",
+          "score": 0.7733376982898781,
+          "fused": 0.7733376982898781,
+          "dense_rank": 11,
+          "bm25_rank": 8
+        },
+        {
+          "id": "6945a67c2ea6d6e5:L0:000021",
+          "score": 0.7671535015128612,
+          "fused": 0.7671535015128612,
+          "dense_rank": 6,
+          "bm25_rank": 13
+        }
+      ],
+      "latency_ms": 21.84
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1299,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19568.93
+    }
+  },
+  "retrieved_ids": [
+    "raptor:068ddd5f:L1:48d5118c8f0480b6",
+    "raptor:068ddd5f:L1:724fcd8f9b561aed",
+    "raptor:068ddd5f:L2:98017ac2b9b3803d",
+    "6945a67c2ea6d6e5:L0:000022",
+    "6945a67c2ea6d6e5:L0:000021"
+  ],
+  "filtered_ids": [
+    "raptor:068ddd5f:L1:48d5118c8f0480b6",
+    "raptor:068ddd5f:L1:724fcd8f9b561aed",
+    "raptor:068ddd5f:L2:98017ac2b9b3803d",
+    "6945a67c2ea6d6e5:L0:000022",
+    "6945a67c2ea6d6e5:L0:000021"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T13:42:22.733898+00:00",
+      "call_id": "8050b11d5374",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a6d715494c340cd3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b16419df82bb476b"
+    },
+    {
+      "ts": "2026-11-17T13:42:42.320883+00:00",
+      "call_id": "5642a54f5259",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "971cd2c6ef145c7e",
+      "prompt_tokens": 1911,
+      "completion_tokens": 85,
+      "latency_ms": 19566.74,
+      "server_ms": 19508.34,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b16419df82bb476b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1911,
+    "completion_tokens": 85,
+    "total_ms": 19593.64
+  },
+  "config_hash": "f5bf8e385908",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "They identify discussions of LGBTQ people in the New York Times by extracting paragraphs containing any word from a predetermined list of LGBTQ terms (shown in Table TABREF19)."
+      ]
+    }
+  }
+}

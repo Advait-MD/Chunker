@@ -1,0 +1,168 @@
+{
+  "trace_id": "bf84fe446ea04aa1",
+  "created_at": "2026-11-17T14:35:12.299929+00:00",
+  "query": "Do they report results only on English?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.39
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.45
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10550.65
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.1,
+      "bm25_ms": 3.04,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 8
+      },
+      "n_fused": 17,
+      "hits": [
+        {
+          "id": "c68ac161fa1ea4f1:L0:000014",
+          "score": 0.916424403473687,
+          "fused": 0.916424403473687,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "c68ac161fa1ea4f1:L0:000009",
+          "score": 0.390716651752558,
+          "fused": 0.390716651752558,
+          "dense_rank": 8,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:ceeb7239:L1:d346a4ce3baf6250",
+          "score": 0.3729606923154221,
+          "fused": 0.3729606923154221,
+          "dense_rank": 5,
+          "bm25_rank": 3
+        },
+        {
+          "id": "c68ac161fa1ea4f1:L0:000011",
+          "score": 0.34486324243658584,
+          "fused": 0.34486324243658584,
+          "dense_rank": 3,
+          "bm25_rank": 4
+        },
+        {
+          "id": "c68ac161fa1ea4f1:L0:000008",
+          "score": 0.32578010615225766,
+          "fused": 0.32578010615225766,
+          "dense_rank": 1,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 7.34
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 787,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10543.1
+    }
+  },
+  "retrieved_ids": [
+    "c68ac161fa1ea4f1:L0:000014",
+    "c68ac161fa1ea4f1:L0:000009",
+    "raptor:ceeb7239:L1:d346a4ce3baf6250",
+    "c68ac161fa1ea4f1:L0:000011",
+    "c68ac161fa1ea4f1:L0:000008"
+  ],
+  "filtered_ids": [
+    "c68ac161fa1ea4f1:L0:000014",
+    "c68ac161fa1ea4f1:L0:000009",
+    "raptor:ceeb7239:L1:d346a4ce3baf6250",
+    "c68ac161fa1ea4f1:L0:000011",
+    "c68ac161fa1ea4f1:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:35:12.302932+00:00",
+      "call_id": "35bef75f2690",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1af31d274cc92477",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "bf84fe446ea04aa1"
+    },
+    {
+      "ts": "2026-11-17T14:35:22.850070+00:00",
+      "call_id": "e36fbea50edf",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "65a06754dce4d0c2",
+      "prompt_tokens": 1462,
+      "completion_tokens": 61,
+      "latency_ms": 10542.07,
+      "server_ms": 10516.73,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "bf84fe446ea04aa1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1462,
+    "completion_tokens": 61,
+    "total_ms": 10551.72
+  },
+  "config_hash": "3feb6315c18d",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2,
+        3,
+        5
+      ],
+      "uncited_sentences": [
+        "No, they report results on datasets other than English, such as the GLUE benchmark and WikiQA."
+      ]
+    }
+  }
+}

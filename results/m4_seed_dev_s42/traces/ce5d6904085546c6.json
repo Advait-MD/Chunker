@@ -1,0 +1,165 @@
+{
+  "trace_id": "ce5d6904085546c6",
+  "created_at": "2026-11-17T14:01:57.717549+00:00",
+  "query": "When does the story take place?\n\nOptions:\n(A) 1950s\n(B) 1930s\n(C) 1940s\n(D) 1960s\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 84.94
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 85.0
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19775.77
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 71.73,
+      "bm25_ms": 12.95,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 14
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000003",
+          "score": 0.9636511111587798,
+          "fused": 0.9636511111587798,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:71f5ff57:L1:4ff5b30fbbe8417e",
+          "score": 0.8231310585849458,
+          "fused": 0.8231310585849458,
+          "dense_rank": 6,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+          "score": 0.6613503874106127,
+          "fused": 0.6613503874106127,
+          "dense_rank": 3,
+          "bm25_rank": 5
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000018",
+          "score": 0.6524011004850071,
+          "fused": 0.6524011004850071,
+          "dense_rank": 18,
+          "bm25_rank": 4
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000002",
+          "score": 0.5932286548458278,
+          "fused": 0.5932286548458278,
+          "dense_rank": 23,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 84.9
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1473,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19690.63
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000003",
+    "raptor:71f5ff57:L1:4ff5b30fbbe8417e",
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+    "2ecd3be7264ff150:L0:000018",
+    "2ecd3be7264ff150:L0:000002"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000003",
+    "raptor:71f5ff57:L1:4ff5b30fbbe8417e",
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+    "2ecd3be7264ff150:L0:000018",
+    "2ecd3be7264ff150:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:01:57.787222+00:00",
+      "call_id": "52d36084996b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ce5798d458b930c6",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 55,
+      "completion_tokens": 0,
+      "latency_ms": 69.82,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "ce5d6904085546c6"
+    },
+    {
+      "ts": "2026-11-17T14:02:17.491041+00:00",
+      "call_id": "9c00a5a9c02a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e62ea6c25f03b27b",
+      "prompt_tokens": 2028,
+      "completion_tokens": 85,
+      "latency_ms": 19688.73,
+      "server_ms": 19651.64,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ce5d6904085546c6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2028,
+    "completion_tokens": 85,
+    "total_ms": 19777.14
+  },
+  "config_hash": "10aa17327d5e",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

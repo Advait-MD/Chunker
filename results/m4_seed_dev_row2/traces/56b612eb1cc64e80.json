@@ -1,0 +1,165 @@
+{
+  "trace_id": "56b612eb1cc64e80",
+  "created_at": "2026-11-17T15:10:37.353795+00:00",
+  "query": "Why is Mr. Turner so observant of cars?\n\nOptions:\n(A) He is a car mechanic. \n(B) He was a car thief in a past life. \n(C) He loves cars.\n(D) The car models tell him what era he is in at the moment. \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 22.05
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 22.11
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19650.76
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.25,
+      "bm25_ms": 18.51,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 19
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000007",
+          "score": 0.9059416311036208,
+          "fused": 0.9059416311036208,
+          "dense_rank": 7,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000012",
+          "score": 0.7048830188830693,
+          "fused": 0.7048830188830693,
+          "dense_rank": 9,
+          "bm25_rank": 2
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000008",
+          "score": 0.6622547412788394,
+          "fused": 0.6622547412788394,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000009",
+          "score": 0.5240761759553518,
+          "fused": 0.5240761759553518,
+          "dense_rank": 6,
+          "bm25_rank": 6
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000000",
+          "score": 0.5120407773171045,
+          "fused": 0.5120407773171045,
+          "dense_rank": 12,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 22.01
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1972,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19628.51
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000007",
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000008",
+    "2ecd3be7264ff150:L0:000009",
+    "2ecd3be7264ff150:L0:000000"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000007",
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000008",
+    "2ecd3be7264ff150:L0:000009",
+    "2ecd3be7264ff150:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T15:10:37.355800+00:00",
+      "call_id": "f4d7fbd98c36",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "389a27d6d816f6d2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "56b612eb1cc64e80"
+    },
+    {
+      "ts": "2026-11-17T15:10:57.003504+00:00",
+      "call_id": "1830f18ceaec",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "57d1f660f911e1d7",
+      "prompt_tokens": 2537,
+      "completion_tokens": 70,
+      "latency_ms": 19626.58,
+      "server_ms": 19595.26,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "56b612eb1cc64e80"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2537,
+    "completion_tokens": 70,
+    "total_ms": 19653.15
+  },
+  "config_hash": "ed6e9ea8986c",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "trace_id": "b24c5fba7c3a4631",
+  "created_at": "2026-11-17T14:36:25.125439+00:00",
+  "query": "What is the architecture of the span detector?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3.06
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3.09
+    },
+    {
+      "state": "DONE",
+      "t_ms": 4.59
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.76,
+      "bm25_ms": 1.2,
+      "n_candidates": {
+        "dense": 12,
+        "bm25": 8
+      },
+      "n_fused": 12,
+      "hits": [
+        {
+          "id": "9b9c0c14cf389c1c:L0:000004",
+          "score": 0.9782326584777048,
+          "fused": 0.9782326584777048,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "9b9c0c14cf389c1c:L0:000010",
+          "score": 0.92731608181319,
+          "fused": 0.92731608181319,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "9b9c0c14cf389c1c:L0:000000",
+          "score": 0.5836124808020479,
+          "fused": 0.5836124808020479,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "9b9c0c14cf389c1c:L0:000001",
+          "score": 0.4828099802553679,
+          "fused": 0.4828099802553679,
+          "dense_rank": 6,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:91e13ac2:L1:d9089ebbf82fcd88",
+          "score": 0.4614863624527661,
+          "fused": 0.4614863624527661,
+          "dense_rank": 7,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 3.04
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1148,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 1.45
+    }
+  },
+  "retrieved_ids": [
+    "9b9c0c14cf389c1c:L0:000004",
+    "9b9c0c14cf389c1c:L0:000010",
+    "9b9c0c14cf389c1c:L0:000000",
+    "9b9c0c14cf389c1c:L0:000001",
+    "raptor:91e13ac2:L1:d9089ebbf82fcd88"
+  ],
+  "filtered_ids": [
+    "9b9c0c14cf389c1c:L0:000004",
+    "9b9c0c14cf389c1c:L0:000010",
+    "9b9c0c14cf389c1c:L0:000000",
+    "9b9c0c14cf389c1c:L0:000001",
+    "raptor:91e13ac2:L1:d9089ebbf82fcd88"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:36:25.126438+00:00",
+      "call_id": "d339f953d021",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5257582233efbe73",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b24c5fba7c3a4631"
+    },
+    {
+      "ts": "2026-11-17T14:36:25.129543+00:00",
+      "call_id": "9b7aa971f176",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "500d2c977ad52b2d",
+      "prompt_tokens": 1816,
+      "completion_tokens": 96,
+      "latency_ms": 1.01,
+      "server_ms": 21624.63,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b24c5fba7c3a4631"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 1816,
+    "completion_tokens": 96,
+    "total_ms": 5.05
+  },
+  "config_hash": "3feb6315c18d",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "trace_id": "2e3642b630984eb7",
+  "created_at": "2026-11-17T14:33:03.543155+00:00",
+  "query": "How large is the Twitter dataset?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4.14
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4.2
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14262.42
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.68,
+      "bm25_ms": 1.26,
+      "n_candidates": {
+        "dense": 26,
+        "bm25": 16
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "7742a549aaf71411:L0:000008",
+          "score": 0.9470399055716371,
+          "fused": 0.9470399055716371,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:f1502e01:L1:91a1e497455921e6",
+          "score": 0.893492079084212,
+          "fused": 0.893492079084212,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "7742a549aaf71411:L0:000009",
+          "score": 0.8575925387601122,
+          "fused": 0.8575925387601122,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:f1502e01:L2:b6df7e8c2ba84809",
+          "score": 0.5396739171812136,
+          "fused": 0.5396739171812136,
+          "dense_rank": 4,
+          "bm25_rank": 7
+        },
+        {
+          "id": "7742a549aaf71411:L0:000014",
+          "score": 0.5028431844913992,
+          "fused": 0.5028431844913992,
+          "dense_rank": 13,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 4.1
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 811,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14258.15
+    }
+  },
+  "retrieved_ids": [
+    "7742a549aaf71411:L0:000008",
+    "raptor:f1502e01:L1:91a1e497455921e6",
+    "7742a549aaf71411:L0:000009",
+    "raptor:f1502e01:L2:b6df7e8c2ba84809",
+    "7742a549aaf71411:L0:000014"
+  ],
+  "filtered_ids": [
+    "7742a549aaf71411:L0:000008",
+    "raptor:f1502e01:L1:91a1e497455921e6",
+    "7742a549aaf71411:L0:000009",
+    "raptor:f1502e01:L2:b6df7e8c2ba84809",
+    "7742a549aaf71411:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:33:03.544873+00:00",
+      "call_id": "f18d83fb616c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "05a019069b52ac08",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2e3642b630984eb7"
+    },
+    {
+      "ts": "2026-11-17T14:33:17.805141+00:00",
+      "call_id": "7dd88b1516e4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "98582867d400df74",
+      "prompt_tokens": 1358,
+      "completion_tokens": 64,
+      "latency_ms": 14257.32,
+      "server_ms": 14231.34,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2e3642b630984eb7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1358,
+    "completion_tokens": 64,
+    "total_ms": 14263.98
+  },
+  "config_hash": "3feb6315c18d",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2,
+        3
+      ],
+      "uncited_sentences": [
+        "The Twitter dataset consists of 1,873 conversation threads, roughly 14k tweets."
+      ]
+    }
+  }
+}

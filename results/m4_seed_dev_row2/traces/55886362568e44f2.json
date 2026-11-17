@@ -1,0 +1,169 @@
+{
+  "trace_id": "55886362568e44f2",
+  "created_at": "2026-11-17T14:51:10.840460+00:00",
+  "query": "Do the authors conduct experiments on the tasks mentioned?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.86
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14.0
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25261.64
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.55,
+      "bm25_ms": 9.99,
+      "n_candidates": {
+        "dense": 11,
+        "bm25": 0
+      },
+      "n_fused": 11,
+      "hits": [
+        {
+          "id": "54783572869bf31b:L0:000007",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "54783572869bf31b:L0:000004",
+          "score": 0.2656619080991155,
+          "fused": 0.2656619080991155,
+          "dense_rank": 2,
+          "bm25_rank": null
+        },
+        {
+          "id": "54783572869bf31b:L0:000003",
+          "score": 0.23786384585700032,
+          "fused": 0.23786384585700032,
+          "dense_rank": 3,
+          "bm25_rank": null
+        },
+        {
+          "id": "54783572869bf31b:L0:000010",
+          "score": 0.23264697417312305,
+          "fused": 0.23264697417312305,
+          "dense_rank": 4,
+          "bm25_rank": null
+        },
+        {
+          "id": "54783572869bf31b:L0:000002",
+          "score": 0.22923892603763746,
+          "fused": 0.22923892603763746,
+          "dense_rank": 5,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 13.82
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1605,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25247.51
+    }
+  },
+  "retrieved_ids": [
+    "54783572869bf31b:L0:000007",
+    "54783572869bf31b:L0:000004",
+    "54783572869bf31b:L0:000003",
+    "54783572869bf31b:L0:000010",
+    "54783572869bf31b:L0:000002"
+  ],
+  "filtered_ids": [
+    "54783572869bf31b:L0:000007",
+    "54783572869bf31b:L0:000004",
+    "54783572869bf31b:L0:000003",
+    "54783572869bf31b:L0:000010",
+    "54783572869bf31b:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:51:10.842779+00:00",
+      "call_id": "1e50bd6bf1d6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "42183528855659fe",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "55886362568e44f2"
+    },
+    {
+      "ts": "2026-11-17T14:51:36.101280+00:00",
+      "call_id": "519fbbd064d9",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "37a3bb0110923550",
+      "prompt_tokens": 2389,
+      "completion_tokens": 82,
+      "latency_ms": 25246.17,
+      "server_ms": 25212.07,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "55886362568e44f2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2389,
+    "completion_tokens": 82,
+    "total_ms": 25263.16
+  },
+  "config_hash": "d4a047076961",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2,
+        3,
+        5
+      ],
+      "uncited_sentences": [
+        "No, the authors do not conduct experiments on the tasks mentioned.",
+        "The passages describe the nature and use of Winograd schemas for challenges in machine translation and understanding, but do not mention any experimental work being done."
+      ]
+    }
+  }
+}

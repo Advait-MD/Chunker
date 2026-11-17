@@ -1,0 +1,165 @@
+{
+  "trace_id": "0a2a19ed6b0a4812",
+  "created_at": "2026-11-17T14:32:41.234398+00:00",
+  "query": "How did the authors find ironic data on twitter?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5.9
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5.96
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22153.78
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.17,
+      "bm25_ms": 2.45,
+      "n_candidates": {
+        "dense": 27,
+        "bm25": 25
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "b674e9583339e06c:L0:000003",
+          "score": 0.9568921199412066,
+          "fused": 0.9568921199412066,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "b674e9583339e06c:L0:000004",
+          "score": 0.9367381919934451,
+          "fused": 0.9367381919934451,
+          "dense_rank": 10,
+          "bm25_rank": 1
+        },
+        {
+          "id": "b674e9583339e06c:L0:000000",
+          "score": 0.8493454137972793,
+          "fused": 0.8493454137972793,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:f820f50f:L2:d6ffea66d0d2059e",
+          "score": 0.8292322181702787,
+          "fused": 0.8292322181702787,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "b674e9583339e06c:L0:000006",
+          "score": 0.773847357106551,
+          "fused": 0.773847357106551,
+          "dense_rank": 5,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 5.86
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1359,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22147.7
+    }
+  },
+  "retrieved_ids": [
+    "b674e9583339e06c:L0:000003",
+    "b674e9583339e06c:L0:000004",
+    "b674e9583339e06c:L0:000000",
+    "raptor:f820f50f:L2:d6ffea66d0d2059e",
+    "b674e9583339e06c:L0:000006"
+  ],
+  "filtered_ids": [
+    "b674e9583339e06c:L0:000003",
+    "b674e9583339e06c:L0:000004",
+    "b674e9583339e06c:L0:000000",
+    "raptor:f820f50f:L2:d6ffea66d0d2059e",
+    "b674e9583339e06c:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:32:41.236393+00:00",
+      "call_id": "7d340cf18994",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fdaa46559b007ea5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0a2a19ed6b0a4812"
+    },
+    {
+      "ts": "2026-11-17T14:33:03.387177+00:00",
+      "call_id": "a458b97565b9",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "319347038ddb9440",
+      "prompt_tokens": 2031,
+      "completion_tokens": 93,
+      "latency_ms": 22146.75,
+      "server_ms": 22117.34,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0a2a19ed6b0a4812"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2031,
+    "completion_tokens": 93,
+    "total_ms": 22154.91
+  },
+  "config_hash": "3feb6315c18d",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

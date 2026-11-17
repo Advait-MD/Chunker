@@ -1,0 +1,164 @@
+{
+  "trace_id": "fe137364415a47af",
+  "created_at": "2026-11-17T15:12:36.495907+00:00",
+  "query": "What conclusion does the protagonist come to after his encounter with the police?\n\nOptions:\n(A) He must pursue his nostalgic urges and return to the book store to replace the magazines.\n(B) The police officers are also time travelers from WW1.\n(C) He needs to avoid carrying around pornography\n(D) His memories are untrue and cannot be trusted\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 27.47
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 27.53
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22618.71
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.61,
+      "bm25_ms": 24.62,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 17
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000008",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000012",
+          "score": 0.7843924641445226,
+          "fused": 0.7843924641445226,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000006",
+          "score": 0.7613554619127636,
+          "fused": 0.7613554619127636,
+          "dense_rank": 4,
+          "bm25_rank": 4
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000010",
+          "score": 0.7072864916769239,
+          "fused": 0.7072864916769239,
+          "dense_rank": 9,
+          "bm25_rank": 2
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000001",
+          "score": 0.700804586521038,
+          "fused": 0.700804586521038,
+          "dense_rank": 6,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 27.44
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1950,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22590.99
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000008",
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000006",
+    "2ecd3be7264ff150:L0:000010",
+    "2ecd3be7264ff150:L0:000001"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000008",
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000006",
+    "2ecd3be7264ff150:L0:000010",
+    "2ecd3be7264ff150:L0:000001"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T15:12:36.496926+00:00",
+      "call_id": "464ff3325b8b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "69bf43505fbe54c2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fe137364415a47af"
+    },
+    {
+      "ts": "2026-11-17T15:12:59.113332+00:00",
+      "call_id": "d85dbc8b6bd8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4ae50188958adc4b",
+      "prompt_tokens": 2536,
+      "completion_tokens": 55,
+      "latency_ms": 22588.65,
+      "server_ms": 22550.06,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "fe137364415a47af"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2536,
+    "completion_tokens": 55,
+    "total_ms": 22622.33
+  },
+  "config_hash": "ed6e9ea8986c",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

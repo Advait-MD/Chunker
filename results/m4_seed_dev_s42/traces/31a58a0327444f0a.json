@@ -1,0 +1,167 @@
+{
+  "trace_id": "31a58a0327444f0a",
+  "created_at": "2026-11-17T13:54:28.465045+00:00",
+  "query": "What word best describes Mr. Turner?\n\nOptions:\n(A) Practical\n(B) Trusting\n(C) Paranoid\n(D) Wealthy\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 57.42
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 57.46
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15597.3
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 50.19,
+      "bm25_ms": 7.11,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 16
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000012",
+          "score": 0.846667062538546,
+          "fused": 0.846667062538546,
+          "dense_rank": 13,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000011",
+          "score": 0.7647286198422214,
+          "fused": 0.7647286198422214,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+          "score": 0.6191923521844969,
+          "fused": 0.6191923521844969,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000013",
+          "score": 0.6032617805955722,
+          "fused": 0.6032617805955722,
+          "dense_rank": 12,
+          "bm25_rank": 3
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000008",
+          "score": 0.4857501190731908,
+          "fused": 0.4857501190731908,
+          "dense_rank": 14,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 57.4
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1752,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15539.79
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000011",
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+    "2ecd3be7264ff150:L0:000013",
+    "2ecd3be7264ff150:L0:000008"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000011",
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+    "2ecd3be7264ff150:L0:000013",
+    "2ecd3be7264ff150:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T13:54:28.514810+00:00",
+      "call_id": "3ce48c1b96e6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "676bdcf5db609356",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 56,
+      "completion_tokens": 0,
+      "latency_ms": 49.07,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "31a58a0327444f0a"
+    },
+    {
+      "ts": "2026-11-17T13:54:44.061273+00:00",
+      "call_id": "d2c9f1cc17ee",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "eb4fda39b15c30b3",
+      "prompt_tokens": 2236,
+      "completion_tokens": 44,
+      "latency_ms": 15538.8,
+      "server_ms": 15522.15,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "31a58a0327444f0a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2236,
+    "completion_tokens": 44,
+    "total_ms": 15597.87
+  },
+  "config_hash": "10aa17327d5e",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        4
+      ],
+      "uncited_sentences": [
+        "(C) Paranoid"
+      ]
+    }
+  }
+}
