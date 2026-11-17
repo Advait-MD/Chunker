@@ -1,0 +1,14 @@
+# 3b vs 7b summarizer check (M4): row 3 on a tree whose summaries come from the 7B generator model.
+# Tag raptor7b keeps it apart from the 3b trees. Built for the dev documents only:
+#   python -m apex.eval.suite tree qasper quality --config configs/ablations/row3_raptor7b.yaml --only-split dev
+run:
+  name: row3_raptor7b
+retrieval:
+  mode: hybrid
+  fusion: weighted
+  weights: {dense: 0.3, bm25: 0.7}
+  levels: [0, 1, 2, 3, 4]
+raptor:
+  enabled: true
+  tag: raptor7b
+  summarizer: qwen2.5:7b

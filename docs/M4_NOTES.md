@@ -21,7 +21,7 @@ Spec §2.3 and ablation row 3, plus the cumulative row 4 (row 3 + rerank), the c
 
 ## Deviations and [PROPOSED] choices to flag
 
-- **[PROPOSED] Summarizer is qwen2.5:3b, not the 7B generator.** About 2× faster on the iGPU; the trees still took about 14 h. The generator for every row stays qwen2.5:7b. The 3b model makes relation errors (below), so this choice may cost quality. Please confirm or ask for a 7B rebuild (about 28 h locally).
+- **Summarizer is qwen2.5:3b, not the 7B generator** (owner's fast-plan decision, 13 Nov). About 2× faster on the iGPU; the trees still took about 14 h. The generator for every row stays qwen2.5:7b. The 3b model makes relation errors (below); `docs/M4_RAPTOR_REPORT.md` §4 compares it with the 7B.
 - **[PROPOSED] Scope.** One tree per document for QASPER, QuALITY and custom (their questions are about one document and retrieval is filtered to it); one pooled tree per corpus for MuSiQue, HotpotQA and 2Wiki (questions span documents).
 - **[PROPOSED] Summary length cap.** `summary_max_tokens: 256` with the prompt asking for about 100–150 tokens. 872 of 3,668 summaries (24%) hit the cap; 833 of those were trimmed back to the last full sentence (the other 39 had no full sentence to cut to). The first custom build had kept the cut-off text; it was rebuilt with trimming (tree schema 2) before anything was evaluated.
 - **[PROPOSED] Seed check on dev documents only.** Re-seeding rebuilds the trees, about 14 h per seed for all corpora. Seeds 7 and 13 were built only for the QASPER and QuALITY dev documents; the pooled multi-hop trees were not re-seeded.
@@ -129,10 +129,8 @@ Seeds 42, 7 and 13 for the QASPER (46 papers) and QuALITY (3 stories) dev docume
 - The LLM log now records `done_reason`, so length-capped summaries are counted correctly (a first count of "0 capped" was wrong).
 - LLM cache keys include the backend and Ollama version, so these caches don't carry over to another machine.
 
-## Decision for the owner
+## Decision (owner, 17 Nov 2026)
 
-The spec says a component that doesn't beat the baseline is removed or justified on other grounds. Options:
-1. **Keep RAPTOR off by default** (`raptor.enabled: false` in the full config) and report row 3 and row 4 as negative results. Rows 5–8 then build on M3's row 4.
-2. Keep it on and try to make it pay: a 7B summarizer, a cap on summaries per context (for example at most 1 of 5), or using summaries only for questions the M6 router marks as thematic.
+**RAPTOR stays off by default** (`raptor.enabled: false` in `configs/base.yaml`; the full config won't turn it on). Rows 3 and 4 are reported as negative results, and rows 5–8 build on M3's row 4 (hybrid + rerank, no tree). The code, trees and results stay in the repo.
 
-Option 1 is the cheaper, honest default; option 2's ideas would need their own runs.
+Why it failed, stage by stage (index, retrieval, rerank, context, answers, citations, abstention), and the 3b vs 7b summarizer comparison: `docs/M4_RAPTOR_REPORT.md`, with the trace in `results/m4_raptor_analysis` (`scripts/m4_raptor_analysis.py`).
