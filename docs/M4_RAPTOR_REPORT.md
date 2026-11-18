@@ -1,6 +1,6 @@
 # Why RAPTOR did not work in APEX
 
-M4 report, 17 Nov 2026. Data: `results/m4_raptor_analysis` (per-stage trace, `scripts/m4_raptor_analysis.py`), the row 3 and row 4 runs, `results/m4_tree_search_dev`, and the trees in `results/m4_trees`. Numbers are on the test split (first 100 questions per dataset plus custom 32), paired on the same questions, generator qwen2.5:7b at temperature 0.
+M4 report, 17 Nov 2026; section 4 (3b vs 7b summarizer) added 18 Nov. Data: `results/m4_raptor_analysis` (per-stage trace, `scripts/m4_raptor_analysis.py`), the row 3 and row 4 runs, `results/m4_tree_search_dev`, and the trees in `results/m4_trees`. Numbers are on the test split (first 100 questions per dataset plus custom 32), paired on the same questions, generator qwen2.5:7b at temperature 0.
 
 **Owner decision (17 Nov): RAPTOR stays off by default.** Rows 5–8 build on M3's row 4 (hybrid + rerank, no tree). The tree code, the trees and these results stay in the repo as a reported negative result.
 
@@ -12,7 +12,7 @@ The tree was meant to fix naive RAG's first failure: questions about a whole doc
 - **Row 4 vs M3 row 4** (tree added under the reranker): F1 −3.3 to +2.1 points, none significant. **QuALITY multiple-choice accuracy fell from 67% to 57%** (p = 0.018 on the seed-42 tree), on the long-story benchmark where RAPTOR should help most.
 - **3 seeds on dev:** no seed beats the no-tree row on QASPER or QuALITY (QASPER F1 −4.4 to −6.7; QuALITY multiple-choice 64–74% against 74% without the tree). QASPER is stable across seeds, but QuALITY swings by up to 10 points, as much as the test drop. So the negative result holds for every seed, while the QuALITY drop's size is not established.
 
-In short, summaries take about a third of the five passages the model reads. They are on-topic but vague, so they push out the specific passages most questions need. A smaller model wrote them and some contain errors. They also make citations coarser. The rest of this report traces that stage by stage.
+In short, summaries take about a third of the five passages the model reads. They are on-topic but vague, so they push out the specific passages most questions need. A smaller model wrote them and some contain errors. They also make citations coarser. A 7B summarizer removes the name and relation errors and wins back the QASPER loss, but it only ties the no-tree row (section 4). The rest of this report traces that stage by stage.
 
 ## 2. Stage by stage
 
@@ -200,41 +200,104 @@ The tree's clustering is random (UMAP and the GMM take a seed). Every seed is at
 - Its collapsed search filled about 2,000 tokens of context by relevance, not a fixed 5 passages.
 - Its strongest QuALITY results used GPT-4 as the reader.
 
-APEX uses a 3B summarizer, a 5-passage context and a 7B reader. These differences most plausibly explain why our result doesn't reproduce theirs. Of the three, the summarizer is the one we can test cheaply (section 4).
+APEX uses a 3B summarizer, a 5-passage context and a 7B reader. These differences most plausibly explain why our result doesn't reproduce theirs. Of the three, the summarizer is the one we can test cheaply. Section 4 tests it: a 7B summarizer brings QASPER back to the no-tree level but not above it.
 
 ## 4. qwen2.5:3b vs qwen2.5:7b as the summarizer
 
-### What we know now
+Measured 18 Nov 2026. Data: `results/m4_summarizer_probe` (summary-level probe), the 7B trees `bench_qasper__raptor7b_s42` and `bench_quality__raptor7b_s42` (`configs/ablations/row3_raptor7b.yaml`, logs in `results/m4_trees`), and the dev run `results/m4_dev_raptor7b` with `compare_vs_3b_s42.md` and `compare_vs_row2.md`.
+
+**Short answer:** the 7B writes shorter, cleaner summaries and wins back the QASPER loss (F1 44.8 → 50.9, against 51.4 with no tree). It does not make the tree a gain: on QASPER it ties the no-tree row, on QuALITY nothing changes, and retrieval ranking is just as low. Summary errors explain part of the QASPER loss. Crowding and the question mismatch explain the rest, and a better summarizer doesn't fix those.
+
+### 4.1 Cost
 
 | | qwen2.5:3b (used) | qwen2.5:7b |
 | --- | --- | --- |
-| Why | Your fast-plan choice, 13 Nov: about 2× faster | The generator; same family, bigger |
-| Speed on this iGPU | median 13.2 s per summary (measured) | about 25–30 s expected (2× the 3b) |
-| All six trees | about 14.2 h (measured) | about 28 h (estimated) |
-| Ollama runner memory | grows from 2.7 to about 11 GB per hour | grows from 5.6 to about 13.7 GB per hour (seen in rows 3–4) |
+| Why | Your fast-plan choice, 13 Nov | The generator; same family, bigger |
+| Speed on this iGPU | median 13.2 s per summary | median 29.2 s per summary in the probe; 27 s in the QASPER tree build (2.2×) |
+| QASPER dev tree (46 papers, 216 summaries) | about 47 min (estimated from the median) | 99 min (measured) |
+| All six trees | about 14.2 h (measured) | about 31 h (estimated from the 2.2×) |
+| Ollama runner memory | grows from 2.7 to about 11 GB per hour | grew to 13.3 GB within an hour on 18 Nov; one unload needed |
 | Weights | 1.9 GB | 4.7 GB |
-| Observed quality | relation errors, a misread character, details dropped (2.1, 2.5) | expected fewer factual errors; not measured yet |
 
-### What a 7B summarizer could and could not fix
+### 4.2 Summary level: the same 60 clusters, both models
 
-| Root cause | Fixed by a 7B summarizer? |
-| --- | --- |
-| 3. Summary quality | Yes, plausibly: fewer wrong relations and fewer misreadings |
-| 1. Question mismatch | No: a better summary is still a summary |
-| 2. Crowding of the 5-passage context | No, and it may get worse: better summaries score as even more relevant |
-| 4. Citation granularity | No |
+10 level-1 clusters per corpus from the seed-42 trees, `random.Random(0)`. Both models got the same prompt, temperature 0, the 256-token cap and the same trimming. The 3b output matched the stored tree summary in 60 of 60 clusters, so the 3b side is the tree that was evaluated.
 
-So a 7B summarizer is unlikely on its own to turn the result positive. It would tell us how much of the loss is summary errors and how much is the design.
+| Corpus | Words 3b / 7b | Hit the cap 3b / 7b | Flagged details per summary 3b / 7b | 7B s per summary |
+| --- | --- | --- | --- | --- |
+| QASPER | 150 / 111 | 10% / 0% | 0.20 / 0.50 | 22.7 |
+| QuALITY | 137 / 108 | 0% / 0% | 0.20 / 0.20 | 29.9 |
+| custom | 146 / 120 | 20% / 10% | 1.10 / 1.00 | 27.8 |
+| MuSiQue | 136 / 148 | 10% / 60% | 0.70 / 1.10 | 33.5 |
+| HotpotQA | 140 / 131 | 40% / 40% | 0.40 / 0.40 | 30.5 |
+| 2Wiki | 109 / 104 | 30% / 40% | 0.60 / 0.40 | 25.6 |
+| all 60 | 136 / 120 | 18% / 25% | 0.53 / 0.60 | 29.2 |
 
-### Measurement prepared (runs next, about 2.6 h of GPU)
+*Flagged details* are numbers and capitalized names in a summary that appear nowhere in its passages: an automatic check. By that count the 7B looks no better, 0.60 against 0.53 per summary, and 45% against 30% of summaries with any. **Reading the flagged items by hand reverses that.** Most flags are harmless:
+- an abbreviation or its expansion: "NMT", "GRUs", "Neural Machine Translation";
+- a title added to a name that is in the passages: "Professor Arnold Parnell", "CEO Bill Hewlett";
+- an adjective form: "Swedish", "Filipino";
+- correct general knowledge: "Telemachus", "World War II", the French and Indian War "1754–1763".
 
-1. **Summary-level probe** (`scripts/m4_summarizer_probe.py`, about 25 min):
-   - 60 level-1 clusters (10 per corpus) summarized by both models, with the same prompt, cap and trimming;
-   - compares length, how often the cap is hit, speed, and an automatic check for numbers and names in the summary that appear nowhere in its passages;
-   - I will also hand-check a sample for relation errors.
-2. **End-to-end check** (about 2 h): 7B trees for the QASPER and QuALITY dev documents (`configs/ablations/row3_raptor7b.yaml`), then the dev answers compared with the 3b tree on the same 100 questions (seed check run `m4_seed_dev_s42`).
+The clear errors were these:
 
-*Results go here when the runs finish.*
+| | qwen2.5:3b | qwen2.5:7b |
+| --- | --- | --- |
+| Misspelled names | 4: "Donna Meagow" (Meagle), "Sue Effnesss" (Fennessy), "Mount Palpamar" (Palomar), "Anne Devers-Mills" (Devereux-Mills) | 0 |
+| Merged or invented relations | 3: "Tom Bernan" (Tom and Dallas Bernan are two people); "Jerry Jobs, Steve Jobs' brother" (Jerry York, a board member); Demeter as the mother of Pelias and Neleus | 0 found |
+| Invented numbers or dates | 0 | 3: Oulujärvi's area as "112.5 square kilometers" and East Lake's depth as "12.2 meters" (the MuSiQue passages have these numbers stripped, and the 7B filled the gaps); the option backdating in "December 2001" (the passage says October) |
+| Total clear errors in 60 summaries | 7 | 3 |
+
+So the two models fail differently:
+- The 3b garbles names and invents relations between the people it names. That is the "his son, Eve" kind of error from 2.1.
+- The 7B keeps names and relations right, but fills missing numbers from its own knowledge, sometimes wrongly. The MuSiQue cap hits come from the 7B listing more facts per cluster (60% against 10%).
+
+Each error and what the passages say is listed in `results/m4_summarizer_probe/hand_check.md`. This is a reading of the flagged items only, 60 summaries per model. Relation errors between names that do appear in the passages are only counted where a flag led to them, so both columns are lower bounds. M5's NLI model can score this properly.
+
+### 4.3 End to end: a 7B tree for the dev documents
+
+Same tree shape as the 3b seed-42 tree: the same clustering and seed, 216 QASPER summaries (39 at level 2+) and 8 QuALITY summaries. Only the summary text differs.
+- 7B summaries are about 20% shorter: QASPER 113 words against 144, QuALITY 103 against 131.
+- 2 of 224 hit the cap.
+
+Then the row 3 config on the same 100 dev questions, the 7B generator, temperature 0:
+
+| | No tree (row 2) | 3b tree (seed 42) | 7B tree | 7B − 3b | 7B − no tree |
+| --- | --- | --- | --- | --- | --- |
+| QASPER F1 | 51.4 | 44.8 | 50.9 | **+6.1** (−0.2, +13.1), p = 0.057 / 0.035 | −0.5 (−8.4, +6.9), p = 0.90 |
+| QASPER Recall@10 | 97.0 | 85.9 | 88.0 | +2.2, p = 0.74 | **−8.9** (−16.7, −2.2), p = 0.004 |
+| QASPER nDCG@10 | 53.9 | 45.1 | 43.6 | −1.5, p = 0.40 | **−10.2**, p < 0.001 |
+| QuALITY F1 | 64.5 | 64.9 | 58.4 | −6.6 (−19.3, +6.0), p = 0.30 | −6.2, p = 0.32 |
+| QuALITY MC accuracy | 74 | 74 | 72 | −2.0, p = 0.85 | −2.0, p = 0.86 |
+| Prompt tokens per question (QASPER / QuALITY) | 1,820 / 2,530 | 1,660 / 2,214 | 1,613 / 2,221 | | |
+
+p values are paired bootstrap / Wilcoxon.
+
+How much of the context the summaries take:
+
+| | QASPER 3b / 7B | QuALITY 3b / 7B |
+| --- | --- | --- |
+| Summaries in the top 20 | 23% / 23% | 18% / 17% |
+| Summaries among the 5 passages the model reads | 30% / 31% | 27% / 23% |
+| Questions with at least one summary in context | 88% / 90% | 96% / 82% |
+| Citations that point to a summary | 41% / 37% | 26% / 15% |
+
+What this shows:
+- **On QASPER the summarizer was most of the answer-level loss.** The 7B summaries take the same share of context as the 3b ones, so the gain comes from better summary text, not from fewer summaries. It is borderline significant: Wilcoxon p = 0.035, bootstrap p = 0.057.
+- **Even so, the 7B tree only ties the no-tree row; it does not beat it.** Retrieval ranking stays about 10 nDCG points lower, because summaries still take original passages' places (root cause 2). A good summary of a paper still doesn't answer a question about one table (root cause 1).
+- **On QuALITY the 7B tree changes nothing measurable.** MC accuracy is 72 against 74, within the 64–74 seed spread from 2.8. Only 8 summaries cover the 3 dev stories, so this check is small.
+- **The QuALITY F1 drop (−6.6) is mostly the letter-only answer effect** noted in section 3. F1 penalizes "B" against the option text; MC accuracy, which handles that, hardly moves.
+
+### 4.4 Verdict on the summarizer
+
+| Root cause (section 3) | Fixed by a 7B summarizer? | Measured |
+| --- | --- | --- |
+| 3. Summary quality | Partly | Name and relation errors 7 → 0 in 60 summaries; QASPER F1 +6.1 over the 3b tree. The 7B fills in missing numbers instead. |
+| 1. Question mismatch | No | QASPER F1 ties the no-tree row; it doesn't beat it |
+| 2. Crowding of the 5-passage context | No | Same summary share in context (30–31% on QASPER); nDCG@10 −10.2 against no tree |
+| 4. Citation granularity | Slightly | Fewer citations point to summaries (41 → 37% QASPER, 26 → 15% QuALITY), but those still have no page or span |
+
+Building all six trees with the 7B would take about 31 h on this iGPU for no expected gain over the no-tree row. **This supports keeping RAPTOR off.** If the tree is revisited (section 5), use the 7B summarizer. The extra time is worth it for the quality, but on its own it doesn't fix the design.
 
 ## 5. What might make a tree pay, if it is revisited (not planned)
 

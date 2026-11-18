@@ -1,0 +1,166 @@
+{
+  "trace_id": "77c8b5bf557b4ba6",
+  "created_at": "2026-11-18T07:25:15.220371+00:00",
+  "query": "what was the baseline?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3.96
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4.01
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15732.15
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.06,
+      "bm25_ms": 0.7,
+      "n_candidates": {
+        "dense": 26,
+        "bm25": 3
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "60a4315726fa0cf3:L0:000013",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor7b:ddce7171:L1:f2111338cc33cce7",
+          "score": 0.23789134862889155,
+          "fused": 0.23789134862889155,
+          "dense_rank": 11,
+          "bm25_rank": 2
+        },
+        {
+          "id": "60a4315726fa0cf3:L0:000014",
+          "score": 0.17961518700195822,
+          "fused": 0.17961518700195822,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "60a4315726fa0cf3:L0:000009",
+          "score": 0.17296445120887216,
+          "fused": 0.17296445120887216,
+          "dense_rank": 3,
+          "bm25_rank": null
+        },
+        {
+          "id": "60a4315726fa0cf3:L0:000005",
+          "score": 0.16186272466409446,
+          "fused": 0.16186272466409446,
+          "dense_rank": 4,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 3.92
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 645,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15728.02
+    }
+  },
+  "retrieved_ids": [
+    "60a4315726fa0cf3:L0:000013",
+    "raptor7b:ddce7171:L1:f2111338cc33cce7",
+    "60a4315726fa0cf3:L0:000014",
+    "60a4315726fa0cf3:L0:000009",
+    "60a4315726fa0cf3:L0:000005"
+  ],
+  "filtered_ids": [
+    "60a4315726fa0cf3:L0:000013",
+    "raptor7b:ddce7171:L1:f2111338cc33cce7",
+    "60a4315726fa0cf3:L0:000014",
+    "60a4315726fa0cf3:L0:000009",
+    "60a4315726fa0cf3:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-18T07:25:15.222371+00:00",
+      "call_id": "3afebcd648ef",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f00c413c6f21a3c6",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "77c8b5bf557b4ba6"
+    },
+    {
+      "ts": "2026-11-18T07:25:30.951201+00:00",
+      "call_id": "f622ae2bd775",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bfa77d9b7141791f",
+      "prompt_tokens": 1261,
+      "completion_tokens": 79,
+      "latency_ms": 15726.81,
+      "server_ms": 15698.4,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "77c8b5bf557b4ba6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1261,
+    "completion_tokens": 79,
+    "total_ms": 15733.29
+  },
+  "config_hash": "b4f37cada00e",
+  "git_sha": "db55cc94ada50cc303fe6db5a415526173c59e35-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

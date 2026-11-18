@@ -1,0 +1,165 @@
+{
+  "trace_id": "70584c3c158842be",
+  "created_at": "2026-11-18T07:37:55.884743+00:00",
+  "query": "Why was the main character daydreaming about being a war-time pilot?\n\nOptions:\n(A) He was obsessed with magazines about the subject\n(B) He was triggered by the old shopkeeper asking him about it\n(C) He was actually there and the memories were real\n(D) He kept seeing old movies about World War One\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.33
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.42
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20573.37
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.23,
+      "bm25_ms": 2.76,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 25
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor7b:71f5ff57:L1:9bb972b135770d8a",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000003",
+          "score": 0.5059268902664922,
+          "fused": 0.5059268902664922,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "raptor7b:71f5ff57:L2:104eedb58fa9885f",
+          "score": 0.4771815217792148,
+          "fused": 0.4771815217792148,
+          "dense_rank": 3,
+          "bm25_rank": 6
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000002",
+          "score": 0.45418234423500725,
+          "fused": 0.45418234423500725,
+          "dense_rank": 9,
+          "bm25_rank": 3
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000004",
+          "score": 0.4436560233122343,
+          "fused": 0.4436560233122343,
+          "dense_rank": 17,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 6.28
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1426,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20566.78
+    }
+  },
+  "retrieved_ids": [
+    "raptor7b:71f5ff57:L1:9bb972b135770d8a",
+    "2ecd3be7264ff150:L0:000003",
+    "raptor7b:71f5ff57:L2:104eedb58fa9885f",
+    "2ecd3be7264ff150:L0:000002",
+    "2ecd3be7264ff150:L0:000004"
+  ],
+  "filtered_ids": [
+    "raptor7b:71f5ff57:L1:9bb972b135770d8a",
+    "2ecd3be7264ff150:L0:000003",
+    "raptor7b:71f5ff57:L2:104eedb58fa9885f",
+    "2ecd3be7264ff150:L0:000002",
+    "2ecd3be7264ff150:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-18T07:37:55.886238+00:00",
+      "call_id": "dd488b2a6c34",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "28c26e394d29ae2c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "70584c3c158842be"
+    },
+    {
+      "ts": "2026-11-18T07:38:16.456648+00:00",
+      "call_id": "5abc05100c44",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f639d7932b5f6018",
+      "prompt_tokens": 2010,
+      "completion_tokens": 60,
+      "latency_ms": 20564.8,
+      "server_ms": 20531.71,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "70584c3c158842be"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2010,
+    "completion_tokens": 60,
+    "total_ms": 20576.66
+  },
+  "config_hash": "ac957d5c15f6",
+  "git_sha": "db55cc94ada50cc303fe6db5a415526173c59e35-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

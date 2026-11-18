@@ -1,0 +1,166 @@
+{
+  "trace_id": "74c1e8b38831497b",
+  "created_at": "2026-11-18T07:24:35.266087+00:00",
+  "query": "What type of system does the baseline classification use?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.98
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.03
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23486.57
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.84,
+      "bm25_ms": 2.94,
+      "n_candidates": {
+        "dense": 22,
+        "bm25": 13
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor7b:3e9d3a09:L1:6bb1523c3045bc9c",
+          "score": 0.864509373483539,
+          "fused": 0.864509373483539,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "9e4042feb1c961f2:L0:000002",
+          "score": 0.7859748979701463,
+          "fused": 0.7859748979701463,
+          "dense_rank": 11,
+          "bm25_rank": 3
+        },
+        {
+          "id": "9e4042feb1c961f2:L0:000000",
+          "score": 0.7563017750195401,
+          "fused": 0.7563017750195401,
+          "dense_rank": 20,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor7b:3e9d3a09:L2:e12326221858222c",
+          "score": 0.708378564034531,
+          "fused": 0.708378564034531,
+          "dense_rank": 8,
+          "bm25_rank": 4
+        },
+        {
+          "id": "9e4042feb1c961f2:L0:000013",
+          "score": 0.529835009012626,
+          "fused": 0.529835009012626,
+          "dense_rank": 2,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 6.95
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1292,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23479.42
+    }
+  },
+  "retrieved_ids": [
+    "raptor7b:3e9d3a09:L1:6bb1523c3045bc9c",
+    "9e4042feb1c961f2:L0:000002",
+    "9e4042feb1c961f2:L0:000000",
+    "raptor7b:3e9d3a09:L2:e12326221858222c",
+    "9e4042feb1c961f2:L0:000013"
+  ],
+  "filtered_ids": [
+    "raptor7b:3e9d3a09:L1:6bb1523c3045bc9c",
+    "9e4042feb1c961f2:L0:000002",
+    "9e4042feb1c961f2:L0:000000",
+    "raptor7b:3e9d3a09:L2:e12326221858222c",
+    "9e4042feb1c961f2:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-18T07:24:35.268853+00:00",
+      "call_id": "347a7530affb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9d3763e578bbe188",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "74c1e8b38831497b"
+    },
+    {
+      "ts": "2026-11-18T07:24:58.751519+00:00",
+      "call_id": "0fbfe2512b4f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "268cddb94bf6795f",
+      "prompt_tokens": 1886,
+      "completion_tokens": 101,
+      "latency_ms": 23478.39,
+      "server_ms": 23445.68,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "74c1e8b38831497b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1886,
+    "completion_tokens": 101,
+    "total_ms": 23487.72
+  },
+  "config_hash": "b4f37cada00e",
+  "git_sha": "db55cc94ada50cc303fe6db5a415526173c59e35-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The baseline classification system uses classifiers such as support vector machine (SVM), random forest, extra tree, and naive bayes."
+      ]
+    }
+  }
+}

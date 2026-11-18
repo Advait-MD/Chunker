@@ -1,0 +1,170 @@
+{
+  "trace_id": "5ba0651df4fd431c",
+  "created_at": "2026-11-18T07:28:15.216522+00:00",
+  "query": "Do the authors conduct experiments on the tasks mentioned?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5.1
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5.32
+    },
+    {
+      "state": "DONE",
+      "t_ms": 29924.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.76,
+      "bm25_ms": 2.17,
+      "n_candidates": {
+        "dense": 12,
+        "bm25": 0
+      },
+      "n_fused": 12,
+      "hits": [
+        {
+          "id": "raptor7b:6681a49d:L1:1108453e1621b652",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "54783572869bf31b:L0:000007",
+          "score": 0.2851049715715409,
+          "fused": 0.2851049715715409,
+          "dense_rank": 2,
+          "bm25_rank": null
+        },
+        {
+          "id": "54783572869bf31b:L0:000004",
+          "score": 0.25247176216787726,
+          "fused": 0.25247176216787726,
+          "dense_rank": 3,
+          "bm25_rank": null
+        },
+        {
+          "id": "54783572869bf31b:L0:000003",
+          "score": 0.22605387066763183,
+          "fused": 0.22605387066763183,
+          "dense_rank": 4,
+          "bm25_rank": null
+        },
+        {
+          "id": "54783572869bf31b:L0:000010",
+          "score": 0.2210960160907552,
+          "fused": 0.2210960160907552,
+          "dense_rank": 5,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 5.06
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1413,
+      "latency_ms": 0.19
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 29918.98
+    }
+  },
+  "retrieved_ids": [
+    "raptor7b:6681a49d:L1:1108453e1621b652",
+    "54783572869bf31b:L0:000007",
+    "54783572869bf31b:L0:000004",
+    "54783572869bf31b:L0:000003",
+    "54783572869bf31b:L0:000010"
+  ],
+  "filtered_ids": [
+    "raptor7b:6681a49d:L1:1108453e1621b652",
+    "54783572869bf31b:L0:000007",
+    "54783572869bf31b:L0:000004",
+    "54783572869bf31b:L0:000003",
+    "54783572869bf31b:L0:000010"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-18T07:28:15.218188+00:00",
+      "call_id": "f557297e051a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "42183528855659fe",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5ba0651df4fd431c"
+    },
+    {
+      "ts": "2026-11-18T07:28:45.139863+00:00",
+      "call_id": "d9203db46180",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7b611ec58eeedf12",
+      "prompt_tokens": 2183,
+      "completion_tokens": 143,
+      "latency_ms": 29917.41,
+      "server_ms": 29884.17,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "5ba0651df4fd431c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2183,
+    "completion_tokens": 143,
+    "total_ms": 29925.51
+  },
+  "config_hash": "b4f37cada00e",
+  "git_sha": "db55cc94ada50cc303fe6db5a415526173c59e35-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The Winograd Schema Challenge tests AI programs by presenting them with sentences where the correct referent of a pronoun must be identified.",
+        "Current machine translation programs struggle with these challenges, often defaulting to masculine pronouns even when the context suggests a feminine referent."
+      ]
+    }
+  }
+}

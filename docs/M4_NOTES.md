@@ -104,7 +104,7 @@ Summaries take a third of the generator's five context slots:
 
 The reranker keeps them too (slightly more often). Likely reasons the summaries don't pay their way:
 - They push specific original passages out of a fixed 5-passage budget, while most benchmark questions here need one specific fact.
-- The 3b summarizer gets relations wrong (for example "his wife, Lisa Brennan-Jobs", "his son, Eve"), so a summary can mislead. M5's NLI model can measure how often.
+- The 3b summarizer gets relations wrong (for example "his wife, Lisa Brennan-Jobs", "his son, Eve"), so a summary can mislead. A 7B summarizer fixes that, but the tree still only ties the no-tree row (below).
 - A summary carries no page or span of its own, so its citations are coarser.
 
 ### Cost and latency
@@ -139,6 +139,27 @@ Seeds 42, 7 and 13 for the QASPER (46 papers) and QuALITY (3 stories) dev docume
 - **Ollama Vulkan runner memory grows about 8 GB per hour.** Its private memory rose from 2.7 GB to about 11 GB (3b) or 13.7 GB (7b) within an hour, pushing available RAM under 500 MB. Unloading the model (`keep_alive: 0`) resets it and Ollama reloads on demand; an hourly guard did this. No call was lost.
 - The LLM log now records `done_reason`, so length-capped summaries are counted correctly (a first count of "0 capped" was wrong).
 - LLM cache keys include the backend and Ollama version, so these caches don't carry over to another machine.
+
+### 3b vs 7b summarizer (dev, 18 Nov)
+
+`results/m4_summarizer_probe` and `results/m4_dev_raptor7b`; full write-up in `docs/M4_RAPTOR_REPORT.md` §4.
+
+- **Summary level (the same 60 clusters):**
+  - 7B summaries are shorter: 120 words against 136.
+  - Reading the flagged items by hand: the 3b has 7 clear errors (4 misspelled names, 3 merged or invented relations); the 7B has 3 (invented numbers or dates where the passages had them stripped).
+  - The automatic flag count favours neither model (0.53 vs 0.60 per summary), because most flags are harmless.
+- **7B tree for the dev documents:** same clustering and seed; QASPER and QuALITY only.
+
+| Dev, 100 questions | No tree | 3b tree (s42) | 7B tree |
+| --- | --- | --- | --- |
+| QASPER F1 | 51.4 | 44.8 | 50.9 (+6.1 vs 3b, p = 0.057 / 0.035; −0.5 vs no tree) |
+| QASPER nDCG@10 | 53.9 | 45.1 | 43.6 (−10.2 vs no tree, p < 0.001) |
+| QuALITY MC accuracy | 74 | 74 | 72 |
+
+- On QASPER the better summaries win back the loss, but only tie the no-tree row.
+- Summaries take the same share of context (about 30%), so crowding stays.
+- QuALITY doesn't move.
+- The 7B is 2.2× slower: about 31 h for all six trees, against 14.2 h. It doesn't change the decision below.
 
 ## Decision (owner, 17 Nov 2026)
 

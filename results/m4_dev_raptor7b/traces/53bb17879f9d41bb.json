@@ -1,0 +1,167 @@
+{
+  "trace_id": "53bb17879f9d41bb",
+  "created_at": "2026-11-18T07:21:33.553667+00:00",
+  "query": "Do they evaluate their learned representations on downstream tasks?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5.92
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5.97
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19539.79
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.45,
+      "bm25_ms": 2.27,
+      "n_candidates": {
+        "dense": 16,
+        "bm25": 13
+      },
+      "n_fused": 16,
+      "hits": [
+        {
+          "id": "4771f422ac89b2a6:L0:000006",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor7b:97826f56:L1:5a7a5fb01ee64093",
+          "score": 0.9380715858353643,
+          "fused": 0.9380715858353643,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "4771f422ac89b2a6:L0:000008",
+          "score": 0.8080232867599443,
+          "fused": 0.8080232867599443,
+          "dense_rank": 8,
+          "bm25_rank": 3
+        },
+        {
+          "id": "4771f422ac89b2a6:L0:000001",
+          "score": 0.7963973027405218,
+          "fused": 0.7963973027405218,
+          "dense_rank": 10,
+          "bm25_rank": 4
+        },
+        {
+          "id": "4771f422ac89b2a6:L0:000002",
+          "score": 0.5725138898801947,
+          "fused": 0.5725138898801947,
+          "dense_rank": 12,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 5.88
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1220,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19533.71
+    }
+  },
+  "retrieved_ids": [
+    "4771f422ac89b2a6:L0:000006",
+    "raptor7b:97826f56:L1:5a7a5fb01ee64093",
+    "4771f422ac89b2a6:L0:000008",
+    "4771f422ac89b2a6:L0:000001",
+    "4771f422ac89b2a6:L0:000002"
+  ],
+  "filtered_ids": [
+    "4771f422ac89b2a6:L0:000006",
+    "raptor7b:97826f56:L1:5a7a5fb01ee64093",
+    "4771f422ac89b2a6:L0:000008",
+    "4771f422ac89b2a6:L0:000001",
+    "4771f422ac89b2a6:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-18T07:21:33.555998+00:00",
+      "call_id": "91b15966b625",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0f6d375c0943cf06",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "53bb17879f9d41bb"
+    },
+    {
+      "ts": "2026-11-18T07:21:53.092387+00:00",
+      "call_id": "a779bb10186c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "db92c57d6b4fd9a1",
+      "prompt_tokens": 1821,
+      "completion_tokens": 68,
+      "latency_ms": 19532.64,
+      "server_ms": 19496.94,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "53bb17879f9d41bb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1821,
+    "completion_tokens": 68,
+    "total_ms": 19540.73
+  },
+  "config_hash": "b4f37cada00e",
+  "git_sha": "db55cc94ada50cc303fe6db5a415526173c59e35-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Yes, they evaluate their learned representations on downstream tasks."
+      ]
+    }
+  }
+}

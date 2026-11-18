@@ -1,0 +1,165 @@
+{
+  "trace_id": "76b8f767deb64951",
+  "created_at": "2026-11-18T07:27:57.320985+00:00",
+  "query": "What is the McGurk effect?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5.94
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.0
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17853.7
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.06,
+      "bm25_ms": 1.61,
+      "n_candidates": {
+        "dense": 22,
+        "bm25": 15
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor7b:aa31da9d:L1:c95276e0982f2956",
+          "score": 0.9595062923939977,
+          "fused": 0.9595062923939977,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "e391d7db6ce14ddd:L0:000010",
+          "score": 0.777609702477743,
+          "fused": 0.777609702477743,
+          "dense_rank": 11,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor7b:aa31da9d:L1:cb661238b47c4ffd",
+          "score": 0.7428862003333989,
+          "fused": 0.7428862003333989,
+          "dense_rank": 2,
+          "bm25_rank": 7
+        },
+        {
+          "id": "raptor7b:aa31da9d:L1:421f45cac621943d",
+          "score": 0.7197761931104226,
+          "fused": 0.7197761931104226,
+          "dense_rank": 3,
+          "bm25_rank": 6
+        },
+        {
+          "id": "e391d7db6ce14ddd:L0:000000",
+          "score": 0.6841329852698771,
+          "fused": 0.6841329852698771,
+          "dense_rank": 6,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 5.89
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 750,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17847.58
+    }
+  },
+  "retrieved_ids": [
+    "raptor7b:aa31da9d:L1:c95276e0982f2956",
+    "e391d7db6ce14ddd:L0:000010",
+    "raptor7b:aa31da9d:L1:cb661238b47c4ffd",
+    "raptor7b:aa31da9d:L1:421f45cac621943d",
+    "e391d7db6ce14ddd:L0:000000"
+  ],
+  "filtered_ids": [
+    "raptor7b:aa31da9d:L1:c95276e0982f2956",
+    "e391d7db6ce14ddd:L0:000010",
+    "raptor7b:aa31da9d:L1:cb661238b47c4ffd",
+    "raptor7b:aa31da9d:L1:421f45cac621943d",
+    "e391d7db6ce14ddd:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-18T07:27:57.323987+00:00",
+      "call_id": "924f86dd22cf",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "817dd4d1866b45aa",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "76b8f767deb64951"
+    },
+    {
+      "ts": "2026-11-18T07:28:15.174388+00:00",
+      "call_id": "3e4b2a920627",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2c5915df078b97c8",
+      "prompt_tokens": 1296,
+      "completion_tokens": 100,
+      "latency_ms": 17846.5,
+      "server_ms": 17803.45,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "76b8f767deb64951"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1296,
+    "completion_tokens": 100,
+    "total_ms": 17854.97
+  },
+  "config_hash": "b4f37cada00e",
+  "git_sha": "db55cc94ada50cc303fe6db5a415526173c59e35-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        5,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

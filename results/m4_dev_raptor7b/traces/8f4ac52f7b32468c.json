@@ -1,0 +1,164 @@
+{
+  "trace_id": "8f4ac52f7b32468c",
+  "created_at": "2026-11-18T07:45:23.919914+00:00",
+  "query": "Does the author think that Brexit was a good thing?\n\nOptions:\n(A) Yes, it showed a strength of democracy\n(B) No, it showed a weakness of democracy\n(C) Yes, the majority of voters got what they wanted\n(D) The article is unclear\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4.15
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4.2
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16799.81
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.05,
+      "bm25_ms": 0.93,
+      "n_candidates": {
+        "dense": 12,
+        "bm25": 12
+      },
+      "n_fused": 12,
+      "hits": [
+        {
+          "id": "02facda9aeb8e139:L0:000009",
+          "score": 0.8880693044283445,
+          "fused": 0.8880693044283445,
+          "dense_rank": 5,
+          "bm25_rank": 1
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000001",
+          "score": 0.6428844633462751,
+          "fused": 0.6428844633462751,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000000",
+          "score": 0.6196098682315516,
+          "fused": 0.6196098682315516,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor7b:0ab2d38a:L1:3128d19a3c24d5d2",
+          "score": 0.574198240595202,
+          "fused": 0.574198240595202,
+          "dense_rank": 2,
+          "bm25_rank": 6
+        },
+        {
+          "id": "raptor7b:0ab2d38a:L1:d8f2968228e5c484",
+          "score": 0.4759277764792521,
+          "fused": 0.4759277764792521,
+          "dense_rank": 7,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 4.11
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1405,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16795.49
+    }
+  },
+  "retrieved_ids": [
+    "02facda9aeb8e139:L0:000009",
+    "02facda9aeb8e139:L0:000001",
+    "02facda9aeb8e139:L0:000000",
+    "raptor7b:0ab2d38a:L1:3128d19a3c24d5d2",
+    "raptor7b:0ab2d38a:L1:d8f2968228e5c484"
+  ],
+  "filtered_ids": [
+    "02facda9aeb8e139:L0:000009",
+    "02facda9aeb8e139:L0:000001",
+    "02facda9aeb8e139:L0:000000",
+    "raptor7b:0ab2d38a:L1:3128d19a3c24d5d2",
+    "raptor7b:0ab2d38a:L1:d8f2968228e5c484"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-18T07:45:23.921916+00:00",
+      "call_id": "818ba5119d8c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "81a363da6a9732b1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8f4ac52f7b32468c"
+    },
+    {
+      "ts": "2026-11-18T07:45:40.718445+00:00",
+      "call_id": "8053548ed9b8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "827a1a2b0f37db0e",
+      "prompt_tokens": 1938,
+      "completion_tokens": 54,
+      "latency_ms": 16793.98,
+      "server_ms": 16755.56,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8f4ac52f7b32468c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1938,
+    "completion_tokens": 54,
+    "total_ms": 16802.9
+  },
+  "config_hash": "ac957d5c15f6",
+  "git_sha": "db55cc94ada50cc303fe6db5a415526173c59e35-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

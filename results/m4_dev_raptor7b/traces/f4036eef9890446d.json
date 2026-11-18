@@ -1,0 +1,166 @@
+{
+  "trace_id": "f4036eef9890446d",
+  "created_at": "2026-11-18T07:46:25.273890+00:00",
+  "query": "Why does Mr. Turner decide he needs a psychiatrist?\n\nOptions:\n(A) He wants to stop smoking, but can’t.\n(B) He has post traumatic stress disorder from the war. \n(C) He is addicted to pornography.\n(D) He does not know what is real because he has false memories.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.73
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.8
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15725.48
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.46,
+      "bm25_ms": 1.93,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 25
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000012",
+          "score": 0.8994725951625766,
+          "fused": 0.8994725951625766,
+          "dense_rank": 6,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor7b:71f5ff57:L2:104eedb58fa9885f",
+          "score": 0.8276673353128237,
+          "fused": 0.8276673353128237,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor7b:71f5ff57:L1:b9fc43d56419c51e",
+          "score": 0.7496248300685002,
+          "fused": 0.7496248300685002,
+          "dense_rank": 2,
+          "bm25_rank": 4
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000010",
+          "score": 0.6872093632352816,
+          "fused": 0.6872093632352816,
+          "dense_rank": 5,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor7b:71f5ff57:L1:ae9e024ce5719cad",
+          "score": 0.6306966571621824,
+          "fused": 0.6306966571621824,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 6.67
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1129,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15718.54
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000012",
+    "raptor7b:71f5ff57:L2:104eedb58fa9885f",
+    "raptor7b:71f5ff57:L1:b9fc43d56419c51e",
+    "2ecd3be7264ff150:L0:000010",
+    "raptor7b:71f5ff57:L1:ae9e024ce5719cad"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000012",
+    "raptor7b:71f5ff57:L2:104eedb58fa9885f",
+    "raptor7b:71f5ff57:L1:b9fc43d56419c51e",
+    "2ecd3be7264ff150:L0:000010",
+    "raptor7b:71f5ff57:L1:ae9e024ce5719cad"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-18T07:46:25.276891+00:00",
+      "call_id": "263336bb0ab9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "018401210e770f24",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f4036eef9890446d"
+    },
+    {
+      "ts": "2026-11-18T07:46:40.998592+00:00",
+      "call_id": "31f5f69ec482",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "85158c2d5a695f83",
+      "prompt_tokens": 1673,
+      "completion_tokens": 73,
+      "latency_ms": 15717.28,
+      "server_ms": 15685.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "f4036eef9890446d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1673,
+    "completion_tokens": 73,
+    "total_ms": 15728.14
+  },
+  "config_hash": "ac957d5c15f6",
+  "git_sha": "db55cc94ada50cc303fe6db5a415526173c59e35-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

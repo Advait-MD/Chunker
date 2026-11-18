@@ -1,0 +1,168 @@
+{
+  "trace_id": "e80b1f5825e04671",
+  "created_at": "2026-11-18T07:31:58.730066+00:00",
+  "query": "Which datasets were used?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4.71
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4.79
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23311.32
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.05,
+      "bm25_ms": 1.43,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 18
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "f053e8347901e9aa:L0:000012",
+          "score": 0.886615737618505,
+          "fused": 0.886615737618505,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor7b:2021ff9b:L2:c439d9cc911268b0",
+          "score": 0.46271313987708995,
+          "fused": 0.46271313987708995,
+          "dense_rank": 19,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f053e8347901e9aa:L0:000017",
+          "score": 0.4543825348836369,
+          "fused": 0.4543825348836369,
+          "dense_rank": 12,
+          "bm25_rank": 4
+        },
+        {
+          "id": "f053e8347901e9aa:L0:000002",
+          "score": 0.3876042601902018,
+          "fused": 0.3876042601902018,
+          "dense_rank": 24,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f053e8347901e9aa:L0:000013",
+          "score": 0.3626186785859481,
+          "fused": 0.3626186785859481,
+          "dense_rank": 1,
+          "bm25_rank": 14
+        }
+      ],
+      "latency_ms": 4.67
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1049,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23306.43
+    }
+  },
+  "retrieved_ids": [
+    "f053e8347901e9aa:L0:000012",
+    "raptor7b:2021ff9b:L2:c439d9cc911268b0",
+    "f053e8347901e9aa:L0:000017",
+    "f053e8347901e9aa:L0:000002",
+    "f053e8347901e9aa:L0:000013"
+  ],
+  "filtered_ids": [
+    "f053e8347901e9aa:L0:000012",
+    "raptor7b:2021ff9b:L2:c439d9cc911268b0",
+    "f053e8347901e9aa:L0:000017",
+    "f053e8347901e9aa:L0:000002",
+    "f053e8347901e9aa:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-18T07:31:58.732066+00:00",
+      "call_id": "db53b53c4f7c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8e01b4964b21051d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e80b1f5825e04671"
+    },
+    {
+      "ts": "2026-11-18T07:32:22.040780+00:00",
+      "call_id": "4b0aaf070470",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "29bb051e2daf466f",
+      "prompt_tokens": 1727,
+      "completion_tokens": 107,
+      "latency_ms": 23305.25,
+      "server_ms": 23273.35,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e80b1f5825e04671"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1727,
+    "completion_tokens": 107,
+    "total_ms": 23312.93
+  },
+  "config_hash": "b4f37cada00e",
+  "git_sha": "db55cc94ada50cc303fe6db5a415526173c59e35-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        5
+      ],
+      "uncited_sentences": [
+        "The SNLI BIBREF22 and MultiNLI BIBREF23 datasets were used for the evaluation of performance on the NLI task, and the Quora Question Pairs BIBREF24 dataset was used for evaluating the performance on the PI task."
+      ]
+    }
+  }
+}

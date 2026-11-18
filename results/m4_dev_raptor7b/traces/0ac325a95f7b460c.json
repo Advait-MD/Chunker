@@ -1,0 +1,165 @@
+{
+  "trace_id": "0ac325a95f7b460c",
+  "created_at": "2026-11-18T07:29:05.481529+00:00",
+  "query": "Where do they get their ground truth quality judgments?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.47
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.53
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20985.11
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.48,
+      "bm25_ms": 2.73,
+      "n_candidates": {
+        "dense": 30,
+        "bm25": 23
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "20fbb354a59c3108:L0:000011",
+          "score": 0.9376716081798645,
+          "fused": 0.9376716081798645,
+          "dense_rank": 6,
+          "bm25_rank": 1
+        },
+        {
+          "id": "20fbb354a59c3108:L0:000023",
+          "score": 0.5779178786998385,
+          "fused": 0.5779178786998385,
+          "dense_rank": 1,
+          "bm25_rank": 8
+        },
+        {
+          "id": "20fbb354a59c3108:L0:000000",
+          "score": 0.5743540269661979,
+          "fused": 0.5743540269661979,
+          "dense_rank": 12,
+          "bm25_rank": 3
+        },
+        {
+          "id": "20fbb354a59c3108:L0:000020",
+          "score": 0.5621023227340576,
+          "fused": 0.5621023227340576,
+          "dense_rank": 4,
+          "bm25_rank": 6
+        },
+        {
+          "id": "20fbb354a59c3108:L0:000003",
+          "score": 0.5406058217459321,
+          "fused": 0.5406058217459321,
+          "dense_rank": 14,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 6.4
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1441,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20978.44
+    }
+  },
+  "retrieved_ids": [
+    "20fbb354a59c3108:L0:000011",
+    "20fbb354a59c3108:L0:000023",
+    "20fbb354a59c3108:L0:000000",
+    "20fbb354a59c3108:L0:000020",
+    "20fbb354a59c3108:L0:000003"
+  ],
+  "filtered_ids": [
+    "20fbb354a59c3108:L0:000011",
+    "20fbb354a59c3108:L0:000023",
+    "20fbb354a59c3108:L0:000000",
+    "20fbb354a59c3108:L0:000020",
+    "20fbb354a59c3108:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-18T07:29:05.484315+00:00",
+      "call_id": "9ed786f8f800",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f0a97b432c2f70bc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0ac325a95f7b460c"
+    },
+    {
+      "ts": "2026-11-18T07:29:26.466572+00:00",
+      "call_id": "2299944f10ba",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3e381f18192d9867",
+      "prompt_tokens": 2021,
+      "completion_tokens": 65,
+      "latency_ms": 20977.5,
+      "server_ms": 20948.13,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0ac325a95f7b460c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2021,
+    "completion_tokens": 65,
+    "total_ms": 20986.15
+  },
+  "config_hash": "b4f37cada00e",
+  "git_sha": "db55cc94ada50cc303fe6db5a415526173c59e35-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}
