@@ -1,0 +1,180 @@
+{
+  "trace_id": "4f8213c99cd84e28",
+  "created_at": "2026-11-16T11:13:08.988320+00:00",
+  "query": "The name of the Chinese capitol Kanmu modeled his government after is an instance of what?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2091.51
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2092.47
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16481.62
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.7,
+      "bm25_ms": 32.31,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2048.02
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:742b1ef485881ff0",
+          "score": 1.8516780138015747,
+          "fused": 0.9669930455314801,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 1.8516780138015747
+        },
+        {
+          "id": "raptor:67600e79:L1:8e5fb33bf0dca6ea",
+          "score": 0.5716366767883301,
+          "fused": 0.6332587876159579,
+          "dense_rank": 2,
+          "bm25_rank": 10,
+          "fused_rank": 3,
+          "rerank": 0.5716366767883301
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000182",
+          "score": -1.8503321409225464,
+          "fused": 0.4468727625689781,
+          "dense_rank": 24,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -1.8503321409225464
+        },
+        {
+          "id": "raptor:67600e79:L2:776c0eb536a90e8c",
+          "score": -3.463041305541992,
+          "fused": 0.2669808246810435,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": -3.463041305541992
+        },
+        {
+          "id": "ce57fdde2baaba9c:L0:000065",
+          "score": -4.060888767242432,
+          "fused": 0.3249949323875707,
+          "dense_rank": 34,
+          "bm25_rank": 11,
+          "fused_rank": 12,
+          "rerank": -4.060888767242432
+        }
+      ],
+      "latency_ms": 2091.44
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 839,
+      "latency_ms": 0.91
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14389.03
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:742b1ef485881ff0",
+    "raptor:67600e79:L1:8e5fb33bf0dca6ea",
+    "73dfa6a9bfcab050:L0:000182",
+    "raptor:67600e79:L2:776c0eb536a90e8c",
+    "ce57fdde2baaba9c:L0:000065"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:742b1ef485881ff0",
+    "raptor:67600e79:L1:8e5fb33bf0dca6ea",
+    "73dfa6a9bfcab050:L0:000182",
+    "raptor:67600e79:L2:776c0eb536a90e8c",
+    "ce57fdde2baaba9c:L0:000065"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:13:08.991318+00:00",
+      "call_id": "8c1b51a2dcb3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6d9a65d30bb2f103",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4f8213c99cd84e28"
+    },
+    {
+      "ts": "2026-11-16T11:13:25.468979+00:00",
+      "call_id": "97e13f3494d2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7c7ee1f870409b9f",
+      "prompt_tokens": 1466,
+      "completion_tokens": 60,
+      "latency_ms": 14387.62,
+      "server_ms": 14357.79,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4f8213c99cd84e28"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1466,
+    "completion_tokens": 60,
+    "total_ms": 16482.85
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

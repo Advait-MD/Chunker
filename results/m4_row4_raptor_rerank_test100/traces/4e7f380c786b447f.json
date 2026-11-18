@@ -1,0 +1,183 @@
+{
+  "trace_id": "4e7f380c786b447f",
+  "created_at": "2026-11-16T10:48:36.284095+00:00",
+  "query": "What models are able to be fooled for IMDB sentiment classification task by this approach?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3115.72
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3115.93
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21797.22
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.81,
+      "bm25_ms": 32.48,
+      "n_candidates": {
+        "dense": 40,
+        "bm25": 30
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 3074.04
+      },
+      "hits": [
+        {
+          "id": "8b226e2047435419:L0:000000",
+          "score": 3.687391996383667,
+          "fused": 0.9285466626019694,
+          "dense_rank": 5,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.687391996383667
+        },
+        {
+          "id": "8b226e2047435419:L0:000002",
+          "score": 2.4190030097961426,
+          "fused": 0.7649531133927672,
+          "dense_rank": 6,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 2.4190030097961426
+        },
+        {
+          "id": "raptor:23983620:L1:93fb073457b69a76",
+          "score": 1.8834716081619263,
+          "fused": 0.7656799283687166,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 1.8834716081619263
+        },
+        {
+          "id": "8b226e2047435419:L0:000032",
+          "score": 1.4349417686462402,
+          "fused": 0.6054978393744348,
+          "dense_rank": 7,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": 1.4349417686462402
+        },
+        {
+          "id": "raptor:23983620:L1:1940402b7e2f226a",
+          "score": 0.7710373997688293,
+          "fused": 0.4775209405773305,
+          "dense_rank": 3,
+          "bm25_rank": 10,
+          "fused_rank": 8,
+          "rerank": 0.7710373997688293
+        }
+      ],
+      "latency_ms": 3115.66
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1159,
+      "latency_ms": 0.17
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18681.15
+    }
+  },
+  "retrieved_ids": [
+    "8b226e2047435419:L0:000000",
+    "8b226e2047435419:L0:000002",
+    "raptor:23983620:L1:93fb073457b69a76",
+    "8b226e2047435419:L0:000032",
+    "raptor:23983620:L1:1940402b7e2f226a"
+  ],
+  "filtered_ids": [
+    "8b226e2047435419:L0:000000",
+    "8b226e2047435419:L0:000002",
+    "raptor:23983620:L1:93fb073457b69a76",
+    "8b226e2047435419:L0:000032",
+    "raptor:23983620:L1:1940402b7e2f226a"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:48:36.286089+00:00",
+      "call_id": "ac4d10f85eb8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9af9f49f92bbce51",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4e7f380c786b447f"
+    },
+    {
+      "ts": "2026-11-16T10:48:58.080043+00:00",
+      "call_id": "346acda83ffe",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a50c089cb9f6836e",
+      "prompt_tokens": 1728,
+      "completion_tokens": 89,
+      "latency_ms": 18679.76,
+      "server_ms": 18649.04,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4e7f380c786b447f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1728,
+    "completion_tokens": 89,
+    "total_ms": 21798.6
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

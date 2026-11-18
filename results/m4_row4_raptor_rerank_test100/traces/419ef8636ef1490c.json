@@ -1,0 +1,180 @@
+{
+  "trace_id": "419ef8636ef1490c",
+  "created_at": "2026-11-16T11:27:21.063567+00:00",
+  "query": "Who is the president of the newly declared independent country that is part of the Commission of Truth and Friendship with the country where Sambas is located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3729.0
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3729.74
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16556.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.44,
+      "bm25_ms": 33.75,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 9,
+        "latency_ms": 3685.24
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:1201516e634831eb",
+          "score": 0.4910614490509033,
+          "fused": 0.2764280751702014,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 5,
+          "rerank": 0.4910614490509033
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000055",
+          "score": -0.2449992597103119,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.2449992597103119
+        },
+        {
+          "id": "4b634e52029ddab4:L0:000012",
+          "score": -2.176692485809326,
+          "fused": 0.26148688882171556,
+          "dense_rank": 8,
+          "bm25_rank": 13,
+          "fused_rank": 8,
+          "rerank": -2.176692485809326
+        },
+        {
+          "id": "raptor:67600e79:L1:36b0b221400de7a8",
+          "score": -3.3249974250793457,
+          "fused": 0.3125435254666468,
+          "dense_rank": 3,
+          "bm25_rank": 32,
+          "fused_rank": 4,
+          "rerank": -3.3249974250793457
+        },
+        {
+          "id": "raptor:67600e79:L1:31766395662360d5",
+          "score": -3.5839996337890625,
+          "fused": 0.13595550032600076,
+          "dense_rank": 12,
+          "bm25_rank": null,
+          "fused_rank": 20,
+          "rerank": -3.5839996337890625
+        }
+      ],
+      "latency_ms": 3728.92
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 784,
+      "latency_ms": 0.68
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12827.15
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:1201516e634831eb",
+    "4fcce431f5d22d1d:L0:000055",
+    "4b634e52029ddab4:L0:000012",
+    "raptor:67600e79:L1:36b0b221400de7a8",
+    "raptor:67600e79:L1:31766395662360d5"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:1201516e634831eb",
+    "4fcce431f5d22d1d:L0:000055",
+    "4b634e52029ddab4:L0:000012",
+    "raptor:67600e79:L1:36b0b221400de7a8",
+    "raptor:67600e79:L1:31766395662360d5"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:27:21.067506+00:00",
+      "call_id": "b0a6e6699a35",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6dd48e7a93f25300",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "419ef8636ef1490c"
+    },
+    {
+      "ts": "2026-11-16T11:27:37.620139+00:00",
+      "call_id": "644bdf46351e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7db82c48700afeaf",
+      "prompt_tokens": 1406,
+      "completion_tokens": 72,
+      "latency_ms": 12826.28,
+      "server_ms": 12808.13,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "419ef8636ef1490c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1406,
+    "completion_tokens": 72,
+    "total_ms": 16558.12
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

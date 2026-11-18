@@ -1,0 +1,169 @@
+{
+  "trace_id": "74dd433ff00844ba",
+  "created_at": "2026-11-15T08:44:27.993536+00:00",
+  "query": "What are the baseline models?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.48
+    },
+    {
+      "state": "DONE",
+      "t_ms": 27840.58
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.76,
+      "bm25_ms": 6.4,
+      "n_candidates": {
+        "dense": 37,
+        "bm25": 29
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "107b2a26a3716ca7:L0:000018",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "107b2a26a3716ca7:L0:000030",
+          "score": 0.8402089147094456,
+          "fused": 0.8402089147094456,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "107b2a26a3716ca7:L0:000027",
+          "score": 0.7804944469856209,
+          "fused": 0.7804944469856209,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "107b2a26a3716ca7:L0:000024",
+          "score": 0.7431319460919911,
+          "fused": 0.7431319460919911,
+          "dense_rank": 11,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:bc164c47:L1:ce875283a6554650",
+          "score": 0.6949560140925564,
+          "fused": 0.6949560140925564,
+          "dense_rank": 5,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 9.35
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 934,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 27830.96
+    }
+  },
+  "retrieved_ids": [
+    "107b2a26a3716ca7:L0:000018",
+    "107b2a26a3716ca7:L0:000030",
+    "107b2a26a3716ca7:L0:000027",
+    "107b2a26a3716ca7:L0:000024",
+    "raptor:bc164c47:L1:ce875283a6554650"
+  ],
+  "filtered_ids": [
+    "107b2a26a3716ca7:L0:000018",
+    "107b2a26a3716ca7:L0:000030",
+    "107b2a26a3716ca7:L0:000027",
+    "107b2a26a3716ca7:L0:000024",
+    "raptor:bc164c47:L1:ce875283a6554650"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T08:44:27.995073+00:00",
+      "call_id": "934dd2755fc0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c41eae46799badfd",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "74dd433ff00844ba"
+    },
+    {
+      "ts": "2026-11-15T08:44:55.832869+00:00",
+      "call_id": "f77743fcf87c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8c42ddd348e9a0c1",
+      "prompt_tokens": 1503,
+      "completion_tokens": 171,
+      "latency_ms": 27829.76,
+      "server_ms": 27800.45,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "74dd433ff00844ba"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1503,
+    "completion_tokens": 171,
+    "total_ms": 27841.6
+  },
+  "config_hash": "4304b1db8856",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The baseline models are trained using Maximum Likelihood Estimation (MLE) on the Conceptual Captions dataset, with additional positive captions from the Caption-Quality dataset for fine-tuning.",
+        "We referred to this model as Baseline.",
+        "For a baseline approach that utilizes (some of) the Caption-Quality data, we merge positively-rated captions from the Caption-Quality training split with the Conceptual Captions examples and finetune the baseline model."
+      ]
+    }
+  }
+}

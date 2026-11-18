@@ -1,0 +1,165 @@
+{
+  "trace_id": "09dcd87e0b5c4727",
+  "created_at": "2026-11-16T10:06:29.900957+00:00",
+  "query": "Who is Mary Of Bourbon's paternal grandfather?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.34
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.42
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11912.95
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.6,
+      "bm25_ms": 6.36,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "317e12ccd417c0d7:L0:000187",
+          "score": 0.8185950793905009,
+          "fused": 0.8185950793905009,
+          "dense_rank": 6,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:4a3db58cbc572d6a",
+          "score": 0.6267795043141499,
+          "fused": 0.6267795043141499,
+          "dense_rank": 3,
+          "bm25_rank": 4
+        },
+        {
+          "id": "abe982d210232c3f:L0:000076",
+          "score": 0.5388112147897645,
+          "fused": 0.5388112147897645,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "0eac870d43736f51:L0:000142",
+          "score": 0.48542901161211577,
+          "fused": 0.48542901161211577,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "abe982d210232c3f:L0:000046",
+          "score": 0.4468396979434384,
+          "fused": 0.4468396979434384,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 11.29
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 440,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11901.42
+    }
+  },
+  "retrieved_ids": [
+    "317e12ccd417c0d7:L0:000187",
+    "raptor:67600e79:L1:4a3db58cbc572d6a",
+    "abe982d210232c3f:L0:000076",
+    "0eac870d43736f51:L0:000142",
+    "abe982d210232c3f:L0:000046"
+  ],
+  "filtered_ids": [
+    "317e12ccd417c0d7:L0:000187",
+    "raptor:67600e79:L1:4a3db58cbc572d6a",
+    "abe982d210232c3f:L0:000076",
+    "0eac870d43736f51:L0:000142",
+    "abe982d210232c3f:L0:000046"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:06:29.903363+00:00",
+      "call_id": "b57a4f2dc245",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2dfa36243ff3c557",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "09dcd87e0b5c4727"
+    },
+    {
+      "ts": "2026-11-16T10:06:41.813491+00:00",
+      "call_id": "5588fcbc3fa5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2705cfe4958192a6",
+      "prompt_tokens": 1056,
+      "completion_tokens": 61,
+      "latency_ms": 11900.47,
+      "server_ms": 11877.87,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "09dcd87e0b5c4727"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1056,
+    "completion_tokens": 61,
+    "total_ms": 11914.81
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

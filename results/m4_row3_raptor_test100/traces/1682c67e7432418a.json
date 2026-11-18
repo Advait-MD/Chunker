@@ -1,0 +1,165 @@
+{
+  "trace_id": "1682c67e7432418a",
+  "created_at": "2026-11-16T10:03:24.501050+00:00",
+  "query": "Where did the director of film Journal Of A Crime die?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.3
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.36
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14.12
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.1,
+      "bm25_ms": 5.89,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000040",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000177",
+          "score": 0.6467354562711309,
+          "fused": 0.6467354562711309,
+          "dense_rank": 35,
+          "bm25_rank": 2
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000060",
+          "score": 0.5661585279870117,
+          "fused": 0.5661585279870117,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "460e441179bec402:L0:000037",
+          "score": 0.4601889997354793,
+          "fused": 0.4601889997354793,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000137",
+          "score": 0.37689787976504385,
+          "fused": 0.37689787976504385,
+          "dense_rank": 10,
+          "bm25_rank": 12
+        }
+      ],
+      "latency_ms": 10.26
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 400,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 3.68
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000040",
+    "b04ce6dd2d95fb80:L0:000177",
+    "53c7288bdcd3837a:L0:000060",
+    "460e441179bec402:L0:000037",
+    "317e12ccd417c0d7:L0:000137"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000040",
+    "b04ce6dd2d95fb80:L0:000177",
+    "53c7288bdcd3837a:L0:000060",
+    "460e441179bec402:L0:000037",
+    "317e12ccd417c0d7:L0:000137"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:03:24.503051+00:00",
+      "call_id": "7c603216eac9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "11dcb3ba3e667805",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1682c67e7432418a"
+    },
+    {
+      "ts": "2026-11-16T10:03:24.514060+00:00",
+      "call_id": "91130045d9d3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "41856ba644e3802b",
+      "prompt_tokens": 1012,
+      "completion_tokens": 64,
+      "latency_ms": 1.94,
+      "server_ms": 10729.17,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1682c67e7432418a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 1012,
+    "completion_tokens": 64,
+    "total_ms": 16.76
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The director of the film 'Journal of a Crime' is not mentioned in the provided passages.",
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

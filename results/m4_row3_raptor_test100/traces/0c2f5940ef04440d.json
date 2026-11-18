@@ -1,0 +1,169 @@
+{
+  "trace_id": "0c2f5940ef04440d",
+  "created_at": "2026-11-16T10:04:49.332812+00:00",
+  "query": "Which film has the director born later, Occhio, Malocchio, Prezzemolo E Finocchio or Jailhouse Rock (Film)?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.03
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18.1
+    },
+    {
+      "state": "DONE",
+      "t_ms": 29330.33
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.21,
+      "bm25_ms": 13.48,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000132",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:8d34389911815da1",
+          "score": 0.5553620259289624,
+          "fused": 0.5553620259289624,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L2:b8bb18c61bae1b3f",
+          "score": 0.34111249848771974,
+          "fused": 0.34111249848771974,
+          "dense_rank": 3,
+          "bm25_rank": 9
+        },
+        {
+          "id": "raptor:67600e79:L1:e40d2bdaa2186316",
+          "score": 0.3282055569191379,
+          "fused": 0.3282055569191379,
+          "dense_rank": 4,
+          "bm25_rank": 8
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000048",
+          "score": 0.1403065259958596,
+          "fused": 0.1403065259958596,
+          "dense_rank": null,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 17.99
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 656,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 29312.05
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000132",
+    "raptor:67600e79:L1:8d34389911815da1",
+    "raptor:67600e79:L2:b8bb18c61bae1b3f",
+    "raptor:67600e79:L1:e40d2bdaa2186316",
+    "317e12ccd417c0d7:L0:000048"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000132",
+    "raptor:67600e79:L1:8d34389911815da1",
+    "raptor:67600e79:L2:b8bb18c61bae1b3f",
+    "raptor:67600e79:L1:e40d2bdaa2186316",
+    "317e12ccd417c0d7:L0:000048"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:04:49.334813+00:00",
+      "call_id": "6010ab1a90d4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "230db882d354e675",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0c2f5940ef04440d"
+    },
+    {
+      "ts": "2026-11-16T10:05:18.662403+00:00",
+      "call_id": "8e93fde2bb85",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "72d8906200235d88",
+      "prompt_tokens": 1360,
+      "completion_tokens": 227,
+      "latency_ms": 29310.88,
+      "server_ms": 29281.71,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0c2f5940ef04440d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1360,
+    "completion_tokens": 227,
+    "total_ms": 29331.5
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Occhio, malocchio, prezzemolo e finocchio (1983) is an Italian comedy film directed by Sergio Martino, while Jailhouse Rock (1957) is an American musical starring Elvis Presley.",
+        "Therefore, the director of Occhio, malocchio, prezzemolo e finocchio, Sergio Martino, is born later than the director of Jailhouse Rock, as the birth year of the latter is not specified but Elvis Presley, who starred in the film, was born after Martino."
+      ]
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "trace_id": "271e803a5ca94de9",
+  "created_at": "2026-11-16T10:19:41.056943+00:00",
+  "query": "When was the director of film I Want Someone To Eat Cheese With born?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.0
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.18
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13996.76
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.07,
+      "bm25_ms": 7.56,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000075",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:503ab09f3326f1ad",
+          "score": 0.5234400243126824,
+          "fused": 0.5234400243126824,
+          "dense_rank": 7,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:7019fa82b4f8fa51",
+          "score": 0.3120286640416032,
+          "fused": 0.3120286640416032,
+          "dense_rank": 1,
+          "bm25_rank": 19
+        },
+        {
+          "id": "raptor:67600e79:L1:be4180f850a9e50f",
+          "score": 0.21600147108942622,
+          "fused": 0.21600147108942622,
+          "dense_rank": 3,
+          "bm25_rank": 11
+        },
+        {
+          "id": "0eac870d43736f51:L0:000159",
+          "score": 0.21575054010446576,
+          "fused": 0.21575054010446576,
+          "dense_rank": 2,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 10.96
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 793,
+      "latency_ms": 0.16
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13985.47
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000075",
+    "raptor:67600e79:L1:503ab09f3326f1ad",
+    "raptor:67600e79:L1:7019fa82b4f8fa51",
+    "raptor:67600e79:L1:be4180f850a9e50f",
+    "0eac870d43736f51:L0:000159"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000075",
+    "raptor:67600e79:L1:503ab09f3326f1ad",
+    "raptor:67600e79:L1:7019fa82b4f8fa51",
+    "raptor:67600e79:L1:be4180f850a9e50f",
+    "0eac870d43736f51:L0:000159"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:19:41.057948+00:00",
+      "call_id": "c95bb68f91ff",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e03822675f75bda0",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "271e803a5ca94de9"
+    },
+    {
+      "ts": "2026-11-16T10:19:55.052970+00:00",
+      "call_id": "7401819e37b3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5ab55c26e0893425",
+      "prompt_tokens": 1414,
+      "completion_tokens": 71,
+      "latency_ms": 13984.56,
+      "server_ms": 13954.89,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "271e803a5ca94de9"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1414,
+    "completion_tokens": 71,
+    "total_ms": 14000.12
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

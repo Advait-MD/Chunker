@@ -1,0 +1,180 @@
+{
+  "trace_id": "1a1dfd94dac04282",
+  "created_at": "2026-11-16T12:39:04.089391+00:00",
+  "query": "Where did the director of film Search And Destroy (1995 Film) study?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2141.99
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2142.4
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 16665.65
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.61,
+      "bm25_ms": 8.65,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2126.2
+      },
+      "hits": [
+        {
+          "id": "460e441179bec402:L0:000024",
+          "score": 8.006208419799805,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 8.006208419799805
+        },
+        {
+          "id": "raptor:67600e79:L1:5ad19d2beeb17b0f",
+          "score": 2.1705422401428223,
+          "fused": 0.8387581371091439,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 2.1705422401428223
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000034",
+          "score": -1.7726285457611084,
+          "fused": 0.11227005573243012,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -1.7726285457611084
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000139",
+          "score": -5.351572036743164,
+          "fused": 0.19813940022703314,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -5.351572036743164
+        },
+        {
+          "id": "99628090500247e3:L0:000093",
+          "score": -5.990917205810547,
+          "fused": 0.08884860954859379,
+          "dense_rank": null,
+          "bm25_rank": 17,
+          "fused_rank": 19,
+          "rerank": -5.990917205810547
+        }
+      ],
+      "latency_ms": 2141.93
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 570,
+      "latency_ms": 0.37
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14523.05
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000024",
+    "raptor:67600e79:L1:5ad19d2beeb17b0f",
+    "317e12ccd417c0d7:L0:000034",
+    "c73b757f0eb66f37:L0:000139",
+    "99628090500247e3:L0:000093"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000024",
+    "raptor:67600e79:L1:5ad19d2beeb17b0f",
+    "317e12ccd417c0d7:L0:000034",
+    "c73b757f0eb66f37:L0:000139",
+    "99628090500247e3:L0:000093"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:39:04.091398+00:00",
+      "call_id": "f6ef92332c35",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "909629fd0ad988bc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1a1dfd94dac04282"
+    },
+    {
+      "ts": "2026-11-16T12:39:20.754167+00:00",
+      "call_id": "78fcd536b1dd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6d2cb029ca5e72cf",
+      "prompt_tokens": 1210,
+      "completion_tokens": 73,
+      "latency_ms": 14521.7,
+      "server_ms": 14498.91,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1a1dfd94dac04282"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1210,
+    "completion_tokens": 73,
+    "total_ms": 16669.4
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

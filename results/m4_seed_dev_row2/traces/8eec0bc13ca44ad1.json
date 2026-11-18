@@ -1,0 +1,170 @@
+{
+  "trace_id": "8eec0bc13ca44ad1",
+  "created_at": "2026-11-17T14:55:00.348286+00:00",
+  "query": "What is the architecture of the span detector?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.16
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.23
+    },
+    {
+      "state": "DONE",
+      "t_ms": 42946.44
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.26,
+      "bm25_ms": 6.7,
+      "n_candidates": {
+        "dense": 11,
+        "bm25": 7
+      },
+      "n_fused": 11,
+      "hits": [
+        {
+          "id": "9b9c0c14cf389c1c:L0:000004",
+          "score": 0.9630382661148362,
+          "fused": 0.9630382661148362,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "9b9c0c14cf389c1c:L0:000010",
+          "score": 0.927316093115835,
+          "fused": 0.927316093115835,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "9b9c0c14cf389c1c:L0:000000",
+          "score": 0.5762359878848883,
+          "fused": 0.5762359878848883,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "9b9c0c14cf389c1c:L0:000001",
+          "score": 0.47714537581774435,
+          "fused": 0.47714537581774435,
+          "dense_rank": 6,
+          "bm25_rank": 4
+        },
+        {
+          "id": "9b9c0c14cf389c1c:L0:000003",
+          "score": 0.39153902540834495,
+          "fused": 0.39153902540834495,
+          "dense_rank": 7,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 10.12
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1329,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 42936.12
+    }
+  },
+  "retrieved_ids": [
+    "9b9c0c14cf389c1c:L0:000004",
+    "9b9c0c14cf389c1c:L0:000010",
+    "9b9c0c14cf389c1c:L0:000000",
+    "9b9c0c14cf389c1c:L0:000001",
+    "9b9c0c14cf389c1c:L0:000003"
+  ],
+  "filtered_ids": [
+    "9b9c0c14cf389c1c:L0:000004",
+    "9b9c0c14cf389c1c:L0:000010",
+    "9b9c0c14cf389c1c:L0:000000",
+    "9b9c0c14cf389c1c:L0:000001",
+    "9b9c0c14cf389c1c:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:55:00.350292+00:00",
+      "call_id": "224694f2b14e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5257582233efbe73",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8eec0bc13ca44ad1"
+    },
+    {
+      "ts": "2026-11-17T14:55:43.294019+00:00",
+      "call_id": "af6d49854006",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3c6026251f3a55bd",
+      "prompt_tokens": 2063,
+      "completion_tokens": 294,
+      "latency_ms": 42935.23,
+      "server_ms": 42908.32,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8eec0bc13ca44ad1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2063,
+    "completion_tokens": 294,
+    "total_ms": 42947.07
+  },
+  "config_hash": "d4a047076961",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The span detector architecture includes a multi-turn answer module.",
+        "Formally, at time step $t$ in the range of $T$, the state is defined by $s_t = \text{tanh}(W_s [h_{t-1} || m_t] + b_s)$, where $h_{t-1}$ is the previous state and $m_t$ is the memory.",
+        "The initial state $s_0$ is the summary of the memory: $s_0 = \text{tanh}(W_s m_0 + b_s)$, where $m_0$ is computed from the previous state and memory: $m_t = \text{tanh}(W_m [h_{t-1} || m_{t-1}] + b_m)$.",
+        "Finally, a bilinear function is used to find the begin and end point of answer spans at each reasoning step: $score(h_t, m_t) = h_t^T W_s m_t$, where $W_s$ is a learnable weight matrix."
+      ]
+    }
+  }
+}

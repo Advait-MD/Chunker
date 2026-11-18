@@ -1,0 +1,180 @@
+{
+  "trace_id": "cde04df82b544a49",
+  "created_at": "2026-11-16T12:33:58.789823+00:00",
+  "query": "Do Lush and P.O.D. both consist of four band members?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2173.89
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2174.02
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20117.72
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.63,
+      "bm25_ms": 12.68,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2155.74
+      },
+      "hits": [
+        {
+          "id": "8e50522b7cb636d8:L0:000081",
+          "score": 6.101393699645996,
+          "fused": 0.5256034365286486,
+          "dense_rank": 48,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": 6.101393699645996
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000004",
+          "score": 2.8870394229888916,
+          "fused": 0.788256688447787,
+          "dense_rank": 11,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.8870394229888916
+        },
+        {
+          "id": "raptor:67600e79:L1:942902ae7eb30eaf",
+          "score": 2.3799235820770264,
+          "fused": 0.6370884632371862,
+          "dense_rank": 1,
+          "bm25_rank": 9,
+          "fused_rank": 3,
+          "rerank": 2.3799235820770264
+        },
+        {
+          "id": "raptor:67600e79:L1:58105f7811b593ea",
+          "score": -1.529059648513794,
+          "fused": 0.5248955439721487,
+          "dense_rank": 17,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -1.529059648513794
+        },
+        {
+          "id": "634431bb1e27714f:L0:000074",
+          "score": -3.891639232635498,
+          "fused": 0.1879185227611166,
+          "dense_rank": null,
+          "bm25_rank": 15,
+          "fused_rank": 16,
+          "rerank": -3.891639232635498
+        }
+      ],
+      "latency_ms": 2173.83
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 794,
+      "latency_ms": 0.09
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17943.54
+    }
+  },
+  "retrieved_ids": [
+    "8e50522b7cb636d8:L0:000081",
+    "5d0f6cf59ee42566:L0:000004",
+    "raptor:67600e79:L1:942902ae7eb30eaf",
+    "raptor:67600e79:L1:58105f7811b593ea",
+    "634431bb1e27714f:L0:000074"
+  ],
+  "filtered_ids": [
+    "8e50522b7cb636d8:L0:000081",
+    "5d0f6cf59ee42566:L0:000004",
+    "raptor:67600e79:L1:942902ae7eb30eaf",
+    "raptor:67600e79:L1:58105f7811b593ea",
+    "634431bb1e27714f:L0:000074"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:33:58.791824+00:00",
+      "call_id": "06feb3c6375b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "364e65ead0f9a277",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cde04df82b544a49"
+    },
+    {
+      "ts": "2026-11-16T12:34:18.906742+00:00",
+      "call_id": "00d47a1f688f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b1124bdb6f83b6ba",
+      "prompt_tokens": 1390,
+      "completion_tokens": 105,
+      "latency_ms": 17942.18,
+      "server_ms": 17916.43,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "cde04df82b544a49"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1390,
+    "completion_tokens": 105,
+    "total_ms": 20119.44
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

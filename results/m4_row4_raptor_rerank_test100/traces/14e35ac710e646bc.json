@@ -1,0 +1,182 @@
+{
+  "trace_id": "14e35ac710e646bc",
+  "created_at": "2026-11-16T11:45:16.308800+00:00",
+  "query": "Does Corisande love Ludovick?\n\nOptions:\n(A) No, she used him for her ends\n(B) Yes, her uncle said so\n(C) Yes, they got married\n(D) No, she wanted to be President\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2360.13
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2360.19
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19131.37
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.84,
+      "bm25_ms": 22.42,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 24
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2329.3
+      },
+      "hits": [
+        {
+          "id": "raptor:7d7933a5:L2:c616fdffc0337f47",
+          "score": 1.9773012399673462,
+          "fused": 0.7793826622986003,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 1.9773012399673462
+        },
+        {
+          "id": "raptor:7d7933a5:L1:2e5f8b70219763c7",
+          "score": 1.5156441926956177,
+          "fused": 0.9761941226596804,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.5156441926956177
+        },
+        {
+          "id": "2968a513e75b0147:L0:000018",
+          "score": 1.245250940322876,
+          "fused": 0.8471795948001104,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 1.245250940322876
+        },
+        {
+          "id": "raptor:7d7933a5:L1:46efbff2bb54f829",
+          "score": 0.9750725626945496,
+          "fused": 0.5511279773556688,
+          "dense_rank": 4,
+          "bm25_rank": 11,
+          "fused_rank": 8,
+          "rerank": 0.9750725626945496
+        },
+        {
+          "id": "2968a513e75b0147:L0:000002",
+          "score": 0.340853750705719,
+          "fused": 0.3484233695345692,
+          "dense_rank": 10,
+          "bm25_rank": 15,
+          "fused_rank": 14,
+          "rerank": 0.340853750705719
+        }
+      ],
+      "latency_ms": 2360.09
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1260,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16771.05
+    }
+  },
+  "retrieved_ids": [
+    "raptor:7d7933a5:L2:c616fdffc0337f47",
+    "raptor:7d7933a5:L1:2e5f8b70219763c7",
+    "2968a513e75b0147:L0:000018",
+    "raptor:7d7933a5:L1:46efbff2bb54f829",
+    "2968a513e75b0147:L0:000002"
+  ],
+  "filtered_ids": [
+    "raptor:7d7933a5:L2:c616fdffc0337f47",
+    "raptor:7d7933a5:L1:2e5f8b70219763c7",
+    "2968a513e75b0147:L0:000018",
+    "raptor:7d7933a5:L1:46efbff2bb54f829",
+    "2968a513e75b0147:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:45:16.309801+00:00",
+      "call_id": "4b9b5931a550",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "afd4f226448d84cc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "14e35ac710e646bc"
+    },
+    {
+      "ts": "2026-11-16T11:45:35.439317+00:00",
+      "call_id": "b905dde59e86",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5476634b3b039b9f",
+      "prompt_tokens": 1922,
+      "completion_tokens": 82,
+      "latency_ms": 16770.26,
+      "server_ms": 16753.98,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "14e35ac710e646bc"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1922,
+    "completion_tokens": 82,
+    "total_ms": 19132.63
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

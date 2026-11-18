@@ -1,0 +1,180 @@
+{
+  "trace_id": "922a07fb6bbe430d",
+  "created_at": "2026-11-16T12:09:51.096043+00:00",
+  "query": "What country is the theme park served by the Huis Ten Bosch train service themed on?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4064.71
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4064.99
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15217.52
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.86,
+      "bm25_ms": 16.01,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 9,
+        "latency_ms": 4033.08
+      },
+      "hits": [
+        {
+          "id": "634431bb1e27714f:L0:000100",
+          "score": 5.558681964874268,
+          "fused": 0.8263454903808597,
+          "dense_rank": 5,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.558681964874268
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000049",
+          "score": 4.841887474060059,
+          "fused": 0.6662792397360251,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 4.841887474060059
+        },
+        {
+          "id": "raptor:67600e79:L1:48a083feca26d09d",
+          "score": 3.0575613975524902,
+          "fused": 0.8230747443223645,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 3.0575613975524902
+        },
+        {
+          "id": "raptor:67600e79:L1:cbdb950d76098da0",
+          "score": 0.36792659759521484,
+          "fused": 0.44956639113647495,
+          "dense_rank": 2,
+          "bm25_rank": 9,
+          "fused_rank": 4,
+          "rerank": 0.36792659759521484
+        },
+        {
+          "id": "raptor:67600e79:L2:31914203ab17abde",
+          "score": 0.21621231734752655,
+          "fused": 0.2622416253326632,
+          "dense_rank": 3,
+          "bm25_rank": 14,
+          "fused_rank": 10,
+          "rerank": 0.21621231734752655
+        }
+      ],
+      "latency_ms": 4064.67
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 689,
+      "latency_ms": 0.25
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11152.39
+    }
+  },
+  "retrieved_ids": [
+    "634431bb1e27714f:L0:000100",
+    "81fc433d55d23b4c:L0:000049",
+    "raptor:67600e79:L1:48a083feca26d09d",
+    "raptor:67600e79:L1:cbdb950d76098da0",
+    "raptor:67600e79:L2:31914203ab17abde"
+  ],
+  "filtered_ids": [
+    "634431bb1e27714f:L0:000100",
+    "81fc433d55d23b4c:L0:000049",
+    "raptor:67600e79:L1:48a083feca26d09d",
+    "raptor:67600e79:L1:cbdb950d76098da0",
+    "raptor:67600e79:L2:31914203ab17abde"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:09:51.097043+00:00",
+      "call_id": "a3e35146f747",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5d2c4a8b00d15b40",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "922a07fb6bbe430d"
+    },
+    {
+      "ts": "2026-11-16T12:10:06.313516+00:00",
+      "call_id": "420e0155af83",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3f5e3c9224090d42",
+      "prompt_tokens": 1269,
+      "completion_tokens": 58,
+      "latency_ms": 11151.32,
+      "server_ms": 11126.68,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "922a07fb6bbe430d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1269,
+    "completion_tokens": 58,
+    "total_ms": 15219.52
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "trace_id": "05c95dc47564418a",
+  "created_at": "2026-11-15T08:43:50.031744+00:00",
+  "query": "How are the tweets selected?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.42
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.48
+    },
+    {
+      "state": "DONE",
+      "t_ms": 37744.54
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.7,
+      "bm25_ms": 6.28,
+      "n_candidates": {
+        "dense": 30,
+        "bm25": 27
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "d96e7fdc6d06a63b:L0:000011",
+          "score": 0.992157110791507,
+          "fused": 0.992157110791507,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "d96e7fdc6d06a63b:L0:000013",
+          "score": 0.8875305292463331,
+          "fused": 0.8875305292463331,
+          "dense_rank": 11,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:4d020008:L1:66783ba923b63e23",
+          "score": 0.8422403517527111,
+          "fused": 0.8422403517527111,
+          "dense_rank": 10,
+          "bm25_rank": 3
+        },
+        {
+          "id": "d96e7fdc6d06a63b:L0:000016",
+          "score": 0.7553712446383529,
+          "fused": 0.7553712446383529,
+          "dense_rank": 14,
+          "bm25_rank": 4
+        },
+        {
+          "id": "d96e7fdc6d06a63b:L0:000010",
+          "score": 0.7400601208588578,
+          "fused": 0.7400601208588578,
+          "dense_rank": 12,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 9.37
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1352,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 37734.91
+    }
+  },
+  "retrieved_ids": [
+    "d96e7fdc6d06a63b:L0:000011",
+    "d96e7fdc6d06a63b:L0:000013",
+    "raptor:4d020008:L1:66783ba923b63e23",
+    "d96e7fdc6d06a63b:L0:000016",
+    "d96e7fdc6d06a63b:L0:000010"
+  ],
+  "filtered_ids": [
+    "d96e7fdc6d06a63b:L0:000011",
+    "d96e7fdc6d06a63b:L0:000013",
+    "raptor:4d020008:L1:66783ba923b63e23",
+    "d96e7fdc6d06a63b:L0:000016",
+    "d96e7fdc6d06a63b:L0:000010"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T08:43:50.033001+00:00",
+      "call_id": "d802b84facab",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5c4d6db4be55e35c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "05c95dc47564418a"
+    },
+    {
+      "ts": "2026-11-15T08:44:27.774970+00:00",
+      "call_id": "b7741e391b75",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "55f6aeeeaa73c042",
+      "prompt_tokens": 2000,
+      "completion_tokens": 239,
+      "latency_ms": 37733.85,
+      "server_ms": 37695.98,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "05c95dc47564418a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2000,
+    "completion_tokens": 239,
+    "total_ms": 37745.82
+  },
+  "config_hash": "4304b1db8856",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

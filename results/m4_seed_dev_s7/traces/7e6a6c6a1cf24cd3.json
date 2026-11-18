@@ -1,0 +1,169 @@
+{
+  "trace_id": "7e6a6c6a1cf24cd3",
+  "created_at": "2026-11-17T14:03:29.370916+00:00",
+  "query": "How is the sequential nature of the story captured?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5.98
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.05
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19086.0
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.2,
+      "bm25_ms": 2.55,
+      "n_candidates": {
+        "dense": 16,
+        "bm25": 10
+      },
+      "n_fused": 16,
+      "hits": [
+        {
+          "id": "f20bd9af670a668c:L0:000007",
+          "score": 0.9458106722187922,
+          "fused": 0.9458106722187922,
+          "dense_rank": 10,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:581bbaac:L1:4bd669ee402650e5",
+          "score": 0.7555592755754528,
+          "fused": 0.7555592755754528,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:581bbaac:L2:959acf033c7656e7",
+          "score": 0.6830230919293241,
+          "fused": 0.6830230919293241,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "f20bd9af670a668c:L0:000000",
+          "score": 0.6531992220041987,
+          "fused": 0.6531992220041987,
+          "dense_rank": 9,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f20bd9af670a668c:L0:000002",
+          "score": 0.6024208948468901,
+          "fused": 0.6024208948468901,
+          "dense_rank": 5,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 5.94
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 873,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19079.85
+    }
+  },
+  "retrieved_ids": [
+    "f20bd9af670a668c:L0:000007",
+    "raptor:581bbaac:L1:4bd669ee402650e5",
+    "raptor:581bbaac:L2:959acf033c7656e7",
+    "f20bd9af670a668c:L0:000000",
+    "f20bd9af670a668c:L0:000002"
+  ],
+  "filtered_ids": [
+    "f20bd9af670a668c:L0:000007",
+    "raptor:581bbaac:L1:4bd669ee402650e5",
+    "raptor:581bbaac:L2:959acf033c7656e7",
+    "f20bd9af670a668c:L0:000000",
+    "f20bd9af670a668c:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:03:29.372933+00:00",
+      "call_id": "3e8eb097b977",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d1bc4e92d9587487",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7e6a6c6a1cf24cd3"
+    },
+    {
+      "ts": "2026-11-17T14:03:48.456076+00:00",
+      "call_id": "e5eb05aa7e40",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bbd0b9c673a19f47",
+      "prompt_tokens": 1447,
+      "completion_tokens": 106,
+      "latency_ms": 19078.89,
+      "server_ms": 19033.87,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7e6a6c6a1cf24cd3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1447,
+    "completion_tokens": 106,
+    "total_ms": 19087.1
+  },
+  "config_hash": "4bfd5d82ddb6",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "uncited_sentences": [
+        "The sequential nature of the story is captured by using an encoder LSTM to compute a context vector for each story from the image sequence, which is used as the initial state for multiple independent decoder LSTMs, each generating the story corresponding to each image in the sequence."
+      ]
+    }
+  }
+}

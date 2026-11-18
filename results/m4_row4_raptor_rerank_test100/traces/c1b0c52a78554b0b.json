@@ -1,0 +1,185 @@
+{
+  "trace_id": "c1b0c52a78554b0b",
+  "created_at": "2026-11-16T11:08:15.025219+00:00",
+  "query": "Which architectures do they experiment with?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 416.02
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 416.13
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23254.59
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.94,
+      "bm25_ms": 4.17,
+      "n_candidates": {
+        "dense": 10,
+        "bm25": 6
+      },
+      "n_fused": 10,
+      "rerank": {
+        "n": 10,
+        "n_computed": 1,
+        "latency_ms": 406.48
+      },
+      "hits": [
+        {
+          "id": "0e48fe59697a2cf3:L0:000001",
+          "score": 1.2335395812988281,
+          "fused": 0.7,
+          "dense_rank": 10,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 1.2335395812988281
+        },
+        {
+          "id": "raptor:428e14ff:L1:5a605c656f60904b",
+          "score": 0.35495153069496155,
+          "fused": 0.754154184539364,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 0.35495153069496155
+        },
+        {
+          "id": "0e48fe59697a2cf3:L0:000003",
+          "score": -0.26786312460899353,
+          "fused": 0.6225215545175808,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.26786312460899353
+        },
+        {
+          "id": "0e48fe59697a2cf3:L0:000000",
+          "score": -0.5687560439109802,
+          "fused": 0.17282959600577008,
+          "dense_rank": 6,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": -0.5687560439109802
+        },
+        {
+          "id": "0e48fe59697a2cf3:L0:000007",
+          "score": -3.3235201835632324,
+          "fused": 0.45539910247227,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -3.3235201835632324
+        }
+      ],
+      "latency_ms": 415.97
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1182,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22838.31
+    }
+  },
+  "retrieved_ids": [
+    "0e48fe59697a2cf3:L0:000001",
+    "raptor:428e14ff:L1:5a605c656f60904b",
+    "0e48fe59697a2cf3:L0:000003",
+    "0e48fe59697a2cf3:L0:000000",
+    "0e48fe59697a2cf3:L0:000007"
+  ],
+  "filtered_ids": [
+    "0e48fe59697a2cf3:L0:000001",
+    "raptor:428e14ff:L1:5a605c656f60904b",
+    "0e48fe59697a2cf3:L0:000003",
+    "0e48fe59697a2cf3:L0:000000",
+    "0e48fe59697a2cf3:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:08:15.027275+00:00",
+      "call_id": "8ca1a1e3a1bd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0c3cc22d9d363788",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c1b0c52a78554b0b"
+    },
+    {
+      "ts": "2026-11-16T11:08:38.279512+00:00",
+      "call_id": "2d48b2b73de5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "cb5dcf6115d4c123",
+      "prompt_tokens": 1751,
+      "completion_tokens": 154,
+      "latency_ms": 22837.24,
+      "server_ms": 22818.43,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "c1b0c52a78554b0b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1751,
+    "completion_tokens": 154,
+    "total_ms": 23255.73
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "They experiment with multiple classifiers such as Logistic Regression, Random Forest, SVMs, Gradient Boosted Decision Trees (GBDTs), and Deep Neural Networks (DNNs)."
+      ]
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "trace_id": "def1a312c5ce4695",
+  "created_at": "2026-11-15T09:46:17.044482+00:00",
+  "query": "Why didn't Joey get a new dog when Charlie disappeared?\n\nOptions:\n(A) Joey refused to believe that Charlie was actually gone\n(B) Joey's mother would not let him get another dog \n(C) Joey did not like any other dogs that he met\n(D) Joey did not want to get a new dog to honor Charlie\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 34.79
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 34.85
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17356.44
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.88,
+      "bm25_ms": 31.66,
+      "n_candidates": {
+        "dense": 26,
+        "bm25": 26
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "d229f0b1fa6722b4:L0:000007",
+          "score": 0.9992167733656849,
+          "fused": 0.9992167733656849,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:96660398:L2:dbba0f7454643a96",
+          "score": 0.9881899341851852,
+          "fused": 0.9881899341851852,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:96660398:L1:44f8b805a791f0c8",
+          "score": 0.884453368890254,
+          "fused": 0.884453368890254,
+          "dense_rank": 5,
+          "bm25_rank": 3
+        },
+        {
+          "id": "d229f0b1fa6722b4:L0:000008",
+          "score": 0.8609690031101953,
+          "fused": 0.8609690031101953,
+          "dense_rank": 6,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:96660398:L1:53f7d9adb638b766",
+          "score": 0.8309428679198292,
+          "fused": 0.8309428679198292,
+          "dense_rank": 3,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 34.75
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1375,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17321.46
+    }
+  },
+  "retrieved_ids": [
+    "d229f0b1fa6722b4:L0:000007",
+    "raptor:96660398:L2:dbba0f7454643a96",
+    "raptor:96660398:L1:44f8b805a791f0c8",
+    "d229f0b1fa6722b4:L0:000008",
+    "raptor:96660398:L1:53f7d9adb638b766"
+  ],
+  "filtered_ids": [
+    "d229f0b1fa6722b4:L0:000007",
+    "raptor:96660398:L2:dbba0f7454643a96",
+    "raptor:96660398:L1:44f8b805a791f0c8",
+    "d229f0b1fa6722b4:L0:000008",
+    "raptor:96660398:L1:53f7d9adb638b766"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:46:17.046489+00:00",
+      "call_id": "f8cceb87ebee",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "167a91f59a5b6db7",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "def1a312c5ce4695"
+    },
+    {
+      "ts": "2026-11-15T09:46:34.400994+00:00",
+      "call_id": "af2dba1174f5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f54b799a7a5f73e7",
+      "prompt_tokens": 1917,
+      "completion_tokens": 55,
+      "latency_ms": 17320.33,
+      "server_ms": 17287.28,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "def1a312c5ce4695"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1917,
+    "completion_tokens": 55,
+    "total_ms": 17361.87
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

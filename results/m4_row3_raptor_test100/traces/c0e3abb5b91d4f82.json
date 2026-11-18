@@ -1,0 +1,166 @@
+{
+  "trace_id": "c0e3abb5b91d4f82",
+  "created_at": "2026-11-16T09:45:16.024914+00:00",
+  "query": "Josh Trank and Mike Valerio both work in what industry?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.3
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.37
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11785.22
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.74,
+      "bm25_ms": 9.22,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ec3410ef955c5c93:L0:000041",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "634431bb1e27714f:L0:000163",
+          "score": 0.692457232025982,
+          "fused": 0.692457232025982,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L2:32cde37d0bd21e8a",
+          "score": 0.5416355033776447,
+          "fused": 0.5416355033776447,
+          "dense_rank": 1,
+          "bm25_rank": 8
+        },
+        {
+          "id": "20496f59538deb41:L0:000109",
+          "score": 0.4121363980068366,
+          "fused": 0.4121363980068366,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000190",
+          "score": 0.3834341137249497,
+          "fused": 0.3834341137249497,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 13.26
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 603,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11771.78
+    }
+  },
+  "retrieved_ids": [
+    "ec3410ef955c5c93:L0:000041",
+    "634431bb1e27714f:L0:000163",
+    "raptor:67600e79:L2:32cde37d0bd21e8a",
+    "20496f59538deb41:L0:000109",
+    "9794e842cc9565f0:L0:000190"
+  ],
+  "filtered_ids": [
+    "ec3410ef955c5c93:L0:000041",
+    "634431bb1e27714f:L0:000163",
+    "raptor:67600e79:L2:32cde37d0bd21e8a",
+    "20496f59538deb41:L0:000109",
+    "9794e842cc9565f0:L0:000190"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:45:16.026918+00:00",
+      "call_id": "e0a100520758",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5b3aa800b32009cf",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c0e3abb5b91d4f82"
+    },
+    {
+      "ts": "2026-11-16T09:45:27.810003+00:00",
+      "call_id": "18c9d61443fd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "613d2307332b7b03",
+      "prompt_tokens": 1197,
+      "completion_tokens": 64,
+      "latency_ms": 11771.15,
+      "server_ms": 11756.44,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "c0e3abb5b91d4f82"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1197,
+    "completion_tokens": 64,
+    "total_ms": 11787.44
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

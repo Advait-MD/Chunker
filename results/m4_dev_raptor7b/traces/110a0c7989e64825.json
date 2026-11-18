@@ -1,0 +1,169 @@
+{
+  "trace_id": "110a0c7989e64825",
+  "created_at": "2026-11-18T07:27:23.285869+00:00",
+  "query": "what dataset was used?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4.42
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4.47
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21016.59
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.03,
+      "bm25_ms": 1.2,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 14
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "e34da0296b7e7e09:L0:000018",
+          "score": 0.9332890845177206,
+          "fused": 0.9332890845177206,
+          "dense_rank": 5,
+          "bm25_rank": 1
+        },
+        {
+          "id": "e34da0296b7e7e09:L0:000004",
+          "score": 0.8589509462133962,
+          "fused": 0.8589509462133962,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "e34da0296b7e7e09:L0:000003",
+          "score": 0.7312437164635796,
+          "fused": 0.7312437164635796,
+          "dense_rank": 2,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor7b:d55b133d:L1:25c6f8cd7b49483f",
+          "score": 0.663863500256366,
+          "fused": 0.663863500256366,
+          "dense_rank": 1,
+          "bm25_rank": 6
+        },
+        {
+          "id": "e34da0296b7e7e09:L0:000006",
+          "score": 0.6072769462060742,
+          "fused": 0.6072769462060742,
+          "dense_rank": 17,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 4.38
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 975,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21012.02
+    }
+  },
+  "retrieved_ids": [
+    "e34da0296b7e7e09:L0:000018",
+    "e34da0296b7e7e09:L0:000004",
+    "e34da0296b7e7e09:L0:000003",
+    "raptor7b:d55b133d:L1:25c6f8cd7b49483f",
+    "e34da0296b7e7e09:L0:000006"
+  ],
+  "filtered_ids": [
+    "e34da0296b7e7e09:L0:000018",
+    "e34da0296b7e7e09:L0:000004",
+    "e34da0296b7e7e09:L0:000003",
+    "raptor7b:d55b133d:L1:25c6f8cd7b49483f",
+    "e34da0296b7e7e09:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-18T07:27:23.288268+00:00",
+      "call_id": "74c991bd1d76",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6a9977fc45395ca9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "110a0c7989e64825"
+    },
+    {
+      "ts": "2026-11-18T07:27:44.301570+00:00",
+      "call_id": "5d75a649c60c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6ce6f9f029e7548f",
+      "prompt_tokens": 1527,
+      "completion_tokens": 107,
+      "latency_ms": 21011.0,
+      "server_ms": 20982.87,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "110a0c7989e64825"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1527,
+    "completion_tokens": 107,
+    "total_ms": 21017.65
+  },
+  "config_hash": "b4f37cada00e",
+  "git_sha": "db55cc94ada50cc303fe6db5a415526173c59e35-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2,
+        3
+      ],
+      "uncited_sentences": [
+        "The dataset used includes two sources: editor tags and Amazon search terms.",
+        "Editor tags come from 48,705 e-books from 13 publishers, while Amazon search terms are from 21,243 e-books over 12 months.",
+        "Additionally, the dataset includes Amazon review keywords for evaluation."
+      ]
+    }
+  }
+}

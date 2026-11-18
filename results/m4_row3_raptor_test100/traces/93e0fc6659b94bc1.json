@@ -1,0 +1,169 @@
+{
+  "trace_id": "93e0fc6659b94bc1",
+  "created_at": "2026-11-15T09:46:53.992644+00:00",
+  "query": "What did the Ludmilla drop?\n\nOptions:\n(A) Nothing\n(B) An egg\n(C) A live bomb\n(D) A dead bomb\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 21.65
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 22.15
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17445.4
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.37,
+      "bm25_ms": 16.88,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 20
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "e2aaf883e15e64c8:L0:000016",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:b49d4508:L2:a6abddae1a83802e",
+          "score": 0.8908910925715834,
+          "fused": 0.8908910925715834,
+          "dense_rank": 8,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:b49d4508:L1:519a241e1d475172",
+          "score": 0.7958072586730448,
+          "fused": 0.7958072586730448,
+          "dense_rank": 5,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:b49d4508:L1:0a4263799bcb0cb3",
+          "score": 0.7919993701223789,
+          "fused": 0.7919993701223789,
+          "dense_rank": 3,
+          "bm25_rank": 4
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000001",
+          "score": 0.7570482910765721,
+          "fused": 0.7570482910765721,
+          "dense_rank": 4,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 21.6
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1263,
+      "latency_ms": 0.45
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17422.8
+    }
+  },
+  "retrieved_ids": [
+    "e2aaf883e15e64c8:L0:000016",
+    "raptor:b49d4508:L2:a6abddae1a83802e",
+    "raptor:b49d4508:L1:519a241e1d475172",
+    "raptor:b49d4508:L1:0a4263799bcb0cb3",
+    "e2aaf883e15e64c8:L0:000001"
+  ],
+  "filtered_ids": [
+    "e2aaf883e15e64c8:L0:000016",
+    "raptor:b49d4508:L2:a6abddae1a83802e",
+    "raptor:b49d4508:L1:519a241e1d475172",
+    "raptor:b49d4508:L1:0a4263799bcb0cb3",
+    "e2aaf883e15e64c8:L0:000001"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:46:53.994632+00:00",
+      "call_id": "f9f10e92f9ba",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9571d9198fb0da3a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "93e0fc6659b94bc1"
+    },
+    {
+      "ts": "2026-11-15T09:47:11.436188+00:00",
+      "call_id": "c338cc593a69",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "05b584ef6181533d",
+      "prompt_tokens": 1746,
+      "completion_tokens": 61,
+      "latency_ms": 17421.38,
+      "server_ms": 17399.19,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "93e0fc6659b94bc1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1746,
+    "completion_tokens": 61,
+    "total_ms": 17446.87
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "uncited_sentences": [
+        "(B) The Ludmilla dropped an egg, which was later identified as a bomb."
+      ]
+    }
+  }
+}

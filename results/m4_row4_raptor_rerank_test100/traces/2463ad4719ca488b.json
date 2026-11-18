@@ -1,0 +1,181 @@
+{
+  "trace_id": "2463ad4719ca488b",
+  "created_at": "2026-11-16T12:15:44.232903+00:00",
+  "query": "For One Night Only was hosted by the man most well-known for hosting what show from 1962 until 1999?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2133.72
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2133.95
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16982.78
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.14,
+      "bm25_ms": 24.74,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2102.17
+      },
+      "hits": [
+        {
+          "id": "90976421f3f2bea2:L0:000106",
+          "score": 3.0347237586975098,
+          "fused": 0.700308658994141,
+          "dense_rank": 3,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": 3.0347237586975098
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000116",
+          "score": 2.8294570446014404,
+          "fused": 0.5550595261645677,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": 2.8294570446014404
+        },
+        {
+          "id": "raptor:67600e79:L2:1745d6c729942139",
+          "score": 1.6018962860107422,
+          "fused": 0.8749502030577905,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 1.6018962860107422
+        },
+        {
+          "id": "raptor:67600e79:L1:b18241d3c2713dee",
+          "score": 1.5119575262069702,
+          "fused": 0.719296457734701,
+          "dense_rank": 7,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": 1.5119575262069702
+        },
+        {
+          "id": "raptor:67600e79:L1:c293cce2d04a62ce",
+          "score": 1.4418846368789673,
+          "fused": 0.8750588002890788,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 1.4418846368789673
+        }
+      ],
+      "latency_ms": 2133.67
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 750,
+      "latency_ms": 0.19
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14848.67
+    }
+  },
+  "retrieved_ids": [
+    "90976421f3f2bea2:L0:000106",
+    "ba3cd068cf9ac2e4:L0:000116",
+    "raptor:67600e79:L2:1745d6c729942139",
+    "raptor:67600e79:L1:b18241d3c2713dee",
+    "raptor:67600e79:L1:c293cce2d04a62ce"
+  ],
+  "filtered_ids": [
+    "90976421f3f2bea2:L0:000106",
+    "ba3cd068cf9ac2e4:L0:000116",
+    "raptor:67600e79:L2:1745d6c729942139",
+    "raptor:67600e79:L1:b18241d3c2713dee",
+    "raptor:67600e79:L1:c293cce2d04a62ce"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:15:44.234902+00:00",
+      "call_id": "78759ec6de35",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "659847dc75aa24e8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2463ad4719ca488b"
+    },
+    {
+      "ts": "2026-11-16T12:16:01.215390+00:00",
+      "call_id": "0ef3b706f3a8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c7be0dc35df29c32",
+      "prompt_tokens": 1358,
+      "completion_tokens": 85,
+      "latency_ms": 14847.5,
+      "server_ms": 14823.57,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2463ad4719ca488b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1358,
+    "completion_tokens": 85,
+    "total_ms": 16985.15
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

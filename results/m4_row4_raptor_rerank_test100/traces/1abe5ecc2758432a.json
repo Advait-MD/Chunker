@@ -1,0 +1,179 @@
+{
+  "trace_id": "1abe5ecc2758432a",
+  "created_at": "2026-11-16T11:10:26.883452+00:00",
+  "query": "Who was Suzanne Farrington's mother's spouse?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3560.86
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3562.48
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14128.49
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.57,
+      "bm25_ms": 13.88,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 11,
+        "latency_ms": 3538.23
+      },
+      "hits": [
+        {
+          "id": "f3503d3d186f0f90:L0:000048",
+          "score": 5.593804359436035,
+          "fused": 0.803662326213018,
+          "dense_rank": 14,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.593804359436035
+        },
+        {
+          "id": "raptor:67600e79:L1:983ae8046757900a",
+          "score": 3.7332873344421387,
+          "fused": 0.6486108298454155,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 3.7332873344421387
+        },
+        {
+          "id": "raptor:67600e79:L1:29e8ab31b91a2e9f",
+          "score": -3.7127907276153564,
+          "fused": 0.126987016969385,
+          "dense_rank": 11,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -3.7127907276153564
+        },
+        {
+          "id": "c61175e20d09af4f:L0:000028",
+          "score": -3.883793354034424,
+          "fused": 0.15609337823442904,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 13,
+          "rerank": -3.883793354034424
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000016",
+          "score": -4.225278377532959,
+          "fused": 0.17202313071592182,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 11,
+          "rerank": -4.225278377532959
+        }
+      ],
+      "latency_ms": 3560.81
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 621,
+      "latency_ms": 1.58
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10565.86
+    }
+  },
+  "retrieved_ids": [
+    "f3503d3d186f0f90:L0:000048",
+    "raptor:67600e79:L1:983ae8046757900a",
+    "raptor:67600e79:L1:29e8ab31b91a2e9f",
+    "c61175e20d09af4f:L0:000028",
+    "f109b032e24ab27a:L0:000016"
+  ],
+  "filtered_ids": [
+    "f3503d3d186f0f90:L0:000048",
+    "raptor:67600e79:L1:983ae8046757900a",
+    "raptor:67600e79:L1:29e8ab31b91a2e9f",
+    "c61175e20d09af4f:L0:000028",
+    "f109b032e24ab27a:L0:000016"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:10:26.885458+00:00",
+      "call_id": "6e7d1587600a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9519307b27641d86",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1abe5ecc2758432a"
+    },
+    {
+      "ts": "2026-11-16T11:10:41.011798+00:00",
+      "call_id": "e002ac940b62",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6299c86264eb60b0",
+      "prompt_tokens": 1285,
+      "completion_tokens": 54,
+      "latency_ms": 10564.62,
+      "server_ms": 10528.93,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1abe5ecc2758432a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1285,
+    "completion_tokens": 54,
+    "total_ms": 14131.2
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

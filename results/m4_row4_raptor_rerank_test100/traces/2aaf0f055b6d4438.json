@@ -1,0 +1,179 @@
+{
+  "trace_id": "2aaf0f055b6d4438",
+  "created_at": "2026-11-16T12:15:22.281443+00:00",
+  "query": "Johnny Mathis: Wonderful Wonderful aired at what luxury hotel, casino and spa resort located in Atlantic City, New Jersey?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2702.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2704.17
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14429.33
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.55,
+      "bm25_ms": 24.56,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2669.64
+      },
+      "hits": [
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000088",
+          "score": 8.305975914001465,
+          "fused": 0.5483948445048294,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 7,
+          "rerank": 8.305975914001465
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000167",
+          "score": 8.022807121276855,
+          "fused": 0.8090884259033967,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 8.022807121276855
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000149",
+          "score": 7.681515693664551,
+          "fused": 0.8360532752074468,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 7.681515693664551
+        },
+        {
+          "id": "raptor:67600e79:L1:fabc55ad535b463a",
+          "score": 7.478909492492676,
+          "fused": 0.9589518847526679,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 7.478909492492676
+        },
+        {
+          "id": "634431bb1e27714f:L0:000088",
+          "score": 3.802541732788086,
+          "fused": 0.6409008134103649,
+          "dense_rank": 6,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": 3.802541732788086
+        }
+      ],
+      "latency_ms": 2702.35
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 649,
+      "latency_ms": 1.71
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11725.04
+    }
+  },
+  "retrieved_ids": [
+    "ba3cd068cf9ac2e4:L0:000088",
+    "cb96563b0747a6ba:L0:000167",
+    "838c0e0106e6f015:L0:000149",
+    "raptor:67600e79:L1:fabc55ad535b463a",
+    "634431bb1e27714f:L0:000088"
+  ],
+  "filtered_ids": [
+    "ba3cd068cf9ac2e4:L0:000088",
+    "cb96563b0747a6ba:L0:000167",
+    "838c0e0106e6f015:L0:000149",
+    "raptor:67600e79:L1:fabc55ad535b463a",
+    "634431bb1e27714f:L0:000088"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:15:22.283441+00:00",
+      "call_id": "07e719367f14",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c9c73e43c6187617",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2aaf0f055b6d4438"
+    },
+    {
+      "ts": "2026-11-16T12:15:36.710056+00:00",
+      "call_id": "bf7fcf03efc8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3fe51167f4c2732a",
+      "prompt_tokens": 1257,
+      "completion_tokens": 63,
+      "latency_ms": 11723.89,
+      "server_ms": 11694.9,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2aaf0f055b6d4438"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1257,
+    "completion_tokens": 63,
+    "total_ms": 14432.64
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

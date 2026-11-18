@@ -1,0 +1,183 @@
+{
+  "trace_id": "748f5f25f65847cd",
+  "created_at": "2026-11-16T13:14:21.792775+00:00",
+  "query": "In The Book of Five Rings, what advice does Miyamoto Musashi give regarding debugging TypeScript compiler errors?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3993.48
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3993.59
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 18247.91
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.36,
+      "bm25_ms": 35.29,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 3947.61
+      },
+      "hits": [
+        {
+          "id": "raptor:7b17be58:L2:c1b1c31e1432cf79",
+          "score": 0.2235235571861267,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.2235235571861267
+        },
+        {
+          "id": "raptor:7b17be58:L1:d0f270175d1de7d9",
+          "score": -0.002152545377612114,
+          "fused": 0.5590151421397159,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -0.002152545377612114
+        },
+        {
+          "id": "raptor:7b17be58:L3:28e69df69d22b0fa",
+          "score": -0.07639600336551666,
+          "fused": 0.5141977321796019,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -0.07639600336551666
+        },
+        {
+          "id": "raptor:7b17be58:L1:50cd151b6480c382",
+          "score": -1.0831141471862793,
+          "fused": 0.3322150279862265,
+          "dense_rank": null,
+          "bm25_rank": 17,
+          "fused_rank": 17,
+          "rerank": -1.0831141471862793
+        },
+        {
+          "id": "54e450272e768455:L0:000000",
+          "score": -2.1571576595306396,
+          "fused": 0.6566901158190398,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -2.1571576595306396
+        }
+      ],
+      "latency_ms": 3993.39
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1010,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14254.22
+    }
+  },
+  "retrieved_ids": [
+    "raptor:7b17be58:L2:c1b1c31e1432cf79",
+    "raptor:7b17be58:L1:d0f270175d1de7d9",
+    "raptor:7b17be58:L3:28e69df69d22b0fa",
+    "raptor:7b17be58:L1:50cd151b6480c382",
+    "54e450272e768455:L0:000000"
+  ],
+  "filtered_ids": [
+    "raptor:7b17be58:L2:c1b1c31e1432cf79",
+    "raptor:7b17be58:L1:d0f270175d1de7d9",
+    "raptor:7b17be58:L3:28e69df69d22b0fa",
+    "raptor:7b17be58:L1:50cd151b6480c382",
+    "54e450272e768455:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:14:21.795773+00:00",
+      "call_id": "a8424322376c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9ab9e3334bd817a5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "748f5f25f65847cd"
+    },
+    {
+      "ts": "2026-11-16T13:14:40.040377+00:00",
+      "call_id": "bdce05e3e993",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "266e3d715aa7be3b",
+      "prompt_tokens": 1527,
+      "completion_tokens": 79,
+      "latency_ms": 14253.23,
+      "server_ms": 14224.98,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "748f5f25f65847cd"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1527,
+    "completion_tokens": 79,
+    "total_ms": 18249.48
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

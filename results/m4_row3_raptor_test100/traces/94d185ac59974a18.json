@@ -1,0 +1,164 @@
+{
+  "trace_id": "94d185ac59974a18",
+  "created_at": "2026-11-16T09:56:44.077881+00:00",
+  "query": "The 249th episode of \"The Simpsons\" was aired on what date?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.34
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.41
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16455.77
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.04,
+      "bm25_ms": 7.92,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:2cee9599639841e2",
+          "score": 0.9706828878204801,
+          "fused": 0.9706828878204801,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000092",
+          "score": 0.8337232683982666,
+          "fused": 0.8337232683982666,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000153",
+          "score": 0.7796979253395755,
+          "fused": 0.7796979253395755,
+          "dense_rank": 8,
+          "bm25_rank": 3
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000000",
+          "score": 0.777995688603407,
+          "fused": 0.777995688603407,
+          "dense_rank": 15,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:725339da7d122747",
+          "score": 0.6468276954578472,
+          "fused": 0.6468276954578472,
+          "dense_rank": 2,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 11.29
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 642,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16444.25
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:2cee9599639841e2",
+    "81fc433d55d23b4c:L0:000092",
+    "838c0e0106e6f015:L0:000153",
+    "9794e842cc9565f0:L0:000000",
+    "raptor:67600e79:L1:725339da7d122747"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:2cee9599639841e2",
+    "81fc433d55d23b4c:L0:000092",
+    "838c0e0106e6f015:L0:000153",
+    "9794e842cc9565f0:L0:000000",
+    "raptor:67600e79:L1:725339da7d122747"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:56:44.078887+00:00",
+      "call_id": "caee580f4a5d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "45ff1bb8e0d528ac",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "94d185ac59974a18"
+    },
+    {
+      "ts": "2026-11-16T09:57:00.532868+00:00",
+      "call_id": "b221da6340e2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f8af740289c0519a",
+      "prompt_tokens": 1235,
+      "completion_tokens": 103,
+      "latency_ms": 16443.1,
+      "server_ms": 16408.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "94d185ac59974a18"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1235,
+    "completion_tokens": 103,
+    "total_ms": 16457.43
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

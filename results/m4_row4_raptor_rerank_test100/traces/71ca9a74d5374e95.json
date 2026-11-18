@@ -1,0 +1,180 @@
+{
+  "trace_id": "71ca9a74d5374e95",
+  "created_at": "2026-11-16T11:15:43.554828+00:00",
+  "query": "What was Nintendo's limit on games per developer per year on the gaming platform with a three letter abbreviation that the game Bigfoot was on?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2915.65
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2916.82
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16845.16
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.52,
+      "bm25_ms": 30.07,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2879.01
+      },
+      "hits": [
+        {
+          "id": "5a1a5bbda9db013e:L0:000011",
+          "score": 1.0785870552062988,
+          "fused": 0.3798686460458108,
+          "dense_rank": 39,
+          "bm25_rank": 8,
+          "fused_rank": 11,
+          "rerank": 1.0785870552062988
+        },
+        {
+          "id": "raptor:67600e79:L1:6781507b13a04642",
+          "score": 0.41766390204429626,
+          "fused": 0.7435615915968952,
+          "dense_rank": 1,
+          "bm25_rank": 5,
+          "fused_rank": 2,
+          "rerank": 0.41766390204429626
+        },
+        {
+          "id": "raptor:67600e79:L1:e0813f8313e922de",
+          "score": 0.38823550939559937,
+          "fused": 0.7139178108240148,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 0.38823550939559937
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000190",
+          "score": 0.24142305552959442,
+          "fused": 0.916579976963466,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.24142305552959442
+        },
+        {
+          "id": "raptor:67600e79:L2:574bc9d80e5dba35",
+          "score": -0.44527027010917664,
+          "fused": 0.3805029658002567,
+          "dense_rank": 2,
+          "bm25_rank": 33,
+          "fused_rank": 10,
+          "rerank": -0.44527027010917664
+        }
+      ],
+      "latency_ms": 2915.59
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 787,
+      "latency_ms": 1.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13927.68
+    }
+  },
+  "retrieved_ids": [
+    "5a1a5bbda9db013e:L0:000011",
+    "raptor:67600e79:L1:6781507b13a04642",
+    "raptor:67600e79:L1:e0813f8313e922de",
+    "ad11b6e85f908fb3:L0:000190",
+    "raptor:67600e79:L2:574bc9d80e5dba35"
+  ],
+  "filtered_ids": [
+    "5a1a5bbda9db013e:L0:000011",
+    "raptor:67600e79:L1:6781507b13a04642",
+    "raptor:67600e79:L1:e0813f8313e922de",
+    "ad11b6e85f908fb3:L0:000190",
+    "raptor:67600e79:L2:574bc9d80e5dba35"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:15:43.555837+00:00",
+      "call_id": "87e20f02ee2f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5f0026521f965e59",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "71ca9a74d5374e95"
+    },
+    {
+      "ts": "2026-11-16T11:16:00.398100+00:00",
+      "call_id": "a936a018c00a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4ff1e971c6316a29",
+      "prompt_tokens": 1364,
+      "completion_tokens": 80,
+      "latency_ms": 13926.52,
+      "server_ms": 13898.53,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "71ca9a74d5374e95"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1364,
+    "completion_tokens": 80,
+    "total_ms": 16849.07
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

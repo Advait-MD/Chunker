@@ -1,0 +1,180 @@
+{
+  "trace_id": "352a722d6048493e",
+  "created_at": "2026-11-16T11:12:16.971870+00:00",
+  "query": "Which city shares border with the area having Bella Vista High School?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4059.27
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4060.02
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13926.24
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.65,
+      "bm25_ms": 26.85,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 11,
+        "latency_ms": 4020.23
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:09e0a54576e17495",
+          "score": -0.7916818261146545,
+          "fused": 0.8631658686867671,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": -0.7916818261146545
+        },
+        {
+          "id": "a168352d83e925b5:L0:000136",
+          "score": -1.2779428958892822,
+          "fused": 0.16143533816444167,
+          "dense_rank": 36,
+          "bm25_rank": 13,
+          "fused_rank": 16,
+          "rerank": -1.2779428958892822
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000126",
+          "score": -1.6294413805007935,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": -1.6294413805007935
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000153",
+          "score": -2.9967200756073,
+          "fused": 0.6449105634422122,
+          "dense_rank": 31,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": -2.9967200756073
+        },
+        {
+          "id": "raptor:67600e79:L2:430e9c95a54910bc",
+          "score": -3.0106382369995117,
+          "fused": 0.6751751521727376,
+          "dense_rank": 2,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": -3.0106382369995117
+        }
+      ],
+      "latency_ms": 4059.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 556,
+      "latency_ms": 0.69
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9866.09
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:09e0a54576e17495",
+    "a168352d83e925b5:L0:000136",
+    "ad11b6e85f908fb3:L0:000126",
+    "ad11b6e85f908fb3:L0:000153",
+    "raptor:67600e79:L2:430e9c95a54910bc"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:09e0a54576e17495",
+    "a168352d83e925b5:L0:000136",
+    "ad11b6e85f908fb3:L0:000126",
+    "ad11b6e85f908fb3:L0:000153",
+    "raptor:67600e79:L2:430e9c95a54910bc"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:12:16.973155+00:00",
+      "call_id": "9131347f777f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "df2f2e60187fb4af",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "352a722d6048493e"
+    },
+    {
+      "ts": "2026-11-16T11:12:30.896883+00:00",
+      "call_id": "5de8d02879ed",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6a4190318ce04a89",
+      "prompt_tokens": 1124,
+      "completion_tokens": 47,
+      "latency_ms": 9864.97,
+      "server_ms": 9840.38,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "352a722d6048493e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1124,
+    "completion_tokens": 47,
+    "total_ms": 13927.74
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

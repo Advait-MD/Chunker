@@ -1,0 +1,166 @@
+{
+  "trace_id": "c9e6b42b7bb34f0a",
+  "created_at": "2026-11-15T09:38:02.498666+00:00",
+  "query": "Why was the painting so clear?\n\nOptions:\n(A) Broom had never seen a painting\n(B) Broom's fuzziness made it look clearer than it was\n(C) It was special future paint\n(D) It was a photograph\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.0
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.99
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.03
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17218.49
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.03,
+      "bm25_ms": 10.83,
+      "n_candidates": {
+        "dense": 18,
+        "bm25": 18
+      },
+      "n_fused": 18,
+      "hits": [
+        {
+          "id": "fce4ea1168a4a062:L0:000005",
+          "score": 0.9407091118783816,
+          "fused": 0.9407091118783816,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "fce4ea1168a4a062:L0:000004",
+          "score": 0.7067233821959156,
+          "fused": 0.7067233821959156,
+          "dense_rank": 10,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:5254d856:L1:d4463a46d6491b2c",
+          "score": 0.7053728721293469,
+          "fused": 0.7053728721293469,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "fce4ea1168a4a062:L0:000011",
+          "score": 0.6349928307032328,
+          "fused": 0.6349928307032328,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:5254d856:L2:9639708a0b936fcf",
+          "score": 0.5571915691987842,
+          "fused": 0.5571915691987842,
+          "dense_rank": 13,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 12.97
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1571,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17205.35
+    }
+  },
+  "retrieved_ids": [
+    "fce4ea1168a4a062:L0:000005",
+    "fce4ea1168a4a062:L0:000004",
+    "raptor:5254d856:L1:d4463a46d6491b2c",
+    "fce4ea1168a4a062:L0:000011",
+    "raptor:5254d856:L2:9639708a0b936fcf"
+  ],
+  "filtered_ids": [
+    "fce4ea1168a4a062:L0:000005",
+    "fce4ea1168a4a062:L0:000004",
+    "raptor:5254d856:L1:d4463a46d6491b2c",
+    "fce4ea1168a4a062:L0:000011",
+    "raptor:5254d856:L2:9639708a0b936fcf"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:38:02.499673+00:00",
+      "call_id": "2245e947a319",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5441259e2e88aa76",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c9e6b42b7bb34f0a"
+    },
+    {
+      "ts": "2026-11-15T09:38:19.716738+00:00",
+      "call_id": "c1cefb522643",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9eaa9243bd915103",
+      "prompt_tokens": 2160,
+      "completion_tokens": 62,
+      "latency_ms": 17204.44,
+      "server_ms": 17168.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "c9e6b42b7bb34f0a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2160,
+    "completion_tokens": 62,
+    "total_ms": 17219.56
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

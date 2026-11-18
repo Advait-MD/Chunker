@@ -1,0 +1,165 @@
+{
+  "trace_id": "abf65f270367438e",
+  "created_at": "2026-11-17T14:04:34.486808+00:00",
+  "query": "What are the components of the general knowledge learning engine?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8.26
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8.32
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24178.83
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.2,
+      "bm25_ms": 3.77,
+      "n_candidates": {
+        "dense": 34,
+        "bm25": 29
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "6ce240d9e740e098:L0:000000",
+          "score": 0.9242423778113165,
+          "fused": 0.9242423778113165,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "6ce240d9e740e098:L0:000023",
+          "score": 0.8917136645521808,
+          "fused": 0.8917136645521808,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:304c1fdd:L1:5196a51ce8f38d8b",
+          "score": 0.7021383137565568,
+          "fused": 0.7021383137565568,
+          "dense_rank": 6,
+          "bm25_rank": 3
+        },
+        {
+          "id": "6ce240d9e740e098:L0:000009",
+          "score": 0.6065718413607928,
+          "fused": 0.6065718413607928,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "6ce240d9e740e098:L0:000003",
+          "score": 0.5357556982586058,
+          "fused": 0.5357556982586058,
+          "dense_rank": 19,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 8.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1242,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24170.35
+    }
+  },
+  "retrieved_ids": [
+    "6ce240d9e740e098:L0:000000",
+    "6ce240d9e740e098:L0:000023",
+    "raptor:304c1fdd:L1:5196a51ce8f38d8b",
+    "6ce240d9e740e098:L0:000009",
+    "6ce240d9e740e098:L0:000003"
+  ],
+  "filtered_ids": [
+    "6ce240d9e740e098:L0:000000",
+    "6ce240d9e740e098:L0:000023",
+    "raptor:304c1fdd:L1:5196a51ce8f38d8b",
+    "6ce240d9e740e098:L0:000009",
+    "6ce240d9e740e098:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:04:34.487820+00:00",
+      "call_id": "b59c7eb2cc52",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "070485367dfbe973",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "abf65f270367438e"
+    },
+    {
+      "ts": "2026-11-17T14:04:58.663584+00:00",
+      "call_id": "6d71f61b853d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a31793530cbe1384",
+      "prompt_tokens": 1899,
+      "completion_tokens": 130,
+      "latency_ms": 24168.87,
+      "server_ms": 24129.66,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "abf65f270367438e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1899,
+    "completion_tokens": 130,
+    "total_ms": 24180.11
+  },
+  "config_hash": "4bfd5d82ddb6",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "trace_id": "535bb28296a24460",
+  "created_at": "2026-11-15T10:00:38.587451+00:00",
+  "query": "What is the relationship between Caldwell and Johnson?\n\nOptions:\n(A) They're strangers\n(B) They're coworkers\n(C) They're new acquaintances\n(D) They're old friends\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 41.61
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 44.01
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24396.35
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.26,
+      "bm25_ms": 34.91,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:2b085d19:L1:69634f0d2d78114c",
+          "score": 0.9062194455421515,
+          "fused": 0.9062194455421515,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "386249fc4b7966ab:L0:000000",
+          "score": 0.809840693974831,
+          "fused": 0.809840693974831,
+          "dense_rank": 11,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:2b085d19:L2:c0cb24a7a39f0682",
+          "score": 0.7921178441255349,
+          "fused": 0.7921178441255349,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "386249fc4b7966ab:L0:000008",
+          "score": 0.7855531374309203,
+          "fused": 0.7855531374309203,
+          "dense_rank": 10,
+          "bm25_rank": 2
+        },
+        {
+          "id": "386249fc4b7966ab:L0:000016",
+          "score": 0.7291893248982408,
+          "fused": 0.7291893248982408,
+          "dense_rank": 9,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 41.54
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1372,
+      "latency_ms": 2.36
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24352.12
+    }
+  },
+  "retrieved_ids": [
+    "raptor:2b085d19:L1:69634f0d2d78114c",
+    "386249fc4b7966ab:L0:000000",
+    "raptor:2b085d19:L2:c0cb24a7a39f0682",
+    "386249fc4b7966ab:L0:000008",
+    "386249fc4b7966ab:L0:000016"
+  ],
+  "filtered_ids": [
+    "raptor:2b085d19:L1:69634f0d2d78114c",
+    "386249fc4b7966ab:L0:000000",
+    "raptor:2b085d19:L2:c0cb24a7a39f0682",
+    "386249fc4b7966ab:L0:000008",
+    "386249fc4b7966ab:L0:000016"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T10:00:38.587451+00:00",
+      "call_id": "246d3c6ef1a5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c7873b2ae3c7f780",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "535bb28296a24460"
+    },
+    {
+      "ts": "2026-11-15T10:01:02.981878+00:00",
+      "call_id": "7afddcddee0c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b9b47641addd85a3",
+      "prompt_tokens": 1959,
+      "completion_tokens": 48,
+      "latency_ms": 24349.97,
+      "server_ms": 24306.48,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "535bb28296a24460"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1959,
+    "completion_tokens": 48,
+    "total_ms": 24400.57
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

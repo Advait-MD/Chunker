@@ -1,0 +1,182 @@
+{
+  "trace_id": "3815e99c3e66414e",
+  "created_at": "2026-11-16T12:26:38.242854+00:00",
+  "query": "Where is the concert venue which hosted the first US performance of \"Libuše\" located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2431.32
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2431.5
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13442.68
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.47,
+      "bm25_ms": 10.28,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2415.98
+      },
+      "hits": [
+        {
+          "id": "81fc433d55d23b4c:L0:000172",
+          "score": 6.208008289337158,
+          "fused": 0.4548558564342422,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 11,
+          "rerank": 6.208008289337158
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000129",
+          "score": 2.1107337474823,
+          "fused": 0.46059186767548055,
+          "dense_rank": 8,
+          "bm25_rank": 10,
+          "fused_rank": 10,
+          "rerank": 2.1107337474823
+        },
+        {
+          "id": "raptor:67600e79:L1:f3b4288614029cd8",
+          "score": 2.0468039512634277,
+          "fused": 0.46121747895097587,
+          "dense_rank": 2,
+          "bm25_rank": 13,
+          "fused_rank": 9,
+          "rerank": 2.0468039512634277
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000067",
+          "score": -0.7667419910430908,
+          "fused": 0.6630967194121076,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -0.7667419910430908
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000067",
+          "score": -2.3063929080963135,
+          "fused": 0.48436091017409466,
+          "dense_rank": 5,
+          "bm25_rank": 11,
+          "fused_rank": 8,
+          "rerank": -2.3063929080963135
+        }
+      ],
+      "latency_ms": 2431.26
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 631,
+      "latency_ms": 0.13
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11011.09
+    }
+  },
+  "retrieved_ids": [
+    "81fc433d55d23b4c:L0:000172",
+    "cc2399aca11eb631:L0:000129",
+    "raptor:67600e79:L1:f3b4288614029cd8",
+    "ec3410ef955c5c93:L0:000067",
+    "bc1dba3471045f02:L0:000067"
+  ],
+  "filtered_ids": [
+    "81fc433d55d23b4c:L0:000172",
+    "cc2399aca11eb631:L0:000129",
+    "raptor:67600e79:L1:f3b4288614029cd8",
+    "ec3410ef955c5c93:L0:000067",
+    "bc1dba3471045f02:L0:000067"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:26:38.244855+00:00",
+      "call_id": "c813c48e4498",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "68a32ca3ba030790",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "3815e99c3e66414e"
+    },
+    {
+      "ts": "2026-11-16T12:26:51.685095+00:00",
+      "call_id": "0c70e1d20b8a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "76dcdb9810a6fd8e",
+      "prompt_tokens": 1270,
+      "completion_tokens": 51,
+      "latency_ms": 11009.82,
+      "server_ms": 10976.31,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "3815e99c3e66414e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1270,
+    "completion_tokens": 51,
+    "total_ms": 13445.49
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "The concert venue which hosted the first US performance of"
+      ]
+    }
+  }
+}

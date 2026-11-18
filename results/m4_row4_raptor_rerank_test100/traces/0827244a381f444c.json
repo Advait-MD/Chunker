@@ -1,0 +1,179 @@
+{
+  "trace_id": "0827244a381f444c",
+  "created_at": "2026-11-16T12:56:06.507434+00:00",
+  "query": "When was the director of film I Want Someone To Eat Cheese With born?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1981.06
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1981.84
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17855.63
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.09,
+      "bm25_ms": 9.19,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 1966.6
+      },
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000075",
+          "score": 8.77865219116211,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.77865219116211
+        },
+        {
+          "id": "raptor:67600e79:L1:503ab09f3326f1ad",
+          "score": 1.3123952150344849,
+          "fused": 0.5234400243126824,
+          "dense_rank": 7,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.3123952150344849
+        },
+        {
+          "id": "abe982d210232c3f:L0:000084",
+          "score": 0.6614173650741577,
+          "fused": 0.20484091550482608,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 6,
+          "rerank": 0.6614173650741577
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -0.24908939003944397,
+          "fused": 0.167824131047119,
+          "dense_rank": 8,
+          "bm25_rank": null,
+          "fused_rank": 10,
+          "rerank": -0.24908939003944397
+        },
+        {
+          "id": "raptor:67600e79:L1:55efb21ad0a27956",
+          "score": -1.6589996814727783,
+          "fused": 0.17511349030546666,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 8,
+          "rerank": -1.6589996814727783
+        }
+      ],
+      "latency_ms": 1981.01
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1123,
+      "latency_ms": 0.74
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15873.6
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000075",
+    "raptor:67600e79:L1:503ab09f3326f1ad",
+    "abe982d210232c3f:L0:000084",
+    "b04ce6dd2d95fb80:L0:000152",
+    "raptor:67600e79:L1:55efb21ad0a27956"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000075",
+    "raptor:67600e79:L1:503ab09f3326f1ad",
+    "abe982d210232c3f:L0:000084",
+    "b04ce6dd2d95fb80:L0:000152",
+    "raptor:67600e79:L1:55efb21ad0a27956"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:56:06.508434+00:00",
+      "call_id": "42696d622c2e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e03822675f75bda0",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0827244a381f444c"
+    },
+    {
+      "ts": "2026-11-16T12:56:24.361371+00:00",
+      "call_id": "38569607f2cf",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f9e7c2979ed6858f",
+      "prompt_tokens": 1779,
+      "completion_tokens": 77,
+      "latency_ms": 15872.24,
+      "server_ms": 15839.82,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0827244a381f444c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1779,
+    "completion_tokens": 77,
+    "total_ms": 17857.58
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

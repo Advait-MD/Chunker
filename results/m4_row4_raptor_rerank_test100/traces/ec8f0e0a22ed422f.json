@@ -1,0 +1,183 @@
+{
+  "trace_id": "ec8f0e0a22ed422f",
+  "created_at": "2026-11-16T12:04:09.665749+00:00",
+  "query": "What is Ernie likely to do next time he sees Vivian?\n\nOptions:\n(A) Joke with her\n(B) Avoid her\n(C) Ask her to lunch\n(D) Make fun of her\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2245.55
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2245.71
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21971.0
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.55,
+      "bm25_ms": 20.9,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 24
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2216.76
+      },
+      "hits": [
+        {
+          "id": "de9de8d3c22b17cd:L0:000018",
+          "score": 0.45686182379722595,
+          "fused": 0.6457697031179163,
+          "dense_rank": 6,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": 0.45686182379722595
+        },
+        {
+          "id": "de9de8d3c22b17cd:L0:000017",
+          "score": 0.3879954516887665,
+          "fused": 0.5931266687278893,
+          "dense_rank": 3,
+          "bm25_rank": 13,
+          "fused_rank": 8,
+          "rerank": 0.3879954516887665
+        },
+        {
+          "id": "raptor:e1d5b414:L1:a0144d63d740a0d1",
+          "score": -0.13579168915748596,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.13579168915748596
+        },
+        {
+          "id": "de9de8d3c22b17cd:L0:000016",
+          "score": -0.960181713104248,
+          "fused": 0.621496334371078,
+          "dense_rank": 8,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -0.960181713104248
+        },
+        {
+          "id": "de9de8d3c22b17cd:L0:000007",
+          "score": -1.282289981842041,
+          "fused": 0.5580066913360001,
+          "dense_rank": 5,
+          "bm25_rank": 14,
+          "fused_rank": 9,
+          "rerank": -1.282289981842041
+        }
+      ],
+      "latency_ms": 2245.49
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1601,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19725.16
+    }
+  },
+  "retrieved_ids": [
+    "de9de8d3c22b17cd:L0:000018",
+    "de9de8d3c22b17cd:L0:000017",
+    "raptor:e1d5b414:L1:a0144d63d740a0d1",
+    "de9de8d3c22b17cd:L0:000016",
+    "de9de8d3c22b17cd:L0:000007"
+  ],
+  "filtered_ids": [
+    "de9de8d3c22b17cd:L0:000018",
+    "de9de8d3c22b17cd:L0:000017",
+    "raptor:e1d5b414:L1:a0144d63d740a0d1",
+    "de9de8d3c22b17cd:L0:000016",
+    "de9de8d3c22b17cd:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:04:09.666750+00:00",
+      "call_id": "0cc875b0a679",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "37588d02071ef8d9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ec8f0e0a22ed422f"
+    },
+    {
+      "ts": "2026-11-16T12:04:31.636211+00:00",
+      "call_id": "a6f392ebe97a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "63d5ddb1448e42e9",
+      "prompt_tokens": 2170,
+      "completion_tokens": 59,
+      "latency_ms": 19723.63,
+      "server_ms": 19685.73,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ec8f0e0a22ed422f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2170,
+    "completion_tokens": 59,
+    "total_ms": 21976.49
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        4
+      ],
+      "uncited_sentences": [
+        "(C) Ask her to lunch, as he had been prodding himself to do previously."
+      ]
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "trace_id": "667f5a5844034c85",
+  "created_at": "2026-11-16T12:04:31.644397+00:00",
+  "query": "What was the passage of time over the course of the story?\n\nOptions:\n(A) Days\n(B) Months\n(C) Hours\n(D) Weeks\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 966.04
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 966.14
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17471.82
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.15,
+      "bm25_ms": 18.48,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 18
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 2,
+        "latency_ms": 942.17
+      },
+      "hits": [
+        {
+          "id": "ef846b5c8602cdfe:L0:000000",
+          "score": -4.692671298980713,
+          "fused": 0.14055660582273605,
+          "dense_rank": 9,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": -4.692671298980713
+        },
+        {
+          "id": "ef846b5c8602cdfe:L0:000012",
+          "score": -4.776972770690918,
+          "fused": 0.3134311993231519,
+          "dense_rank": 7,
+          "bm25_rank": 12,
+          "fused_rank": 12,
+          "rerank": -4.776972770690918
+        },
+        {
+          "id": "raptor:9dc24731:L1:85a14aa9344374a8",
+          "score": -4.868874549865723,
+          "fused": 0.09260526634950805,
+          "dense_rank": 18,
+          "bm25_rank": null,
+          "fused_rank": 20,
+          "rerank": -4.868874549865723
+        },
+        {
+          "id": "raptor:9dc24731:L1:7d22d518f2abb59a",
+          "score": -4.985225200653076,
+          "fused": 0.2360109550594518,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 13,
+          "rerank": -4.985225200653076
+        },
+        {
+          "id": "ef846b5c8602cdfe:L0:000015",
+          "score": -5.007678508758545,
+          "fused": 0.23479694970901197,
+          "dense_rank": 8,
+          "bm25_rank": 15,
+          "fused_rank": 14,
+          "rerank": -5.007678508758545
+        }
+      ],
+      "latency_ms": 965.98
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1414,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16505.57
+    }
+  },
+  "retrieved_ids": [
+    "ef846b5c8602cdfe:L0:000000",
+    "ef846b5c8602cdfe:L0:000012",
+    "raptor:9dc24731:L1:85a14aa9344374a8",
+    "raptor:9dc24731:L1:7d22d518f2abb59a",
+    "ef846b5c8602cdfe:L0:000015"
+  ],
+  "filtered_ids": [
+    "ef846b5c8602cdfe:L0:000000",
+    "ef846b5c8602cdfe:L0:000012",
+    "raptor:9dc24731:L1:85a14aa9344374a8",
+    "raptor:9dc24731:L1:7d22d518f2abb59a",
+    "ef846b5c8602cdfe:L0:000015"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:04:31.645403+00:00",
+      "call_id": "f49cf253000f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b20a8d608902e0e7",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "667f5a5844034c85"
+    },
+    {
+      "ts": "2026-11-16T12:04:49.114988+00:00",
+      "call_id": "b1446b046566",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "29136d3533103d5b",
+      "prompt_tokens": 1961,
+      "completion_tokens": 41,
+      "latency_ms": 16503.73,
+      "server_ms": 16465.97,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "667f5a5844034c85"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1961,
+    "completion_tokens": 41,
+    "total_ms": 17474.32
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "(C) Hours"
+      ]
+    }
+  }
+}

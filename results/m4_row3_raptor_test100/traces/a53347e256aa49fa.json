@@ -1,0 +1,168 @@
+{
+  "trace_id": "a53347e256aa49fa",
+  "created_at": "2026-11-16T10:16:00.822905+00:00",
+  "query": "Which film has the director who was born later, I'Ll Take Sweden or His Majesty, The American?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.54
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.6
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 16006.52
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.31,
+      "bm25_ms": 8.9,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000144",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:505e69d509746dca",
+          "score": 0.3626605545235266,
+          "fused": 0.3626605545235266,
+          "dense_rank": 1,
+          "bm25_rank": 13
+        },
+        {
+          "id": "460e441179bec402:L0:000052",
+          "score": 0.3202359288226753,
+          "fused": 0.3202359288226753,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:4ccf2ecb9ccce46b",
+          "score": 0.2443723591194651,
+          "fused": 0.2443723591194651,
+          "dense_rank": 8,
+          "bm25_rank": 7
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000057",
+          "score": 0.21833787638767024,
+          "fused": 0.21833787638767024,
+          "dense_rank": null,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 12.5
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 565,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15993.83
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000144",
+    "raptor:67600e79:L1:505e69d509746dca",
+    "460e441179bec402:L0:000052",
+    "raptor:67600e79:L1:4ccf2ecb9ccce46b",
+    "6af2db6cb86d77e2:L0:000057"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000144",
+    "raptor:67600e79:L1:505e69d509746dca",
+    "460e441179bec402:L0:000052",
+    "raptor:67600e79:L1:4ccf2ecb9ccce46b",
+    "6af2db6cb86d77e2:L0:000057"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:16:00.823910+00:00",
+      "call_id": "80084d9188b1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8a0c17ac2de93645",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a53347e256aa49fa"
+    },
+    {
+      "ts": "2026-11-16T10:16:16.828723+00:00",
+      "call_id": "8e7b4783ad66",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f6dc981ac844e7ff",
+      "prompt_tokens": 1143,
+      "completion_tokens": 92,
+      "latency_ms": 15992.74,
+      "server_ms": 15972.11,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a53347e256aa49fa"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1143,
+    "completion_tokens": 92,
+    "total_ms": 16007.66
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "His Majesty, the American was directed by Joseph Henabery, while I'll Take Sweden was directed by Frederick de Cordova.",
+        "The passage does not provide birth dates for either director, so it is impossible to determine who was born later based on the given information."
+      ]
+    }
+  }
+}

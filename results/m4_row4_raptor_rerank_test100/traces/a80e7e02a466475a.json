@@ -1,0 +1,179 @@
+{
+  "trace_id": "a80e7e02a466475a",
+  "created_at": "2026-11-16T12:44:31.559025+00:00",
+  "query": "Which film came out first, João Da Mata or Beautiful Girls (Film)?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1681.16
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1681.82
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11399.34
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.15,
+      "bm25_ms": 19.86,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 1653.68
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:147c70d38fb3fbc0",
+          "score": -2.8266875743865967,
+          "fused": 0.5596802880628424,
+          "dense_rank": 12,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -2.8266875743865967
+        },
+        {
+          "id": "raptor:67600e79:L1:8101e1ef1d58f063",
+          "score": -4.320312976837158,
+          "fused": 0.260348581641369,
+          "dense_rank": 11,
+          "bm25_rank": 19,
+          "fused_rank": 12,
+          "rerank": -4.320312976837158
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000153",
+          "score": -6.400783061981201,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -6.400783061981201
+        },
+        {
+          "id": "raptor:67600e79:L1:505e69d509746dca",
+          "score": -7.304696083068848,
+          "fused": 0.1813000595952098,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": -7.304696083068848
+        },
+        {
+          "id": "raptor:67600e79:L1:7e0f1175485f7d03",
+          "score": -7.569658279418945,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 8,
+          "rerank": -7.569658279418945
+        }
+      ],
+      "latency_ms": 1681.09
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 587,
+      "latency_ms": 0.63
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9717.42
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:147c70d38fb3fbc0",
+    "raptor:67600e79:L1:8101e1ef1d58f063",
+    "4a757779abfb4ba1:L0:000153",
+    "raptor:67600e79:L1:505e69d509746dca",
+    "raptor:67600e79:L1:7e0f1175485f7d03"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:147c70d38fb3fbc0",
+    "raptor:67600e79:L1:8101e1ef1d58f063",
+    "4a757779abfb4ba1:L0:000153",
+    "raptor:67600e79:L1:505e69d509746dca",
+    "raptor:67600e79:L1:7e0f1175485f7d03"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:44:31.562028+00:00",
+      "call_id": "114f811e765d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c9a63c032700f916",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a80e7e02a466475a"
+    },
+    {
+      "ts": "2026-11-16T12:44:42.958416+00:00",
+      "call_id": "21784da8c58a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "32b1eea8219b830e",
+      "prompt_tokens": 1130,
+      "completion_tokens": 45,
+      "latency_ms": 9716.3,
+      "server_ms": 9694.42,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a80e7e02a466475a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1130,
+    "completion_tokens": 45,
+    "total_ms": 11401.96
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

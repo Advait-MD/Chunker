@@ -1,0 +1,165 @@
+{
+  "trace_id": "0590b092578a484e",
+  "created_at": "2026-11-17T14:18:20.611826+00:00",
+  "query": "What was the protaganists most recent profession?\n\nOptions:\n(A) A police officer\n(B) A creative at an advertising agency\n(C) A pilot in World War One\n(D) A psychiatrist \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4.19
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4.24
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16632.11
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.1,
+      "bm25_ms": 0.88,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 23
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:71f5ff57:L2:290a03cf09b7b3f2",
+          "score": 0.8889749905823953,
+          "fused": 0.8889749905823953,
+          "dense_rank": 6,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000018",
+          "score": 0.8529390706350716,
+          "fused": 0.8529390706350716,
+          "dense_rank": 7,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:71f5ff57:L1:1563cc9254f12b52",
+          "score": 0.7720611556292764,
+          "fused": 0.7720611556292764,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:71f5ff57:L1:3f046502ec817fd0",
+          "score": 0.7371697377233164,
+          "fused": 0.7371697377233164,
+          "dense_rank": 4,
+          "bm25_rank": 4
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000017",
+          "score": 0.6871764837459808,
+          "fused": 0.6871764837459808,
+          "dense_rank": 13,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 4.15
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1214,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16627.75
+    }
+  },
+  "retrieved_ids": [
+    "raptor:71f5ff57:L2:290a03cf09b7b3f2",
+    "2ecd3be7264ff150:L0:000018",
+    "raptor:71f5ff57:L1:1563cc9254f12b52",
+    "raptor:71f5ff57:L1:3f046502ec817fd0",
+    "2ecd3be7264ff150:L0:000017"
+  ],
+  "filtered_ids": [
+    "raptor:71f5ff57:L2:290a03cf09b7b3f2",
+    "2ecd3be7264ff150:L0:000018",
+    "raptor:71f5ff57:L1:1563cc9254f12b52",
+    "raptor:71f5ff57:L1:3f046502ec817fd0",
+    "2ecd3be7264ff150:L0:000017"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:18:20.613206+00:00",
+      "call_id": "ef5b8f5dc0bc",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1ad572e3652890e5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0590b092578a484e"
+    },
+    {
+      "ts": "2026-11-17T14:18:37.243274+00:00",
+      "call_id": "3b037d00ba26",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "60de3ac6558977eb",
+      "prompt_tokens": 1741,
+      "completion_tokens": 63,
+      "latency_ms": 16626.76,
+      "server_ms": 16596.76,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0590b092578a484e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1741,
+    "completion_tokens": 63,
+    "total_ms": 16634.13
+  },
+  "config_hash": "ffd72ee0a5ce",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

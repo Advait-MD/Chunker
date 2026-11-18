@@ -1,0 +1,180 @@
+{
+  "trace_id": "ea324aa743584ebc",
+  "created_at": "2026-11-16T13:08:38.315563+00:00",
+  "query": "What was the name of Odysseus' faithful dog who recognized him upon his return to Ithaca?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3904.22
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3904.35
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21323.4
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.65,
+      "bm25_ms": 50.14,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 3836.6
+      },
+      "hits": [
+        {
+          "id": "raptor:da9c117e:L1:5e0b03f6bac9c60d",
+          "score": 3.4445462226867676,
+          "fused": 0.6543990095483155,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 3.4445462226867676
+        },
+        {
+          "id": "f9add743188fc69e:L0:000116",
+          "score": 2.869709014892578,
+          "fused": 0.7451877263684511,
+          "dense_rank": 2,
+          "bm25_rank": 5,
+          "fused_rank": 1,
+          "rerank": 2.869709014892578
+        },
+        {
+          "id": "raptor:da9c117e:L2:44bffc4854761ec5",
+          "score": 1.9153828620910645,
+          "fused": 0.4276134704602318,
+          "dense_rank": 37,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": 1.9153828620910645
+        },
+        {
+          "id": "raptor:da9c117e:L3:1c3317aa1209af63",
+          "score": 1.1651802062988281,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 1.1651802062988281
+        },
+        {
+          "id": "f9add743188fc69e:L0:000619",
+          "score": 0.5549436807632446,
+          "fused": 0.3108761172977986,
+          "dense_rank": 23,
+          "bm25_rank": 12,
+          "fused_rank": 10,
+          "rerank": 0.5549436807632446
+        }
+      ],
+      "latency_ms": 3904.16
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1324,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17418.93
+    }
+  },
+  "retrieved_ids": [
+    "raptor:da9c117e:L1:5e0b03f6bac9c60d",
+    "f9add743188fc69e:L0:000116",
+    "raptor:da9c117e:L2:44bffc4854761ec5",
+    "raptor:da9c117e:L3:1c3317aa1209af63",
+    "f9add743188fc69e:L0:000619"
+  ],
+  "filtered_ids": [
+    "raptor:da9c117e:L1:5e0b03f6bac9c60d",
+    "f9add743188fc69e:L0:000116",
+    "raptor:da9c117e:L2:44bffc4854761ec5",
+    "raptor:da9c117e:L3:1c3317aa1209af63",
+    "f9add743188fc69e:L0:000619"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:08:38.318098+00:00",
+      "call_id": "798ca95404b7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "984187ec17ed8fb4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ea324aa743584ebc"
+    },
+    {
+      "ts": "2026-11-16T13:08:59.637956+00:00",
+      "call_id": "2bf9ed2abc60",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "614cd2688e36c20b",
+      "prompt_tokens": 2072,
+      "completion_tokens": 65,
+      "latency_ms": 17417.83,
+      "server_ms": 17387.53,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ea324aa743584ebc"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2072,
+    "completion_tokens": 65,
+    "total_ms": 21326.16
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

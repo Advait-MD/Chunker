@@ -1,0 +1,181 @@
+{
+  "trace_id": "cdb15ff6d47e4323",
+  "created_at": "2026-11-16T11:23:01.812021+00:00",
+  "query": "Why is Common Sense, which was written by an author who encouraged revolt, an important work?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1986.52
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1987.24
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16495.74
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.51,
+      "bm25_ms": 15.93,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 1962.31
+      },
+      "hits": [
+        {
+          "id": "ce57fdde2baaba9c:L0:000059",
+          "score": 5.763888835906982,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.763888835906982
+        },
+        {
+          "id": "raptor:67600e79:L1:414ee2d91ae108c4",
+          "score": 2.4844748973846436,
+          "fused": 0.644717282924113,
+          "dense_rank": 2,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": 2.4844748973846436
+        },
+        {
+          "id": "raptor:67600e79:L2:0292b9eba914805a",
+          "score": 1.9926260709762573,
+          "fused": 0.33142024318390884,
+          "dense_rank": 3,
+          "bm25_rank": 26,
+          "fused_rank": 6,
+          "rerank": 1.9926260709762573
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000126",
+          "score": 1.7828329801559448,
+          "fused": 0.7412011595768796,
+          "dense_rank": 9,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.7828329801559448
+        },
+        {
+          "id": "4b634e52029ddab4:L0:000197",
+          "score": -3.1736021041870117,
+          "fused": 0.5932225798517813,
+          "dense_rank": 12,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -3.1736021041870117
+        }
+      ],
+      "latency_ms": 1986.45
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 727,
+      "latency_ms": 0.67
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14508.35
+    }
+  },
+  "retrieved_ids": [
+    "ce57fdde2baaba9c:L0:000059",
+    "raptor:67600e79:L1:414ee2d91ae108c4",
+    "raptor:67600e79:L2:0292b9eba914805a",
+    "f3503d3d186f0f90:L0:000126",
+    "4b634e52029ddab4:L0:000197"
+  ],
+  "filtered_ids": [
+    "ce57fdde2baaba9c:L0:000059",
+    "raptor:67600e79:L1:414ee2d91ae108c4",
+    "raptor:67600e79:L2:0292b9eba914805a",
+    "f3503d3d186f0f90:L0:000126",
+    "4b634e52029ddab4:L0:000197"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:23:01.814021+00:00",
+      "call_id": "f2622419b5c9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1ce0b44d095a1bf9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cdb15ff6d47e4323"
+    },
+    {
+      "ts": "2026-11-16T11:23:18.307128+00:00",
+      "call_id": "601ddc068618",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "32e897caa14c1d9b",
+      "prompt_tokens": 1296,
+      "completion_tokens": 86,
+      "latency_ms": 14506.89,
+      "server_ms": 14480.02,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "cdb15ff6d47e4323"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1296,
+    "completion_tokens": 86,
+    "total_ms": 16498.56
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

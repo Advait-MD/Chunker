@@ -1,0 +1,165 @@
+{
+  "trace_id": "2b5e853d8cd84757",
+  "created_at": "2026-11-17T15:08:17.793288+00:00",
+  "query": "Does the author think that Brexit was a good thing?\n\nOptions:\n(A) Yes, it showed a strength of democracy\n(B) No, it showed a weakness of democracy\n(C) Yes, the majority of voters got what they wanted\n(D) The article is unclear\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.55
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.58
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17672.73
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.8,
+      "bm25_ms": 9.63,
+      "n_candidates": {
+        "dense": 10,
+        "bm25": 10
+      },
+      "n_fused": 10,
+      "hits": [
+        {
+          "id": "02facda9aeb8e139:L0:000009",
+          "score": 0.8880698043480796,
+          "fused": 0.8880698043480796,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000001",
+          "score": 0.8118137401926331,
+          "fused": 0.8118137401926331,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000000",
+          "score": 0.795553933598548,
+          "fused": 0.795553933598548,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000003",
+          "score": 0.5368435380914615,
+          "fused": 0.5368435380914615,
+          "dense_rank": 9,
+          "bm25_rank": 4
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000007",
+          "score": 0.5328742439440484,
+          "fused": 0.5328742439440484,
+          "dense_rank": 5,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 11.53
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1924,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17661.08
+    }
+  },
+  "retrieved_ids": [
+    "02facda9aeb8e139:L0:000009",
+    "02facda9aeb8e139:L0:000001",
+    "02facda9aeb8e139:L0:000000",
+    "02facda9aeb8e139:L0:000003",
+    "02facda9aeb8e139:L0:000007"
+  ],
+  "filtered_ids": [
+    "02facda9aeb8e139:L0:000009",
+    "02facda9aeb8e139:L0:000001",
+    "02facda9aeb8e139:L0:000000",
+    "02facda9aeb8e139:L0:000003",
+    "02facda9aeb8e139:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T15:08:17.795287+00:00",
+      "call_id": "30214987dfa2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "81a363da6a9732b1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2b5e853d8cd84757"
+    },
+    {
+      "ts": "2026-11-17T15:08:35.466021+00:00",
+      "call_id": "9036f56e90d4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "02e81f427b3a647f",
+      "prompt_tokens": 2494,
+      "completion_tokens": 60,
+      "latency_ms": 17660.5,
+      "server_ms": 17640.32,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2b5e853d8cd84757"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2494,
+    "completion_tokens": 60,
+    "total_ms": 17673.23
+  },
+  "config_hash": "ed6e9ea8986c",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

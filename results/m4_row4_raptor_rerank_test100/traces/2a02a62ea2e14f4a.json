@@ -1,0 +1,181 @@
+{
+  "trace_id": "2a02a62ea2e14f4a",
+  "created_at": "2026-11-16T12:49:35.615807+00:00",
+  "query": "Do both films King Uncle and Kanyaka (Film) have the directors from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.1
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2198.99
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2199.06
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16454.13
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.16,
+      "bm25_ms": 4.77,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2190.79
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:27344a4d077cf4f1",
+          "score": 8.180449485778809,
+          "fused": 0.49846767198414654,
+          "dense_rank": 1,
+          "bm25_rank": 13,
+          "fused_rank": 2,
+          "rerank": 8.180449485778809
+        },
+        {
+          "id": "0eac870d43736f51:L0:000161",
+          "score": 7.7843852043151855,
+          "fused": 0.17251898739393903,
+          "dense_rank": null,
+          "bm25_rank": 16,
+          "fused_rank": 16,
+          "rerank": 7.7843852043151855
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000105",
+          "score": 7.485994338989258,
+          "fused": 0.33811858546386364,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 7.485994338989258
+        },
+        {
+          "id": "raptor:67600e79:L2:325b52b3230f4fb9",
+          "score": 2.9181313514709473,
+          "fused": 0.9436599726972847,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.9181313514709473
+        },
+        {
+          "id": "raptor:67600e79:L1:8d34389911815da1",
+          "score": 2.1592254638671875,
+          "fused": 0.13828582347806795,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": 2.1592254638671875
+        }
+      ],
+      "latency_ms": 2198.86
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 677,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14254.95
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:27344a4d077cf4f1",
+    "0eac870d43736f51:L0:000161",
+    "c73b757f0eb66f37:L0:000105",
+    "raptor:67600e79:L2:325b52b3230f4fb9",
+    "raptor:67600e79:L1:8d34389911815da1"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:27344a4d077cf4f1",
+    "0eac870d43736f51:L0:000161",
+    "c73b757f0eb66f37:L0:000105",
+    "raptor:67600e79:L2:325b52b3230f4fb9",
+    "raptor:67600e79:L1:8d34389911815da1"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:49:35.616815+00:00",
+      "call_id": "b9a8f6c0caa8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b35a1a7fc75f01a7",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2a02a62ea2e14f4a"
+    },
+    {
+      "ts": "2026-11-16T12:49:52.069159+00:00",
+      "call_id": "0cc98851f50b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4f1d6a60816f4a3a",
+      "prompt_tokens": 1362,
+      "completion_tokens": 90,
+      "latency_ms": 14254.25,
+      "server_ms": 14230.26,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2a02a62ea2e14f4a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1362,
+    "completion_tokens": 90,
+    "total_ms": 16455.33
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

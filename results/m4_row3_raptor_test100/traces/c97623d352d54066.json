@@ -1,0 +1,165 @@
+{
+  "trace_id": "c97623d352d54066",
+  "created_at": "2026-11-15T09:06:38.177642+00:00",
+  "query": "What kind of baseline model do they compare against?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.9
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.15
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13.55
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.21,
+      "bm25_ms": 7.8,
+      "n_candidates": {
+        "dense": 38,
+        "bm25": 18
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "a1de5eabf5a947c3:L0:000022",
+          "score": 0.9712314781673341,
+          "fused": 0.9712314781673341,
+          "dense_rank": 5,
+          "bm25_rank": 1
+        },
+        {
+          "id": "a1de5eabf5a947c3:L0:000024",
+          "score": 0.7990336457275393,
+          "fused": 0.7990336457275393,
+          "dense_rank": 12,
+          "bm25_rank": 2
+        },
+        {
+          "id": "a1de5eabf5a947c3:L0:000026",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "a1de5eabf5a947c3:L0:000023",
+          "score": 0.28637421510519306,
+          "fused": 0.28637421510519306,
+          "dense_rank": 3,
+          "bm25_rank": 15
+        },
+        {
+          "id": "a1de5eabf5a947c3:L0:000025",
+          "score": 0.28590082585776205,
+          "fused": 0.28590082585776205,
+          "dense_rank": 2,
+          "bm25_rank": 18
+        }
+      ],
+      "latency_ms": 11.87
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1181,
+      "latency_ms": 0.24
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 1.34
+    }
+  },
+  "retrieved_ids": [
+    "a1de5eabf5a947c3:L0:000022",
+    "a1de5eabf5a947c3:L0:000024",
+    "a1de5eabf5a947c3:L0:000026",
+    "a1de5eabf5a947c3:L0:000023",
+    "a1de5eabf5a947c3:L0:000025"
+  ],
+  "filtered_ids": [
+    "a1de5eabf5a947c3:L0:000022",
+    "a1de5eabf5a947c3:L0:000024",
+    "a1de5eabf5a947c3:L0:000026",
+    "a1de5eabf5a947c3:L0:000023",
+    "a1de5eabf5a947c3:L0:000025"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:06:38.178643+00:00",
+      "call_id": "f130bce164d7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a06a83a6e3a7ffa4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c97623d352d54066"
+    },
+    {
+      "ts": "2026-11-15T09:06:38.191062+00:00",
+      "call_id": "dba01647dd0c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2a4d64c0ad2c2f3f",
+      "prompt_tokens": 1888,
+      "completion_tokens": 123,
+      "latency_ms": 0.81,
+      "server_ms": 23951.69,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "c97623d352d54066"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 1888,
+    "completion_tokens": 123,
+    "total_ms": 14.49
+  },
+  "config_hash": "4304b1db8856",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

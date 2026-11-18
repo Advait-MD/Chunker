@@ -1,0 +1,179 @@
+{
+  "trace_id": "4ed8204ec27e4a4d",
+  "created_at": "2026-11-16T11:13:42.492090+00:00",
+  "query": "What is the seat of the county sharing a border with the county whose seat is the city WAPL is licensed to broadcast to?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1378.52
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1379.7
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13681.85
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.36,
+      "bm25_ms": 12.88,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 3,
+        "latency_ms": 1360.76
+      },
+      "hits": [
+        {
+          "id": "dd498e0082847164:L0:000127",
+          "score": 5.317844867706299,
+          "fused": 0.5376352147339541,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": 5.317844867706299
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000063",
+          "score": -0.569937527179718,
+          "fused": 0.5147622292694286,
+          "dense_rank": 3,
+          "bm25_rank": 16,
+          "fused_rank": 7,
+          "rerank": -0.569937527179718
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000167",
+          "score": -1.4252233505249023,
+          "fused": 0.301016813279249,
+          "dense_rank": 9,
+          "bm25_rank": 29,
+          "fused_rank": 20,
+          "rerank": -1.4252233505249023
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000027",
+          "score": -1.668829321861267,
+          "fused": 0.880250281385248,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": -1.668829321861267
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000141",
+          "score": -1.6785860061645508,
+          "fused": 0.5468163530147089,
+          "dense_rank": 7,
+          "bm25_rank": 9,
+          "fused_rank": 5,
+          "rerank": -1.6785860061645508
+        }
+      ],
+      "latency_ms": 1378.49
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 437,
+      "latency_ms": 1.13
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12302.01
+    }
+  },
+  "retrieved_ids": [
+    "dd498e0082847164:L0:000127",
+    "66f5caec1369ebaf:L0:000063",
+    "e182527d2b1ecac3:L0:000167",
+    "dbcbda865eee9c7b:L0:000027",
+    "ad11b6e85f908fb3:L0:000141"
+  ],
+  "filtered_ids": [
+    "dd498e0082847164:L0:000127",
+    "66f5caec1369ebaf:L0:000063",
+    "e182527d2b1ecac3:L0:000167",
+    "dbcbda865eee9c7b:L0:000027",
+    "ad11b6e85f908fb3:L0:000141"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:13:42.493333+00:00",
+      "call_id": "0f1ee097fe47",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "64b88e4c90ee6404",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4ed8204ec27e4a4d"
+    },
+    {
+      "ts": "2026-11-16T11:13:56.173004+00:00",
+      "call_id": "6d7069088234",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ed3a72cdc6b9b153",
+      "prompt_tokens": 1049,
+      "completion_tokens": 87,
+      "latency_ms": 12300.84,
+      "server_ms": 12278.74,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4ed8204ec27e4a4d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1049,
+    "completion_tokens": 87,
+    "total_ms": 13684.72
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

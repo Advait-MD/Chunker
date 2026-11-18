@@ -1,0 +1,180 @@
+{
+  "trace_id": "ee62ded2b4214fa0",
+  "created_at": "2026-11-16T11:11:45.502126+00:00",
+  "query": "When did the maker of Acura Legend, the company that makes Daihatsu Charmant, and Nissan open US assembly plants?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2090.26
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2091.24
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15728.61
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.63,
+      "bm25_ms": 25.55,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 2056.34
+      },
+      "hits": [
+        {
+          "id": "ce57fdde2baaba9c:L0:000159",
+          "score": 4.181000709533691,
+          "fused": 0.30743236607299973,
+          "dense_rank": 18,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 4.181000709533691
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000005",
+          "score": 2.004939317703247,
+          "fused": 0.3344632480136435,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 2.004939317703247
+        },
+        {
+          "id": "raptor:67600e79:L1:0a0c02a37a5518cd",
+          "score": 1.7707722187042236,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.7707722187042236
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000114",
+          "score": 1.067660927772522,
+          "fused": 0.5357628946562832,
+          "dense_rank": 9,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.067660927772522
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000133",
+          "score": 0.8782010674476624,
+          "fused": 0.26142634534370096,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 7,
+          "rerank": 0.8782010674476624
+        }
+      ],
+      "latency_ms": 2090.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 677,
+      "latency_ms": 0.93
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13637.15
+    }
+  },
+  "retrieved_ids": [
+    "ce57fdde2baaba9c:L0:000159",
+    "8b31d5859eb3d77a:L0:000005",
+    "raptor:67600e79:L1:0a0c02a37a5518cd",
+    "178c7e3e6ef6ae87:L0:000114",
+    "66f5caec1369ebaf:L0:000133"
+  ],
+  "filtered_ids": [
+    "ce57fdde2baaba9c:L0:000159",
+    "8b31d5859eb3d77a:L0:000005",
+    "raptor:67600e79:L1:0a0c02a37a5518cd",
+    "178c7e3e6ef6ae87:L0:000114",
+    "66f5caec1369ebaf:L0:000133"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:11:45.503519+00:00",
+      "call_id": "72306b4c240c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f6aed534ba8f27c5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ee62ded2b4214fa0"
+    },
+    {
+      "ts": "2026-11-16T11:12:01.229076+00:00",
+      "call_id": "0efb7c2719c8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "964b58f343d9b636",
+      "prompt_tokens": 1308,
+      "completion_tokens": 79,
+      "latency_ms": 13635.74,
+      "server_ms": 13608.44,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ee62ded2b4214fa0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1308,
+    "completion_tokens": 79,
+    "total_ms": 15732.07
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

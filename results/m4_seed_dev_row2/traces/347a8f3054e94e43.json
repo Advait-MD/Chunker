@@ -1,0 +1,167 @@
+{
+  "trace_id": "347a8f3054e94e43",
+  "created_at": "2026-11-17T14:54:25.723707+00:00",
+  "query": "Which datasets were used?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.01
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.1
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19447.31
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.62,
+      "bm25_ms": 5.15,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 13
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "f053e8347901e9aa:L0:000012",
+          "score": 0.886615737618505,
+          "fused": 0.886615737618505,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "f053e8347901e9aa:L0:000017",
+          "score": 0.449610603754119,
+          "fused": 0.449610603754119,
+          "dense_rank": 10,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f053e8347901e9aa:L0:000002",
+          "score": 0.3907868944836751,
+          "fused": 0.3907868944836751,
+          "dense_rank": 19,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f053e8347901e9aa:L0:000013",
+          "score": 0.363462426421789,
+          "fused": 0.363462426421789,
+          "dense_rank": 1,
+          "bm25_rank": 9
+        },
+        {
+          "id": "f053e8347901e9aa:L0:000000",
+          "score": 0.35033253255736535,
+          "fused": 0.35033253255736535,
+          "dense_rank": 8,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 8.98
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1058,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19438.12
+    }
+  },
+  "retrieved_ids": [
+    "f053e8347901e9aa:L0:000012",
+    "f053e8347901e9aa:L0:000017",
+    "f053e8347901e9aa:L0:000002",
+    "f053e8347901e9aa:L0:000013",
+    "f053e8347901e9aa:L0:000000"
+  ],
+  "filtered_ids": [
+    "f053e8347901e9aa:L0:000012",
+    "f053e8347901e9aa:L0:000017",
+    "f053e8347901e9aa:L0:000002",
+    "f053e8347901e9aa:L0:000013",
+    "f053e8347901e9aa:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:54:25.726702+00:00",
+      "call_id": "bc7bdf36872e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8e01b4964b21051d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "347a8f3054e94e43"
+    },
+    {
+      "ts": "2026-11-17T14:54:45.170124+00:00",
+      "call_id": "970591ae8b02",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8d1bf78b07477c23",
+      "prompt_tokens": 1739,
+      "completion_tokens": 96,
+      "latency_ms": 19436.96,
+      "server_ms": 19407.26,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "347a8f3054e94e43"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1739,
+    "completion_tokens": 96,
+    "total_ms": 19448.44
+  },
+  "config_hash": "d4a047076961",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        4
+      ],
+      "uncited_sentences": [
+        "The SNLI BIBREF22 and MultiNLI BIBREF23 datasets were used for the NLI task, and the Quora Question Pairs BIBREF24 dataset was used for the paraphrase identification task."
+      ]
+    }
+  }
+}

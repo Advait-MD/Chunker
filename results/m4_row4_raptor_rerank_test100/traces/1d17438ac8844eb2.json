@@ -1,0 +1,180 @@
+{
+  "trace_id": "1d17438ac8844eb2",
+  "created_at": "2026-11-16T11:09:53.060924+00:00",
+  "query": "Arie Supriyatna's birth country was one participant in a Commission of Truth and Friendship. Who is the president of the other country that participated?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3839.75
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3840.71
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17032.34
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.61,
+      "bm25_ms": 57.03,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 10,
+        "latency_ms": 3770.22
+      },
+      "hits": [
+        {
+          "id": "6683bfc7dec06e2a:L0:000079",
+          "score": 3.4746062755584717,
+          "fused": 0.586028245466222,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 3.4746062755584717
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000055",
+          "score": 0.8980436325073242,
+          "fused": 0.9958257668498094,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.8980436325073242
+        },
+        {
+          "id": "raptor:67600e79:L1:1201516e634831eb",
+          "score": 0.7515147924423218,
+          "fused": 0.4107732253531489,
+          "dense_rank": 10,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.7515147924423218
+        },
+        {
+          "id": "raptor:67600e79:L1:9134f9589dcca45d",
+          "score": -1.907939076423645,
+          "fused": 0.19596761265796822,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 10,
+          "rerank": -1.907939076423645
+        },
+        {
+          "id": "raptor:67600e79:L1:36b0b221400de7a8",
+          "score": -3.9876322746276855,
+          "fused": 0.22624005202678749,
+          "dense_rank": 8,
+          "bm25_rank": 22,
+          "fused_rank": 7,
+          "rerank": -3.9876322746276855
+        }
+      ],
+      "latency_ms": 3839.7
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 711,
+      "latency_ms": 0.92
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13191.3
+    }
+  },
+  "retrieved_ids": [
+    "6683bfc7dec06e2a:L0:000079",
+    "4fcce431f5d22d1d:L0:000055",
+    "raptor:67600e79:L1:1201516e634831eb",
+    "raptor:67600e79:L1:9134f9589dcca45d",
+    "raptor:67600e79:L1:36b0b221400de7a8"
+  ],
+  "filtered_ids": [
+    "6683bfc7dec06e2a:L0:000079",
+    "4fcce431f5d22d1d:L0:000055",
+    "raptor:67600e79:L1:1201516e634831eb",
+    "raptor:67600e79:L1:9134f9589dcca45d",
+    "raptor:67600e79:L1:36b0b221400de7a8"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:09:53.062231+00:00",
+      "call_id": "6ad769bbc784",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8319ecbb67e9b127",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1d17438ac8844eb2"
+    },
+    {
+      "ts": "2026-11-16T11:10:10.092148+00:00",
+      "call_id": "7b81f91222ab",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e7b0af498dc9d7eb",
+      "prompt_tokens": 1319,
+      "completion_tokens": 80,
+      "latency_ms": 13189.65,
+      "server_ms": 13165.97,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1d17438ac8844eb2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1319,
+    "completion_tokens": 80,
+    "total_ms": 17035.29
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

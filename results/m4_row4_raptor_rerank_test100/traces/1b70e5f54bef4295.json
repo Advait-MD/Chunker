@@ -1,0 +1,185 @@
+{
+  "trace_id": "1b70e5f54bef4295",
+  "created_at": "2026-11-16T12:41:20.189956+00:00",
+  "query": "Which film was released more recently, Sacred Silence or Ek Haseena Thi Ek Deewana Tha?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5284.96
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5286.2
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23536.68
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.2,
+      "bm25_ms": 20.17,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 15,
+        "latency_ms": 5256.58
+      },
+      "hits": [
+        {
+          "id": "53c7288bdcd3837a:L0:000003",
+          "score": 9.48718547821045,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 9.48718547821045
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000189",
+          "score": 8.08643627166748,
+          "fused": 0.20227672756700618,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 8,
+          "rerank": 8.08643627166748
+        },
+        {
+          "id": "raptor:67600e79:L1:0c50581c78a447f5",
+          "score": 6.730171203613281,
+          "fused": 0.7270276670355096,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 6.730171203613281
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000170",
+          "score": 3.636037826538086,
+          "fused": 0.15049613765840691,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 12,
+          "rerank": 3.636037826538086
+        },
+        {
+          "id": "abe982d210232c3f:L0:000064",
+          "score": 3.1512622833251953,
+          "fused": 0.1722644411434948,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 10,
+          "rerank": 3.1512622833251953
+        }
+      ],
+      "latency_ms": 5284.91
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 541,
+      "latency_ms": 1.19
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18250.28
+    }
+  },
+  "retrieved_ids": [
+    "53c7288bdcd3837a:L0:000003",
+    "c73b757f0eb66f37:L0:000189",
+    "raptor:67600e79:L1:0c50581c78a447f5",
+    "b04ce6dd2d95fb80:L0:000170",
+    "abe982d210232c3f:L0:000064"
+  ],
+  "filtered_ids": [
+    "53c7288bdcd3837a:L0:000003",
+    "c73b757f0eb66f37:L0:000189",
+    "raptor:67600e79:L1:0c50581c78a447f5",
+    "b04ce6dd2d95fb80:L0:000170",
+    "abe982d210232c3f:L0:000064"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:41:20.190956+00:00",
+      "call_id": "d293e305829b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e6ceb963240419fa",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1b70e5f54bef4295"
+    },
+    {
+      "ts": "2026-11-16T12:41:43.725382+00:00",
+      "call_id": "b6f380a34f7b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "cf08aa0ef318539b",
+      "prompt_tokens": 1226,
+      "completion_tokens": 120,
+      "latency_ms": 18249.07,
+      "server_ms": 18224.87,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1b70e5f54bef4295"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1226,
+    "completion_tokens": 120,
+    "total_ms": 23538.88
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        4,
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, Ek Haseena Thi Ek Deewana Tha was released more recently."
+      ]
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "trace_id": "f0955ad587d5442d",
+  "created_at": "2026-11-16T12:08:14.387804+00:00",
+  "query": "Who created the NBC sitcom that Johnny Pemberton appears in as the character Bo Thompson?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 27004.43
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 27009.61
+    },
+    {
+      "state": "DONE",
+      "t_ms": 40169.04
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.7,
+      "bm25_ms": 5.81,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 13,
+        "latency_ms": 26966.85
+      },
+      "hits": [
+        {
+          "id": "9794e842cc9565f0:L0:000148",
+          "score": 8.562945365905762,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.562945365905762
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000012",
+          "score": 1.3177026510238647,
+          "fused": 0.33948870823045507,
+          "dense_rank": 22,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": 1.3177026510238647
+        },
+        {
+          "id": "raptor:67600e79:L1:a9f61141db3c98fa",
+          "score": -1.3632662296295166,
+          "fused": 0.3633558988846321,
+          "dense_rank": 2,
+          "bm25_rank": 8,
+          "fused_rank": 2,
+          "rerank": -1.3632662296295166
+        },
+        {
+          "id": "raptor:67600e79:L1:7b65e76c03c77511",
+          "score": -1.55250883102417,
+          "fused": 0.1805988665383604,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": -1.55250883102417
+        },
+        {
+          "id": "raptor:67600e79:L1:f068921b66c635f6",
+          "score": -2.301841974258423,
+          "fused": 0.2746683363077667,
+          "dense_rank": 8,
+          "bm25_rank": 10,
+          "fused_rank": 6,
+          "rerank": -2.301841974258423
+        }
+      ],
+      "latency_ms": 27002.79
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 688,
+      "latency_ms": 3.77
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13157.58
+    }
+  },
+  "retrieved_ids": [
+    "9794e842cc9565f0:L0:000148",
+    "c8fd2b3ea47eb07f:L0:000012",
+    "raptor:67600e79:L1:a9f61141db3c98fa",
+    "raptor:67600e79:L1:7b65e76c03c77511",
+    "raptor:67600e79:L1:f068921b66c635f6"
+  ],
+  "filtered_ids": [
+    "9794e842cc9565f0:L0:000148",
+    "c8fd2b3ea47eb07f:L0:000012",
+    "raptor:67600e79:L1:a9f61141db3c98fa",
+    "raptor:67600e79:L1:7b65e76c03c77511",
+    "raptor:67600e79:L1:f068921b66c635f6"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:08:14.391101+00:00",
+      "call_id": "ebee6c9e68f3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c80053ca230f8954",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f0955ad587d5442d"
+    },
+    {
+      "ts": "2026-11-16T12:08:54.548309+00:00",
+      "call_id": "2c7cbaa57d74",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "956520b866b5a159",
+      "prompt_tokens": 1219,
+      "completion_tokens": 70,
+      "latency_ms": 13030.91,
+      "server_ms": 12991.83,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "f0955ad587d5442d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1219,
+    "completion_tokens": 70,
+    "total_ms": 40178.49
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

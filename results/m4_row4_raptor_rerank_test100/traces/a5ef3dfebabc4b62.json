@@ -1,0 +1,182 @@
+{
+  "trace_id": "a5ef3dfebabc4b62",
+  "created_at": "2026-11-16T13:05:34.428986+00:00",
+  "query": "Who is the son of Odysseus and Penelope who searches for his father?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4731.35
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4732.24
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18455.2
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.51,
+      "bm25_ms": 32.33,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 12,
+        "latency_ms": 4685.71
+      },
+      "hits": [
+        {
+          "id": "raptor:da9c117e:L1:5c05933f3af3a017",
+          "score": 4.998114109039307,
+          "fused": 0.5040791023804515,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 4.998114109039307
+        },
+        {
+          "id": "raptor:da9c117e:L1:92b9a59cca8bdf81",
+          "score": 4.50470495223999,
+          "fused": 0.448883310867427,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 7,
+          "rerank": 4.50470495223999
+        },
+        {
+          "id": "raptor:da9c117e:L1:5a003b53580b4272",
+          "score": 3.889573812484741,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.889573812484741
+        },
+        {
+          "id": "f9add743188fc69e:L0:000011",
+          "score": 3.807013988494873,
+          "fused": 0.35869651801937463,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 11,
+          "rerank": 3.807013988494873
+        },
+        {
+          "id": "raptor:da9c117e:L2:0dd58aede5177338",
+          "score": 3.4915995597839355,
+          "fused": 0.3760080242596203,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 9,
+          "rerank": 3.4915995597839355
+        }
+      ],
+      "latency_ms": 4731.28
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1067,
+      "latency_ms": 0.85
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13722.88
+    }
+  },
+  "retrieved_ids": [
+    "raptor:da9c117e:L1:5c05933f3af3a017",
+    "raptor:da9c117e:L1:92b9a59cca8bdf81",
+    "raptor:da9c117e:L1:5a003b53580b4272",
+    "f9add743188fc69e:L0:000011",
+    "raptor:da9c117e:L2:0dd58aede5177338"
+  ],
+  "filtered_ids": [
+    "raptor:da9c117e:L1:5c05933f3af3a017",
+    "raptor:da9c117e:L1:92b9a59cca8bdf81",
+    "raptor:da9c117e:L1:5a003b53580b4272",
+    "f9add743188fc69e:L0:000011",
+    "raptor:da9c117e:L2:0dd58aede5177338"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:05:34.431245+00:00",
+      "call_id": "556bca212b25",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d77747ad340d1c38",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a5ef3dfebabc4b62"
+    },
+    {
+      "ts": "2026-11-16T13:05:52.884009+00:00",
+      "call_id": "726217a92f90",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "583c7b1daae040e1",
+      "prompt_tokens": 1702,
+      "completion_tokens": 55,
+      "latency_ms": 13721.85,
+      "server_ms": 13699.36,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a5ef3dfebabc4b62"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1702,
+    "completion_tokens": 55,
+    "total_ms": 18456.75
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        4
+      ],
+      "uncited_sentences": [
+        "Telemachus, Odysseus' son, searches for his father."
+      ]
+    }
+  }
+}

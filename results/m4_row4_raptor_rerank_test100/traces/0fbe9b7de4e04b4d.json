@@ -1,0 +1,182 @@
+{
+  "trace_id": "0fbe9b7de4e04b4d",
+  "created_at": "2026-11-16T11:03:59.196215+00:00",
+  "query": "What are the restrictions of the restricted track?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2318.99
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2319.95
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21604.89
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.38,
+      "bm25_ms": 8.24,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 10
+      },
+      "n_fused": 19,
+      "rerank": {
+        "n": 19,
+        "n_computed": 5,
+        "latency_ms": 2298.89
+      },
+      "hits": [
+        {
+          "id": "raptor:12c5f6d4:L1:fae52f9584e07515",
+          "score": 1.421258807182312,
+          "fused": 0.8457585355177274,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.421258807182312
+        },
+        {
+          "id": "raptor:12c5f6d4:L2:676db5aab4ff2a19",
+          "score": 1.0429381132125854,
+          "fused": 0.7992797683507201,
+          "dense_rank": 5,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": 1.0429381132125854
+        },
+        {
+          "id": "c9f39c549839465e:L0:000001",
+          "score": 0.28484049439430237,
+          "fused": 0.507867407783628,
+          "dense_rank": 15,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": 0.28484049439430237
+        },
+        {
+          "id": "c9f39c549839465e:L0:000011",
+          "score": -0.14382097125053406,
+          "fused": 0.993517382368561,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.14382097125053406
+        },
+        {
+          "id": "c9f39c549839465e:L0:000000",
+          "score": -0.4348151385784149,
+          "fused": 0.8090069355030678,
+          "dense_rank": 1,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": -0.4348151385784149
+        }
+      ],
+      "latency_ms": 2318.93
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 979,
+      "latency_ms": 0.91
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19284.76
+    }
+  },
+  "retrieved_ids": [
+    "raptor:12c5f6d4:L1:fae52f9584e07515",
+    "raptor:12c5f6d4:L2:676db5aab4ff2a19",
+    "c9f39c549839465e:L0:000001",
+    "c9f39c549839465e:L0:000011",
+    "c9f39c549839465e:L0:000000"
+  ],
+  "filtered_ids": [
+    "raptor:12c5f6d4:L1:fae52f9584e07515",
+    "raptor:12c5f6d4:L2:676db5aab4ff2a19",
+    "c9f39c549839465e:L0:000001",
+    "c9f39c549839465e:L0:000011",
+    "c9f39c549839465e:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:03:59.198217+00:00",
+      "call_id": "f147a83934ba",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9389aa8a10261848",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0fbe9b7de4e04b4d"
+    },
+    {
+      "ts": "2026-11-16T11:04:20.800236+00:00",
+      "call_id": "76602786d403",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "53b4b3e783603f7c",
+      "prompt_tokens": 1619,
+      "completion_tokens": 110,
+      "latency_ms": 19283.63,
+      "server_ms": 19248.15,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0fbe9b7de4e04b4d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1619,
+    "completion_tokens": 110,
+    "total_ms": 21606.15
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The restricted track provided 1.2M pairs (560K without identity mappings) of corrected and uncorrected sentences."
+      ]
+    }
+  }
+}

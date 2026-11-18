@@ -1,0 +1,183 @@
+{
+  "trace_id": "ae06f36bcf264af0",
+  "created_at": "2026-11-16T11:36:45.126850+00:00",
+  "query": "How many people are left alive on Earth?\n\nOptions:\n(A) a number of people in various places\n(B) Only the boy\n(C) Only the boy, his family, and some people in New Mexico\n(D) Only the boy, his mom, his dad, and his sister\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3567.52
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3567.71
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22093.2
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.4,
+      "bm25_ms": 40.63,
+      "n_candidates": {
+        "dense": 26,
+        "bm25": 26
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 3514.38
+      },
+      "hits": [
+        {
+          "id": "a3e91ed7338e9e41:L0:000000",
+          "score": -4.2170233726501465,
+          "fused": 0.28820323914691925,
+          "dense_rank": 18,
+          "bm25_rank": 13,
+          "fused_rank": 16,
+          "rerank": -4.2170233726501465
+        },
+        {
+          "id": "raptor:fd76062c:L1:b5afcb621673feee",
+          "score": -4.264817237854004,
+          "fused": 0.7676287720395041,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -4.264817237854004
+        },
+        {
+          "id": "a3e91ed7338e9e41:L0:000020",
+          "score": -4.5600361824035645,
+          "fused": 0.29135789439605464,
+          "dense_rank": 5,
+          "bm25_rank": 23,
+          "fused_rank": 15,
+          "rerank": -4.5600361824035645
+        },
+        {
+          "id": "a3e91ed7338e9e41:L0:000016",
+          "score": -4.740476608276367,
+          "fused": 0.4975558456135164,
+          "dense_rank": 9,
+          "bm25_rank": 7,
+          "fused_rank": 6,
+          "rerank": -4.740476608276367
+        },
+        {
+          "id": "a3e91ed7338e9e41:L0:000015",
+          "score": -4.936766624450684,
+          "fused": 0.47588232654181395,
+          "dense_rank": 3,
+          "bm25_rank": 15,
+          "fused_rank": 9,
+          "rerank": -4.936766624450684
+        }
+      ],
+      "latency_ms": 3567.45
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1365,
+      "latency_ms": 0.16
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18525.36
+    }
+  },
+  "retrieved_ids": [
+    "a3e91ed7338e9e41:L0:000000",
+    "raptor:fd76062c:L1:b5afcb621673feee",
+    "a3e91ed7338e9e41:L0:000020",
+    "a3e91ed7338e9e41:L0:000016",
+    "a3e91ed7338e9e41:L0:000015"
+  ],
+  "filtered_ids": [
+    "a3e91ed7338e9e41:L0:000000",
+    "raptor:fd76062c:L1:b5afcb621673feee",
+    "a3e91ed7338e9e41:L0:000020",
+    "a3e91ed7338e9e41:L0:000016",
+    "a3e91ed7338e9e41:L0:000015"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:36:45.127848+00:00",
+      "call_id": "508eb37ce38f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "809b3987404a33de",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ae06f36bcf264af0"
+    },
+    {
+      "ts": "2026-11-16T11:37:07.218950+00:00",
+      "call_id": "54006a89250b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "fe34024aaa082ef1",
+      "prompt_tokens": 1918,
+      "completion_tokens": 68,
+      "latency_ms": 18523.62,
+      "server_ms": 18496.66,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ae06f36bcf264af0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1918,
+    "completion_tokens": 68,
+    "total_ms": 22095.89
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        4
+      ],
+      "uncited_sentences": [
+        "(C) Only the boy, his family, and some people in New Mexico."
+      ]
+    }
+  }
+}

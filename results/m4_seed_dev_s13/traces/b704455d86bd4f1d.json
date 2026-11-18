@@ -1,0 +1,167 @@
+{
+  "trace_id": "b704455d86bd4f1d",
+  "created_at": "2026-11-17T14:41:24.146550+00:00",
+  "query": "Why is the protagonist confused by his memories of fighting in WWI?\n\nOptions:\n(A) Because he stayed home instead of fighting during WWI\n(B) Because he should not have been born during WWI\n(C) Because WWI was happening currently\n(D) Because he was too old to fight during WWI \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3.18
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3.22
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20545.42
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.96,
+      "bm25_ms": 1.03,
+      "n_candidates": {
+        "dense": 26,
+        "bm25": 25
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000003",
+          "score": 0.9638238822428951,
+          "fused": 0.9638238822428951,
+          "dense_rank": 5,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000009",
+          "score": 0.9287176244255735,
+          "fused": 0.9287176244255735,
+          "dense_rank": 4,
+          "bm25_rank": 3
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000018",
+          "score": 0.88605319382476,
+          "fused": 0.88605319382476,
+          "dense_rank": 11,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:71f5ff57:L1:0c192126a13eb0ab",
+          "score": 0.8672915150399712,
+          "fused": 0.8672915150399712,
+          "dense_rank": 9,
+          "bm25_rank": 4
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000012",
+          "score": 0.6398652146545174,
+          "fused": 0.6398652146545174,
+          "dense_rank": 14,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 3.15
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1676,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20541.95
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000003",
+    "2ecd3be7264ff150:L0:000009",
+    "2ecd3be7264ff150:L0:000018",
+    "raptor:71f5ff57:L1:0c192126a13eb0ab",
+    "2ecd3be7264ff150:L0:000012"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000003",
+    "2ecd3be7264ff150:L0:000009",
+    "2ecd3be7264ff150:L0:000018",
+    "raptor:71f5ff57:L1:0c192126a13eb0ab",
+    "2ecd3be7264ff150:L0:000012"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:41:24.146550+00:00",
+      "call_id": "a1bf9317d255",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8423136e31d1d97f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b704455d86bd4f1d"
+    },
+    {
+      "ts": "2026-11-17T14:41:44.690148+00:00",
+      "call_id": "7e4d8c56d3a5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0e7b86e3a006a6ca",
+      "prompt_tokens": 2270,
+      "completion_tokens": 88,
+      "latency_ms": 20540.72,
+      "server_ms": 20501.67,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b704455d86bd4f1d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2270,
+    "completion_tokens": 88,
+    "total_ms": 20547.26
+  },
+  "config_hash": "754bdc6d8bb0",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "(D) Because he was too old to fight during WWI."
+      ]
+    }
+  }
+}

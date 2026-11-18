@@ -1,0 +1,181 @@
+{
+  "trace_id": "85f6488655a142a9",
+  "created_at": "2026-11-16T11:47:25.663173+00:00",
+  "query": "What is strange about how the titanium company operates?\n\nOptions:\n(A) The workers are richer than management. \n(B) The company is owned and operated by the government. \n(C) The company is owned by the union leader. \n(D) The company is owned by the workers and management has little control. \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3015.3
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3015.41
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21301.99
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.77,
+      "bm25_ms": 27.75,
+      "n_candidates": {
+        "dense": 26,
+        "bm25": 26
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2975.07
+      },
+      "hits": [
+        {
+          "id": "04343b75bb276c99:L0:000003",
+          "score": -1.5922274589538574,
+          "fused": 0.6672276936340789,
+          "dense_rank": 12,
+          "bm25_rank": 5,
+          "fused_rank": 8,
+          "rerank": -1.5922274589538574
+        },
+        {
+          "id": "raptor:7ab1bd40:L1:0055e0eb1df708b7",
+          "score": -2.184284210205078,
+          "fused": 0.7206838174146988,
+          "dense_rank": 1,
+          "bm25_rank": 10,
+          "fused_rank": 5,
+          "rerank": -2.184284210205078
+        },
+        {
+          "id": "raptor:7ab1bd40:L1:92ae744c7b72faff",
+          "score": -2.771946907043457,
+          "fused": 0.7194065548377128,
+          "dense_rank": 3,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -2.771946907043457
+        },
+        {
+          "id": "raptor:7ab1bd40:L2:cb6f308afad4d82b",
+          "score": -2.8587162494659424,
+          "fused": 0.5345932331888588,
+          "dense_rank": 6,
+          "bm25_rank": 16,
+          "fused_rank": 12,
+          "rerank": -2.8587162494659424
+        },
+        {
+          "id": "04343b75bb276c99:L0:000013",
+          "score": -2.9511005878448486,
+          "fused": 0.7301611247013092,
+          "dense_rank": 2,
+          "bm25_rank": 7,
+          "fused_rank": 4,
+          "rerank": -2.9511005878448486
+        }
+      ],
+      "latency_ms": 3015.25
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1351,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18286.24
+    }
+  },
+  "retrieved_ids": [
+    "04343b75bb276c99:L0:000003",
+    "raptor:7ab1bd40:L1:0055e0eb1df708b7",
+    "raptor:7ab1bd40:L1:92ae744c7b72faff",
+    "raptor:7ab1bd40:L2:cb6f308afad4d82b",
+    "04343b75bb276c99:L0:000013"
+  ],
+  "filtered_ids": [
+    "04343b75bb276c99:L0:000003",
+    "raptor:7ab1bd40:L1:0055e0eb1df708b7",
+    "raptor:7ab1bd40:L1:92ae744c7b72faff",
+    "raptor:7ab1bd40:L2:cb6f308afad4d82b",
+    "04343b75bb276c99:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:47:25.664884+00:00",
+      "call_id": "2ef2ec1ebe18",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3682908b28f5d984",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "85f6488655a142a9"
+    },
+    {
+      "ts": "2026-11-16T11:47:46.963128+00:00",
+      "call_id": "e864b636a467",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d3248ab0fc83c35b",
+      "prompt_tokens": 1977,
+      "completion_tokens": 62,
+      "latency_ms": 18283.79,
+      "server_ms": 18252.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "85f6488655a142a9"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1977,
+    "completion_tokens": 62,
+    "total_ms": 21304.88
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "trace_id": "7331207de5764eb2",
+  "created_at": "2026-11-17T13:34:57.046869+00:00",
+  "query": "Is the template-based model realistic?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16.52
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16.6
+    },
+    {
+      "state": "DONE",
+      "t_ms": 29146.74
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.08,
+      "bm25_ms": 13.16,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:e525a45d:L1:cdac36098f270c2a",
+          "score": 0.9577056953233601,
+          "fused": 0.9577056953233601,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000006",
+          "score": 0.9456272553547733,
+          "fused": 0.9456272553547733,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000003",
+          "score": 0.945235819857986,
+          "fused": 0.945235819857986,
+          "dense_rank": 8,
+          "bm25_rank": 1
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000011",
+          "score": 0.8966407208683678,
+          "fused": 0.8966407208683678,
+          "dense_rank": 6,
+          "bm25_rank": 3
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000007",
+          "score": 0.8423417960637838,
+          "fused": 0.8423417960637838,
+          "dense_rank": 15,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 16.48
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1540,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 29130.05
+    }
+  },
+  "retrieved_ids": [
+    "raptor:e525a45d:L1:cdac36098f270c2a",
+    "bd2251146b05b93b:L0:000006",
+    "bd2251146b05b93b:L0:000003",
+    "bd2251146b05b93b:L0:000011",
+    "bd2251146b05b93b:L0:000007"
+  ],
+  "filtered_ids": [
+    "raptor:e525a45d:L1:cdac36098f270c2a",
+    "bd2251146b05b93b:L0:000006",
+    "bd2251146b05b93b:L0:000003",
+    "bd2251146b05b93b:L0:000011",
+    "bd2251146b05b93b:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T13:34:57.048872+00:00",
+      "call_id": "2cdf67d4b94c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "838e22f13ad2a860",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7331207de5764eb2"
+    },
+    {
+      "ts": "2026-11-17T13:35:26.193318+00:00",
+      "call_id": "01f54f4a54a1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1fb708552be54af4",
+      "prompt_tokens": 2123,
+      "completion_tokens": 139,
+      "latency_ms": 29129.32,
+      "server_ms": 29110.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7331207de5764eb2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2123,
+    "completion_tokens": 139,
+    "total_ms": 29148.12
+  },
+  "config_hash": "f5bf8e385908",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The model uses a combination of template extraction, clustering, and rewriting, which can be adapted for both data synthesis and summarization tasks.",
+        "It leverages existing techniques like RAKE for keyword extraction and BERT for template embedding, making it feasible with current technology.",
+        "Additionally, the model can be fine-tuned using available data, and the modifications introduced are minimal, making it suitable for small datasets."
+      ]
+    }
+  }
+}

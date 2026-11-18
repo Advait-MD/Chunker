@@ -1,0 +1,182 @@
+{
+  "trace_id": "142d4f9b2356437a",
+  "created_at": "2026-11-16T11:04:43.020952+00:00",
+  "query": "What bootstrapping methodology was used to find new patterns?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2179.6
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2179.89
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23017.61
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.93,
+      "bm25_ms": 17.54,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 18
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 2149.08
+      },
+      "hits": [
+        {
+          "id": "raptor:646a62a5:L2:8decec7d7ee81168",
+          "score": 4.84376335144043,
+          "fused": 0.692173432968782,
+          "dense_rank": 9,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": 4.84376335144043
+        },
+        {
+          "id": "raptor:646a62a5:L1:e7c5b59373c19367",
+          "score": 4.055255889892578,
+          "fused": 0.8480188085107527,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 4.055255889892578
+        },
+        {
+          "id": "0ed96c704389ec72:L0:000000",
+          "score": 3.2845346927642822,
+          "fused": 0.8894294265235791,
+          "dense_rank": 10,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.2845346927642822
+        },
+        {
+          "id": "0ed96c704389ec72:L0:000008",
+          "score": 2.544492721557617,
+          "fused": 0.7882950554108195,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 2.544492721557617
+        },
+        {
+          "id": "0ed96c704389ec72:L0:000006",
+          "score": 1.3912171125411987,
+          "fused": 0.5757616704470355,
+          "dense_rank": 12,
+          "bm25_rank": 10,
+          "fused_rank": 10,
+          "rerank": 1.3912171125411987
+        }
+      ],
+      "latency_ms": 2179.53
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1191,
+      "latency_ms": 0.21
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20836.98
+    }
+  },
+  "retrieved_ids": [
+    "raptor:646a62a5:L2:8decec7d7ee81168",
+    "raptor:646a62a5:L1:e7c5b59373c19367",
+    "0ed96c704389ec72:L0:000000",
+    "0ed96c704389ec72:L0:000008",
+    "0ed96c704389ec72:L0:000006"
+  ],
+  "filtered_ids": [
+    "raptor:646a62a5:L2:8decec7d7ee81168",
+    "raptor:646a62a5:L1:e7c5b59373c19367",
+    "0ed96c704389ec72:L0:000000",
+    "0ed96c704389ec72:L0:000008",
+    "0ed96c704389ec72:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:04:43.024512+00:00",
+      "call_id": "587c446fb592",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "72791bf42b3fef6f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "142d4f9b2356437a"
+    },
+    {
+      "ts": "2026-11-16T11:05:06.037319+00:00",
+      "call_id": "d1bcd361efb0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "773189f667c95f1f",
+      "prompt_tokens": 1837,
+      "completion_tokens": 98,
+      "latency_ms": 20835.61,
+      "server_ms": 20795.17,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "142d4f9b2356437a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1837,
+    "completion_tokens": 98,
+    "total_ms": 23020.06
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The bootstrapping methodology used to find new patterns involved applying a bootstrapping methodology to identify new patterns in a larger pool of unannotated posts."
+      ]
+    }
+  }
+}

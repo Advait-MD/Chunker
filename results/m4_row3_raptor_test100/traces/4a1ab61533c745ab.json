@@ -1,0 +1,164 @@
+{
+  "trace_id": "4a1ab61533c745ab",
+  "created_at": "2026-11-15T09:17:31.154767+00:00",
+  "query": "Who was in charge of the place where Bergen is located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.0
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.42
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 7697.51
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.89,
+      "bm25_ms": 4.36,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ce290c1e5d5c6641:L0:000149",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000080",
+          "score": 0.6319354117383024,
+          "fused": 0.6319354117383024,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "a168352d83e925b5:L0:000060",
+          "score": 0.5794463265198583,
+          "fused": 0.5794463265198583,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:67600e79:L1:3d31c01d7730187a",
+          "score": 0.5545347473738442,
+          "fused": 0.5545347473738442,
+          "dense_rank": 1,
+          "bm25_rank": 14
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000061",
+          "score": 0.4290241645313417,
+          "fused": 0.4290241645313417,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 6.38
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 366,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 7691.03
+    }
+  },
+  "retrieved_ids": [
+    "ce290c1e5d5c6641:L0:000149",
+    "8679484d23bfd3a0:L0:000080",
+    "a168352d83e925b5:L0:000060",
+    "raptor:67600e79:L1:3d31c01d7730187a",
+    "f59bbbdacaf7ffe4:L0:000061"
+  ],
+  "filtered_ids": [
+    "ce290c1e5d5c6641:L0:000149",
+    "8679484d23bfd3a0:L0:000080",
+    "a168352d83e925b5:L0:000060",
+    "raptor:67600e79:L1:3d31c01d7730187a",
+    "f59bbbdacaf7ffe4:L0:000061"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:17:31.155763+00:00",
+      "call_id": "562187d56b2d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e2c498cfb4690f05",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4a1ab61533c745ab"
+    },
+    {
+      "ts": "2026-11-15T09:17:38.851454+00:00",
+      "call_id": "a0ba1da490af",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4005677d64602b53",
+      "prompt_tokens": 978,
+      "completion_tokens": 45,
+      "latency_ms": 7690.47,
+      "server_ms": 7668.15,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4a1ab61533c745ab"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 978,
+    "completion_tokens": 45,
+    "total_ms": 7698.43
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

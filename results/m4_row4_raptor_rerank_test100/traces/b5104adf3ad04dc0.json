@@ -1,0 +1,181 @@
+{
+  "trace_id": "b5104adf3ad04dc0",
+  "created_at": "2026-11-16T12:52:29.258046+00:00",
+  "query": "Which film was released more recently, Fine Dead Girls or Venussian Tabutasco?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4352.12
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4352.77
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19094.01
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.0,
+      "bm25_ms": 8.09,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 12,
+        "latency_ms": 4338.25
+      },
+      "hits": [
+        {
+          "id": "6af2db6cb86d77e2:L0:000155",
+          "score": 9.016154289245605,
+          "fused": 0.47817177654645454,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 9.016154289245605
+        },
+        {
+          "id": "99628090500247e3:L0:000109",
+          "score": 8.063026428222656,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.063026428222656
+        },
+        {
+          "id": "raptor:67600e79:L1:8eec751ad67e2aec",
+          "score": 5.088841915130615,
+          "fused": 0.4304650772384407,
+          "dense_rank": 17,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 5.088841915130615
+        },
+        {
+          "id": "raptor:67600e79:L1:c657517701fedd58",
+          "score": 3.8512542247772217,
+          "fused": 0.4050691291537708,
+          "dense_rank": 2,
+          "bm25_rank": 7,
+          "fused_rank": 5,
+          "rerank": 3.8512542247772217
+        },
+        {
+          "id": "raptor:67600e79:L3:a3cd2b84b0cab146",
+          "score": -5.980552673339844,
+          "fused": 0.1641259761282924,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 14,
+          "rerank": -5.980552673339844
+        }
+      ],
+      "latency_ms": 4352.07
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 666,
+      "latency_ms": 0.62
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14741.02
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000155",
+    "99628090500247e3:L0:000109",
+    "raptor:67600e79:L1:8eec751ad67e2aec",
+    "raptor:67600e79:L1:c657517701fedd58",
+    "raptor:67600e79:L3:a3cd2b84b0cab146"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000155",
+    "99628090500247e3:L0:000109",
+    "raptor:67600e79:L1:8eec751ad67e2aec",
+    "raptor:67600e79:L1:c657517701fedd58",
+    "raptor:67600e79:L3:a3cd2b84b0cab146"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:52:29.259046+00:00",
+      "call_id": "4abd8a0d6f89",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "eb40dd025847abf7",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b5104adf3ad04dc0"
+    },
+    {
+      "ts": "2026-11-16T12:52:48.351044+00:00",
+      "call_id": "fa303f30e4d1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "04bcaceb0a0ccf67",
+      "prompt_tokens": 1336,
+      "completion_tokens": 91,
+      "latency_ms": 14739.9,
+      "server_ms": 14720.47,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b5104adf3ad04dc0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1336,
+    "completion_tokens": 91,
+    "total_ms": 19095.31
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

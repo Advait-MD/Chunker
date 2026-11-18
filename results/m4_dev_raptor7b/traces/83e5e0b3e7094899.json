@@ -1,0 +1,165 @@
+{
+  "trace_id": "83e5e0b3e7094899",
+  "created_at": "2026-11-18T07:39:05.756540+00:00",
+  "query": "What was the protaganists most recent profession?\n\nOptions:\n(A) A police officer\n(B) A creative at an advertising agency\n(C) A pilot in World War One\n(D) A psychiatrist \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4.83
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4.92
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19796.95
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.69,
+      "bm25_ms": 1.73,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 22
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000018",
+          "score": 0.9427266309037479,
+          "fused": 0.9427266309037479,
+          "dense_rank": 7,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor7b:71f5ff57:L1:9bb972b135770d8a",
+          "score": 0.8791778805457409,
+          "fused": 0.8791778805457409,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor7b:71f5ff57:L2:104eedb58fa9885f",
+          "score": 0.854053207960223,
+          "fused": 0.854053207960223,
+          "dense_rank": 4,
+          "bm25_rank": 3
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000017",
+          "score": 0.7569127144204242,
+          "fused": 0.7569127144204242,
+          "dense_rank": 12,
+          "bm25_rank": 4
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000010",
+          "score": 0.7147376306873416,
+          "fused": 0.7147376306873416,
+          "dense_rank": 15,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 4.77
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1416,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19791.79
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000018",
+    "raptor7b:71f5ff57:L1:9bb972b135770d8a",
+    "raptor7b:71f5ff57:L2:104eedb58fa9885f",
+    "2ecd3be7264ff150:L0:000017",
+    "2ecd3be7264ff150:L0:000010"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000018",
+    "raptor7b:71f5ff57:L1:9bb972b135770d8a",
+    "raptor7b:71f5ff57:L2:104eedb58fa9885f",
+    "2ecd3be7264ff150:L0:000017",
+    "2ecd3be7264ff150:L0:000010"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-18T07:39:05.758035+00:00",
+      "call_id": "c8d1c12f6ad3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1ad572e3652890e5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "83e5e0b3e7094899"
+    },
+    {
+      "ts": "2026-11-18T07:39:25.551711+00:00",
+      "call_id": "b9576896ef2e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8c4a6ca72113d8c6",
+      "prompt_tokens": 1957,
+      "completion_tokens": 56,
+      "latency_ms": 19789.87,
+      "server_ms": 19758.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "83e5e0b3e7094899"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1957,
+    "completion_tokens": 56,
+    "total_ms": 19799.01
+  },
+  "config_hash": "ac957d5c15f6",
+  "git_sha": "db55cc94ada50cc303fe6db5a415526173c59e35-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

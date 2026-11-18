@@ -1,0 +1,180 @@
+{
+  "trace_id": "1059ebcbf0f94dbd",
+  "created_at": "2026-11-16T11:28:19.865291+00:00",
+  "query": "What other county does the county where Imperial is located share a border with?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1806.41
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1807.23
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15942.0
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.53,
+      "bm25_ms": 12.62,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 1787.74
+      },
+      "hits": [
+        {
+          "id": "e182527d2b1ecac3:L0:000154",
+          "score": 0.7744317650794983,
+          "fused": 0.5673588878331712,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.7744317650794983
+        },
+        {
+          "id": "raptor:67600e79:L1:2d80c033e7b37e4a",
+          "score": -1.0874022245407104,
+          "fused": 0.49488412506088425,
+          "dense_rank": 14,
+          "bm25_rank": 7,
+          "fused_rank": 5,
+          "rerank": -1.0874022245407104
+        },
+        {
+          "id": "ce57fdde2baaba9c:L0:000177",
+          "score": -1.3007168769836426,
+          "fused": 0.934102131935967,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": -1.3007168769836426
+        },
+        {
+          "id": "raptor:67600e79:L2:3b9efff943b61b00",
+          "score": -1.387713074684143,
+          "fused": 0.306825113768843,
+          "dense_rank": 2,
+          "bm25_rank": 38,
+          "fused_rank": 11,
+          "rerank": -1.387713074684143
+        },
+        {
+          "id": "raptor:67600e79:L1:5cfda88cb9a84aa0",
+          "score": -1.6883567571640015,
+          "fused": 0.22149286092659046,
+          "dense_rank": 3,
+          "bm25_rank": 46,
+          "fused_rank": 20,
+          "rerank": -1.6883567571640015
+        }
+      ],
+      "latency_ms": 1806.35
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 639,
+      "latency_ms": 0.75
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14134.66
+    }
+  },
+  "retrieved_ids": [
+    "e182527d2b1ecac3:L0:000154",
+    "raptor:67600e79:L1:2d80c033e7b37e4a",
+    "ce57fdde2baaba9c:L0:000177",
+    "raptor:67600e79:L2:3b9efff943b61b00",
+    "raptor:67600e79:L1:5cfda88cb9a84aa0"
+  ],
+  "filtered_ids": [
+    "e182527d2b1ecac3:L0:000154",
+    "raptor:67600e79:L1:2d80c033e7b37e4a",
+    "ce57fdde2baaba9c:L0:000177",
+    "raptor:67600e79:L2:3b9efff943b61b00",
+    "raptor:67600e79:L1:5cfda88cb9a84aa0"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:28:19.866614+00:00",
+      "call_id": "6f799efaab15",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3b7e683a1001faa3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1059ebcbf0f94dbd"
+    },
+    {
+      "ts": "2026-11-16T11:28:35.805520+00:00",
+      "call_id": "20271e58905a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a5ef064c5c65b898",
+      "prompt_tokens": 1200,
+      "completion_tokens": 70,
+      "latency_ms": 14133.3,
+      "server_ms": 14105.95,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1059ebcbf0f94dbd"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1200,
+    "completion_tokens": 70,
+    "total_ms": 15944.91
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Imperial, Texas, is located in Pecos County, Texas.",
+        "The evidence does not provide information on which other county shares a border with Pecos County, Texas."
+      ]
+    }
+  }
+}

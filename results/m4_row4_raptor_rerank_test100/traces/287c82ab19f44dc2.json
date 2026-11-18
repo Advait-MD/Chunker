@@ -1,0 +1,182 @@
+{
+  "trace_id": "287c82ab19f44dc2",
+  "created_at": "2026-11-16T10:56:19.690014+00:00",
+  "query": "Do they annotate their own dataset?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2550.68
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2550.95
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18499.04
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.2,
+      "bm25_ms": 9.68,
+      "n_candidates": {
+        "dense": 22,
+        "bm25": 10
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2528.69
+      },
+      "hits": [
+        {
+          "id": "raptor:43a400ac:L1:45ca77035befd033",
+          "score": -3.4776272773742676,
+          "fused": 0.6488230993389976,
+          "dense_rank": 5,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -3.4776272773742676
+        },
+        {
+          "id": "af9d478ce4133d70:L0:000016",
+          "score": -5.099436283111572,
+          "fused": 0.22840220027720026,
+          "dense_rank": 6,
+          "bm25_rank": 10,
+          "fused_rank": 11,
+          "rerank": -5.099436283111572
+        },
+        {
+          "id": "raptor:43a400ac:L2:e9704e0e37d8c514",
+          "score": -5.341187953948975,
+          "fused": 0.6687544308321759,
+          "dense_rank": 9,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -5.341187953948975
+        },
+        {
+          "id": "af9d478ce4133d70:L0:000012",
+          "score": -5.504461765289307,
+          "fused": 0.9243646967898602,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -5.504461765289307
+        },
+        {
+          "id": "af9d478ce4133d70:L0:000001",
+          "score": -5.700131416320801,
+          "fused": 0.31856616568111573,
+          "dense_rank": 13,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": -5.700131416320801
+        }
+      ],
+      "latency_ms": 2550.63
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 997,
+      "latency_ms": 0.23
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15947.94
+    }
+  },
+  "retrieved_ids": [
+    "raptor:43a400ac:L1:45ca77035befd033",
+    "af9d478ce4133d70:L0:000016",
+    "raptor:43a400ac:L2:e9704e0e37d8c514",
+    "af9d478ce4133d70:L0:000012",
+    "af9d478ce4133d70:L0:000001"
+  ],
+  "filtered_ids": [
+    "raptor:43a400ac:L1:45ca77035befd033",
+    "af9d478ce4133d70:L0:000016",
+    "raptor:43a400ac:L2:e9704e0e37d8c514",
+    "af9d478ce4133d70:L0:000012",
+    "af9d478ce4133d70:L0:000001"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:56:19.691824+00:00",
+      "call_id": "7480afa63dd2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4696804cdd68c1c2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "287c82ab19f44dc2"
+    },
+    {
+      "ts": "2026-11-16T10:56:38.188184+00:00",
+      "call_id": "04ed0fd0023c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5d9ccd9941d8225d",
+      "prompt_tokens": 1596,
+      "completion_tokens": 75,
+      "latency_ms": 15946.57,
+      "server_ms": 15916.88,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "287c82ab19f44dc2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1596,
+    "completion_tokens": 75,
+    "total_ms": 18500.86
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Yes, they annotate their own dataset."
+      ]
+    }
+  }
+}

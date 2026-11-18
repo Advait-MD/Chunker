@@ -1,0 +1,184 @@
+{
+  "trace_id": "e365ce586f454ac0",
+  "created_at": "2026-11-16T12:57:24.191806+00:00",
+  "query": "Do both films The Dust Of Naples and Col Cuore In Gola have the directors that share the same nationality?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2923.25
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2923.37
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21046.09
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.28,
+      "bm25_ms": 11.82,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 2906.28
+      },
+      "hits": [
+        {
+          "id": "6af2db6cb86d77e2:L0:000188",
+          "score": 6.685876846313477,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.685876846313477
+        },
+        {
+          "id": "99628090500247e3:L0:000135",
+          "score": 6.093058109283447,
+          "fused": 0.47796187906667637,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 6.093058109283447
+        },
+        {
+          "id": "raptor:67600e79:L1:2b091482b373ece9",
+          "score": 3.0461623668670654,
+          "fused": 0.2572268803997867,
+          "dense_rank": 31,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 3.0461623668670654
+        },
+        {
+          "id": "raptor:67600e79:L2:3d7aaa6894e7bd9d",
+          "score": 2.3835275173187256,
+          "fused": 0.3673654726707123,
+          "dense_rank": 10,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 2.3835275173187256
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000054",
+          "score": -5.208186149597168,
+          "fused": 0.13549691229075472,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 11,
+          "rerank": -5.208186149597168
+        }
+      ],
+      "latency_ms": 2923.2
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 587,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18122.57
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000188",
+    "99628090500247e3:L0:000135",
+    "raptor:67600e79:L1:2b091482b373ece9",
+    "raptor:67600e79:L2:3d7aaa6894e7bd9d",
+    "b04ce6dd2d95fb80:L0:000054"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000188",
+    "99628090500247e3:L0:000135",
+    "raptor:67600e79:L1:2b091482b373ece9",
+    "raptor:67600e79:L2:3d7aaa6894e7bd9d",
+    "b04ce6dd2d95fb80:L0:000054"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:57:24.192808+00:00",
+      "call_id": "eb72dd0c9631",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "844ae879bfdaca70",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e365ce586f454ac0"
+    },
+    {
+      "ts": "2026-11-16T12:57:45.236551+00:00",
+      "call_id": "7671483d3794",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3b218c1b754ad2fd",
+      "prompt_tokens": 1261,
+      "completion_tokens": 129,
+      "latency_ms": 18121.3,
+      "server_ms": 18095.8,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e365ce586f454ac0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1261,
+    "completion_tokens": 129,
+    "total_ms": 21047.96
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Both directors share the same nationality, but the question asks if they are the directors of both films, which is not the case."
+      ]
+    }
+  }
+}

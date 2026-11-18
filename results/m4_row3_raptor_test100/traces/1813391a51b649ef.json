@@ -1,0 +1,164 @@
+{
+  "trace_id": "1813391a51b649ef",
+  "created_at": "2026-11-16T10:13:31.928980+00:00",
+  "query": "Which film has the director died earlier, Crime Against Joe or Vagabonderne På Bakkegården?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.12
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.25
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10953.79
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.56,
+      "bm25_ms": 10.74,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "460e441179bec402:L0:000088",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000109",
+          "score": 0.33462768914747565,
+          "fused": 0.33462768914747565,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:5c66cace28db0e6f",
+          "score": 0.3284912815916071,
+          "fused": 0.3284912815916071,
+          "dense_rank": 14,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:67600e79:L1:1851b9be4640de82",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "raptor:67600e79:L1:b93e58a1035fbcc7",
+          "score": 0.2345624434117393,
+          "fused": 0.2345624434117393,
+          "dense_rank": null,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 15.06
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 623,
+      "latency_ms": 0.09
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10938.47
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000088",
+    "6af2db6cb86d77e2:L0:000109",
+    "raptor:67600e79:L1:5c66cace28db0e6f",
+    "raptor:67600e79:L1:1851b9be4640de82",
+    "raptor:67600e79:L1:b93e58a1035fbcc7"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000088",
+    "6af2db6cb86d77e2:L0:000109",
+    "raptor:67600e79:L1:5c66cace28db0e6f",
+    "raptor:67600e79:L1:1851b9be4640de82",
+    "raptor:67600e79:L1:b93e58a1035fbcc7"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:13:31.930975+00:00",
+      "call_id": "57e8e7d3c351",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "520d2f953ae8cf8b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1813391a51b649ef"
+    },
+    {
+      "ts": "2026-11-16T10:13:42.877440+00:00",
+      "call_id": "dcb06b972433",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "895b95030392faea",
+      "prompt_tokens": 1307,
+      "completion_tokens": 45,
+      "latency_ms": 10937.28,
+      "server_ms": 10907.8,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1813391a51b649ef"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1307,
+    "completion_tokens": 45,
+    "total_ms": 10955.28
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

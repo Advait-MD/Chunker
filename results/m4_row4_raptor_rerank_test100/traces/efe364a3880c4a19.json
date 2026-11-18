@@ -1,0 +1,180 @@
+{
+  "trace_id": "efe364a3880c4a19",
+  "created_at": "2026-11-16T11:39:45.261268+00:00",
+  "query": "For humans, what is the most dangerous part of the trip to the moon?\n\nOptions:\n(A) Freefall\n(B) Take off\n(C) Landing\n(D) Orbit\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1825.34
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1825.48
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20714.94
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.66,
+      "bm25_ms": 19.82,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 22
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 3,
+        "latency_ms": 1795.31
+      },
+      "hits": [
+        {
+          "id": "7cbe4969b27ec5fc:L0:000003",
+          "score": -1.0879290103912354,
+          "fused": 0.7436065919013696,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": -1.0879290103912354
+        },
+        {
+          "id": "raptor:1fcdd3e0:L2:ce522ad043dd3585",
+          "score": -1.6240369081497192,
+          "fused": 0.3421285340464306,
+          "dense_rank": 12,
+          "bm25_rank": 17,
+          "fused_rank": 14,
+          "rerank": -1.6240369081497192
+        },
+        {
+          "id": "raptor:1fcdd3e0:L1:8952f241a2691e02",
+          "score": -2.2599053382873535,
+          "fused": 0.46079286278688825,
+          "dense_rank": 4,
+          "bm25_rank": 13,
+          "fused_rank": 10,
+          "rerank": -2.2599053382873535
+        },
+        {
+          "id": "7cbe4969b27ec5fc:L0:000015",
+          "score": -2.4456024169921875,
+          "fused": 0.9627488886115801,
+          "dense_rank": 5,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": -2.4456024169921875
+        },
+        {
+          "id": "7cbe4969b27ec5fc:L0:000014",
+          "score": -2.642605781555176,
+          "fused": 0.8612787424624035,
+          "dense_rank": 13,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -2.642605781555176
+        }
+      ],
+      "latency_ms": 1825.29
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1503,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18889.37
+    }
+  },
+  "retrieved_ids": [
+    "7cbe4969b27ec5fc:L0:000003",
+    "raptor:1fcdd3e0:L2:ce522ad043dd3585",
+    "raptor:1fcdd3e0:L1:8952f241a2691e02",
+    "7cbe4969b27ec5fc:L0:000015",
+    "7cbe4969b27ec5fc:L0:000014"
+  ],
+  "filtered_ids": [
+    "7cbe4969b27ec5fc:L0:000003",
+    "raptor:1fcdd3e0:L2:ce522ad043dd3585",
+    "raptor:1fcdd3e0:L1:8952f241a2691e02",
+    "7cbe4969b27ec5fc:L0:000015",
+    "7cbe4969b27ec5fc:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:39:45.263267+00:00",
+      "call_id": "ae8119db49f3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0436637db7d57ab0",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "efe364a3880c4a19"
+    },
+    {
+      "ts": "2026-11-16T11:40:05.975967+00:00",
+      "call_id": "1e702eea3119",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "35e281bbb4b37433",
+      "prompt_tokens": 2037,
+      "completion_tokens": 92,
+      "latency_ms": 18887.56,
+      "server_ms": 18864.1,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "efe364a3880c4a19"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2037,
+    "completion_tokens": 92,
+    "total_ms": 20715.8
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

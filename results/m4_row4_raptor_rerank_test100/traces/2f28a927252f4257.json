@@ -1,0 +1,180 @@
+{
+  "trace_id": "2f28a927252f4257",
+  "created_at": "2026-11-16T12:34:24.970808+00:00",
+  "query": "Who was born later, Jean-Jacques Rousseau or Richard Cawley?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 26240.0
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 26244.23
+    },
+    {
+      "state": "DONE",
+      "t_ms": 42166.29
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.54,
+      "bm25_ms": 4.0,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 26216.0
+      },
+      "hits": [
+        {
+          "id": "53c7288bdcd3837a:L0:000151",
+          "score": 9.309539794921875,
+          "fused": 0.6332368624321012,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": 9.309539794921875
+        },
+        {
+          "id": "460e441179bec402:L0:000173",
+          "score": 6.440163612365723,
+          "fused": 0.6488152604644415,
+          "dense_rank": 17,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 6.440163612365723
+        },
+        {
+          "id": "raptor:67600e79:L1:680eb5656273dfb6",
+          "score": 3.1625537872314453,
+          "fused": 0.4834607687070204,
+          "dense_rank": 3,
+          "bm25_rank": 9,
+          "fused_rank": 8,
+          "rerank": 3.1625537872314453
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000002",
+          "score": 2.064023733139038,
+          "fused": 0.5278002109017407,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": 2.064023733139038
+        },
+        {
+          "id": "raptor:67600e79:L1:b86dc7499039f235",
+          "score": 1.5191965103149414,
+          "fused": 0.7092664261793218,
+          "dense_rank": 1,
+          "bm25_rank": 7,
+          "fused_rank": 1,
+          "rerank": 1.5191965103149414
+        }
+      ],
+      "latency_ms": 26238.88
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 677,
+      "latency_ms": 3.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15921.21
+    }
+  },
+  "retrieved_ids": [
+    "53c7288bdcd3837a:L0:000151",
+    "460e441179bec402:L0:000173",
+    "raptor:67600e79:L1:680eb5656273dfb6",
+    "b04ce6dd2d95fb80:L0:000002",
+    "raptor:67600e79:L1:b86dc7499039f235"
+  ],
+  "filtered_ids": [
+    "53c7288bdcd3837a:L0:000151",
+    "460e441179bec402:L0:000173",
+    "raptor:67600e79:L1:680eb5656273dfb6",
+    "b04ce6dd2d95fb80:L0:000002",
+    "raptor:67600e79:L1:b86dc7499039f235"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:34:24.973003+00:00",
+      "call_id": "55839f9541fd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c8b9dda7976415da",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2f28a927252f4257"
+    },
+    {
+      "ts": "2026-11-16T12:35:07.132986+00:00",
+      "call_id": "b09accc7bd93",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "99198167d5a5bb64",
+      "prompt_tokens": 1364,
+      "completion_tokens": 96,
+      "latency_ms": 15780.81,
+      "server_ms": 15746.05,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2f28a927252f4257"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1364,
+    "completion_tokens": 96,
+    "total_ms": 42171.26
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

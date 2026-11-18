@@ -1,0 +1,180 @@
+{
+  "trace_id": "8f472ec3b9ce49f5",
+  "created_at": "2026-11-16T11:38:06.205726+00:00",
+  "query": "Why was the painting so clear?\n\nOptions:\n(A) Broom had never seen a painting\n(B) Broom's fuzziness made it look clearer than it was\n(C) It was special future paint\n(D) It was a photograph\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2194.25
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2195.36
+    },
+    {
+      "state": "DONE",
+      "t_ms": 2199.8
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.8,
+      "bm25_ms": 24.76,
+      "n_candidates": {
+        "dense": 18,
+        "bm25": 18
+      },
+      "n_fused": 18,
+      "rerank": {
+        "n": 18,
+        "n_computed": 4,
+        "latency_ms": 2155.8
+      },
+      "hits": [
+        {
+          "id": "fce4ea1168a4a062:L0:000005",
+          "score": -1.45842707157135,
+          "fused": 0.9407091118783816,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.45842707157135
+        },
+        {
+          "id": "fce4ea1168a4a062:L0:000004",
+          "score": -1.655972957611084,
+          "fused": 0.7067233821959156,
+          "dense_rank": 10,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -1.655972957611084
+        },
+        {
+          "id": "fce4ea1168a4a062:L0:000000",
+          "score": -2.9282236099243164,
+          "fused": 0.48612737578915266,
+          "dense_rank": 14,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -2.9282236099243164
+        },
+        {
+          "id": "fce4ea1168a4a062:L0:000009",
+          "score": -2.975243330001831,
+          "fused": 0.3873540473111483,
+          "dense_rank": 18,
+          "bm25_rank": 5,
+          "fused_rank": 11,
+          "rerank": -2.975243330001831
+        },
+        {
+          "id": "fce4ea1168a4a062:L0:000010",
+          "score": -3.4740357398986816,
+          "fused": 0.49929627181086444,
+          "dense_rank": 11,
+          "bm25_rank": 8,
+          "fused_rank": 6,
+          "rerank": -3.4740357398986816
+        }
+      ],
+      "latency_ms": 2194.19
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1938,
+      "latency_ms": 1.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 4.28
+    }
+  },
+  "retrieved_ids": [
+    "fce4ea1168a4a062:L0:000005",
+    "fce4ea1168a4a062:L0:000004",
+    "fce4ea1168a4a062:L0:000000",
+    "fce4ea1168a4a062:L0:000009",
+    "fce4ea1168a4a062:L0:000010"
+  ],
+  "filtered_ids": [
+    "fce4ea1168a4a062:L0:000005",
+    "fce4ea1168a4a062:L0:000004",
+    "fce4ea1168a4a062:L0:000000",
+    "fce4ea1168a4a062:L0:000009",
+    "fce4ea1168a4a062:L0:000010"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:38:06.208729+00:00",
+      "call_id": "75beb7430597",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5441259e2e88aa76",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8f472ec3b9ce49f5"
+    },
+    {
+      "ts": "2026-11-16T11:38:08.404859+00:00",
+      "call_id": "6acaa713381a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a5f50e9be76a0a79",
+      "prompt_tokens": 2532,
+      "completion_tokens": 57,
+      "latency_ms": 2.67,
+      "server_ms": 18875.09,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8f472ec3b9ce49f5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 2532,
+    "completion_tokens": 57,
+    "total_ms": 2201.47
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

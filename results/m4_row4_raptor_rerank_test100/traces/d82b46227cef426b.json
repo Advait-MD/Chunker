@@ -1,0 +1,183 @@
+{
+  "trace_id": "d82b46227cef426b",
+  "created_at": "2026-11-16T12:27:09.569830+00:00",
+  "query": "What competition held in Kathmandu, Nepal did Julian Bolling compete in 1984?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2177.17
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2177.26
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16104.11
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.03,
+      "bm25_ms": 10.78,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2160.36
+      },
+      "hits": [
+        {
+          "id": "838c0e0106e6f015:L0:000026",
+          "score": 4.358948707580566,
+          "fused": 0.5114424568924211,
+          "dense_rank": 37,
+          "bm25_rank": 5,
+          "fused_rank": 7,
+          "rerank": 4.358948707580566
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000042",
+          "score": 3.9701290130615234,
+          "fused": 0.6618907903796261,
+          "dense_rank": 23,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 3.9701290130615234
+        },
+        {
+          "id": "raptor:67600e79:L1:a3951b3fa87fc5e3",
+          "score": 1.4821397066116333,
+          "fused": 0.5563249925128031,
+          "dense_rank": 1,
+          "bm25_rank": 14,
+          "fused_rank": 5,
+          "rerank": 1.4821397066116333
+        },
+        {
+          "id": "raptor:67600e79:L1:26154a29d81d4272",
+          "score": 0.9178304672241211,
+          "fused": 0.23849891485295438,
+          "dense_rank": 3,
+          "bm25_rank": 22,
+          "fused_rank": 16,
+          "rerank": 0.9178304672241211
+        },
+        {
+          "id": "raptor:67600e79:L2:cb56636a14c01728",
+          "score": 0.4193347990512848,
+          "fused": 0.5874691525854584,
+          "dense_rank": 2,
+          "bm25_rank": 12,
+          "fused_rank": 4,
+          "rerank": 0.4193347990512848
+        }
+      ],
+      "latency_ms": 2177.12
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 683,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13926.76
+    }
+  },
+  "retrieved_ids": [
+    "838c0e0106e6f015:L0:000026",
+    "bc1dba3471045f02:L0:000042",
+    "raptor:67600e79:L1:a3951b3fa87fc5e3",
+    "raptor:67600e79:L1:26154a29d81d4272",
+    "raptor:67600e79:L2:cb56636a14c01728"
+  ],
+  "filtered_ids": [
+    "838c0e0106e6f015:L0:000026",
+    "bc1dba3471045f02:L0:000042",
+    "raptor:67600e79:L1:a3951b3fa87fc5e3",
+    "raptor:67600e79:L1:26154a29d81d4272",
+    "raptor:67600e79:L2:cb56636a14c01728"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:27:09.571827+00:00",
+      "call_id": "05f9f5196e14",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "55cb3cbfcf0492e6",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d82b46227cef426b"
+    },
+    {
+      "ts": "2026-11-16T12:27:25.673104+00:00",
+      "call_id": "799625a8a304",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0094dac6de84fca4",
+      "prompt_tokens": 1405,
+      "completion_tokens": 73,
+      "latency_ms": 13925.76,
+      "server_ms": 13901.23,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d82b46227cef426b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1405,
+    "completion_tokens": 73,
+    "total_ms": 16110.97
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3
+      ],
+      "uncited_sentences": [
+        "Julian Bolling competed in the 1984 South Asian Games, which was held in Kathmandu, Nepal."
+      ]
+    }
+  }
+}

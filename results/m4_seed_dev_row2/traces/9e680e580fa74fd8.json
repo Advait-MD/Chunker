@@ -1,0 +1,165 @@
+{
+  "trace_id": "9e680e580fa74fd8",
+  "created_at": "2026-11-17T14:43:19.547765+00:00",
+  "query": "What are the clinical datasets used in the paper?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.66
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.7
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13525.7
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.62,
+      "bm25_ms": 4.9,
+      "n_candidates": {
+        "dense": 28,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "5cd94e6955a3fbb2:L0:000006",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "5cd94e6955a3fbb2:L0:000015",
+          "score": 0.8056716037233765,
+          "fused": 0.8056716037233765,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "5cd94e6955a3fbb2:L0:000005",
+          "score": 0.777890572446809,
+          "fused": 0.777890572446809,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "5cd94e6955a3fbb2:L0:000000",
+          "score": 0.7753348460268032,
+          "fused": 0.7753348460268032,
+          "dense_rank": 13,
+          "bm25_rank": 2
+        },
+        {
+          "id": "5cd94e6955a3fbb2:L0:000002",
+          "score": 0.7299619272297617,
+          "fused": 0.7299619272297617,
+          "dense_rank": 10,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 6.63
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 833,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13518.93
+    }
+  },
+  "retrieved_ids": [
+    "5cd94e6955a3fbb2:L0:000006",
+    "5cd94e6955a3fbb2:L0:000015",
+    "5cd94e6955a3fbb2:L0:000005",
+    "5cd94e6955a3fbb2:L0:000000",
+    "5cd94e6955a3fbb2:L0:000002"
+  ],
+  "filtered_ids": [
+    "5cd94e6955a3fbb2:L0:000006",
+    "5cd94e6955a3fbb2:L0:000015",
+    "5cd94e6955a3fbb2:L0:000005",
+    "5cd94e6955a3fbb2:L0:000000",
+    "5cd94e6955a3fbb2:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:43:19.548376+00:00",
+      "call_id": "da2d9b25af46",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "11a3233020f46511",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9e680e580fa74fd8"
+    },
+    {
+      "ts": "2026-11-17T14:43:33.072861+00:00",
+      "call_id": "c67e7402f48e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "dcb82020a2113539",
+      "prompt_tokens": 1414,
+      "completion_tokens": 77,
+      "latency_ms": 13518.38,
+      "server_ms": 13502.24,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9e680e580fa74fd8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1414,
+    "completion_tokens": 77,
+    "total_ms": 13526.33
+  },
+  "config_hash": "d4a047076961",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "trace_id": "174053a0d9d24cf9",
+  "created_at": "2026-11-16T12:48:54.538418+00:00",
+  "query": "Which film has the director who died earlier, Slums Of Berlin or Phantom India?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4690.25
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4690.73
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22326.0
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.99,
+      "bm25_ms": 8.77,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 12,
+        "latency_ms": 4674.48
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000002",
+          "score": 6.247448921203613,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.247448921203613
+        },
+        {
+          "id": "abe982d210232c3f:L0:000074",
+          "score": 4.0231170654296875,
+          "fused": 0.525209199153796,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 4.0231170654296875
+        },
+        {
+          "id": "raptor:67600e79:L1:602c46bea6a3491f",
+          "score": 1.490228295326233,
+          "fused": 0.38703530773978556,
+          "dense_rank": 37,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 1.490228295326233
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000014",
+          "score": -5.9941911697387695,
+          "fused": 0.2711592771143219,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -5.9941911697387695
+        },
+        {
+          "id": "raptor:67600e79:L1:d267372fcba22a8e",
+          "score": -6.658590316772461,
+          "fused": 0.2311356091362584,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 9,
+          "rerank": -6.658590316772461
+        }
+      ],
+      "latency_ms": 4690.19
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 919,
+      "latency_ms": 0.45
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17634.8
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000002",
+    "abe982d210232c3f:L0:000074",
+    "raptor:67600e79:L1:602c46bea6a3491f",
+    "c73b757f0eb66f37:L0:000014",
+    "raptor:67600e79:L1:d267372fcba22a8e"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000002",
+    "abe982d210232c3f:L0:000074",
+    "raptor:67600e79:L1:602c46bea6a3491f",
+    "c73b757f0eb66f37:L0:000014",
+    "raptor:67600e79:L1:d267372fcba22a8e"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:48:54.540419+00:00",
+      "call_id": "bf3fae7934bb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5dffb434f0123c10",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "174053a0d9d24cf9"
+    },
+    {
+      "ts": "2026-11-16T12:49:16.863434+00:00",
+      "call_id": "12711070d446",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2df65acbd12b8749",
+      "prompt_tokens": 1581,
+      "completion_tokens": 83,
+      "latency_ms": 17633.07,
+      "server_ms": 17599.11,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "174053a0d9d24cf9"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1581,
+    "completion_tokens": 83,
+    "total_ms": 22327.6
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

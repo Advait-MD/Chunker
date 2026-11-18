@@ -1,0 +1,166 @@
+{
+  "trace_id": "7dc27e5d36d74cd5",
+  "created_at": "2026-11-15T09:20:25.159171+00:00",
+  "query": "who has had the most hits in the league that includes the team that has played the most games of the type played just before the league MVP is awarded?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.78
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.82
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15038.17
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.91,
+      "bm25_ms": 13.69,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "e182527d2b1ecac3:L0:000039",
+          "score": 0.7948048475094388,
+          "fused": 0.7948048475094388,
+          "dense_rank": 12,
+          "bm25_rank": 2
+        },
+        {
+          "id": "15abb5e49dced915:L0:000197",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L2:2e9edb2353e038e3",
+          "score": 0.6653818639247506,
+          "fused": 0.6653818639247506,
+          "dense_rank": 1,
+          "bm25_rank": 10
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000107",
+          "score": 0.6581788806454024,
+          "fused": 0.6581788806454024,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000070",
+          "score": 0.6268686703495441,
+          "fused": 0.6268686703495441,
+          "dense_rank": 8,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 15.76
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1041,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15022.26
+    }
+  },
+  "retrieved_ids": [
+    "e182527d2b1ecac3:L0:000039",
+    "15abb5e49dced915:L0:000197",
+    "raptor:67600e79:L2:2e9edb2353e038e3",
+    "ad11b6e85f908fb3:L0:000107",
+    "ce290c1e5d5c6641:L0:000070"
+  ],
+  "filtered_ids": [
+    "e182527d2b1ecac3:L0:000039",
+    "15abb5e49dced915:L0:000197",
+    "raptor:67600e79:L2:2e9edb2353e038e3",
+    "ad11b6e85f908fb3:L0:000107",
+    "ce290c1e5d5c6641:L0:000070"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:20:25.160174+00:00",
+      "call_id": "95c23ae6eeac",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b1d35423d840ebf3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7dc27e5d36d74cd5"
+    },
+    {
+      "ts": "2026-11-15T09:20:40.197133+00:00",
+      "call_id": "fe54a76a9e9d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e0a80ef393b6d6cb",
+      "prompt_tokens": 1778,
+      "completion_tokens": 72,
+      "latency_ms": 15021.64,
+      "server_ms": 15002.44,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7dc27e5d36d74cd5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1778,
+    "completion_tokens": 72,
+    "total_ms": 15039.15
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [
+        5
+      ],
+      "uncited_sentences": []
+    }
+  }
+}

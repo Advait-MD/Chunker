@@ -1,0 +1,180 @@
+{
+  "trace_id": "7ab89c7d49f84e96",
+  "created_at": "2026-11-16T13:09:20.634102+00:00",
+  "query": "Explain the metaphor of water in Musashi's Book of Water regarding combat stance and the spirit of a warrior.",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4595.36
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4596.08
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24653.0
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.89,
+      "bm25_ms": 33.11,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 10,
+        "latency_ms": 4552.52
+      },
+      "hits": [
+        {
+          "id": "54e450272e768455:L0:000023",
+          "score": -0.2513282895088196,
+          "fused": 0.576461485196213,
+          "dense_rank": 8,
+          "bm25_rank": 9,
+          "fused_rank": 4,
+          "rerank": -0.2513282895088196
+        },
+        {
+          "id": "raptor:7b17be58:L3:28e69df69d22b0fa",
+          "score": -0.7890769839286804,
+          "fused": 0.6132919301173183,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -0.7890769839286804
+        },
+        {
+          "id": "raptor:7b17be58:L1:d0f270175d1de7d9",
+          "score": -1.280065894126892,
+          "fused": 0.3986158249425988,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": -1.280065894126892
+        },
+        {
+          "id": "54e450272e768455:L0:000022",
+          "score": -1.3360804319381714,
+          "fused": 0.27955444809665253,
+          "dense_rank": null,
+          "bm25_rank": 14,
+          "fused_rank": 17,
+          "rerank": -1.3360804319381714
+        },
+        {
+          "id": "54e450272e768455:L0:000007",
+          "score": -1.7311301231384277,
+          "fused": 0.9478096690802404,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.7311301231384277
+        }
+      ],
+      "latency_ms": 4595.3
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1568,
+      "latency_ms": 0.68
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20056.8
+    }
+  },
+  "retrieved_ids": [
+    "54e450272e768455:L0:000023",
+    "raptor:7b17be58:L3:28e69df69d22b0fa",
+    "raptor:7b17be58:L1:d0f270175d1de7d9",
+    "54e450272e768455:L0:000022",
+    "54e450272e768455:L0:000007"
+  ],
+  "filtered_ids": [
+    "54e450272e768455:L0:000023",
+    "raptor:7b17be58:L3:28e69df69d22b0fa",
+    "raptor:7b17be58:L1:d0f270175d1de7d9",
+    "54e450272e768455:L0:000022",
+    "54e450272e768455:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:09:20.635106+00:00",
+      "call_id": "6a7e9231afde",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a5956224e6d7a385",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7ab89c7d49f84e96"
+    },
+    {
+      "ts": "2026-11-16T13:09:45.286409+00:00",
+      "call_id": "5640aa973bc0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "527598db018a6fc0",
+      "prompt_tokens": 2176,
+      "completion_tokens": 79,
+      "latency_ms": 20055.51,
+      "server_ms": 20017.8,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7ab89c7d49f84e96"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2176,
+    "completion_tokens": 79,
+    "total_ms": 24655.21
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

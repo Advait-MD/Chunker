@@ -1,0 +1,165 @@
+{
+  "trace_id": "2c5dead02dc14c4a",
+  "created_at": "2026-11-15T09:55:54.375461+00:00",
+  "query": "Why does the Earth have no moon?\n\nOptions:\n(A) The moon disintegrated in the battle between stars\n(B) The moon was stolen by a dark star\n(C) The moon stayed with the sun\n(D) The moon was flung off into space on its own\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 46.73
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 46.89
+    },
+    {
+      "state": "DONE",
+      "t_ms": 30681.42
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 11.58,
+      "bm25_ms": 32.57,
+      "n_candidates": {
+        "dense": 26,
+        "bm25": 22
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "a3e91ed7338e9e41:L0:000011",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "a3e91ed7338e9e41:L0:000010",
+          "score": 0.6264403242103935,
+          "fused": 0.6264403242103935,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "a3e91ed7338e9e41:L0:000007",
+          "score": 0.5766647378139179,
+          "fused": 0.5766647378139179,
+          "dense_rank": 3,
+          "bm25_rank": 5
+        },
+        {
+          "id": "raptor:fd76062c:L1:4693495908dd111a",
+          "score": 0.5581198920221095,
+          "fused": 0.5581198920221095,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:fd76062c:L2:35c149793333b0ed",
+          "score": 0.5307149830663296,
+          "fused": 0.5307149830663296,
+          "dense_rank": 6,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 46.66
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1639,
+      "latency_ms": 0.14
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 30634.3
+    }
+  },
+  "retrieved_ids": [
+    "a3e91ed7338e9e41:L0:000011",
+    "a3e91ed7338e9e41:L0:000010",
+    "a3e91ed7338e9e41:L0:000007",
+    "raptor:fd76062c:L1:4693495908dd111a",
+    "raptor:fd76062c:L2:35c149793333b0ed"
+  ],
+  "filtered_ids": [
+    "a3e91ed7338e9e41:L0:000011",
+    "a3e91ed7338e9e41:L0:000010",
+    "a3e91ed7338e9e41:L0:000007",
+    "raptor:fd76062c:L1:4693495908dd111a",
+    "raptor:fd76062c:L2:35c149793333b0ed"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:55:54.379023+00:00",
+      "call_id": "8d17298009e7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b994d9bb072f563e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2c5dead02dc14c4a"
+    },
+    {
+      "ts": "2026-11-15T09:56:25.055227+00:00",
+      "call_id": "7dda43521719",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "58456a1f457b92df",
+      "prompt_tokens": 2203,
+      "completion_tokens": 58,
+      "latency_ms": 30631.15,
+      "server_ms": 30542.4,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2c5dead02dc14c4a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2203,
+    "completion_tokens": 58,
+    "total_ms": 30682.9
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

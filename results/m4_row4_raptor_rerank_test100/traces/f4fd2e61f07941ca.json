@@ -1,0 +1,183 @@
+{
+  "trace_id": "f4fd2e61f07941ca",
+  "created_at": "2026-11-16T12:41:57.835609+00:00",
+  "query": "Do the bands The Gordons (Duo) and Sacred Rite (Band), originate from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3167.27
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3167.51
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21551.16
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.12,
+      "bm25_ms": 12.79,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 3145.11
+      },
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000197",
+          "score": 8.008745193481445,
+          "fused": 0.7059436944940541,
+          "dense_rank": 45,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 8.008745193481445
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000169",
+          "score": 7.201232433319092,
+          "fused": 0.4642940156461595,
+          "dense_rank": 47,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 7.201232433319092
+        },
+        {
+          "id": "raptor:67600e79:L1:32a819647100039e",
+          "score": 6.601197242736816,
+          "fused": 0.46094389543649206,
+          "dense_rank": 1,
+          "bm25_rank": 11,
+          "fused_rank": 4,
+          "rerank": 6.601197242736816
+        },
+        {
+          "id": "raptor:67600e79:L1:59389b3ebb35286e",
+          "score": 2.4509260654449463,
+          "fused": 0.8950070289820218,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 2.4509260654449463
+        },
+        {
+          "id": "raptor:67600e79:L1:d15cd867a17289ea",
+          "score": -0.502411425113678,
+          "fused": 0.1856935938045035,
+          "dense_rank": 17,
+          "bm25_rank": 15,
+          "fused_rank": 14,
+          "rerank": -0.502411425113678
+        }
+      ],
+      "latency_ms": 3167.2
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 913,
+      "latency_ms": 0.2
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18383.51
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000197",
+    "317e12ccd417c0d7:L0:000169",
+    "raptor:67600e79:L1:32a819647100039e",
+    "raptor:67600e79:L1:59389b3ebb35286e",
+    "raptor:67600e79:L1:d15cd867a17289ea"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000197",
+    "317e12ccd417c0d7:L0:000169",
+    "raptor:67600e79:L1:32a819647100039e",
+    "raptor:67600e79:L1:59389b3ebb35286e",
+    "raptor:67600e79:L1:d15cd867a17289ea"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:41:57.837609+00:00",
+      "call_id": "a96e614664de",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b9c476198fd2b15e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f4fd2e61f07941ca"
+    },
+    {
+      "ts": "2026-11-16T12:42:19.386368+00:00",
+      "call_id": "ef93832b766b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7ee11d8a4c0b14b3",
+      "prompt_tokens": 1540,
+      "completion_tokens": 95,
+      "latency_ms": 18382.29,
+      "server_ms": 18352.97,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "f4fd2e61f07941ca"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1540,
+    "completion_tokens": 95,
+    "total_ms": 21553.34
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "No, the bands The Gordons (Duo) and Sacred Rite (Band) do not originate from the same country."
+      ]
+    }
+  }
+}

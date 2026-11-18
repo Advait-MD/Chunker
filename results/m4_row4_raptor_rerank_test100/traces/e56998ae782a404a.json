@@ -1,0 +1,180 @@
+{
+  "trace_id": "e56998ae782a404a",
+  "created_at": "2026-11-16T11:39:21.518855+00:00",
+  "query": "Which best describes Zen's powers?\n\nOptions:\n(A) He can only mentally or visibly show up when incense is burned\n(B) He can only visibly travel and is never present only mentally\n(C) He can mentally travel any time but can only visibly show up when incense is burned\n(D) He can mentally and visibly show up anywhere he wants any time\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2714.11
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2714.23
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23737.14
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.38,
+      "bm25_ms": 62.15,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 24
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 2634.73
+      },
+      "hits": [
+        {
+          "id": "raptor:a1bad07b:L1:6575c2ca75732465",
+          "score": -1.0683642625808716,
+          "fused": 0.585626363851802,
+          "dense_rank": 2,
+          "bm25_rank": 8,
+          "fused_rank": 3,
+          "rerank": -1.0683642625808716
+        },
+        {
+          "id": "650372bcd2b0a7be:L0:000000",
+          "score": -1.2712221145629883,
+          "fused": 0.42821228485144663,
+          "dense_rank": 23,
+          "bm25_rank": 5,
+          "fused_rank": 8,
+          "rerank": -1.2712221145629883
+        },
+        {
+          "id": "650372bcd2b0a7be:L0:000004",
+          "score": -1.8556201457977295,
+          "fused": 0.2064401461648678,
+          "dense_rank": 25,
+          "bm25_rank": 12,
+          "fused_rank": 17,
+          "rerank": -1.8556201457977295
+        },
+        {
+          "id": "650372bcd2b0a7be:L0:000001",
+          "score": -2.1036698818206787,
+          "fused": 0.42881830644332486,
+          "dense_rank": 24,
+          "bm25_rank": 4,
+          "fused_rank": 7,
+          "rerank": -2.1036698818206787
+        },
+        {
+          "id": "650372bcd2b0a7be:L0:000014",
+          "score": -2.174901247024536,
+          "fused": 0.4226164283272197,
+          "dense_rank": 5,
+          "bm25_rank": 11,
+          "fused_rank": 9,
+          "rerank": -2.174901247024536
+        }
+      ],
+      "latency_ms": 2714.05
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1669,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21022.79
+    }
+  },
+  "retrieved_ids": [
+    "raptor:a1bad07b:L1:6575c2ca75732465",
+    "650372bcd2b0a7be:L0:000000",
+    "650372bcd2b0a7be:L0:000004",
+    "650372bcd2b0a7be:L0:000001",
+    "650372bcd2b0a7be:L0:000014"
+  ],
+  "filtered_ids": [
+    "raptor:a1bad07b:L1:6575c2ca75732465",
+    "650372bcd2b0a7be:L0:000000",
+    "650372bcd2b0a7be:L0:000004",
+    "650372bcd2b0a7be:L0:000001",
+    "650372bcd2b0a7be:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:39:21.521860+00:00",
+      "call_id": "34064f5bfd1e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "86ab36d430e282f1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e56998ae782a404a"
+    },
+    {
+      "ts": "2026-11-16T11:39:45.255733+00:00",
+      "call_id": "052ce664166b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "17ecb7b765f5a87d",
+      "prompt_tokens": 2333,
+      "completion_tokens": 58,
+      "latency_ms": 21021.39,
+      "server_ms": 20991.11,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e56998ae782a404a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2333,
+    "completion_tokens": 58,
+    "total_ms": 23738.95
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

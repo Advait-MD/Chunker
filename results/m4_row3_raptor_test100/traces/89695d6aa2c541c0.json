@@ -1,0 +1,164 @@
+{
+  "trace_id": "89695d6aa2c541c0",
+  "created_at": "2026-11-15T09:06:38.208281+00:00",
+  "query": "Which word embeddings do they utilize for the EmoContext task?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.7
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.76
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11377.72
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.15,
+      "bm25_ms": 8.88,
+      "n_candidates": {
+        "dense": 14,
+        "bm25": 13
+      },
+      "n_fused": 14,
+      "hits": [
+        {
+          "id": "b38279b6f7ccf3e2:L0:000000",
+          "score": 0.7644933466386642,
+          "fused": 0.7644933466386642,
+          "dense_rank": 8,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:72fa24d1:L1:e1a3a89fc8b929f3",
+          "score": 0.5443979025028178,
+          "fused": 0.5443979025028178,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "b38279b6f7ccf3e2:L0:000004",
+          "score": 0.4221271204542413,
+          "fused": 0.4221271204542413,
+          "dense_rank": 1,
+          "bm25_rank": 8
+        },
+        {
+          "id": "b38279b6f7ccf3e2:L0:000011",
+          "score": 0.4217872620914486,
+          "fused": 0.4217872620914486,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "b38279b6f7ccf3e2:L0:000005",
+          "score": 0.39408363528434537,
+          "fused": 0.39408363528434537,
+          "dense_rank": 14,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 12.67
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 757,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11364.29
+    }
+  },
+  "retrieved_ids": [
+    "b38279b6f7ccf3e2:L0:000000",
+    "raptor:72fa24d1:L1:e1a3a89fc8b929f3",
+    "b38279b6f7ccf3e2:L0:000004",
+    "b38279b6f7ccf3e2:L0:000011",
+    "b38279b6f7ccf3e2:L0:000005"
+  ],
+  "filtered_ids": [
+    "b38279b6f7ccf3e2:L0:000000",
+    "raptor:72fa24d1:L1:e1a3a89fc8b929f3",
+    "b38279b6f7ccf3e2:L0:000004",
+    "b38279b6f7ccf3e2:L0:000011",
+    "b38279b6f7ccf3e2:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:06:38.209285+00:00",
+      "call_id": "30aa2f5c0011",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2257d450cfe71fd1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "89695d6aa2c541c0"
+    },
+    {
+      "ts": "2026-11-15T09:06:49.585021+00:00",
+      "call_id": "755beee6ef31",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3f3c007b9af5973a",
+      "prompt_tokens": 1389,
+      "completion_tokens": 52,
+      "latency_ms": 11363.4,
+      "server_ms": 11337.22,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "89695d6aa2c541c0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1389,
+    "completion_tokens": 52,
+    "total_ms": 11379.76
+  },
+  "config_hash": "4304b1db8856",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

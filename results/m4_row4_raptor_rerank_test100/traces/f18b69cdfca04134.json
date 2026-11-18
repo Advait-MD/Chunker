@@ -1,0 +1,179 @@
+{
+  "trace_id": "f18b69cdfca04134",
+  "created_at": "2026-11-16T11:20:35.337557+00:00",
+  "query": "The actor who plays the father in I Can Only Imagine has a wife played by who in another film?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4228.5
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4230.17
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16688.56
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.0,
+      "bm25_ms": 14.6,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 9,
+        "latency_ms": 4207.55
+      },
+      "hits": [
+        {
+          "id": "4b634e52029ddab4:L0:000131",
+          "score": 6.995493412017822,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.995493412017822
+        },
+        {
+          "id": "raptor:67600e79:L1:4450b64481beda68",
+          "score": 1.3319495916366577,
+          "fused": 0.361222990233803,
+          "dense_rank": 3,
+          "bm25_rank": 27,
+          "fused_rank": 4,
+          "rerank": 1.3319495916366577
+        },
+        {
+          "id": "raptor:67600e79:L1:49debf30aeb06e4d",
+          "score": -4.193788528442383,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 9,
+          "rerank": -4.193788528442383
+        },
+        {
+          "id": "ad4ace752e719bab:L0:000112",
+          "score": -4.593390941619873,
+          "fused": 0.21431805946177546,
+          "dense_rank": 8,
+          "bm25_rank": 43,
+          "fused_rank": 17,
+          "rerank": -4.593390941619873
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000071",
+          "score": -4.619907379150391,
+          "fused": 0.30344040695317653,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 8,
+          "rerank": -4.619907379150391
+        }
+      ],
+      "latency_ms": 4228.44
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 675,
+      "latency_ms": 1.61
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12458.25
+    }
+  },
+  "retrieved_ids": [
+    "4b634e52029ddab4:L0:000131",
+    "raptor:67600e79:L1:4450b64481beda68",
+    "raptor:67600e79:L1:49debf30aeb06e4d",
+    "ad4ace752e719bab:L0:000112",
+    "73dfa6a9bfcab050:L0:000071"
+  ],
+  "filtered_ids": [
+    "4b634e52029ddab4:L0:000131",
+    "raptor:67600e79:L1:4450b64481beda68",
+    "raptor:67600e79:L1:49debf30aeb06e4d",
+    "ad4ace752e719bab:L0:000112",
+    "73dfa6a9bfcab050:L0:000071"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:20:35.338559+00:00",
+      "call_id": "7d04aa8bbcac",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "81f120fb3f7e1022",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f18b69cdfca04134"
+    },
+    {
+      "ts": "2026-11-16T11:20:52.024471+00:00",
+      "call_id": "792fccb12f0f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "382e07db530e3d18",
+      "prompt_tokens": 1280,
+      "completion_tokens": 73,
+      "latency_ms": 12456.86,
+      "server_ms": 12429.95,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "f18b69cdfca04134"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1280,
+    "completion_tokens": 73,
+    "total_ms": 16689.79
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

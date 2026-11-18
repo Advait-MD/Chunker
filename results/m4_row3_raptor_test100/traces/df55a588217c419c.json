@@ -1,0 +1,166 @@
+{
+  "trace_id": "df55a588217c419c",
+  "created_at": "2026-11-15T09:27:22.399042+00:00",
+  "query": "The BBC Footballer of the Year is a member of which team?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.61
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.67
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13069.34
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.98,
+      "bm25_ms": 8.31,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "6bddce8aaad42fea:L0:000063",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L2:deeb3b6f4a1f4157",
+          "score": 0.45287240769508535,
+          "fused": 0.45287240769508535,
+          "dense_rank": 7,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:67600e79:L1:e35d072ba398fc5c",
+          "score": 0.4193153825706364,
+          "fused": 0.4193153825706364,
+          "dense_rank": 27,
+          "bm25_rank": 2
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000062",
+          "score": 0.39207255161225185,
+          "fused": 0.39207255161225185,
+          "dense_rank": 10,
+          "bm25_rank": 6
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000132",
+          "score": 0.3377276635522937,
+          "fused": 0.3377276635522937,
+          "dense_rank": 13,
+          "bm25_rank": 8
+        }
+      ],
+      "latency_ms": 11.57
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 479,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13057.55
+    }
+  },
+  "retrieved_ids": [
+    "6bddce8aaad42fea:L0:000063",
+    "raptor:67600e79:L2:deeb3b6f4a1f4157",
+    "raptor:67600e79:L1:e35d072ba398fc5c",
+    "73dfa6a9bfcab050:L0:000062",
+    "dbcbda865eee9c7b:L0:000132"
+  ],
+  "filtered_ids": [
+    "6bddce8aaad42fea:L0:000063",
+    "raptor:67600e79:L2:deeb3b6f4a1f4157",
+    "raptor:67600e79:L1:e35d072ba398fc5c",
+    "73dfa6a9bfcab050:L0:000062",
+    "dbcbda865eee9c7b:L0:000132"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:27:22.400043+00:00",
+      "call_id": "7f9aebc033ce",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b82dd230da812d43",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "df55a588217c419c"
+    },
+    {
+      "ts": "2026-11-15T09:27:35.467008+00:00",
+      "call_id": "114c02e85d15",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2c54821761a51e44",
+      "prompt_tokens": 1080,
+      "completion_tokens": 71,
+      "latency_ms": 13056.62,
+      "server_ms": 13033.25,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "df55a588217c419c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1080,
+    "completion_tokens": 71,
+    "total_ms": 13070.36
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

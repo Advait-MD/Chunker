@@ -1,0 +1,180 @@
+{
+  "trace_id": "fd4335554c93475d",
+  "created_at": "2026-11-16T11:49:18.341233+00:00",
+  "query": "What made father realize he couldn't memory-wash Ronnie?\n\nOptions:\n(A) Others would notice and it would hurt Dad's reputation\n(B) Ronnie would just learn to read again\n(C) The technology wouldn't work on someone so young\n(D) Ronnie had already ingrained reading in his memory permanently \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2279.33
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2279.4
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19229.21
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.66,
+      "bm25_ms": 32.62,
+      "n_candidates": {
+        "dense": 16,
+        "bm25": 16
+      },
+      "n_fused": 16,
+      "rerank": {
+        "n": 16,
+        "n_computed": 4,
+        "latency_ms": 2242.82
+      },
+      "hits": [
+        {
+          "id": "raptor:3f8ec9b8:L1:b9a9863247d2272e",
+          "score": 2.6860015392303467,
+          "fused": 0.7095952752470812,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 2.6860015392303467
+        },
+        {
+          "id": "raptor:3f8ec9b8:L2:23484db0214bb56f",
+          "score": 1.5913422107696533,
+          "fused": 0.7932151877961708,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.5913422107696533
+        },
+        {
+          "id": "raptor:3f8ec9b8:L1:1f7cf12bb6348278",
+          "score": 1.2475042343139648,
+          "fused": 0.5757076484016628,
+          "dense_rank": 3,
+          "bm25_rank": 9,
+          "fused_rank": 4,
+          "rerank": 1.2475042343139648
+        },
+        {
+          "id": "2e3993d4866f16ac:L0:000006",
+          "score": 0.4346255958080292,
+          "fused": 0.8619853945506535,
+          "dense_rank": 6,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.4346255958080292
+        },
+        {
+          "id": "2e3993d4866f16ac:L0:000007",
+          "score": 0.27751415967941284,
+          "fused": 0.5400289815789823,
+          "dense_rank": 5,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": 0.27751415967941284
+        }
+      ],
+      "latency_ms": 2279.28
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1407,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16949.7
+    }
+  },
+  "retrieved_ids": [
+    "raptor:3f8ec9b8:L1:b9a9863247d2272e",
+    "raptor:3f8ec9b8:L2:23484db0214bb56f",
+    "raptor:3f8ec9b8:L1:1f7cf12bb6348278",
+    "2e3993d4866f16ac:L0:000006",
+    "2e3993d4866f16ac:L0:000007"
+  ],
+  "filtered_ids": [
+    "raptor:3f8ec9b8:L1:b9a9863247d2272e",
+    "raptor:3f8ec9b8:L2:23484db0214bb56f",
+    "raptor:3f8ec9b8:L1:1f7cf12bb6348278",
+    "2e3993d4866f16ac:L0:000006",
+    "2e3993d4866f16ac:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:49:18.343239+00:00",
+      "call_id": "01f200ef7efd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2fa892a9f3102e5e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fd4335554c93475d"
+    },
+    {
+      "ts": "2026-11-16T11:49:37.569657+00:00",
+      "call_id": "16d6827231a3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bee7748af54f0eb3",
+      "prompt_tokens": 1918,
+      "completion_tokens": 64,
+      "latency_ms": 16948.56,
+      "server_ms": 16915.54,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "fd4335554c93475d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1918,
+    "completion_tokens": 64,
+    "total_ms": 19232.25
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "trace_id": "11c267abcdf541fa",
+  "created_at": "2026-11-16T12:46:37.375855+00:00",
+  "query": "What nationality is the performer of song Pareho Tayo?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2669.91
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2670.14
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 21333.5
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.82,
+      "bm25_ms": 6.37,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2656.35
+      },
+      "hits": [
+        {
+          "id": "6af2db6cb86d77e2:L0:000183",
+          "score": 4.8770976066589355,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.8770976066589355
+        },
+        {
+          "id": "raptor:67600e79:L1:77aee2bca58e72f7",
+          "score": 2.1762099266052246,
+          "fused": 0.3068502460916742,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 2.1762099266052246
+        },
+        {
+          "id": "abe982d210232c3f:L0:000045",
+          "score": -1.690733551979065,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 3,
+          "rerank": -1.690733551979065
+        },
+        {
+          "id": "99628090500247e3:L0:000046",
+          "score": -1.9947285652160645,
+          "fused": 0.14203264328320286,
+          "dense_rank": 12,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -1.9947285652160645
+        },
+        {
+          "id": "99628090500247e3:L0:000060",
+          "score": -2.176862955093384,
+          "fused": 0.1986073973696628,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -2.176862955093384
+        }
+      ],
+      "latency_ms": 2669.85
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1268,
+      "latency_ms": 0.19
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18663.26
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000183",
+    "raptor:67600e79:L1:77aee2bca58e72f7",
+    "abe982d210232c3f:L0:000045",
+    "99628090500247e3:L0:000046",
+    "99628090500247e3:L0:000060"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000183",
+    "raptor:67600e79:L1:77aee2bca58e72f7",
+    "abe982d210232c3f:L0:000045",
+    "99628090500247e3:L0:000046",
+    "99628090500247e3:L0:000060"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:46:37.376852+00:00",
+      "call_id": "989f3d4be264",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "20ef15f6a5030f62",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "11c267abcdf541fa"
+    },
+    {
+      "ts": "2026-11-16T12:46:58.707545+00:00",
+      "call_id": "9f5942cef214",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7088d388edc1bcf0",
+      "prompt_tokens": 1987,
+      "completion_tokens": 64,
+      "latency_ms": 18662.05,
+      "server_ms": 18632.59,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "11c267abcdf541fa"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1987,
+    "completion_tokens": 64,
+    "total_ms": 21335.28
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "The performer of the song Pareho Tayo is Gloc-9, whose nationality is not specified in the given passages."
+      ]
+    }
+  }
+}

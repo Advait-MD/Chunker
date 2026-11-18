@@ -1,0 +1,183 @@
+{
+  "trace_id": "0a0c733c9b974c64",
+  "created_at": "2026-11-16T12:08:54.605919+00:00",
+  "query": "Were Halldór Laxness and Timothy Leary from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5074.16
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5075.54
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22632.67
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 53.54,
+      "bm25_ms": 54.76,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 10,
+        "latency_ms": 4956.08
+      },
+      "hits": [
+        {
+          "id": "81fc433d55d23b4c:L0:000037",
+          "score": 6.052273750305176,
+          "fused": 0.616430691751953,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 6.052273750305176
+        },
+        {
+          "id": "634431bb1e27714f:L0:000160",
+          "score": 4.558986186981201,
+          "fused": 0.8053059591780212,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.558986186981201
+        },
+        {
+          "id": "raptor:67600e79:L1:ddc5fe61c9cb164a",
+          "score": 2.3149149417877197,
+          "fused": 0.5811761620184703,
+          "dense_rank": 1,
+          "bm25_rank": 14,
+          "fused_rank": 5,
+          "rerank": 2.3149149417877197
+        },
+        {
+          "id": "raptor:67600e79:L1:da636d6719d68c49",
+          "score": -1.1208505630493164,
+          "fused": 0.4277007219271261,
+          "dense_rank": 2,
+          "bm25_rank": 13,
+          "fused_rank": 10,
+          "rerank": -1.1208505630493164
+        },
+        {
+          "id": "raptor:67600e79:L1:978976d791403203",
+          "score": -1.4567763805389404,
+          "fused": 0.32712445180848215,
+          "dense_rank": 7,
+          "bm25_rank": 15,
+          "fused_rank": 15,
+          "rerank": -1.4567763805389404
+        }
+      ],
+      "latency_ms": 5073.92
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 709,
+      "latency_ms": 1.34
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17556.24
+    }
+  },
+  "retrieved_ids": [
+    "81fc433d55d23b4c:L0:000037",
+    "634431bb1e27714f:L0:000160",
+    "raptor:67600e79:L1:ddc5fe61c9cb164a",
+    "raptor:67600e79:L1:da636d6719d68c49",
+    "raptor:67600e79:L1:978976d791403203"
+  ],
+  "filtered_ids": [
+    "81fc433d55d23b4c:L0:000037",
+    "634431bb1e27714f:L0:000160",
+    "raptor:67600e79:L1:ddc5fe61c9cb164a",
+    "raptor:67600e79:L1:da636d6719d68c49",
+    "raptor:67600e79:L1:978976d791403203"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:08:54.609982+00:00",
+      "call_id": "24d4bf7d922f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "605ebb7808be0b69",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0a0c733c9b974c64"
+    },
+    {
+      "ts": "2026-11-16T12:09:17.236642+00:00",
+      "call_id": "ec73fb6e4e7e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3bae03840df80233",
+      "prompt_tokens": 1351,
+      "completion_tokens": 85,
+      "latency_ms": 17554.95,
+      "server_ms": 17521.06,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0a0c733c9b974c64"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1351,
+    "completion_tokens": 85,
+    "total_ms": 22635.59
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "No, Halldór Laxness and Timothy Leary were not from the same country."
+      ]
+    }
+  }
+}

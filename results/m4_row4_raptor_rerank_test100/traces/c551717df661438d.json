@@ -1,0 +1,182 @@
+{
+  "trace_id": "c551717df661438d",
+  "created_at": "2026-11-16T11:37:45.147056+00:00",
+  "query": "Why does the author think people's satisfaction with their own teeth has gone down over time?\n\nOptions:\n(A) Dentistry has gotten more expensive and become unaffordable\n(B) Modern dental procedures are more temporary than those of the past\n(C) Younger generations have much higher expectations for dental health \n(D) The average diet today is higher in sugar and causes more dental decay\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 719.11
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 720.39
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21053.17
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.71,
+      "bm25_ms": 46.87,
+      "n_candidates": {
+        "dense": 8,
+        "bm25": 8
+      },
+      "n_fused": 8,
+      "rerank": {
+        "n": 8,
+        "n_computed": 1,
+        "latency_ms": 662.6
+      },
+      "hits": [
+        {
+          "id": "78b9035867828627:L0:000002",
+          "score": -0.16282668709754944,
+          "fused": 0.3221867216123904,
+          "dense_rank": 1,
+          "bm25_rank": 7,
+          "fused_rank": 5,
+          "rerank": -0.16282668709754944
+        },
+        {
+          "id": "raptor:967fcd7e:L1:85895881092491f2",
+          "score": -1.7390331029891968,
+          "fused": 0.3489498169051078,
+          "dense_rank": 5,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": -1.7390331029891968
+        },
+        {
+          "id": "78b9035867828627:L0:000000",
+          "score": -2.497685670852661,
+          "fused": 0.2805734135252554,
+          "dense_rank": 7,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -2.497685670852661
+        },
+        {
+          "id": "78b9035867828627:L0:000005",
+          "score": -2.7653262615203857,
+          "fused": 0.9157144157320255,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -2.7653262615203857
+        },
+        {
+          "id": "78b9035867828627:L0:000006",
+          "score": -3.230386257171631,
+          "fused": 0.4538536942725409,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -3.230386257171631
+        }
+      ],
+      "latency_ms": 719.06
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1575,
+      "latency_ms": 1.22
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20332.6
+    }
+  },
+  "retrieved_ids": [
+    "78b9035867828627:L0:000002",
+    "raptor:967fcd7e:L1:85895881092491f2",
+    "78b9035867828627:L0:000000",
+    "78b9035867828627:L0:000005",
+    "78b9035867828627:L0:000006"
+  ],
+  "filtered_ids": [
+    "78b9035867828627:L0:000002",
+    "raptor:967fcd7e:L1:85895881092491f2",
+    "78b9035867828627:L0:000000",
+    "78b9035867828627:L0:000005",
+    "78b9035867828627:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:37:45.149053+00:00",
+      "call_id": "7fc6a79e48b6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "88d5a86ab2261a4f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c551717df661438d"
+    },
+    {
+      "ts": "2026-11-16T11:38:06.198745+00:00",
+      "call_id": "7a10c6a4093a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d3d70777ad4c871a",
+      "prompt_tokens": 2244,
+      "completion_tokens": 74,
+      "latency_ms": 20331.14,
+      "server_ms": 20290.8,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "c551717df661438d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2244,
+    "completion_tokens": 74,
+    "total_ms": 21056.42
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "trace_id": "9cf679c3e58a4b0b",
+  "created_at": "2026-11-16T11:14:57.805572+00:00",
+  "query": "Who were the leaders of the opposition of the party that controlled the house of representatives in 2002?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1149.54
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1150.63
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14938.62
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.61,
+      "bm25_ms": 18.15,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 3,
+        "latency_ms": 1119.39
+      },
+      "hits": [
+        {
+          "id": "6683bfc7dec06e2a:L0:000198",
+          "score": 0.6490380167961121,
+          "fused": 0.7740769503789904,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 0.6490380167961121
+        },
+        {
+          "id": "ad4ace752e719bab:L0:000075",
+          "score": 0.21420490741729736,
+          "fused": 0.7473630420345456,
+          "dense_rank": 17,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 0.21420490741729736
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000089",
+          "score": -0.14341947436332703,
+          "fused": 0.8260695563947917,
+          "dense_rank": 13,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.14341947436332703
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000106",
+          "score": -0.4126014709472656,
+          "fused": 0.45091234643811456,
+          "dense_rank": 16,
+          "bm25_rank": 10,
+          "fused_rank": 8,
+          "rerank": -0.4126014709472656
+        },
+        {
+          "id": "raptor:67600e79:L1:ab3a6c5da8a422e7",
+          "score": -2.328287363052368,
+          "fused": 0.341666877967244,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 14,
+          "rerank": -2.328287363052368
+        }
+      ],
+      "latency_ms": 1149.49
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 735,
+      "latency_ms": 1.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13787.83
+    }
+  },
+  "retrieved_ids": [
+    "6683bfc7dec06e2a:L0:000198",
+    "ad4ace752e719bab:L0:000075",
+    "cc1bdb3bf430bd0d:L0:000089",
+    "6bddce8aaad42fea:L0:000106",
+    "raptor:67600e79:L1:ab3a6c5da8a422e7"
+  ],
+  "filtered_ids": [
+    "6683bfc7dec06e2a:L0:000198",
+    "ad4ace752e719bab:L0:000075",
+    "cc1bdb3bf430bd0d:L0:000089",
+    "6bddce8aaad42fea:L0:000106",
+    "raptor:67600e79:L1:ab3a6c5da8a422e7"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:14:57.808572+00:00",
+      "call_id": "737e01a8168a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b241b9e1af66bb92",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9cf679c3e58a4b0b"
+    },
+    {
+      "ts": "2026-11-16T11:15:12.743689+00:00",
+      "call_id": "9ee70cc1461d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5533ae83cb66e38b",
+      "prompt_tokens": 1389,
+      "completion_tokens": 77,
+      "latency_ms": 13786.61,
+      "server_ms": 13763.2,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9cf679c3e58a4b0b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1389,
+    "completion_tokens": 77,
+    "total_ms": 14942.21
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

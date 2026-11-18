@@ -1,0 +1,180 @@
+{
+  "trace_id": "b29a75adfbc44582",
+  "created_at": "2026-11-16T11:22:30.157980+00:00",
+  "query": "Which artist was featured on smooth jazz stations, along with Kenny G and the performer of Saxophonic?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3118.98
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3119.95
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16024.33
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.63,
+      "bm25_ms": 18.11,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 3094.16
+      },
+      "hits": [
+        {
+          "id": "ad4ace752e719bab:L0:000084",
+          "score": 2.5048186779022217,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 2.5048186779022217
+        },
+        {
+          "id": "raptor:67600e79:L1:b4ae0257a9ba9785",
+          "score": -3.646437406539917,
+          "fused": 0.4787973196089711,
+          "dense_rank": 3,
+          "bm25_rank": 14,
+          "fused_rank": 9,
+          "rerank": -3.646437406539917
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000041",
+          "score": -3.6959190368652344,
+          "fused": 0.540633862326984,
+          "dense_rank": 4,
+          "bm25_rank": 11,
+          "fused_rank": 5,
+          "rerank": -3.6959190368652344
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000100",
+          "score": -3.987051010131836,
+          "fused": 0.550937273498585,
+          "dense_rank": 21,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": -3.987051010131836
+        },
+        {
+          "id": "raptor:67600e79:L1:2997a7f32a1038fe",
+          "score": -4.007247447967529,
+          "fused": 0.27473643935223474,
+          "dense_rank": 50,
+          "bm25_rank": 12,
+          "fused_rank": 14,
+          "rerank": -4.007247447967529
+        }
+      ],
+      "latency_ms": 3118.93
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 588,
+      "latency_ms": 0.93
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12904.21
+    }
+  },
+  "retrieved_ids": [
+    "ad4ace752e719bab:L0:000084",
+    "raptor:67600e79:L1:b4ae0257a9ba9785",
+    "f3503d3d186f0f90:L0:000041",
+    "5a1a5bbda9db013e:L0:000100",
+    "raptor:67600e79:L1:2997a7f32a1038fe"
+  ],
+  "filtered_ids": [
+    "ad4ace752e719bab:L0:000084",
+    "raptor:67600e79:L1:b4ae0257a9ba9785",
+    "f3503d3d186f0f90:L0:000041",
+    "5a1a5bbda9db013e:L0:000100",
+    "raptor:67600e79:L1:2997a7f32a1038fe"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:22:30.158974+00:00",
+      "call_id": "703f2d8e66d8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f1394d7b001b2eee",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b29a75adfbc44582"
+    },
+    {
+      "ts": "2026-11-16T11:22:46.181185+00:00",
+      "call_id": "3a2cede4a562",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2a76468e143efa19",
+      "prompt_tokens": 1221,
+      "completion_tokens": 78,
+      "latency_ms": 12902.77,
+      "server_ms": 12880.64,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b29a75adfbc44582"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1221,
+    "completion_tokens": 78,
+    "total_ms": 16027.72
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

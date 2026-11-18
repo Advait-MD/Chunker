@@ -1,0 +1,180 @@
+{
+  "trace_id": "31c4b40c242848c0",
+  "created_at": "2026-11-16T11:43:35.628324+00:00",
+  "query": "Why does Kerry Blane leave retirement?\n\nOptions:\n(A) He runs out of money in his pension\n(B) Splinter Wood asks for him to be his mentor\n(C) He misses flying spacecraft too much to quit\n(D) He is called back to fly spacecraft because he is one of the best pilots\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2498.57
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2499.32
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17998.99
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.94,
+      "bm25_ms": 15.73,
+      "n_candidates": {
+        "dense": 22,
+        "bm25": 22
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2475.05
+      },
+      "hits": [
+        {
+          "id": "raptor:08547fe6:L1:a235969a0e120004",
+          "score": 1.7250903844833374,
+          "fused": 0.4612832921394552,
+          "dense_rank": 1,
+          "bm25_rank": 8,
+          "fused_rank": 3,
+          "rerank": 1.7250903844833374
+        },
+        {
+          "id": "b206449a502b4d8d:L0:000002",
+          "score": 1.3410652875900269,
+          "fused": 0.4669623621478138,
+          "dense_rank": 7,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.3410652875900269
+        },
+        {
+          "id": "b206449a502b4d8d:L0:000003",
+          "score": -0.7020041346549988,
+          "fused": 0.3779233023726187,
+          "dense_rank": 6,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -0.7020041346549988
+        },
+        {
+          "id": "raptor:08547fe6:L2:d6838ab973a5562c",
+          "score": -0.9092528223991394,
+          "fused": 0.40519171549321054,
+          "dense_rank": 2,
+          "bm25_rank": 9,
+          "fused_rank": 4,
+          "rerank": -0.9092528223991394
+        },
+        {
+          "id": "raptor:08547fe6:L1:fa2e48a9b202e1ba",
+          "score": -0.9532544016838074,
+          "fused": 0.23258161250571896,
+          "dense_rank": 3,
+          "bm25_rank": 21,
+          "fused_rank": 10,
+          "rerank": -0.9532544016838074
+        }
+      ],
+      "latency_ms": 2498.54
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1203,
+      "latency_ms": 0.73
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15499.52
+    }
+  },
+  "retrieved_ids": [
+    "raptor:08547fe6:L1:a235969a0e120004",
+    "b206449a502b4d8d:L0:000002",
+    "b206449a502b4d8d:L0:000003",
+    "raptor:08547fe6:L2:d6838ab973a5562c",
+    "raptor:08547fe6:L1:fa2e48a9b202e1ba"
+  ],
+  "filtered_ids": [
+    "raptor:08547fe6:L1:a235969a0e120004",
+    "b206449a502b4d8d:L0:000002",
+    "b206449a502b4d8d:L0:000003",
+    "raptor:08547fe6:L2:d6838ab973a5562c",
+    "raptor:08547fe6:L1:fa2e48a9b202e1ba"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:43:35.629334+00:00",
+      "call_id": "3eff6ac3802c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6d63613534e5c012",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "31c4b40c242848c0"
+    },
+    {
+      "ts": "2026-11-16T11:43:53.625784+00:00",
+      "call_id": "63f1c35333ba",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e2e4996f9932440e",
+      "prompt_tokens": 1828,
+      "completion_tokens": 60,
+      "latency_ms": 15498.38,
+      "server_ms": 15463.29,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "31c4b40c242848c0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1828,
+    "completion_tokens": 60,
+    "total_ms": 18001.41
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

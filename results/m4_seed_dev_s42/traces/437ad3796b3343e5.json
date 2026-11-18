@@ -1,0 +1,165 @@
+{
+  "trace_id": "437ad3796b3343e5",
+  "created_at": "2026-11-17T13:51:22.091328+00:00",
+  "query": "What does the shopkeeper think would make people stop looking at his magazines?\n\nOptions:\n(A) If he got a radio for the store\n(B) If he raised the prices \n(C) If he started carrying more comic books\n(D) If he moved his television to the front of the store\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 120.84
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 120.89
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16973.69
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 95.75,
+      "bm25_ms": 24.86,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 24
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000006",
+          "score": 0.9640176261934126,
+          "fused": 0.9640176261934126,
+          "dense_rank": 5,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:71f5ff57:L1:0708b07cceeed4f5",
+          "score": 0.678149651073499,
+          "fused": 0.678149651073499,
+          "dense_rank": 4,
+          "bm25_rank": 3
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000001",
+          "score": 0.6687847482657847,
+          "fused": 0.6687847482657847,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+          "score": 0.549403465067458,
+          "fused": 0.549403465067458,
+          "dense_rank": 6,
+          "bm25_rank": 6
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000012",
+          "score": 0.5423807093724123,
+          "fused": 0.5423807093724123,
+          "dense_rank": 16,
+          "bm25_rank": 2
+        }
+      ],
+      "latency_ms": 120.81
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1470,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16852.73
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000006",
+    "raptor:71f5ff57:L1:0708b07cceeed4f5",
+    "2ecd3be7264ff150:L0:000001",
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+    "2ecd3be7264ff150:L0:000012"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000006",
+    "raptor:71f5ff57:L1:0708b07cceeed4f5",
+    "2ecd3be7264ff150:L0:000001",
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+    "2ecd3be7264ff150:L0:000012"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T13:51:22.185965+00:00",
+      "call_id": "0fb4e889458a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "521f8dd32b94df96",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 90,
+      "completion_tokens": 0,
+      "latency_ms": 94.19,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "437ad3796b3343e5"
+    },
+    {
+      "ts": "2026-11-17T13:51:39.064897+00:00",
+      "call_id": "89976dd4aecc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "39f04a90cedd5b42",
+      "prompt_tokens": 2028,
+      "completion_tokens": 58,
+      "latency_ms": 16851.89,
+      "server_ms": 16831.96,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "437ad3796b3343e5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2028,
+    "completion_tokens": 58,
+    "total_ms": 16975.17
+  },
+  "config_hash": "10aa17327d5e",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

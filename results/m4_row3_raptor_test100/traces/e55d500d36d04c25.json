@@ -1,0 +1,164 @@
+{
+  "trace_id": "e55d500d36d04c25",
+  "created_at": "2026-11-16T10:21:48.747175+00:00",
+  "query": "Where was the place of death of the composer of song Hail, Hail, The Gang'S All Here?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.22
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.28
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10541.28
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.04,
+      "bm25_ms": 4.01,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "53c7288bdcd3837a:L0:000102",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:ef118204f3288eb5",
+          "score": 0.6268986863066354,
+          "fused": 0.6268986863066354,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:755bc1d4823a92ab",
+          "score": 0.3246420083208805,
+          "fused": 0.3246420083208805,
+          "dense_rank": 2,
+          "bm25_rank": 18
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000062",
+          "score": 0.2934425917020297,
+          "fused": 0.2934425917020297,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "460e441179bec402:L0:000092",
+          "score": 0.2673444432146768,
+          "fused": 0.2673444432146768,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 6.19
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 820,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10534.94
+    }
+  },
+  "retrieved_ids": [
+    "53c7288bdcd3837a:L0:000102",
+    "raptor:67600e79:L1:ef118204f3288eb5",
+    "raptor:67600e79:L1:755bc1d4823a92ab",
+    "b04ce6dd2d95fb80:L0:000062",
+    "460e441179bec402:L0:000092"
+  ],
+  "filtered_ids": [
+    "53c7288bdcd3837a:L0:000102",
+    "raptor:67600e79:L1:ef118204f3288eb5",
+    "raptor:67600e79:L1:755bc1d4823a92ab",
+    "b04ce6dd2d95fb80:L0:000062",
+    "460e441179bec402:L0:000092"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:21:48.749026+00:00",
+      "call_id": "32c2871eee7d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "332011b27b0375a0",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e55d500d36d04c25"
+    },
+    {
+      "ts": "2026-11-16T10:21:59.288680+00:00",
+      "call_id": "5ee1a688bc8a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c796aaf9f25e2ee5",
+      "prompt_tokens": 1439,
+      "completion_tokens": 45,
+      "latency_ms": 10534.41,
+      "server_ms": 10520.26,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e55d500d36d04c25"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1439,
+    "completion_tokens": 45,
+    "total_ms": 10542.03
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

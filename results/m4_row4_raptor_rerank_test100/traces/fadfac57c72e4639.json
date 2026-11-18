@@ -1,0 +1,182 @@
+{
+  "trace_id": "fadfac57c72e4639",
+  "created_at": "2026-11-16T12:33:38.629776+00:00",
+  "query": "Are The Man from Snowy River II and Miracle of the White Stallions filmed in different countries?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4272.33
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4272.44
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20145.7
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.27,
+      "bm25_ms": 14.39,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 10,
+        "latency_ms": 4253.24
+      },
+      "hits": [
+        {
+          "id": "cb96563b0747a6ba:L0:000125",
+          "score": 4.7475905418396,
+          "fused": 0.6443724705468419,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": 4.7475905418396
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000099",
+          "score": 2.8233559131622314,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 3,
+          "rerank": 2.8233559131622314
+        },
+        {
+          "id": "raptor:67600e79:L2:46b48f526ac93c8d",
+          "score": 1.630399227142334,
+          "fused": 0.734744650285124,
+          "dense_rank": 4,
+          "bm25_rank": 6,
+          "fused_rank": 2,
+          "rerank": 1.630399227142334
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000036",
+          "score": 0.4621991515159607,
+          "fused": 0.4766631391038696,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 9,
+          "rerank": 0.4621991515159607
+        },
+        {
+          "id": "raptor:67600e79:L1:882ac2c86ec50708",
+          "score": -0.12475326657295227,
+          "fused": 0.4008304123020806,
+          "dense_rank": 15,
+          "bm25_rank": 12,
+          "fused_rank": 13,
+          "rerank": -0.12475326657295227
+        }
+      ],
+      "latency_ms": 4272.28
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 533,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15873.1
+    }
+  },
+  "retrieved_ids": [
+    "cb96563b0747a6ba:L0:000125",
+    "cb96563b0747a6ba:L0:000099",
+    "raptor:67600e79:L2:46b48f526ac93c8d",
+    "90976421f3f2bea2:L0:000036",
+    "raptor:67600e79:L1:882ac2c86ec50708"
+  ],
+  "filtered_ids": [
+    "cb96563b0747a6ba:L0:000125",
+    "cb96563b0747a6ba:L0:000099",
+    "raptor:67600e79:L2:46b48f526ac93c8d",
+    "90976421f3f2bea2:L0:000036",
+    "raptor:67600e79:L1:882ac2c86ec50708"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:33:38.631776+00:00",
+      "call_id": "32491ebb1eac",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e3a2227c7cfca377",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fadfac57c72e4639"
+    },
+    {
+      "ts": "2026-11-16T12:33:58.774624+00:00",
+      "call_id": "01c7ead4e868",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6b993b7e630f9cbe",
+      "prompt_tokens": 1109,
+      "completion_tokens": 103,
+      "latency_ms": 15871.79,
+      "server_ms": 15849.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "fadfac57c72e4639"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1109,
+    "completion_tokens": 103,
+    "total_ms": 20147.88
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Yes, The Man from Snowy River II and Miracle of the White Stallions were filmed in different countries."
+      ]
+    }
+  }
+}

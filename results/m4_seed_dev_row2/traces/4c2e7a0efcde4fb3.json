@@ -1,0 +1,164 @@
+{
+  "trace_id": "4c2e7a0efcde4fb3",
+  "created_at": "2026-11-17T15:01:57.484247+00:00",
+  "query": "What did the police officers initially pick up the protagonist for?\n\nOptions:\n(A) Reckless driving\n(B) Possession of pornography\n(C) Drunk and disorderly conduct\n(D) Jaywalking\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.45
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17.51
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20541.37
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.81,
+      "bm25_ms": 14.41,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 16
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000007",
+          "score": 0.9338230109740341,
+          "fused": 0.9338230109740341,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000008",
+          "score": 0.7754734944370669,
+          "fused": 0.7754734944370669,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000018",
+          "score": 0.3898521704708203,
+          "fused": 0.3898521704708203,
+          "dense_rank": 9,
+          "bm25_rank": 3
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000010",
+          "score": 0.31540773078736095,
+          "fused": 0.31540773078736095,
+          "dense_rank": 4,
+          "bm25_rank": 6
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000004",
+          "score": 0.28658314154073505,
+          "fused": 0.28658314154073505,
+          "dense_rank": 16,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 17.41
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1974,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20523.76
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000007",
+    "2ecd3be7264ff150:L0:000008",
+    "2ecd3be7264ff150:L0:000018",
+    "2ecd3be7264ff150:L0:000010",
+    "2ecd3be7264ff150:L0:000004"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000007",
+    "2ecd3be7264ff150:L0:000008",
+    "2ecd3be7264ff150:L0:000018",
+    "2ecd3be7264ff150:L0:000010",
+    "2ecd3be7264ff150:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T15:01:57.485246+00:00",
+      "call_id": "61613145b135",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b14fae29219cfee0",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4c2e7a0efcde4fb3"
+    },
+    {
+      "ts": "2026-11-17T15:02:18.024095+00:00",
+      "call_id": "b7f283ff042c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8fcaf0ab9c32de96",
+      "prompt_tokens": 2515,
+      "completion_tokens": 49,
+      "latency_ms": 20522.59,
+      "server_ms": 20485.1,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4c2e7a0efcde4fb3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2515,
+    "completion_tokens": 49,
+    "total_ms": 20542.46
+  },
+  "config_hash": "ed6e9ea8986c",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

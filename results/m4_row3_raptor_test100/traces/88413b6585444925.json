@@ -1,0 +1,165 @@
+{
+  "trace_id": "88413b6585444925",
+  "created_at": "2026-11-16T09:45:27.817420+00:00",
+  "query": "Which American comedian born on March 21, 1962, appeared in the movie \"Sleepless in Seattle?\"",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.67
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.71
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12342.79
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.16,
+      "bm25_ms": 7.32,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "b120b09075017d08:L0:000150",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000178",
+          "score": 0.8107501270809434,
+          "fused": 0.8107501270809434,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:b18241d3c2713dee",
+          "score": 0.6786928253732046,
+          "fused": 0.6786928253732046,
+          "dense_rank": 12,
+          "bm25_rank": 3
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000027",
+          "score": 0.5131813246239716,
+          "fused": 0.5131813246239716,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:67600e79:L1:c4d3a30885b4b958",
+          "score": 0.4860435560415659,
+          "fused": 0.4860435560415659,
+          "dense_rank": 16,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 9.65
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 481,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12333.01
+    }
+  },
+  "retrieved_ids": [
+    "b120b09075017d08:L0:000150",
+    "c8fd2b3ea47eb07f:L0:000178",
+    "raptor:67600e79:L1:b18241d3c2713dee",
+    "ec3410ef955c5c93:L0:000027",
+    "raptor:67600e79:L1:c4d3a30885b4b958"
+  ],
+  "filtered_ids": [
+    "b120b09075017d08:L0:000150",
+    "c8fd2b3ea47eb07f:L0:000178",
+    "raptor:67600e79:L1:b18241d3c2713dee",
+    "ec3410ef955c5c93:L0:000027",
+    "raptor:67600e79:L1:c4d3a30885b4b958"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:45:27.819423+00:00",
+      "call_id": "37a2dd09f8fb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ba9c34e5cd84eeac",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "88413b6585444925"
+    },
+    {
+      "ts": "2026-11-16T09:45:40.160069+00:00",
+      "call_id": "005222d57fee",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "64026ad8a55f3170",
+      "prompt_tokens": 1091,
+      "completion_tokens": 91,
+      "latency_ms": 12332.23,
+      "server_ms": 12314.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "88413b6585444925"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1091,
+    "completion_tokens": 91,
+    "total_ms": 12344.07
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

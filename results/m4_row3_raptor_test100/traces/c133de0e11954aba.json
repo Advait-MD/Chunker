@@ -1,0 +1,170 @@
+{
+  "trace_id": "c133de0e11954aba",
+  "created_at": "2026-11-15T09:07:46.261474+00:00",
+  "query": "What are the restrictions of the restricted track?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.18
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16.28
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23240.96
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.48,
+      "bm25_ms": 9.51,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 10
+      },
+      "n_fused": 19,
+      "hits": [
+        {
+          "id": "c9f39c549839465e:L0:000011",
+          "score": 0.993517382368561,
+          "fused": 0.993517382368561,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:12c5f6d4:L1:fae52f9584e07515",
+          "score": 0.8457585355177274,
+          "fused": 0.8457585355177274,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:12c5f6d4:L1:56ad047d8b6aae05",
+          "score": 0.8290579045555571,
+          "fused": 0.8290579045555571,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "c9f39c549839465e:L0:000000",
+          "score": 0.8090069355030678,
+          "fused": 0.8090069355030678,
+          "dense_rank": 1,
+          "bm25_rank": 5
+        },
+        {
+          "id": "raptor:12c5f6d4:L2:676db5aab4ff2a19",
+          "score": 0.7992797683507201,
+          "fused": 0.7992797683507201,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 15.13
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 804,
+      "latency_ms": 1.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23224.56
+    }
+  },
+  "retrieved_ids": [
+    "c9f39c549839465e:L0:000011",
+    "raptor:12c5f6d4:L1:fae52f9584e07515",
+    "raptor:12c5f6d4:L1:56ad047d8b6aae05",
+    "c9f39c549839465e:L0:000000",
+    "raptor:12c5f6d4:L2:676db5aab4ff2a19"
+  ],
+  "filtered_ids": [
+    "c9f39c549839465e:L0:000011",
+    "raptor:12c5f6d4:L1:fae52f9584e07515",
+    "raptor:12c5f6d4:L1:56ad047d8b6aae05",
+    "c9f39c549839465e:L0:000000",
+    "raptor:12c5f6d4:L2:676db5aab4ff2a19"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:07:46.262474+00:00",
+      "call_id": "c1baf56d3a22",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9389aa8a10261848",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c133de0e11954aba"
+    },
+    {
+      "ts": "2026-11-15T09:08:09.501342+00:00",
+      "call_id": "f417ba2d0272",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "678b1ca389806ae2",
+      "prompt_tokens": 1384,
+      "completion_tokens": 151,
+      "latency_ms": 23223.29,
+      "server_ms": 23194.2,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "c133de0e11954aba"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1384,
+    "completion_tokens": 151,
+    "total_ms": 23242.9
+  },
+  "config_hash": "4304b1db8856",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2,
+        3,
+        5
+      ],
+      "uncited_sentences": [
+        "For the restricted track, they used a cascade of FST compositions, including a deletion transducer, an edit transducer, and a mapping transducer for insertions.",
+        "They addressed substitution errors using confusion sets from CyHunspell and manually defined corrections for determiner and preposition errors.",
+        "For insertions, they restricted them to three tokens: “,”, “-”, and “'s”, allowing only one per sentence."
+      ]
+    }
+  }
+}

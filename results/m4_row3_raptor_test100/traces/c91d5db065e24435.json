@@ -1,0 +1,167 @@
+{
+  "trace_id": "c91d5db065e24435",
+  "created_at": "2026-11-15T09:44:22.129802+00:00",
+  "query": "What was the blue spectral vehicle Dan acquired?\n\nOptions:\n(A) A time machine.\n(B) A UFO.\n(C) An inter-dimensional cage.\n(D) A flying car.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 22.62
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 22.84
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16769.05
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.91,
+      "bm25_ms": 19.46,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 24
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "e7190ee11203481e:L0:000007",
+          "score": 0.8922358196660133,
+          "fused": 0.8922358196660133,
+          "dense_rank": 7,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:98a1b091:L1:574625ac028d4635",
+          "score": 0.8342679661579864,
+          "fused": 0.8342679661579864,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:98a1b091:L2:976eefb969f803d4",
+          "score": 0.6580369167709458,
+          "fused": 0.6580369167709458,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "e7190ee11203481e:L0:000003",
+          "score": 0.649356335610253,
+          "fused": 0.649356335610253,
+          "dense_rank": 10,
+          "bm25_rank": 3
+        },
+        {
+          "id": "e7190ee11203481e:L0:000016",
+          "score": 0.6093207195371837,
+          "fused": 0.6093207195371837,
+          "dense_rank": 8,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 22.58
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1555,
+      "latency_ms": 0.19
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16746.11
+    }
+  },
+  "retrieved_ids": [
+    "e7190ee11203481e:L0:000007",
+    "raptor:98a1b091:L1:574625ac028d4635",
+    "raptor:98a1b091:L2:976eefb969f803d4",
+    "e7190ee11203481e:L0:000003",
+    "e7190ee11203481e:L0:000016"
+  ],
+  "filtered_ids": [
+    "e7190ee11203481e:L0:000007",
+    "raptor:98a1b091:L1:574625ac028d4635",
+    "raptor:98a1b091:L2:976eefb969f803d4",
+    "e7190ee11203481e:L0:000003",
+    "e7190ee11203481e:L0:000016"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:44:22.131361+00:00",
+      "call_id": "7815697712ed",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fcae755b40df44ba",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c91d5db065e24435"
+    },
+    {
+      "ts": "2026-11-15T09:44:38.898516+00:00",
+      "call_id": "bdecaec47efd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5a8faedfcab707fd",
+      "prompt_tokens": 2145,
+      "completion_tokens": 52,
+      "latency_ms": 16744.91,
+      "server_ms": 16715.14,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "c91d5db065e24435"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2145,
+    "completion_tokens": 52,
+    "total_ms": 16771.41
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        4
+      ],
+      "uncited_sentences": [
+        "(C) A spectral cage that Dan operated as a time machine."
+      ]
+    }
+  }
+}

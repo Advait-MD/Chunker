@@ -1,0 +1,167 @@
+{
+  "trace_id": "2435f0e07d2147f0",
+  "created_at": "2026-11-16T10:22:27.714010+00:00",
+  "query": "Which award the performer of song Constantemente Mía got?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.17
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.3
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11763.94
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.59,
+      "bm25_ms": 6.2,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "99628090500247e3:L0:000040",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000131",
+          "score": 0.32066157146672497,
+          "fused": 0.32066157146672497,
+          "dense_rank": 3,
+          "bm25_rank": 27
+        },
+        {
+          "id": "raptor:67600e79:L1:1748088914ff276d",
+          "score": 0.31851041415207254,
+          "fused": 0.31851041415207254,
+          "dense_rank": 1,
+          "bm25_rank": 41
+        },
+        {
+          "id": "raptor:67600e79:L1:eb9f468821bc0484",
+          "score": 0.31266532319739987,
+          "fused": 0.31266532319739987,
+          "dense_rank": 35,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:11d9143fd89b6029",
+          "score": 0.30006515539246803,
+          "fused": 0.30006515539246803,
+          "dense_rank": 7,
+          "bm25_rank": 10
+        }
+      ],
+      "latency_ms": 10.12
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 582,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11753.46
+    }
+  },
+  "retrieved_ids": [
+    "99628090500247e3:L0:000040",
+    "53c7288bdcd3837a:L0:000131",
+    "raptor:67600e79:L1:1748088914ff276d",
+    "raptor:67600e79:L1:eb9f468821bc0484",
+    "raptor:67600e79:L1:11d9143fd89b6029"
+  ],
+  "filtered_ids": [
+    "99628090500247e3:L0:000040",
+    "53c7288bdcd3837a:L0:000131",
+    "raptor:67600e79:L1:1748088914ff276d",
+    "raptor:67600e79:L1:eb9f468821bc0484",
+    "raptor:67600e79:L1:11d9143fd89b6029"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:22:27.716011+00:00",
+      "call_id": "8bbb7fea087c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9e7d00e92c602810",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2435f0e07d2147f0"
+    },
+    {
+      "ts": "2026-11-16T10:22:39.475631+00:00",
+      "call_id": "fa94a9aca616",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4e03a731179585ff",
+      "prompt_tokens": 1161,
+      "completion_tokens": 65,
+      "latency_ms": 11751.69,
+      "server_ms": 11724.06,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2435f0e07d2147f0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1161,
+    "completion_tokens": 65,
+    "total_ms": 11765.89
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        4
+      ],
+      "uncited_sentences": [
+        "The performer of the song 'Constantemente Mía', Belinda, did not receive any specific award mentioned in the provided passages."
+      ]
+    }
+  }
+}

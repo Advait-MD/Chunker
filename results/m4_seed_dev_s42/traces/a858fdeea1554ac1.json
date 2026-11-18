@@ -1,0 +1,169 @@
+{
+  "trace_id": "a858fdeea1554ac1",
+  "created_at": "2026-11-17T13:35:59.596188+00:00",
+  "query": "What hyperparameters are explored?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.59
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.66
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23564.92
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.51,
+      "bm25_ms": 5.86,
+      "n_candidates": {
+        "dense": 16,
+        "bm25": 1
+      },
+      "n_fused": 16,
+      "hits": [
+        {
+          "id": "ef020d29c123c3bc:L0:000006",
+          "score": 0.7827991064858845,
+          "fused": 0.7827991064858845,
+          "dense_rank": 14,
+          "bm25_rank": 1
+        },
+        {
+          "id": "ef020d29c123c3bc:L0:000011",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "ef020d29c123c3bc:L0:000010",
+          "score": 0.22133174896382674,
+          "fused": 0.22133174896382674,
+          "dense_rank": 2,
+          "bm25_rank": null
+        },
+        {
+          "id": "ef020d29c123c3bc:L0:000000",
+          "score": 0.2028445729121136,
+          "fused": 0.2028445729121136,
+          "dense_rank": 3,
+          "bm25_rank": null
+        },
+        {
+          "id": "ef020d29c123c3bc:L0:000008",
+          "score": 0.19681137583162925,
+          "fused": 0.19681137583162925,
+          "dense_rank": 4,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 9.55
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1420,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23555.17
+    }
+  },
+  "retrieved_ids": [
+    "ef020d29c123c3bc:L0:000006",
+    "ef020d29c123c3bc:L0:000011",
+    "ef020d29c123c3bc:L0:000010",
+    "ef020d29c123c3bc:L0:000000",
+    "ef020d29c123c3bc:L0:000008"
+  ],
+  "filtered_ids": [
+    "ef020d29c123c3bc:L0:000006",
+    "ef020d29c123c3bc:L0:000011",
+    "ef020d29c123c3bc:L0:000010",
+    "ef020d29c123c3bc:L0:000000",
+    "ef020d29c123c3bc:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T13:35:59.599193+00:00",
+      "call_id": "a6fd3e032cb6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1d488e2e33ecfa9a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a858fdeea1554ac1"
+    },
+    {
+      "ts": "2026-11-17T13:36:23.160722+00:00",
+      "call_id": "f699c7669c52",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "816200f94f5fcea3",
+      "prompt_tokens": 2195,
+      "completion_tokens": 98,
+      "latency_ms": 23554.17,
+      "server_ms": 23527.89,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a858fdeea1554ac1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2195,
+    "completion_tokens": 98,
+    "total_ms": 23566.04
+  },
+  "config_hash": "f5bf8e385908",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        3,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "The hyperparameters explored include dimensions (300 dimensions were conducted), window size (w8s1h0, w8s0h0, w4s1h0), and hierarchical softmax (h0, h1)."
+      ]
+    }
+  }
+}

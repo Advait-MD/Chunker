@@ -1,0 +1,165 @@
+{
+  "trace_id": "2ed7a5e822964743",
+  "created_at": "2026-11-16T09:40:29.090386+00:00",
+  "query": "Why was Mr. Spurling able to speak in a hostile tone?\n\nOptions:\n(A) He was secretly martian himself\n(B) He had lived on Mars for too long \n(C) He had never undergone the ethical conditioning\n(D) He was a \"senile delinquent\" and had outgrown his ethical conditioning\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 31.7
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 31.76
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18747.61
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.96,
+      "bm25_ms": 28.48,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:dd34eb7d:L1:b74f243deff9db10",
+          "score": 0.8706764428460797,
+          "fused": 0.8706764428460797,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "1a6b8d0c61ffb689:L0:000010",
+          "score": 0.8644033832520269,
+          "fused": 0.8644033832520269,
+          "dense_rank": 10,
+          "bm25_rank": 1
+        },
+        {
+          "id": "1a6b8d0c61ffb689:L0:000012",
+          "score": 0.7477432189579944,
+          "fused": 0.7477432189579944,
+          "dense_rank": 2,
+          "bm25_rank": 4
+        },
+        {
+          "id": "1a6b8d0c61ffb689:L0:000006",
+          "score": 0.654136692014557,
+          "fused": 0.654136692014557,
+          "dense_rank": 9,
+          "bm25_rank": 5
+        },
+        {
+          "id": "1a6b8d0c61ffb689:L0:000003",
+          "score": 0.6409916275732793,
+          "fused": 0.6409916275732793,
+          "dense_rank": 12,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 31.66
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1760,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18715.75
+    }
+  },
+  "retrieved_ids": [
+    "raptor:dd34eb7d:L1:b74f243deff9db10",
+    "1a6b8d0c61ffb689:L0:000010",
+    "1a6b8d0c61ffb689:L0:000012",
+    "1a6b8d0c61ffb689:L0:000006",
+    "1a6b8d0c61ffb689:L0:000003"
+  ],
+  "filtered_ids": [
+    "raptor:dd34eb7d:L1:b74f243deff9db10",
+    "1a6b8d0c61ffb689:L0:000010",
+    "1a6b8d0c61ffb689:L0:000012",
+    "1a6b8d0c61ffb689:L0:000006",
+    "1a6b8d0c61ffb689:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:40:29.092380+00:00",
+      "call_id": "ecdada591412",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5f2a8ab9e70d889d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2ed7a5e822964743"
+    },
+    {
+      "ts": "2026-11-16T09:40:47.837814+00:00",
+      "call_id": "4964e7bf293b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9b7b5a4b66438960",
+      "prompt_tokens": 2405,
+      "completion_tokens": 58,
+      "latency_ms": 18714.91,
+      "server_ms": 18686.77,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2ed7a5e822964743"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2405,
+    "completion_tokens": 58,
+    "total_ms": 18748.26
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

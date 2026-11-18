@@ -1,0 +1,164 @@
+{
+  "trace_id": "ac39c35ef72c43de",
+  "created_at": "2026-11-16T10:28:10.609078+00:00",
+  "query": "What is the name of the monster with six heads who ate Odysseus' men?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16.94
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17.02
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21.1
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.51,
+      "bm25_ms": 12.02,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "f9add743188fc69e:L0:000587",
+          "score": 0.8475708821576458,
+          "fused": 0.8475708821576458,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f9add743188fc69e:L0:000581",
+          "score": 0.783492858891494,
+          "fused": 0.783492858891494,
+          "dense_rank": 8,
+          "bm25_rank": 1
+        },
+        {
+          "id": "f9add743188fc69e:L0:000454",
+          "score": 0.6756850741774147,
+          "fused": 0.6756850741774147,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "f9add743188fc69e:L0:000360",
+          "score": 0.45594652888603987,
+          "fused": 0.45594652888603987,
+          "dense_rank": 21,
+          "bm25_rank": 4
+        },
+        {
+          "id": "f9add743188fc69e:L0:000624",
+          "score": 0.3684067388862595,
+          "fused": 0.3684067388862595,
+          "dense_rank": 32,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 16.9
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1004,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 3.98
+    }
+  },
+  "retrieved_ids": [
+    "f9add743188fc69e:L0:000587",
+    "f9add743188fc69e:L0:000581",
+    "f9add743188fc69e:L0:000454",
+    "f9add743188fc69e:L0:000360",
+    "f9add743188fc69e:L0:000624"
+  ],
+  "filtered_ids": [
+    "f9add743188fc69e:L0:000587",
+    "f9add743188fc69e:L0:000581",
+    "f9add743188fc69e:L0:000454",
+    "f9add743188fc69e:L0:000360",
+    "f9add743188fc69e:L0:000624"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:28:10.611080+00:00",
+      "call_id": "8eaf9b8717bd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5e03d2ce02955b83",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ac39c35ef72c43de"
+    },
+    {
+      "ts": "2026-11-16T10:28:10.629549+00:00",
+      "call_id": "33fde5f178dc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9d6e758e571b086c",
+      "prompt_tokens": 1646,
+      "completion_tokens": 54,
+      "latency_ms": 2.42,
+      "server_ms": 15936.97,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ac39c35ef72c43de"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 1646,
+    "completion_tokens": 54,
+    "total_ms": 22.66
+  },
+  "config_hash": "e1774ef76b1f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "trace_id": "ec7ab524677d4bff",
+  "created_at": "2026-11-17T14:48:43.965031+00:00",
+  "query": "How was the dataset collected?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.59
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.67
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14.59
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.13,
+      "bm25_ms": 8.22,
+      "n_candidates": {
+        "dense": 18,
+        "bm25": 1
+      },
+      "n_fused": 18,
+      "hits": [
+        {
+          "id": "2f396860ba4edb70:L0:000000",
+          "score": 0.9163956697802543,
+          "fused": 0.9163956697802543,
+          "dense_rank": 6,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2f396860ba4edb70:L0:000004",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "2f396860ba4edb70:L0:000017",
+          "score": 0.29871553764241077,
+          "fused": 0.29871553764241077,
+          "dense_rank": 2,
+          "bm25_rank": null
+        },
+        {
+          "id": "2f396860ba4edb70:L0:000003",
+          "score": 0.2728205376446728,
+          "fused": 0.2728205376446728,
+          "dense_rank": 3,
+          "bm25_rank": null
+        },
+        {
+          "id": "2f396860ba4edb70:L0:000002",
+          "score": 0.2384196389915215,
+          "fused": 0.2384196389915215,
+          "dense_rank": 4,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 12.55
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1161,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 1.79
+    }
+  },
+  "retrieved_ids": [
+    "2f396860ba4edb70:L0:000000",
+    "2f396860ba4edb70:L0:000004",
+    "2f396860ba4edb70:L0:000017",
+    "2f396860ba4edb70:L0:000003",
+    "2f396860ba4edb70:L0:000002"
+  ],
+  "filtered_ids": [
+    "2f396860ba4edb70:L0:000000",
+    "2f396860ba4edb70:L0:000004",
+    "2f396860ba4edb70:L0:000017",
+    "2f396860ba4edb70:L0:000003",
+    "2f396860ba4edb70:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:48:43.968035+00:00",
+      "call_id": "66c244fceda2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5a31f3b731cecbdb",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ec7ab524677d4bff"
+    },
+    {
+      "ts": "2026-11-17T14:48:43.978864+00:00",
+      "call_id": "aa6e5041765b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0e5ccfe5ce853d87",
+      "prompt_tokens": 1810,
+      "completion_tokens": 108,
+      "latency_ms": 0.72,
+      "server_ms": 22820.56,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ec7ab524677d4bff"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 1810,
+    "completion_tokens": 108,
+    "total_ms": 16.56
+  },
+  "config_hash": "d4a047076961",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The dataset was collected using Common Voice BIBREF10, a crowdsourcing speech recognition corpus.",
+        "Contributors recorded voice clips by reading from a bank of donated sentences.",
+        "Each voice clip was validated by at least two other users."
+      ]
+    }
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "trace_id": "e1fc4399f93f4dc0",
+  "created_at": "2026-11-16T09:55:59.359714+00:00",
+  "query": "Who was born first, Javier Frana or Sherwood Stewart?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.77
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.83
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 8196.7
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.99,
+      "bm25_ms": 4.58,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:286f53598834d24e",
+          "score": 0.9867509910115762,
+          "fused": 0.9867509910115762,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:d7bb85b138ba3744",
+          "score": 0.8750489325947615,
+          "fused": 0.8750489325947615,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000057",
+          "score": 0.6777115785198804,
+          "fused": 0.6777115785198804,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000116",
+          "score": 0.6417236667633041,
+          "fused": 0.6417236667633041,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000126",
+          "score": 0.5566978139075132,
+          "fused": 0.5566978139075132,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 6.75
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 245,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8189.81
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:286f53598834d24e",
+    "raptor:67600e79:L1:d7bb85b138ba3744",
+    "ec3410ef955c5c93:L0:000057",
+    "8e50522b7cb636d8:L0:000116",
+    "9794e842cc9565f0:L0:000126"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:286f53598834d24e",
+    "raptor:67600e79:L1:d7bb85b138ba3744",
+    "ec3410ef955c5c93:L0:000057",
+    "8e50522b7cb636d8:L0:000116",
+    "9794e842cc9565f0:L0:000126"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:55:59.360714+00:00",
+      "call_id": "f331593e965b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3a8e7cc9762669cd",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e1fc4399f93f4dc0"
+    },
+    {
+      "ts": "2026-11-16T09:56:07.555865+00:00",
+      "call_id": "79e06c3494ac",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "78c48c28bf9a6f6d",
+      "prompt_tokens": 817,
+      "completion_tokens": 45,
+      "latency_ms": 8188.95,
+      "server_ms": 8133.49,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e1fc4399f93f4dc0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 817,
+    "completion_tokens": 45,
+    "total_ms": 8197.83
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

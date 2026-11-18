@@ -1,0 +1,165 @@
+{
+  "trace_id": "58f57a7c78d44cac",
+  "created_at": "2026-11-16T10:06:51.034296+00:00",
+  "query": "Where did the director of film Search And Destroy (1995 Film) study?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.04
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.12
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11324.96
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.26,
+      "bm25_ms": 8.43,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:5ad19d2beeb17b0f",
+          "score": 0.8387581371091439,
+          "fused": 0.8387581371091439,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "460e441179bec402:L0:000024",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "0eac870d43736f51:L0:000136",
+          "score": 0.23392701126208126,
+          "fused": 0.23392701126208126,
+          "dense_rank": 9,
+          "bm25_rank": 8
+        },
+        {
+          "id": "abe982d210232c3f:L0:000018",
+          "score": 0.19937670937121563,
+          "fused": 0.19937670937121563,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "abe982d210232c3f:L0:000024",
+          "score": 0.19921631387748095,
+          "fused": 0.19921631387748095,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 12.0
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 371,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11312.64
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:5ad19d2beeb17b0f",
+    "460e441179bec402:L0:000024",
+    "0eac870d43736f51:L0:000136",
+    "abe982d210232c3f:L0:000018",
+    "abe982d210232c3f:L0:000024"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:5ad19d2beeb17b0f",
+    "460e441179bec402:L0:000024",
+    "0eac870d43736f51:L0:000136",
+    "abe982d210232c3f:L0:000018",
+    "abe982d210232c3f:L0:000024"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:06:51.035297+00:00",
+      "call_id": "3e9e4d546eec",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "909629fd0ad988bc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "58f57a7c78d44cac"
+    },
+    {
+      "ts": "2026-11-16T10:07:02.357420+00:00",
+      "call_id": "e3ae7dcc2fb2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e42021a3222fd24b",
+      "prompt_tokens": 960,
+      "completion_tokens": 71,
+      "latency_ms": 11311.09,
+      "server_ms": 11289.64,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "58f57a7c78d44cac"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 960,
+    "completion_tokens": 71,
+    "total_ms": 11327.19
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

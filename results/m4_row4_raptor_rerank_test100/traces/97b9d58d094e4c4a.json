@@ -1,0 +1,180 @@
+{
+  "trace_id": "97b9d58d094e4c4a",
+  "created_at": "2026-11-16T12:31:35.392377+00:00",
+  "query": "Who is the film dedicated to that Paramount Classics and MTV Films co-purchased the rights to?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4522.19
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4522.28
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19449.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.16,
+      "bm25_ms": 11.67,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 11,
+        "latency_ms": 4505.01
+      },
+      "hits": [
+        {
+          "id": "9794e842cc9565f0:L0:000107",
+          "score": 5.820922374725342,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.820922374725342
+        },
+        {
+          "id": "634431bb1e27714f:L0:000190",
+          "score": 0.8230836391448975,
+          "fused": 0.3383147137919561,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 6,
+          "rerank": 0.8230836391448975
+        },
+        {
+          "id": "raptor:67600e79:L1:1c850c93bb1bda56",
+          "score": -1.0134297609329224,
+          "fused": 0.5222040919397589,
+          "dense_rank": 9,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -1.0134297609329224
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000184",
+          "score": -1.249316692352295,
+          "fused": 0.24887992926050062,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 13,
+          "rerank": -1.249316692352295
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000077",
+          "score": -2.197016477584839,
+          "fused": 0.18941040683790916,
+          "dense_rank": null,
+          "bm25_rank": 13,
+          "fused_rank": 19,
+          "rerank": -2.197016477584839
+        }
+      ],
+      "latency_ms": 4522.14
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 769,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14927.04
+    }
+  },
+  "retrieved_ids": [
+    "9794e842cc9565f0:L0:000107",
+    "634431bb1e27714f:L0:000190",
+    "raptor:67600e79:L1:1c850c93bb1bda56",
+    "9794e842cc9565f0:L0:000184",
+    "838c0e0106e6f015:L0:000077"
+  ],
+  "filtered_ids": [
+    "9794e842cc9565f0:L0:000107",
+    "634431bb1e27714f:L0:000190",
+    "raptor:67600e79:L1:1c850c93bb1bda56",
+    "9794e842cc9565f0:L0:000184",
+    "838c0e0106e6f015:L0:000077"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:31:35.394699+00:00",
+      "call_id": "336d0e7c3f4d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0eceb0d6023421de",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "97b9d58d094e4c4a"
+    },
+    {
+      "ts": "2026-11-16T12:31:54.841173+00:00",
+      "call_id": "75409220ba5a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "43e2d72e3c5476f0",
+      "prompt_tokens": 1404,
+      "completion_tokens": 71,
+      "latency_ms": 14925.78,
+      "server_ms": 14895.94,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "97b9d58d094e4c4a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1404,
+    "completion_tokens": 71,
+    "total_ms": 19452.77
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

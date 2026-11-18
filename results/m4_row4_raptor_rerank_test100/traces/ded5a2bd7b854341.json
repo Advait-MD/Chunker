@@ -1,0 +1,179 @@
+{
+  "trace_id": "ded5a2bd7b854341",
+  "created_at": "2026-11-16T12:23:06.844953+00:00",
+  "query": "Mía Maestro had a role in the 2002 biopic directed by whom?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2293.47
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2294.66
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15333.03
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.22,
+      "bm25_ms": 5.31,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2284.08
+      },
+      "hits": [
+        {
+          "id": "ec3410ef955c5c93:L0:000104",
+          "score": 7.138657569885254,
+          "fused": 0.6487124609450768,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 7.138657569885254
+        },
+        {
+          "id": "raptor:67600e79:L1:f75ccdcc53a20658",
+          "score": 4.509048938751221,
+          "fused": 0.9511141891903465,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.509048938751221
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000128",
+          "score": 1.4901492595672607,
+          "fused": 0.6558121751508507,
+          "dense_rank": 1,
+          "bm25_rank": 10,
+          "fused_rank": 2,
+          "rerank": 1.4901492595672607
+        },
+        {
+          "id": "raptor:67600e79:L1:d9b086a23a418e17",
+          "score": 1.0412039756774902,
+          "fused": 0.19227198151644204,
+          "dense_rank": null,
+          "bm25_rank": 15,
+          "fused_rank": 18,
+          "rerank": 1.0412039756774902
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000110",
+          "score": 0.5818098783493042,
+          "fused": 0.41951172440031215,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 10,
+          "rerank": 0.5818098783493042
+        }
+      ],
+      "latency_ms": 2293.43
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 512,
+      "latency_ms": 1.15
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13038.16
+    }
+  },
+  "retrieved_ids": [
+    "ec3410ef955c5c93:L0:000104",
+    "raptor:67600e79:L1:f75ccdcc53a20658",
+    "ba3cd068cf9ac2e4:L0:000128",
+    "raptor:67600e79:L1:d9b086a23a418e17",
+    "ba3cd068cf9ac2e4:L0:000110"
+  ],
+  "filtered_ids": [
+    "ec3410ef955c5c93:L0:000104",
+    "raptor:67600e79:L1:f75ccdcc53a20658",
+    "ba3cd068cf9ac2e4:L0:000128",
+    "raptor:67600e79:L1:d9b086a23a418e17",
+    "ba3cd068cf9ac2e4:L0:000110"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:23:06.845952+00:00",
+      "call_id": "e77ecd1e02e9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "32d1d1d77b37b628",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ded5a2bd7b854341"
+    },
+    {
+      "ts": "2026-11-16T12:23:22.177543+00:00",
+      "call_id": "e0f0f2e3d4a0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7f870ad9f1a2cd06",
+      "prompt_tokens": 1120,
+      "completion_tokens": 68,
+      "latency_ms": 13037.06,
+      "server_ms": 13005.41,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ded5a2bd7b854341"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1120,
+    "completion_tokens": 68,
+    "total_ms": 15334.62
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

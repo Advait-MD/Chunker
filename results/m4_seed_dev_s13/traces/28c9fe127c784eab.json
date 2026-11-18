@@ -1,0 +1,168 @@
+{
+  "trace_id": "28c9fe127c784eab",
+  "created_at": "2026-11-17T14:33:36.968277+00:00",
+  "query": "Do the authors conduct experiments on the tasks mentioned?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3.0
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3.03
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 4.6
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.65,
+      "bm25_ms": 1.26,
+      "n_candidates": {
+        "dense": 12,
+        "bm25": 0
+      },
+      "n_fused": 12,
+      "hits": [
+        {
+          "id": "54783572869bf31b:L0:000007",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "54783572869bf31b:L0:000004",
+          "score": 0.2656619007127958,
+          "fused": 0.2656619007127958,
+          "dense_rank": 2,
+          "bm25_rank": null
+        },
+        {
+          "id": "raptor:6681a49d:L1:dd41e1227a586776",
+          "score": 0.25201873484714693,
+          "fused": 0.25201873484714693,
+          "dense_rank": 3,
+          "bm25_rank": null
+        },
+        {
+          "id": "54783572869bf31b:L0:000003",
+          "score": 0.2378638324911586,
+          "fused": 0.2378638324911586,
+          "dense_rank": 4,
+          "bm25_rank": null
+        },
+        {
+          "id": "54783572869bf31b:L0:000010",
+          "score": 0.23264695968510243,
+          "fused": 0.23264695968510243,
+          "dense_rank": 5,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 2.98
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1386,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 1.52
+    }
+  },
+  "retrieved_ids": [
+    "54783572869bf31b:L0:000007",
+    "54783572869bf31b:L0:000004",
+    "raptor:6681a49d:L1:dd41e1227a586776",
+    "54783572869bf31b:L0:000003",
+    "54783572869bf31b:L0:000010"
+  ],
+  "filtered_ids": [
+    "54783572869bf31b:L0:000007",
+    "54783572869bf31b:L0:000004",
+    "raptor:6681a49d:L1:dd41e1227a586776",
+    "54783572869bf31b:L0:000003",
+    "54783572869bf31b:L0:000010"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:33:36.969276+00:00",
+      "call_id": "07b3fd3a0e04",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "42183528855659fe",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "28c9fe127c784eab"
+    },
+    {
+      "ts": "2026-11-17T14:33:36.972276+00:00",
+      "call_id": "8c21b71117f1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "79a62f96d78ac229",
+      "prompt_tokens": 2152,
+      "completion_tokens": 100,
+      "latency_ms": 1.07,
+      "server_ms": 21032.44,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "28c9fe127c784eab"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 2152,
+    "completion_tokens": 100,
+    "total_ms": 5.1
+  },
+  "config_hash": "3feb6315c18d",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The passages discuss the use of Winograd schemas as challenges for machine translation and provide examples, but do not detail any experimental setups or results."
+      ]
+    }
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "trace_id": "46ba8a873bdd45f0",
+  "created_at": "2026-11-16T13:06:15.547575+00:00",
+  "query": "Who was the co-founder of Apple alongside Steve Jobs who built the Apple I computer?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7173.45
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7174.3
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20901.95
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 12.33,
+      "bm25_ms": 37.53,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 18,
+        "latency_ms": 7116.58
+      },
+      "hits": [
+        {
+          "id": "raptor:7d5dec53:L1:6ad5dde3926d8bf0",
+          "score": 4.337032794952393,
+          "fused": 0.26550233454471406,
+          "dense_rank": null,
+          "bm25_rank": 15,
+          "fused_rank": 17,
+          "rerank": 4.337032794952393
+        },
+        {
+          "id": "raptor:7d5dec53:L1:860e083c29c06dcd",
+          "score": 3.1320998668670654,
+          "fused": 0.30559555984191833,
+          "dense_rank": null,
+          "bm25_rank": 12,
+          "fused_rank": 12,
+          "rerank": 3.1320998668670654
+        },
+        {
+          "id": "raptor:7d5dec53:L2:2ae5f45c3dac8e99",
+          "score": 2.475419282913208,
+          "fused": 0.26382528155443496,
+          "dense_rank": 50,
+          "bm25_rank": 16,
+          "fused_rank": 18,
+          "rerank": 2.475419282913208
+        },
+        {
+          "id": "raptor:7d5dec53:L2:48938f0fa6a66816",
+          "score": 2.4264917373657227,
+          "fused": 0.40099566590267277,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": 2.4264917373657227
+        },
+        {
+          "id": "raptor:7d5dec53:L1:2a7ca259673b37da",
+          "score": 2.12394380569458,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.12394380569458
+        }
+      ],
+      "latency_ms": 7173.39
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 941,
+      "latency_ms": 0.8
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13727.52
+    }
+  },
+  "retrieved_ids": [
+    "raptor:7d5dec53:L1:6ad5dde3926d8bf0",
+    "raptor:7d5dec53:L1:860e083c29c06dcd",
+    "raptor:7d5dec53:L2:2ae5f45c3dac8e99",
+    "raptor:7d5dec53:L2:48938f0fa6a66816",
+    "raptor:7d5dec53:L1:2a7ca259673b37da"
+  ],
+  "filtered_ids": [
+    "raptor:7d5dec53:L1:6ad5dde3926d8bf0",
+    "raptor:7d5dec53:L1:860e083c29c06dcd",
+    "raptor:7d5dec53:L2:2ae5f45c3dac8e99",
+    "raptor:7d5dec53:L2:48938f0fa6a66816",
+    "raptor:7d5dec53:L1:2a7ca259673b37da"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:06:15.549575+00:00",
+      "call_id": "a208f7f725fb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "112262226ce1ac29",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "46ba8a873bdd45f0"
+    },
+    {
+      "ts": "2026-11-16T13:06:36.448874+00:00",
+      "call_id": "987ff9340d96",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8f93c1d809bd269e",
+      "prompt_tokens": 1452,
+      "completion_tokens": 60,
+      "latency_ms": 13725.69,
+      "server_ms": 13702.56,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "46ba8a873bdd45f0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1452,
+    "completion_tokens": 60,
+    "total_ms": 20903.78
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

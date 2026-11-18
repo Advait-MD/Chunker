@@ -1,0 +1,183 @@
+{
+  "trace_id": "9e40c6a0ebe64de0",
+  "created_at": "2026-11-16T11:51:14.410663+00:00",
+  "query": "What is Serenus?\n\nOptions:\n(A) A galaxy\n(B) A planet\n(C) A spaceship\n(D) An alien race\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2170.32
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2171.18
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18960.91
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.39,
+      "bm25_ms": 8.0,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 18
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2157.62
+      },
+      "hits": [
+        {
+          "id": "000ccf97cce5a847:L0:000002",
+          "score": -1.151094913482666,
+          "fused": 0.8779408328279623,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -1.151094913482666
+        },
+        {
+          "id": "raptor:d14a0daa:L1:e0f9acb4aac863d9",
+          "score": -1.8975718021392822,
+          "fused": 0.60301096331259,
+          "dense_rank": 2,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": -1.8975718021392822
+        },
+        {
+          "id": "000ccf97cce5a847:L0:000015",
+          "score": -2.11379337310791,
+          "fused": 0.9012539222911045,
+          "dense_rank": 11,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -2.11379337310791
+        },
+        {
+          "id": "000ccf97cce5a847:L0:000014",
+          "score": -2.582576036453247,
+          "fused": 0.6164884885394037,
+          "dense_rank": 6,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": -2.582576036453247
+        },
+        {
+          "id": "000ccf97cce5a847:L0:000004",
+          "score": -2.695639133453369,
+          "fused": 0.5517364000093811,
+          "dense_rank": 17,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": -2.695639133453369
+        }
+      ],
+      "latency_ms": 2170.28
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1560,
+      "latency_ms": 0.83
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16789.63
+    }
+  },
+  "retrieved_ids": [
+    "000ccf97cce5a847:L0:000002",
+    "raptor:d14a0daa:L1:e0f9acb4aac863d9",
+    "000ccf97cce5a847:L0:000015",
+    "000ccf97cce5a847:L0:000014",
+    "000ccf97cce5a847:L0:000004"
+  ],
+  "filtered_ids": [
+    "000ccf97cce5a847:L0:000002",
+    "raptor:d14a0daa:L1:e0f9acb4aac863d9",
+    "000ccf97cce5a847:L0:000015",
+    "000ccf97cce5a847:L0:000014",
+    "000ccf97cce5a847:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:51:14.411167+00:00",
+      "call_id": "94cba2f75740",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0714eccb1faf8cd6",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9e40c6a0ebe64de0"
+    },
+    {
+      "ts": "2026-11-16T11:51:33.370834+00:00",
+      "call_id": "6611f8b48abb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d3002cc3a9289793",
+      "prompt_tokens": 2107,
+      "completion_tokens": 56,
+      "latency_ms": 16788.62,
+      "server_ms": 16758.45,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9e40c6a0ebe64de0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2107,
+    "completion_tokens": 56,
+    "total_ms": 18962.89
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        4
+      ],
+      "uncited_sentences": [
+        "(C) Serenus is an old, automated ship bound for a distant border."
+      ]
+    }
+  }
+}

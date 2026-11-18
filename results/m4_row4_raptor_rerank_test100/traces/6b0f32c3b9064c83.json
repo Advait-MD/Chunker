@@ -1,0 +1,180 @@
+{
+  "trace_id": "6b0f32c3b9064c83",
+  "created_at": "2026-11-16T12:57:09.081030+00:00",
+  "query": "Which film was released more recently, Paul Temple'S Triumph or The Quick And The Undead?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2617.76
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2617.83
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15092.68
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.91,
+      "bm25_ms": 9.11,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2602.97
+      },
+      "hits": [
+        {
+          "id": "b04ce6dd2d95fb80:L0:000147",
+          "score": 9.14439868927002,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 3,
+          "rerank": 9.14439868927002
+        },
+        {
+          "id": "0eac870d43736f51:L0:000157",
+          "score": 8.587114334106445,
+          "fused": 0.6019145123097472,
+          "dense_rank": 13,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 8.587114334106445
+        },
+        {
+          "id": "raptor:67600e79:L1:747e3489428ae885",
+          "score": 5.808053970336914,
+          "fused": 0.7331467045436066,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": 5.808053970336914
+        },
+        {
+          "id": "raptor:67600e79:L1:7e0f1175485f7d03",
+          "score": 4.988443374633789,
+          "fused": 0.4448714226808349,
+          "dense_rank": 9,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": 4.988443374633789
+        },
+        {
+          "id": "raptor:67600e79:L2:151617ce9e02c324",
+          "score": 3.5099387168884277,
+          "fused": 0.7771133517449913,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 3.5099387168884277
+        }
+      ],
+      "latency_ms": 2617.7
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 557,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12474.7
+    }
+  },
+  "retrieved_ids": [
+    "b04ce6dd2d95fb80:L0:000147",
+    "0eac870d43736f51:L0:000157",
+    "raptor:67600e79:L1:747e3489428ae885",
+    "raptor:67600e79:L1:7e0f1175485f7d03",
+    "raptor:67600e79:L2:151617ce9e02c324"
+  ],
+  "filtered_ids": [
+    "b04ce6dd2d95fb80:L0:000147",
+    "0eac870d43736f51:L0:000157",
+    "raptor:67600e79:L1:747e3489428ae885",
+    "raptor:67600e79:L1:7e0f1175485f7d03",
+    "raptor:67600e79:L2:151617ce9e02c324"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:57:09.082029+00:00",
+      "call_id": "3dcc3f8537ed",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d297350c6e3efdb5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6b0f32c3b9064c83"
+    },
+    {
+      "ts": "2026-11-16T12:57:24.172448+00:00",
+      "call_id": "9f5c05c87b56",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4c4781923cf7a801",
+      "prompt_tokens": 1130,
+      "completion_tokens": 79,
+      "latency_ms": 12473.1,
+      "server_ms": 12450.62,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "6b0f32c3b9064c83"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1130,
+    "completion_tokens": 79,
+    "total_ms": 15095.4
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

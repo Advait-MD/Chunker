@@ -1,0 +1,166 @@
+{
+  "trace_id": "ddeb7dfc4e7d40c9",
+  "created_at": "2026-11-15T09:12:44.016470+00:00",
+  "query": "Who was the child of the 28th U.S. president?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.81
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.88
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10678.21
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.15,
+      "bm25_ms": 10.2,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ad11b6e85f908fb3:L0:000129",
+          "score": 0.7933024918690031,
+          "fused": 0.7933024918690031,
+          "dense_rank": 7,
+          "bm25_rank": 2
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000075",
+          "score": 0.7122838493490794,
+          "fused": 0.7122838493490794,
+          "dense_rank": 3,
+          "bm25_rank": 4
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000190",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:7e9086f45f641f63",
+          "score": 0.6837651302818737,
+          "fused": 0.6837651302818737,
+          "dense_rank": 14,
+          "bm25_rank": 3
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000004",
+          "score": 0.5931973919396996,
+          "fused": 0.5931973919396996,
+          "dense_rank": 1,
+          "bm25_rank": 12
+        }
+      ],
+      "latency_ms": 15.76
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 518,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10662.24
+    }
+  },
+  "retrieved_ids": [
+    "ad11b6e85f908fb3:L0:000129",
+    "6683bfc7dec06e2a:L0:000075",
+    "f109b032e24ab27a:L0:000190",
+    "raptor:67600e79:L1:7e9086f45f641f63",
+    "6683bfc7dec06e2a:L0:000004"
+  ],
+  "filtered_ids": [
+    "ad11b6e85f908fb3:L0:000129",
+    "6683bfc7dec06e2a:L0:000075",
+    "f109b032e24ab27a:L0:000190",
+    "raptor:67600e79:L1:7e9086f45f641f63",
+    "6683bfc7dec06e2a:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:12:44.019467+00:00",
+      "call_id": "3c4584f2df6d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "db46b662f9ac9f86",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ddeb7dfc4e7d40c9"
+    },
+    {
+      "ts": "2026-11-15T09:12:54.692920+00:00",
+      "call_id": "7d91119afb01",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c1c1a8c0ea699fdc",
+      "prompt_tokens": 1113,
+      "completion_tokens": 53,
+      "latency_ms": 10661.14,
+      "server_ms": 10630.79,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ddeb7dfc4e7d40c9"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1113,
+    "completion_tokens": 53,
+    "total_ms": 10679.38
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2
+      ],
+      "uncited_sentences": [
+        "Thomas Woodrow Wilson was the child of the 28th U.S. president."
+      ]
+    }
+  }
+}

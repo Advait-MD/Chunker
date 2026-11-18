@@ -1,0 +1,183 @@
+{
+  "trace_id": "5f4cd2a80e6346d1",
+  "created_at": "2026-11-16T12:07:39.573807+00:00",
+  "query": "What is the difference between the two aliens the pair run into and the Qornt?\n\nOptions:\n(A) Nothing.  They are the exact same.\n(B) The Qornt like to fight, and they don't care about the finer things in life.\n(C) The Qornt are much less violent.\n(D) The Qornt only eat humans.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2284.51
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2284.64
+    },
+    {
+      "state": "DONE",
+      "t_ms": 27651.57
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.47,
+      "bm25_ms": 38.32,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 25
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 2236.74
+      },
+      "hits": [
+        {
+          "id": "6344ae855cee9a61:L0:000005",
+          "score": 1.963862657546997,
+          "fused": 0.8538746832861267,
+          "dense_rank": 7,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.963862657546997
+        },
+        {
+          "id": "6344ae855cee9a61:L0:000004",
+          "score": 0.836115837097168,
+          "fused": 0.6342043443332728,
+          "dense_rank": 5,
+          "bm25_rank": 8,
+          "fused_rank": 6,
+          "rerank": 0.836115837097168
+        },
+        {
+          "id": "6344ae855cee9a61:L0:000018",
+          "score": -0.5480291843414307,
+          "fused": 0.5995613467523406,
+          "dense_rank": 13,
+          "bm25_rank": 3,
+          "fused_rank": 7,
+          "rerank": -0.5480291843414307
+        },
+        {
+          "id": "raptor:53b91b4f:L2:375ba6c93f8284ee",
+          "score": -0.6689451932907104,
+          "fused": 0.7843328094624555,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": -0.6689451932907104
+        },
+        {
+          "id": "6344ae855cee9a61:L0:000019",
+          "score": -0.7743805646896362,
+          "fused": 0.5204041208582972,
+          "dense_rank": 24,
+          "bm25_rank": 5,
+          "fused_rank": 12,
+          "rerank": -0.7743805646896362
+        }
+      ],
+      "latency_ms": 2284.44
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1754,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25366.64
+    }
+  },
+  "retrieved_ids": [
+    "6344ae855cee9a61:L0:000005",
+    "6344ae855cee9a61:L0:000004",
+    "6344ae855cee9a61:L0:000018",
+    "raptor:53b91b4f:L2:375ba6c93f8284ee",
+    "6344ae855cee9a61:L0:000019"
+  ],
+  "filtered_ids": [
+    "6344ae855cee9a61:L0:000005",
+    "6344ae855cee9a61:L0:000004",
+    "6344ae855cee9a61:L0:000018",
+    "raptor:53b91b4f:L2:375ba6c93f8284ee",
+    "6344ae855cee9a61:L0:000019"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:07:39.575808+00:00",
+      "call_id": "95313c2e94b2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3bc2dbdb8bd50e6a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5f4cd2a80e6346d1"
+    },
+    {
+      "ts": "2026-11-16T12:08:07.224312+00:00",
+      "call_id": "fab430791fc3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "71dfb6b0724e62f0",
+      "prompt_tokens": 2483,
+      "completion_tokens": 79,
+      "latency_ms": 25364.97,
+      "server_ms": 25331.74,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "5f4cd2a80e6346d1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2483,
+    "completion_tokens": 79,
+    "total_ms": 27671.43
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

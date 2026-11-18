@@ -1,0 +1,165 @@
+{
+  "trace_id": "2e71ab3359fb428b",
+  "created_at": "2026-11-16T09:45:00.023219+00:00",
+  "query": "What is the name of the film directed by Alex Cox  adapted from a 1606 play starring Diana Quick as the Dutchess?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.46
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15983.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.49,
+      "bm25_ms": 14.56,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "90976421f3f2bea2:L0:000138",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:8212ff429742ca89",
+          "score": 0.6672543156236014,
+          "fused": 0.6672543156236014,
+          "dense_rank": 7,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:a71c42ef3303c858",
+          "score": 0.4815330809553272,
+          "fused": 0.4815330809553272,
+          "dense_rank": 2,
+          "bm25_rank": 12
+        },
+        {
+          "id": "raptor:67600e79:L1:64ceef092878eb0a",
+          "score": 0.443166298709462,
+          "fused": 0.443166298709462,
+          "dense_rank": 3,
+          "bm25_rank": 5
+        },
+        {
+          "id": "raptor:67600e79:L1:ab055e66f4191831",
+          "score": 0.4061138259472431,
+          "fused": 0.4061138259472431,
+          "dense_rank": 4,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 19.35
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 840,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15964.36
+    }
+  },
+  "retrieved_ids": [
+    "90976421f3f2bea2:L0:000138",
+    "raptor:67600e79:L1:8212ff429742ca89",
+    "raptor:67600e79:L1:a71c42ef3303c858",
+    "raptor:67600e79:L1:64ceef092878eb0a",
+    "raptor:67600e79:L1:ab055e66f4191831"
+  ],
+  "filtered_ids": [
+    "90976421f3f2bea2:L0:000138",
+    "raptor:67600e79:L1:8212ff429742ca89",
+    "raptor:67600e79:L1:a71c42ef3303c858",
+    "raptor:67600e79:L1:64ceef092878eb0a",
+    "raptor:67600e79:L1:ab055e66f4191831"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:45:00.025230+00:00",
+      "call_id": "f5a048e578c4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "01b05e371281fc5a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2e71ab3359fb428b"
+    },
+    {
+      "ts": "2026-11-16T09:45:16.005504+00:00",
+      "call_id": "dc0aa06f31f1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d983727bba9318bf",
+      "prompt_tokens": 1503,
+      "completion_tokens": 72,
+      "latency_ms": 15963.02,
+      "server_ms": 15933.34,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2e71ab3359fb428b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1503,
+    "completion_tokens": 72,
+    "total_ms": 15986.34
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

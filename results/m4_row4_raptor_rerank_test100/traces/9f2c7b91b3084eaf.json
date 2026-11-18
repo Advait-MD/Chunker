@@ -1,0 +1,182 @@
+{
+  "trace_id": "9f2c7b91b3084eaf",
+  "created_at": "2026-11-16T11:50:35.106467+00:00",
+  "query": "How did the Mafia come to be in business on Mars?\n\nOptions:\n(A) By making a deal with Russia\n(B) By infiltrating the government\n(C) By accidentally finding a spaceship\n(D) By bribing a spaceship company\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3081.8
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3098.51
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21834.3
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.32,
+      "bm25_ms": 20.86,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 24
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 3049.64
+      },
+      "hits": [
+        {
+          "id": "6029a8e36bde5e77:L0:000009",
+          "score": 0.17936405539512634,
+          "fused": 0.39548907865581084,
+          "dense_rank": 14,
+          "bm25_rank": 10,
+          "fused_rank": 9,
+          "rerank": 0.17936405539512634
+        },
+        {
+          "id": "6029a8e36bde5e77:L0:000014",
+          "score": 0.11273928731679916,
+          "fused": 0.8132256970313023,
+          "dense_rank": 9,
+          "bm25_rank": 1,
+          "fused_rank": 4,
+          "rerank": 0.11273928731679916
+        },
+        {
+          "id": "raptor:83d29b75:L1:ca3e01e14ebcf061",
+          "score": -0.19986070692539215,
+          "fused": 0.8481060599312173,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -0.19986070692539215
+        },
+        {
+          "id": "raptor:83d29b75:L2:466dc37b96f91ad8",
+          "score": -0.6021680235862732,
+          "fused": 0.8232646644911515,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -0.6021680235862732
+        },
+        {
+          "id": "6029a8e36bde5e77:L0:000013",
+          "score": -0.6912378072738647,
+          "fused": 0.6311230418586391,
+          "dense_rank": 6,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -0.6912378072738647
+        }
+      ],
+      "latency_ms": 3081.76
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1574,
+      "latency_ms": 16.64
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18735.65
+    }
+  },
+  "retrieved_ids": [
+    "6029a8e36bde5e77:L0:000009",
+    "6029a8e36bde5e77:L0:000014",
+    "raptor:83d29b75:L1:ca3e01e14ebcf061",
+    "raptor:83d29b75:L2:466dc37b96f91ad8",
+    "6029a8e36bde5e77:L0:000013"
+  ],
+  "filtered_ids": [
+    "6029a8e36bde5e77:L0:000009",
+    "6029a8e36bde5e77:L0:000014",
+    "raptor:83d29b75:L1:ca3e01e14ebcf061",
+    "raptor:83d29b75:L2:466dc37b96f91ad8",
+    "6029a8e36bde5e77:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:50:35.107465+00:00",
+      "call_id": "89a744dc47e1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "45161038a9da4122",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9f2c7b91b3084eaf"
+    },
+    {
+      "ts": "2026-11-16T11:50:56.940069+00:00",
+      "call_id": "9f961d88b9b5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "316ea7660d84b266",
+      "prompt_tokens": 2180,
+      "completion_tokens": 51,
+      "latency_ms": 18734.18,
+      "server_ms": 18698.2,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9f2c7b91b3084eaf"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2180,
+    "completion_tokens": 51,
+    "total_ms": 21836.28
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "(A) By making a deal with Russia"
+      ]
+    }
+  }
+}

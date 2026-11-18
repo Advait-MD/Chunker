@@ -1,0 +1,166 @@
+{
+  "trace_id": "09290d92462145d6",
+  "created_at": "2026-11-16T09:53:22.220323+00:00",
+  "query": "Are the films Gasland from 2010 and Pumping Iron from 1977 both documentaries?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.03
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7.8
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14314.89
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.99,
+      "bm25_ms": 4.83,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:67600e79:L2:901a070aaad7002e",
+          "score": 0.8738422180163429,
+          "fused": 0.8738422180163429,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:5d12422e9a5953f3",
+          "score": 0.8183493869005023,
+          "fused": 0.8183493869005023,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000178",
+          "score": 0.6689329715452704,
+          "fused": 0.6689329715452704,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000095",
+          "score": 0.6635531109959116,
+          "fused": 0.6635531109959116,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000061",
+          "score": 0.6090483056697439,
+          "fused": 0.6090483056697439,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 7.0
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 465,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14306.97
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L2:901a070aaad7002e",
+    "raptor:67600e79:L1:5d12422e9a5953f3",
+    "bc1dba3471045f02:L0:000178",
+    "90976421f3f2bea2:L0:000095",
+    "cc2399aca11eb631:L0:000061"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L2:901a070aaad7002e",
+    "raptor:67600e79:L1:5d12422e9a5953f3",
+    "bc1dba3471045f02:L0:000178",
+    "90976421f3f2bea2:L0:000095",
+    "cc2399aca11eb631:L0:000061"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:53:22.221322+00:00",
+      "call_id": "2c53d4e9c42f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a474f1cfc41d956c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "09290d92462145d6"
+    },
+    {
+      "ts": "2026-11-16T09:53:36.533753+00:00",
+      "call_id": "a1caabbecf9b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "768eba25f4082cb5",
+      "prompt_tokens": 1068,
+      "completion_tokens": 96,
+      "latency_ms": 14306.06,
+      "server_ms": 14277.06,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "09290d92462145d6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1068,
+    "completion_tokens": 96,
+    "total_ms": 14316.6
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "No, they are not both documentaries."
+      ]
+    }
+  }
+}

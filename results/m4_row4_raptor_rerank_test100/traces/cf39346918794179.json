@@ -1,0 +1,180 @@
+{
+  "trace_id": "cf39346918794179",
+  "created_at": "2026-11-16T11:12:45.236328+00:00",
+  "query": "Who is the spouse of the actor who plays Vision in the new Avengers movie?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2292.59
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2293.76
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 18593.81
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.14,
+      "bm25_ms": 20.7,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 2263.16
+      },
+      "hits": [
+        {
+          "id": "8b31d5859eb3d77a:L0:000059",
+          "score": -1.8790239095687866,
+          "fused": 0.2753617888547105,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -1.8790239095687866
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000045",
+          "score": -3.199950933456421,
+          "fused": 0.24131875862725985,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": -3.199950933456421
+        },
+        {
+          "id": "raptor:67600e79:L1:4450b64481beda68",
+          "score": -3.4657387733459473,
+          "fused": 0.34318619521512544,
+          "dense_rank": 1,
+          "bm25_rank": 31,
+          "fused_rank": 3,
+          "rerank": -3.4657387733459473
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000187",
+          "score": -3.7979023456573486,
+          "fused": 0.427037806016894,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -3.7979023456573486
+        },
+        {
+          "id": "raptor:67600e79:L1:d0c4317d4813c10c",
+          "score": -3.883845567703247,
+          "fused": 0.2050744757317186,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -3.883845567703247
+        }
+      ],
+      "latency_ms": 2292.55
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1034,
+      "latency_ms": 1.13
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16299.9
+    }
+  },
+  "retrieved_ids": [
+    "8b31d5859eb3d77a:L0:000059",
+    "cc1bdb3bf430bd0d:L0:000045",
+    "raptor:67600e79:L1:4450b64481beda68",
+    "8679484d23bfd3a0:L0:000187",
+    "raptor:67600e79:L1:d0c4317d4813c10c"
+  ],
+  "filtered_ids": [
+    "8b31d5859eb3d77a:L0:000059",
+    "cc1bdb3bf430bd0d:L0:000045",
+    "raptor:67600e79:L1:4450b64481beda68",
+    "8679484d23bfd3a0:L0:000187",
+    "raptor:67600e79:L1:d0c4317d4813c10c"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:12:45.238415+00:00",
+      "call_id": "eca17582fdac",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ae46f23a1be6680b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cf39346918794179"
+    },
+    {
+      "ts": "2026-11-16T11:13:03.828793+00:00",
+      "call_id": "43a8f302a81c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d4888737088b8ff9",
+      "prompt_tokens": 1640,
+      "completion_tokens": 72,
+      "latency_ms": 16298.47,
+      "server_ms": 16266.01,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "cf39346918794179"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1640,
+    "completion_tokens": 72,
+    "total_ms": 18595.6
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

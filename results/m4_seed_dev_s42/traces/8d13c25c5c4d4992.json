@@ -1,0 +1,170 @@
+{
+  "trace_id": "8d13c25c5c4d4992",
+  "created_at": "2026-11-17T13:44:15.806418+00:00",
+  "query": "How many electrodes were used on the subject in EEG sessions?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.62
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.68
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13736.47
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.68,
+      "bm25_ms": 7.81,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 17
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "0384a8c28c5c11f0:L0:000005",
+          "score": 0.9415093862336795,
+          "fused": 0.9415093862336795,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "0384a8c28c5c11f0:L0:000000",
+          "score": 0.906972458244204,
+          "fused": 0.906972458244204,
+          "dense_rank": 5,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:ed0289cd:L1:8eaf606fdf3e970d",
+          "score": 0.8524214985899429,
+          "fused": 0.8524214985899429,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:ed0289cd:L1:e91132cc36785649",
+          "score": 0.6604733080542453,
+          "fused": 0.6604733080542453,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        },
+        {
+          "id": "0384a8c28c5c11f0:L0:000013",
+          "score": 0.6347682909320994,
+          "fused": 0.6347682909320994,
+          "dense_rank": 13,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 10.6
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1080,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13725.69
+    }
+  },
+  "retrieved_ids": [
+    "0384a8c28c5c11f0:L0:000005",
+    "0384a8c28c5c11f0:L0:000000",
+    "raptor:ed0289cd:L1:8eaf606fdf3e970d",
+    "raptor:ed0289cd:L1:e91132cc36785649",
+    "0384a8c28c5c11f0:L0:000013"
+  ],
+  "filtered_ids": [
+    "0384a8c28c5c11f0:L0:000005",
+    "0384a8c28c5c11f0:L0:000000",
+    "raptor:ed0289cd:L1:8eaf606fdf3e970d",
+    "raptor:ed0289cd:L1:e91132cc36785649",
+    "0384a8c28c5c11f0:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T13:44:15.807054+00:00",
+      "call_id": "73dda9b7260f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7f00de0966795820",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8d13c25c5c4d4992"
+    },
+    {
+      "ts": "2026-11-17T13:44:29.540999+00:00",
+      "call_id": "d0cbe37e9bbc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4616017d0a6cb18d",
+      "prompt_tokens": 1681,
+      "completion_tokens": 60,
+      "latency_ms": 13724.47,
+      "server_ms": 13697.78,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8d13c25c5c4d4992"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1681,
+    "completion_tokens": 60,
+    "total_ms": 13738.2
+  },
+  "config_hash": "f5bf8e385908",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "The number of electrodes used on the subject in EEG sessions is not explicitly stated in the provided passages."
+      ]
+    }
+  }
+}

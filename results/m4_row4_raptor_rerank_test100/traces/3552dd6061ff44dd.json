@@ -1,0 +1,185 @@
+{
+  "trace_id": "3552dd6061ff44dd",
+  "created_at": "2026-11-16T13:10:28.956830+00:00",
+  "query": "Compare the learning philosophy in 'The Road to React' with the discipline of strategy in 'The Book of Five Rings'. What fundamental principles do they share?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3527.54
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3527.63
+    },
+    {
+      "state": "DONE",
+      "t_ms": 27992.05
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.38,
+      "bm25_ms": 36.42,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 3484.11
+      },
+      "hits": [
+        {
+          "id": "raptor:7b17be58:L3:28e69df69d22b0fa",
+          "score": 2.1691267490386963,
+          "fused": 0.6171931069508168,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 2.1691267490386963
+        },
+        {
+          "id": "raptor:7b17be58:L2:c1b1c31e1432cf79",
+          "score": 1.9564545154571533,
+          "fused": 0.30658124249340457,
+          "dense_rank": null,
+          "bm25_rank": 16,
+          "fused_rank": 17,
+          "rerank": 1.9564545154571533
+        },
+        {
+          "id": "raptor:7b17be58:L1:d0f270175d1de7d9",
+          "score": 1.9169325828552246,
+          "fused": 0.4011203179331741,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 11,
+          "rerank": 1.9169325828552246
+        },
+        {
+          "id": "cd94466555d7bec7:L0:000315",
+          "score": -0.16525119543075562,
+          "fused": 0.6741649693927615,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": -0.16525119543075562
+        },
+        {
+          "id": "54e450272e768455:L0:000000",
+          "score": -0.6756085157394409,
+          "fused": 0.9732046258578237,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": -0.6756085157394409
+        }
+      ],
+      "latency_ms": 3527.47
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 945,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24464.0
+    }
+  },
+  "retrieved_ids": [
+    "raptor:7b17be58:L3:28e69df69d22b0fa",
+    "raptor:7b17be58:L2:c1b1c31e1432cf79",
+    "raptor:7b17be58:L1:d0f270175d1de7d9",
+    "cd94466555d7bec7:L0:000315",
+    "54e450272e768455:L0:000000"
+  ],
+  "filtered_ids": [
+    "raptor:7b17be58:L3:28e69df69d22b0fa",
+    "raptor:7b17be58:L2:c1b1c31e1432cf79",
+    "raptor:7b17be58:L1:d0f270175d1de7d9",
+    "cd94466555d7bec7:L0:000315",
+    "54e450272e768455:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:10:28.957830+00:00",
+      "call_id": "136676aa90ac",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "09327a53f424c602",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "3552dd6061ff44dd"
+    },
+    {
+      "ts": "2026-11-16T13:10:56.947662+00:00",
+      "call_id": "eab366138b1b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "660ad47862dd9f85",
+      "prompt_tokens": 1486,
+      "completion_tokens": 202,
+      "latency_ms": 24462.47,
+      "server_ms": 24424.12,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "3552dd6061ff44dd"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1486,
+    "completion_tokens": 202,
+    "total_ms": 27994.32
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5,
+        1,
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The learning philosophy in 'The Road to React' emphasizes the principles shared with 'The Book of Five Rings', which both advocate for a practical, experience-based approach."
+      ]
+    }
+  }
+}

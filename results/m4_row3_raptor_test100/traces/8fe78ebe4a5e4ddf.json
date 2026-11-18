@@ -1,0 +1,165 @@
+{
+  "trace_id": "8fe78ebe4a5e4ddf",
+  "created_at": "2026-11-15T08:58:47.462607+00:00",
+  "query": "Which of two design architectures have better performance?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.09
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.95
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14591.38
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.55,
+      "bm25_ms": 8.41,
+      "n_candidates": {
+        "dense": 29,
+        "bm25": 20
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ec354b94e4875d1d:L0:000000",
+          "score": 0.8650076899027722,
+          "fused": 0.8650076899027722,
+          "dense_rank": 9,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:d4f2281f:L1:680d91f545c2d639",
+          "score": 0.8075326131986128,
+          "fused": 0.8075326131986128,
+          "dense_rank": 12,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:d4f2281f:L2:bf8aca7a8d5e82da",
+          "score": 0.7697558525418678,
+          "fused": 0.7697558525418678,
+          "dense_rank": 13,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:d4f2281f:L1:4183a4e3ad2c7062",
+          "score": 0.6451036411640079,
+          "fused": 0.6451036411640079,
+          "dense_rank": 7,
+          "bm25_rank": 5
+        },
+        {
+          "id": "ec354b94e4875d1d:L0:000002",
+          "score": 0.5989877811873789,
+          "fused": 0.5989877811873789,
+          "dense_rank": 19,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 11.06
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1146,
+      "latency_ms": 0.85
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14578.64
+    }
+  },
+  "retrieved_ids": [
+    "ec354b94e4875d1d:L0:000000",
+    "raptor:d4f2281f:L1:680d91f545c2d639",
+    "raptor:d4f2281f:L2:bf8aca7a8d5e82da",
+    "raptor:d4f2281f:L1:4183a4e3ad2c7062",
+    "ec354b94e4875d1d:L0:000002"
+  ],
+  "filtered_ids": [
+    "ec354b94e4875d1d:L0:000000",
+    "raptor:d4f2281f:L1:680d91f545c2d639",
+    "raptor:d4f2281f:L2:bf8aca7a8d5e82da",
+    "raptor:d4f2281f:L1:4183a4e3ad2c7062",
+    "ec354b94e4875d1d:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T08:58:47.463874+00:00",
+      "call_id": "f0aa4e3a6438",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "52f7428a07397238",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8fe78ebe4a5e4ddf"
+    },
+    {
+      "ts": "2026-11-15T08:59:02.052419+00:00",
+      "call_id": "47ebd14aed78",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "20ec22f5d2ef4698",
+      "prompt_tokens": 1665,
+      "completion_tokens": 56,
+      "latency_ms": 14577.76,
+      "server_ms": 14547.9,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8fe78ebe4a5e4ddf"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1665,
+    "completion_tokens": 56,
+    "total_ms": 14593.12
+  },
+  "config_hash": "4304b1db8856",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

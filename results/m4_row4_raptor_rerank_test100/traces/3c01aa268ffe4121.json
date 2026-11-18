@@ -1,0 +1,182 @@
+{
+  "trace_id": "3c01aa268ffe4121",
+  "created_at": "2026-11-16T10:52:59.883872+00:00",
+  "query": "Does the SESAME dataset include discontiguous entities?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3452.32
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3452.92
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21729.43
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.32,
+      "bm25_ms": 24.64,
+      "n_candidates": {
+        "dense": 35,
+        "bm25": 29
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 3414.87
+      },
+      "hits": [
+        {
+          "id": "raptor:9ad28ca7:L1:5dfd7bb48443ab2d",
+          "score": 0.5795284509658813,
+          "fused": 0.8578915245855132,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": 0.5795284509658813
+        },
+        {
+          "id": "raptor:9ad28ca7:L2:87cb8241bbe80d25",
+          "score": 0.5411238074302673,
+          "fused": 0.9157799673003781,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.5411238074302673
+        },
+        {
+          "id": "fce081454ba0ef60:L0:000001",
+          "score": 0.09883347153663635,
+          "fused": 0.41378625366917793,
+          "dense_rank": 16,
+          "bm25_rank": 11,
+          "fused_rank": 10,
+          "rerank": 0.09883347153663635
+        },
+        {
+          "id": "raptor:9ad28ca7:L1:088b1235dda92f1d",
+          "score": -0.21989257633686066,
+          "fused": 0.7254149521788518,
+          "dense_rank": 2,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": -0.21989257633686066
+        },
+        {
+          "id": "raptor:9ad28ca7:L1:392d3ee067274b5c",
+          "score": -0.37245312333106995,
+          "fused": 0.6744301318413002,
+          "dense_rank": 3,
+          "bm25_rank": 7,
+          "fused_rank": 6,
+          "rerank": -0.37245312333106995
+        }
+      ],
+      "latency_ms": 3452.25
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1031,
+      "latency_ms": 0.56
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18276.32
+    }
+  },
+  "retrieved_ids": [
+    "raptor:9ad28ca7:L1:5dfd7bb48443ab2d",
+    "raptor:9ad28ca7:L2:87cb8241bbe80d25",
+    "fce081454ba0ef60:L0:000001",
+    "raptor:9ad28ca7:L1:088b1235dda92f1d",
+    "raptor:9ad28ca7:L1:392d3ee067274b5c"
+  ],
+  "filtered_ids": [
+    "raptor:9ad28ca7:L1:5dfd7bb48443ab2d",
+    "raptor:9ad28ca7:L2:87cb8241bbe80d25",
+    "fce081454ba0ef60:L0:000001",
+    "raptor:9ad28ca7:L1:088b1235dda92f1d",
+    "raptor:9ad28ca7:L1:392d3ee067274b5c"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:52:59.885870+00:00",
+      "call_id": "10eaad24bd3a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f9a780bcfc475374",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "3c01aa268ffe4121"
+    },
+    {
+      "ts": "2026-11-16T10:53:21.612977+00:00",
+      "call_id": "12b74092d546",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "02faf386d52c6277",
+      "prompt_tokens": 1579,
+      "completion_tokens": 74,
+      "latency_ms": 18275.0,
+      "server_ms": 18238.27,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "3c01aa268ffe4121"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1579,
+    "completion_tokens": 74,
+    "total_ms": 21731.7
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        4
+      ],
+      "uncited_sentences": [
+        "Yes, the SESAME dataset includes discontiguous entities as it uses the BIO format, where 'I' denotes internal words of an entity, indicating that entities can span multiple words."
+      ]
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "trace_id": "37831196f1064816",
+  "created_at": "2026-11-16T11:57:50.527189+00:00",
+  "query": "What is the relationship like between Peggy and Paula?\n\nOptions:\n(A) Amicable acquaintances\n(B) Old friends\n(C) Competitive actors\n(D) Housemates\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2675.35
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2675.45
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24337.11
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.45,
+      "bm25_ms": 21.18,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 23
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2644.8
+      },
+      "hits": [
+        {
+          "id": "raptor:234a9a57:L1:63e6733e9a2ee262",
+          "score": 2.1453754901885986,
+          "fused": 0.49306720003571924,
+          "dense_rank": 1,
+          "bm25_rank": 11,
+          "fused_rank": 5,
+          "rerank": 2.1453754901885986
+        },
+        {
+          "id": "raptor:234a9a57:L2:046adefb51d8fed6",
+          "score": 1.6588929891586304,
+          "fused": 0.9825593049001473,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.6588929891586304
+        },
+        {
+          "id": "raptor:234a9a57:L1:ffb034a3290e51ae",
+          "score": 1.2162773609161377,
+          "fused": 0.4404798277218511,
+          "dense_rank": 4,
+          "bm25_rank": 10,
+          "fused_rank": 7,
+          "rerank": 1.2162773609161377
+        },
+        {
+          "id": "fd902a71f7d888d8:L0:000015",
+          "score": -0.11961372196674347,
+          "fused": 0.5200610120975772,
+          "dense_rank": 7,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -0.11961372196674347
+        },
+        {
+          "id": "fd902a71f7d888d8:L0:000008",
+          "score": -0.8212389349937439,
+          "fused": 0.25561078885662136,
+          "dense_rank": 10,
+          "bm25_rank": 13,
+          "fused_rank": 11,
+          "rerank": -0.8212389349937439
+        }
+      ],
+      "latency_ms": 2675.3
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1267,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21661.5
+    }
+  },
+  "retrieved_ids": [
+    "raptor:234a9a57:L1:63e6733e9a2ee262",
+    "raptor:234a9a57:L2:046adefb51d8fed6",
+    "raptor:234a9a57:L1:ffb034a3290e51ae",
+    "fd902a71f7d888d8:L0:000015",
+    "fd902a71f7d888d8:L0:000008"
+  ],
+  "filtered_ids": [
+    "raptor:234a9a57:L1:63e6733e9a2ee262",
+    "raptor:234a9a57:L2:046adefb51d8fed6",
+    "raptor:234a9a57:L1:ffb034a3290e51ae",
+    "fd902a71f7d888d8:L0:000015",
+    "fd902a71f7d888d8:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:57:50.529190+00:00",
+      "call_id": "f2c2353c013f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e5616b8d481b7e6a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "37831196f1064816"
+    },
+    {
+      "ts": "2026-11-16T11:58:14.863692+00:00",
+      "call_id": "c2556a342110",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c3b9a2fa6ff6b428",
+      "prompt_tokens": 1782,
+      "completion_tokens": 98,
+      "latency_ms": 21660.13,
+      "server_ms": 21634.36,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "37831196f1064816"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1782,
+    "completion_tokens": 98,
+    "total_ms": 24338.19
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Peggy and Paula are described as friends who support each other during auditions and share encouragement."
+      ]
+    }
+  }
+}

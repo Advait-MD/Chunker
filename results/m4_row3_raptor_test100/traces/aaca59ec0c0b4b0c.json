@@ -1,0 +1,168 @@
+{
+  "trace_id": "aaca59ec0c0b4b0c",
+  "created_at": "2026-11-16T09:47:17.112776+00:00",
+  "query": "Which plant, the Chaerophyllum or the Cryptanthus, can be found in various places across the world?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.16
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.22
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11672.23
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.27,
+      "bm25_ms": 9.55,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:50f48f211abdc589",
+          "score": 0.874324410611609,
+          "fused": 0.874324410611609,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000037",
+          "score": 0.7186281870626372,
+          "fused": 0.7186281870626372,
+          "dense_rank": 41,
+          "bm25_rank": 1
+        },
+        {
+          "id": "20496f59538deb41:L0:000122",
+          "score": 0.6449186860752887,
+          "fused": 0.6449186860752887,
+          "dense_rank": 4,
+          "bm25_rank": 3
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000022",
+          "score": 0.5664295916095069,
+          "fused": 0.5664295916095069,
+          "dense_rank": 12,
+          "bm25_rank": 4
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000195",
+          "score": 0.33730631989616966,
+          "fused": 0.33730631989616966,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 13.12
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 283,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11658.95
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:50f48f211abdc589",
+    "cb96563b0747a6ba:L0:000037",
+    "20496f59538deb41:L0:000122",
+    "cc2399aca11eb631:L0:000022",
+    "81fc433d55d23b4c:L0:000195"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:50f48f211abdc589",
+    "cb96563b0747a6ba:L0:000037",
+    "20496f59538deb41:L0:000122",
+    "cc2399aca11eb631:L0:000022",
+    "81fc433d55d23b4c:L0:000195"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:47:17.114774+00:00",
+      "call_id": "183fb9362146",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "13d7b6088dc484be",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "aaca59ec0c0b4b0c"
+    },
+    {
+      "ts": "2026-11-16T09:47:28.784356+00:00",
+      "call_id": "ead64f481c46",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1b05b3a3e6c62be1",
+      "prompt_tokens": 889,
+      "completion_tokens": 94,
+      "latency_ms": 11658.34,
+      "server_ms": 11641.22,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "aaca59ec0c0b4b0c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 889,
+    "completion_tokens": 94,
+    "total_ms": 11673.19
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3
+      ],
+      "uncited_sentences": [
+        "Chaerophyllum can be found in the Alps from Switzerland, France and Italy, and it is a genus of flowering plant in the Apiaceae, with 35 species native to Europe, Asia, North America, and northern Africa."
+      ]
+    }
+  }
+}

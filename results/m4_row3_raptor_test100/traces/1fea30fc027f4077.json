@@ -1,0 +1,168 @@
+{
+  "trace_id": "1fea30fc027f4077",
+  "created_at": "2026-11-16T10:20:47.128144+00:00",
+  "query": "Which film was released more recently, Paul Temple'S Triumph or The Quick And The Undead?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.58
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.71
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15460.02
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.78,
+      "bm25_ms": 8.5,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:67600e79:L2:151617ce9e02c324",
+          "score": 0.7771133517449913,
+          "fused": 0.7771133517449913,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:747e3489428ae885",
+          "score": 0.7331467045436066,
+          "fused": 0.7331467045436066,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000147",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "0eac870d43736f51:L0:000157",
+          "score": 0.6019145123097472,
+          "fused": 0.6019145123097472,
+          "dense_rank": 13,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:67600e79:L1:5c66cace28db0e6f",
+          "score": 0.4535945626376089,
+          "fused": 0.4535945626376089,
+          "dense_rank": 3,
+          "bm25_rank": 9
+        }
+      ],
+      "latency_ms": 12.54
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 582,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15447.13
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L2:151617ce9e02c324",
+    "raptor:67600e79:L1:747e3489428ae885",
+    "b04ce6dd2d95fb80:L0:000147",
+    "0eac870d43736f51:L0:000157",
+    "raptor:67600e79:L1:5c66cace28db0e6f"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L2:151617ce9e02c324",
+    "raptor:67600e79:L1:747e3489428ae885",
+    "b04ce6dd2d95fb80:L0:000147",
+    "0eac870d43736f51:L0:000157",
+    "raptor:67600e79:L1:5c66cace28db0e6f"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:20:47.130151+00:00",
+      "call_id": "d4cdb150060b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d297350c6e3efdb5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1fea30fc027f4077"
+    },
+    {
+      "ts": "2026-11-16T10:21:02.586751+00:00",
+      "call_id": "f3396be7fd23",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "58e153fce45365e2",
+      "prompt_tokens": 1183,
+      "completion_tokens": 93,
+      "latency_ms": 15445.77,
+      "server_ms": 15423.92,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1fea30fc027f4077"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1183,
+    "completion_tokens": 93,
+    "total_ms": 15462.62
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        4,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, The Quick and the Undead was released more recently."
+      ]
+    }
+  }
+}

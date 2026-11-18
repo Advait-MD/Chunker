@@ -1,0 +1,167 @@
+{
+  "trace_id": "25fe0dd3390e420e",
+  "created_at": "2026-11-17T13:30:59.457427+00:00",
+  "query": "What is the improvement in performance for Estonian in the NER task?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.66
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18.73
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 19943.34
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.92,
+      "bm25_ms": 14.46,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 17
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "581e436007c6e252:L0:000016",
+          "score": 0.8956943957953366,
+          "fused": 0.8956943957953366,
+          "dense_rank": 5,
+          "bm25_rank": 1
+        },
+        {
+          "id": "581e436007c6e252:L0:000000",
+          "score": 0.8410826659911315,
+          "fused": 0.8410826659911315,
+          "dense_rank": 9,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:83a91ebf:L1:3d92d46e5bb7bbaf",
+          "score": 0.8070301502225996,
+          "fused": 0.8070301502225996,
+          "dense_rank": 3,
+          "bm25_rank": 4
+        },
+        {
+          "id": "581e436007c6e252:L0:000014",
+          "score": 0.7407906008282938,
+          "fused": 0.7407906008282938,
+          "dense_rank": 17,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:83a91ebf:L1:ad696e9d9f2b3d4c",
+          "score": 0.6560053494823938,
+          "fused": 0.6560053494823938,
+          "dense_rank": 4,
+          "bm25_rank": 8
+        }
+      ],
+      "latency_ms": 18.61
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 973,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19924.47
+    }
+  },
+  "retrieved_ids": [
+    "581e436007c6e252:L0:000016",
+    "581e436007c6e252:L0:000000",
+    "raptor:83a91ebf:L1:3d92d46e5bb7bbaf",
+    "581e436007c6e252:L0:000014",
+    "raptor:83a91ebf:L1:ad696e9d9f2b3d4c"
+  ],
+  "filtered_ids": [
+    "581e436007c6e252:L0:000016",
+    "581e436007c6e252:L0:000000",
+    "raptor:83a91ebf:L1:3d92d46e5bb7bbaf",
+    "581e436007c6e252:L0:000014",
+    "raptor:83a91ebf:L1:ad696e9d9f2b3d4c"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T13:30:59.459874+00:00",
+      "call_id": "c78c3eae9cb3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f3118706b2c67239",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "25fe0dd3390e420e"
+    },
+    {
+      "ts": "2026-11-17T13:31:19.399614+00:00",
+      "call_id": "037e0f00d391",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "69f041326a3b8ca3",
+      "prompt_tokens": 1642,
+      "completion_tokens": 88,
+      "latency_ms": 19923.38,
+      "server_ms": 19899.03,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "25fe0dd3390e420e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1642,
+    "completion_tokens": 88,
+    "total_ms": 19944.36
+  },
+  "config_hash": "f5bf8e385908",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The improvement in performance for Estonian in the NER task is not directly stated in the provided evidence."
+      ]
+    }
+  }
+}

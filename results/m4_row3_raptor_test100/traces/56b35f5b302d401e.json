@@ -1,0 +1,168 @@
+{
+  "trace_id": "56b35f5b302d401e",
+  "created_at": "2026-11-15T08:55:48.250475+00:00",
+  "query": "Which knowledge destilation methods do they introduce?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8.41
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8.44
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15473.13
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.17,
+      "bm25_ms": 6.11,
+      "n_candidates": {
+        "dense": 26,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "3d5f78a6650b8155:L0:000000",
+          "score": 0.9790485560463258,
+          "fused": 0.9790485560463258,
+          "dense_rank": 6,
+          "bm25_rank": 1
+        },
+        {
+          "id": "3d5f78a6650b8155:L0:000018",
+          "score": 0.8744412001146539,
+          "fused": 0.8744412001146539,
+          "dense_rank": 5,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:560de310:L1:809a097a5e8f6853",
+          "score": 0.8106272275673787,
+          "fused": 0.8106272275673787,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "3d5f78a6650b8155:L0:000016",
+          "score": 0.7525942579330902,
+          "fused": 0.7525942579330902,
+          "dense_rank": 7,
+          "bm25_rank": 4
+        },
+        {
+          "id": "3d5f78a6650b8155:L0:000012",
+          "score": 0.6922934205754038,
+          "fused": 0.6922934205754038,
+          "dense_rank": 4,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 8.38
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1068,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15464.58
+    }
+  },
+  "retrieved_ids": [
+    "3d5f78a6650b8155:L0:000000",
+    "3d5f78a6650b8155:L0:000018",
+    "raptor:560de310:L1:809a097a5e8f6853",
+    "3d5f78a6650b8155:L0:000016",
+    "3d5f78a6650b8155:L0:000012"
+  ],
+  "filtered_ids": [
+    "3d5f78a6650b8155:L0:000000",
+    "3d5f78a6650b8155:L0:000018",
+    "raptor:560de310:L1:809a097a5e8f6853",
+    "3d5f78a6650b8155:L0:000016",
+    "3d5f78a6650b8155:L0:000012"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T08:55:48.251771+00:00",
+      "call_id": "baab923dea44",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b6485a02cd7005d1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "56b35f5b302d401e"
+    },
+    {
+      "ts": "2026-11-15T08:56:03.721947+00:00",
+      "call_id": "29228e0609ca",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f2b06be800b67dfb",
+      "prompt_tokens": 1683,
+      "completion_tokens": 70,
+      "latency_ms": 15462.86,
+      "server_ms": 15424.48,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "56b35f5b302d401e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1683,
+    "completion_tokens": 70,
+    "total_ms": 15474.49
+  },
+  "config_hash": "4304b1db8856",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3
+      ],
+      "uncited_sentences": [
+        "They introduce two novel sequence-level versions of knowledge distillation, which further improve performance and seem to eliminate the need for beam search."
+      ]
+    }
+  }
+}

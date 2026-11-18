@@ -1,0 +1,182 @@
+{
+  "trace_id": "bcfeb70242de4b58",
+  "created_at": "2026-11-16T12:35:08.368195+00:00",
+  "query": "What is the place of birth of the director of film Growing Up Smith?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3845.48
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3846.0
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16688.08
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.78,
+      "bm25_ms": 9.74,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 9,
+        "latency_ms": 3820.9
+      },
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000090",
+          "score": 6.833897113800049,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.833897113800049
+        },
+        {
+          "id": "raptor:67600e79:L1:0c50581c78a447f5",
+          "score": 1.7929396629333496,
+          "fused": 0.31850684202721546,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 10,
+          "rerank": 1.7929396629333496
+        },
+        {
+          "id": "raptor:67600e79:L1:7019fa82b4f8fa51",
+          "score": -3.6124367713928223,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -3.6124367713928223
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000034",
+          "score": -3.622349977493286,
+          "fused": 0.19758442626616382,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": -3.622349977493286
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000179",
+          "score": -3.639535665512085,
+          "fused": 0.27217168116844437,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 14,
+          "rerank": -3.639535665512085
+        }
+      ],
+      "latency_ms": 3845.41
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 702,
+      "latency_ms": 0.43
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12841.98
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000090",
+    "raptor:67600e79:L1:0c50581c78a447f5",
+    "raptor:67600e79:L1:7019fa82b4f8fa51",
+    "317e12ccd417c0d7:L0:000034",
+    "317e12ccd417c0d7:L0:000179"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000090",
+    "raptor:67600e79:L1:0c50581c78a447f5",
+    "raptor:67600e79:L1:7019fa82b4f8fa51",
+    "317e12ccd417c0d7:L0:000034",
+    "317e12ccd417c0d7:L0:000179"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:35:08.371195+00:00",
+      "call_id": "eaaacaec4cad",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0e8372dda6ac9136",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "bcfeb70242de4b58"
+    },
+    {
+      "ts": "2026-11-16T12:35:25.055942+00:00",
+      "call_id": "cb33c6e3ee56",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a072275b17a1f507",
+      "prompt_tokens": 1360,
+      "completion_tokens": 58,
+      "latency_ms": 12839.45,
+      "server_ms": 12806.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "bcfeb70242de4b58"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1360,
+    "completion_tokens": 58,
+    "total_ms": 16691.46
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "The director of the film Growing Up Smith, Frank Lotito, was born in the United States."
+      ]
+    }
+  }
+}

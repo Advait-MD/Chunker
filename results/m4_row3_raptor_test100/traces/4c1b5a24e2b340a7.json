@@ -1,0 +1,167 @@
+{
+  "trace_id": "4c1b5a24e2b340a7",
+  "created_at": "2026-11-15T09:10:09.735104+00:00",
+  "query": "How long are the two unlabelled corpora?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.28
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.37
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 22053.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.95,
+      "bm25_ms": 12.1,
+      "n_candidates": {
+        "dense": 34,
+        "bm25": 11
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "bf6db44b5eedd435:L0:000000",
+          "score": 0.9218786425546499,
+          "fused": 0.9218786425546499,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "bf6db44b5eedd435:L0:000016",
+          "score": 0.8907699695923497,
+          "fused": 0.8907699695923497,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "bf6db44b5eedd435:L0:000001",
+          "score": 0.6628515685055059,
+          "fused": 0.6628515685055059,
+          "dense_rank": 22,
+          "bm25_rank": 3
+        },
+        {
+          "id": "bf6db44b5eedd435:L0:000011",
+          "score": 0.35908353420743067,
+          "fused": 0.35908353420743067,
+          "dense_rank": 12,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:b45febfe:L1:f7ccb11c52c28a3a",
+          "score": 0.32762895205100856,
+          "fused": 0.32762895205100856,
+          "dense_rank": 1,
+          "bm25_rank": 8
+        }
+      ],
+      "latency_ms": 19.25
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1178,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22033.97
+    }
+  },
+  "retrieved_ids": [
+    "bf6db44b5eedd435:L0:000000",
+    "bf6db44b5eedd435:L0:000016",
+    "bf6db44b5eedd435:L0:000001",
+    "bf6db44b5eedd435:L0:000011",
+    "raptor:b45febfe:L1:f7ccb11c52c28a3a"
+  ],
+  "filtered_ids": [
+    "bf6db44b5eedd435:L0:000000",
+    "bf6db44b5eedd435:L0:000016",
+    "bf6db44b5eedd435:L0:000001",
+    "bf6db44b5eedd435:L0:000011",
+    "raptor:b45febfe:L1:f7ccb11c52c28a3a"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:10:09.736558+00:00",
+      "call_id": "2da891304fda",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e65b8c5bd8cd2514",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4c1b5a24e2b340a7"
+    },
+    {
+      "ts": "2026-11-15T09:10:31.787333+00:00",
+      "call_id": "efc8c2aa8b91",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2d0c0e19e57826e4",
+      "prompt_tokens": 1845,
+      "completion_tokens": 122,
+      "latency_ms": 22032.6,
+      "server_ms": 21974.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4c1b5a24e2b340a7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1845,
+    "completion_tokens": 122,
+    "total_ms": 22054.49
+  },
+  "config_hash": "4304b1db8856",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The two unlabelled corpora are not explicitly mentioned in terms of their size."
+      ]
+    }
+  }
+}

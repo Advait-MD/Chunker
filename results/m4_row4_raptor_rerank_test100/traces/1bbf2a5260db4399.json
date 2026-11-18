@@ -1,0 +1,180 @@
+{
+  "trace_id": "1bbf2a5260db4399",
+  "created_at": "2026-11-16T11:14:26.907300+00:00",
+  "query": "Who did the Slavs have contact with in the country that Steven Spielberg's grandparents were from?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1642.9
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1643.83
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14813.01
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.12,
+      "bm25_ms": 14.48,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 1621.04
+      },
+      "hits": [
+        {
+          "id": "8679484d23bfd3a0:L0:000096",
+          "score": 0.16755126416683197,
+          "fused": 0.6163981669265994,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 0.16755126416683197
+        },
+        {
+          "id": "raptor:67600e79:L1:e6cb2547439cc170",
+          "score": -4.850855827331543,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": -4.850855827331543
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000185",
+          "score": -5.6188578605651855,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -5.6188578605651855
+        },
+        {
+          "id": "raptor:67600e79:L1:fc4c1484079caa2c",
+          "score": -6.309045314788818,
+          "fused": 0.2992321715552181,
+          "dense_rank": 14,
+          "bm25_rank": 26,
+          "fused_rank": 19,
+          "rerank": -6.309045314788818
+        },
+        {
+          "id": "ad4ace752e719bab:L0:000167",
+          "score": -6.4055094718933105,
+          "fused": 0.4469553208336679,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": -6.4055094718933105
+        }
+      ],
+      "latency_ms": 1642.85
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 696,
+      "latency_ms": 0.88
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13169.05
+    }
+  },
+  "retrieved_ids": [
+    "8679484d23bfd3a0:L0:000096",
+    "raptor:67600e79:L1:e6cb2547439cc170",
+    "8b31d5859eb3d77a:L0:000185",
+    "raptor:67600e79:L1:fc4c1484079caa2c",
+    "ad4ace752e719bab:L0:000167"
+  ],
+  "filtered_ids": [
+    "8679484d23bfd3a0:L0:000096",
+    "raptor:67600e79:L1:e6cb2547439cc170",
+    "8b31d5859eb3d77a:L0:000185",
+    "raptor:67600e79:L1:fc4c1484079caa2c",
+    "ad4ace752e719bab:L0:000167"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:14:26.909300+00:00",
+      "call_id": "fa1cc55cc906",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "54b0cfae9f7ccd4f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1bbf2a5260db4399"
+    },
+    {
+      "ts": "2026-11-16T11:14:41.720074+00:00",
+      "call_id": "ac85899eca30",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3544e4e1aecd9378",
+      "prompt_tokens": 1279,
+      "completion_tokens": 83,
+      "latency_ms": 13167.94,
+      "server_ms": 13137.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1bbf2a5260db4399"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1279,
+    "completion_tokens": 83,
+    "total_ms": 14814.91
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

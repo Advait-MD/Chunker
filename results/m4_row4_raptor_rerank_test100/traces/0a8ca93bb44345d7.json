@@ -1,0 +1,182 @@
+{
+  "trace_id": "0a8ca93bb44345d7",
+  "created_at": "2026-11-16T12:29:04.120071+00:00",
+  "query": "The Dogwoman telemovies were created by an actress born in what year?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1578.63
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1578.71
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 16283.86
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.27,
+      "bm25_ms": 7.76,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 1564.76
+      },
+      "hits": [
+        {
+          "id": "634431bb1e27714f:L0:000136",
+          "score": 6.776385307312012,
+          "fused": 0.8822256796829265,
+          "dense_rank": 7,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.776385307312012
+        },
+        {
+          "id": "raptor:67600e79:L1:f127323bc20bcaa7",
+          "score": 3.1884939670562744,
+          "fused": 0.4103772313421809,
+          "dense_rank": 43,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 3.1884939670562744
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000004",
+          "score": 0.06124154105782509,
+          "fused": 0.22509914424260538,
+          "dense_rank": 5,
+          "bm25_rank": 39,
+          "fused_rank": 7,
+          "rerank": 0.06124154105782509
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000098",
+          "score": -0.3114490211009979,
+          "fused": 0.15104363597977025,
+          "dense_rank": 10,
+          "bm25_rank": null,
+          "fused_rank": 20,
+          "rerank": -0.3114490211009979
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000149",
+          "score": -0.7569150924682617,
+          "fused": 0.19696973695574985,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": -0.7569150924682617
+        }
+      ],
+      "latency_ms": 1578.56
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 707,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14704.98
+    }
+  },
+  "retrieved_ids": [
+    "634431bb1e27714f:L0:000136",
+    "raptor:67600e79:L1:f127323bc20bcaa7",
+    "90976421f3f2bea2:L0:000004",
+    "81fc433d55d23b4c:L0:000098",
+    "8e50522b7cb636d8:L0:000149"
+  ],
+  "filtered_ids": [
+    "634431bb1e27714f:L0:000136",
+    "raptor:67600e79:L1:f127323bc20bcaa7",
+    "90976421f3f2bea2:L0:000004",
+    "81fc433d55d23b4c:L0:000098",
+    "8e50522b7cb636d8:L0:000149"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:29:04.122076+00:00",
+      "call_id": "d782fd0f9c78",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1f11b3042a0297ab",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0a8ca93bb44345d7"
+    },
+    {
+      "ts": "2026-11-16T12:29:20.401193+00:00",
+      "call_id": "6ee210b4893c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "534021bb9a14f271",
+      "prompt_tokens": 1376,
+      "completion_tokens": 68,
+      "latency_ms": 14702.56,
+      "server_ms": 14673.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0a8ca93bb44345d7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1376,
+    "completion_tokens": 68,
+    "total_ms": 16286.38
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "The Dogwoman telemovies were created by Magda Szubanski, who was not born in a specific year mentioned in the passages."
+      ]
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "trace_id": "18e5c062ff644687",
+  "created_at": "2026-11-16T11:14:41.725593+00:00",
+  "query": "Who wrote turn me on, which was performed by the person who also performed Chasing Pirates?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2498.57
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2499.26
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15143.06
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.84,
+      "bm25_ms": 20.78,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2468.78
+      },
+      "hits": [
+        {
+          "id": "8679484d23bfd3a0:L0:000098",
+          "score": 4.377063274383545,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.377063274383545
+        },
+        {
+          "id": "raptor:67600e79:L2:eec734fc33d3e977",
+          "score": 0.34480050206184387,
+          "fused": 0.27305019639478195,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": 0.34480050206184387
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000000",
+          "score": -3.408294439315796,
+          "fused": 0.16624726163811865,
+          "dense_rank": null,
+          "bm25_rank": 15,
+          "fused_rank": 20,
+          "rerank": -3.408294439315796
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000039",
+          "score": -5.11399507522583,
+          "fused": 0.2346701866389375,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 12,
+          "rerank": -5.11399507522583
+        },
+        {
+          "id": "raptor:67600e79:L1:18a28ae6d064019b",
+          "score": -5.147777557373047,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 6,
+          "rerank": -5.147777557373047
+        }
+      ],
+      "latency_ms": 2498.51
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 657,
+      "latency_ms": 0.65
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12643.58
+    }
+  },
+  "retrieved_ids": [
+    "8679484d23bfd3a0:L0:000098",
+    "raptor:67600e79:L2:eec734fc33d3e977",
+    "5a1a5bbda9db013e:L0:000000",
+    "8b31d5859eb3d77a:L0:000039",
+    "raptor:67600e79:L1:18a28ae6d064019b"
+  ],
+  "filtered_ids": [
+    "8679484d23bfd3a0:L0:000098",
+    "raptor:67600e79:L2:eec734fc33d3e977",
+    "5a1a5bbda9db013e:L0:000000",
+    "8b31d5859eb3d77a:L0:000039",
+    "raptor:67600e79:L1:18a28ae6d064019b"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:14:41.728710+00:00",
+      "call_id": "ddd5ae4e1f04",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1329eb24189c44f8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "18e5c062ff644687"
+    },
+    {
+      "ts": "2026-11-16T11:14:56.867965+00:00",
+      "call_id": "459ec4058360",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2eec660d5f121a92",
+      "prompt_tokens": 1246,
+      "completion_tokens": 75,
+      "latency_ms": 12642.07,
+      "server_ms": 12610.28,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "18e5c062ff644687"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1246,
+    "completion_tokens": 75,
+    "total_ms": 15146.52
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

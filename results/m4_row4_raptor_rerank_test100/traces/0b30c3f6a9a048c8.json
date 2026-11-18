@@ -1,0 +1,179 @@
+{
+  "trace_id": "0b30c3f6a9a048c8",
+  "created_at": "2026-11-16T12:50:42.445859+00:00",
+  "query": "Which museum was founded first, Casoria Contemporary Art Museum or Leverian Collection?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2424.87
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2424.97
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14147.35
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.03,
+      "bm25_ms": 7.68,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2411.56
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:142b88f4480aa6ef",
+          "score": -6.381779193878174,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -6.381779193878174
+        },
+        {
+          "id": "raptor:67600e79:L3:b8faddafbc8446e8",
+          "score": -7.315942764282227,
+          "fused": 0.25723722555958856,
+          "dense_rank": 11,
+          "bm25_rank": 17,
+          "fused_rank": 14,
+          "rerank": -7.315942764282227
+        },
+        {
+          "id": "raptor:67600e79:L1:7d53f96f7f525a26",
+          "score": -7.407001495361328,
+          "fused": 0.39180158557667255,
+          "dense_rank": 9,
+          "bm25_rank": 11,
+          "fused_rank": 9,
+          "rerank": -7.407001495361328
+        },
+        {
+          "id": "raptor:67600e79:L2:12ea63ea70bf0844",
+          "score": -7.4603590965271,
+          "fused": 0.2236763235992504,
+          "dense_rank": 32,
+          "bm25_rank": 16,
+          "fused_rank": 16,
+          "rerank": -7.4603590965271
+        },
+        {
+          "id": "raptor:67600e79:L1:0db5c70b0266995b",
+          "score": -7.764189720153809,
+          "fused": 0.33073414874960533,
+          "dense_rank": 30,
+          "bm25_rank": 10,
+          "fused_rank": 11,
+          "rerank": -7.764189720153809
+        }
+      ],
+      "latency_ms": 2424.82
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 838,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11722.28
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:142b88f4480aa6ef",
+    "raptor:67600e79:L3:b8faddafbc8446e8",
+    "raptor:67600e79:L1:7d53f96f7f525a26",
+    "raptor:67600e79:L2:12ea63ea70bf0844",
+    "raptor:67600e79:L1:0db5c70b0266995b"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:142b88f4480aa6ef",
+    "raptor:67600e79:L3:b8faddafbc8446e8",
+    "raptor:67600e79:L1:7d53f96f7f525a26",
+    "raptor:67600e79:L2:12ea63ea70bf0844",
+    "raptor:67600e79:L1:0db5c70b0266995b"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:50:42.447133+00:00",
+      "call_id": "59baafae00f7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d1b270dd5d0ffc50",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0b30c3f6a9a048c8"
+    },
+    {
+      "ts": "2026-11-16T12:50:56.591657+00:00",
+      "call_id": "406615e36d66",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "68c43c8bc372d7c2",
+      "prompt_tokens": 1396,
+      "completion_tokens": 45,
+      "latency_ms": 11721.02,
+      "server_ms": 11689.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0b30c3f6a9a048c8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1396,
+    "completion_tokens": 45,
+    "total_ms": 14149.76
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

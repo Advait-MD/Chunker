@@ -1,0 +1,165 @@
+{
+  "trace_id": "5f4fd4148a674ad2",
+  "created_at": "2026-11-16T09:54:45.365708+00:00",
+  "query": "Mía Maestro had a role in the 2002 biopic directed by whom?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.1
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.17
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12099.08
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.49,
+      "bm25_ms": 8.27,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:f75ccdcc53a20658",
+          "score": 0.9511141891903465,
+          "fused": 0.9511141891903465,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000128",
+          "score": 0.6558121751508507,
+          "fused": 0.6558121751508507,
+          "dense_rank": 1,
+          "bm25_rank": 10
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000104",
+          "score": 0.6487124609450768,
+          "fused": 0.6487124609450768,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000089",
+          "score": 0.5204955439047262,
+          "fused": 0.5204955439047262,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000023",
+          "score": 0.46357401452907104,
+          "fused": 0.46357401452907104,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 12.07
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 377,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12086.6
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:f75ccdcc53a20658",
+    "ba3cd068cf9ac2e4:L0:000128",
+    "ec3410ef955c5c93:L0:000104",
+    "bc1dba3471045f02:L0:000089",
+    "8e50522b7cb636d8:L0:000023"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:f75ccdcc53a20658",
+    "ba3cd068cf9ac2e4:L0:000128",
+    "ec3410ef955c5c93:L0:000104",
+    "bc1dba3471045f02:L0:000089",
+    "8e50522b7cb636d8:L0:000023"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:54:45.366708+00:00",
+      "call_id": "6838b60083fc",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "32d1d1d77b37b628",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5f4fd4148a674ad2"
+    },
+    {
+      "ts": "2026-11-16T09:54:57.462881+00:00",
+      "call_id": "7dced08cc9f7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b9d4736dc22244bb",
+      "prompt_tokens": 996,
+      "completion_tokens": 72,
+      "latency_ms": 12085.39,
+      "server_ms": 12049.32,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "5f4fd4148a674ad2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 996,
+    "completion_tokens": 72,
+    "total_ms": 12101.68
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

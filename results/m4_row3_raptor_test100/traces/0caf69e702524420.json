@@ -1,0 +1,167 @@
+{
+  "trace_id": "0caf69e702524420",
+  "created_at": "2026-11-16T10:06:03.161962+00:00",
+  "query": "Which film has the director who was born later, Attack Of Life: The Bang Tango Movie or King Kong (2005 Film)?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.71
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.87
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17863.96
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.06,
+      "bm25_ms": 11.05,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "317e12ccd417c0d7:L0:000144",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L2:1466242da4d12b6a",
+          "score": 0.4897968027306987,
+          "fused": 0.4897968027306987,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:67600e79:L1:b923c50626654290",
+          "score": 0.4740866264149668,
+          "fused": 0.4740866264149668,
+          "dense_rank": 2,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:67600e79:L1:2ca9a4492d73a35f",
+          "score": 0.3812940563162353,
+          "fused": 0.3812940563162353,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000030",
+          "score": 0.2016684469657313,
+          "fused": 0.2016684469657313,
+          "dense_rank": 29,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 15.64
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 884,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17848.0
+    }
+  },
+  "retrieved_ids": [
+    "317e12ccd417c0d7:L0:000144",
+    "raptor:67600e79:L2:1466242da4d12b6a",
+    "raptor:67600e79:L1:b923c50626654290",
+    "raptor:67600e79:L1:2ca9a4492d73a35f",
+    "4a757779abfb4ba1:L0:000030"
+  ],
+  "filtered_ids": [
+    "317e12ccd417c0d7:L0:000144",
+    "raptor:67600e79:L2:1466242da4d12b6a",
+    "raptor:67600e79:L1:b923c50626654290",
+    "raptor:67600e79:L1:2ca9a4492d73a35f",
+    "4a757779abfb4ba1:L0:000030"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:06:03.164300+00:00",
+      "call_id": "78fed41d2101",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a3c5997b92a2b93a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0caf69e702524420"
+    },
+    {
+      "ts": "2026-11-16T10:06:21.024561+00:00",
+      "call_id": "d732d5d06c1f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0817e48200bf4f11",
+      "prompt_tokens": 1556,
+      "completion_tokens": 112,
+      "latency_ms": 17846.55,
+      "server_ms": 17809.4,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0caf69e702524420"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1556,
+    "completion_tokens": 112,
+    "total_ms": 17865.19
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Peter Jackson was born later than Drew Fortier [citation needed], so King Kong (2005 Film) has the director who was born later."
+      ]
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "trace_id": "25d1e5b30a67411d",
+  "created_at": "2026-11-18T07:39:25.574224+00:00",
+  "query": "What did the police officers initially pick up the protagonist for?\n\nOptions:\n(A) Reckless driving\n(B) Possession of pornography\n(C) Drunk and disorderly conduct\n(D) Jaywalking\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.68
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.76
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18630.64
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.63,
+      "bm25_ms": 1.66,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 18
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000007",
+          "score": 0.9338231054881512,
+          "fused": 0.9338231054881512,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000008",
+          "score": 0.6411046214802423,
+          "fused": 0.6411046214802423,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor7b:71f5ff57:L1:b9fc43d56419c51e",
+          "score": 0.6156584646043299,
+          "fused": 0.6156584646043299,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor7b:71f5ff57:L2:104eedb58fa9885f",
+          "score": 0.44861263122444506,
+          "fused": 0.44861263122444506,
+          "dense_rank": 8,
+          "bm25_rank": 4
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000018",
+          "score": 0.37616179827178486,
+          "fused": 0.37616179827178486,
+          "dense_rank": 11,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 6.59
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1409,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18623.75
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000007",
+    "2ecd3be7264ff150:L0:000008",
+    "raptor7b:71f5ff57:L1:b9fc43d56419c51e",
+    "raptor7b:71f5ff57:L2:104eedb58fa9885f",
+    "2ecd3be7264ff150:L0:000018"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000007",
+    "2ecd3be7264ff150:L0:000008",
+    "raptor7b:71f5ff57:L1:b9fc43d56419c51e",
+    "raptor7b:71f5ff57:L2:104eedb58fa9885f",
+    "2ecd3be7264ff150:L0:000018"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-18T07:39:25.577225+00:00",
+      "call_id": "2920dde2e4f0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b14fae29219cfee0",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "25d1e5b30a67411d"
+    },
+    {
+      "ts": "2026-11-18T07:39:44.204286+00:00",
+      "call_id": "a7fe0199b1bf",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "766671fffe15e9f3",
+      "prompt_tokens": 1909,
+      "completion_tokens": 51,
+      "latency_ms": 18622.48,
+      "server_ms": 18587.98,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "25d1e5b30a67411d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1909,
+    "completion_tokens": 51,
+    "total_ms": 18631.78
+  },
+  "config_hash": "ac957d5c15f6",
+  "git_sha": "db55cc94ada50cc303fe6db5a415526173c59e35-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

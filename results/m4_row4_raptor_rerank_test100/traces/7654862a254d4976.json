@@ -1,0 +1,180 @@
+{
+  "trace_id": "7654862a254d4976",
+  "created_at": "2026-11-16T13:07:22.911626+00:00",
+  "query": "In The Book of Five Rings, what are the names of the five books or scrolls?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4472.89
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4473.0
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23057.1
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.04,
+      "bm25_ms": 15.42,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 4449.84
+      },
+      "hits": [
+        {
+          "id": "raptor:7b17be58:L3:28e69df69d22b0fa",
+          "score": -0.07434187829494476,
+          "fused": 0.6364191997095402,
+          "dense_rank": 2,
+          "bm25_rank": 15,
+          "fused_rank": 6,
+          "rerank": -0.07434187829494476
+        },
+        {
+          "id": "raptor:7b17be58:L2:c1b1c31e1432cf79",
+          "score": -0.16207998991012573,
+          "fused": 0.8835348838293591,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.16207998991012573
+        },
+        {
+          "id": "raptor:7b17be58:L1:3fc09a0c31f70f9c",
+          "score": -0.590474009513855,
+          "fused": 0.6948564907881786,
+          "dense_rank": 6,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": -0.590474009513855
+        },
+        {
+          "id": "raptor:7b17be58:L1:d0f270175d1de7d9",
+          "score": -0.8379928469657898,
+          "fused": 0.6818859453853825,
+          "dense_rank": 4,
+          "bm25_rank": 10,
+          "fused_rank": 5,
+          "rerank": -0.8379928469657898
+        },
+        {
+          "id": "raptor:7b17be58:L1:6e0901b14c010b32",
+          "score": -1.1947152614593506,
+          "fused": 0.43470164452786414,
+          "dense_rank": 10,
+          "bm25_rank": 17,
+          "fused_rank": 16,
+          "rerank": -1.1947152614593506
+        }
+      ],
+      "latency_ms": 4472.84
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 955,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18583.96
+    }
+  },
+  "retrieved_ids": [
+    "raptor:7b17be58:L3:28e69df69d22b0fa",
+    "raptor:7b17be58:L2:c1b1c31e1432cf79",
+    "raptor:7b17be58:L1:3fc09a0c31f70f9c",
+    "raptor:7b17be58:L1:d0f270175d1de7d9",
+    "raptor:7b17be58:L1:6e0901b14c010b32"
+  ],
+  "filtered_ids": [
+    "raptor:7b17be58:L3:28e69df69d22b0fa",
+    "raptor:7b17be58:L2:c1b1c31e1432cf79",
+    "raptor:7b17be58:L1:3fc09a0c31f70f9c",
+    "raptor:7b17be58:L1:d0f270175d1de7d9",
+    "raptor:7b17be58:L1:6e0901b14c010b32"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:07:22.912625+00:00",
+      "call_id": "fb7a281005c4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e8eb02ea2e3ef1ef",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7654862a254d4976"
+    },
+    {
+      "ts": "2026-11-16T13:07:45.967529+00:00",
+      "call_id": "f46a6ce138d8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1669b3554ba1c050",
+      "prompt_tokens": 1468,
+      "completion_tokens": 82,
+      "latency_ms": 18582.54,
+      "server_ms": 18544.81,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7654862a254d4976"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1468,
+    "completion_tokens": 82,
+    "total_ms": 23058.57
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

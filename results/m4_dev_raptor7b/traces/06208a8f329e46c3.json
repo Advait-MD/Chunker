@@ -1,0 +1,166 @@
+{
+  "trace_id": "06208a8f329e46c3",
+  "created_at": "2026-11-18T07:23:26.232749+00:00",
+  "query": "What evaluation metric do they use?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4.73
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4.78
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24324.35
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.72,
+      "bm25_ms": 1.84,
+      "n_candidates": {
+        "dense": 16,
+        "bm25": 8
+      },
+      "n_fused": 16,
+      "hits": [
+        {
+          "id": "048ebbf73a44b058:L0:000009",
+          "score": 0.9017149827176706,
+          "fused": 0.9017149827176706,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "048ebbf73a44b058:L0:000005",
+          "score": 0.6440134517225107,
+          "fused": 0.6440134517225107,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor7b:42028058:L1:90f60cf3a8cc96e1",
+          "score": 0.4869515656492253,
+          "fused": 0.4869515656492253,
+          "dense_rank": 15,
+          "bm25_rank": 2
+        },
+        {
+          "id": "048ebbf73a44b058:L0:000002",
+          "score": 0.44325838165035664,
+          "fused": 0.44325838165035664,
+          "dense_rank": 8,
+          "bm25_rank": 4
+        },
+        {
+          "id": "048ebbf73a44b058:L0:000004",
+          "score": 0.322790630330387,
+          "fused": 0.322790630330387,
+          "dense_rank": 12,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 4.7
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1479,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24319.45
+    }
+  },
+  "retrieved_ids": [
+    "048ebbf73a44b058:L0:000009",
+    "048ebbf73a44b058:L0:000005",
+    "raptor7b:42028058:L1:90f60cf3a8cc96e1",
+    "048ebbf73a44b058:L0:000002",
+    "048ebbf73a44b058:L0:000004"
+  ],
+  "filtered_ids": [
+    "048ebbf73a44b058:L0:000009",
+    "048ebbf73a44b058:L0:000005",
+    "raptor7b:42028058:L1:90f60cf3a8cc96e1",
+    "048ebbf73a44b058:L0:000002",
+    "048ebbf73a44b058:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-18T07:23:26.234751+00:00",
+      "call_id": "1df63682dfc3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ba1ecc25a8f5b45e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "06208a8f329e46c3"
+    },
+    {
+      "ts": "2026-11-18T07:23:50.555645+00:00",
+      "call_id": "a60952a0c8ef",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ce7ebefc4e472c62",
+      "prompt_tokens": 2145,
+      "completion_tokens": 57,
+      "latency_ms": 24317.83,
+      "server_ms": 24279.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "06208a8f329e46c3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2145,
+    "completion_tokens": 57,
+    "total_ms": 24325.97
+  },
+  "config_hash": "b4f37cada00e",
+  "git_sha": "db55cc94ada50cc303fe6db5a415526173c59e35-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "The ratio of correct `translations' (matches) was used as an evaluation measure."
+      ]
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "trace_id": "a58bfb0d4324495b",
+  "created_at": "2026-11-15T09:36:32.099242+00:00",
+  "query": "How many people are left alive on Earth?\n\nOptions:\n(A) a number of people in various places\n(B) Only the boy\n(C) Only the boy, his family, and some people in New Mexico\n(D) Only the boy, his mom, his dad, and his sister\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 33.66
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 33.73
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24176.38
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.16,
+      "bm25_ms": 30.24,
+      "n_candidates": {
+        "dense": 26,
+        "bm25": 26
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "a3e91ed7338e9e41:L0:000010",
+          "score": 0.7810843868991484,
+          "fused": 0.7810843868991484,
+          "dense_rank": 17,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:fd76062c:L1:b5afcb621673feee",
+          "score": 0.7676287720395041,
+          "fused": 0.7676287720395041,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:fd76062c:L2:35c149793333b0ed",
+          "score": 0.7285027678273334,
+          "fused": 0.7285027678273334,
+          "dense_rank": 7,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:fd76062c:L1:a0e44d73cd096cfb",
+          "score": 0.6752620750653204,
+          "fused": 0.6752620750653204,
+          "dense_rank": 4,
+          "bm25_rank": 4
+        },
+        {
+          "id": "a3e91ed7338e9e41:L0:000019",
+          "score": 0.5453570275515347,
+          "fused": 0.5453570275515347,
+          "dense_rank": 1,
+          "bm25_rank": 11
+        }
+      ],
+      "latency_ms": 33.62
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1423,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24142.46
+    }
+  },
+  "retrieved_ids": [
+    "a3e91ed7338e9e41:L0:000010",
+    "raptor:fd76062c:L1:b5afcb621673feee",
+    "raptor:fd76062c:L2:35c149793333b0ed",
+    "raptor:fd76062c:L1:a0e44d73cd096cfb",
+    "a3e91ed7338e9e41:L0:000019"
+  ],
+  "filtered_ids": [
+    "a3e91ed7338e9e41:L0:000010",
+    "raptor:fd76062c:L1:b5afcb621673feee",
+    "raptor:fd76062c:L2:35c149793333b0ed",
+    "raptor:fd76062c:L1:a0e44d73cd096cfb",
+    "a3e91ed7338e9e41:L0:000019"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:36:32.100666+00:00",
+      "call_id": "a86ea495bfee",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "809b3987404a33de",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a58bfb0d4324495b"
+    },
+    {
+      "ts": "2026-11-15T09:36:56.273537+00:00",
+      "call_id": "97915e5f05fa",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1bb213ddb31b0453",
+      "prompt_tokens": 1958,
+      "completion_tokens": 109,
+      "latency_ms": 24140.76,
+      "server_ms": 24103.42,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a58bfb0d4324495b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1958,
+    "completion_tokens": 109,
+    "total_ms": 24177.39
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

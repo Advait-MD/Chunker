@@ -1,0 +1,165 @@
+{
+  "trace_id": "33a042e444ac49e6",
+  "created_at": "2026-11-17T15:12:59.119328+00:00",
+  "query": "What was the protaganists reaction to falling from the fourteenth floor?\n\nOptions:\n(A) He was injured and unable to move\n(B) He fled the scene\n(C) He asked the police for help\n(D) He returned to the fourteenth floor to try again\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 21.55
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 21.6
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23678.55
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.97,
+      "bm25_ms": 18.36,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 18
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000014",
+          "score": 0.9211260577828971,
+          "fused": 0.9211260577828971,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000015",
+          "score": 0.9085241635210703,
+          "fused": 0.9085241635210703,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000018",
+          "score": 0.5235094739815236,
+          "fused": 0.5235094739815236,
+          "dense_rank": 9,
+          "bm25_rank": 3
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000007",
+          "score": 0.5116872071685881,
+          "fused": 0.5116872071685881,
+          "dense_rank": 8,
+          "bm25_rank": 4
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000011",
+          "score": 0.376332023244987,
+          "fused": 0.376332023244987,
+          "dense_rank": 4,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 21.51
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1974,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23656.83
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000014",
+    "2ecd3be7264ff150:L0:000015",
+    "2ecd3be7264ff150:L0:000018",
+    "2ecd3be7264ff150:L0:000007",
+    "2ecd3be7264ff150:L0:000011"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000014",
+    "2ecd3be7264ff150:L0:000015",
+    "2ecd3be7264ff150:L0:000018",
+    "2ecd3be7264ff150:L0:000007",
+    "2ecd3be7264ff150:L0:000011"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T15:12:59.121327+00:00",
+      "call_id": "fd3ac1a488ce",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b16bea283c7befad",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "33a042e444ac49e6"
+    },
+    {
+      "ts": "2026-11-17T15:13:22.797599+00:00",
+      "call_id": "f22e0e4fc4b2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6f8617774872aede",
+      "prompt_tokens": 2552,
+      "completion_tokens": 56,
+      "latency_ms": 23655.7,
+      "server_ms": 23614.81,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "33a042e444ac49e6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2552,
+    "completion_tokens": 56,
+    "total_ms": 23680.79
+  },
+  "config_hash": "ed6e9ea8986c",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

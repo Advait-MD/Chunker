@@ -1,0 +1,166 @@
+{
+  "trace_id": "fbdb13f3d7894ce4",
+  "created_at": "2026-11-17T14:14:50.503346+00:00",
+  "query": "Who would benefit most from a distributed collective decision process?\n\nOptions:\n(A) The 40% of North Americans without smartphones\n(B) Busy voters\n(C) Silicon Valley\n(D) Politicians\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3.78
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3.82
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24734.02
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.79,
+      "bm25_ms": 0.84,
+      "n_candidates": {
+        "dense": 12,
+        "bm25": 12
+      },
+      "n_fused": 12,
+      "hits": [
+        {
+          "id": "02facda9aeb8e139:L0:000008",
+          "score": 0.9063604361830486,
+          "fused": 0.9063604361830486,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000006",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": 12,
+          "bm25_rank": 1
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000004",
+          "score": 0.6838642134419582,
+          "fused": 0.6838642134419582,
+          "dense_rank": 3,
+          "bm25_rank": 4
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000003",
+          "score": 0.5202649978573671,
+          "fused": 0.5202649978573671,
+          "dense_rank": 5,
+          "bm25_rank": 7
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000005",
+          "score": 0.5183828905427997,
+          "fused": 0.5183828905427997,
+          "dense_rank": 7,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 3.75
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1936,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24730.08
+    }
+  },
+  "retrieved_ids": [
+    "02facda9aeb8e139:L0:000008",
+    "02facda9aeb8e139:L0:000006",
+    "02facda9aeb8e139:L0:000004",
+    "02facda9aeb8e139:L0:000003",
+    "02facda9aeb8e139:L0:000005"
+  ],
+  "filtered_ids": [
+    "02facda9aeb8e139:L0:000008",
+    "02facda9aeb8e139:L0:000006",
+    "02facda9aeb8e139:L0:000004",
+    "02facda9aeb8e139:L0:000003",
+    "02facda9aeb8e139:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:14:50.503829+00:00",
+      "call_id": "d769fb426cd0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1d306db1cf3a55fd",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fbdb13f3d7894ce4"
+    },
+    {
+      "ts": "2026-11-17T14:15:15.235837+00:00",
+      "call_id": "ba28f6d03a28",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "cc4203e0ada3db60",
+      "prompt_tokens": 2497,
+      "completion_tokens": 84,
+      "latency_ms": 24729.09,
+      "server_ms": 24688.25,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "fbdb13f3d7894ce4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2497,
+    "completion_tokens": 84,
+    "total_ms": 24735.43
+  },
+  "config_hash": "ffd72ee0a5ce",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "(B) Busy voters would benefit most from a distributed collective decision process."
+      ]
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "trace_id": "d4f4d0ac35a74cab",
+  "created_at": "2026-11-16T11:31:29.499983+00:00",
+  "query": "Who is the owner of the record label that the performer of Trojans belongs to?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1487.26
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1487.37
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14030.78
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.54,
+      "bm25_ms": 12.34,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 3,
+        "latency_ms": 1470.04
+      },
+      "hits": [
+        {
+          "id": "dd498e0082847164:L0:000156",
+          "score": 1.3855390548706055,
+          "fused": 0.8887150513319656,
+          "dense_rank": 8,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.3855390548706055
+        },
+        {
+          "id": "a168352d83e925b5:L0:000170",
+          "score": 1.311820149421692,
+          "fused": 0.8503270566359817,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 1.311820149421692
+        },
+        {
+          "id": "raptor:67600e79:L1:10d426363cd1feab",
+          "score": 0.6469444036483765,
+          "fused": 0.6513307401690777,
+          "dense_rank": 1,
+          "bm25_rank": 10,
+          "fused_rank": 8,
+          "rerank": 0.6469444036483765
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000050",
+          "score": -0.6412573456764221,
+          "fused": 0.7494027289838902,
+          "dense_rank": 19,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": -0.6412573456764221
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000028",
+          "score": -1.1200604438781738,
+          "fused": 0.6775384109887191,
+          "dense_rank": 17,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -1.1200604438781738
+        }
+      ],
+      "latency_ms": 1487.21
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 441,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12543.29
+    }
+  },
+  "retrieved_ids": [
+    "dd498e0082847164:L0:000156",
+    "a168352d83e925b5:L0:000170",
+    "raptor:67600e79:L1:10d426363cd1feab",
+    "4fcce431f5d22d1d:L0:000050",
+    "6bddce8aaad42fea:L0:000028"
+  ],
+  "filtered_ids": [
+    "dd498e0082847164:L0:000156",
+    "a168352d83e925b5:L0:000170",
+    "raptor:67600e79:L1:10d426363cd1feab",
+    "4fcce431f5d22d1d:L0:000050",
+    "6bddce8aaad42fea:L0:000028"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:31:29.500983+00:00",
+      "call_id": "fbafba62f8ec",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7b09ec6411bddd71",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d4f4d0ac35a74cab"
+    },
+    {
+      "ts": "2026-11-16T11:31:43.528869+00:00",
+      "call_id": "5005cf03a832",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5e90cf94c31038a5",
+      "prompt_tokens": 1051,
+      "completion_tokens": 77,
+      "latency_ms": 12541.72,
+      "server_ms": 12511.64,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d4f4d0ac35a74cab"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1051,
+    "completion_tokens": 77,
+    "total_ms": 14033.41
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The performer of Trojans, Atlas Genius, belongs to Trojans, which is a limited-edition EP and not a record label.",
+        "Therefore, there is no record label owner to identify in this context."
+      ]
+    }
+  }
+}

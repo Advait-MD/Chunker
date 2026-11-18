@@ -1,0 +1,182 @@
+{
+  "trace_id": "d4b2ba30f36948e3",
+  "created_at": "2026-11-16T11:19:06.187439+00:00",
+  "query": "According to Pew, in 2010, what percent of Nigeria's population practiced the religion dominant in the countries surrounding Armenia?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2973.16
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2973.3
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23688.69
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.45,
+      "bm25_ms": 26.52,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2938.07
+      },
+      "hits": [
+        {
+          "id": "ad4ace752e719bab:L0:000010",
+          "score": 3.957199811935425,
+          "fused": 0.8094610535932507,
+          "dense_rank": 12,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.957199811935425
+        },
+        {
+          "id": "raptor:67600e79:L1:860d43cca2a98382",
+          "score": 2.3743722438812256,
+          "fused": 0.6307093982510493,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 2.3743722438812256
+        },
+        {
+          "id": "raptor:67600e79:L2:1d53beff3e0803e0",
+          "score": -1.2867157459259033,
+          "fused": 0.3629590194475473,
+          "dense_rank": 1,
+          "bm25_rank": 25,
+          "fused_rank": 7,
+          "rerank": -1.2867157459259033
+        },
+        {
+          "id": "raptor:67600e79:L1:69d82c86f25da9a9",
+          "score": -1.5432758331298828,
+          "fused": 0.22422845356358265,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 17,
+          "rerank": -1.5432758331298828
+        },
+        {
+          "id": "raptor:67600e79:L3:a9798a435a1fb0d5",
+          "score": -1.9467588663101196,
+          "fused": 0.33096334452452,
+          "dense_rank": 2,
+          "bm25_rank": 24,
+          "fused_rank": 8,
+          "rerank": -1.9467588663101196
+        }
+      ],
+      "latency_ms": 2973.1
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 930,
+      "latency_ms": 0.09
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20715.31
+    }
+  },
+  "retrieved_ids": [
+    "ad4ace752e719bab:L0:000010",
+    "raptor:67600e79:L1:860d43cca2a98382",
+    "raptor:67600e79:L2:1d53beff3e0803e0",
+    "raptor:67600e79:L1:69d82c86f25da9a9",
+    "raptor:67600e79:L3:a9798a435a1fb0d5"
+  ],
+  "filtered_ids": [
+    "ad4ace752e719bab:L0:000010",
+    "raptor:67600e79:L1:860d43cca2a98382",
+    "raptor:67600e79:L2:1d53beff3e0803e0",
+    "raptor:67600e79:L1:69d82c86f25da9a9",
+    "raptor:67600e79:L3:a9798a435a1fb0d5"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:19:06.189430+00:00",
+      "call_id": "5e697e4a76de",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e08fa04095b05eab",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d4b2ba30f36948e3"
+    },
+    {
+      "ts": "2026-11-16T11:19:29.876069+00:00",
+      "call_id": "fc57f114ba90",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a0ccb69c40b3adca",
+      "prompt_tokens": 1537,
+      "completion_tokens": 116,
+      "latency_ms": 20714.42,
+      "server_ms": 20689.56,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d4b2ba30f36948e3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1537,
+    "completion_tokens": 116,
+    "total_ms": 23690.99
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "According to the 2010 Pew Research Center report, 49.3 percent of Nigeria's population was Christian, while 48.8 percent was Muslim, and 1.9 percent were followers of indigenous and other religions, or unaffiliated."
+      ]
+    }
+  }
+}

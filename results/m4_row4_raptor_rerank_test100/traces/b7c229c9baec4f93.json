@@ -1,0 +1,180 @@
+{
+  "trace_id": "b7c229c9baec4f93",
+  "created_at": "2026-11-16T13:09:45.314422+00:00",
+  "query": "How did Steve Jobs' experience at Reed College with calligraphy influence the typography of the Macintosh?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4825.66
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4826.4
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20158.08
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.43,
+      "bm25_ms": 21.87,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 13,
+        "latency_ms": 4793.84
+      },
+      "hits": [
+        {
+          "id": "raptor:7d5dec53:L1:582723cbf2850ec1",
+          "score": 3.1922214031219482,
+          "fused": 0.4835911950179424,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 3.1922214031219482
+        },
+        {
+          "id": "raptor:7d5dec53:L2:01658d183ee2b40d",
+          "score": 2.660167694091797,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 2.660167694091797
+        },
+        {
+          "id": "raptor:7d5dec53:L1:3bf50b136a895e8f",
+          "score": 0.7408326864242554,
+          "fused": 0.5647379725718062,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 0.7408326864242554
+        },
+        {
+          "id": "raptor:7d5dec53:L1:2a6c8202e65c19db",
+          "score": 0.029746150597929955,
+          "fused": 0.443510676089136,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 0.029746150597929955
+        },
+        {
+          "id": "17581cb533e90c48:L0:000130",
+          "score": -0.632693886756897,
+          "fused": 0.833290127876142,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": -0.632693886756897
+        }
+      ],
+      "latency_ms": 4825.61
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 739,
+      "latency_ms": 0.69
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15331.53
+    }
+  },
+  "retrieved_ids": [
+    "raptor:7d5dec53:L1:582723cbf2850ec1",
+    "raptor:7d5dec53:L2:01658d183ee2b40d",
+    "raptor:7d5dec53:L1:3bf50b136a895e8f",
+    "raptor:7d5dec53:L1:2a6c8202e65c19db",
+    "17581cb533e90c48:L0:000130"
+  ],
+  "filtered_ids": [
+    "raptor:7d5dec53:L1:582723cbf2850ec1",
+    "raptor:7d5dec53:L2:01658d183ee2b40d",
+    "raptor:7d5dec53:L1:3bf50b136a895e8f",
+    "raptor:7d5dec53:L1:2a6c8202e65c19db",
+    "17581cb533e90c48:L0:000130"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:09:45.316422+00:00",
+      "call_id": "bcb9b73cb5f2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "27ab8294019c7f11",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b7c229c9baec4f93"
+    },
+    {
+      "ts": "2026-11-16T13:10:05.471818+00:00",
+      "call_id": "04775dfc379e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f386c9e354c08675",
+      "prompt_tokens": 1200,
+      "completion_tokens": 95,
+      "latency_ms": 15330.18,
+      "server_ms": 15299.25,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b7c229c9baec4f93"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1200,
+    "completion_tokens": 95,
+    "total_ms": 20160.34
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

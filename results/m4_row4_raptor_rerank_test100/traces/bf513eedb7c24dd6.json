@@ -1,0 +1,182 @@
+{
+  "trace_id": "bf513eedb7c24dd6",
+  "created_at": "2026-11-16T12:21:57.083754+00:00",
+  "query": "Rosemary Willis was seen in the grass in what Texas town, where John F. Kennedy was assassinated?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2594.37
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2595.82
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15419.24
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.38,
+      "bm25_ms": 15.34,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2569.48
+      },
+      "hits": [
+        {
+          "id": "b120b09075017d08:L0:000097",
+          "score": 4.17746639251709,
+          "fused": 0.7169652898630504,
+          "dense_rank": 9,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 4.17746639251709
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000049",
+          "score": 3.6571850776672363,
+          "fused": 0.46403674328811684,
+          "dense_rank": 6,
+          "bm25_rank": 13,
+          "fused_rank": 11,
+          "rerank": 3.6571850776672363
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000200",
+          "score": 2.6840174198150635,
+          "fused": 0.8541250016856137,
+          "dense_rank": 5,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.6840174198150635
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000079",
+          "score": -0.8229037523269653,
+          "fused": 0.6174757106757077,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 5,
+          "rerank": -0.8229037523269653
+        },
+        {
+          "id": "raptor:67600e79:L1:5b61cd54cbb971ad",
+          "score": -1.1342051029205322,
+          "fused": 0.5220532088738135,
+          "dense_rank": 1,
+          "bm25_rank": 16,
+          "fused_rank": 9,
+          "rerank": -1.1342051029205322
+        }
+      ],
+      "latency_ms": 2594.3
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 543,
+      "latency_ms": 1.4
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12823.3
+    }
+  },
+  "retrieved_ids": [
+    "b120b09075017d08:L0:000097",
+    "cc2399aca11eb631:L0:000049",
+    "c8fd2b3ea47eb07f:L0:000200",
+    "9794e842cc9565f0:L0:000079",
+    "raptor:67600e79:L1:5b61cd54cbb971ad"
+  ],
+  "filtered_ids": [
+    "b120b09075017d08:L0:000097",
+    "cc2399aca11eb631:L0:000049",
+    "c8fd2b3ea47eb07f:L0:000200",
+    "9794e842cc9565f0:L0:000079",
+    "raptor:67600e79:L1:5b61cd54cbb971ad"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:21:57.085752+00:00",
+      "call_id": "a25ce3558efb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "290794a0137a7a28",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "bf513eedb7c24dd6"
+    },
+    {
+      "ts": "2026-11-16T12:22:12.502767+00:00",
+      "call_id": "23b6c0e0aef8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6d10b3a226b6e241",
+      "prompt_tokens": 1130,
+      "completion_tokens": 73,
+      "latency_ms": 12822.17,
+      "server_ms": 12794.04,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "bf513eedb7c24dd6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1130,
+    "completion_tokens": 73,
+    "total_ms": 15422.09
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Rosemary Willis was seen in the grass in Dealey Plaza, Dallas, Texas, where John F."
+      ]
+    }
+  }
+}

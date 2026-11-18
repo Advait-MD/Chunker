@@ -1,0 +1,179 @@
+{
+  "trace_id": "06cb9eb34fbe4537",
+  "created_at": "2026-11-16T12:21:04.513654+00:00",
+  "query": "What type of art does The Consul and Arlecchino have in common?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2679.98
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2680.73
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14369.15
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.12,
+      "bm25_ms": 7.53,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 2665.83
+      },
+      "hits": [
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000124",
+          "score": -5.690598011016846,
+          "fused": 0.6932520079492785,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -5.690598011016846
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000146",
+          "score": -7.405755996704102,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": -7.405755996704102
+        },
+        {
+          "id": "raptor:67600e79:L1:4c1dd74c8f0b8ec4",
+          "score": -8.354504585266113,
+          "fused": 0.26870520969829853,
+          "dense_rank": 2,
+          "bm25_rank": 24,
+          "fused_rank": 15,
+          "rerank": -8.354504585266113
+        },
+        {
+          "id": "raptor:67600e79:L1:a74221821e15dff2",
+          "score": -8.65768051147461,
+          "fused": 0.34183025862081307,
+          "dense_rank": null,
+          "bm25_rank": 12,
+          "fused_rank": 12,
+          "rerank": -8.65768051147461
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000049",
+          "score": -9.127789497375488,
+          "fused": 0.5761692369536984,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -9.127789497375488
+        }
+      ],
+      "latency_ms": 2679.93
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 550,
+      "latency_ms": 0.71
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11687.84
+    }
+  },
+  "retrieved_ids": [
+    "ba3cd068cf9ac2e4:L0:000124",
+    "ec3410ef955c5c93:L0:000146",
+    "raptor:67600e79:L1:4c1dd74c8f0b8ec4",
+    "raptor:67600e79:L1:a74221821e15dff2",
+    "90976421f3f2bea2:L0:000049"
+  ],
+  "filtered_ids": [
+    "ba3cd068cf9ac2e4:L0:000124",
+    "ec3410ef955c5c93:L0:000146",
+    "raptor:67600e79:L1:4c1dd74c8f0b8ec4",
+    "raptor:67600e79:L1:a74221821e15dff2",
+    "90976421f3f2bea2:L0:000049"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:21:04.515655+00:00",
+      "call_id": "df5ed0d544ee",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "afed3d54556248e9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "06cb9eb34fbe4537"
+    },
+    {
+      "ts": "2026-11-16T12:21:18.882487+00:00",
+      "call_id": "0bd3bef6a760",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "fcf7328578e8a8f7",
+      "prompt_tokens": 1108,
+      "completion_tokens": 69,
+      "latency_ms": 11686.68,
+      "server_ms": 11660.72,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "06cb9eb34fbe4537"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1108,
+    "completion_tokens": 69,
+    "total_ms": 14371.54
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The Consul and Arlecchino do not have any type of art in common as there is no information provided about their shared artistic interests or works in the given passages."
+      ]
+    }
+  }
+}

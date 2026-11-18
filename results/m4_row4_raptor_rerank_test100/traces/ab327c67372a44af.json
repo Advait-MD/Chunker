@@ -1,0 +1,179 @@
+{
+  "trace_id": "ab327c67372a44af",
+  "created_at": "2026-11-16T12:48:21.916135+00:00",
+  "query": "Who is the maternal grandmother of Flavia Julia Constantia?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1949.82
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1950.11
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14141.57
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.28,
+      "bm25_ms": 5.7,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 1938.97
+      },
+      "hits": [
+        {
+          "id": "53c7288bdcd3837a:L0:000096",
+          "score": 3.8941361904144287,
+          "fused": 0.7092635953536873,
+          "dense_rank": 41,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.8941361904144287
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000190",
+          "score": 0.08022211492061615,
+          "fused": 0.3535369148338068,
+          "dense_rank": 7,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.08022211492061615
+        },
+        {
+          "id": "raptor:67600e79:L1:52d9d88df9d1786d",
+          "score": -2.428262948989868,
+          "fused": 0.27087271987009065,
+          "dense_rank": 9,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": -2.428262948989868
+        },
+        {
+          "id": "raptor:67600e79:L1:21fad170f16bdacd",
+          "score": -3.3085432052612305,
+          "fused": 0.3893143502143841,
+          "dense_rank": 1,
+          "bm25_rank": 26,
+          "fused_rank": 2,
+          "rerank": -3.3085432052612305
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000127",
+          "score": -4.569405555725098,
+          "fused": 0.33911152899853053,
+          "dense_rank": 18,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": -4.569405555725098
+        }
+      ],
+      "latency_ms": 1949.77
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 759,
+      "latency_ms": 0.26
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12191.38
+    }
+  },
+  "retrieved_ids": [
+    "53c7288bdcd3837a:L0:000096",
+    "b04ce6dd2d95fb80:L0:000190",
+    "raptor:67600e79:L1:52d9d88df9d1786d",
+    "raptor:67600e79:L1:21fad170f16bdacd",
+    "b04ce6dd2d95fb80:L0:000127"
+  ],
+  "filtered_ids": [
+    "53c7288bdcd3837a:L0:000096",
+    "b04ce6dd2d95fb80:L0:000190",
+    "raptor:67600e79:L1:52d9d88df9d1786d",
+    "raptor:67600e79:L1:21fad170f16bdacd",
+    "b04ce6dd2d95fb80:L0:000127"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:48:21.918153+00:00",
+      "call_id": "8f120c986de3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "21ce9d0897097991",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ab327c67372a44af"
+    },
+    {
+      "ts": "2026-11-16T12:48:36.057080+00:00",
+      "call_id": "4136a2e9d810",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "afc9c15a47ca43e9",
+      "prompt_tokens": 1445,
+      "completion_tokens": 45,
+      "latency_ms": 12189.87,
+      "server_ms": 12158.79,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ab327c67372a44af"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1445,
+    "completion_tokens": 45,
+    "total_ms": 14146.23
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

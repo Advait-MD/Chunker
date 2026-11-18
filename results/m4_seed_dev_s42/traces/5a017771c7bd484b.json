@@ -1,0 +1,166 @@
+{
+  "trace_id": "5a017771c7bd484b",
+  "created_at": "2026-11-17T14:01:39.537009+00:00",
+  "query": "What was the protaganists reaction to falling from the fourteenth floor?\n\nOptions:\n(A) He was injured and unable to move\n(B) He fled the scene\n(C) He asked the police for help\n(D) He returned to the fourteenth floor to try again\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 69.76
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 69.79
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18176.37
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 59.7,
+      "bm25_ms": 9.92,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 22
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000014",
+          "score": 0.9211259732110085,
+          "fused": 0.9211259732110085,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000015",
+          "score": 0.8963221320585766,
+          "fused": 0.8963221320585766,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+          "score": 0.5494744919510526,
+          "fused": 0.5494744919510526,
+          "dense_rank": 8,
+          "bm25_rank": 4
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000007",
+          "score": 0.523772682065332,
+          "fused": 0.523772682065332,
+          "dense_rank": 12,
+          "bm25_rank": 5
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000018",
+          "score": 0.5167547247539195,
+          "fused": 0.5167547247539195,
+          "dense_rank": 13,
+          "bm25_rank": 3
+        }
+      ],
+      "latency_ms": 69.73
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1748,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18106.51
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000014",
+    "2ecd3be7264ff150:L0:000015",
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+    "2ecd3be7264ff150:L0:000007",
+    "2ecd3be7264ff150:L0:000018"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000014",
+    "2ecd3be7264ff150:L0:000015",
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+    "2ecd3be7264ff150:L0:000007",
+    "2ecd3be7264ff150:L0:000018"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:01:39.595694+00:00",
+      "call_id": "1cfa1e6c99a7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b16bea283c7befad",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 85,
+      "completion_tokens": 0,
+      "latency_ms": 58.56,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "5a017771c7bd484b"
+    },
+    {
+      "ts": "2026-11-17T14:01:57.711676+00:00",
+      "call_id": "486d683851e5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4013e98d4d3270a1",
+      "prompt_tokens": 2322,
+      "completion_tokens": 48,
+      "latency_ms": 18105.28,
+      "server_ms": 18077.47,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "5a017771c7bd484b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2322,
+    "completion_tokens": 48,
+    "total_ms": 18178.19
+  },
+  "config_hash": "10aa17327d5e",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2
+      ],
+      "uncited_sentences": [
+        "(A) He was injured and unable to move"
+      ]
+    }
+  }
+}

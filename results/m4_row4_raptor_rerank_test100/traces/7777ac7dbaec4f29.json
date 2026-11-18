@@ -1,0 +1,180 @@
+{
+  "trace_id": "7777ac7dbaec4f29",
+  "created_at": "2026-11-16T13:03:28.693601+00:00",
+  "query": "Who wrote 'The Road to React'?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 25726.59
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 25732.12
+    },
+    {
+      "state": "DONE",
+      "t_ms": 38085.1
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.53,
+      "bm25_ms": 3.45,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 25675.4
+      },
+      "hits": [
+        {
+          "id": "cd94466555d7bec7:L0:000315",
+          "score": 1.94154691696167,
+          "fused": 0.5089464677639168,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": 1.94154691696167
+        },
+        {
+          "id": "cd94466555d7bec7:L0:000000",
+          "score": 0.7006621360778809,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.7006621360778809
+        },
+        {
+          "id": "raptor:bf28f10d:L1:39e1f63953242746",
+          "score": 0.192135751247406,
+          "fused": 0.5605126762413281,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 0.192135751247406
+        },
+        {
+          "id": "raptor:bf28f10d:L2:b693bd50e36c2acb",
+          "score": 0.14166978001594543,
+          "fused": 0.4579058547682037,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": 0.14166978001594543
+        },
+        {
+          "id": "cd94466555d7bec7:L0:000003",
+          "score": 0.012157617136836052,
+          "fused": 0.5920195766558961,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.012157617136836052
+        }
+      ],
+      "latency_ms": 25725.38
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 881,
+      "latency_ms": 3.33
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12350.47
+    }
+  },
+  "retrieved_ids": [
+    "cd94466555d7bec7:L0:000315",
+    "cd94466555d7bec7:L0:000000",
+    "raptor:bf28f10d:L1:39e1f63953242746",
+    "raptor:bf28f10d:L2:b693bd50e36c2acb",
+    "cd94466555d7bec7:L0:000003"
+  ],
+  "filtered_ids": [
+    "cd94466555d7bec7:L0:000315",
+    "cd94466555d7bec7:L0:000000",
+    "raptor:bf28f10d:L1:39e1f63953242746",
+    "raptor:bf28f10d:L2:b693bd50e36c2acb",
+    "cd94466555d7bec7:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:03:28.696108+00:00",
+      "call_id": "27b2d9222e7c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "aaa30cdae4da5d13",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7777ac7dbaec4f29"
+    },
+    {
+      "ts": "2026-11-16T13:04:06.766684+00:00",
+      "call_id": "5ef396c4aa9d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6769435486c9f83f",
+      "prompt_tokens": 1361,
+      "completion_tokens": 59,
+      "latency_ms": 12187.98,
+      "server_ms": 12134.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7777ac7dbaec4f29"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1361,
+    "completion_tokens": 59,
+    "total_ms": 38097.23
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,185 @@
+{
+  "trace_id": "f65ea2f037254768",
+  "created_at": "2026-11-16T10:55:06.972828+00:00",
+  "query": "What vocabulary sizes are explored?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1806.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1806.65
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24782.02
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.0,
+      "bm25_ms": 9.18,
+      "n_candidates": {
+        "dense": 31,
+        "bm25": 18
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 1783.53
+      },
+      "hits": [
+        {
+          "id": "raptor:dbbc32bc:L1:d836d3869bfc2712",
+          "score": 2.065537214279175,
+          "fused": 0.8505058127828096,
+          "dense_rank": 10,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 2.065537214279175
+        },
+        {
+          "id": "04c679258d73c4a8:L0:000000",
+          "score": 0.46033066511154175,
+          "fused": 0.8649006952135542,
+          "dense_rank": 12,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 0.46033066511154175
+        },
+        {
+          "id": "04c679258d73c4a8:L0:000013",
+          "score": 0.01665469817817211,
+          "fused": 0.808221161439322,
+          "dense_rank": 2,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": 0.01665469817817211
+        },
+        {
+          "id": "raptor:dbbc32bc:L1:8575165fbf0efd9e",
+          "score": 7.072649896144867e-05,
+          "fused": 0.5397052058240948,
+          "dense_rank": 1,
+          "bm25_rank": 11,
+          "fused_rank": 10,
+          "rerank": 7.072649896144867e-05
+        },
+        {
+          "id": "raptor:dbbc32bc:L2:1a308d6a4e8e775d",
+          "score": -0.07752775400876999,
+          "fused": 0.9040370420040214,
+          "dense_rank": 9,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.07752775400876999
+        }
+      ],
+      "latency_ms": 1806.35
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1084,
+      "latency_ms": 0.2
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22975.27
+    }
+  },
+  "retrieved_ids": [
+    "raptor:dbbc32bc:L1:d836d3869bfc2712",
+    "04c679258d73c4a8:L0:000000",
+    "04c679258d73c4a8:L0:000013",
+    "raptor:dbbc32bc:L1:8575165fbf0efd9e",
+    "raptor:dbbc32bc:L2:1a308d6a4e8e775d"
+  ],
+  "filtered_ids": [
+    "raptor:dbbc32bc:L1:d836d3869bfc2712",
+    "04c679258d73c4a8:L0:000000",
+    "04c679258d73c4a8:L0:000013",
+    "raptor:dbbc32bc:L1:8575165fbf0efd9e",
+    "raptor:dbbc32bc:L2:1a308d6a4e8e775d"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:55:06.974840+00:00",
+      "call_id": "9839071ef6ac",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d285be8eaa9db699",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f65ea2f037254768"
+    },
+    {
+      "ts": "2026-11-16T10:55:31.753439+00:00",
+      "call_id": "f4808e6e843e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3c0afff760429a78",
+      "prompt_tokens": 1645,
+      "completion_tokens": 156,
+      "latency_ms": 22974.01,
+      "server_ms": 22948.01,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "f65ea2f037254768"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1645,
+    "completion_tokens": 156,
+    "total_ms": 24787.61
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        3,
+        4
+      ],
+      "uncited_sentences": [
+        "The vocabulary sizes explored include word vocabulary and BPE subword vocabularies ranging from 1k to 64k.",
+        "Specifically, experiments #1 and #2 use a word vocabulary, while experiments #3 and #4 use a BPE vocabulary of 32k, and experiments #7, #8, #9, and #10 use a BPE vocabulary of 1k.",
+        "Experiments also include a BPE vocabulary of 64k, which is noted to reduce BLEU scores."
+      ]
+    }
+  }
+}

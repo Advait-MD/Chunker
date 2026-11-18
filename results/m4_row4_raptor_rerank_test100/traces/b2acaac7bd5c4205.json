@@ -1,0 +1,182 @@
+{
+  "trace_id": "b2acaac7bd5c4205",
+  "created_at": "2026-11-16T10:38:51.832063+00:00",
+  "query": "What kind of data is used to train the model?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2162.37
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2162.5
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20417.6
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.05,
+      "bm25_ms": 20.99,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 11
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2128.64
+      },
+      "hits": [
+        {
+          "id": "18621578c2ef7f99:L0:000002",
+          "score": -3.8576290607452393,
+          "fused": 0.615405247353773,
+          "dense_rank": 20,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -3.8576290607452393
+        },
+        {
+          "id": "18621578c2ef7f99:L0:000008",
+          "score": -4.102684020996094,
+          "fused": 0.7401265968459646,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": -4.102684020996094
+        },
+        {
+          "id": "raptor:907059c7:L1:f27410d6b6e81a8f",
+          "score": -4.691264629364014,
+          "fused": 0.21370988432121554,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -4.691264629364014
+        },
+        {
+          "id": "18621578c2ef7f99:L0:000013",
+          "score": -5.051182746887207,
+          "fused": 0.18377789218293575,
+          "dense_rank": 6,
+          "bm25_rank": 11,
+          "fused_rank": 13,
+          "rerank": -5.051182746887207
+        },
+        {
+          "id": "18621578c2ef7f99:L0:000015",
+          "score": -5.173802852630615,
+          "fused": 0.6069409423752525,
+          "dense_rank": 5,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -5.173802852630615
+        }
+      ],
+      "latency_ms": 2162.31
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 888,
+      "latency_ms": 0.09
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18254.94
+    }
+  },
+  "retrieved_ids": [
+    "18621578c2ef7f99:L0:000002",
+    "18621578c2ef7f99:L0:000008",
+    "raptor:907059c7:L1:f27410d6b6e81a8f",
+    "18621578c2ef7f99:L0:000013",
+    "18621578c2ef7f99:L0:000015"
+  ],
+  "filtered_ids": [
+    "18621578c2ef7f99:L0:000002",
+    "18621578c2ef7f99:L0:000008",
+    "raptor:907059c7:L1:f27410d6b6e81a8f",
+    "18621578c2ef7f99:L0:000013",
+    "18621578c2ef7f99:L0:000015"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:38:51.834987+00:00",
+      "call_id": "dd635627f8e6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "dec75378eba317be",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b2acaac7bd5c4205"
+    },
+    {
+      "ts": "2026-11-16T10:39:12.247531+00:00",
+      "call_id": "8d7ec71b83ce",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e2086ee4271704ce",
+      "prompt_tokens": 1544,
+      "completion_tokens": 94,
+      "latency_ms": 18253.21,
+      "server_ms": 18212.45,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b2acaac7bd5c4205"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1544,
+    "completion_tokens": 94,
+    "total_ms": 20418.88
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The model was trained using Moses for SMT systems, and NMT-Keras for NMT systems."
+      ]
+    }
+  }
+}

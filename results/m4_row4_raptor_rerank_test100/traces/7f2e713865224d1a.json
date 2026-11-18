@@ -1,0 +1,182 @@
+{
+  "trace_id": "7f2e713865224d1a",
+  "created_at": "2026-11-16T12:11:57.646882+00:00",
+  "query": "Which late 1980s and 1990s English super model was featured in the song nasty girl by The Notorious B.I.G.?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2958.56
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2960.25
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16873.72
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.48,
+      "bm25_ms": 29.72,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 7,
+        "latency_ms": 2919.85
+      },
+      "hits": [
+        {
+          "id": "cc2399aca11eb631:L0:000013",
+          "score": 4.957595348358154,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.957595348358154
+        },
+        {
+          "id": "20496f59538deb41:L0:000112",
+          "score": 4.0237650871276855,
+          "fused": 0.6647777190794357,
+          "dense_rank": 1,
+          "bm25_rank": 8,
+          "fused_rank": 2,
+          "rerank": 4.0237650871276855
+        },
+        {
+          "id": "raptor:67600e79:L1:6e3451250600e8cf",
+          "score": 0.7953945994377136,
+          "fused": 0.655399025226546,
+          "dense_rank": 7,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.7953945994377136
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000180",
+          "score": 0.7816494107246399,
+          "fused": 0.6070169507082589,
+          "dense_rank": 43,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": 0.7816494107246399
+        },
+        {
+          "id": "raptor:67600e79:L2:d8fc0d72dc0a0e67",
+          "score": 0.10059237480163574,
+          "fused": 0.1522025231036367,
+          "dense_rank": null,
+          "bm25_rank": 16,
+          "fused_rank": 19,
+          "rerank": 0.10059237480163574
+        }
+      ],
+      "latency_ms": 2958.5
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 879,
+      "latency_ms": 1.64
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13912.27
+    }
+  },
+  "retrieved_ids": [
+    "cc2399aca11eb631:L0:000013",
+    "20496f59538deb41:L0:000112",
+    "raptor:67600e79:L1:6e3451250600e8cf",
+    "bc1dba3471045f02:L0:000180",
+    "raptor:67600e79:L2:d8fc0d72dc0a0e67"
+  ],
+  "filtered_ids": [
+    "cc2399aca11eb631:L0:000013",
+    "20496f59538deb41:L0:000112",
+    "raptor:67600e79:L1:6e3451250600e8cf",
+    "bc1dba3471045f02:L0:000180",
+    "raptor:67600e79:L2:d8fc0d72dc0a0e67"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:11:57.648883+00:00",
+      "call_id": "78b3413361d8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "da3c973f2c9d0140",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7f2e713865224d1a"
+    },
+    {
+      "ts": "2026-11-16T12:12:14.518575+00:00",
+      "call_id": "9d34bde9b2b5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3489704b9e2ab413",
+      "prompt_tokens": 1491,
+      "completion_tokens": 67,
+      "latency_ms": 13910.8,
+      "server_ms": 13885.19,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7f2e713865224d1a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1491,
+    "completion_tokens": 67,
+    "total_ms": 16876.73
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "."
+      ]
+    }
+  }
+}

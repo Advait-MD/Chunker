@@ -1,0 +1,164 @@
+{
+  "trace_id": "b653097161964e83",
+  "created_at": "2026-11-17T13:35:26.213734+00:00",
+  "query": "What is the interannotator agreement for the human evaluation?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8.58
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8.61
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15867.88
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.51,
+      "bm25_ms": 5.95,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 13
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "bd2251146b05b93b:L0:000015",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:e525a45d:L1:685a3ad503c9dc3d",
+          "score": 0.7832657386053477,
+          "fused": 0.7832657386053477,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:e525a45d:L2:e370becf33271ac1",
+          "score": 0.7466327279058627,
+          "fused": 0.7466327279058627,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000014",
+          "score": 0.5935145406526868,
+          "fused": 0.5935145406526868,
+          "dense_rank": 16,
+          "bm25_rank": 4
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000007",
+          "score": 0.4223397391927425,
+          "fused": 0.4223397391927425,
+          "dense_rank": 4,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 8.56
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1434,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15859.2
+    }
+  },
+  "retrieved_ids": [
+    "bd2251146b05b93b:L0:000015",
+    "raptor:e525a45d:L1:685a3ad503c9dc3d",
+    "raptor:e525a45d:L2:e370becf33271ac1",
+    "bd2251146b05b93b:L0:000014",
+    "bd2251146b05b93b:L0:000007"
+  ],
+  "filtered_ids": [
+    "bd2251146b05b93b:L0:000015",
+    "raptor:e525a45d:L1:685a3ad503c9dc3d",
+    "raptor:e525a45d:L2:e370becf33271ac1",
+    "bd2251146b05b93b:L0:000014",
+    "bd2251146b05b93b:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T13:35:26.215447+00:00",
+      "call_id": "b8ecd726c11c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c2e8eda67ff7e1e1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b653097161964e83"
+    },
+    {
+      "ts": "2026-11-17T13:35:42.080319+00:00",
+      "call_id": "9fd710e3bcec",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b76d800e7b7f837d",
+      "prompt_tokens": 2083,
+      "completion_tokens": 51,
+      "latency_ms": 15858.34,
+      "server_ms": 15836.49,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b653097161964e83"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2083,
+    "completion_tokens": 51,
+    "total_ms": 15868.98
+  },
+  "config_hash": "f5bf8e385908",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The interannotator agreement for the human evaluation is not provided in the given passages."
+      ]
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "trace_id": "237e7b1aa87449cf",
+  "created_at": "2026-11-15T09:02:02.304766+00:00",
+  "query": "What package was used to build the ngram language models?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 22.64
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 22.71
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17626.36
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.6,
+      "bm25_ms": 18.32,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 15
+      },
+      "n_fused": 17,
+      "hits": [
+        {
+          "id": "5113513d66b8be17:L0:000010",
+          "score": 0.9897236133647522,
+          "fused": 0.9897236133647522,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:2beef79a:L2:47690ef46a21d4ac",
+          "score": 0.6665972904830085,
+          "fused": 0.6665972904830085,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "5113513d66b8be17:L0:000006",
+          "score": 0.6623436664401157,
+          "fused": 0.6623436664401157,
+          "dense_rank": 5,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:2beef79a:L1:e28b415086f7b414",
+          "score": 0.6477233382475635,
+          "fused": 0.6477233382475635,
+          "dense_rank": 3,
+          "bm25_rank": 4
+        },
+        {
+          "id": "5113513d66b8be17:L0:000009",
+          "score": 0.545882858700153,
+          "fused": 0.545882858700153,
+          "dense_rank": 1,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 22.57
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1153,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17603.09
+    }
+  },
+  "retrieved_ids": [
+    "5113513d66b8be17:L0:000010",
+    "raptor:2beef79a:L2:47690ef46a21d4ac",
+    "5113513d66b8be17:L0:000006",
+    "raptor:2beef79a:L1:e28b415086f7b414",
+    "5113513d66b8be17:L0:000009"
+  ],
+  "filtered_ids": [
+    "5113513d66b8be17:L0:000010",
+    "raptor:2beef79a:L2:47690ef46a21d4ac",
+    "5113513d66b8be17:L0:000006",
+    "raptor:2beef79a:L1:e28b415086f7b414",
+    "5113513d66b8be17:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:02:02.307768+00:00",
+      "call_id": "5fbfb4cc13a1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "eb851295f77f7d83",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "237e7b1aa87449cf"
+    },
+    {
+      "ts": "2026-11-15T09:02:19.928637+00:00",
+      "call_id": "dc13cc271388",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "66e1fc1c68b1cd28",
+      "prompt_tokens": 1772,
+      "completion_tokens": 60,
+      "latency_ms": 17601.14,
+      "server_ms": 17577.61,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "237e7b1aa87449cf"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1772,
+    "completion_tokens": 60,
+    "total_ms": 17628.38
+  },
+  "config_hash": "4304b1db8856",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3
+      ],
+      "uncited_sentences": [
+        "The KenLM Toolkit was used to train the N-gram language models on each corpus."
+      ]
+    }
+  }
+}

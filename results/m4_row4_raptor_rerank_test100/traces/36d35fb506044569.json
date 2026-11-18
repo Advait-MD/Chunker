@@ -1,0 +1,180 @@
+{
+  "trace_id": "36d35fb506044569",
+  "created_at": "2026-11-16T10:59:21.086167+00:00",
+  "query": "What new tasks do they use to show the transferring ability of the shared meta-knowledge?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3053.78
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3054.37
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19628.53
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.64,
+      "bm25_ms": 29.59,
+      "n_candidates": {
+        "dense": 35,
+        "bm25": 32
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 3011.59
+      },
+      "hits": [
+        {
+          "id": "raptor:cf10371b:L1:64fc713260588fb5",
+          "score": 3.6417922973632812,
+          "fused": 0.825804384663611,
+          "dense_rank": 4,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": 3.6417922973632812
+        },
+        {
+          "id": "29bd0fd1a0ea82cc:L0:000000",
+          "score": 3.2371342182159424,
+          "fused": 0.8871671346480066,
+          "dense_rank": 8,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 3.2371342182159424
+        },
+        {
+          "id": "raptor:cf10371b:L1:67cb2fb8172e9f67",
+          "score": 2.35858416557312,
+          "fused": 0.9701987851126878,
+          "dense_rank": 5,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.35858416557312
+        },
+        {
+          "id": "29bd0fd1a0ea82cc:L0:000021",
+          "score": 2.0495362281799316,
+          "fused": 0.733661612679225,
+          "dense_rank": 1,
+          "bm25_rank": 9,
+          "fused_rank": 7,
+          "rerank": 2.0495362281799316
+        },
+        {
+          "id": "29bd0fd1a0ea82cc:L0:000020",
+          "score": 1.2994111776351929,
+          "fused": 0.7848398500469306,
+          "dense_rank": 13,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": 1.2994111776351929
+        }
+      ],
+      "latency_ms": 3053.72
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1114,
+      "latency_ms": 0.55
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16574.0
+    }
+  },
+  "retrieved_ids": [
+    "raptor:cf10371b:L1:64fc713260588fb5",
+    "29bd0fd1a0ea82cc:L0:000000",
+    "raptor:cf10371b:L1:67cb2fb8172e9f67",
+    "29bd0fd1a0ea82cc:L0:000021",
+    "29bd0fd1a0ea82cc:L0:000020"
+  ],
+  "filtered_ids": [
+    "raptor:cf10371b:L1:64fc713260588fb5",
+    "29bd0fd1a0ea82cc:L0:000000",
+    "raptor:cf10371b:L1:67cb2fb8172e9f67",
+    "29bd0fd1a0ea82cc:L0:000021",
+    "29bd0fd1a0ea82cc:L0:000020"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:59:21.088166+00:00",
+      "call_id": "1b697ccc974c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f6704aaf90462600",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "36d35fb506044569"
+    },
+    {
+      "ts": "2026-11-16T10:59:40.713636+00:00",
+      "call_id": "8cd4bed57395",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c8809ca4df9d490c",
+      "prompt_tokens": 1618,
+      "completion_tokens": 79,
+      "latency_ms": 16572.94,
+      "server_ms": 16540.67,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "36d35fb506044569"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1618,
+    "completion_tokens": 79,
+    "total_ms": 19629.83
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

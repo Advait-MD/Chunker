@@ -1,0 +1,165 @@
+{
+  "trace_id": "9ba0168057c84f47",
+  "created_at": "2026-11-15T09:05:29.218566+00:00",
+  "query": "Which works better according to human evaluation, the concurrent or the modular system?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 31.29
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 32.11
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18692.67
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.13,
+      "bm25_ms": 23.85,
+      "n_candidates": {
+        "dense": 36,
+        "bm25": 25
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "09254d6651dfdaf0:L0:000016",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:a442536c:L1:c1ba407c5ba33bf4",
+          "score": 0.7981699801321466,
+          "fused": 0.7981699801321466,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "09254d6651dfdaf0:L0:000020",
+          "score": 0.6538109789453062,
+          "fused": 0.6538109789453062,
+          "dense_rank": 6,
+          "bm25_rank": 3
+        },
+        {
+          "id": "09254d6651dfdaf0:L0:000006",
+          "score": 0.6193587335801394,
+          "fused": 0.6193587335801394,
+          "dense_rank": 2,
+          "bm25_rank": 6
+        },
+        {
+          "id": "raptor:a442536c:L2:235cd6880ab3f932",
+          "score": 0.6066026675249725,
+          "fused": 0.6066026675249725,
+          "dense_rank": 9,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 31.23
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1029,
+      "latency_ms": 0.79
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18660.42
+    }
+  },
+  "retrieved_ids": [
+    "09254d6651dfdaf0:L0:000016",
+    "raptor:a442536c:L1:c1ba407c5ba33bf4",
+    "09254d6651dfdaf0:L0:000020",
+    "09254d6651dfdaf0:L0:000006",
+    "raptor:a442536c:L2:235cd6880ab3f932"
+  ],
+  "filtered_ids": [
+    "09254d6651dfdaf0:L0:000016",
+    "raptor:a442536c:L1:c1ba407c5ba33bf4",
+    "09254d6651dfdaf0:L0:000020",
+    "09254d6651dfdaf0:L0:000006",
+    "raptor:a442536c:L2:235cd6880ab3f932"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:05:29.220566+00:00",
+      "call_id": "f536bb594a64",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5472afb2f5120a9f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9ba0168057c84f47"
+    },
+    {
+      "ts": "2026-11-15T09:05:47.910978+00:00",
+      "call_id": "7396e5f33bd5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9c7f206b0461e937",
+      "prompt_tokens": 1620,
+      "completion_tokens": 75,
+      "latency_ms": 18659.41,
+      "server_ms": 18631.26,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9ba0168057c84f47"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1620,
+    "completion_tokens": 75,
+    "total_ms": 18694.61
+  },
+  "config_hash": "4304b1db8856",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

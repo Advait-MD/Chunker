@@ -1,0 +1,179 @@
+{
+  "trace_id": "a386e324140b4b71",
+  "created_at": "2026-11-16T12:24:09.130016+00:00",
+  "query": "What Disney movie was the wrestler with the real name of John William Minton in?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3608.31
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3608.57
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16678.98
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.61,
+      "bm25_ms": 12.04,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 3587.23
+      },
+      "hits": [
+        {
+          "id": "bc1dba3471045f02:L0:000192",
+          "score": 2.2111570835113525,
+          "fused": 0.791420971368804,
+          "dense_rank": 19,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.2111570835113525
+        },
+        {
+          "id": "20496f59538deb41:L0:000003",
+          "score": -5.642106056213379,
+          "fused": 0.2536907790519382,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 13,
+          "rerank": -5.642106056213379
+        },
+        {
+          "id": "raptor:67600e79:L2:c90e60739a8e3185",
+          "score": -5.962510108947754,
+          "fused": 0.2337322749819683,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -5.962510108947754
+        },
+        {
+          "id": "raptor:67600e79:L2:ef25910d8134b8ac",
+          "score": -6.352628707885742,
+          "fused": 0.26341512006065293,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": -6.352628707885742
+        },
+        {
+          "id": "raptor:67600e79:L2:033f518036480c85",
+          "score": -6.637667179107666,
+          "fused": 0.20765484660607525,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": -6.637667179107666
+        }
+      ],
+      "latency_ms": 3608.25
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 770,
+      "latency_ms": 0.22
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13069.76
+    }
+  },
+  "retrieved_ids": [
+    "bc1dba3471045f02:L0:000192",
+    "20496f59538deb41:L0:000003",
+    "raptor:67600e79:L2:c90e60739a8e3185",
+    "raptor:67600e79:L2:ef25910d8134b8ac",
+    "raptor:67600e79:L2:033f518036480c85"
+  ],
+  "filtered_ids": [
+    "bc1dba3471045f02:L0:000192",
+    "20496f59538deb41:L0:000003",
+    "raptor:67600e79:L2:c90e60739a8e3185",
+    "raptor:67600e79:L2:ef25910d8134b8ac",
+    "raptor:67600e79:L2:033f518036480c85"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:24:09.132013+00:00",
+      "call_id": "4161f5e994eb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "64e6b49e351c3d18",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a386e324140b4b71"
+    },
+    {
+      "ts": "2026-11-16T12:24:25.807763+00:00",
+      "call_id": "82ba27358cd8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "573e8bbdebe51d14",
+      "prompt_tokens": 1398,
+      "completion_tokens": 53,
+      "latency_ms": 13068.5,
+      "server_ms": 13037.54,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a386e324140b4b71"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1398,
+    "completion_tokens": 53,
+    "total_ms": 16681.18
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

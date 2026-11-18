@@ -1,0 +1,168 @@
+{
+  "trace_id": "d521cc7d25c54af3",
+  "created_at": "2026-11-15T09:49:04.813871+00:00",
+  "query": "Why did Robert want to go to space?\n\nOptions:\n(A) He wanted to follow in his father’s footsteps and fly to space like him\n(B) He needed to escape his life on Earth\n(C) He was after eternal youth himself\n(D) We don’t know for sure from the story\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 34.39
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 36.02
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22311.87
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.24,
+      "bm25_ms": 29.51,
+      "n_candidates": {
+        "dense": 22,
+        "bm25": 22
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2fd46b2152775681:L0:000009",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2fd46b2152775681:L0:000012",
+          "score": 0.8030304284664836,
+          "fused": 0.8030304284664836,
+          "dense_rank": 18,
+          "bm25_rank": 2
+        },
+        {
+          "id": "2fd46b2152775681:L0:000003",
+          "score": 0.7892677350244464,
+          "fused": 0.7892677350244464,
+          "dense_rank": 4,
+          "bm25_rank": 4
+        },
+        {
+          "id": "2fd46b2152775681:L0:000004",
+          "score": 0.7472486766405294,
+          "fused": 0.7472486766405294,
+          "dense_rank": 11,
+          "bm25_rank": 5
+        },
+        {
+          "id": "2fd46b2152775681:L0:000008",
+          "score": 0.7270995351265945,
+          "fused": 0.7270995351265945,
+          "dense_rank": 3,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 34.35
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1961,
+      "latency_ms": 1.6
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22275.49
+    }
+  },
+  "retrieved_ids": [
+    "2fd46b2152775681:L0:000009",
+    "2fd46b2152775681:L0:000012",
+    "2fd46b2152775681:L0:000003",
+    "2fd46b2152775681:L0:000004",
+    "2fd46b2152775681:L0:000008"
+  ],
+  "filtered_ids": [
+    "2fd46b2152775681:L0:000009",
+    "2fd46b2152775681:L0:000012",
+    "2fd46b2152775681:L0:000003",
+    "2fd46b2152775681:L0:000004",
+    "2fd46b2152775681:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:49:04.815872+00:00",
+      "call_id": "378cf0f68134",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bae216c080c75b99",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d521cc7d25c54af3"
+    },
+    {
+      "ts": "2026-11-15T09:49:27.123873+00:00",
+      "call_id": "57273c9609c5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "afa475284a13f3ef",
+      "prompt_tokens": 2449,
+      "completion_tokens": 71,
+      "latency_ms": 22273.81,
+      "server_ms": 22240.62,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d521cc7d25c54af3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2449,
+    "completion_tokens": 71,
+    "total_ms": 22314.35
+  },
+  "config_hash": "63aa1c6429d2",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

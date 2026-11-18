@@ -1,0 +1,179 @@
+{
+  "trace_id": "0ec1762c52404eb3",
+  "created_at": "2026-11-16T11:17:52.247366+00:00",
+  "query": "What is the county where Ukmergė District Municipality is located one of?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2126.66
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2128.0
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12295.03
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.21,
+      "bm25_ms": 12.44,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 2105.78
+      },
+      "hits": [
+        {
+          "id": "f3503d3d186f0f90:L0:000008",
+          "score": 8.184779167175293,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.184779167175293
+        },
+        {
+          "id": "ce57fdde2baaba9c:L0:000196",
+          "score": -3.108119487762451,
+          "fused": 0.13503435028470065,
+          "dense_rank": 13,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": -3.108119487762451
+        },
+        {
+          "id": "raptor:67600e79:L1:9f57a8bdb16d2cc2",
+          "score": -3.585096836090088,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 2,
+          "rerank": -3.585096836090088
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000027",
+          "score": -4.206023693084717,
+          "fused": 0.17066921802875426,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -4.206023693084717
+        },
+        {
+          "id": "raptor:67600e79:L1:dc4c0761ef3d474b",
+          "score": -4.740325450897217,
+          "fused": 0.1685239949901345,
+          "dense_rank": 41,
+          "bm25_rank": 4,
+          "fused_rank": 8,
+          "rerank": -4.740325450897217
+        }
+      ],
+      "latency_ms": 2126.6
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 584,
+      "latency_ms": 1.28
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10166.92
+    }
+  },
+  "retrieved_ids": [
+    "f3503d3d186f0f90:L0:000008",
+    "ce57fdde2baaba9c:L0:000196",
+    "raptor:67600e79:L1:9f57a8bdb16d2cc2",
+    "dbcbda865eee9c7b:L0:000027",
+    "raptor:67600e79:L1:dc4c0761ef3d474b"
+  ],
+  "filtered_ids": [
+    "f3503d3d186f0f90:L0:000008",
+    "ce57fdde2baaba9c:L0:000196",
+    "raptor:67600e79:L1:9f57a8bdb16d2cc2",
+    "dbcbda865eee9c7b:L0:000027",
+    "raptor:67600e79:L1:dc4c0761ef3d474b"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:17:52.249368+00:00",
+      "call_id": "8df07d1f8b8f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d1b2050f74e8cf06",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0ec1762c52404eb3"
+    },
+    {
+      "ts": "2026-11-16T11:18:04.541364+00:00",
+      "call_id": "0a66336cc2f7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "fd57df4751563f33",
+      "prompt_tokens": 1212,
+      "completion_tokens": 57,
+      "latency_ms": 10165.79,
+      "server_ms": 10117.72,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0ec1762c52404eb3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1212,
+    "completion_tokens": 57,
+    "total_ms": 12298.6
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

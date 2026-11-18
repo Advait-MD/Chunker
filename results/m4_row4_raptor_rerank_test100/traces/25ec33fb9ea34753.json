@@ -1,0 +1,183 @@
+{
+  "trace_id": "25ec33fb9ea34753",
+  "created_at": "2026-11-16T12:02:46.191785+00:00",
+  "query": "What is the author’s thesis?\n\nOptions:\n(A) That even Keynesian economists are misinterpreting some of the intentions of Keynes’ original theories\n(B) There are so many unknowns in Keynes’ theories that it has come time to develop a new set of economic theories separate from his\n(C) Keynesian economists are more united than divided\n(D) It’s not possible to know what Keynes’ true intentions were\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 861.48
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 861.68
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19081.48
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.38,
+      "bm25_ms": 34.66,
+      "n_candidates": {
+        "dense": 8,
+        "bm25": 8
+      },
+      "n_fused": 8,
+      "rerank": {
+        "n": 8,
+        "n_computed": 1,
+        "latency_ms": 821.56
+      },
+      "hits": [
+        {
+          "id": "eac9fcca337a5e93:L0:000001",
+          "score": -1.3665177822113037,
+          "fused": 0.8985967464500382,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": -1.3665177822113037
+        },
+        {
+          "id": "eac9fcca337a5e93:L0:000000",
+          "score": -1.385729432106018,
+          "fused": 0.750943829129792,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -1.385729432106018
+        },
+        {
+          "id": "raptor:32cd37d4:L1:879b9cd22355d138",
+          "score": -1.884063720703125,
+          "fused": 0.9239265406394637,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": -1.884063720703125
+        },
+        {
+          "id": "eac9fcca337a5e93:L0:000003",
+          "score": -3.223292827606201,
+          "fused": 0.1316723411748919,
+          "dense_rank": 6,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": -3.223292827606201
+        },
+        {
+          "id": "eac9fcca337a5e93:L0:000006",
+          "score": -4.744399070739746,
+          "fused": 0.29812101641905575,
+          "dense_rank": 8,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": -4.744399070739746
+        }
+      ],
+      "latency_ms": 861.41
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1395,
+      "latency_ms": 0.16
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18219.71
+    }
+  },
+  "retrieved_ids": [
+    "eac9fcca337a5e93:L0:000001",
+    "eac9fcca337a5e93:L0:000000",
+    "raptor:32cd37d4:L1:879b9cd22355d138",
+    "eac9fcca337a5e93:L0:000003",
+    "eac9fcca337a5e93:L0:000006"
+  ],
+  "filtered_ids": [
+    "eac9fcca337a5e93:L0:000001",
+    "eac9fcca337a5e93:L0:000000",
+    "raptor:32cd37d4:L1:879b9cd22355d138",
+    "eac9fcca337a5e93:L0:000003",
+    "eac9fcca337a5e93:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:02:46.192783+00:00",
+      "call_id": "3689ebc15b9d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "00aa670dff97e930",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "25ec33fb9ea34753"
+    },
+    {
+      "ts": "2026-11-16T12:03:05.271760+00:00",
+      "call_id": "a8ed655db9f1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "90160091767f89b5",
+      "prompt_tokens": 2011,
+      "completion_tokens": 78,
+      "latency_ms": 18218.37,
+      "server_ms": 18195.26,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "25ec33fb9ea34753"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2011,
+    "completion_tokens": 78,
+    "total_ms": 19082.32
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

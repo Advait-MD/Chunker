@@ -1,0 +1,167 @@
+{
+  "trace_id": "e175877fc8a84dce",
+  "created_at": "2026-11-17T14:00:00.940183+00:00",
+  "query": "What does Mr. Turner do for a job?\n\nOptions:\n(A) He directs war films.\n(B) He is a mechanic. \n(C) He writes comics.\n(D) He works in advertising. \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 118.78
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 118.84
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16612.34
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 98.08,
+      "bm25_ms": 20.43,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 20
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000012",
+          "score": 0.8235288059998295,
+          "fused": 0.8235288059998295,
+          "dense_rank": 20,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000011",
+          "score": 0.6743227987260649,
+          "fused": 0.6743227987260649,
+          "dense_rank": 16,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+          "score": 0.6501486987301264,
+          "fused": 0.6501486987301264,
+          "dense_rank": 2,
+          "bm25_rank": 6
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000003",
+          "score": 0.5735118495915512,
+          "fused": 0.5735118495915512,
+          "dense_rank": 1,
+          "bm25_rank": 9
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000018",
+          "score": 0.5657671545555464,
+          "fused": 0.5657671545555464,
+          "dense_rank": 19,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 118.73
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1741,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16493.34
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000011",
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+    "2ecd3be7264ff150:L0:000003",
+    "2ecd3be7264ff150:L0:000018"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000011",
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+    "2ecd3be7264ff150:L0:000003",
+    "2ecd3be7264ff150:L0:000018"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:00:01.036464+00:00",
+      "call_id": "bf143f98dee5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6de2dfaf0e8cf6c6",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 73,
+      "completion_tokens": 0,
+      "latency_ms": 96.02,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "e175877fc8a84dce"
+    },
+    {
+      "ts": "2026-11-17T14:00:17.550413+00:00",
+      "call_id": "2540db4a6485",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "cc1183cf24694f25",
+      "prompt_tokens": 2286,
+      "completion_tokens": 47,
+      "latency_ms": 16491.78,
+      "server_ms": 16454.29,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e175877fc8a84dce"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2286,
+    "completion_tokens": 47,
+    "total_ms": 16613.65
+  },
+  "config_hash": "10aa17327d5e",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        3,
+        4
+      ],
+      "uncited_sentences": [
+        "(D) He works in advertising."
+      ]
+    }
+  }
+}

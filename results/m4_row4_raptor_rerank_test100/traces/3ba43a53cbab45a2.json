@@ -1,0 +1,181 @@
+{
+  "trace_id": "3ba43a53cbab45a2",
+  "created_at": "2026-11-16T11:11:00.963652+00:00",
+  "query": "When is Celebrity Big Brother coming to the network which, along with ABC and the network which aired Law of the Plainsman, is the other major broadcaster based in NY?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2420.58
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2422.0
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15220.75
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.9,
+      "bm25_ms": 60.7,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 2344.58
+      },
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:b50fda96ae465779",
+          "score": 3.14534592628479,
+          "fused": 0.3616600799631062,
+          "dense_rank": 1,
+          "bm25_rank": 27,
+          "fused_rank": 7,
+          "rerank": 3.14534592628479
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000104",
+          "score": 2.963780164718628,
+          "fused": 0.5284334550890964,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 2.963780164718628
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000099",
+          "score": 2.4570419788360596,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.4570419788360596
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000004",
+          "score": 1.3857694864273071,
+          "fused": 0.6070183138651793,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.3857694864273071
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000062",
+          "score": 1.3319462537765503,
+          "fused": 0.26822832389263507,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": 1.3319462537765503
+        }
+      ],
+      "latency_ms": 2420.54
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 559,
+      "latency_ms": 1.39
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12798.6
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:b50fda96ae465779",
+    "178c7e3e6ef6ae87:L0:000104",
+    "f3503d3d186f0f90:L0:000099",
+    "73dfa6a9bfcab050:L0:000004",
+    "66f5caec1369ebaf:L0:000062"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:b50fda96ae465779",
+    "178c7e3e6ef6ae87:L0:000104",
+    "f3503d3d186f0f90:L0:000099",
+    "73dfa6a9bfcab050:L0:000004",
+    "66f5caec1369ebaf:L0:000062"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:11:00.965651+00:00",
+      "call_id": "2a594868488c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "53a572dee85ead94",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "3ba43a53cbab45a2"
+    },
+    {
+      "ts": "2026-11-16T11:11:16.183918+00:00",
+      "call_id": "e78a581dcc3b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b3606d793b9f445d",
+      "prompt_tokens": 1162,
+      "completion_tokens": 84,
+      "latency_ms": 12797.51,
+      "server_ms": 12773.29,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "3ba43a53cbab45a2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1162,
+    "completion_tokens": 84,
+    "total_ms": 15223.55
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

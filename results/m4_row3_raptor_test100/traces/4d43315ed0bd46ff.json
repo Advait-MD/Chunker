@@ -1,0 +1,164 @@
+{
+  "trace_id": "4d43315ed0bd46ff",
+  "created_at": "2026-11-15T09:21:28.151420+00:00",
+  "query": "What is the population in 2010 of they city popular with tourists?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.94
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16.01
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 15886.55
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.73,
+      "bm25_ms": 11.84,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000059",
+          "score": 0.7599759725065938,
+          "fused": 0.7599759725065938,
+          "dense_rank": 38,
+          "bm25_rank": 1
+        },
+        {
+          "id": "a168352d83e925b5:L0:000104",
+          "score": 0.7081788237152462,
+          "fused": 0.7081788237152462,
+          "dense_rank": 18,
+          "bm25_rank": 2
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000152",
+          "score": 0.3736002881052959,
+          "fused": 0.3736002881052959,
+          "dense_rank": 6,
+          "bm25_rank": 10
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000198",
+          "score": 0.3505621705093348,
+          "fused": 0.3505621705093348,
+          "dense_rank": 3,
+          "bm25_rank": 20
+        },
+        {
+          "id": "ce57fdde2baaba9c:L0:000174",
+          "score": 0.3481776408824483,
+          "fused": 0.3481776408824483,
+          "dense_rank": 25,
+          "bm25_rank": 8
+        }
+      ],
+      "latency_ms": 15.9
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 444,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15870.4
+    }
+  },
+  "retrieved_ids": [
+    "cc1bdb3bf430bd0d:L0:000059",
+    "a168352d83e925b5:L0:000104",
+    "73dfa6a9bfcab050:L0:000152",
+    "8b31d5859eb3d77a:L0:000198",
+    "ce57fdde2baaba9c:L0:000174"
+  ],
+  "filtered_ids": [
+    "cc1bdb3bf430bd0d:L0:000059",
+    "a168352d83e925b5:L0:000104",
+    "73dfa6a9bfcab050:L0:000152",
+    "8b31d5859eb3d77a:L0:000198",
+    "ce57fdde2baaba9c:L0:000174"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:21:28.153420+00:00",
+      "call_id": "8146af9a5c3a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3d3a2c9b6a9f08d5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4d43315ed0bd46ff"
+    },
+    {
+      "ts": "2026-11-15T09:21:44.033492+00:00",
+      "call_id": "321c83cd7b97",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9a8b772347085e0c",
+      "prompt_tokens": 1040,
+      "completion_tokens": 90,
+      "latency_ms": 15865.87,
+      "server_ms": 15833.66,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4d43315ed0bd46ff"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1040,
+    "completion_tokens": 90,
+    "total_ms": 15889.1
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

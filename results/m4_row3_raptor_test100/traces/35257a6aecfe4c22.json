@@ -1,0 +1,164 @@
+{
+  "trace_id": "35257a6aecfe4c22",
+  "created_at": "2026-11-15T09:18:19.609593+00:00",
+  "query": "Who is the Vice-President of the organization that controls the monetary policy of the EU?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16.5
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16.57
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14172.68
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.91,
+      "bm25_ms": 12.24,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "15abb5e49dced915:L0:000099",
+          "score": 0.9402785125893387,
+          "fused": 0.9402785125893387,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000054",
+          "score": 0.8283472942312557,
+          "fused": 0.8283472942312557,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:97acb407fbf621e7",
+          "score": 0.8131093982627304,
+          "fused": 0.8131093982627304,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "dd498e0082847164:L0:000098",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "dd498e0082847164:L0:000040",
+          "score": 0.6134527063126116,
+          "fused": 0.6134527063126116,
+          "dense_rank": 7,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 16.46
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 754,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14156.01
+    }
+  },
+  "retrieved_ids": [
+    "15abb5e49dced915:L0:000099",
+    "f109b032e24ab27a:L0:000054",
+    "raptor:67600e79:L1:97acb407fbf621e7",
+    "dd498e0082847164:L0:000098",
+    "dd498e0082847164:L0:000040"
+  ],
+  "filtered_ids": [
+    "15abb5e49dced915:L0:000099",
+    "f109b032e24ab27a:L0:000054",
+    "raptor:67600e79:L1:97acb407fbf621e7",
+    "dd498e0082847164:L0:000098",
+    "dd498e0082847164:L0:000040"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:18:19.611841+00:00",
+      "call_id": "6328cdd6b359",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "17388774d0af6548",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "35257a6aecfe4c22"
+    },
+    {
+      "ts": "2026-11-15T09:18:33.781361+00:00",
+      "call_id": "3bedcd2ba0b3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "cf77a681f8648333",
+      "prompt_tokens": 1348,
+      "completion_tokens": 70,
+      "latency_ms": 14155.03,
+      "server_ms": 14127.42,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "35257a6aecfe4c22"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1348,
+    "completion_tokens": 70,
+    "total_ms": 14173.82
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

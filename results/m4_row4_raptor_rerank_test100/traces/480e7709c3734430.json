@@ -1,0 +1,180 @@
+{
+  "trace_id": "480e7709c3734430",
+  "created_at": "2026-11-16T12:14:27.622940+00:00",
+  "query": "Which player, who also played for the New Jersey Nets and the Golden State Warriors, finished third in the league with 231 three-point field goals during the 1995-96 Atlanta Hawks season?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2709.76
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2710.0
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14694.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.63,
+      "bm25_ms": 28.59,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2677.22
+      },
+      "hits": [
+        {
+          "id": "cc2399aca11eb631:L0:000070",
+          "score": 9.926830291748047,
+          "fused": 0.9680801054475563,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 9.926830291748047
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000049",
+          "score": 2.8322317600250244,
+          "fused": 0.624085782541506,
+          "dense_rank": 18,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 2.8322317600250244
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000147",
+          "score": 0.6922876834869385,
+          "fused": 0.5287110901291957,
+          "dense_rank": 23,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 0.6922876834869385
+        },
+        {
+          "id": "raptor:67600e79:L1:22508f39e42a7a1d",
+          "score": -0.41489577293395996,
+          "fused": 0.4915075384038543,
+          "dense_rank": 4,
+          "bm25_rank": 9,
+          "fused_rank": 6,
+          "rerank": -0.41489577293395996
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000116",
+          "score": -1.0298945903778076,
+          "fused": 0.34904442895069837,
+          "dense_rank": 31,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": -1.0298945903778076
+        }
+      ],
+      "latency_ms": 2709.73
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 594,
+      "latency_ms": 0.21
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11984.85
+    }
+  },
+  "retrieved_ids": [
+    "cc2399aca11eb631:L0:000070",
+    "bc1dba3471045f02:L0:000049",
+    "c8fd2b3ea47eb07f:L0:000147",
+    "raptor:67600e79:L1:22508f39e42a7a1d",
+    "ec3410ef955c5c93:L0:000116"
+  ],
+  "filtered_ids": [
+    "cc2399aca11eb631:L0:000070",
+    "bc1dba3471045f02:L0:000049",
+    "c8fd2b3ea47eb07f:L0:000147",
+    "raptor:67600e79:L1:22508f39e42a7a1d",
+    "ec3410ef955c5c93:L0:000116"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:14:27.623940+00:00",
+      "call_id": "0c903b3caf19",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c48ad6e1b30fd76a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "480e7709c3734430"
+    },
+    {
+      "ts": "2026-11-16T12:14:42.316754+00:00",
+      "call_id": "14cf5cd655a7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2b233a0f02483c2d",
+      "prompt_tokens": 1246,
+      "completion_tokens": 73,
+      "latency_ms": 11983.81,
+      "server_ms": 11931.07,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "480e7709c3734430"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1246,
+    "completion_tokens": 73,
+    "total_ms": 14697.92
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

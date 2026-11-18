@@ -1,0 +1,181 @@
+{
+  "trace_id": "d3d8a00dde744cc2",
+  "created_at": "2026-11-16T12:13:53.098041+00:00",
+  "query": "What is the ratio of flow velocity past a boundary to the local speed of sound for a Saab JAS 39 Gripen?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2729.23
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2729.61
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 19748.24
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.4,
+      "bm25_ms": 16.15,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2701.83
+      },
+      "hits": [
+        {
+          "id": "ec3410ef955c5c93:L0:000088",
+          "score": 2.453171968460083,
+          "fused": 0.9618347504738045,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.453171968460083
+        },
+        {
+          "id": "20496f59538deb41:L0:000163",
+          "score": 1.9263558387756348,
+          "fused": 0.5590748531221024,
+          "dense_rank": 5,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 1.9263558387756348
+        },
+        {
+          "id": "raptor:67600e79:L1:699440e0e34ee340",
+          "score": -1.6393200159072876,
+          "fused": 0.5530620930634464,
+          "dense_rank": 4,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": -1.6393200159072876
+        },
+        {
+          "id": "raptor:67600e79:L2:3e821bc9b0e3d826",
+          "score": -2.421571731567383,
+          "fused": 0.5111132853367012,
+          "dense_rank": 2,
+          "bm25_rank": 10,
+          "fused_rank": 5,
+          "rerank": -2.421571731567383
+        },
+        {
+          "id": "b120b09075017d08:L0:000057",
+          "score": -2.9011342525482178,
+          "fused": 0.2259755598705698,
+          "dense_rank": null,
+          "bm25_rank": 12,
+          "fused_rank": 13,
+          "rerank": -2.9011342525482178
+        }
+      ],
+      "latency_ms": 2729.17
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 620,
+      "latency_ms": 0.34
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17018.44
+    }
+  },
+  "retrieved_ids": [
+    "ec3410ef955c5c93:L0:000088",
+    "20496f59538deb41:L0:000163",
+    "raptor:67600e79:L1:699440e0e34ee340",
+    "raptor:67600e79:L2:3e821bc9b0e3d826",
+    "b120b09075017d08:L0:000057"
+  ],
+  "filtered_ids": [
+    "ec3410ef955c5c93:L0:000088",
+    "20496f59538deb41:L0:000163",
+    "raptor:67600e79:L1:699440e0e34ee340",
+    "raptor:67600e79:L2:3e821bc9b0e3d826",
+    "b120b09075017d08:L0:000057"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:13:53.100043+00:00",
+      "call_id": "f5a5062baaba",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "54a20733abcaa5d2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d3d8a00dde744cc2"
+    },
+    {
+      "ts": "2026-11-16T12:14:12.845577+00:00",
+      "call_id": "292ae786e484",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d97d9fd7ea48e34f",
+      "prompt_tokens": 1234,
+      "completion_tokens": 100,
+      "latency_ms": 17017.29,
+      "server_ms": 16995.33,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d3d8a00dde744cc2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1234,
+    "completion_tokens": 100,
+    "total_ms": 19750.57
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The ratio of flow velocity past a boundary to the local speed of sound for a Saab JAS 39 Gripen is not specified in the given passages."
+      ]
+    }
+  }
+}

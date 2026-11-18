@@ -1,0 +1,12 @@
+# Ablation row 3 (M4): row 2 (hybrid BM25 + dense IVF, weighted 0.3/0.7) + RAPTOR tree, collapsed-tree search.
+# Collapsed search = every tree level in one flat pool, searched by the same hybrid retriever.
+# Needs the tree collection: python -m apex.eval.suite tree <datasets> --config configs/ablations/row3_raptor.yaml
+run:
+  name: row3_raptor
+retrieval:
+  mode: hybrid
+  fusion: weighted
+  weights: {dense: 0.3, bm25: 0.7}
+  levels: [0, 1, 2, 3, 4]
+raptor:
+  enabled: true

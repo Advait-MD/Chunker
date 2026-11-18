@@ -1,0 +1,165 @@
+{
+  "trace_id": "7abe26601e0c40eb",
+  "created_at": "2026-11-16T10:24:17.943895+00:00",
+  "query": "Which film was released first, Taxi! or What'S Your Hurry??",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5.59
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5.62
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10304.13
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.81,
+      "bm25_ms": 3.61,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "53c7288bdcd3837a:L0:000053",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:d0a52ca5083941cf",
+          "score": 0.38401459436694824,
+          "fused": 0.38401459436694824,
+          "dense_rank": 16,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:69bff5babb511e5e",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000143",
+          "score": 0.23971923708287957,
+          "fused": 0.23971923708287957,
+          "dense_rank": 8,
+          "bm25_rank": 7
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000078",
+          "score": 0.21016020617051814,
+          "fused": 0.21016020617051814,
+          "dense_rank": 2,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 5.56
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 553,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10298.44
+    }
+  },
+  "retrieved_ids": [
+    "53c7288bdcd3837a:L0:000053",
+    "raptor:67600e79:L1:d0a52ca5083941cf",
+    "raptor:67600e79:L1:69bff5babb511e5e",
+    "6af2db6cb86d77e2:L0:000143",
+    "6af2db6cb86d77e2:L0:000078"
+  ],
+  "filtered_ids": [
+    "53c7288bdcd3837a:L0:000053",
+    "raptor:67600e79:L1:d0a52ca5083941cf",
+    "raptor:67600e79:L1:69bff5babb511e5e",
+    "6af2db6cb86d77e2:L0:000143",
+    "6af2db6cb86d77e2:L0:000078"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:24:17.944894+00:00",
+      "call_id": "5ca3423a0822",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f6346a3641198349",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7abe26601e0c40eb"
+    },
+    {
+      "ts": "2026-11-16T10:24:28.247504+00:00",
+      "call_id": "5dbca11dde53",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0aa3823e54d9e9ed",
+      "prompt_tokens": 1137,
+      "completion_tokens": 65,
+      "latency_ms": 10297.97,
+      "server_ms": 10281.53,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7abe26601e0c40eb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1137,
+    "completion_tokens": 65,
+    "total_ms": 10304.62
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "trace_id": "286b540aa2f1421f",
+  "created_at": "2026-11-16T12:03:24.971369+00:00",
+  "query": "Why did they choose Mr. Braun to make the decision about the object?\n\nOptions:\n(A) He was a good gambler\n(B) He was going to run for Congress\n(C) We do not get a reason\n(D) His family was in the city so it mattered more\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1925.87
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1925.97
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20596.15
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.08,
+      "bm25_ms": 25.13,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 23
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 1894.74
+      },
+      "hits": [
+        {
+          "id": "raptor:b49d4508:L2:a6abddae1a83802e",
+          "score": 3.023895263671875,
+          "fused": 0.9619819717746109,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 3.023895263671875
+        },
+        {
+          "id": "raptor:b49d4508:L1:fa7a98ebbf4d8392",
+          "score": 1.3155145645141602,
+          "fused": 0.9657854042464977,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 1.3155145645141602
+        },
+        {
+          "id": "raptor:b49d4508:L1:519a241e1d475172",
+          "score": 0.9523922801017761,
+          "fused": 0.8025655821029325,
+          "dense_rank": 3,
+          "bm25_rank": 7,
+          "fused_rank": 3,
+          "rerank": 0.9523922801017761
+        },
+        {
+          "id": "e2aaf883e15e64c8:L0:000017",
+          "score": 0.5353115797042847,
+          "fused": 0.6954313654014421,
+          "dense_rank": 15,
+          "bm25_rank": 3,
+          "fused_rank": 7,
+          "rerank": 0.5353115797042847
+        },
+        {
+          "id": "raptor:b49d4508:L1:0a4263799bcb0cb3",
+          "score": 0.269038587808609,
+          "fused": 0.6749440423602058,
+          "dense_rank": 6,
+          "bm25_rank": 13,
+          "fused_rank": 9,
+          "rerank": 0.269038587808609
+        }
+      ],
+      "latency_ms": 1925.81
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1042,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18669.24
+    }
+  },
+  "retrieved_ids": [
+    "raptor:b49d4508:L2:a6abddae1a83802e",
+    "raptor:b49d4508:L1:fa7a98ebbf4d8392",
+    "raptor:b49d4508:L1:519a241e1d475172",
+    "e2aaf883e15e64c8:L0:000017",
+    "raptor:b49d4508:L1:0a4263799bcb0cb3"
+  ],
+  "filtered_ids": [
+    "raptor:b49d4508:L2:a6abddae1a83802e",
+    "raptor:b49d4508:L1:fa7a98ebbf4d8392",
+    "raptor:b49d4508:L1:519a241e1d475172",
+    "e2aaf883e15e64c8:L0:000017",
+    "raptor:b49d4508:L1:0a4263799bcb0cb3"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:03:24.973366+00:00",
+      "call_id": "09941b01c015",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cf910fe07d6e55ff",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "286b540aa2f1421f"
+    },
+    {
+      "ts": "2026-11-16T12:03:45.565040+00:00",
+      "call_id": "aac20bb8f3c6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f3333b3b04593748",
+      "prompt_tokens": 1552,
+      "completion_tokens": 103,
+      "latency_ms": 18667.63,
+      "server_ms": 18630.12,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "286b540aa2f1421f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1552,
+    "completion_tokens": 103,
+    "total_ms": 20598.34
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "In the passages, it is mentioned that Mr.",
+        "Braun's intuition for the one-shot gamble was the one thing that bailed them out this time, and his expertise could be crucial in a real bomb drop, potentially saving millions of lives."
+      ]
+    }
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "trace_id": "ccceb633c0a84c6e",
+  "created_at": "2026-11-16T10:18:40.878885+00:00",
+  "query": "What is the place of birth of the director of film Alien From L.A.?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8.68
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8.74
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10598.16
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.8,
+      "bm25_ms": 5.59,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "460e441179bec402:L0:000146",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000052",
+          "score": 0.6522738376600712,
+          "fused": 0.6522738376600712,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000053",
+          "score": 0.6074609735252036,
+          "fused": 0.6074609735252036,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "460e441179bec402:L0:000123",
+          "score": 0.5132941032734548,
+          "fused": 0.5132941032734548,
+          "dense_rank": null,
+          "bm25_rank": 4
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000167",
+          "score": 0.5046392929489066,
+          "fused": 0.5046392929489066,
+          "dense_rank": null,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 8.64
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 791,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10589.37
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000146",
+    "6af2db6cb86d77e2:L0:000052",
+    "6af2db6cb86d77e2:L0:000053",
+    "460e441179bec402:L0:000123",
+    "c73b757f0eb66f37:L0:000167"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000146",
+    "6af2db6cb86d77e2:L0:000052",
+    "6af2db6cb86d77e2:L0:000053",
+    "460e441179bec402:L0:000123",
+    "c73b757f0eb66f37:L0:000167"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:18:40.880398+00:00",
+      "call_id": "bc5e7fda636b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8033c04808233ae1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ccceb633c0a84c6e"
+    },
+    {
+      "ts": "2026-11-16T10:18:51.476662+00:00",
+      "call_id": "cd0f9762e800",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0d5cd401b14a9c18",
+      "prompt_tokens": 1346,
+      "completion_tokens": 56,
+      "latency_ms": 10588.69,
+      "server_ms": 10568.38,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ccceb633c0a84c6e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1346,
+    "completion_tokens": 56,
+    "total_ms": 10599.13
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The place of birth of the director of film Alien From L.A. is not provided in the given passages."
+      ]
+    }
+  }
+}

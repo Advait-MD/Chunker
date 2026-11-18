@@ -1,0 +1,170 @@
+{
+  "trace_id": "f80cc9b3ad164760",
+  "created_at": "2026-11-17T14:54:04.307598+00:00",
+  "query": "Do they evaluate on English only datasets?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.62
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.98
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21395.3
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.9,
+      "bm25_ms": 9.49,
+      "n_candidates": {
+        "dense": 15,
+        "bm25": 6
+      },
+      "n_fused": 15,
+      "hits": [
+        {
+          "id": "afa19814014623a7:L0:000012",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "afa19814014623a7:L0:000013",
+          "score": 0.5285141354428009,
+          "fused": 0.5285141354428009,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "afa19814014623a7:L0:000014",
+          "score": 0.41511495853862335,
+          "fused": 0.41511495853862335,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "afa19814014623a7:L0:000010",
+          "score": 0.16017980663114847,
+          "fused": 0.16017980663114847,
+          "dense_rank": 4,
+          "bm25_rank": 6
+        },
+        {
+          "id": "afa19814014623a7:L0:000003",
+          "score": 0.13711042957528943,
+          "fused": 0.13711042957528943,
+          "dense_rank": 5,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 13.57
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1335,
+      "latency_ms": 0.33
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21381.19
+    }
+  },
+  "retrieved_ids": [
+    "afa19814014623a7:L0:000012",
+    "afa19814014623a7:L0:000013",
+    "afa19814014623a7:L0:000014",
+    "afa19814014623a7:L0:000010",
+    "afa19814014623a7:L0:000003"
+  ],
+  "filtered_ids": [
+    "afa19814014623a7:L0:000012",
+    "afa19814014623a7:L0:000013",
+    "afa19814014623a7:L0:000014",
+    "afa19814014623a7:L0:000010",
+    "afa19814014623a7:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:54:04.309597+00:00",
+      "call_id": "0b7d68941f1b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c8610e3878b2655b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f80cc9b3ad164760"
+    },
+    {
+      "ts": "2026-11-17T14:54:25.701812+00:00",
+      "call_id": "9b4ec89951e4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2f73007ba656997e",
+      "prompt_tokens": 2057,
+      "completion_tokens": 95,
+      "latency_ms": 21380.19,
+      "server_ms": 21338.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "f80cc9b3ad164760"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2057,
+    "completion_tokens": 95,
+    "total_ms": 21396.28
+  },
+  "config_hash": "d4a047076961",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        3,
+        5
+      ],
+      "uncited_sentences": [
+        "No, they evaluate on datasets that are not exclusively in English.",
+        "The ArXiv papers are in various scientific disciplines, U.S.",
+        "Senate speeches are in English but from different states and political parties, and the supermarket grocery shopping data is about purchases which are not language-specific."
+      ]
+    }
+  }
+}

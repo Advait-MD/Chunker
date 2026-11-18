@@ -1,0 +1,165 @@
+{
+  "trace_id": "a9557c6dcfa6457d",
+  "created_at": "2026-11-16T10:17:31.517106+00:00",
+  "query": "Who lived longer, Neil Lloyd Macky or Domenico Cosselli?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.27
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.34
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17864.64
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.71,
+      "bm25_ms": 6.79,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000145",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:e9cd7d78476f26f3",
+          "score": 0.6811065742144868,
+          "fused": 0.6811065742144868,
+          "dense_rank": 1,
+          "bm25_rank": 6
+        },
+        {
+          "id": "460e441179bec402:L0:000038",
+          "score": 0.6606118356123873,
+          "fused": 0.6606118356123873,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L2:e33e9b61cacea281",
+          "score": 0.6473798470143084,
+          "fused": 0.6473798470143084,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000069",
+          "score": 0.4846346418152191,
+          "fused": 0.4846346418152191,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 12.23
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 853,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17852.15
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000145",
+    "raptor:67600e79:L1:e9cd7d78476f26f3",
+    "460e441179bec402:L0:000038",
+    "raptor:67600e79:L2:e33e9b61cacea281",
+    "6af2db6cb86d77e2:L0:000069"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000145",
+    "raptor:67600e79:L1:e9cd7d78476f26f3",
+    "460e441179bec402:L0:000038",
+    "raptor:67600e79:L2:e33e9b61cacea281",
+    "6af2db6cb86d77e2:L0:000069"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:17:31.519113+00:00",
+      "call_id": "cbc4ca1732aa",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7878f17b114874c1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a9557c6dcfa6457d"
+    },
+    {
+      "ts": "2026-11-16T10:17:49.380119+00:00",
+      "call_id": "93ca01c43242",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "cfe793d22bc7a907",
+      "prompt_tokens": 1531,
+      "completion_tokens": 89,
+      "latency_ms": 17850.89,
+      "server_ms": 17786.36,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a9557c6dcfa6457d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1531,
+    "completion_tokens": 89,
+    "total_ms": 17865.88
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

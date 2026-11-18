@@ -1,0 +1,181 @@
+{
+  "trace_id": "6eb5c3bcc0f84893",
+  "created_at": "2026-11-16T12:17:05.648829+00:00",
+  "query": "What kind of musicians are Mark Gaudet and Jan Axel Blomberg?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4815.79
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4816.66
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23329.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.27,
+      "bm25_ms": 11.08,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 12,
+        "latency_ms": 4798.69
+      },
+      "hits": [
+        {
+          "id": "90976421f3f2bea2:L0:000071",
+          "score": 6.707500457763672,
+          "fused": 0.39704874521612504,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": 6.707500457763672
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000114",
+          "score": 6.701603412628174,
+          "fused": 0.6033646553085862,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 6.701603412628174
+        },
+        {
+          "id": "raptor:67600e79:L1:ddf44dbe2a1f7233",
+          "score": 6.434240818023682,
+          "fused": 0.7752368566090397,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": 6.434240818023682
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000002",
+          "score": 0.7643172740936279,
+          "fused": 0.41899440638386065,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": 0.7643172740936279
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000158",
+          "score": 0.3571699857711792,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 0.3571699857711792
+        }
+      ],
+      "latency_ms": 4815.74
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 549,
+      "latency_ms": 0.82
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18513.15
+    }
+  },
+  "retrieved_ids": [
+    "90976421f3f2bea2:L0:000071",
+    "9794e842cc9565f0:L0:000114",
+    "raptor:67600e79:L1:ddf44dbe2a1f7233",
+    "ba3cd068cf9ac2e4:L0:000002",
+    "8e50522b7cb636d8:L0:000158"
+  ],
+  "filtered_ids": [
+    "90976421f3f2bea2:L0:000071",
+    "9794e842cc9565f0:L0:000114",
+    "raptor:67600e79:L1:ddf44dbe2a1f7233",
+    "ba3cd068cf9ac2e4:L0:000002",
+    "8e50522b7cb636d8:L0:000158"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:17:05.650830+00:00",
+      "call_id": "f6135caaf42d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d7dac65c526685c1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6eb5c3bcc0f84893"
+    },
+    {
+      "ts": "2026-11-16T12:17:28.977649+00:00",
+      "call_id": "cb58ed2530db",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d5c2e0a25a5534aa",
+      "prompt_tokens": 1214,
+      "completion_tokens": 125,
+      "latency_ms": 18511.3,
+      "server_ms": 18483.25,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "6eb5c3bcc0f84893"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1214,
+    "completion_tokens": 125,
+    "total_ms": 23332.93
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

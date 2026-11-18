@@ -196,6 +196,7 @@ class OllamaClient:
             "latency_ms": round(latency_ms, 2), "server_ms": round((data.get("total_duration") or 0) / 1e6, 2),
             "cache_hit": hit, "temperature": options["temperature"], "json_mode": json_schema is not None,
             "backend": self.backend, "ollama_version": self.server_version,
+            "done_reason": data.get("done_reason"),
         })
         return result
 

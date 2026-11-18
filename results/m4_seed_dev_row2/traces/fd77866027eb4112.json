@@ -1,0 +1,164 @@
+{
+  "trace_id": "fd77866027eb4112",
+  "created_at": "2026-11-17T14:47:53.796015+00:00",
+  "query": "what accents are present in the corpus?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.49
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.56
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 13510.37
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.58,
+      "bm25_ms": 6.64,
+      "n_candidates": {
+        "dense": 22,
+        "bm25": 4
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "ac8f19064313c157:L0:000000",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "ac8f19064313c157:L0:000012",
+          "score": 0.39024829500061897,
+          "fused": 0.39024829500061897,
+          "dense_rank": 19,
+          "bm25_rank": 2
+        },
+        {
+          "id": "ac8f19064313c157:L0:000017",
+          "score": 0.2851747713666024,
+          "fused": 0.2851747713666024,
+          "dense_rank": 11,
+          "bm25_rank": 3
+        },
+        {
+          "id": "ac8f19064313c157:L0:000018",
+          "score": 0.2821942840079119,
+          "fused": 0.2821942840079119,
+          "dense_rank": 2,
+          "bm25_rank": 4
+        },
+        {
+          "id": "ac8f19064313c157:L0:000010",
+          "score": 0.2646573218831576,
+          "fused": 0.2646573218831576,
+          "dense_rank": 3,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 10.45
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 830,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13499.69
+    }
+  },
+  "retrieved_ids": [
+    "ac8f19064313c157:L0:000000",
+    "ac8f19064313c157:L0:000012",
+    "ac8f19064313c157:L0:000017",
+    "ac8f19064313c157:L0:000018",
+    "ac8f19064313c157:L0:000010"
+  ],
+  "filtered_ids": [
+    "ac8f19064313c157:L0:000000",
+    "ac8f19064313c157:L0:000012",
+    "ac8f19064313c157:L0:000017",
+    "ac8f19064313c157:L0:000018",
+    "ac8f19064313c157:L0:000010"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:47:53.797936+00:00",
+      "call_id": "d484fb0ae377",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "45b331aabc1879ad",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fd77866027eb4112"
+    },
+    {
+      "ts": "2026-11-17T14:48:07.305437+00:00",
+      "call_id": "f4a679983add",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5b7f4639fc0cd78e",
+      "prompt_tokens": 1421,
+      "completion_tokens": 53,
+      "latency_ms": 13498.85,
+      "server_ms": 13477.56,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "fd77866027eb4112"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1421,
+    "completion_tokens": 53,
+    "total_ms": 13511.29
+  },
+  "config_hash": "d4a047076961",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

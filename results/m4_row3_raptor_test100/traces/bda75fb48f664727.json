@@ -1,0 +1,167 @@
+{
+  "trace_id": "bda75fb48f664727",
+  "created_at": "2026-11-16T10:24:45.461379+00:00",
+  "query": "Which school was founded first, Colegio Israelita De México or Waldorf University?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.13
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.21
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15849.93
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.37,
+      "bm25_ms": 8.43,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:1e98bd65039257f6",
+          "score": 0.9769020641749788,
+          "fused": 0.9769020641749788,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L2:12ea63ea70bf0844",
+          "score": 0.8825996743769078,
+          "fused": 0.8825996743769078,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:67600e79:L3:b8faddafbc8446e8",
+          "score": 0.8307520469702705,
+          "fused": 0.8307520469702705,
+          "dense_rank": 3,
+          "bm25_rank": 4
+        },
+        {
+          "id": "0eac870d43736f51:L0:000001",
+          "score": 0.7372933552844341,
+          "fused": 0.7372933552844341,
+          "dense_rank": 7,
+          "bm25_rank": 1
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000153",
+          "score": 0.34586844650371296,
+          "fused": 0.34586844650371296,
+          "dense_rank": 14,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 12.09
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 879,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15837.54
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:1e98bd65039257f6",
+    "raptor:67600e79:L2:12ea63ea70bf0844",
+    "raptor:67600e79:L3:b8faddafbc8446e8",
+    "0eac870d43736f51:L0:000001",
+    "53c7288bdcd3837a:L0:000153"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:1e98bd65039257f6",
+    "raptor:67600e79:L2:12ea63ea70bf0844",
+    "raptor:67600e79:L3:b8faddafbc8446e8",
+    "0eac870d43736f51:L0:000001",
+    "53c7288bdcd3837a:L0:000153"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:24:45.463378+00:00",
+      "call_id": "8880694d6134",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5d5fcf35ce749e51",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "bda75fb48f664727"
+    },
+    {
+      "ts": "2026-11-16T10:25:01.310256+00:00",
+      "call_id": "0a4828c2750e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "08f7097a819ab692",
+      "prompt_tokens": 1583,
+      "completion_tokens": 72,
+      "latency_ms": 15836.0,
+      "server_ms": 15805.04,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "bda75fb48f664727"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1583,
+    "completion_tokens": 72,
+    "total_ms": 15851.5
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "trace_id": "99a3a87a0a614bd0",
+  "created_at": "2026-11-16T13:00:32.219197+00:00",
+  "query": "Who lived longer, Octavius Hammond or Curumsey Damjee?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3713.42
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3713.52
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19195.31
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.09,
+      "bm25_ms": 6.65,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 11,
+        "latency_ms": 3699.68
+      },
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000202",
+          "score": 7.152393341064453,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.152393341064453
+        },
+        {
+          "id": "0eac870d43736f51:L0:000164",
+          "score": 4.7167840003967285,
+          "fused": 0.45391168286632305,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 4.7167840003967285
+        },
+        {
+          "id": "raptor:67600e79:L1:b535524db396c7bf",
+          "score": 3.4770636558532715,
+          "fused": 0.5158384513457648,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 2,
+          "rerank": 3.4770636558532715
+        },
+        {
+          "id": "raptor:67600e79:L2:b23766b0a9f7ac29",
+          "score": -1.5947742462158203,
+          "fused": 0.3665700700466976,
+          "dense_rank": 5,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -1.5947742462158203
+        },
+        {
+          "id": "raptor:67600e79:L2:4563a4db208a5476",
+          "score": -5.607783794403076,
+          "fused": 0.1384388171975128,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 11,
+          "rerank": -5.607783794403076
+        }
+      ],
+      "latency_ms": 3713.37
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 766,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15481.63
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000202",
+    "0eac870d43736f51:L0:000164",
+    "raptor:67600e79:L1:b535524db396c7bf",
+    "raptor:67600e79:L2:b23766b0a9f7ac29",
+    "raptor:67600e79:L2:4563a4db208a5476"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000202",
+    "0eac870d43736f51:L0:000164",
+    "raptor:67600e79:L1:b535524db396c7bf",
+    "raptor:67600e79:L2:b23766b0a9f7ac29",
+    "raptor:67600e79:L2:4563a4db208a5476"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:00:32.221197+00:00",
+      "call_id": "7abac3894244",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "118451c58b86a483",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "99a3a87a0a614bd0"
+    },
+    {
+      "ts": "2026-11-16T13:00:51.414230+00:00",
+      "call_id": "1a55ef145697",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "13077994aee4bebe",
+      "prompt_tokens": 1465,
+      "completion_tokens": 86,
+      "latency_ms": 15480.34,
+      "server_ms": 15448.98,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "99a3a87a0a614bd0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1465,
+    "completion_tokens": 86,
+    "total_ms": 19197.15
+  },
+  "config_hash": "3b340b405153",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Curumsey Damjee lived longer than Octavius Hammond."
+      ]
+    }
+  }
+}

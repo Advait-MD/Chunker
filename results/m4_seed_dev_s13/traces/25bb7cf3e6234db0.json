@@ -1,0 +1,169 @@
+{
+  "trace_id": "25bb7cf3e6234db0",
+  "created_at": "2026-11-17T14:28:33.121985+00:00",
+  "query": "How are similarities and differences between the texts from violent and non-violent religious groups analyzed?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 4.43
+    },
+    {
+      "state": "DONE",
+      "t_ms": 5.69
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.96,
+      "bm25_ms": 2.33,
+      "n_candidates": {
+        "dense": 27,
+        "bm25": 19
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "349db79fe5f93e86:L0:000019",
+          "score": 0.9052243053483576,
+          "fused": 0.9052243053483576,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "349db79fe5f93e86:L0:000000",
+          "score": 0.8755656575355619,
+          "fused": 0.8755656575355619,
+          "dense_rank": 7,
+          "bm25_rank": 1
+        },
+        {
+          "id": "349db79fe5f93e86:L0:000001",
+          "score": 0.8573813147913455,
+          "fused": 0.8573813147913455,
+          "dense_rank": 5,
+          "bm25_rank": 2
+        },
+        {
+          "id": "349db79fe5f93e86:L0:000011",
+          "score": 0.8310829427324375,
+          "fused": 0.8310829427324375,
+          "dense_rank": 1,
+          "bm25_rank": 4
+        },
+        {
+          "id": "349db79fe5f93e86:L0:000017",
+          "score": 0.5581057728197696,
+          "fused": 0.5581057728197696,
+          "dense_rank": 6,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 4.38
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1233,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 1.21
+    }
+  },
+  "retrieved_ids": [
+    "349db79fe5f93e86:L0:000019",
+    "349db79fe5f93e86:L0:000000",
+    "349db79fe5f93e86:L0:000001",
+    "349db79fe5f93e86:L0:000011",
+    "349db79fe5f93e86:L0:000017"
+  ],
+  "filtered_ids": [
+    "349db79fe5f93e86:L0:000019",
+    "349db79fe5f93e86:L0:000000",
+    "349db79fe5f93e86:L0:000001",
+    "349db79fe5f93e86:L0:000011",
+    "349db79fe5f93e86:L0:000017"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:28:33.123207+00:00",
+      "call_id": "847556504b13",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9ce8cc44dbcd670e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "25bb7cf3e6234db0"
+    },
+    {
+      "ts": "2026-11-17T14:28:33.127424+00:00",
+      "call_id": "3e0f5a27b751",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "60ec454941c57824",
+      "prompt_tokens": 1821,
+      "completion_tokens": 133,
+      "latency_ms": 0.77,
+      "server_ms": 22695.38,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "25bb7cf3e6234db0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 1821,
+    "completion_tokens": 133,
+    "total_ms": 6.17
+  },
+  "config_hash": "3feb6315c18d",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Similarities and differences between the texts from violent and non-violent religious groups are analyzed using topic modeling techniques, specifically Non-negative Matrix Factorization (NMF), and emotional analysis."
+      ]
+    }
+  }
+}

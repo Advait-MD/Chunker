@@ -1,0 +1,166 @@
+{
+  "trace_id": "52ff407f35364df9",
+  "created_at": "2026-11-17T14:29:19.055960+00:00",
+  "query": "What are the components of the general knowledge learning engine?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3.21
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3.23
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19108.65
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.86,
+      "bm25_ms": 1.24,
+      "n_candidates": {
+        "dense": 33,
+        "bm25": 28
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "6ce240d9e740e098:L0:000000",
+          "score": 0.9242423778113165,
+          "fused": 0.9242423778113165,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "6ce240d9e740e098:L0:000023",
+          "score": 0.8884365293278247,
+          "fused": 0.8884365293278247,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:304c1fdd:L1:b544fd3ded157da0",
+          "score": 0.6564366360632089,
+          "fused": 0.6564366360632089,
+          "dense_rank": 8,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:304c1fdd:L2:5ea9622ceff575ca",
+          "score": 0.6165019624065493,
+          "fused": 0.6165019624065493,
+          "dense_rank": 10,
+          "bm25_rank": 4
+        },
+        {
+          "id": "6ce240d9e740e098:L0:000009",
+          "score": 0.6088832588227019,
+          "fused": 0.6088832588227019,
+          "dense_rank": 2,
+          "bm25_rank": 6
+        }
+      ],
+      "latency_ms": 3.19
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1144,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19105.25
+    }
+  },
+  "retrieved_ids": [
+    "6ce240d9e740e098:L0:000000",
+    "6ce240d9e740e098:L0:000023",
+    "raptor:304c1fdd:L1:b544fd3ded157da0",
+    "raptor:304c1fdd:L2:5ea9622ceff575ca",
+    "6ce240d9e740e098:L0:000009"
+  ],
+  "filtered_ids": [
+    "6ce240d9e740e098:L0:000000",
+    "6ce240d9e740e098:L0:000023",
+    "raptor:304c1fdd:L1:b544fd3ded157da0",
+    "raptor:304c1fdd:L2:5ea9622ceff575ca",
+    "6ce240d9e740e098:L0:000009"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T14:29:19.056972+00:00",
+      "call_id": "a01651f90618",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "070485367dfbe973",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "52ff407f35364df9"
+    },
+    {
+      "ts": "2026-11-17T14:29:38.163651+00:00",
+      "call_id": "f2fb2439441b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c106a446999b98c2",
+      "prompt_tokens": 1800,
+      "completion_tokens": 126,
+      "latency_ms": 19104.39,
+      "server_ms": 19079.66,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "52ff407f35364df9"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1800,
+    "completion_tokens": 126,
+    "total_ms": 19109.74
+  },
+  "config_hash": "3feb6315c18d",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

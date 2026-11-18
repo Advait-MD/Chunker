@@ -1,0 +1,164 @@
+{
+  "trace_id": "acf1ba3fb6734f3d",
+  "created_at": "2026-11-16T10:07:19.122594+00:00",
+  "query": "Where did the director of film Carbon (Film) study?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.36
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.42
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12365.19
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.17,
+      "bm25_ms": 5.82,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "b04ce6dd2d95fb80:L0:000198",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000139",
+          "score": 0.5650418122795267,
+          "fused": 0.5650418122795267,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:5b9fd29968fe06ed",
+          "score": 0.37151438993989405,
+          "fused": 0.37151438993989405,
+          "dense_rank": 45,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:67600e79:L1:87a99e04f0c1619b",
+          "score": 0.3047124191948853,
+          "fused": 0.3047124191948853,
+          "dense_rank": 5,
+          "bm25_rank": 5
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000034",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 9.32
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 628,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12355.7
+    }
+  },
+  "retrieved_ids": [
+    "b04ce6dd2d95fb80:L0:000198",
+    "c73b757f0eb66f37:L0:000139",
+    "raptor:67600e79:L1:5b9fd29968fe06ed",
+    "raptor:67600e79:L1:87a99e04f0c1619b",
+    "317e12ccd417c0d7:L0:000034"
+  ],
+  "filtered_ids": [
+    "b04ce6dd2d95fb80:L0:000198",
+    "c73b757f0eb66f37:L0:000139",
+    "raptor:67600e79:L1:5b9fd29968fe06ed",
+    "raptor:67600e79:L1:87a99e04f0c1619b",
+    "317e12ccd417c0d7:L0:000034"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:07:19.124604+00:00",
+      "call_id": "57bbdb361882",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b97e8560b4ba8563",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "acf1ba3fb6734f3d"
+    },
+    {
+      "ts": "2026-11-16T10:07:31.487041+00:00",
+      "call_id": "3a7500003e2b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c0eeaa3639b93679",
+      "prompt_tokens": 1253,
+      "completion_tokens": 62,
+      "latency_ms": 12354.76,
+      "server_ms": 12322.77,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "acf1ba3fb6734f3d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1253,
+    "completion_tokens": 62,
+    "total_ms": 12368.24
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The director of the film Carbon, Venu, did not specify his educational background in the provided passages."
+      ]
+    }
+  }
+}

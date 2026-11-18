@@ -1,0 +1,183 @@
+{
+  "trace_id": "82b4d983d98d4bef",
+  "created_at": "2026-11-16T11:40:27.200846+00:00",
+  "query": "What do all of the residents of the Twin Palms trailer court all seem to have in common\n\nOptions:\n(A) They all have substance abuse issues.\n(B) They are all broken or damaged in some way.\n(C) They are all transient.\n(D) They all rally around Joey to help him cope with the loss of his dog.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2417.17
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2417.35
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22353.84
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.67,
+      "bm25_ms": 36.34,
+      "n_candidates": {
+        "dense": 26,
+        "bm25": 26
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 2370.15
+      },
+      "hits": [
+        {
+          "id": "raptor:96660398:L1:44f8b805a791f0c8",
+          "score": 0.2666802704334259,
+          "fused": 0.8805724683029608,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 0.2666802704334259
+        },
+        {
+          "id": "raptor:96660398:L2:dbba0f7454643a96",
+          "score": -0.41601020097732544,
+          "fused": 0.7996580659881216,
+          "dense_rank": 2,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": -0.41601020097732544
+        },
+        {
+          "id": "d229f0b1fa6722b4:L0:000005",
+          "score": -1.2766923904418945,
+          "fused": 0.9225502603903942,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.2766923904418945
+        },
+        {
+          "id": "d229f0b1fa6722b4:L0:000019",
+          "score": -1.6079764366149902,
+          "fused": 0.7296702909333417,
+          "dense_rank": 8,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": -1.6079764366149902
+        },
+        {
+          "id": "d229f0b1fa6722b4:L0:000000",
+          "score": -1.7197811603546143,
+          "fused": 0.5443315243171328,
+          "dense_rank": 13,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": -1.7197811603546143
+        }
+      ],
+      "latency_ms": 2417.12
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1558,
+      "latency_ms": 0.14
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19935.86
+    }
+  },
+  "retrieved_ids": [
+    "raptor:96660398:L1:44f8b805a791f0c8",
+    "raptor:96660398:L2:dbba0f7454643a96",
+    "d229f0b1fa6722b4:L0:000005",
+    "d229f0b1fa6722b4:L0:000019",
+    "d229f0b1fa6722b4:L0:000000"
+  ],
+  "filtered_ids": [
+    "raptor:96660398:L1:44f8b805a791f0c8",
+    "raptor:96660398:L2:dbba0f7454643a96",
+    "d229f0b1fa6722b4:L0:000005",
+    "d229f0b1fa6722b4:L0:000019",
+    "d229f0b1fa6722b4:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:40:27.202841+00:00",
+      "call_id": "07583ae0c03b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f9aeaf264bb1bfe1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "82b4d983d98d4bef"
+    },
+    {
+      "ts": "2026-11-16T11:40:49.553046+00:00",
+      "call_id": "7ac88114c2cf",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8771816720d9bc68",
+      "prompt_tokens": 2121,
+      "completion_tokens": 77,
+      "latency_ms": 19933.98,
+      "server_ms": 19902.87,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "82b4d983d98d4bef"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2121,
+    "completion_tokens": 77,
+    "total_ms": 22355.56
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

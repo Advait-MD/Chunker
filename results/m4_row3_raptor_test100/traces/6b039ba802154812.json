@@ -1,0 +1,165 @@
+{
+  "trace_id": "6b039ba802154812",
+  "created_at": "2026-11-16T09:43:26.585735+00:00",
+  "query": "In what year was the most famous statute at Po Lin Monastery built?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.94
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.01
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14771.94
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.82,
+      "bm25_ms": 10.82,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "5d0f6cf59ee42566:L0:000087",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:4049550d6d9ac2b2",
+          "score": 0.6671675029541612,
+          "fused": 0.6671675029541612,
+          "dense_rank": 5,
+          "bm25_rank": 3
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000120",
+          "score": 0.6388752675584085,
+          "fused": 0.6388752675584085,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000147",
+          "score": 0.5434553684810486,
+          "fused": 0.5434553684810486,
+          "dense_rank": 6,
+          "bm25_rank": 5
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000183",
+          "score": 0.5405609006038359,
+          "fused": 0.5405609006038359,
+          "dense_rank": 1,
+          "bm25_rank": 9
+        }
+      ],
+      "latency_ms": 14.91
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 526,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14756.75
+    }
+  },
+  "retrieved_ids": [
+    "5d0f6cf59ee42566:L0:000087",
+    "raptor:67600e79:L1:4049550d6d9ac2b2",
+    "cc2399aca11eb631:L0:000120",
+    "9794e842cc9565f0:L0:000147",
+    "ba3cd068cf9ac2e4:L0:000183"
+  ],
+  "filtered_ids": [
+    "5d0f6cf59ee42566:L0:000087",
+    "raptor:67600e79:L1:4049550d6d9ac2b2",
+    "cc2399aca11eb631:L0:000120",
+    "9794e842cc9565f0:L0:000147",
+    "ba3cd068cf9ac2e4:L0:000183"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:43:26.587734+00:00",
+      "call_id": "aa2730e8b67c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fdb17e1f30852071",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6b039ba802154812"
+    },
+    {
+      "ts": "2026-11-16T09:43:41.355552+00:00",
+      "call_id": "59563655782a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4e9326adce5d81cf",
+      "prompt_tokens": 1190,
+      "completion_tokens": 75,
+      "latency_ms": 14754.75,
+      "server_ms": 14724.33,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "6b039ba802154812"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1190,
+    "completion_tokens": 75,
+    "total_ms": 14775.23
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

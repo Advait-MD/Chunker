@@ -19,6 +19,7 @@ from apex.llm import OllamaClient
 from apex.retrieve.dense import DenseRetriever
 from apex.retrieve.hybrid import HybridRetriever
 from apex.retrieve.rerank import build_reranker
+from apex.retrieve.tree import TreeTraversalRetriever
 from apex.trace import Tracer
 
 
@@ -40,6 +41,8 @@ def build_retriever(comps: Components):
         if cfg.get("rerank", {}).get("enabled"):
             raise ValueError("rerank.enabled needs retrieval.mode hybrid, dense_ivf or bm25")
         return DenseRetriever(cfg, comps.store, comps.embedder)
+    if cfg["retrieval"].get("tree_search", "collapsed") == "traversal":
+        return TreeTraversalRetriever(cfg, comps.store, comps.embedder, reranker=build_reranker(cfg))
     return HybridRetriever(cfg, comps.store, comps.embedder, reranker=build_reranker(cfg))
 
 

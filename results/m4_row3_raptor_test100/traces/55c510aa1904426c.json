@@ -1,0 +1,165 @@
+{
+  "trace_id": "55c510aa1904426c",
+  "created_at": "2026-11-16T10:03:07.126695+00:00",
+  "query": "Who was born later, Jean-Jacques Rousseau or Richard Cawley?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.49
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.52
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17359.18
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.05,
+      "bm25_ms": 3.25,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor:67600e79:L1:b86dc7499039f235",
+          "score": 0.7092664261793218,
+          "fused": 0.7092664261793218,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        },
+        {
+          "id": "abe982d210232c3f:L0:000039",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "460e441179bec402:L0:000173",
+          "score": 0.6488152604644415,
+          "fused": 0.6488152604644415,
+          "dense_rank": 17,
+          "bm25_rank": 3
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000151",
+          "score": 0.6332368624321012,
+          "fused": 0.6332368624321012,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "99628090500247e3:L0:000044",
+          "score": 0.5414863928930153,
+          "fused": 0.5414863928930153,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 6.47
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 614,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17352.5
+    }
+  },
+  "retrieved_ids": [
+    "raptor:67600e79:L1:b86dc7499039f235",
+    "abe982d210232c3f:L0:000039",
+    "460e441179bec402:L0:000173",
+    "53c7288bdcd3837a:L0:000151",
+    "99628090500247e3:L0:000044"
+  ],
+  "filtered_ids": [
+    "raptor:67600e79:L1:b86dc7499039f235",
+    "abe982d210232c3f:L0:000039",
+    "460e441179bec402:L0:000173",
+    "53c7288bdcd3837a:L0:000151",
+    "99628090500247e3:L0:000044"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:03:07.128704+00:00",
+      "call_id": "de63f4b79d07",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c8b9dda7976415da",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "55c510aa1904426c"
+    },
+    {
+      "ts": "2026-11-16T10:03:24.484741+00:00",
+      "call_id": "3d5c57d04eea",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "80d9e3c0fb63b99a",
+      "prompt_tokens": 1335,
+      "completion_tokens": 96,
+      "latency_ms": 17348.78,
+      "server_ms": 17308.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "55c510aa1904426c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1335,
+    "completion_tokens": 96,
+    "total_ms": 17360.34
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

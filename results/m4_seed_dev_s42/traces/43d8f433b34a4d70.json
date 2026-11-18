@@ -1,0 +1,167 @@
+{
+  "trace_id": "43d8f433b34a4d70",
+  "created_at": "2026-11-17T13:31:50.594865+00:00",
+  "query": "What baselines did they consider?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.01
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.04
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14859.38
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.81,
+      "bm25_ms": 4.07,
+      "n_candidates": {
+        "dense": 28,
+        "bm25": 3
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "78a80b9567c95bc8:L0:000019",
+          "score": 0.9119304763465909,
+          "fused": 0.9119304763465909,
+          "dense_rank": 11,
+          "bm25_rank": 1
+        },
+        {
+          "id": "78a80b9567c95bc8:L0:000015",
+          "score": 0.7505852388637931,
+          "fused": 0.7505852388637931,
+          "dense_rank": 5,
+          "bm25_rank": 2
+        },
+        {
+          "id": "78a80b9567c95bc8:L0:000007",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        },
+        {
+          "id": "78a80b9567c95bc8:L0:000018",
+          "score": 0.2658626196633062,
+          "fused": 0.2658626196633062,
+          "dense_rank": 2,
+          "bm25_rank": null
+        },
+        {
+          "id": "78a80b9567c95bc8:L0:000017",
+          "score": 0.26578028564883954,
+          "fused": 0.26578028564883954,
+          "dense_rank": 3,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 5.99
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 832,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14853.23
+    }
+  },
+  "retrieved_ids": [
+    "78a80b9567c95bc8:L0:000019",
+    "78a80b9567c95bc8:L0:000015",
+    "78a80b9567c95bc8:L0:000007",
+    "78a80b9567c95bc8:L0:000018",
+    "78a80b9567c95bc8:L0:000017"
+  ],
+  "filtered_ids": [
+    "78a80b9567c95bc8:L0:000019",
+    "78a80b9567c95bc8:L0:000015",
+    "78a80b9567c95bc8:L0:000007",
+    "78a80b9567c95bc8:L0:000018",
+    "78a80b9567c95bc8:L0:000017"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T13:31:50.595866+00:00",
+      "call_id": "0d80b7668b4e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "55ffdf097ef3be31",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "43d8f433b34a4d70"
+    },
+    {
+      "ts": "2026-11-17T13:32:05.452933+00:00",
+      "call_id": "32aaba438afe",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a7fde7b54a16b947",
+      "prompt_tokens": 1383,
+      "completion_tokens": 84,
+      "latency_ms": 14852.34,
+      "server_ms": 14830.23,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "43d8f433b34a4d70"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1383,
+    "completion_tokens": 84,
+    "total_ms": 14860.41
+  },
+  "config_hash": "f5bf8e385908",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        4,
+        5
+      ],
+      "uncited_sentences": [
+        "They considered the baseline of running CEI prediction by itself (CEI Only) or the pipeline of CP first and then only running CEI on documents predicted as causal (CP + CEI)."
+      ]
+    }
+  }
+}

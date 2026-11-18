@@ -1,0 +1,180 @@
+{
+  "trace_id": "e7927c886d564c67",
+  "created_at": "2026-11-16T12:20:47.093644+00:00",
+  "query": "Luke Rockhold defeated the MMA fighter who was the first to earn a win against which champion in the UFC?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2863.67
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2864.62
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17401.69
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.02,
+      "bm25_ms": 13.83,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2843.9
+      },
+      "hits": [
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000167",
+          "score": 7.3100361824035645,
+          "fused": 0.8651221297271263,
+          "dense_rank": 5,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.3100361824035645
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000123",
+          "score": 6.123557090759277,
+          "fused": 0.5826995068364403,
+          "dense_rank": 8,
+          "bm25_rank": 7,
+          "fused_rank": 5,
+          "rerank": 6.123557090759277
+        },
+        {
+          "id": "raptor:67600e79:L1:64289ae82ea3e59b",
+          "score": 4.632122993469238,
+          "fused": 0.8371699931867405,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 4.632122993469238
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000142",
+          "score": 2.2285244464874268,
+          "fused": 0.7334746675430682,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 2.2285244464874268
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000078",
+          "score": -1.4774142503738403,
+          "fused": 0.4392960086763485,
+          "dense_rank": 23,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": -1.4774142503738403
+        }
+      ],
+      "latency_ms": 2863.6
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 719,
+      "latency_ms": 0.9
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14536.93
+    }
+  },
+  "retrieved_ids": [
+    "ba3cd068cf9ac2e4:L0:000167",
+    "5d0f6cf59ee42566:L0:000123",
+    "raptor:67600e79:L1:64289ae82ea3e59b",
+    "cb96563b0747a6ba:L0:000142",
+    "bc1dba3471045f02:L0:000078"
+  ],
+  "filtered_ids": [
+    "ba3cd068cf9ac2e4:L0:000167",
+    "5d0f6cf59ee42566:L0:000123",
+    "raptor:67600e79:L1:64289ae82ea3e59b",
+    "cb96563b0747a6ba:L0:000142",
+    "bc1dba3471045f02:L0:000078"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:20:47.094643+00:00",
+      "call_id": "8242f907f867",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "074f1382e9792248",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e7927c886d564c67"
+    },
+    {
+      "ts": "2026-11-16T12:21:04.493810+00:00",
+      "call_id": "6b1a56e3de68",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c7e8cc82860bed70",
+      "prompt_tokens": 1389,
+      "completion_tokens": 70,
+      "latency_ms": 14535.45,
+      "server_ms": 14504.29,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e7927c886d564c67"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1389,
+    "completion_tokens": 70,
+    "total_ms": 17404.9
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

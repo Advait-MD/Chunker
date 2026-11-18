@@ -1,0 +1,179 @@
+{
+  "trace_id": "c69b98163bae4946",
+  "created_at": "2026-11-16T11:12:30.901884+00:00",
+  "query": "Who did the performer from Night Rocker play on Young and Restless?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2586.81
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2587.72
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 14317.9
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.51,
+      "bm25_ms": 15.34,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2563.29
+      },
+      "hits": [
+        {
+          "id": "ce57fdde2baaba9c:L0:000170",
+          "score": 1.5322376489639282,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 1.5322376489639282
+        },
+        {
+          "id": "raptor:67600e79:L1:1825e80814e21f19",
+          "score": -0.2748136520385742,
+          "fused": 0.5708204022080972,
+          "dense_rank": 3,
+          "bm25_rank": 8,
+          "fused_rank": 5,
+          "rerank": -0.2748136520385742
+        },
+        {
+          "id": "raptor:67600e79:L1:01335847e41d53f4",
+          "score": -0.38569748401641846,
+          "fused": 0.4565422828019079,
+          "dense_rank": 5,
+          "bm25_rank": 24,
+          "fused_rank": 7,
+          "rerank": -0.38569748401641846
+        },
+        {
+          "id": "raptor:67600e79:L1:408d373f2c7df272",
+          "score": -0.575396716594696,
+          "fused": 0.7292653356395686,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": -0.575396716594696
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000061",
+          "score": -0.7394095659255981,
+          "fused": 0.2795509013663726,
+          "dense_rank": 37,
+          "bm25_rank": 17,
+          "fused_rank": 16,
+          "rerank": -0.7394095659255981
+        }
+      ],
+      "latency_ms": 2586.76
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 606,
+      "latency_ms": 0.86
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11730.09
+    }
+  },
+  "retrieved_ids": [
+    "ce57fdde2baaba9c:L0:000170",
+    "raptor:67600e79:L1:1825e80814e21f19",
+    "raptor:67600e79:L1:01335847e41d53f4",
+    "raptor:67600e79:L1:408d373f2c7df272",
+    "e182527d2b1ecac3:L0:000061"
+  ],
+  "filtered_ids": [
+    "ce57fdde2baaba9c:L0:000170",
+    "raptor:67600e79:L1:1825e80814e21f19",
+    "raptor:67600e79:L1:01335847e41d53f4",
+    "raptor:67600e79:L1:408d373f2c7df272",
+    "e182527d2b1ecac3:L0:000061"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:12:30.904122+00:00",
+      "call_id": "f96951012421",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "548c612e2940b274",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c69b98163bae4946"
+    },
+    {
+      "ts": "2026-11-16T11:12:45.219067+00:00",
+      "call_id": "3885e7b784da",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d4a4bf45bfdda989",
+      "prompt_tokens": 1218,
+      "completion_tokens": 60,
+      "latency_ms": 11728.95,
+      "server_ms": 11699.1,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "c69b98163bae4946"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1218,
+    "completion_tokens": 60,
+    "total_ms": 14322.14
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "There is no information in the provided passages about a performer from Night Rocker playing a role on The Young and the Restless."
+      ]
+    }
+  }
+}

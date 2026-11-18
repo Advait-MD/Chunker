@@ -1,0 +1,180 @@
+{
+  "trace_id": "d84e1ac7e6da493c",
+  "created_at": "2026-11-16T12:27:25.692965+00:00",
+  "query": "The Nike Mercurial Vapor is endorsed by a Stoke City football player who also plays for what national team?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2546.74
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2546.82
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14574.95
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.37,
+      "bm25_ms": 14.5,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2527.56
+      },
+      "hits": [
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000013",
+          "score": 8.021089553833008,
+          "fused": 0.7480364134483865,
+          "dense_rank": 24,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 8.021089553833008
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000046",
+          "score": 5.307676315307617,
+          "fused": 0.4402223858096805,
+          "dense_rank": 6,
+          "bm25_rank": 7,
+          "fused_rank": 6,
+          "rerank": 5.307676315307617
+        },
+        {
+          "id": "raptor:67600e79:L1:4a8959931c2b3b76",
+          "score": 3.9522922039031982,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.9522922039031982
+        },
+        {
+          "id": "634431bb1e27714f:L0:000041",
+          "score": 1.3716906309127808,
+          "fused": 0.41987882827272,
+          "dense_rank": 32,
+          "bm25_rank": 3,
+          "fused_rank": 7,
+          "rerank": 1.3716906309127808
+        },
+        {
+          "id": "raptor:67600e79:L1:8a23ddd6696403dc",
+          "score": 0.8528544902801514,
+          "fused": 0.38071023338430776,
+          "dense_rank": 10,
+          "bm25_rank": 11,
+          "fused_rank": 9,
+          "rerank": 0.8528544902801514
+        }
+      ],
+      "latency_ms": 2546.69
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 569,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12028.01
+    }
+  },
+  "retrieved_ids": [
+    "ba3cd068cf9ac2e4:L0:000013",
+    "bc1dba3471045f02:L0:000046",
+    "raptor:67600e79:L1:4a8959931c2b3b76",
+    "634431bb1e27714f:L0:000041",
+    "raptor:67600e79:L1:8a23ddd6696403dc"
+  ],
+  "filtered_ids": [
+    "ba3cd068cf9ac2e4:L0:000013",
+    "bc1dba3471045f02:L0:000046",
+    "raptor:67600e79:L1:4a8959931c2b3b76",
+    "634431bb1e27714f:L0:000041",
+    "raptor:67600e79:L1:8a23ddd6696403dc"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:27:25.693962+00:00",
+      "call_id": "2b5df0119188",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "94b7dc7db583e441",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d84e1ac7e6da493c"
+    },
+    {
+      "ts": "2026-11-16T12:27:40.267020+00:00",
+      "call_id": "71dbcfb3c83b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "56e0c4e53484bc35",
+      "prompt_tokens": 1204,
+      "completion_tokens": 68,
+      "latency_ms": 12026.94,
+      "server_ms": 11979.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d84e1ac7e6da493c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1204,
+    "completion_tokens": 68,
+    "total_ms": 14576.01
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "trace_id": "a924752a0dfb4d1a",
+  "created_at": "2026-11-16T11:27:54.792574+00:00",
+  "query": "Ivo Werner is from Country A that invaded Country B because their military branch that helped the Old West police was unprepared. When was the word \"Slavs\" used in the national anthem of country B?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5109.65
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5110.39
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25054.68
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.86,
+      "bm25_ms": 54.54,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 9,
+        "latency_ms": 5045.32
+      },
+      "hits": [
+        {
+          "id": "e182527d2b1ecac3:L0:000076",
+          "score": 3.777580976486206,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 3.777580976486206
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000054",
+          "score": 2.7005321979522705,
+          "fused": 0.785256982280115,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 2.7005321979522705
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000055",
+          "score": -5.636049747467041,
+          "fused": 0.4061605090178958,
+          "dense_rank": 18,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -5.636049747467041
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000096",
+          "score": -6.723871231079102,
+          "fused": 0.29670803348823394,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": -6.723871231079102
+        },
+        {
+          "id": "raptor:67600e79:L1:2627340d6f6cd412",
+          "score": -7.0692009925842285,
+          "fused": 0.15248497452107843,
+          "dense_rank": 14,
+          "bm25_rank": 31,
+          "fused_rank": 15,
+          "rerank": -7.0692009925842285
+        }
+      ],
+      "latency_ms": 5109.54
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 621,
+      "latency_ms": 0.67
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19944.12
+    }
+  },
+  "retrieved_ids": [
+    "e182527d2b1ecac3:L0:000076",
+    "f59bbbdacaf7ffe4:L0:000054",
+    "ce290c1e5d5c6641:L0:000055",
+    "ad11b6e85f908fb3:L0:000096",
+    "raptor:67600e79:L1:2627340d6f6cd412"
+  ],
+  "filtered_ids": [
+    "e182527d2b1ecac3:L0:000076",
+    "f59bbbdacaf7ffe4:L0:000054",
+    "ce290c1e5d5c6641:L0:000055",
+    "ad11b6e85f908fb3:L0:000096",
+    "raptor:67600e79:L1:2627340d6f6cd412"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:27:54.794290+00:00",
+      "call_id": "49d6dfd3b10a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ef8e3387296f3728",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a924752a0dfb4d1a"
+    },
+    {
+      "ts": "2026-11-16T11:28:19.846677+00:00",
+      "call_id": "0fdf88bc554d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "aeaa8688185d5f60",
+      "prompt_tokens": 1270,
+      "completion_tokens": 120,
+      "latency_ms": 19942.84,
+      "server_ms": 19887.23,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a924752a0dfb4d1a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1270,
+    "completion_tokens": 120,
+    "total_ms": 25056.37
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

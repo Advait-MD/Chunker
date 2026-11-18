@@ -1,0 +1,165 @@
+{
+  "trace_id": "318d85d11e944b87",
+  "created_at": "2026-11-16T09:51:51.659272+00:00",
+  "query": "Which member of The New Russian School was both a doctor and a chemist besides being a composer?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16.27
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16.33
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12659.7
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.67,
+      "bm25_ms": 13.26,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "8e50522b7cb636d8:L0:000168",
+          "score": 1.0,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:e0ddfed12cf7c749",
+          "score": 0.4675666701911353,
+          "fused": 0.4675666701911353,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "634431bb1e27714f:L0:000117",
+          "score": 0.3374620298716167,
+          "fused": 0.3374620298716167,
+          "dense_rank": 18,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:67600e79:L1:aacd223e0aa620b8",
+          "score": 0.3245939148553835,
+          "fused": 0.3245939148553835,
+          "dense_rank": 12,
+          "bm25_rank": 7
+        },
+        {
+          "id": "634431bb1e27714f:L0:000052",
+          "score": 0.28345918756785626,
+          "fused": 0.28345918756785626,
+          "dense_rank": 17,
+          "bm25_rank": 11
+        }
+      ],
+      "latency_ms": 16.24
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 573,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12643.26
+    }
+  },
+  "retrieved_ids": [
+    "8e50522b7cb636d8:L0:000168",
+    "raptor:67600e79:L1:e0ddfed12cf7c749",
+    "634431bb1e27714f:L0:000117",
+    "raptor:67600e79:L1:aacd223e0aa620b8",
+    "634431bb1e27714f:L0:000052"
+  ],
+  "filtered_ids": [
+    "8e50522b7cb636d8:L0:000168",
+    "raptor:67600e79:L1:e0ddfed12cf7c749",
+    "634431bb1e27714f:L0:000117",
+    "raptor:67600e79:L1:aacd223e0aa620b8",
+    "634431bb1e27714f:L0:000052"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:51:51.660270+00:00",
+      "call_id": "dce8b26a88c7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bd4da78097b4c99b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "318d85d11e944b87"
+    },
+    {
+      "ts": "2026-11-16T09:52:04.317687+00:00",
+      "call_id": "03384d8a3cd6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0d2aa245ba125aaf",
+      "prompt_tokens": 1230,
+      "completion_tokens": 68,
+      "latency_ms": 12642.37,
+      "server_ms": 12618.88,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "318d85d11e944b87"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1230,
+    "completion_tokens": 68,
+    "total_ms": 12661.35
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

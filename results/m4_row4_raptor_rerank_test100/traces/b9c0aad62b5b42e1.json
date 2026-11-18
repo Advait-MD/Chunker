@@ -1,0 +1,180 @@
+{
+  "trace_id": "b9c0aad62b5b42e1",
+  "created_at": "2026-11-16T12:25:47.132336+00:00",
+  "query": "What company did Rex Maughan aquire?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3921.31
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3921.44
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18961.69
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.88,
+      "bm25_ms": 4.86,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 10,
+        "latency_ms": 3911.89
+      },
+      "hits": [
+        {
+          "id": "8e50522b7cb636d8:L0:000137",
+          "score": 5.655429363250732,
+          "fused": 0.5826620298885092,
+          "dense_rank": 49,
+          "bm25_rank": 3,
+          "fused_rank": 6,
+          "rerank": 5.655429363250732
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000143",
+          "score": 4.004341125488281,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 4.004341125488281
+        },
+        {
+          "id": "raptor:67600e79:L1:ea87168529f83cd0",
+          "score": 3.903585195541382,
+          "fused": 0.9141542586397273,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 3.903585195541382
+        },
+        {
+          "id": "raptor:67600e79:L2:0fbfa6f200bc4c27",
+          "score": 3.805588483810425,
+          "fused": 0.6747345181735558,
+          "dense_rank": 3,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": 3.805588483810425
+        },
+        {
+          "id": "raptor:67600e79:L3:7e283d3715c6f9cb",
+          "score": 3.6642825603485107,
+          "fused": 0.6761538661669868,
+          "dense_rank": 5,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": 3.6642825603485107
+        }
+      ],
+      "latency_ms": 3921.26
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 764,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15040.11
+    }
+  },
+  "retrieved_ids": [
+    "8e50522b7cb636d8:L0:000137",
+    "81fc433d55d23b4c:L0:000143",
+    "raptor:67600e79:L1:ea87168529f83cd0",
+    "raptor:67600e79:L2:0fbfa6f200bc4c27",
+    "raptor:67600e79:L3:7e283d3715c6f9cb"
+  ],
+  "filtered_ids": [
+    "8e50522b7cb636d8:L0:000137",
+    "81fc433d55d23b4c:L0:000143",
+    "raptor:67600e79:L1:ea87168529f83cd0",
+    "raptor:67600e79:L2:0fbfa6f200bc4c27",
+    "raptor:67600e79:L3:7e283d3715c6f9cb"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:25:47.133335+00:00",
+      "call_id": "0a9f61bcd3ea",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "72c931024f7e45d8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b9c0aad62b5b42e1"
+    },
+    {
+      "ts": "2026-11-16T12:26:06.092602+00:00",
+      "call_id": "b2fd471cf48e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e27a9f054b3ba92f",
+      "prompt_tokens": 1353,
+      "completion_tokens": 66,
+      "latency_ms": 15038.76,
+      "server_ms": 15014.92,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b9c0aad62b5b42e1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1353,
+    "completion_tokens": 66,
+    "total_ms": 18963.9
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

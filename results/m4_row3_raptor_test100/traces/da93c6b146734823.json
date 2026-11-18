@@ -1,0 +1,165 @@
+{
+  "trace_id": "da93c6b146734823",
+  "created_at": "2026-11-15T09:16:36.542414+00:00",
+  "query": "What is the seat of the county sharing a border with the county whose seat is the city WAPL is licensed to broadcast to?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 23.42
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 23.48
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17110.81
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.3,
+      "bm25_ms": 19.72,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "dbcbda865eee9c7b:L0:000027",
+          "score": 0.880250281385248,
+          "fused": 0.880250281385248,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:67600e79:L1:5ebe3c0d888fad9a",
+          "score": 0.792102320958286,
+          "fused": 0.792102320958286,
+          "dense_rank": 2,
+          "bm25_rank": 5
+        },
+        {
+          "id": "raptor:67600e79:L1:98de3839169345ac",
+          "score": 0.7667342111014913,
+          "fused": 0.7667342111014913,
+          "dense_rank": 4,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:8b3057c533eb9a84",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000141",
+          "score": 0.5468163530147089,
+          "fused": 0.5468163530147089,
+          "dense_rank": 7,
+          "bm25_rank": 9
+        }
+      ],
+      "latency_ms": 23.32
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 666,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17087.2
+    }
+  },
+  "retrieved_ids": [
+    "dbcbda865eee9c7b:L0:000027",
+    "raptor:67600e79:L1:5ebe3c0d888fad9a",
+    "raptor:67600e79:L1:98de3839169345ac",
+    "raptor:67600e79:L1:8b3057c533eb9a84",
+    "ad11b6e85f908fb3:L0:000141"
+  ],
+  "filtered_ids": [
+    "dbcbda865eee9c7b:L0:000027",
+    "raptor:67600e79:L1:5ebe3c0d888fad9a",
+    "raptor:67600e79:L1:98de3839169345ac",
+    "raptor:67600e79:L1:8b3057c533eb9a84",
+    "ad11b6e85f908fb3:L0:000141"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T09:16:36.544418+00:00",
+      "call_id": "7278fab79d89",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "64b88e4c90ee6404",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "da93c6b146734823"
+    },
+    {
+      "ts": "2026-11-15T09:16:53.653163+00:00",
+      "call_id": "5a6eb213590d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1ebdece15f54276c",
+      "prompt_tokens": 1356,
+      "completion_tokens": 87,
+      "latency_ms": 17086.26,
+      "server_ms": 17066.79,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "da93c6b146734823"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1356,
+    "completion_tokens": 87,
+    "total_ms": 17112.25
+  },
+  "config_hash": "91774d7dc64f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        5,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

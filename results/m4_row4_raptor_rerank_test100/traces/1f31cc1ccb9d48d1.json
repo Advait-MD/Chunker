@@ -1,0 +1,180 @@
+{
+  "trace_id": "1f31cc1ccb9d48d1",
+  "created_at": "2026-11-16T13:12:05.899272+00:00",
+  "query": "How did Odysseus' encounter with the Cyclops Polyphemus incur the wrath of the sea god Poseidon?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3105.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3106.24
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21791.0
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.66,
+      "bm25_ms": 17.12,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 3079.3
+      },
+      "hits": [
+        {
+          "id": "raptor:da9c117e:L1:f3be1ef663bab347",
+          "score": 2.967404842376709,
+          "fused": 0.4810308891924019,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": 2.967404842376709
+        },
+        {
+          "id": "f9add743188fc69e:L0:000581",
+          "score": 1.892905592918396,
+          "fused": 0.5635414231974631,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 1.892905592918396
+        },
+        {
+          "id": "raptor:da9c117e:L1:4d9146c241caa302",
+          "score": 1.8340027332305908,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.8340027332305908
+        },
+        {
+          "id": "f9add743188fc69e:L0:000649",
+          "score": 1.1454286575317383,
+          "fused": 0.47048590220570174,
+          "dense_rank": 32,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": 1.1454286575317383
+        },
+        {
+          "id": "f9add743188fc69e:L0:000169",
+          "score": 1.0756402015686035,
+          "fused": 0.6589200821304195,
+          "dense_rank": 7,
+          "bm25_rank": 5,
+          "fused_rank": 2,
+          "rerank": 1.0756402015686035
+        }
+      ],
+      "latency_ms": 3105.34
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1352,
+      "latency_ms": 0.79
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18684.29
+    }
+  },
+  "retrieved_ids": [
+    "raptor:da9c117e:L1:f3be1ef663bab347",
+    "f9add743188fc69e:L0:000581",
+    "raptor:da9c117e:L1:4d9146c241caa302",
+    "f9add743188fc69e:L0:000649",
+    "f9add743188fc69e:L0:000169"
+  ],
+  "filtered_ids": [
+    "raptor:da9c117e:L1:f3be1ef663bab347",
+    "f9add743188fc69e:L0:000581",
+    "raptor:da9c117e:L1:4d9146c241caa302",
+    "f9add743188fc69e:L0:000649",
+    "f9add743188fc69e:L0:000169"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T13:12:05.900274+00:00",
+      "call_id": "a1d0bbf9aeec",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "72a86cab9a0b1e14",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1f31cc1ccb9d48d1"
+    },
+    {
+      "ts": "2026-11-16T13:12:27.689226+00:00",
+      "call_id": "fa6fbaf67426",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "06eb6e6fe8ea96a2",
+      "prompt_tokens": 2092,
+      "completion_tokens": 66,
+      "latency_ms": 18683.26,
+      "server_ms": 18657.32,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1f31cc1ccb9d48d1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2092,
+    "completion_tokens": 66,
+    "total_ms": 21792.82
+  },
+  "config_hash": "93ebf680059e",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

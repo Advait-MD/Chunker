@@ -1,0 +1,166 @@
+{
+  "trace_id": "f7fd573f21b14c5f",
+  "created_at": "2026-11-17T13:52:20.950374+00:00",
+  "query": "Why does the protagonist have more than one set of memories?\n\nOptions:\n(A) He has traveled back and forth through time \n(B) His memories are being moved in his brain to make room for new ones\n(C) He is not taking his medication for his mental illness\n(D) He has a portion of another persons brain\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 109.26
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 109.32
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18371.44
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 83.31,
+      "bm25_ms": 25.71,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 25
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000018",
+          "score": 0.9653384184201942,
+          "fused": 0.9653384184201942,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+          "score": 0.6936164221940884,
+          "fused": 0.6936164221940884,
+          "dense_rank": 2,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:71f5ff57:L1:73e5f1517946a308",
+          "score": 0.6646094183423115,
+          "fused": 0.6646094183423115,
+          "dense_rank": 6,
+          "bm25_rank": 3
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000010",
+          "score": 0.6533497666235533,
+          "fused": 0.6533497666235533,
+          "dense_rank": 11,
+          "bm25_rank": 2
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000011",
+          "score": 0.5145274819414534,
+          "fused": 0.5145274819414534,
+          "dense_rank": 10,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 109.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1436,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18261.98
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000018",
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+    "raptor:71f5ff57:L1:73e5f1517946a308",
+    "2ecd3be7264ff150:L0:000010",
+    "2ecd3be7264ff150:L0:000011"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000018",
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+    "raptor:71f5ff57:L1:73e5f1517946a308",
+    "2ecd3be7264ff150:L0:000010",
+    "2ecd3be7264ff150:L0:000011"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T13:52:21.032904+00:00",
+      "call_id": "09e13bd59064",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f3f474983641bc95",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 96,
+      "completion_tokens": 0,
+      "latency_ms": 81.33,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "f7fd573f21b14c5f"
+    },
+    {
+      "ts": "2026-11-17T13:52:39.321405+00:00",
+      "call_id": "126f45c2e5d8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a761c8980800d1fd",
+      "prompt_tokens": 1995,
+      "completion_tokens": 72,
+      "latency_ms": 18260.68,
+      "server_ms": 18232.39,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "f7fd573f21b14c5f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1995,
+    "completion_tokens": 72,
+    "total_ms": 18373.77
+  },
+  "config_hash": "10aa17327d5e",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

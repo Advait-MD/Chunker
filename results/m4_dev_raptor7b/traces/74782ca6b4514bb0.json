@@ -1,0 +1,165 @@
+{
+  "trace_id": "74782ca6b4514bb0",
+  "created_at": "2026-11-18T07:19:20.862485+00:00",
+  "query": "What is the improvement in performance for Estonian in the NER task?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6.45
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18842.09
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.81,
+      "bm25_ms": 2.39,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 17
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "raptor7b:83a91ebf:L1:e19c2b6dff0d50b5",
+          "score": 0.9623201806610552,
+          "fused": 0.9623201806610552,
+          "dense_rank": 3,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor7b:83a91ebf:L2:ec9671589ebb0614",
+          "score": 0.92506095760548,
+          "fused": 0.92506095760548,
+          "dense_rank": 2,
+          "bm25_rank": 3
+        },
+        {
+          "id": "581e436007c6e252:L0:000016",
+          "score": 0.8496555059772085,
+          "fused": 0.8496555059772085,
+          "dense_rank": 5,
+          "bm25_rank": 2
+        },
+        {
+          "id": "581e436007c6e252:L0:000000",
+          "score": 0.7939066509041376,
+          "fused": 0.7939066509041376,
+          "dense_rank": 9,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor7b:83a91ebf:L1:45b306a644dbc2e1",
+          "score": 0.7519387017800739,
+          "fused": 0.7519387017800739,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        }
+      ],
+      "latency_ms": 6.37
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 908,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 18835.51
+    }
+  },
+  "retrieved_ids": [
+    "raptor7b:83a91ebf:L1:e19c2b6dff0d50b5",
+    "raptor7b:83a91ebf:L2:ec9671589ebb0614",
+    "581e436007c6e252:L0:000016",
+    "581e436007c6e252:L0:000000",
+    "raptor7b:83a91ebf:L1:45b306a644dbc2e1"
+  ],
+  "filtered_ids": [
+    "raptor7b:83a91ebf:L1:e19c2b6dff0d50b5",
+    "raptor7b:83a91ebf:L2:ec9671589ebb0614",
+    "581e436007c6e252:L0:000016",
+    "581e436007c6e252:L0:000000",
+    "raptor7b:83a91ebf:L1:45b306a644dbc2e1"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-18T07:19:20.865485+00:00",
+      "call_id": "0a70bd865578",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f3118706b2c67239",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "74782ca6b4514bb0"
+    },
+    {
+      "ts": "2026-11-18T07:19:39.703703+00:00",
+      "call_id": "0d25e11b988b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6ed9b946066da97f",
+      "prompt_tokens": 1538,
+      "completion_tokens": 85,
+      "latency_ms": 18834.02,
+      "server_ms": 18810.98,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "74782ca6b4514bb0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1538,
+    "completion_tokens": 85,
+    "total_ms": 18843.49
+  },
+  "config_hash": "b4f37cada00e",
+  "git_sha": "db55cc94ada50cc303fe6db5a415526173c59e35-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

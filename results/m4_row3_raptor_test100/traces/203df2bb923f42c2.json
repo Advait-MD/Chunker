@@ -1,0 +1,168 @@
+{
+  "trace_id": "203df2bb923f42c2",
+  "created_at": "2026-11-15T08:49:00.158856+00:00",
+  "query": "What kind of evaluations do use to evaluate dialogue?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16.19
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16.25
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15976.23
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.02,
+      "bm25_ms": 11.92,
+      "n_candidates": {
+        "dense": 44,
+        "bm25": 28
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2943962343c26cd0:L0:000018",
+          "score": 0.9921205573163012,
+          "fused": 0.9921205573163012,
+          "dense_rank": 1,
+          "bm25_rank": 2
+        },
+        {
+          "id": "2943962343c26cd0:L0:000016",
+          "score": 0.9231183609251018,
+          "fused": 0.9231183609251018,
+          "dense_rank": 3,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:41a77925:L2:98cbe806a209abe5",
+          "score": 0.8499110514374564,
+          "fused": 0.8499110514374564,
+          "dense_rank": 24,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2943962343c26cd0:L0:000002",
+          "score": 0.8406420951671716,
+          "fused": 0.8406420951671716,
+          "dense_rank": 12,
+          "bm25_rank": 4
+        },
+        {
+          "id": "2943962343c26cd0:L0:000000",
+          "score": 0.8159821583417949,
+          "fused": 0.8159821583417949,
+          "dense_rank": 8,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 16.16
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1005,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15959.89
+    }
+  },
+  "retrieved_ids": [
+    "2943962343c26cd0:L0:000018",
+    "2943962343c26cd0:L0:000016",
+    "raptor:41a77925:L2:98cbe806a209abe5",
+    "2943962343c26cd0:L0:000002",
+    "2943962343c26cd0:L0:000000"
+  ],
+  "filtered_ids": [
+    "2943962343c26cd0:L0:000018",
+    "2943962343c26cd0:L0:000016",
+    "raptor:41a77925:L2:98cbe806a209abe5",
+    "2943962343c26cd0:L0:000002",
+    "2943962343c26cd0:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-15T08:49:00.161838+00:00",
+      "call_id": "1d5fac77e635",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1f1fd5ff71085f3c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "203df2bb923f42c2"
+    },
+    {
+      "ts": "2026-11-15T08:49:16.134644+00:00",
+      "call_id": "d85c7754fa20",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6b21d856bfdb98ca",
+      "prompt_tokens": 1627,
+      "completion_tokens": 85,
+      "latency_ms": 15959.1,
+      "server_ms": 15935.65,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "203df2bb923f42c2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1627,
+    "completion_tokens": 85,
+    "total_ms": 15976.83
+  },
+  "config_hash": "4304b1db8856",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "We use both automatic and human evaluations to assess dialogue."
+      ]
+    }
+  }
+}

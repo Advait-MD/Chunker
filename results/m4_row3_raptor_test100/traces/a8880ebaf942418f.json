@@ -1,0 +1,165 @@
+{
+  "trace_id": "a8880ebaf942418f",
+  "created_at": "2026-11-16T09:46:51.744841+00:00",
+  "query": "Which player, who also played for the New Jersey Nets and the Golden State Warriors, finished third in the league with 231 three-point field goals during the 1995-96 Atlanta Hawks season?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 33.09
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 33.16
+    },
+    {
+      "state": "DONE",
+      "t_ms": 36.28
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.91,
+      "bm25_ms": 29.86,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "cc2399aca11eb631:L0:000070",
+          "score": 0.9680801054475563,
+          "fused": 0.9680801054475563,
+          "dense_rank": 2,
+          "bm25_rank": 1
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000049",
+          "score": 0.624085782541506,
+          "fused": 0.624085782541506,
+          "dense_rank": 18,
+          "bm25_rank": 2
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000007",
+          "score": 0.6059957048467228,
+          "fused": 0.6059957048467228,
+          "dense_rank": 1,
+          "bm25_rank": 6
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000147",
+          "score": 0.5287110901291957,
+          "fused": 0.5287110901291957,
+          "dense_rank": 23,
+          "bm25_rank": 3
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000035",
+          "score": 0.52443152800365,
+          "fused": 0.52443152800365,
+          "dense_rank": 9,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 33.05
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 541,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 2.9
+    }
+  },
+  "retrieved_ids": [
+    "cc2399aca11eb631:L0:000070",
+    "bc1dba3471045f02:L0:000049",
+    "ba3cd068cf9ac2e4:L0:000007",
+    "c8fd2b3ea47eb07f:L0:000147",
+    "8e50522b7cb636d8:L0:000035"
+  ],
+  "filtered_ids": [
+    "cc2399aca11eb631:L0:000070",
+    "bc1dba3471045f02:L0:000049",
+    "ba3cd068cf9ac2e4:L0:000007",
+    "c8fd2b3ea47eb07f:L0:000147",
+    "8e50522b7cb636d8:L0:000035"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T09:46:51.745838+00:00",
+      "call_id": "028cf92b61a6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c48ad6e1b30fd76a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a8880ebaf942418f"
+    },
+    {
+      "ts": "2026-11-16T09:46:51.779889+00:00",
+      "call_id": "30b38742003c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d5f05a2d1b978ca0",
+      "prompt_tokens": 1211,
+      "completion_tokens": 73,
+      "latency_ms": 1.81,
+      "server_ms": 14240.13,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a8880ebaf942418f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 1,
+    "prompt_tokens": 1211,
+    "completion_tokens": 73,
+    "total_ms": 38.75
+  },
+  "config_hash": "2591f1408763",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

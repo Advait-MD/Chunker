@@ -1,0 +1,166 @@
+{
+  "trace_id": "eba338b5010d45f0",
+  "created_at": "2026-11-16T10:26:33.677811+00:00",
+  "query": "Who authored 'The Book of Five Rings'?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5.54
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5.57
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15280.39
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.29,
+      "bm25_ms": 3.1,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "54e450272e768455:L0:000000",
+          "score": 0.791052652282203,
+          "fused": 0.791052652282203,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "raptor:7b17be58:L2:c1b1c31e1432cf79",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:7b17be58:L3:28e69df69d22b0fa",
+          "score": 0.543497141672266,
+          "fused": 0.543497141672266,
+          "dense_rank": 50,
+          "bm25_rank": 2
+        },
+        {
+          "id": "54e450272e768455:L0:000024",
+          "score": 0.4998014319344061,
+          "fused": 0.4998014319344061,
+          "dense_rank": 2,
+          "bm25_rank": 15
+        },
+        {
+          "id": "54e450272e768455:L0:000021",
+          "score": 0.4281200501254322,
+          "fused": 0.4281200501254322,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 5.52
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1333,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15274.7
+    }
+  },
+  "retrieved_ids": [
+    "54e450272e768455:L0:000000",
+    "raptor:7b17be58:L2:c1b1c31e1432cf79",
+    "raptor:7b17be58:L3:28e69df69d22b0fa",
+    "54e450272e768455:L0:000024",
+    "54e450272e768455:L0:000021"
+  ],
+  "filtered_ids": [
+    "54e450272e768455:L0:000000",
+    "raptor:7b17be58:L2:c1b1c31e1432cf79",
+    "raptor:7b17be58:L3:28e69df69d22b0fa",
+    "54e450272e768455:L0:000024",
+    "54e450272e768455:L0:000021"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:26:33.678810+00:00",
+      "call_id": "88b284c231d1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fd9beda8097c6389",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "eba338b5010d45f0"
+    },
+    {
+      "ts": "2026-11-16T10:26:48.956208+00:00",
+      "call_id": "b1c59c70e1b3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b624f2fee44132d4",
+      "prompt_tokens": 1877,
+      "completion_tokens": 65,
+      "latency_ms": 15273.48,
+      "server_ms": 15243.47,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "eba338b5010d45f0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1877,
+    "completion_tokens": 65,
+    "total_ms": 15281.9
+  },
+  "config_hash": "e1774ef76b1f",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

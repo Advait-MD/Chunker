@@ -1,0 +1,164 @@
+{
+  "trace_id": "f7c2753527ca41d5",
+  "created_at": "2026-11-16T10:13:42.903140+00:00",
+  "query": "Who is the maternal grandmother of Flavia Julia Constantia?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.71
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.77
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 12110.8
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.56,
+      "bm25_ms": 5.83,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "53c7288bdcd3837a:L0:000096",
+          "score": 0.7092635953536873,
+          "fused": 0.7092635953536873,
+          "dense_rank": 41,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:21fad170f16bdacd",
+          "score": 0.3893143502143841,
+          "fused": 0.3893143502143841,
+          "dense_rank": 1,
+          "bm25_rank": 26
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000190",
+          "score": 0.3535369148338068,
+          "fused": 0.3535369148338068,
+          "dense_rank": 7,
+          "bm25_rank": 3
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000127",
+          "score": 0.33911152899853053,
+          "fused": 0.33911152899853053,
+          "dense_rank": 18,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:52d9d88df9d1786d",
+          "score": 0.27087271987009065,
+          "fused": 0.27087271987009065,
+          "dense_rank": 9,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 10.67
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 759,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12099.96
+    }
+  },
+  "retrieved_ids": [
+    "53c7288bdcd3837a:L0:000096",
+    "raptor:67600e79:L1:21fad170f16bdacd",
+    "b04ce6dd2d95fb80:L0:000190",
+    "b04ce6dd2d95fb80:L0:000127",
+    "raptor:67600e79:L1:52d9d88df9d1786d"
+  ],
+  "filtered_ids": [
+    "53c7288bdcd3837a:L0:000096",
+    "raptor:67600e79:L1:21fad170f16bdacd",
+    "b04ce6dd2d95fb80:L0:000190",
+    "b04ce6dd2d95fb80:L0:000127",
+    "raptor:67600e79:L1:52d9d88df9d1786d"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:13:42.905687+00:00",
+      "call_id": "81cddc7b81da",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "21ce9d0897097991",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f7c2753527ca41d5"
+    },
+    {
+      "ts": "2026-11-16T10:13:55.013543+00:00",
+      "call_id": "0ee9a6da4f66",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "34a31142d52f3e64",
+      "prompt_tokens": 1445,
+      "completion_tokens": 45,
+      "latency_ms": 12098.91,
+      "server_ms": 12068.7,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "f7c2753527ca41d5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1445,
+    "completion_tokens": 45,
+    "total_ms": 12112.45
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

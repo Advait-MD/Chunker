@@ -1,0 +1,181 @@
+{
+  "trace_id": "0221b8b1194b4c64",
+  "created_at": "2026-11-16T10:48:58.118665+00:00",
+  "query": "How do they use BERT to encode the whole text?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 1969.29
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 1969.68
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23966.66
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.48,
+      "bm25_ms": 16.14,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 12
+      },
+      "n_fused": 17,
+      "rerank": {
+        "n": 17,
+        "n_computed": 4,
+        "latency_ms": 1944.63
+      },
+      "hits": [
+        {
+          "id": "19ddb4a0169c2bee:L0:000003",
+          "score": -1.3738653659820557,
+          "fused": 0.5772775914679815,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -1.3738653659820557
+        },
+        {
+          "id": "19ddb4a0169c2bee:L0:000004",
+          "score": -1.6066359281539917,
+          "fused": 0.8104633762258772,
+          "dense_rank": 10,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.6066359281539917
+        },
+        {
+          "id": "19ddb4a0169c2bee:L0:000001",
+          "score": -1.7795941829681396,
+          "fused": 0.39084990140734244,
+          "dense_rank": 9,
+          "bm25_rank": 6,
+          "fused_rank": 8,
+          "rerank": -1.7795941829681396
+        },
+        {
+          "id": "raptor:50018347:L1:4dcd295a662ef328",
+          "score": -2.2550809383392334,
+          "fused": 0.6403745857005554,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": -2.2550809383392334
+        },
+        {
+          "id": "19ddb4a0169c2bee:L0:000010",
+          "score": -2.4375405311584473,
+          "fused": 0.3109947295443623,
+          "dense_rank": 7,
+          "bm25_rank": 9,
+          "fused_rank": 10,
+          "rerank": -2.4375405311584473
+        }
+      ],
+      "latency_ms": 1969.24
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1481,
+      "latency_ms": 0.35
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21996.83
+    }
+  },
+  "retrieved_ids": [
+    "19ddb4a0169c2bee:L0:000003",
+    "19ddb4a0169c2bee:L0:000004",
+    "19ddb4a0169c2bee:L0:000001",
+    "raptor:50018347:L1:4dcd295a662ef328",
+    "19ddb4a0169c2bee:L0:000010"
+  ],
+  "filtered_ids": [
+    "19ddb4a0169c2bee:L0:000003",
+    "19ddb4a0169c2bee:L0:000004",
+    "19ddb4a0169c2bee:L0:000001",
+    "raptor:50018347:L1:4dcd295a662ef328",
+    "19ddb4a0169c2bee:L0:000010"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:48:58.121668+00:00",
+      "call_id": "19a34689221b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "580610a8a98bc139",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0221b8b1194b4c64"
+    },
+    {
+      "ts": "2026-11-16T10:49:22.084361+00:00",
+      "call_id": "fb31c17caff2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "512074c84c8dba39",
+      "prompt_tokens": 2113,
+      "completion_tokens": 89,
+      "latency_ms": 21995.38,
+      "server_ms": 21968.82,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0221b8b1194b4c64"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2113,
+    "completion_tokens": 89,
+    "total_ms": 23968.62
+  },
+  "config_hash": "6fef6326efb0",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "To encode the whole text, they insert a [CLS] token before each sentence and a [SEP] token after each sentence."
+      ]
+    }
+  }
+}

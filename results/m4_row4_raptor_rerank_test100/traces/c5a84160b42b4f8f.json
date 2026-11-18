@@ -1,0 +1,183 @@
+{
+  "trace_id": "c5a84160b42b4f8f",
+  "created_at": "2026-11-16T11:43:18.554646+00:00",
+  "query": "Predict: was Ravdin and Dana’s plan successful?\n\nOptions:\n(A) No, because the Hunters will never change their hostile ways. \n(B) Yes, because Frankle decided to declare peace. \n(C) No, because they were left in the jungle, separated from the rest of their people. \n(D) Yes, because they planted the seed in Frankle’s mind to change their hostile ways. \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2351.34
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2351.56
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17067.99
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.62,
+      "bm25_ms": 32.57,
+      "n_candidates": {
+        "dense": 27,
+        "bm25": 27
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 5,
+        "latency_ms": 2308.09
+      },
+      "hits": [
+        {
+          "id": "raptor:15d78c45:L1:42a3595b40e3a83b",
+          "score": 2.080507755279541,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.080507755279541
+        },
+        {
+          "id": "raptor:15d78c45:L2:48a75bd19709d101",
+          "score": 0.6006478667259216,
+          "fused": 0.8387083662477224,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 0.6006478667259216
+        },
+        {
+          "id": "raptor:15d78c45:L1:b6a0f1b4a2d6ce16",
+          "score": 0.5088300108909607,
+          "fused": 0.5276452345841579,
+          "dense_rank": 3,
+          "bm25_rank": 15,
+          "fused_rank": 7,
+          "rerank": 0.5088300108909607
+        },
+        {
+          "id": "raptor:15d78c45:L1:42b860e678331457",
+          "score": 0.4258403480052948,
+          "fused": 0.6959957990964096,
+          "dense_rank": 4,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": 0.4258403480052948
+        },
+        {
+          "id": "8c71e38fb019ad99:L0:000015",
+          "score": -0.030733756721019745,
+          "fused": 0.7123788375044656,
+          "dense_rank": 20,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -0.030733756721019745
+        }
+      ],
+      "latency_ms": 2351.29
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1047,
+      "latency_ms": 0.18
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14716.27
+    }
+  },
+  "retrieved_ids": [
+    "raptor:15d78c45:L1:42a3595b40e3a83b",
+    "raptor:15d78c45:L2:48a75bd19709d101",
+    "raptor:15d78c45:L1:b6a0f1b4a2d6ce16",
+    "raptor:15d78c45:L1:42b860e678331457",
+    "8c71e38fb019ad99:L0:000015"
+  ],
+  "filtered_ids": [
+    "raptor:15d78c45:L1:42a3595b40e3a83b",
+    "raptor:15d78c45:L2:48a75bd19709d101",
+    "raptor:15d78c45:L1:b6a0f1b4a2d6ce16",
+    "raptor:15d78c45:L1:42b860e678331457",
+    "8c71e38fb019ad99:L0:000015"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:43:18.555650+00:00",
+      "call_id": "e6512787a087",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "01a31a28373274d2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c5a84160b42b4f8f"
+    },
+    {
+      "ts": "2026-11-16T11:43:35.621858+00:00",
+      "call_id": "d853f1cdfe8c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f8daf5e85fa5b0c5",
+      "prompt_tokens": 1639,
+      "completion_tokens": 77,
+      "latency_ms": 14715.35,
+      "server_ms": 14698.42,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "c5a84160b42b4f8f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1639,
+    "completion_tokens": 77,
+    "total_ms": 17072.34
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

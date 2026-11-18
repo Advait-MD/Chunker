@@ -1,0 +1,180 @@
+{
+  "trace_id": "ab9ca87ea30646c6",
+  "created_at": "2026-11-16T11:58:51.761010+00:00",
+  "query": "What edge did the Americans have over the Reds in the air?\n\nOptions:\n(A) Faster and more efficient ships\n(B) Rockets instead of guns\n(C) Stronger radar technology\n(D) More quantity of troops and ships\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2145.64
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2145.74
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18804.9
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.67,
+      "bm25_ms": 11.81,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 20
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 4,
+        "latency_ms": 2129.84
+      },
+      "hits": [
+        {
+          "id": "raptor:5885b93c:L1:964d6b95616ef728",
+          "score": 1.1944104433059692,
+          "fused": 0.856326962716109,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 1.1944104433059692
+        },
+        {
+          "id": "a4b518a2c42bd878:L0:000003",
+          "score": -1.0655473470687866,
+          "fused": 0.9673904481898794,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": -1.0655473470687866
+        },
+        {
+          "id": "raptor:5885b93c:L2:93ffeed3e08f1f4b",
+          "score": -3.168003797531128,
+          "fused": 0.18386081602371498,
+          "dense_rank": 18,
+          "bm25_rank": 20,
+          "fused_rank": 19,
+          "rerank": -3.168003797531128
+        },
+        {
+          "id": "a4b518a2c42bd878:L0:000004",
+          "score": -4.886054039001465,
+          "fused": 0.463335551518238,
+          "dense_rank": 13,
+          "bm25_rank": 9,
+          "fused_rank": 10,
+          "rerank": -4.886054039001465
+        },
+        {
+          "id": "a4b518a2c42bd878:L0:000006",
+          "score": -5.305661678314209,
+          "fused": 0.583238365582097,
+          "dense_rank": 5,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": -5.305661678314209
+        }
+      ],
+      "latency_ms": 2145.6
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1529,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16658.97
+    }
+  },
+  "retrieved_ids": [
+    "raptor:5885b93c:L1:964d6b95616ef728",
+    "a4b518a2c42bd878:L0:000003",
+    "raptor:5885b93c:L2:93ffeed3e08f1f4b",
+    "a4b518a2c42bd878:L0:000004",
+    "a4b518a2c42bd878:L0:000006"
+  ],
+  "filtered_ids": [
+    "raptor:5885b93c:L1:964d6b95616ef728",
+    "a4b518a2c42bd878:L0:000003",
+    "raptor:5885b93c:L2:93ffeed3e08f1f4b",
+    "a4b518a2c42bd878:L0:000004",
+    "a4b518a2c42bd878:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:58:51.762010+00:00",
+      "call_id": "3ae8c2ee27fa",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d0ca167c28741341",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ab9ca87ea30646c6"
+    },
+    {
+      "ts": "2026-11-16T11:59:10.564000+00:00",
+      "call_id": "9a989edbd141",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "28f73d57dfb3affa",
+      "prompt_tokens": 2064,
+      "completion_tokens": 65,
+      "latency_ms": 16657.1,
+      "server_ms": 16628.3,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ab9ca87ea30646c6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2064,
+    "completion_tokens": 65,
+    "total_ms": 18806.96
+  },
+  "config_hash": "431a33c32435",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

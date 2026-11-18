@@ -1,0 +1,166 @@
+{
+  "trace_id": "be50d2aefdea417f",
+  "created_at": "2026-11-16T10:13:00.359623+00:00",
+  "query": "Which film has the director died later, The Man From Lost River or Mcveagh Of The South Seas?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.55
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14.6
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 17469.75
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.7,
+      "bm25_ms": 10.5,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "6af2db6cb86d77e2:L0:000171",
+          "score": 0.7,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1
+        },
+        {
+          "id": "raptor:67600e79:L1:f89d8e7186b20f89",
+          "score": 0.5705233723352221,
+          "fused": 0.5705233723352221,
+          "dense_rank": 1,
+          "bm25_rank": 7
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000128",
+          "score": 0.49550812579374476,
+          "fused": 0.49550812579374476,
+          "dense_rank": null,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:67600e79:L1:dc0a60799c532774",
+          "score": 0.4048899812269463,
+          "fused": 0.4048899812269463,
+          "dense_rank": null,
+          "bm25_rank": 3
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000069",
+          "score": 0.376953128795806,
+          "fused": 0.376953128795806,
+          "dense_rank": null,
+          "bm25_rank": 4
+        }
+      ],
+      "latency_ms": 14.51
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 453,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17454.96
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000171",
+    "raptor:67600e79:L1:f89d8e7186b20f89",
+    "b04ce6dd2d95fb80:L0:000128",
+    "raptor:67600e79:L1:dc0a60799c532774",
+    "c73b757f0eb66f37:L0:000069"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000171",
+    "raptor:67600e79:L1:f89d8e7186b20f89",
+    "b04ce6dd2d95fb80:L0:000128",
+    "raptor:67600e79:L1:dc0a60799c532774",
+    "c73b757f0eb66f37:L0:000069"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T10:13:00.362053+00:00",
+      "call_id": "979c8b8b8316",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7b2e5fb25cbebd50",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "be50d2aefdea417f"
+    },
+    {
+      "ts": "2026-11-16T10:13:17.827509+00:00",
+      "call_id": "afa58b010f3f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "976b80e0c28055fd",
+      "prompt_tokens": 1047,
+      "completion_tokens": 133,
+      "latency_ms": 17453.82,
+      "server_ms": 17427.88,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "be50d2aefdea417f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1047,
+    "completion_tokens": 133,
+    "total_ms": 17515.19
+  },
+  "config_hash": "4db6ad8338d4",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

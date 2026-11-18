@@ -1,0 +1,165 @@
+{
+  "trace_id": "ff995b3ecb1f4923",
+  "created_at": "2026-11-17T13:46:19.957446+00:00",
+  "query": "Why does Mr. Turner like to read air-war stories?\n\nOptions:\n(A) He aspires to be a war hero. \n(B) The stories feel real to him because he can relate to the characters. \n(C) He likes to escape his real life. \n(D) He likes to look at the girls in the comics. \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 122.22
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 122.28
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22812.9
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 99.55,
+      "bm25_ms": 22.41,
+      "n_candidates": {
+        "dense": 25,
+        "bm25": 24
+      },
+      "n_fused": 20,
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000003",
+          "score": 0.9241016092354164,
+          "fused": 0.9241016092354164,
+          "dense_rank": 2,
+          "bm25_rank": 2
+        },
+        {
+          "id": "raptor:71f5ff57:L1:0708b07cceeed4f5",
+          "score": 0.923727877497899,
+          "fused": 0.923727877497899,
+          "dense_rank": 1,
+          "bm25_rank": 3
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000012",
+          "score": 0.8486405109806555,
+          "fused": 0.8486405109806555,
+          "dense_rank": 10,
+          "bm25_rank": 1
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000002",
+          "score": 0.7218138805225991,
+          "fused": 0.7218138805225991,
+          "dense_rank": 5,
+          "bm25_rank": 4
+        },
+        {
+          "id": "raptor:71f5ff57:L2:b6a42f4a8d9b0263",
+          "score": 0.6456653928893734,
+          "fused": 0.6456653928893734,
+          "dense_rank": 3,
+          "bm25_rank": 5
+        }
+      ],
+      "latency_ms": 122.18
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1487,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22690.47
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000003",
+    "raptor:71f5ff57:L1:0708b07cceeed4f5",
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000002",
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000003",
+    "raptor:71f5ff57:L1:0708b07cceeed4f5",
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000002",
+    "raptor:71f5ff57:L2:b6a42f4a8d9b0263"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T13:46:20.055757+00:00",
+      "call_id": "b507c90c3e78",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cf7c91faca8cccf6",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 100,
+      "completion_tokens": 0,
+      "latency_ms": 97.61,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "ff995b3ecb1f4923"
+    },
+    {
+      "ts": "2026-11-17T13:46:42.768457+00:00",
+      "call_id": "5a66b3c438d2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "505fc0265544dda1",
+      "prompt_tokens": 2054,
+      "completion_tokens": 70,
+      "latency_ms": 22688.87,
+      "server_ms": 22663.13,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ff995b3ecb1f4923"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2054,
+    "completion_tokens": 70,
+    "total_ms": 22814.15
+  },
+  "config_hash": "10aa17327d5e",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

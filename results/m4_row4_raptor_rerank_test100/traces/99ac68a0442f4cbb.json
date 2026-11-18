@@ -1,0 +1,184 @@
+{
+  "trace_id": "99ac68a0442f4cbb",
+  "created_at": "2026-11-16T11:28:49.858287+00:00",
+  "query": "How many ethnic minorities were looked at differently where the only group larger than the record label of The Lost Trident Sessions is headquartered?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 3251.47
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 3252.99
+    },
+    {
+      "state": "DONE",
+      "t_ms": 26488.9
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.24,
+      "bm25_ms": 14.94,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 8,
+        "latency_ms": 3232.31
+      },
+      "hits": [
+        {
+          "id": "66f5caec1369ebaf:L0:000155",
+          "score": 4.82588529586792,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.82588529586792
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000043",
+          "score": 0.10619645565748215,
+          "fused": 0.37852512913052544,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 7,
+          "rerank": 0.10619645565748215
+        },
+        {
+          "id": "raptor:67600e79:L1:d72cc0a4483f9901",
+          "score": -2.3461596965789795,
+          "fused": 0.24219125549588255,
+          "dense_rank": 32,
+          "bm25_rank": 11,
+          "fused_rank": 14,
+          "rerank": -2.3461596965789795
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000181",
+          "score": -5.981348514556885,
+          "fused": 0.36292621255692115,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 8,
+          "rerank": -5.981348514556885
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000015",
+          "score": -7.236047267913818,
+          "fused": 0.552133977731002,
+          "dense_rank": 12,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -7.236047267913818
+        }
+      ],
+      "latency_ms": 3251.42
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 555,
+      "latency_ms": 1.48
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23235.73
+    }
+  },
+  "retrieved_ids": [
+    "66f5caec1369ebaf:L0:000155",
+    "dbcbda865eee9c7b:L0:000043",
+    "raptor:67600e79:L1:d72cc0a4483f9901",
+    "f109b032e24ab27a:L0:000181",
+    "178c7e3e6ef6ae87:L0:000015"
+  ],
+  "filtered_ids": [
+    "66f5caec1369ebaf:L0:000155",
+    "dbcbda865eee9c7b:L0:000043",
+    "raptor:67600e79:L1:d72cc0a4483f9901",
+    "f109b032e24ab27a:L0:000181",
+    "178c7e3e6ef6ae87:L0:000015"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T11:28:49.859289+00:00",
+      "call_id": "609bfbe5774a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "da0213bd5a5b43b8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "99ac68a0442f4cbb"
+    },
+    {
+      "ts": "2026-11-16T11:29:16.345621+00:00",
+      "call_id": "d5dbc298fe1e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "610353e9ff379431",
+      "prompt_tokens": 1190,
+      "completion_tokens": 195,
+      "latency_ms": 23234.55,
+      "server_ms": 23207.31,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "99ac68a0442f4cbb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1190,
+    "completion_tokens": 195,
+    "total_ms": 26490.5
+  },
+  "config_hash": "746fe0716a45",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        1,
+        2,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, the answer is 2 ethnic minorities (Japanese and Chinese) were looked at differently where the only group larger than the record label of The Lost Trident Sessions is headquartered."
+      ]
+    }
+  }
+}

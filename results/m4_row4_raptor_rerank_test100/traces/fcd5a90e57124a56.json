@@ -1,0 +1,182 @@
+{
+  "trace_id": "fcd5a90e57124a56",
+  "created_at": "2026-11-16T12:15:09.658415+00:00",
+  "query": "Which plant, the Chaerophyllum or the Cryptanthus, can be found in various places across the world?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 2285.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 2286.32
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12606.79
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.83,
+      "bm25_ms": 16.99,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 6,
+        "latency_ms": 2260.6
+      },
+      "hits": [
+        {
+          "id": "20496f59538deb41:L0:000122",
+          "score": 6.641719818115234,
+          "fused": 0.6449186860752887,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 6.641719818115234
+        },
+        {
+          "id": "634431bb1e27714f:L0:000021",
+          "score": 4.091170787811279,
+          "fused": 0.28322211210925957,
+          "dense_rank": 32,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": 4.091170787811279
+        },
+        {
+          "id": "raptor:67600e79:L1:50f48f211abdc589",
+          "score": 0.34203243255615234,
+          "fused": 0.874324410611609,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 0.34203243255615234
+        },
+        {
+          "id": "raptor:67600e79:L1:fa42c32eb0158b59",
+          "score": -0.9060823917388916,
+          "fused": 0.30559967099359225,
+          "dense_rank": 2,
+          "bm25_rank": 22,
+          "fused_rank": 6,
+          "rerank": -0.9060823917388916
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000037",
+          "score": -0.9603314995765686,
+          "fused": 0.7186281870626372,
+          "dense_rank": 41,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": -0.9603314995765686
+        }
+      ],
+      "latency_ms": 2284.97
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 314,
+      "latency_ms": 0.88
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10320.36
+    }
+  },
+  "retrieved_ids": [
+    "20496f59538deb41:L0:000122",
+    "634431bb1e27714f:L0:000021",
+    "raptor:67600e79:L1:50f48f211abdc589",
+    "raptor:67600e79:L1:fa42c32eb0158b59",
+    "cb96563b0747a6ba:L0:000037"
+  ],
+  "filtered_ids": [
+    "20496f59538deb41:L0:000122",
+    "634431bb1e27714f:L0:000021",
+    "raptor:67600e79:L1:50f48f211abdc589",
+    "raptor:67600e79:L1:fa42c32eb0158b59",
+    "cb96563b0747a6ba:L0:000037"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-16T12:15:09.660426+00:00",
+      "call_id": "458f262f6663",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "13d7b6088dc484be",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fcd5a90e57124a56"
+    },
+    {
+      "ts": "2026-11-16T12:15:22.264009+00:00",
+      "call_id": "578926407c6a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d6adef15682751ec",
+      "prompt_tokens": 936,
+      "completion_tokens": 70,
+      "latency_ms": 10319.17,
+      "server_ms": 10293.04,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "fcd5a90e57124a56"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 936,
+    "completion_tokens": 70,
+    "total_ms": 12610.08
+  },
+  "config_hash": "dc4c393fbdc9",
+  "git_sha": "4d7bfa372b4baa0aa416414bd17738d1f068f743-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "Chaerophyllum can be found in Europe, Asia, North America, and northern Africa, while Cryptanthus is endemic to Brazil."
+      ]
+    }
+  }
+}

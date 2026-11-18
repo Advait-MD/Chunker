@@ -1,0 +1,169 @@
+{
+  "trace_id": "0426c3b2d5964d56",
+  "created_at": "2026-11-17T15:02:39.903896+00:00",
+  "query": "Which answer does the quote from The Lancet best match up with?\n\nOptions:\n(A) 8\n(B) 3\n(C) 6\n(D) 10\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.13
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.17
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22709.77
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.9,
+      "bm25_ms": 11.07,
+      "n_candidates": {
+        "dense": 9,
+        "bm25": 8
+      },
+      "n_fused": 9,
+      "hits": [
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000000",
+          "score": 0.8732919640779268,
+          "fused": 0.8732919640779268,
+          "dense_rank": 4,
+          "bm25_rank": 1
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000007",
+          "score": 0.808757679027579,
+          "fused": 0.808757679027579,
+          "dense_rank": 3,
+          "bm25_rank": 2
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000003",
+          "score": 0.5113158064511074,
+          "fused": 0.5113158064511074,
+          "dense_rank": 7,
+          "bm25_rank": 4
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000006",
+          "score": 0.4080272193515617,
+          "fused": 0.4080272193515617,
+          "dense_rank": 8,
+          "bm25_rank": 3
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000008",
+          "score": 0.3,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null
+        }
+      ],
+      "latency_ms": 13.1
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1664,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22696.47
+    }
+  },
+  "retrieved_ids": [
+    "6a7f3433b6bd8dc9:L0:000000",
+    "6a7f3433b6bd8dc9:L0:000007",
+    "6a7f3433b6bd8dc9:L0:000003",
+    "6a7f3433b6bd8dc9:L0:000006",
+    "6a7f3433b6bd8dc9:L0:000008"
+  ],
+  "filtered_ids": [
+    "6a7f3433b6bd8dc9:L0:000000",
+    "6a7f3433b6bd8dc9:L0:000007",
+    "6a7f3433b6bd8dc9:L0:000003",
+    "6a7f3433b6bd8dc9:L0:000006",
+    "6a7f3433b6bd8dc9:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-17T15:02:39.904898+00:00",
+      "call_id": "5a8495e72080",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "543688391d1dc1b9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0426c3b2d5964d56"
+    },
+    {
+      "ts": "2026-11-17T15:03:02.611793+00:00",
+      "call_id": "b6538408bedb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2f7a48646f741e22",
+      "prompt_tokens": 2243,
+      "completion_tokens": 111,
+      "latency_ms": 22695.09,
+      "server_ms": 22656.68,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0426c3b2d5964d56"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2243,
+    "completion_tokens": 111,
+    "total_ms": 22711.14
+  },
+  "config_hash": "ed6e9ea8986c",
+  "git_sha": "bd2178a3f40b23a4214eda1f6ca8de604411a1f2-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "(A) The quote from The Lancet suggests that rising levels of green OA may not trigger cancellations of toll-access journals, aligning with the idea that 'Nobody knows yet how green OA policies will affect journal subscriptions.",
+        "Rising levels of green OA may trigger toll-access journal cancellations, or they may not.",
+        "So far they haven’t."
+      ]
+    }
+  }
+}
