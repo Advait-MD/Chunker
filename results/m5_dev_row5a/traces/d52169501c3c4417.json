@@ -1,0 +1,250 @@
+{
+  "trace_id": "d52169501c3c4417",
+  "created_at": "2026-11-22T12:47:21.803518+00:00",
+  "query": "In what city is the company that Fastjet Tanzania was originally founded as a part of prior to rebranding based?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 31.38
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 48.73
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 8940.31
+    },
+    {
+      "state": "DONE",
+      "t_ms": 8940.43
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.63,
+      "bm25_ms": 19.71,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "90976421f3f2bea2:L0:000050",
+          "score": 6.193495273590088,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.193495273590088
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000099",
+          "score": -3.6743345260620117,
+          "fused": 0.1243304220894615,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 9,
+          "rerank": -3.6743345260620117
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000137",
+          "score": -4.1525139808654785,
+          "fused": 0.09428985027498754,
+          "dense_rank": 45,
+          "bm25_rank": 15,
+          "fused_rank": 14,
+          "rerank": -4.1525139808654785
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000181",
+          "score": -4.158334732055664,
+          "fused": 0.1726599898500198,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -4.158334732055664
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000056",
+          "score": -4.166257858276367,
+          "fused": 0.18645429691194734,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -4.166257858276367
+        }
+      ],
+      "latency_ms": 31.29
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 373,
+      "dropped_threshold": [
+        "8e50522b7cb636d8:L0:000137",
+        "ec3410ef955c5c93:L0:000181",
+        "838c0e0106e6f015:L0:000056"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 6,
+      "sentences_kept": 4,
+      "n_out": 2,
+      "tokens_out": 92,
+      "ms": 17.2,
+      "latency_ms": 17.25
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 6.193495273590088,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8891.55
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 0.06
+    }
+  },
+  "retrieved_ids": [
+    "90976421f3f2bea2:L0:000050",
+    "cc2399aca11eb631:L0:000099",
+    "8e50522b7cb636d8:L0:000137",
+    "ec3410ef955c5c93:L0:000181",
+    "838c0e0106e6f015:L0:000056"
+  ],
+  "filtered_ids": [
+    "90976421f3f2bea2:L0:000050",
+    "cc2399aca11eb631:L0:000099"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:47:21.806517+00:00",
+      "call_id": "d82bd37f41c3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6d37a3ed9789e1e1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d52169501c3c4417"
+    },
+    {
+      "ts": "2026-11-22T12:47:21.836617+00:00",
+      "call_id": "3add1800892f",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6d37a3ed9789e1e1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d52169501c3c4417"
+    },
+    {
+      "ts": "2026-11-22T12:47:21.850014+00:00",
+      "call_id": "ad091e459d3b",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "088f174aa95c015e",
+      "n_inputs": 6,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d52169501c3c4417"
+    },
+    {
+      "ts": "2026-11-22T12:47:30.743731+00:00",
+      "call_id": "175c98bd186a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "40efeb9591908e50",
+      "prompt_tokens": 554,
+      "completion_tokens": 62,
+      "latency_ms": 8890.57,
+      "server_ms": 8870.69,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d52169501c3c4417"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 554,
+    "generator_prompt_tokens": 554,
+    "completion_tokens": 62,
+    "total_ms": 8941.57
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "The company that Fastjet Tanzania was originally founded as a part of prior to rebranding is based in Galt."
+      ]
+    }
+  }
+}

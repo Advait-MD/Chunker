@@ -1,0 +1,248 @@
+{
+  "trace_id": "e9b340c0e68b44ae",
+  "created_at": "2026-11-22T12:45:19.761875+00:00",
+  "query": "Which actor does American Beauty and American Beauty have in common?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 26.47
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 68.49
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 13710.01
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15201.28
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.98,
+      "bm25_ms": 13.16,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "bc1dba3471045f02:L0:000151",
+          "score": 6.534931182861328,
+          "fused": 0.6020716549238915,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": 6.534931182861328
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000189",
+          "score": 3.021353006362915,
+          "fused": 0.6848564072239633,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 3.021353006362915
+        },
+        {
+          "id": "634431bb1e27714f:L0:000093",
+          "score": 2.815701484680176,
+          "fused": 0.615466098767582,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 2.815701484680176
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000175",
+          "score": 0.7278772592544556,
+          "fused": 0.667568654826098,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.7278772592544556
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000010",
+          "score": -0.5237828493118286,
+          "fused": 0.49677403605398457,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 11,
+          "rerank": -0.5237828493118286
+        }
+      ],
+      "latency_ms": 26.38
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 540,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 19,
+      "sentences_kept": 11,
+      "n_out": 5,
+      "tokens_out": 319,
+      "ms": 41.8,
+      "latency_ms": 41.9
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 6.534931182861328,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13641.48
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 1491.0
+    }
+  },
+  "retrieved_ids": [
+    "bc1dba3471045f02:L0:000151",
+    "9794e842cc9565f0:L0:000189",
+    "634431bb1e27714f:L0:000093",
+    "bc1dba3471045f02:L0:000175",
+    "ba3cd068cf9ac2e4:L0:000010"
+  ],
+  "filtered_ids": [
+    "bc1dba3471045f02:L0:000151",
+    "9794e842cc9565f0:L0:000189",
+    "634431bb1e27714f:L0:000093",
+    "bc1dba3471045f02:L0:000175",
+    "ba3cd068cf9ac2e4:L0:000010"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:45:19.764876+00:00",
+      "call_id": "57ca95929628",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "122da5465336c39c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e9b340c0e68b44ae"
+    },
+    {
+      "ts": "2026-11-22T12:45:19.791334+00:00",
+      "call_id": "75a9ccb050eb",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "122da5465336c39c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e9b340c0e68b44ae"
+    },
+    {
+      "ts": "2026-11-22T12:45:19.826176+00:00",
+      "call_id": "6c100b761121",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2ea4457dcf64ce36",
+      "n_inputs": 18,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e9b340c0e68b44ae"
+    },
+    {
+      "ts": "2026-11-22T12:45:33.471395+00:00",
+      "call_id": "b8f9d8ce2d46",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3205f7ab9d2cea97",
+      "prompt_tokens": 902,
+      "completion_tokens": 76,
+      "latency_ms": 13640.29,
+      "server_ms": 13607.6,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e9b340c0e68b44ae"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 902,
+    "generator_prompt_tokens": 902,
+    "completion_tokens": 76,
+    "total_ms": 15203.8
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

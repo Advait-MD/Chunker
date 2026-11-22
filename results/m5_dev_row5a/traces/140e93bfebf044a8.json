@@ -1,0 +1,228 @@
+{
+  "trace_id": "140e93bfebf044a8",
+  "created_at": "2026-11-22T12:59:34.885061+00:00",
+  "query": "Which country Count Of St. Germain's father is from?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.42
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 67.28
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10617.36
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.59,
+      "bm25_ms": 3.76,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "317e12ccd417c0d7:L0:000158",
+          "score": 1.744462013244629,
+          "fused": 0.46591546119330207,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": 1.744462013244629
+        },
+        {
+          "id": "abe982d210232c3f:L0:000156",
+          "score": -3.839005708694458,
+          "fused": 0.6151664624924885,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -3.839005708694458
+        },
+        {
+          "id": "abe982d210232c3f:L0:000155",
+          "score": -3.898829221725464,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -3.898829221725464
+        },
+        {
+          "id": "99628090500247e3:L0:000166",
+          "score": -3.908207893371582,
+          "fused": 0.5488771044665253,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -3.908207893371582
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000196",
+          "score": -4.8788065910339355,
+          "fused": 0.5613991198495869,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -4.8788065910339355
+        }
+      ],
+      "latency_ms": 9.38
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 887,
+      "dropped_threshold": [
+        "6af2db6cb86d77e2:L0:000196"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 49,
+      "sentences_kept": 29,
+      "n_out": 4,
+      "tokens_out": 620,
+      "ms": 57.7,
+      "latency_ms": 57.78
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 1.744462013244629,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10549.98
+    }
+  },
+  "retrieved_ids": [
+    "317e12ccd417c0d7:L0:000158",
+    "abe982d210232c3f:L0:000156",
+    "abe982d210232c3f:L0:000155",
+    "99628090500247e3:L0:000166",
+    "6af2db6cb86d77e2:L0:000196"
+  ],
+  "filtered_ids": [
+    "317e12ccd417c0d7:L0:000158",
+    "abe982d210232c3f:L0:000156",
+    "abe982d210232c3f:L0:000155",
+    "99628090500247e3:L0:000166"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:59:34.887068+00:00",
+      "call_id": "9c284b4ac55f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "603c36f2864b4771",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "140e93bfebf044a8"
+    },
+    {
+      "ts": "2026-11-22T12:59:34.896278+00:00",
+      "call_id": "fa76fb4a17dc",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "603c36f2864b4771",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "140e93bfebf044a8"
+    },
+    {
+      "ts": "2026-11-22T12:59:34.947612+00:00",
+      "call_id": "5c3009b98bfa",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "57977494a519d589",
+      "n_inputs": 49,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "140e93bfebf044a8"
+    },
+    {
+      "ts": "2026-11-22T12:59:45.501855+00:00",
+      "call_id": "371d7971b32b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9acbdc71e3b2b6a1",
+      "prompt_tokens": 1261,
+      "completion_tokens": 45,
+      "latency_ms": 10548.65,
+      "server_ms": 10527.52,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "140e93bfebf044a8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1261,
+    "generator_prompt_tokens": 1261,
+    "completion_tokens": 45,
+    "total_ms": 10618.59
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

@@ -1,0 +1,300 @@
+{
+  "trace_id": "ac9f36955cab4b11",
+  "created_at": "2026-11-22T13:08:20.887081+00:00",
+  "query": "What is another notable work made by the author of Miss Sara Sampson?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.87
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 27251.45
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 27252.03
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.16,
+      "bm25_ms": 12.52,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "73dfa6a9bfcab050:L0:000067",
+          "score": -5.037336349487305,
+          "fused": 0.37860746554077007,
+          "dense_rank": 35,
+          "bm25_rank": 15,
+          "fused_rank": 14,
+          "rerank": -5.037336349487305
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000174",
+          "score": -5.123515605926514,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -5.123515605926514
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000120",
+          "score": -5.657983779907227,
+          "fused": 0.6486230520441413,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -5.657983779907227
+        },
+        {
+          "id": "15abb5e49dced915:L0:000086",
+          "score": -5.688779830932617,
+          "fused": 0.5253139179259488,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -5.688779830932617
+        },
+        {
+          "id": "dd498e0082847164:L0:000022",
+          "score": -6.235515117645264,
+          "fused": 0.45116916121588935,
+          "dense_rank": 30,
+          "bm25_rank": 13,
+          "fused_rank": 10,
+          "rerank": -6.235515117645264
+        }
+      ],
+      "latency_ms": 17.83
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 379,
+      "dropped_threshold": [
+        "ce290c1e5d5c6641:L0:000120",
+        "15abb5e49dced915:L0:000086",
+        "dd498e0082847164:L0:000022"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 6,
+      "sentences_kept": 2,
+      "n_out": 2,
+      "tokens_out": 60,
+      "ms": 10.5,
+      "latency_ms": 10.56
+    },
+    "sufficiency": {
+      "verdict": "insufficient",
+      "by": "rerank",
+      "best": -5.037336349487305,
+      "latency_ms": 0.01
+    },
+    "rewrite_retry": {
+      "query": "Notable works by author of Miss Sara Sampson",
+      "n_new": 2,
+      "filter": {
+        "n_in": 5,
+        "tokens_in": 455,
+        "dropped_threshold": [
+          "f59bbbdacaf7ffe4:L0:000021",
+          "ce290c1e5d5c6641:L0:000120",
+          "15abb5e49dced915:L0:000086"
+        ],
+        "dropped_dedup": [],
+        "sentences_in": 6,
+        "sentences_kept": 2,
+        "n_out": 2,
+        "tokens_out": 60,
+        "ms": 30.0
+      },
+      "sufficiency": {
+        "verdict": "insufficient",
+        "by": "rerank",
+        "best": -5.037336349487305
+      },
+      "latency_ms": 27222.77
+    }
+  },
+  "retrieved_ids": [
+    "73dfa6a9bfcab050:L0:000067",
+    "6683bfc7dec06e2a:L0:000174",
+    "ce290c1e5d5c6641:L0:000120",
+    "15abb5e49dced915:L0:000086",
+    "dd498e0082847164:L0:000022"
+  ],
+  "filtered_ids": [
+    "73dfa6a9bfcab050:L0:000067",
+    "6683bfc7dec06e2a:L0:000174"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:08:20.888081+00:00",
+      "call_id": "d751174cf34f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c0718fdf4ea97cc2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ac9f36955cab4b11"
+    },
+    {
+      "ts": "2026-11-22T13:08:20.905507+00:00",
+      "call_id": "0a1afbf70514",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c0718fdf4ea97cc2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ac9f36955cab4b11"
+    },
+    {
+      "ts": "2026-11-22T13:08:20.914329+00:00",
+      "call_id": "49582c6d94d0",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3a2db0592dfecb98",
+      "n_inputs": 6,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ac9f36955cab4b11"
+    },
+    {
+      "ts": "2026-11-22T13:08:32.074135+00:00",
+      "call_id": "61403e57a79a",
+      "kind": "generate",
+      "caller": "filter.rewrite",
+      "state": "FILTERING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c8d1699b00990887",
+      "prompt_tokens": 115,
+      "completion_tokens": 16,
+      "latency_ms": 11158.48,
+      "server_ms": 11144.95,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ac9f36955cab4b11"
+    },
+    {
+      "ts": "2026-11-22T13:08:32.249542+00:00",
+      "call_id": "c129c3e8a1dc",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9414a774617094cf",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 14,
+      "completion_tokens": 0,
+      "latency_ms": 174.09,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "ac9f36955cab4b11"
+    },
+    {
+      "ts": "2026-11-22T13:08:48.114709+00:00",
+      "call_id": "f2de3e68faba",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c0718fdf4ea97cc2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ac9f36955cab4b11"
+    },
+    {
+      "ts": "2026-11-22T13:08:48.132984+00:00",
+      "call_id": "e220f00015bb",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3a2db0592dfecb98",
+      "n_inputs": 6,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ac9f36955cab4b11"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 6,
+    "prompt_tokens": 115,
+    "generator_prompt_tokens": 0,
+    "completion_tokens": 16,
+    "total_ms": 27256.9
+  },
+  "config_hash": "1c92a20b0713",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

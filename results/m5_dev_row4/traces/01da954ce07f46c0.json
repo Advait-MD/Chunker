@@ -1,0 +1,180 @@
+{
+  "trace_id": "01da954ce07f46c0",
+  "created_at": "2026-11-22T10:51:14.678598+00:00",
+  "query": "Who is Wisigard's father-in-law?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 24040.49
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 24040.61
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 69227.7
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4959.17,
+      "bm25_ms": 11.47,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 19060.69
+      },
+      "hits": [
+        {
+          "id": "53c7288bdcd3837a:L0:000040",
+          "score": -3.517717123031616,
+          "fused": 0.670989912544446,
+          "dense_rank": 13,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -3.517717123031616
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000149",
+          "score": -3.759835958480835,
+          "fused": 0.7072584791860846,
+          "dense_rank": 11,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -3.759835958480835
+        },
+        {
+          "id": "abe982d210232c3f:L0:000081",
+          "score": -4.178084850311279,
+          "fused": 0.698697245080343,
+          "dense_rank": 5,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": -4.178084850311279
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000037",
+          "score": -4.236544609069824,
+          "fused": 0.5903493997435845,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 10,
+          "rerank": -4.236544609069824
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000136",
+          "score": -4.81114387512207,
+          "fused": 0.2512731788790949,
+          "dense_rank": 35,
+          "bm25_rank": 16,
+          "fused_rank": 17,
+          "rerank": -4.81114387512207
+        }
+      ],
+      "latency_ms": 24040.41
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 568,
+      "latency_ms": 0.08
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 45186.94
+    }
+  },
+  "retrieved_ids": [
+    "53c7288bdcd3837a:L0:000040",
+    "317e12ccd417c0d7:L0:000149",
+    "abe982d210232c3f:L0:000081",
+    "6af2db6cb86d77e2:L0:000037",
+    "c73b757f0eb66f37:L0:000136"
+  ],
+  "filtered_ids": [
+    "53c7288bdcd3837a:L0:000040",
+    "317e12ccd417c0d7:L0:000149",
+    "abe982d210232c3f:L0:000081",
+    "6af2db6cb86d77e2:L0:000037",
+    "c73b757f0eb66f37:L0:000136"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T10:51:19.612555+00:00",
+      "call_id": "d65628f4b943",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "81322e78dca1c6c3",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 19,
+      "completion_tokens": 0,
+      "latency_ms": 4931.52,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "01da954ce07f46c0"
+    },
+    {
+      "ts": "2026-11-22T10:52:23.903463+00:00",
+      "call_id": "9166c2f09d4f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "52f404fb9fb29c73",
+      "prompt_tokens": 1284,
+      "completion_tokens": 45,
+      "latency_ms": 45184.14,
+      "server_ms": 45143.32,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "01da954ce07f46c0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1284,
+    "generator_prompt_tokens": 1284,
+    "completion_tokens": 45,
+    "total_ms": 69232.19
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

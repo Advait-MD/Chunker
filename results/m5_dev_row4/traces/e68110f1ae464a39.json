@@ -1,0 +1,180 @@
+{
+  "trace_id": "e68110f1ae464a39",
+  "created_at": "2026-11-22T11:48:34.475256+00:00",
+  "query": "In what year was Twilight Princess from the game series on which The Legend of Neil was based originally planned for release?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 24.1
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 24.24
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13578.33
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.66,
+      "bm25_ms": 16.31,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "a168352d83e925b5:L0:000037",
+          "score": 4.995548725128174,
+          "fused": 0.9142832416750288,
+          "dense_rank": 7,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.995548725128174
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000033",
+          "score": 2.2429192066192627,
+          "fused": 0.38135411439865935,
+          "dense_rank": 35,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 2.2429192066192627
+        },
+        {
+          "id": "15abb5e49dced915:L0:000098",
+          "score": 0.18260154128074646,
+          "fused": 0.4835423925593971,
+          "dense_rank": 23,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 0.18260154128074646
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000081",
+          "score": 0.048433102667331696,
+          "fused": 0.2615828365118202,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 12,
+          "rerank": 0.048433102667331696
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000038",
+          "score": -0.23523356020450592,
+          "fused": 0.38225152857073474,
+          "dense_rank": 38,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -0.23523356020450592
+        }
+      ],
+      "latency_ms": 24.06
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 904,
+      "latency_ms": 0.11
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13553.99
+    }
+  },
+  "retrieved_ids": [
+    "a168352d83e925b5:L0:000037",
+    "f59bbbdacaf7ffe4:L0:000033",
+    "15abb5e49dced915:L0:000098",
+    "e182527d2b1ecac3:L0:000081",
+    "ad11b6e85f908fb3:L0:000038"
+  ],
+  "filtered_ids": [
+    "a168352d83e925b5:L0:000037",
+    "f59bbbdacaf7ffe4:L0:000033",
+    "15abb5e49dced915:L0:000098",
+    "e182527d2b1ecac3:L0:000081",
+    "ad11b6e85f908fb3:L0:000038"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:48:34.478628+00:00",
+      "call_id": "7398c407602a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a41fe4971a4cf110",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e68110f1ae464a39"
+    },
+    {
+      "ts": "2026-11-22T11:48:48.052797+00:00",
+      "call_id": "19f116ea87f5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7fe5e915006c3d5d",
+      "prompt_tokens": 1506,
+      "completion_tokens": 58,
+      "latency_ms": 13552.95,
+      "server_ms": 13526.73,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e68110f1ae464a39"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1506,
+    "generator_prompt_tokens": 1506,
+    "completion_tokens": 58,
+    "total_ms": 13580.54
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "trace_id": "e72050ca67794b94",
+  "created_at": "2026-11-22T11:24:25.764552+00:00",
+  "query": "Who is the father of the director of film The Thousand Faces Of Dunjia?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9616.2
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9617.1
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 24613.74
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.08,
+      "bm25_ms": 5.72,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 9602.99
+      },
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000052",
+          "score": 6.047888278961182,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.047888278961182
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000145",
+          "score": -1.3506200313568115,
+          "fused": 0.303520155415921,
+          "dense_rank": 1,
+          "bm25_rank": 45,
+          "fused_rank": 3,
+          "rerank": -1.3506200313568115
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000034",
+          "score": -2.701760768890381,
+          "fused": 0.12710558020145182,
+          "dense_rank": 12,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -2.701760768890381
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000040",
+          "score": -2.910973310470581,
+          "fused": 0.31115445096841876,
+          "dense_rank": 2,
+          "bm25_rank": 15,
+          "fused_rank": 2,
+          "rerank": -2.910973310470581
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000046",
+          "score": -3.2088687419891357,
+          "fused": 0.30189447890758914,
+          "dense_rank": 5,
+          "bm25_rank": 10,
+          "fused_rank": 4,
+          "rerank": -3.2088687419891357
+        }
+      ],
+      "latency_ms": 9616.15
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 490,
+      "latency_ms": 0.83
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14996.51
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000052",
+    "6af2db6cb86d77e2:L0:000145",
+    "317e12ccd417c0d7:L0:000034",
+    "53c7288bdcd3837a:L0:000040",
+    "c73b757f0eb66f37:L0:000046"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000052",
+    "6af2db6cb86d77e2:L0:000145",
+    "317e12ccd417c0d7:L0:000034",
+    "53c7288bdcd3837a:L0:000040",
+    "c73b757f0eb66f37:L0:000046"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:24:25.766556+00:00",
+      "call_id": "06f34df6f618",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cfbbbd9c57c354fa",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e72050ca67794b94"
+    },
+    {
+      "ts": "2026-11-22T11:24:50.377362+00:00",
+      "call_id": "8fe64a902268",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6c162275b7f97472",
+      "prompt_tokens": 1208,
+      "completion_tokens": 77,
+      "latency_ms": 14994.82,
+      "server_ms": 14970.11,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e72050ca67794b94"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1208,
+    "generator_prompt_tokens": 1208,
+    "completion_tokens": 77,
+    "total_ms": 24615.27
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

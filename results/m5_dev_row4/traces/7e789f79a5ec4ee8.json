@@ -1,0 +1,185 @@
+{
+  "trace_id": "7e789f79a5ec4ee8",
+  "created_at": "2026-11-22T12:08:49.176777+00:00",
+  "query": "Who does the author think that the issue of Green OA is important to?\n\nOptions:\n(A) Activists \n(B) All of the other answers are correct\n(C) Publishers\n(D) Media Consumers\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.14
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.18
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20777.65
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.29,
+      "bm25_ms": 9.34,
+      "n_candidates": {
+        "dense": 9,
+        "bm25": 9
+      },
+      "n_fused": 9,
+      "rerank": {
+        "n": 9,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000006",
+          "score": -1.801089882850647,
+          "fused": 0.5017818936826485,
+          "dense_rank": 6,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -1.801089882850647
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000000",
+          "score": -1.9020577669143677,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.9020577669143677
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000007",
+          "score": -2.6626296043395996,
+          "fused": 0.41002817820340254,
+          "dense_rank": 5,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": -2.6626296043395996
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000003",
+          "score": -2.779797315597534,
+          "fused": 0.6251540200692411,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -2.779797315597534
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000001",
+          "score": -2.8113620281219482,
+          "fused": 0.3084283604213705,
+          "dense_rank": 7,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -2.8113620281219482
+        }
+      ],
+      "latency_ms": 11.12
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1918,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20766.37
+    }
+  },
+  "retrieved_ids": [
+    "6a7f3433b6bd8dc9:L0:000006",
+    "6a7f3433b6bd8dc9:L0:000000",
+    "6a7f3433b6bd8dc9:L0:000007",
+    "6a7f3433b6bd8dc9:L0:000003",
+    "6a7f3433b6bd8dc9:L0:000001"
+  ],
+  "filtered_ids": [
+    "6a7f3433b6bd8dc9:L0:000006",
+    "6a7f3433b6bd8dc9:L0:000000",
+    "6a7f3433b6bd8dc9:L0:000007",
+    "6a7f3433b6bd8dc9:L0:000003",
+    "6a7f3433b6bd8dc9:L0:000001"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:08:49.177987+00:00",
+      "call_id": "2e0c0302fc94",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cfe141864ebc0f42",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7e789f79a5ec4ee8"
+    },
+    {
+      "ts": "2026-11-22T12:09:09.954026+00:00",
+      "call_id": "c359fff1ce35",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8cfa33cf4c50f32b",
+      "prompt_tokens": 2515,
+      "completion_tokens": 75,
+      "latency_ms": 20765.34,
+      "server_ms": 20734.5,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7e789f79a5ec4ee8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2515,
+    "generator_prompt_tokens": 2515,
+    "completion_tokens": 75,
+    "total_ms": 20779.02
+  },
+  "config_hash": "403cb8f3227b",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3
+      ],
+      "uncited_sentences": [
+        "(B) The author thinks that the issue of Green OA is important to activists, publishers, and not all activists or publishers.",
+        "So, all of the other answers are correct."
+      ]
+    }
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "trace_id": "75d0dee3afec4c7d",
+  "created_at": "2026-11-22T13:18:01.858920+00:00",
+  "query": "Do they evaluate their learned representations on downstream tasks?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 20.5
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 83.7
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 16199.93
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16752.07
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.55,
+      "bm25_ms": 14.66,
+      "n_candidates": {
+        "dense": 12,
+        "bm25": 10
+      },
+      "n_fused": 12,
+      "rerank": {
+        "n": 12,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "4771f422ac89b2a6:L0:000001",
+          "score": 0.6735345721244812,
+          "fused": 0.7991203522274695,
+          "dense_rank": 7,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 0.6735345721244812
+        },
+        {
+          "id": "4771f422ac89b2a6:L0:000006",
+          "score": 0.41328126192092896,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.41328126192092896
+        },
+        {
+          "id": "4771f422ac89b2a6:L0:000008",
+          "score": -1.3223183155059814,
+          "fused": 0.7888426549873565,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -1.3223183155059814
+        },
+        {
+          "id": "4771f422ac89b2a6:L0:000002",
+          "score": -1.9746817350387573,
+          "fused": 0.5905536852517662,
+          "dense_rank": 9,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -1.9746817350387573
+        },
+        {
+          "id": "4771f422ac89b2a6:L0:000007",
+          "score": -4.411247253417969,
+          "fused": 0.3558859184834181,
+          "dense_rank": 8,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -4.411247253417969
+        }
+      ],
+      "latency_ms": 20.44
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 1372,
+      "dropped_threshold": [
+        "4771f422ac89b2a6:L0:000007"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 38,
+      "sentences_kept": 34,
+      "n_out": 4,
+      "tokens_out": 1013,
+      "ms": 63.1,
+      "latency_ms": 63.11
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 0.6735345721244812,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16116.18
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 551.99
+    }
+  },
+  "retrieved_ids": [
+    "4771f422ac89b2a6:L0:000001",
+    "4771f422ac89b2a6:L0:000006",
+    "4771f422ac89b2a6:L0:000008",
+    "4771f422ac89b2a6:L0:000002",
+    "4771f422ac89b2a6:L0:000007"
+  ],
+  "filtered_ids": [
+    "4771f422ac89b2a6:L0:000001",
+    "4771f422ac89b2a6:L0:000006",
+    "4771f422ac89b2a6:L0:000008",
+    "4771f422ac89b2a6:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:18:01.860919+00:00",
+      "call_id": "75be1aa6b188",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0f6d375c0943cf06",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "75d0dee3afec4c7d"
+    },
+    {
+      "ts": "2026-11-22T13:18:01.881482+00:00",
+      "call_id": "8893dbb14355",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0f6d375c0943cf06",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "75d0dee3afec4c7d"
+    },
+    {
+      "ts": "2026-11-22T13:18:01.937419+00:00",
+      "call_id": "1705b7107b11",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "546d6f43baf6a815",
+      "n_inputs": 38,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "75d0dee3afec4c7d"
+    },
+    {
+      "ts": "2026-11-22T13:18:18.057421+00:00",
+      "call_id": "e3e1313ef0e5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2c34902a75a58983",
+      "prompt_tokens": 1583,
+      "completion_tokens": 64,
+      "latency_ms": 16114.65,
+      "server_ms": 16082.29,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "75d0dee3afec4c7d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1583,
+    "generator_prompt_tokens": 1583,
+    "completion_tokens": 64,
+    "total_ms": 16754.52
+  },
+  "config_hash": "c4b7d9811844",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

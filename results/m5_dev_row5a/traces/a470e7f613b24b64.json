@@ -1,0 +1,246 @@
+{
+  "trace_id": "a470e7f613b24b64",
+  "created_at": "2026-11-22T12:52:55.248849+00:00",
+  "query": "Where did Cale Gundy's brother play football in college?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.05
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 51.86
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 10649.09
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10910.51
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.47,
+      "bm25_ms": 6.55,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "ec3410ef955c5c93:L0:000142",
+          "score": 5.726739883422852,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.726739883422852
+        },
+        {
+          "id": "634431bb1e27714f:L0:000091",
+          "score": 2.3516695499420166,
+          "fused": 0.5921725422252472,
+          "dense_rank": 10,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 2.3516695499420166
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000022",
+          "score": -2.9530396461486816,
+          "fused": 0.24780194979702005,
+          "dense_rank": 5,
+          "bm25_rank": 36,
+          "fused_rank": 14,
+          "rerank": -2.9530396461486816
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000195",
+          "score": -3.176922559738159,
+          "fused": 0.39451085174970374,
+          "dense_rank": 6,
+          "bm25_rank": 7,
+          "fused_rank": 6,
+          "rerank": -3.176922559738159
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000052",
+          "score": -3.2079739570617676,
+          "fused": 0.14618335745924907,
+          "dense_rank": 19,
+          "bm25_rank": 31,
+          "fused_rank": 19,
+          "rerank": -3.2079739570617676
+        }
+      ],
+      "latency_ms": 11.01
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 614,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 33,
+      "sentences_kept": 19,
+      "n_out": 5,
+      "tokens_out": 400,
+      "ms": 40.7,
+      "latency_ms": 40.76
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 5.726739883422852,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10597.21
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 261.21
+    }
+  },
+  "retrieved_ids": [
+    "ec3410ef955c5c93:L0:000142",
+    "634431bb1e27714f:L0:000091",
+    "cb96563b0747a6ba:L0:000022",
+    "ec3410ef955c5c93:L0:000195",
+    "ec3410ef955c5c93:L0:000052"
+  ],
+  "filtered_ids": [
+    "ec3410ef955c5c93:L0:000142",
+    "634431bb1e27714f:L0:000091",
+    "cb96563b0747a6ba:L0:000022",
+    "ec3410ef955c5c93:L0:000195",
+    "ec3410ef955c5c93:L0:000052"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:52:55.250849+00:00",
+      "call_id": "bade999c7167",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b309739cda97bba8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a470e7f613b24b64"
+    },
+    {
+      "ts": "2026-11-22T12:52:55.261231+00:00",
+      "call_id": "0ac8f8871e17",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b309739cda97bba8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a470e7f613b24b64"
+    },
+    {
+      "ts": "2026-11-22T12:52:55.298526+00:00",
+      "call_id": "84af2c70649d",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9bdc0adc0399fa9f",
+      "n_inputs": 33,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a470e7f613b24b64"
+    },
+    {
+      "ts": "2026-11-22T12:53:05.897795+00:00",
+      "call_id": "3b135acc8d05",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "41b66c9dfd892e46",
+      "prompt_tokens": 994,
+      "completion_tokens": 58,
+      "latency_ms": 10596.16,
+      "server_ms": 10574.66,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a470e7f613b24b64"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 994,
+    "generator_prompt_tokens": 994,
+    "completion_tokens": 58,
+    "total_ms": 10912.68
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

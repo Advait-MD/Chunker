@@ -1,0 +1,228 @@
+{
+  "trace_id": "28f44415fa63492f",
+  "created_at": "2026-11-22T12:57:43.732211+00:00",
+  "query": "What is the date of death of Peter Dale Scott's mother?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 21.01
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 6062.98
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.38,
+      "bm25_ms": 4.21,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000160",
+          "score": -2.4037489891052246,
+          "fused": 0.5694374888101429,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -2.4037489891052246
+        },
+        {
+          "id": "0eac870d43736f51:L0:000012",
+          "score": -2.982074737548828,
+          "fused": 0.4808751142905463,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -2.982074737548828
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000190",
+          "score": -3.5808355808258057,
+          "fused": 0.2896854440512869,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 9,
+          "rerank": -3.5808355808258057
+        },
+        {
+          "id": "0eac870d43736f51:L0:000095",
+          "score": -4.0757269859313965,
+          "fused": 0.33901364012793134,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -4.0757269859313965
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000128",
+          "score": -4.824957370758057,
+          "fused": 0.5274690173353441,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -4.824957370758057
+        }
+      ],
+      "latency_ms": 9.36
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 547,
+      "dropped_threshold": [
+        "0eac870d43736f51:L0:000095",
+        "53c7288bdcd3837a:L0:000128"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 9,
+      "sentences_kept": 3,
+      "n_out": 3,
+      "tokens_out": 92,
+      "ms": 11.5,
+      "latency_ms": 11.56
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": -2.4037489891052246,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 6041.87
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000160",
+    "0eac870d43736f51:L0:000012",
+    "b04ce6dd2d95fb80:L0:000190",
+    "0eac870d43736f51:L0:000095",
+    "53c7288bdcd3837a:L0:000128"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000160",
+    "0eac870d43736f51:L0:000012",
+    "b04ce6dd2d95fb80:L0:000190"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:57:43.733378+00:00",
+      "call_id": "b84e81db77dc",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0e5a3c9be27d0ecb",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "28f44415fa63492f"
+    },
+    {
+      "ts": "2026-11-22T12:57:43.742521+00:00",
+      "call_id": "280202ac5279",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0e5a3c9be27d0ecb",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "28f44415fa63492f"
+    },
+    {
+      "ts": "2026-11-22T12:57:43.751521+00:00",
+      "call_id": "49fdcadb6cd0",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ac3776eec7817c36",
+      "n_inputs": 9,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "28f44415fa63492f"
+    },
+    {
+      "ts": "2026-11-22T12:57:49.793939+00:00",
+      "call_id": "7982e2787735",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "22ab3d97bf26f641",
+      "prompt_tokens": 560,
+      "completion_tokens": 45,
+      "latency_ms": 6040.62,
+      "server_ms": 5986.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "28f44415fa63492f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 560,
+    "generator_prompt_tokens": 560,
+    "completion_tokens": 45,
+    "total_ms": 6063.84
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "trace_id": "de328fae372d4f02",
+  "created_at": "2026-11-22T11:17:48.326335+00:00",
+  "query": "Are the movies About A Wife, A Dream And Another... and The Doolins Of Oklahoma, from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10652.06
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10652.64
+    },
+    {
+      "state": "DONE",
+      "t_ms": 35519.99
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 9.91,
+      "bm25_ms": 53.95,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 10577.76
+      },
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000015",
+          "score": 5.82479190826416,
+          "fused": 0.6031328552717229,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 5.82479190826416
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000006",
+          "score": 4.044791221618652,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.044791221618652
+        },
+        {
+          "id": "99628090500247e3:L0:000200",
+          "score": -7.53141450881958,
+          "fused": 0.26684199867422,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 6,
+          "rerank": -7.53141450881958
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000004",
+          "score": -7.570309162139893,
+          "fused": 0.1639832717107542,
+          "dense_rank": 9,
+          "bm25_rank": null,
+          "fused_rank": 17,
+          "rerank": -7.570309162139893
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000173",
+          "score": -7.581639766693115,
+          "fused": 0.24494056676541773,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 8,
+          "rerank": -7.581639766693115
+        }
+      ],
+      "latency_ms": 10651.95
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 911,
+      "latency_ms": 0.53
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24867.05
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000015",
+    "6af2db6cb86d77e2:L0:000006",
+    "99628090500247e3:L0:000200",
+    "4a757779abfb4ba1:L0:000004",
+    "4a757779abfb4ba1:L0:000173"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000015",
+    "6af2db6cb86d77e2:L0:000006",
+    "99628090500247e3:L0:000200",
+    "4a757779abfb4ba1:L0:000004",
+    "4a757779abfb4ba1:L0:000173"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:17:48.330013+00:00",
+      "call_id": "65f16a5084fd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7ddb2c0853565ba1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "de328fae372d4f02"
+    },
+    {
+      "ts": "2026-11-22T11:18:23.841814+00:00",
+      "call_id": "18d97bfbe556",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0220bfc8ce82fdc7",
+      "prompt_tokens": 1623,
+      "completion_tokens": 78,
+      "latency_ms": 24862.86,
+      "server_ms": 24816.78,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "de328fae372d4f02"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1623,
+    "generator_prompt_tokens": 1623,
+    "completion_tokens": 78,
+    "total_ms": 35524.68
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

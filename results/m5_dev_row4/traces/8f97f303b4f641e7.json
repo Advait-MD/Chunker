@@ -1,0 +1,180 @@
+{
+  "trace_id": "8f97f303b4f641e7",
+  "created_at": "2026-11-22T11:17:15.291788+00:00",
+  "query": "Where did the director of film Things Behind The Sun study?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12199.25
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12200.32
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 32933.23
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.47,
+      "bm25_ms": 21.87,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 12156.91
+      },
+      "hits": [
+        {
+          "id": "317e12ccd417c0d7:L0:000072",
+          "score": 5.974346160888672,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.974346160888672
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000034",
+          "score": -2.499636173248291,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 2,
+          "rerank": -2.499636173248291
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000048",
+          "score": -3.6630806922912598,
+          "fused": 0.16638284466463546,
+          "dense_rank": 9,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -3.6630806922912598
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000139",
+          "score": -4.223015785217285,
+          "fused": 0.2533874738933348,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": -4.223015785217285
+        },
+        {
+          "id": "460e441179bec402:L0:000130",
+          "score": -4.638293266296387,
+          "fused": 0.22454168428866123,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 5,
+          "rerank": -4.638293266296387
+        }
+      ],
+      "latency_ms": 12199.15
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 831,
+      "latency_ms": 1.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20732.55
+    }
+  },
+  "retrieved_ids": [
+    "317e12ccd417c0d7:L0:000072",
+    "317e12ccd417c0d7:L0:000034",
+    "c73b757f0eb66f37:L0:000048",
+    "c73b757f0eb66f37:L0:000139",
+    "460e441179bec402:L0:000130"
+  ],
+  "filtered_ids": [
+    "317e12ccd417c0d7:L0:000072",
+    "317e12ccd417c0d7:L0:000034",
+    "c73b757f0eb66f37:L0:000048",
+    "c73b757f0eb66f37:L0:000139",
+    "460e441179bec402:L0:000130"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:17:15.294785+00:00",
+      "call_id": "8682714f389c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4d00525a72659c9e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8f97f303b4f641e7"
+    },
+    {
+      "ts": "2026-11-22T11:17:48.221649+00:00",
+      "call_id": "096af67e1a4c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "fd4f3ba72c82a7b1",
+      "prompt_tokens": 1511,
+      "completion_tokens": 59,
+      "latency_ms": 20728.96,
+      "server_ms": 20632.14,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8f97f303b4f641e7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1511,
+    "generator_prompt_tokens": 1511,
+    "completion_tokens": 59,
+    "total_ms": 32940.41
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The director of film Things Behind the Sun, Allison Anders, did not study at any specific institution mentioned in the provided passages."
+      ]
+    }
+  }
+}

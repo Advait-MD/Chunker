@@ -1,0 +1,182 @@
+{
+  "trace_id": "1c114cf258e14cb1",
+  "created_at": "2026-11-22T12:01:53.308893+00:00",
+  "query": "Why are worldwide democracies struggling?\n\nOptions:\n(A) They aren't struggling\n(B) They are not perceived as representative\n(C) They are poor\n(D) There are many undemocratic candidates with the clarity and vigour of a strong hand\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 22.54
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 22.63
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22554.4
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.62,
+      "bm25_ms": 16.21,
+      "n_candidates": {
+        "dense": 10,
+        "bm25": 9
+      },
+      "n_fused": 10,
+      "rerank": {
+        "n": 10,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "02facda9aeb8e139:L0:000001",
+          "score": -0.8248218297958374,
+          "fused": 0.49679923189741,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.8248218297958374
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000000",
+          "score": -1.117191195487976,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.117191195487976
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000004",
+          "score": -4.103644847869873,
+          "fused": 0.09998471679502685,
+          "dense_rank": 4,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": -4.103644847869873
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000003",
+          "score": -4.760412693023682,
+          "fused": 0.0,
+          "dense_rank": 10,
+          "bm25_rank": null,
+          "fused_rank": 10,
+          "rerank": -4.760412693023682
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000007",
+          "score": -4.983583927154541,
+          "fused": 0.06582401009815686,
+          "dense_rank": 5,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -4.983583927154541
+        }
+      ],
+      "latency_ms": 22.5
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1953,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22531.61
+    }
+  },
+  "retrieved_ids": [
+    "02facda9aeb8e139:L0:000001",
+    "02facda9aeb8e139:L0:000000",
+    "02facda9aeb8e139:L0:000004",
+    "02facda9aeb8e139:L0:000003",
+    "02facda9aeb8e139:L0:000007"
+  ],
+  "filtered_ids": [
+    "02facda9aeb8e139:L0:000001",
+    "02facda9aeb8e139:L0:000000",
+    "02facda9aeb8e139:L0:000004",
+    "02facda9aeb8e139:L0:000003",
+    "02facda9aeb8e139:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:01:53.311885+00:00",
+      "call_id": "029fe40f15bf",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "023a756cefa32b80",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1c114cf258e14cb1"
+    },
+    {
+      "ts": "2026-11-22T12:02:15.861513+00:00",
+      "call_id": "e1395c4fc812",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "382878f84da3197c",
+      "prompt_tokens": 2527,
+      "completion_tokens": 43,
+      "latency_ms": 22529.49,
+      "server_ms": 22488.76,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1c114cf258e14cb1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2527,
+    "generator_prompt_tokens": 2527,
+    "completion_tokens": 43,
+    "total_ms": 22557.14
+  },
+  "config_hash": "403cb8f3227b",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        2
+      ],
+      "uncited_sentences": [
+        "(B) They are not perceived as representative"
+      ]
+    }
+  }
+}

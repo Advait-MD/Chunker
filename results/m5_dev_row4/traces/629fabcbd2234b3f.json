@@ -1,0 +1,184 @@
+{
+  "trace_id": "629fabcbd2234b3f",
+  "created_at": "2026-11-22T12:12:42.792080+00:00",
+  "query": "How are similarities and differences between the texts from violent and non-violent religious groups analyzed?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 25.04
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 25.09
+    },
+    {
+      "state": "DONE",
+      "t_ms": 29410.59
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.96,
+      "bm25_ms": 16.37,
+      "n_candidates": {
+        "dense": 21,
+        "bm25": 16
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "349db79fe5f93e86:L0:000000",
+          "score": 3.158193588256836,
+          "fused": 0.8755656575355619,
+          "dense_rank": 5,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 3.158193588256836
+        },
+        {
+          "id": "349db79fe5f93e86:L0:000019",
+          "score": 2.9823951721191406,
+          "fused": 0.9089015322943678,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": 2.9823951721191406
+        },
+        {
+          "id": "349db79fe5f93e86:L0:000001",
+          "score": 0.30846378207206726,
+          "fused": 0.8561714346660929,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 0.30846378207206726
+        },
+        {
+          "id": "349db79fe5f93e86:L0:000006",
+          "score": -0.8306547403335571,
+          "fused": 0.5107766681700738,
+          "dense_rank": 10,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -0.8306547403335571
+        },
+        {
+          "id": "349db79fe5f93e86:L0:000011",
+          "score": -1.0506435632705688,
+          "fused": 0.8382725081723033,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -1.0506435632705688
+        }
+      ],
+      "latency_ms": 24.55
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1191,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 29385.41
+    }
+  },
+  "retrieved_ids": [
+    "349db79fe5f93e86:L0:000000",
+    "349db79fe5f93e86:L0:000019",
+    "349db79fe5f93e86:L0:000001",
+    "349db79fe5f93e86:L0:000006",
+    "349db79fe5f93e86:L0:000011"
+  ],
+  "filtered_ids": [
+    "349db79fe5f93e86:L0:000000",
+    "349db79fe5f93e86:L0:000019",
+    "349db79fe5f93e86:L0:000001",
+    "349db79fe5f93e86:L0:000006",
+    "349db79fe5f93e86:L0:000011"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:12:42.794082+00:00",
+      "call_id": "519a0bc69cb4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9ce8cc44dbcd670e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "629fabcbd2234b3f"
+    },
+    {
+      "ts": "2026-11-22T12:13:12.202318+00:00",
+      "call_id": "6e8f410ebae5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8ad48107893fdf9c",
+      "prompt_tokens": 1772,
+      "completion_tokens": 177,
+      "latency_ms": 29384.75,
+      "server_ms": 29365.05,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "629fabcbd2234b3f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1772,
+    "generator_prompt_tokens": 1772,
+    "completion_tokens": 177,
+    "total_ms": 29411.42
+  },
+  "config_hash": "1cf51d8daba2",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Similarities and differences between the texts from violent and non-violent religious groups are analyzed using natural language processing methods, specifically word frequency and topic modeling with Non-Negative Matrix Factorization (NMF).",
+        "The findings indicate that certain topics play a particularly important role in ISIS propaganda targeting women, such as the role of women in early Islam, Islamic ideology, marriage/divorce, motherhood, spousal relationships, and hijrah."
+      ]
+    }
+  }
+}

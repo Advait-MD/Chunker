@@ -1,0 +1,249 @@
+{
+  "trace_id": "2c5ccbc423c84943",
+  "created_at": "2026-11-22T12:55:48.081417+00:00",
+  "query": "Where did the director of film Nalini By Day, Nancy By Night graduate from?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.11
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.24
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 9077.37
+    },
+    {
+      "state": "DONE",
+      "t_ms": 9077.53
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.79,
+      "bm25_ms": 2.47,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "43d5059060d4defa:L0:000022",
+          "score": 7.8582963943481445,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.8582963943481445
+        },
+        {
+          "id": "99628090500247e3:L0:000139",
+          "score": -3.3238775730133057,
+          "fused": 0.2290146990246973,
+          "dense_rank": 13,
+          "bm25_rank": 26,
+          "fused_rank": 6,
+          "rerank": -3.3238775730133057
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000034",
+          "score": -4.499653339385986,
+          "fused": 0.15421828742437896,
+          "dense_rank": 10,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -4.499653339385986
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": -5.251060485839844,
+          "fused": 0.14966533659415626,
+          "dense_rank": 11,
+          "bm25_rank": null,
+          "fused_rank": 20,
+          "rerank": -5.251060485839844
+        },
+        {
+          "id": "abe982d210232c3f:L0:000187",
+          "score": -5.428588390350342,
+          "fused": 0.18296488459657512,
+          "dense_rank": 42,
+          "bm25_rank": 7,
+          "fused_rank": 14,
+          "rerank": -5.428588390350342
+        }
+      ],
+      "latency_ms": 6.09
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 863,
+      "dropped_threshold": [
+        "317e12ccd417c0d7:L0:000034",
+        "abe982d210232c3f:L0:000151",
+        "abe982d210232c3f:L0:000187"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 14,
+      "sentences_kept": 7,
+      "n_out": 2,
+      "tokens_out": 174,
+      "ms": 9.1,
+      "latency_ms": 9.1
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 7.8582963943481445,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9062.11
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 0.06
+    }
+  },
+  "retrieved_ids": [
+    "43d5059060d4defa:L0:000022",
+    "99628090500247e3:L0:000139",
+    "317e12ccd417c0d7:L0:000034",
+    "abe982d210232c3f:L0:000151",
+    "abe982d210232c3f:L0:000187"
+  ],
+  "filtered_ids": [
+    "43d5059060d4defa:L0:000022",
+    "99628090500247e3:L0:000139"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:55:48.082704+00:00",
+      "call_id": "613308a25e64",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ca375b2f5073f66d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2c5ccbc423c84943"
+    },
+    {
+      "ts": "2026-11-22T12:55:48.087701+00:00",
+      "call_id": "559f9d8f1f91",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ca375b2f5073f66d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2c5ccbc423c84943"
+    },
+    {
+      "ts": "2026-11-22T12:55:48.095957+00:00",
+      "call_id": "78f25d141221",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "44d1fee8a1c81c0c",
+      "n_inputs": 14,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2c5ccbc423c84943"
+    },
+    {
+      "ts": "2026-11-22T12:55:57.158452+00:00",
+      "call_id": "e73d144747a6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1eca285d0470c322",
+      "prompt_tokens": 659,
+      "completion_tokens": 68,
+      "latency_ms": 9061.52,
+      "server_ms": 9044.13,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2c5ccbc423c84943"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 659,
+    "generator_prompt_tokens": 659,
+    "completion_tokens": 68,
+    "total_ms": 9078.23
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "The director of film Nalini By Day, Nancy By Night, Sonali Gulati, graduated from the National Film School in Łódź."
+      ]
+    }
+  }
+}

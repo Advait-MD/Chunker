@@ -1,0 +1,248 @@
+{
+  "trace_id": "ed71216698724afc",
+  "created_at": "2026-11-22T12:50:03.111817+00:00",
+  "query": "How far from Sacramento is the flight school in Atwater?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.63
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 20.2
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 11284.58
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12022.49
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.91,
+      "bm25_ms": 5.78,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "20496f59538deb41:L0:000197",
+          "score": 2.111178159713745,
+          "fused": 0.8932980329937109,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.111178159713745
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000174",
+          "score": -0.7312082648277283,
+          "fused": 0.5359671976142056,
+          "dense_rank": 38,
+          "bm25_rank": 3,
+          "fused_rank": 6,
+          "rerank": -0.7312082648277283
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000096",
+          "score": -6.162039756774902,
+          "fused": 0.5554781111766358,
+          "dense_rank": 6,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": -6.162039756774902
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000073",
+          "score": -6.245732307434082,
+          "fused": 0.4624665850664129,
+          "dense_rank": 8,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -6.245732307434082
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000006",
+          "score": -6.4836955070495605,
+          "fused": 0.614672431486539,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 2,
+          "rerank": -6.4836955070495605
+        }
+      ],
+      "latency_ms": 10.6
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 461,
+      "dropped_threshold": [
+        "838c0e0106e6f015:L0:000096",
+        "ec3410ef955c5c93:L0:000073",
+        "8e50522b7cb636d8:L0:000006"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 4,
+      "sentences_kept": 4,
+      "n_out": 2,
+      "tokens_out": 102,
+      "ms": 9.4,
+      "latency_ms": 9.46
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 2.111178159713745,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11264.33
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 737.73
+    }
+  },
+  "retrieved_ids": [
+    "20496f59538deb41:L0:000197",
+    "bc1dba3471045f02:L0:000174",
+    "838c0e0106e6f015:L0:000096",
+    "ec3410ef955c5c93:L0:000073",
+    "8e50522b7cb636d8:L0:000006"
+  ],
+  "filtered_ids": [
+    "20496f59538deb41:L0:000197",
+    "bc1dba3471045f02:L0:000174"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:50:03.113020+00:00",
+      "call_id": "868cba0bf179",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3cf19c4c39bab6c3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ed71216698724afc"
+    },
+    {
+      "ts": "2026-11-22T12:50:03.123239+00:00",
+      "call_id": "41f9316864cd",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3cf19c4c39bab6c3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ed71216698724afc"
+    },
+    {
+      "ts": "2026-11-22T12:50:03.129238+00:00",
+      "call_id": "6d0836763859",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "138b9aecd7abc4af",
+      "n_inputs": 3,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ed71216698724afc"
+    },
+    {
+      "ts": "2026-11-22T12:50:14.395212+00:00",
+      "call_id": "cf595ea11542",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "022b400de69f69fc",
+      "prompt_tokens": 542,
+      "completion_tokens": 86,
+      "latency_ms": 11262.84,
+      "server_ms": 11242.13,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ed71216698724afc"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 542,
+    "generator_prompt_tokens": 542,
+    "completion_tokens": 86,
+    "total_ms": 12023.68
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

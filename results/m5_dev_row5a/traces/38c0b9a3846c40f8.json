@@ -1,0 +1,248 @@
+{
+  "trace_id": "38c0b9a3846c40f8",
+  "created_at": "2026-11-22T13:12:28.871260+00:00",
+  "query": "What was the form of the language that the last name Sylvester comes from, used in the era of the king who united the 9th century tribes, later known as?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 64.12
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 89.78
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 13727.62
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15284.76
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.31,
+      "bm25_ms": 51.96,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "6683bfc7dec06e2a:L0:000082",
+          "score": 1.5049412250518799,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.5049412250518799
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000112",
+          "score": 0.5010565519332886,
+          "fused": 0.3116203196545031,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 12,
+          "rerank": 0.5010565519332886
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000096",
+          "score": -2.416489601135254,
+          "fused": 0.34890589508278785,
+          "dense_rank": 2,
+          "bm25_rank": 29,
+          "fused_rank": 9,
+          "rerank": -2.416489601135254
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000035",
+          "score": -4.136064529418945,
+          "fused": 0.3551852365135272,
+          "dense_rank": 7,
+          "bm25_rank": 14,
+          "fused_rank": 8,
+          "rerank": -4.136064529418945
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000125",
+          "score": -4.180210113525391,
+          "fused": 0.7076093536069379,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -4.180210113525391
+        }
+      ],
+      "latency_ms": 64.07
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 703,
+      "dropped_threshold": [
+        "f3503d3d186f0f90:L0:000035",
+        "5a1a5bbda9db013e:L0:000125"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 18,
+      "sentences_kept": 16,
+      "n_out": 3,
+      "tokens_out": 433,
+      "ms": 25.6,
+      "latency_ms": 25.6
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 1.5049412250518799,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13637.81
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 1556.93
+    }
+  },
+  "retrieved_ids": [
+    "6683bfc7dec06e2a:L0:000082",
+    "f59bbbdacaf7ffe4:L0:000112",
+    "ad11b6e85f908fb3:L0:000096",
+    "f3503d3d186f0f90:L0:000035",
+    "5a1a5bbda9db013e:L0:000125"
+  ],
+  "filtered_ids": [
+    "6683bfc7dec06e2a:L0:000082",
+    "f59bbbdacaf7ffe4:L0:000112",
+    "ad11b6e85f908fb3:L0:000096"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:12:28.872665+00:00",
+      "call_id": "9a6002dc95b3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2a3f71bafec9f96c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "38c0b9a3846c40f8"
+    },
+    {
+      "ts": "2026-11-22T13:12:28.937241+00:00",
+      "call_id": "ceb964381392",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2a3f71bafec9f96c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "38c0b9a3846c40f8"
+    },
+    {
+      "ts": "2026-11-22T13:12:28.957803+00:00",
+      "call_id": "1e447b47d0fc",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "25cfc6ffe474abf7",
+      "n_inputs": 18,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "38c0b9a3846c40f8"
+    },
+    {
+      "ts": "2026-11-22T13:12:42.597621+00:00",
+      "call_id": "6dd37d725a66",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f5a992f5f800ae91",
+      "prompt_tokens": 961,
+      "completion_tokens": 85,
+      "latency_ms": 13636.9,
+      "server_ms": 13614.02,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "38c0b9a3846c40f8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 961,
+    "generator_prompt_tokens": 961,
+    "completion_tokens": 85,
+    "total_ms": 15289.12
+  },
+  "config_hash": "1c92a20b0713",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

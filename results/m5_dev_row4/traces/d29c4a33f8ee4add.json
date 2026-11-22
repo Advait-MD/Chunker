@@ -1,0 +1,180 @@
+{
+  "trace_id": "d29c4a33f8ee4add",
+  "created_at": "2026-11-22T11:21:42.494022+00:00",
+  "query": "Who is Amalie Adlerberg's stepfather?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9657.73
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9660.27
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 27579.06
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.97,
+      "bm25_ms": 12.41,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 9623.81
+      },
+      "hits": [
+        {
+          "id": "460e441179bec402:L0:000108",
+          "score": 3.1934685707092285,
+          "fused": 0.990329166229214,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.1934685707092285
+        },
+        {
+          "id": "0eac870d43736f51:L0:000171",
+          "score": -3.571383476257324,
+          "fused": 0.5332108195393535,
+          "dense_rank": 5,
+          "bm25_rank": 8,
+          "fused_rank": 4,
+          "rerank": -3.571383476257324
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000190",
+          "score": -3.6871402263641357,
+          "fused": 0.2664214121662683,
+          "dense_rank": 7,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -3.6871402263641357
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000137",
+          "score": -4.077205657958984,
+          "fused": 0.5821492588334685,
+          "dense_rank": 6,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -4.077205657958984
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000154",
+          "score": -4.50806999206543,
+          "fused": 0.5466302078003966,
+          "dense_rank": 2,
+          "bm25_rank": 9,
+          "fused_rank": 3,
+          "rerank": -4.50806999206543
+        }
+      ],
+      "latency_ms": 9657.64
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 485,
+      "latency_ms": 2.48
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17918.58
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000108",
+    "0eac870d43736f51:L0:000171",
+    "b04ce6dd2d95fb80:L0:000190",
+    "b04ce6dd2d95fb80:L0:000137",
+    "53c7288bdcd3837a:L0:000154"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000108",
+    "0eac870d43736f51:L0:000171",
+    "b04ce6dd2d95fb80:L0:000190",
+    "b04ce6dd2d95fb80:L0:000137",
+    "53c7288bdcd3837a:L0:000154"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:21:42.497019+00:00",
+      "call_id": "31328cc1710f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cbbb22e4af67b366",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d29c4a33f8ee4add"
+    },
+    {
+      "ts": "2026-11-22T11:22:10.070066+00:00",
+      "call_id": "090e67839e3c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bb15c1e885e82811",
+      "prompt_tokens": 1177,
+      "completion_tokens": 49,
+      "latency_ms": 17915.29,
+      "server_ms": 17880.35,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d29c4a33f8ee4add"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1177,
+    "generator_prompt_tokens": 1177,
+    "completion_tokens": 49,
+    "total_ms": 27583.46
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Amalie Adlerberg's stepfather is not mentioned in the provided passages."
+      ]
+    }
+  }
+}

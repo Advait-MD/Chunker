@@ -1,0 +1,180 @@
+{
+  "trace_id": "4390726f959d4b7d",
+  "created_at": "2026-11-22T11:42:24.485968+00:00",
+  "query": "Who is the sibling of the actress who played Susan Walker in Miracle on 34th street?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.97
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.05
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11065.89
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.31,
+      "bm25_ms": 11.55,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "dbcbda865eee9c7b:L0:000096",
+          "score": 5.80214262008667,
+          "fused": 0.912311203681762,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.80214262008667
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000169",
+          "score": 4.14436149597168,
+          "fused": 0.38248667728270896,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": 4.14436149597168
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000122",
+          "score": 2.7330245971679688,
+          "fused": 0.627086936705402,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 2.7330245971679688
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000131",
+          "score": 1.3771456480026245,
+          "fused": 0.33544052652972656,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 7,
+          "rerank": 1.3771456480026245
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000118",
+          "score": 0.35574543476104736,
+          "fused": 0.5162173644318817,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.35574543476104736
+        }
+      ],
+      "latency_ms": 18.92
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 436,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11046.7
+    }
+  },
+  "retrieved_ids": [
+    "dbcbda865eee9c7b:L0:000096",
+    "cc1bdb3bf430bd0d:L0:000169",
+    "e182527d2b1ecac3:L0:000122",
+    "66f5caec1369ebaf:L0:000131",
+    "e182527d2b1ecac3:L0:000118"
+  ],
+  "filtered_ids": [
+    "dbcbda865eee9c7b:L0:000096",
+    "cc1bdb3bf430bd0d:L0:000169",
+    "e182527d2b1ecac3:L0:000122",
+    "66f5caec1369ebaf:L0:000131",
+    "e182527d2b1ecac3:L0:000118"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:42:24.487967+00:00",
+      "call_id": "04fa7c7697fe",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "207fef439a004433",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4390726f959d4b7d"
+    },
+    {
+      "ts": "2026-11-22T11:42:35.550551+00:00",
+      "call_id": "2e63d2ada35e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "be88b0427295639e",
+      "prompt_tokens": 1072,
+      "completion_tokens": 45,
+      "latency_ms": 11045.28,
+      "server_ms": 11020.1,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4390726f959d4b7d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1072,
+    "generator_prompt_tokens": 1072,
+    "completion_tokens": 45,
+    "total_ms": 11067.25
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

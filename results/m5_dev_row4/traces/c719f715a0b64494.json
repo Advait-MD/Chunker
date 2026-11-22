@@ -1,0 +1,180 @@
+{
+  "trace_id": "c719f715a0b64494",
+  "created_at": "2026-11-22T10:57:39.324013+00:00",
+  "query": "Where did the director of film Nalini By Day, Nancy By Night graduate from?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 21150.96
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 21153.77
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 52985.23
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 85.75,
+      "bm25_ms": 145.6,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 20618.93
+      },
+      "hits": [
+        {
+          "id": "43d5059060d4defa:L0:000022",
+          "score": 7.8582963943481445,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.8582963943481445
+        },
+        {
+          "id": "99628090500247e3:L0:000139",
+          "score": -3.3238775730133057,
+          "fused": 0.2290146990246973,
+          "dense_rank": 13,
+          "bm25_rank": 26,
+          "fused_rank": 6,
+          "rerank": -3.3238775730133057
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000034",
+          "score": -4.499653339385986,
+          "fused": 0.15421828742437896,
+          "dense_rank": 10,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -4.499653339385986
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": -5.251060485839844,
+          "fused": 0.14966533659415626,
+          "dense_rank": 11,
+          "bm25_rank": null,
+          "fused_rank": 20,
+          "rerank": -5.251060485839844
+        },
+        {
+          "id": "abe982d210232c3f:L0:000187",
+          "score": -5.428588390350342,
+          "fused": 0.18296488459657512,
+          "dense_rank": 42,
+          "bm25_rank": 7,
+          "fused_rank": 14,
+          "rerank": -5.428588390350342
+        }
+      ],
+      "latency_ms": 21150.86
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 863,
+      "latency_ms": 2.74
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 31831.25
+    }
+  },
+  "retrieved_ids": [
+    "43d5059060d4defa:L0:000022",
+    "99628090500247e3:L0:000139",
+    "317e12ccd417c0d7:L0:000034",
+    "abe982d210232c3f:L0:000151",
+    "abe982d210232c3f:L0:000187"
+  ],
+  "filtered_ids": [
+    "43d5059060d4defa:L0:000022",
+    "99628090500247e3:L0:000139",
+    "317e12ccd417c0d7:L0:000034",
+    "abe982d210232c3f:L0:000151",
+    "abe982d210232c3f:L0:000187"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T10:57:39.328009+00:00",
+      "call_id": "ba60895e116e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ca375b2f5073f66d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c719f715a0b64494"
+    },
+    {
+      "ts": "2026-11-22T10:58:32.306819+00:00",
+      "call_id": "327e0bd66565",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b3ebf7bc8eee1928",
+      "prompt_tokens": 1564,
+      "completion_tokens": 65,
+      "latency_ms": 31827.65,
+      "server_ms": 31765.62,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "c719f715a0b64494"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1564,
+    "generator_prompt_tokens": 1564,
+    "completion_tokens": 65,
+    "total_ms": 52992.04
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The director of film Nalini By Day, Nancy By Night, Sonali Gulati, did not graduate from any institution mentioned in the provided passages."
+      ]
+    }
+  }
+}

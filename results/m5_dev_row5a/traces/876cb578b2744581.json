@@ -1,0 +1,248 @@
+{
+  "trace_id": "876cb578b2744581",
+  "created_at": "2026-11-22T12:53:45.648611+00:00",
+  "query": "Which of the four US Presidents who have been assinated was shot on the grounds of the Pan-American Exposition at the Temple of Music in Buffalo, New York?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 20.93
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 68.65
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 12941.48
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14157.23
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.86,
+      "bm25_ms": 15.09,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "9794e842cc9565f0:L0:000178",
+          "score": 7.0455498695373535,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.0455498695373535
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000063",
+          "score": 4.318497657775879,
+          "fused": 0.8275245967609051,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 4.318497657775879
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000131",
+          "score": 2.185903310775757,
+          "fused": 0.5203767973509739,
+          "dense_rank": 6,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 2.185903310775757
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000115",
+          "score": 0.6174725294113159,
+          "fused": 0.33798557104538324,
+          "dense_rank": 4,
+          "bm25_rank": 10,
+          "fused_rank": 4,
+          "rerank": 0.6174725294113159
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000035",
+          "score": -0.12777970731258392,
+          "fused": 0.2525539263225474,
+          "dense_rank": 18,
+          "bm25_rank": 9,
+          "fused_rank": 8,
+          "rerank": -0.12777970731258392
+        }
+      ],
+      "latency_ms": 20.89
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 583,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 27,
+      "sentences_kept": 16,
+      "n_out": 5,
+      "tokens_out": 430,
+      "ms": 47.6,
+      "latency_ms": 47.61
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 7.0455498695373535,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12872.8
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 1215.49
+    }
+  },
+  "retrieved_ids": [
+    "9794e842cc9565f0:L0:000178",
+    "cb96563b0747a6ba:L0:000063",
+    "838c0e0106e6f015:L0:000131",
+    "ec3410ef955c5c93:L0:000115",
+    "9794e842cc9565f0:L0:000035"
+  ],
+  "filtered_ids": [
+    "9794e842cc9565f0:L0:000178",
+    "cb96563b0747a6ba:L0:000063",
+    "838c0e0106e6f015:L0:000131",
+    "ec3410ef955c5c93:L0:000115",
+    "9794e842cc9565f0:L0:000035"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:53:45.650621+00:00",
+      "call_id": "5d743a31bd71",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f88b0c5da370aedc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "876cb578b2744581"
+    },
+    {
+      "ts": "2026-11-22T12:53:45.672343+00:00",
+      "call_id": "05e40117b7f7",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f88b0c5da370aedc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "876cb578b2744581"
+    },
+    {
+      "ts": "2026-11-22T12:53:45.712968+00:00",
+      "call_id": "03886491f14e",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "270ccf6089a5b361",
+      "n_inputs": 27,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "876cb578b2744581"
+    },
+    {
+      "ts": "2026-11-22T12:53:58.589250+00:00",
+      "call_id": "ce01b6858fd7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "961e324a3e6d62c4",
+      "prompt_tokens": 1057,
+      "completion_tokens": 72,
+      "latency_ms": 12871.41,
+      "server_ms": 12843.55,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "876cb578b2744581"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1057,
+    "generator_prompt_tokens": 1057,
+    "completion_tokens": 72,
+    "total_ms": 14159.36
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

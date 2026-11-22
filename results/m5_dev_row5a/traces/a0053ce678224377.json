@@ -1,0 +1,300 @@
+{
+  "trace_id": "a0053ce678224377",
+  "created_at": "2026-11-22T13:24:48.003631+00:00",
+  "query": "Do the authors conduct experiments on the tasks mentioned?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 119.29
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 18696.68
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 18696.82
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.56,
+      "bm25_ms": 104.91,
+      "n_candidates": {
+        "dense": 11,
+        "bm25": 0
+      },
+      "n_fused": 11,
+      "rerank": {
+        "n": 11,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "54783572869bf31b:L0:000009",
+          "score": -5.928154468536377,
+          "fused": 0.0,
+          "dense_rank": 11,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": -5.928154468536377
+        },
+        {
+          "id": "54783572869bf31b:L0:000010",
+          "score": -6.193370342254639,
+          "fused": 0.23264697417312305,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 4,
+          "rerank": -6.193370342254639
+        },
+        {
+          "id": "54783572869bf31b:L0:000001",
+          "score": -6.5014967918396,
+          "fused": 0.19842749153666753,
+          "dense_rank": 9,
+          "bm25_rank": null,
+          "fused_rank": 9,
+          "rerank": -6.5014967918396
+        },
+        {
+          "id": "54783572869bf31b:L0:000004",
+          "score": -8.681320190429688,
+          "fused": 0.2656619080991155,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 2,
+          "rerank": -8.681320190429688
+        },
+        {
+          "id": "54783572869bf31b:L0:000008",
+          "score": -9.631752967834473,
+          "fused": 0.208375182140723,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 6,
+          "rerank": -9.631752967834473
+        }
+      ],
+      "latency_ms": 119.18
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 1243,
+      "dropped_threshold": [
+        "54783572869bf31b:L0:000001",
+        "54783572869bf31b:L0:000004",
+        "54783572869bf31b:L0:000008"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 16,
+      "sentences_kept": 6,
+      "n_out": 2,
+      "tokens_out": 155,
+      "ms": 25.6,
+      "latency_ms": 25.68
+    },
+    "sufficiency": {
+      "verdict": "insufficient",
+      "by": "rerank",
+      "best": -5.928154468536377,
+      "latency_ms": 0.02
+    },
+    "rewrite_retry": {
+      "query": "do authors perform experiments on mentioned tasks",
+      "n_new": 1,
+      "filter": {
+        "n_in": 5,
+        "tokens_in": 1243,
+        "dropped_threshold": [
+          "54783572869bf31b:L0:000001",
+          "54783572869bf31b:L0:000004",
+          "54783572869bf31b:L0:000008"
+        ],
+        "dropped_dedup": [],
+        "sentences_in": 16,
+        "sentences_kept": 6,
+        "n_out": 2,
+        "tokens_out": 155,
+        "ms": 14.2
+      },
+      "sufficiency": {
+        "verdict": "insufficient",
+        "by": "rerank",
+        "best": -5.928154468536377
+      },
+      "latency_ms": 18551.32
+    }
+  },
+  "retrieved_ids": [
+    "54783572869bf31b:L0:000009",
+    "54783572869bf31b:L0:000010",
+    "54783572869bf31b:L0:000001",
+    "54783572869bf31b:L0:000004",
+    "54783572869bf31b:L0:000008"
+  ],
+  "filtered_ids": [
+    "54783572869bf31b:L0:000009",
+    "54783572869bf31b:L0:000010"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:24:48.006631+00:00",
+      "call_id": "ffcca33c9651",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "42183528855659fe",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a0053ce678224377"
+    },
+    {
+      "ts": "2026-11-22T13:24:48.124646+00:00",
+      "call_id": "10deefb45c6e",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "42183528855659fe",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a0053ce678224377"
+    },
+    {
+      "ts": "2026-11-22T13:24:48.146504+00:00",
+      "call_id": "154da25f4604",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "580d6d684170ddaf",
+      "n_inputs": 15,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a0053ce678224377"
+    },
+    {
+      "ts": "2026-11-22T13:24:58.411400+00:00",
+      "call_id": "b0bd0a47a35c",
+      "kind": "generate",
+      "caller": "filter.rewrite",
+      "state": "FILTERING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e341911bc9577132",
+      "prompt_tokens": 110,
+      "completion_tokens": 13,
+      "latency_ms": 10261.22,
+      "server_ms": 10242.98,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a0053ce678224377"
+    },
+    {
+      "ts": "2026-11-22T13:24:58.492971+00:00",
+      "call_id": "dfa28194cd31",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b919907e273ada57",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 13,
+      "completion_tokens": 0,
+      "latency_ms": 79.71,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "a0053ce678224377"
+    },
+    {
+      "ts": "2026-11-22T13:25:06.687991+00:00",
+      "call_id": "03653adf43ed",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "42183528855659fe",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a0053ce678224377"
+    },
+    {
+      "ts": "2026-11-22T13:25:06.697330+00:00",
+      "call_id": "ba5ee7dc7558",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "580d6d684170ddaf",
+      "n_inputs": 15,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a0053ce678224377"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 6,
+    "prompt_tokens": 110,
+    "generator_prompt_tokens": 0,
+    "completion_tokens": 13,
+    "total_ms": 18698.97
+  },
+  "config_hash": "c4b7d9811844",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "trace_id": "2d855be43c6b44f9",
+  "created_at": "2026-11-22T11:54:45.736046+00:00",
+  "query": "Why does the author think the issue of Green OA is important?\n\nOptions:\n(A) It will lead to increased use of toll-access publications \n(B) It will decrease the risk of publisher monopoly\n(C) It would increase publisher profits \n(D) It will increase access to published literature\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.0
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.58
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14.62
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17335.59
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.8,
+      "bm25_ms": 10.26,
+      "n_candidates": {
+        "dense": 9,
+        "bm25": 9
+      },
+      "n_fused": 9,
+      "rerank": {
+        "n": 9,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000007",
+          "score": 0.9380130767822266,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.9380130767822266
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000006",
+          "score": -0.21978254616260529,
+          "fused": 0.6545006452217728,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.21978254616260529
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000008",
+          "score": -0.22941863536834717,
+          "fused": 0.2674031024770889,
+          "dense_rank": 2,
+          "bm25_rank": 9,
+          "fused_rank": 7,
+          "rerank": -0.22941863536834717
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000003",
+          "score": -1.1221295595169067,
+          "fused": 0.5645035375586456,
+          "dense_rank": 6,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -1.1221295595169067
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000000",
+          "score": -1.3905361890792847,
+          "fused": 0.37071437859457534,
+          "dense_rank": 4,
+          "bm25_rank": 7,
+          "fused_rank": 5,
+          "rerank": -1.3905361890792847
+        }
+      ],
+      "latency_ms": 14.55
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1664,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17320.84
+    }
+  },
+  "retrieved_ids": [
+    "6a7f3433b6bd8dc9:L0:000007",
+    "6a7f3433b6bd8dc9:L0:000006",
+    "6a7f3433b6bd8dc9:L0:000008",
+    "6a7f3433b6bd8dc9:L0:000003",
+    "6a7f3433b6bd8dc9:L0:000000"
+  ],
+  "filtered_ids": [
+    "6a7f3433b6bd8dc9:L0:000007",
+    "6a7f3433b6bd8dc9:L0:000006",
+    "6a7f3433b6bd8dc9:L0:000008",
+    "6a7f3433b6bd8dc9:L0:000003",
+    "6a7f3433b6bd8dc9:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:54:45.738242+00:00",
+      "call_id": "75794254713a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2ac95efcef036c3e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2d855be43c6b44f9"
+    },
+    {
+      "ts": "2026-11-22T11:55:03.070948+00:00",
+      "call_id": "04397ee8d46b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "54dc539b7c4cca9e",
+      "prompt_tokens": 2263,
+      "completion_tokens": 73,
+      "latency_ms": 17319.92,
+      "server_ms": 17287.78,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2d855be43c6b44f9"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2263,
+    "generator_prompt_tokens": 2263,
+    "completion_tokens": 73,
+    "total_ms": 17337.1
+  },
+  "config_hash": "403cb8f3227b",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

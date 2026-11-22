@@ -1,0 +1,228 @@
+{
+  "trace_id": "d1b2756c397b461e",
+  "created_at": "2026-11-22T12:55:40.521354+00:00",
+  "query": "What is the date of birth of Frederick Of Liege's father?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7.85
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17.24
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 7553.19
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.94,
+      "bm25_ms": 2.36,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "460e441179bec402:L0:000090",
+          "score": 1.5726450681686401,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.5726450681686401
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000122",
+          "score": -3.984717607498169,
+          "fused": 0.1987725419106232,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -3.984717607498169
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000187",
+          "score": -4.395534515380859,
+          "fused": 0.19133505391182087,
+          "dense_rank": 7,
+          "bm25_rank": null,
+          "fused_rank": 17,
+          "rerank": -4.395534515380859
+        },
+        {
+          "id": "460e441179bec402:L0:000070",
+          "score": -5.2019243240356445,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 9,
+          "rerank": -5.2019243240356445
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000089",
+          "score": -5.26093053817749,
+          "fused": 0.20598644149436474,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 14,
+          "rerank": -5.26093053817749
+        }
+      ],
+      "latency_ms": 7.81
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 711,
+      "dropped_threshold": [
+        "317e12ccd417c0d7:L0:000187",
+        "460e441179bec402:L0:000070",
+        "317e12ccd417c0d7:L0:000089"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 9,
+      "sentences_kept": 8,
+      "n_out": 2,
+      "tokens_out": 189,
+      "ms": 9.3,
+      "latency_ms": 9.36
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 1.5726450681686401,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 7535.9
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000090",
+    "317e12ccd417c0d7:L0:000122",
+    "317e12ccd417c0d7:L0:000187",
+    "460e441179bec402:L0:000070",
+    "317e12ccd417c0d7:L0:000089"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000090",
+    "317e12ccd417c0d7:L0:000122"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:55:40.523499+00:00",
+      "call_id": "4250d492f441",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0a6d9a16857666e3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d1b2756c397b461e"
+    },
+    {
+      "ts": "2026-11-22T12:55:40.530511+00:00",
+      "call_id": "7c5747babf66",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0a6d9a16857666e3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d1b2756c397b461e"
+    },
+    {
+      "ts": "2026-11-22T12:55:40.537696+00:00",
+      "call_id": "9abe6ac931e7",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "578292523610d2c8",
+      "n_inputs": 8,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d1b2756c397b461e"
+    },
+    {
+      "ts": "2026-11-22T12:55:48.074416+00:00",
+      "call_id": "a753ce2e55de",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "80022374c36916fe",
+      "prompt_tokens": 652,
+      "completion_tokens": 53,
+      "latency_ms": 7535.34,
+      "server_ms": 7514.19,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d1b2756c397b461e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 652,
+    "generator_prompt_tokens": 652,
+    "completion_tokens": 53,
+    "total_ms": 7553.67
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The date of birth of Frederick of Liege's father is not provided in the given passages."
+      ]
+    }
+  }
+}

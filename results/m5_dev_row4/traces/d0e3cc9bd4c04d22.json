@@ -1,0 +1,181 @@
+{
+  "trace_id": "d0e3cc9bd4c04d22",
+  "created_at": "2026-11-22T12:26:41.500598+00:00",
+  "query": "How large is the collection of COVID-19 literature?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.82
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.85
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21396.06
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.93,
+      "bm25_ms": 5.55,
+      "n_candidates": {
+        "dense": 13,
+        "bm25": 11
+      },
+      "n_fused": 13,
+      "rerank": {
+        "n": 13,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "0a584ba5ecaf0a01:L0:000004",
+          "score": 2.4245858192443848,
+          "fused": 0.6654873409329377,
+          "dense_rank": 5,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 2.4245858192443848
+        },
+        {
+          "id": "0a584ba5ecaf0a01:L0:000000",
+          "score": 1.9696475267410278,
+          "fused": 0.918355785100364,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.9696475267410278
+        },
+        {
+          "id": "0a584ba5ecaf0a01:L0:000003",
+          "score": 0.9328266978263855,
+          "fused": 0.6905780398560504,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": 0.9328266978263855
+        },
+        {
+          "id": "0a584ba5ecaf0a01:L0:000001",
+          "score": -2.1029317378997803,
+          "fused": 0.5529952902709621,
+          "dense_rank": 3,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": -2.1029317378997803
+        },
+        {
+          "id": "0a584ba5ecaf0a01:L0:000002",
+          "score": -2.4765563011169434,
+          "fused": 0.5393998318699591,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 5,
+          "rerank": -2.4765563011169434
+        }
+      ],
+      "latency_ms": 10.79
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1205,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21385.04
+    }
+  },
+  "retrieved_ids": [
+    "0a584ba5ecaf0a01:L0:000004",
+    "0a584ba5ecaf0a01:L0:000000",
+    "0a584ba5ecaf0a01:L0:000003",
+    "0a584ba5ecaf0a01:L0:000001",
+    "0a584ba5ecaf0a01:L0:000002"
+  ],
+  "filtered_ids": [
+    "0a584ba5ecaf0a01:L0:000004",
+    "0a584ba5ecaf0a01:L0:000000",
+    "0a584ba5ecaf0a01:L0:000003",
+    "0a584ba5ecaf0a01:L0:000001",
+    "0a584ba5ecaf0a01:L0:000002"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:26:41.501334+00:00",
+      "call_id": "3d53e26e9e85",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a2c05ba99fde50b5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d0e3cc9bd4c04d22"
+    },
+    {
+      "ts": "2026-11-22T12:27:02.894917+00:00",
+      "call_id": "18b646879295",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "276936a6715019db",
+      "prompt_tokens": 1861,
+      "completion_tokens": 104,
+      "latency_ms": 21384.08,
+      "server_ms": 21357.84,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d0e3cc9bd4c04d22"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1861,
+    "generator_prompt_tokens": 1861,
+    "completion_tokens": 104,
+    "total_ms": 21398.53
+  },
+  "config_hash": "1cf51d8daba2",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

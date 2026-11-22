@@ -1,0 +1,183 @@
+{
+  "trace_id": "e66ee91f4ed14123",
+  "created_at": "2026-11-22T12:25:02.374920+00:00",
+  "query": "What is the McGurk effect?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.48
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.55
+    },
+    {
+      "state": "DONE",
+      "t_ms": 31728.84
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.36,
+      "bm25_ms": 4.73,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 10
+      },
+      "n_fused": 17,
+      "rerank": {
+        "n": 17,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "e391d7db6ce14ddd:L0:000004",
+          "score": 2.868407964706421,
+          "fused": 0.8786357470504025,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": 2.868407964706421
+        },
+        {
+          "id": "e391d7db6ce14ddd:L0:000000",
+          "score": 2.6909351348876953,
+          "fused": 0.9113785614715675,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 2.6909351348876953
+        },
+        {
+          "id": "e391d7db6ce14ddd:L0:000010",
+          "score": 2.6761839389801025,
+          "fused": 0.9388702239251023,
+          "dense_rank": 6,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.6761839389801025
+        },
+        {
+          "id": "e391d7db6ce14ddd:L0:000001",
+          "score": 2.2407429218292236,
+          "fused": 0.4571871611044674,
+          "dense_rank": 5,
+          "bm25_rank": 9,
+          "fused_rank": 7,
+          "rerank": 2.2407429218292236
+        },
+        {
+          "id": "e391d7db6ce14ddd:L0:000016",
+          "score": 1.991681694984436,
+          "fused": 0.6541377323045876,
+          "dense_rank": 9,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": 1.991681694984436
+        }
+      ],
+      "latency_ms": 10.43
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1352,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 31718.16
+    }
+  },
+  "retrieved_ids": [
+    "e391d7db6ce14ddd:L0:000004",
+    "e391d7db6ce14ddd:L0:000000",
+    "e391d7db6ce14ddd:L0:000010",
+    "e391d7db6ce14ddd:L0:000001",
+    "e391d7db6ce14ddd:L0:000016"
+  ],
+  "filtered_ids": [
+    "e391d7db6ce14ddd:L0:000004",
+    "e391d7db6ce14ddd:L0:000000",
+    "e391d7db6ce14ddd:L0:000010",
+    "e391d7db6ce14ddd:L0:000001",
+    "e391d7db6ce14ddd:L0:000016"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:25:02.377299+00:00",
+      "call_id": "c194777fe827",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "817dd4d1866b45aa",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e66ee91f4ed14123"
+    },
+    {
+      "ts": "2026-11-22T12:25:34.103097+00:00",
+      "call_id": "c6f37ce8ba28",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8a95d299320f49d2",
+      "prompt_tokens": 2020,
+      "completion_tokens": 174,
+      "latency_ms": 31716.94,
+      "server_ms": 31685.26,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e66ee91f4ed14123"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2020,
+    "generator_prompt_tokens": 2020,
+    "completion_tokens": 174,
+    "total_ms": 31730.6
+  },
+  "config_hash": "1cf51d8daba2",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The McGurk effect is an illusion for a language token (e.g. phoneme, word, sentence) $x$ by creating a video where an audio stream of $x$ is visually dubbed over by a person saying $x^{\backprime}\ne x$ ."
+      ]
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "trace_id": "9ec60a1efcf5497d",
+  "created_at": "2026-11-22T11:23:46.304852+00:00",
+  "query": "Where was the place of death of the director of film Romulus And The Sabines?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5489.25
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5490.18
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 17158.07
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 70.84,
+      "bm25_ms": 4.22,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5410.31
+      },
+      "hits": [
+        {
+          "id": "317e12ccd417c0d7:L0:000017",
+          "score": 1.44780433177948,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 1.44780433177948
+        },
+        {
+          "id": "99628090500247e3:L0:000204",
+          "score": -1.9644306898117065,
+          "fused": 0.22333582220290252,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 6,
+          "rerank": -1.9644306898117065
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000132",
+          "score": -2.0265069007873535,
+          "fused": 0.17664825279114477,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 12,
+          "rerank": -2.0265069007873535
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000144",
+          "score": -2.0609207153320312,
+          "fused": 0.22333582220290252,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -2.0609207153320312
+        },
+        {
+          "id": "460e441179bec402:L0:000080",
+          "score": -3.198734760284424,
+          "fused": 0.15179915290996318,
+          "dense_rank": 12,
+          "bm25_rank": null,
+          "fused_rank": 17,
+          "rerank": -3.198734760284424
+        }
+      ],
+      "latency_ms": 5489.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 481,
+      "latency_ms": 0.88
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11667.8
+    }
+  },
+  "retrieved_ids": [
+    "317e12ccd417c0d7:L0:000017",
+    "99628090500247e3:L0:000204",
+    "53c7288bdcd3837a:L0:000132",
+    "c73b757f0eb66f37:L0:000144",
+    "460e441179bec402:L0:000080"
+  ],
+  "filtered_ids": [
+    "317e12ccd417c0d7:L0:000017",
+    "99628090500247e3:L0:000204",
+    "53c7288bdcd3837a:L0:000132",
+    "c73b757f0eb66f37:L0:000144",
+    "460e441179bec402:L0:000080"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:23:46.375265+00:00",
+      "call_id": "7ad678a62ab3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "935b9caa9eb6e095",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 24,
+      "completion_tokens": 0,
+      "latency_ms": 69.01,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "9ec60a1efcf5497d"
+    },
+    {
+      "ts": "2026-11-22T11:24:03.463005+00:00",
+      "call_id": "73c106f0c834",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "300e8e9738404157",
+      "prompt_tokens": 1144,
+      "completion_tokens": 57,
+      "latency_ms": 11666.68,
+      "server_ms": 11645.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9ec60a1efcf5497d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1144,
+    "generator_prompt_tokens": 1144,
+    "completion_tokens": 57,
+    "total_ms": 17159.95
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The place of death of the director of film Romulus and the Sabines is not mentioned in the given passages."
+      ]
+    }
+  }
+}

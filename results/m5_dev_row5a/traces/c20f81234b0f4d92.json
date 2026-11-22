@@ -1,0 +1,250 @@
+{
+  "trace_id": "c20f81234b0f4d92",
+  "created_at": "2026-11-22T13:16:03.839271+00:00",
+  "query": "What baselines did they consider?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.37
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 40.24
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 14061.9
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14061.99
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.15,
+      "bm25_ms": 8.06,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 3
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "78a80b9567c95bc8:L0:000004",
+          "score": -1.55601167678833,
+          "fused": 0.1343332306382915,
+          "dense_rank": 16,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": -1.55601167678833
+        },
+        {
+          "id": "78a80b9567c95bc8:L0:000012",
+          "score": -2.340583324432373,
+          "fused": 0.24526437921915104,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -2.340583324432373
+        },
+        {
+          "id": "78a80b9567c95bc8:L0:000005",
+          "score": -3.2679812908172607,
+          "fused": 0.15118735580201179,
+          "dense_rank": 14,
+          "bm25_rank": null,
+          "fused_rank": 14,
+          "rerank": -3.2679812908172607
+        },
+        {
+          "id": "78a80b9567c95bc8:L0:000015",
+          "score": -4.981461524963379,
+          "fused": 0.7517313636673759,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -4.981461524963379
+        },
+        {
+          "id": "78a80b9567c95bc8:L0:000017",
+          "score": -5.627756595611572,
+          "fused": 0.26578028564883954,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 5,
+          "rerank": -5.627756595611572
+        }
+      ],
+      "latency_ms": 15.32
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 1367,
+      "dropped_threshold": [
+        "78a80b9567c95bc8:L0:000015",
+        "78a80b9567c95bc8:L0:000017"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 25,
+      "sentences_kept": 24,
+      "n_out": 3,
+      "tokens_out": 848,
+      "ms": 24.8,
+      "latency_ms": 24.81
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": -1.55601167678833,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14021.64
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 0.05
+    }
+  },
+  "retrieved_ids": [
+    "78a80b9567c95bc8:L0:000004",
+    "78a80b9567c95bc8:L0:000012",
+    "78a80b9567c95bc8:L0:000005",
+    "78a80b9567c95bc8:L0:000015",
+    "78a80b9567c95bc8:L0:000017"
+  ],
+  "filtered_ids": [
+    "78a80b9567c95bc8:L0:000004",
+    "78a80b9567c95bc8:L0:000012",
+    "78a80b9567c95bc8:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:16:03.841270+00:00",
+      "call_id": "7472c6a69c7a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "55ffdf097ef3be31",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c20f81234b0f4d92"
+    },
+    {
+      "ts": "2026-11-22T13:16:03.855990+00:00",
+      "call_id": "4f03c92584c5",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "55ffdf097ef3be31",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c20f81234b0f4d92"
+    },
+    {
+      "ts": "2026-11-22T13:16:03.877262+00:00",
+      "call_id": "be1da3b5703c",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "52cfd7e3ff8f751e",
+      "n_inputs": 25,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c20f81234b0f4d92"
+    },
+    {
+      "ts": "2026-11-22T13:16:17.900809+00:00",
+      "call_id": "98147566ca64",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8df53e96c2c68bf0",
+      "prompt_tokens": 1441,
+      "completion_tokens": 76,
+      "latency_ms": 14020.98,
+      "server_ms": 14005.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "c20f81234b0f4d92"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1441,
+    "generator_prompt_tokens": 1441,
+    "completion_tokens": 76,
+    "total_ms": 14062.59
+  },
+  "config_hash": "c4b7d9811844",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "They used state-of-the-art PDTB taggers for their baseline (BIBREF12) for the evaluation of the causality prediction of their models."
+      ]
+    }
+  }
+}

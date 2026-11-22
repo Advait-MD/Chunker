@@ -1,0 +1,180 @@
+{
+  "trace_id": "558fb9542e2140b2",
+  "created_at": "2026-11-22T11:48:48.072705+00:00",
+  "query": "What is the name of the castle in the birthplace of the performer of Bound by the Beauty?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.48
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.54
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10899.44
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.87,
+      "bm25_ms": 9.9,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "66f5caec1369ebaf:L0:000035",
+          "score": 2.4432687759399414,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.4432687759399414
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000160",
+          "score": -2.8990769386291504,
+          "fused": 0.18327495245708125,
+          "dense_rank": null,
+          "bm25_rank": 14,
+          "fused_rank": 18,
+          "rerank": -2.8990769386291504
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000133",
+          "score": -4.247965335845947,
+          "fused": 0.2818612158396183,
+          "dense_rank": 3,
+          "bm25_rank": 24,
+          "fused_rank": 9,
+          "rerank": -4.247965335845947
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000107",
+          "score": -5.169927597045898,
+          "fused": 0.34498652712319944,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -5.169927597045898
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000079",
+          "score": -5.7126312255859375,
+          "fused": 0.23071001916673162,
+          "dense_rank": null,
+          "bm25_rank": 10,
+          "fused_rank": 14,
+          "rerank": -5.7126312255859375
+        }
+      ],
+      "latency_ms": 19.42
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 568,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10879.82
+    }
+  },
+  "retrieved_ids": [
+    "66f5caec1369ebaf:L0:000035",
+    "ce290c1e5d5c6641:L0:000160",
+    "8679484d23bfd3a0:L0:000133",
+    "73dfa6a9bfcab050:L0:000107",
+    "ad11b6e85f908fb3:L0:000079"
+  ],
+  "filtered_ids": [
+    "66f5caec1369ebaf:L0:000035",
+    "ce290c1e5d5c6641:L0:000160",
+    "8679484d23bfd3a0:L0:000133",
+    "73dfa6a9bfcab050:L0:000107",
+    "ad11b6e85f908fb3:L0:000079"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:48:48.075705+00:00",
+      "call_id": "4e571554e0a2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a353d6d61190db01",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "558fb9542e2140b2"
+    },
+    {
+      "ts": "2026-11-22T11:48:58.971220+00:00",
+      "call_id": "924dcea31cf3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d611c7cd2a3d7ffd",
+      "prompt_tokens": 1256,
+      "completion_tokens": 45,
+      "latency_ms": 10878.74,
+      "server_ms": 10854.64,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "558fb9542e2140b2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1256,
+    "generator_prompt_tokens": 1256,
+    "completion_tokens": 45,
+    "total_ms": 10900.63
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

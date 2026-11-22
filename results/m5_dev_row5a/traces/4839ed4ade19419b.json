@@ -1,0 +1,246 @@
+{
+  "trace_id": "4839ed4ade19419b",
+  "created_at": "2026-11-22T12:49:50.662168+00:00",
+  "query": "During what war were the Russia-United Kingdom relations in a state of rivalry after the abdication of Emperor Nicholas II?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.04
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.16
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 41.16
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 12098.54
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12437.18
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.06,
+      "bm25_ms": 10.46,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "81fc433d55d23b4c:L0:000068",
+          "score": 6.601207256317139,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.601207256317139
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000155",
+          "score": 2.3751790523529053,
+          "fused": 0.7241152322463039,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 2.3751790523529053
+        },
+        {
+          "id": "20496f59538deb41:L0:000153",
+          "score": -1.2761236429214478,
+          "fused": 0.652068422597557,
+          "dense_rank": 3,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": -1.2761236429214478
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000027",
+          "score": -2.362330198287964,
+          "fused": 0.5556378252479903,
+          "dense_rank": 13,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -2.362330198287964
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000080",
+          "score": -3.6961331367492676,
+          "fused": 0.09964770090286615,
+          "dense_rank": null,
+          "bm25_rank": 15,
+          "fused_rank": 20,
+          "rerank": -3.6961331367492676
+        }
+      ],
+      "latency_ms": 18.02
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 654,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 21,
+      "sentences_kept": 18,
+      "n_out": 5,
+      "tokens_out": 580,
+      "ms": 22.9,
+      "latency_ms": 22.94
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 6.601207256317139,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12057.36
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 338.51
+    }
+  },
+  "retrieved_ids": [
+    "81fc433d55d23b4c:L0:000068",
+    "90976421f3f2bea2:L0:000155",
+    "20496f59538deb41:L0:000153",
+    "838c0e0106e6f015:L0:000027",
+    "5d0f6cf59ee42566:L0:000080"
+  ],
+  "filtered_ids": [
+    "81fc433d55d23b4c:L0:000068",
+    "90976421f3f2bea2:L0:000155",
+    "20496f59538deb41:L0:000153",
+    "838c0e0106e6f015:L0:000027",
+    "5d0f6cf59ee42566:L0:000080"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:49:50.664437+00:00",
+      "call_id": "f1bbeb2cc780",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "57198e5d30bc9be4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4839ed4ade19419b"
+    },
+    {
+      "ts": "2026-11-22T12:49:50.680605+00:00",
+      "call_id": "2be35f5e2df5",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "57198e5d30bc9be4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4839ed4ade19419b"
+    },
+    {
+      "ts": "2026-11-22T12:49:50.700966+00:00",
+      "call_id": "e3eb0eeba72d",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b792d670f4fcfc6d",
+      "n_inputs": 21,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4839ed4ade19419b"
+    },
+    {
+      "ts": "2026-11-22T12:50:02.759806+00:00",
+      "call_id": "50d9375411cf",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "3309a5f6b0a2135d",
+      "prompt_tokens": 1248,
+      "completion_tokens": 64,
+      "latency_ms": 12056.71,
+      "server_ms": 12040.45,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4839ed4ade19419b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1248,
+    "generator_prompt_tokens": 1248,
+    "completion_tokens": 64,
+    "total_ms": 12437.94
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

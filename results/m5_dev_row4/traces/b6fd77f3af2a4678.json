@@ -1,0 +1,180 @@
+{
+  "trace_id": "b6fd77f3af2a4678",
+  "created_at": "2026-11-22T11:49:57.962886+00:00",
+  "query": "When did the majority party in the House of Representatives gain control of the body which determines rules of the US House and US Senate?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 25.09
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 25.15
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19198.06
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.77,
+      "bm25_ms": 17.68,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "6683bfc7dec06e2a:L0:000153",
+          "score": 1.6642321348190308,
+          "fused": 0.6381738910746424,
+          "dense_rank": 6,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": 1.6642321348190308
+        },
+        {
+          "id": "c61175e20d09af4f:L0:000035",
+          "score": 0.5611841082572937,
+          "fused": 0.3494295526125505,
+          "dense_rank": 34,
+          "bm25_rank": 20,
+          "fused_rank": 19,
+          "rerank": 0.5611841082572937
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000106",
+          "score": 0.481644868850708,
+          "fused": 0.5689192723426414,
+          "dense_rank": 8,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": 0.481644868850708
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000198",
+          "score": 0.18818587064743042,
+          "fused": 0.6112197039820594,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 6,
+          "rerank": 0.18818587064743042
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000165",
+          "score": -0.020531848073005676,
+          "fused": 0.5059430543894637,
+          "dense_rank": 11,
+          "bm25_rank": 10,
+          "fused_rank": 10,
+          "rerank": -0.020531848073005676
+        }
+      ],
+      "latency_ms": 25.04
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 661,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19172.77
+    }
+  },
+  "retrieved_ids": [
+    "6683bfc7dec06e2a:L0:000153",
+    "c61175e20d09af4f:L0:000035",
+    "6bddce8aaad42fea:L0:000106",
+    "6683bfc7dec06e2a:L0:000198",
+    "f109b032e24ab27a:L0:000165"
+  ],
+  "filtered_ids": [
+    "6683bfc7dec06e2a:L0:000153",
+    "c61175e20d09af4f:L0:000035",
+    "6bddce8aaad42fea:L0:000106",
+    "6683bfc7dec06e2a:L0:000198",
+    "f109b032e24ab27a:L0:000165"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:49:57.966887+00:00",
+      "call_id": "a010f68a18af",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ee97204bca413189",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b6fd77f3af2a4678"
+    },
+    {
+      "ts": "2026-11-22T11:50:17.160441+00:00",
+      "call_id": "f0f4b3a57416",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bf7f34d2e77d625c",
+      "prompt_tokens": 1357,
+      "completion_tokens": 116,
+      "latency_ms": 19171.56,
+      "server_ms": 19143.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b6fd77f3af2a4678"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1357,
+    "generator_prompt_tokens": 1357,
+    "completion_tokens": 116,
+    "total_ms": 19200.17
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

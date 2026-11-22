@@ -1,0 +1,246 @@
+{
+  "trace_id": "a6d3d9b921104539",
+  "created_at": "2026-11-22T13:07:24.636659+00:00",
+  "query": "What was the 2017 population of the country where Bedari was made?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.86
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 42.68
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 15163.89
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15164.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.8,
+      "bm25_ms": 10.0,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "73dfa6a9bfcab050:L0:000047",
+          "score": 1.6618293523788452,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 1.6618293523788452
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000033",
+          "score": -1.9509367942810059,
+          "fused": 0.7667480028792895,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": -1.9509367942810059
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000141",
+          "score": -2.0667145252227783,
+          "fused": 0.20014430851875095,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 18,
+          "rerank": -2.0667145252227783
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000079",
+          "score": -2.6772279739379883,
+          "fused": 0.2781465126988522,
+          "dense_rank": 27,
+          "bm25_rank": 8,
+          "fused_rank": 6,
+          "rerank": -2.6772279739379883
+        },
+        {
+          "id": "4b634e52029ddab4:L0:000055",
+          "score": -2.7514352798461914,
+          "fused": 0.2590293645683134,
+          "dense_rank": 8,
+          "bm25_rank": 23,
+          "fused_rank": 7,
+          "rerank": -2.7514352798461914
+        }
+      ],
+      "latency_ms": 17.8
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 635,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 21,
+      "sentences_kept": 16,
+      "n_out": 5,
+      "tokens_out": 558,
+      "ms": 24.7,
+      "latency_ms": 24.76
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 1.6618293523788452,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15121.18
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 0.47
+    }
+  },
+  "retrieved_ids": [
+    "73dfa6a9bfcab050:L0:000047",
+    "ce290c1e5d5c6641:L0:000033",
+    "6683bfc7dec06e2a:L0:000141",
+    "e182527d2b1ecac3:L0:000079",
+    "4b634e52029ddab4:L0:000055"
+  ],
+  "filtered_ids": [
+    "73dfa6a9bfcab050:L0:000047",
+    "ce290c1e5d5c6641:L0:000033",
+    "6683bfc7dec06e2a:L0:000141",
+    "e182527d2b1ecac3:L0:000079",
+    "4b634e52029ddab4:L0:000055"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:07:24.638656+00:00",
+      "call_id": "3199800df1c4",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cca6b317c05774fa",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a6d3d9b921104539"
+    },
+    {
+      "ts": "2026-11-22T13:07:24.656820+00:00",
+      "call_id": "3fa38a923e10",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cca6b317c05774fa",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a6d3d9b921104539"
+    },
+    {
+      "ts": "2026-11-22T13:07:24.677629+00:00",
+      "call_id": "6fa108337a98",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fdfd505b8354265e",
+      "n_inputs": 20,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a6d3d9b921104539"
+    },
+    {
+      "ts": "2026-11-22T13:07:39.800320+00:00",
+      "call_id": "e90639a60ce0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "19a18b784fd1214d",
+      "prompt_tokens": 1281,
+      "completion_tokens": 80,
+      "latency_ms": 15120.23,
+      "server_ms": 15098.59,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a6d3d9b921104539"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1281,
+    "generator_prompt_tokens": 1281,
+    "completion_tokens": 80,
+    "total_ms": 15165.67
+  },
+  "config_hash": "1c92a20b0713",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

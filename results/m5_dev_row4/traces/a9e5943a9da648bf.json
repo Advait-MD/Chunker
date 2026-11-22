@@ -1,0 +1,182 @@
+{
+  "trace_id": "a9e5943a9da648bf",
+  "created_at": "2026-11-22T11:46:19.497538+00:00",
+  "query": "Who is the wife of the man who produced the documentary of the pop star who sings I Want to Rock With You?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 20.45
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 20.51
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14914.64
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.38,
+      "bm25_ms": 13.99,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "ce57fdde2baaba9c:L0:000110",
+          "score": -0.7124471068382263,
+          "fused": 0.7415916803396223,
+          "dense_rank": 1,
+          "bm25_rank": 10,
+          "fused_rank": 1,
+          "rerank": -0.7124471068382263
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000178",
+          "score": -0.9752607345581055,
+          "fused": 0.4228943358919265,
+          "dense_rank": 2,
+          "bm25_rank": 18,
+          "fused_rank": 13,
+          "rerank": -0.9752607345581055
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000128",
+          "score": -2.4447128772735596,
+          "fused": 0.509603274089434,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": -2.4447128772735596
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000093",
+          "score": -4.878735065460205,
+          "fused": 0.2839173398649253,
+          "dense_rank": null,
+          "bm25_rank": 15,
+          "fused_rank": 17,
+          "rerank": -4.878735065460205
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000024",
+          "score": -4.951941967010498,
+          "fused": 0.34794918809494435,
+          "dense_rank": 3,
+          "bm25_rank": 22,
+          "fused_rank": 15,
+          "rerank": -4.951941967010498
+        }
+      ],
+      "latency_ms": 20.41
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 667,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14894.01
+    }
+  },
+  "retrieved_ids": [
+    "ce57fdde2baaba9c:L0:000110",
+    "f3503d3d186f0f90:L0:000178",
+    "8679484d23bfd3a0:L0:000128",
+    "e182527d2b1ecac3:L0:000093",
+    "5a1a5bbda9db013e:L0:000024"
+  ],
+  "filtered_ids": [
+    "ce57fdde2baaba9c:L0:000110",
+    "f3503d3d186f0f90:L0:000178",
+    "8679484d23bfd3a0:L0:000128",
+    "e182527d2b1ecac3:L0:000093",
+    "5a1a5bbda9db013e:L0:000024"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:46:19.498535+00:00",
+      "call_id": "b50a5e1f939e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7958abbefa2f9e9f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a9e5943a9da648bf"
+    },
+    {
+      "ts": "2026-11-22T11:46:34.410710+00:00",
+      "call_id": "d91114de048d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6ec01bae8c0b7406",
+      "prompt_tokens": 1286,
+      "completion_tokens": 74,
+      "latency_ms": 14892.58,
+      "server_ms": 14869.48,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a9e5943a9da648bf"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1286,
+    "generator_prompt_tokens": 1286,
+    "completion_tokens": 74,
+    "total_ms": 14915.93
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4,
+        3,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

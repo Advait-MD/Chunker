@@ -1,0 +1,247 @@
+{
+  "trace_id": "1c2b2c38571c4d84",
+  "created_at": "2026-11-22T12:51:26.188985+00:00",
+  "query": "New York State Route 9R rejoins its parent in a hamlet located  in what New York County?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16.83
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 50.12
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 13539.19
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14666.5
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.75,
+      "bm25_ms": 10.9,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "8e50522b7cb636d8:L0:000016",
+          "score": 10.721478462219238,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 10.721478462219238
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000106",
+          "score": 2.3898603916168213,
+          "fused": 0.696692894930593,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 2.3898603916168213
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000036",
+          "score": 0.5184674859046936,
+          "fused": 0.391207679827498,
+          "dense_rank": 12,
+          "bm25_rank": 11,
+          "fused_rank": 10,
+          "rerank": 0.5184674859046936
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000011",
+          "score": 0.02899879217147827,
+          "fused": 0.41940579631566627,
+          "dense_rank": 14,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": 0.02899879217147827
+        },
+        {
+          "id": "b120b09075017d08:L0:000006",
+          "score": -0.23384763300418854,
+          "fused": 0.5592184254472317,
+          "dense_rank": 2,
+          "bm25_rank": 7,
+          "fused_rank": 6,
+          "rerank": -0.23384763300418854
+        }
+      ],
+      "latency_ms": 16.79
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 649,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 28,
+      "sentences_kept": 13,
+      "n_out": 5,
+      "tokens_out": 417,
+      "ms": 33.2,
+      "latency_ms": 33.23
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 10.721478462219238,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13489.05
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 1127.14
+    }
+  },
+  "retrieved_ids": [
+    "8e50522b7cb636d8:L0:000016",
+    "5d0f6cf59ee42566:L0:000106",
+    "cc2399aca11eb631:L0:000036",
+    "81fc433d55d23b4c:L0:000011",
+    "b120b09075017d08:L0:000006"
+  ],
+  "filtered_ids": [
+    "8e50522b7cb636d8:L0:000016",
+    "5d0f6cf59ee42566:L0:000106",
+    "cc2399aca11eb631:L0:000036",
+    "81fc433d55d23b4c:L0:000011",
+    "b120b09075017d08:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:51:26.190984+00:00",
+      "call_id": "acec96edfdec",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8b5aedaa753fe05d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1c2b2c38571c4d84"
+    },
+    {
+      "ts": "2026-11-22T12:51:26.206622+00:00",
+      "call_id": "1985c6f6dcff",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8b5aedaa753fe05d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1c2b2c38571c4d84"
+    },
+    {
+      "ts": "2026-11-22T12:51:26.235755+00:00",
+      "call_id": "cc4a7a03b74a",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1cced9786078bd3f",
+      "n_inputs": 28,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1c2b2c38571c4d84"
+    },
+    {
+      "ts": "2026-11-22T12:51:39.727026+00:00",
+      "call_id": "d69fb0b60a19",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "49bf1f062cb16183",
+      "prompt_tokens": 1040,
+      "completion_tokens": 85,
+      "latency_ms": 13488.13,
+      "server_ms": 13467.82,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1c2b2c38571c4d84"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1040,
+    "generator_prompt_tokens": 1040,
+    "completion_tokens": 85,
+    "total_ms": 14667.95
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

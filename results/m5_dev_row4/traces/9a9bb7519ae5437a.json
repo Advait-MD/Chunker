@@ -1,0 +1,181 @@
+{
+  "trace_id": "9a9bb7519ae5437a",
+  "created_at": "2026-11-22T11:32:35.967536+00:00",
+  "query": "Pandikona and Berger Blanc Suisse are both what kinds of animals?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7006.85
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7007.89
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18602.24
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.95,
+      "bm25_ms": 9.95,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6989.22
+      },
+      "hits": [
+        {
+          "id": "b120b09075017d08:L0:000126",
+          "score": 7.482632160186768,
+          "fused": 0.7247397117448242,
+          "dense_rank": 33,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.482632160186768
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000057",
+          "score": 7.401064395904541,
+          "fused": 0.24434216084165608,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 11,
+          "rerank": 7.401064395904541
+        },
+        {
+          "id": "b120b09075017d08:L0:000073",
+          "score": -4.909298419952393,
+          "fused": 0.2995150295818918,
+          "dense_rank": 4,
+          "bm25_rank": 13,
+          "fused_rank": 6,
+          "rerank": -4.909298419952393
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000154",
+          "score": -6.6524553298950195,
+          "fused": 0.25355977633852056,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 8,
+          "rerank": -6.6524553298950195
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000135",
+          "score": -6.679802894592285,
+          "fused": 0.32409795745617287,
+          "dense_rank": 1,
+          "bm25_rank": 25,
+          "fused_rank": 4,
+          "rerank": -6.679802894592285
+        }
+      ],
+      "latency_ms": 7006.81
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 507,
+      "latency_ms": 0.99
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11594.22
+    }
+  },
+  "retrieved_ids": [
+    "b120b09075017d08:L0:000126",
+    "c8fd2b3ea47eb07f:L0:000057",
+    "b120b09075017d08:L0:000073",
+    "ec3410ef955c5c93:L0:000154",
+    "8e50522b7cb636d8:L0:000135"
+  ],
+  "filtered_ids": [
+    "b120b09075017d08:L0:000126",
+    "c8fd2b3ea47eb07f:L0:000057",
+    "b120b09075017d08:L0:000073",
+    "ec3410ef955c5c93:L0:000154",
+    "8e50522b7cb636d8:L0:000135"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:32:35.968939+00:00",
+      "call_id": "43087f9e0fa6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "60ce07cc0c26b9ee",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9a9bb7519ae5437a"
+    },
+    {
+      "ts": "2026-11-22T11:32:54.566327+00:00",
+      "call_id": "aca1cfdd24fb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4e4ed87ac9fc5243",
+      "prompt_tokens": 1099,
+      "completion_tokens": 55,
+      "latency_ms": 11590.99,
+      "server_ms": 11567.01,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9a9bb7519ae5437a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1099,
+    "generator_prompt_tokens": 1099,
+    "completion_tokens": 55,
+    "total_ms": 18606.12
+  },
+  "config_hash": "00ac4473fd53",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

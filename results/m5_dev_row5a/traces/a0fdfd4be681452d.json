@@ -1,0 +1,246 @@
+{
+  "trace_id": "a0fdfd4be681452d",
+  "created_at": "2026-11-22T12:45:34.986187+00:00",
+  "query": "Ken Pruitt  was a Republican member of an upper house of the legislature with how many members ?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 27.29
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 77.91
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 11706.41
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11708.24
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.67,
+      "bm25_ms": 11.86,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "634431bb1e27714f:L0:000038",
+          "score": 6.205348491668701,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 3,
+          "rerank": 6.205348491668701
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000087",
+          "score": 2.39092755317688,
+          "fused": 0.7892481334283108,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 1,
+          "rerank": 2.39092755317688
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000193",
+          "score": 1.304388403892517,
+          "fused": 0.7083854055938887,
+          "dense_rank": 7,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.304388403892517
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000102",
+          "score": 1.2358014583587646,
+          "fused": 0.6314554702358459,
+          "dense_rank": 6,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 1.2358014583587646
+        },
+        {
+          "id": "634431bb1e27714f:L0:000024",
+          "score": 0.8334192633628845,
+          "fused": 0.6965398990268749,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 0.8334192633628845
+        }
+      ],
+      "latency_ms": 27.2
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 436,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 21,
+      "sentences_kept": 18,
+      "n_out": 5,
+      "tokens_out": 408,
+      "ms": 50.4,
+      "latency_ms": 50.5
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 6.205348491668701,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11628.45
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 1.64
+    }
+  },
+  "retrieved_ids": [
+    "634431bb1e27714f:L0:000038",
+    "cb96563b0747a6ba:L0:000087",
+    "bc1dba3471045f02:L0:000193",
+    "bc1dba3471045f02:L0:000102",
+    "634431bb1e27714f:L0:000024"
+  ],
+  "filtered_ids": [
+    "634431bb1e27714f:L0:000038",
+    "cb96563b0747a6ba:L0:000087",
+    "bc1dba3471045f02:L0:000193",
+    "bc1dba3471045f02:L0:000102",
+    "634431bb1e27714f:L0:000024"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:45:34.989186+00:00",
+      "call_id": "1b5c40561121",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "842401113a6d3c76",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a0fdfd4be681452d"
+    },
+    {
+      "ts": "2026-11-22T12:45:35.015660+00:00",
+      "call_id": "96914b9bb9e9",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "842401113a6d3c76",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a0fdfd4be681452d"
+    },
+    {
+      "ts": "2026-11-22T12:45:35.059333+00:00",
+      "call_id": "23fd6c7c840e",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d70c4a37b46fb538",
+      "n_inputs": 21,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a0fdfd4be681452d"
+    },
+    {
+      "ts": "2026-11-22T12:45:46.691573+00:00",
+      "call_id": "d8215da4d4cc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "30a857be88422551",
+      "prompt_tokens": 992,
+      "completion_tokens": 54,
+      "latency_ms": 11626.47,
+      "server_ms": 11598.43,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a0fdfd4be681452d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 992,
+    "generator_prompt_tokens": 992,
+    "completion_tokens": 54,
+    "total_ms": 11710.23
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

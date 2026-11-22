@@ -1,0 +1,182 @@
+{
+  "trace_id": "1f508436866140bb",
+  "created_at": "2026-11-22T12:01:33.197127+00:00",
+  "query": "What does the author likely think will happen if democracy does not evolve?\n\nOptions:\n(A) The article is unclear on this question\n(B) Nothing, the author wants to make a functioning system better\n(C) Dissatisfaction will eventually lead to another age of dictators\n(D) Less people will participate\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 28.99
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 29.07
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20109.46
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.05,
+      "bm25_ms": 22.66,
+      "n_candidates": {
+        "dense": 10,
+        "bm25": 10
+      },
+      "n_fused": 10,
+      "rerank": {
+        "n": 10,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "02facda9aeb8e139:L0:000009",
+          "score": -2.7128138542175293,
+          "fused": 0.4859233482670463,
+          "dense_rank": 3,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": -2.7128138542175293
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000007",
+          "score": -2.969679117202759,
+          "fused": 0.7498040804782155,
+          "dense_rank": 5,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": -2.969679117202759
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000006",
+          "score": -3.476607322692871,
+          "fused": 0.08831984766074721,
+          "dense_rank": 6,
+          "bm25_rank": 10,
+          "fused_rank": 10,
+          "rerank": -3.476607322692871
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000003",
+          "score": -3.848705530166626,
+          "fused": 0.09633054529499102,
+          "dense_rank": 10,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": -3.848705530166626
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000008",
+          "score": -3.889371871948242,
+          "fused": 0.54146124067558,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -3.889371871948242
+        }
+      ],
+      "latency_ms": 28.95
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1924,
+      "latency_ms": 0.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 20080.24
+    }
+  },
+  "retrieved_ids": [
+    "02facda9aeb8e139:L0:000009",
+    "02facda9aeb8e139:L0:000007",
+    "02facda9aeb8e139:L0:000006",
+    "02facda9aeb8e139:L0:000003",
+    "02facda9aeb8e139:L0:000008"
+  ],
+  "filtered_ids": [
+    "02facda9aeb8e139:L0:000009",
+    "02facda9aeb8e139:L0:000007",
+    "02facda9aeb8e139:L0:000006",
+    "02facda9aeb8e139:L0:000003",
+    "02facda9aeb8e139:L0:000008"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:01:33.198128+00:00",
+      "call_id": "edbc5988da10",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6e552772a59665f5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1f508436866140bb"
+    },
+    {
+      "ts": "2026-11-22T12:01:53.305242+00:00",
+      "call_id": "195e757ea604",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d1dab72d24126fb1",
+      "prompt_tokens": 2503,
+      "completion_tokens": 72,
+      "latency_ms": 20078.64,
+      "server_ms": 20030.87,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1f508436866140bb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2503,
+    "generator_prompt_tokens": 2503,
+    "completion_tokens": 72,
+    "total_ms": 20110.59
+  },
+  "config_hash": "403cb8f3227b",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

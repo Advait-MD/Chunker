@@ -1,0 +1,248 @@
+{
+  "trace_id": "9ba38e3a07cc464b",
+  "created_at": "2026-11-22T12:54:44.696667+00:00",
+  "query": "Who lived longer, Friedrich Paschen or Ernst Bessey?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.8
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 55.36
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 11144.67
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12214.15
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.38,
+      "bm25_ms": 8.23,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000183",
+          "score": 6.46768045425415,
+          "fused": 0.5764003558557766,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 6.46768045425415
+        },
+        {
+          "id": "460e441179bec402:L0:000100",
+          "score": 5.952315330505371,
+          "fused": 0.8181617113952904,
+          "dense_rank": 22,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.952315330505371
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000111",
+          "score": -6.929264068603516,
+          "fused": 0.21086971853832895,
+          "dense_rank": 8,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -6.929264068603516
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000138",
+          "score": -7.247183799743652,
+          "fused": 0.2475511395854668,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 10,
+          "rerank": -7.247183799743652
+        },
+        {
+          "id": "460e441179bec402:L0:000173",
+          "score": -7.292945384979248,
+          "fused": 0.21390776678487097,
+          "dense_rank": 7,
+          "bm25_rank": null,
+          "fused_rank": 13,
+          "rerank": -7.292945384979248
+        }
+      ],
+      "latency_ms": 18.71
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 813,
+      "dropped_threshold": [
+        "53c7288bdcd3837a:L0:000111",
+        "c73b757f0eb66f37:L0:000138",
+        "460e441179bec402:L0:000173"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 17,
+      "sentences_kept": 6,
+      "n_out": 2,
+      "tokens_out": 132,
+      "ms": 36.4,
+      "latency_ms": 36.47
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 6.46768045425415,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11089.27
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 1069.34
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000183",
+    "460e441179bec402:L0:000100",
+    "53c7288bdcd3837a:L0:000111",
+    "c73b757f0eb66f37:L0:000138",
+    "460e441179bec402:L0:000173"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000183",
+    "460e441179bec402:L0:000100"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:54:44.699675+00:00",
+      "call_id": "bf1967e26ffe",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0e7e792bc9cdc6ab",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9ba38e3a07cc464b"
+    },
+    {
+      "ts": "2026-11-22T12:54:44.718023+00:00",
+      "call_id": "82cf8856d95e",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0e7e792bc9cdc6ab",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9ba38e3a07cc464b"
+    },
+    {
+      "ts": "2026-11-22T12:54:44.748956+00:00",
+      "call_id": "b5446978ddb5",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1c92ccad548014ca",
+      "n_inputs": 17,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9ba38e3a07cc464b"
+    },
+    {
+      "ts": "2026-11-22T12:54:55.840297+00:00",
+      "call_id": "3faae89d414b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c931584020ab2489",
+      "prompt_tokens": 596,
+      "completion_tokens": 82,
+      "latency_ms": 11087.77,
+      "server_ms": 11061.61,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9ba38e3a07cc464b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 596,
+    "generator_prompt_tokens": 596,
+    "completion_tokens": 82,
+    "total_ms": 12215.42
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

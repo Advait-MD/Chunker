@@ -1,0 +1,181 @@
+{
+  "trace_id": "e12327bcdfd24508",
+  "created_at": "2026-11-22T11:28:33.827538+00:00",
+  "query": "Which major international airport in south-east England ranks as the 8th busiest airport in Europe and replaced Croydon Airport?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6210.6
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6210.96
+    },
+    {
+      "state": "DONE",
+      "t_ms": 20098.44
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.02,
+      "bm25_ms": 19.84,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6178.46
+      },
+      "hits": [
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000118",
+          "score": 8.406488418579102,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.406488418579102
+        },
+        {
+          "id": "20496f59538deb41:L0:000162",
+          "score": 5.6034135818481445,
+          "fused": 0.7726081684896953,
+          "dense_rank": 27,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 5.6034135818481445
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000005",
+          "score": 1.407948613166809,
+          "fused": 0.8169120520411643,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": 1.407948613166809
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000134",
+          "score": -0.37845373153686523,
+          "fused": 0.5480125368260194,
+          "dense_rank": 7,
+          "bm25_rank": 14,
+          "fused_rank": 13,
+          "rerank": -0.37845373153686523
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000147",
+          "score": -2.941429853439331,
+          "fused": 0.6023367396731109,
+          "dense_rank": 16,
+          "bm25_rank": 9,
+          "fused_rank": 12,
+          "rerank": -2.941429853439331
+        }
+      ],
+      "latency_ms": 6210.55
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 639,
+      "latency_ms": 0.32
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13887.27
+    }
+  },
+  "retrieved_ids": [
+    "ba3cd068cf9ac2e4:L0:000118",
+    "20496f59538deb41:L0:000162",
+    "ba3cd068cf9ac2e4:L0:000005",
+    "c8fd2b3ea47eb07f:L0:000134",
+    "cb96563b0747a6ba:L0:000147"
+  ],
+  "filtered_ids": [
+    "ba3cd068cf9ac2e4:L0:000118",
+    "20496f59538deb41:L0:000162",
+    "ba3cd068cf9ac2e4:L0:000005",
+    "c8fd2b3ea47eb07f:L0:000134",
+    "cb96563b0747a6ba:L0:000147"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:28:33.828946+00:00",
+      "call_id": "86acc1b0eccd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b4c86fb391d57308",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e12327bcdfd24508"
+    },
+    {
+      "ts": "2026-11-22T11:28:53.924877+00:00",
+      "call_id": "a0de0f6a27b6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4c8efbe8f67493d0",
+      "prompt_tokens": 1303,
+      "completion_tokens": 66,
+      "latency_ms": 13885.96,
+      "server_ms": 13860.49,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e12327bcdfd24508"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1303,
+    "generator_prompt_tokens": 1303,
+    "completion_tokens": 66,
+    "total_ms": 20100.16
+  },
+  "config_hash": "00ac4473fd53",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

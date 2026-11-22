@@ -1,0 +1,181 @@
+{
+  "trace_id": "2119e1151c244960",
+  "created_at": "2026-11-22T11:56:46.518321+00:00",
+  "query": "Why does Turner become afraid of the psychiatrist?\n\nOptions:\n(A) He realizes he is actually the police officer who beat him up. \n(B) He pulls a gun on him. \n(C) He knows things about his childhood that he never told anyone. \n(D) He kidnapped the Dr. Rickenbacker. \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 30.68
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 30.73
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25682.8
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.31,
+      "bm25_ms": 21.26,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 19
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000011",
+          "score": -2.1538426876068115,
+          "fused": 0.9773110251847932,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -2.1538426876068115
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000010",
+          "score": -3.3106298446655273,
+          "fused": 0.50232294752483,
+          "dense_rank": 8,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -3.3106298446655273
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000012",
+          "score": -3.478447437286377,
+          "fused": 0.6343606273475867,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -3.478447437286377
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000008",
+          "score": -4.014008045196533,
+          "fused": 0.5832287867155992,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -4.014008045196533
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000015",
+          "score": -4.881528854370117,
+          "fused": 0.2715379092276277,
+          "dense_rank": 7,
+          "bm25_rank": 9,
+          "fused_rank": 8,
+          "rerank": -4.881528854370117
+        }
+      ],
+      "latency_ms": 30.64
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1971,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25651.91
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000011",
+    "2ecd3be7264ff150:L0:000010",
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000008",
+    "2ecd3be7264ff150:L0:000015"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000011",
+    "2ecd3be7264ff150:L0:000010",
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000008",
+    "2ecd3be7264ff150:L0:000015"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:56:46.520320+00:00",
+      "call_id": "c29bb91d2e00",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8f8d777222e8993e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2119e1151c244960"
+    },
+    {
+      "ts": "2026-11-22T11:57:12.200090+00:00",
+      "call_id": "ba42100aef3a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "79c50bcf1467cde2",
+      "prompt_tokens": 2546,
+      "completion_tokens": 68,
+      "latency_ms": 25650.84,
+      "server_ms": 25626.19,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2119e1151c244960"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2546,
+    "generator_prompt_tokens": 2546,
+    "completion_tokens": 68,
+    "total_ms": 25685.15
+  },
+  "config_hash": "403cb8f3227b",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

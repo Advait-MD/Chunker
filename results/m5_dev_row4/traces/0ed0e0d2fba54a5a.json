@@ -1,0 +1,180 @@
+{
+  "trace_id": "0ed0e0d2fba54a5a",
+  "created_at": "2026-11-22T10:48:20.992456+00:00",
+  "query": "Where does the founder of Les Films Du Losange work at?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 65858.35
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 65858.45
+    },
+    {
+      "state": "DONE",
+      "t_ms": 128769.77
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 21.66,
+      "bm25_ms": 4.66,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 65814.67
+      },
+      "hits": [
+        {
+          "id": "99628090500247e3:L0:000143",
+          "score": 6.406486988067627,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.406486988067627
+        },
+        {
+          "id": "abe982d210232c3f:L0:000032",
+          "score": -1.914303183555603,
+          "fused": 0.3084144978465497,
+          "dense_rank": 18,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": -1.914303183555603
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000086",
+          "score": -3.3650474548339844,
+          "fused": 0.3803683099556495,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -3.3650474548339844
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000106",
+          "score": -4.9018964767456055,
+          "fused": 0.4523351441911113,
+          "dense_rank": 2,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": -4.9018964767456055
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000178",
+          "score": -5.640028476715088,
+          "fused": 0.5240030486814545,
+          "dense_rank": 6,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -5.640028476715088
+        }
+      ],
+      "latency_ms": 65858.28
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 617,
+      "latency_ms": 0.07
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 62910.82
+    }
+  },
+  "retrieved_ids": [
+    "99628090500247e3:L0:000143",
+    "abe982d210232c3f:L0:000032",
+    "6af2db6cb86d77e2:L0:000086",
+    "317e12ccd417c0d7:L0:000106",
+    "53c7288bdcd3837a:L0:000178"
+  ],
+  "filtered_ids": [
+    "99628090500247e3:L0:000143",
+    "abe982d210232c3f:L0:000032",
+    "6af2db6cb86d77e2:L0:000086",
+    "317e12ccd417c0d7:L0:000106",
+    "53c7288bdcd3837a:L0:000178"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T10:48:20.997632+00:00",
+      "call_id": "8e4481b62155",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3d55a703fcd638c4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0ed0e0d2fba54a5a"
+    },
+    {
+      "ts": "2026-11-22T10:50:29.759138+00:00",
+      "call_id": "bdf7e79f4b04",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b44e39ba147a7c70",
+      "prompt_tokens": 1269,
+      "completion_tokens": 80,
+      "latency_ms": 62877.64,
+      "server_ms": 62837.78,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0ed0e0d2fba54a5a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1269,
+    "generator_prompt_tokens": 1269,
+    "completion_tokens": 80,
+    "total_ms": 128772.59
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

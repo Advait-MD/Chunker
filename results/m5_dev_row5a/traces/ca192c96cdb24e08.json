@@ -1,0 +1,247 @@
+{
+  "trace_id": "ca192c96cdb24e08",
+  "created_at": "2026-11-22T12:54:56.927697+00:00",
+  "query": "Which film has the director born later, The Fighting Demon or Blood Of The Losers?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.55
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 58.32
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 13017.6
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13576.45
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.37,
+      "bm25_ms": 5.79,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000111",
+          "score": 8.772835731506348,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 8.772835731506348
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000119",
+          "score": 8.158696174621582,
+          "fused": 0.8145661020313146,
+          "dense_rank": 7,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 8.158696174621582
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -2.396764039993286,
+          "fused": 0.17200386186075006,
+          "dense_rank": 11,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -2.396764039993286
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": -2.6497273445129395,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 4,
+          "rerank": -2.6497273445129395
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000176",
+          "score": -3.3999574184417725,
+          "fused": 0.3145072271136506,
+          "dense_rank": 2,
+          "bm25_rank": 24,
+          "fused_rank": 3,
+          "rerank": -3.3999574184417725
+        }
+      ],
+      "latency_ms": 13.5
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 1120,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 36,
+      "sentences_kept": 5,
+      "n_out": 5,
+      "tokens_out": 140,
+      "ms": 44.7,
+      "latency_ms": 44.71
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 8.772835731506348,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12959.26
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 558.66
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000111",
+    "6af2db6cb86d77e2:L0:000119",
+    "b04ce6dd2d95fb80:L0:000152",
+    "abe982d210232c3f:L0:000151",
+    "4a757779abfb4ba1:L0:000176"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000111",
+    "6af2db6cb86d77e2:L0:000119",
+    "b04ce6dd2d95fb80:L0:000152",
+    "abe982d210232c3f:L0:000151",
+    "4a757779abfb4ba1:L0:000176"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:54:56.929697+00:00",
+      "call_id": "ddb5339ede1f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3d44f790f08baf78",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ca192c96cdb24e08"
+    },
+    {
+      "ts": "2026-11-22T12:54:56.943237+00:00",
+      "call_id": "6bc19eb6bb2f",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3d44f790f08baf78",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ca192c96cdb24e08"
+    },
+    {
+      "ts": "2026-11-22T12:54:56.982435+00:00",
+      "call_id": "f0cbb8ed1a07",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "eb1805ef2957f7b8",
+      "n_inputs": 36,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ca192c96cdb24e08"
+    },
+    {
+      "ts": "2026-11-22T12:55:09.945329+00:00",
+      "call_id": "0bf23a54826e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8854da90e9e6e256",
+      "prompt_tokens": 708,
+      "completion_tokens": 97,
+      "latency_ms": 12958.63,
+      "server_ms": 12945.96,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ca192c96cdb24e08"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 708,
+    "generator_prompt_tokens": 708,
+    "completion_tokens": 97,
+    "total_ms": 13577.74
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "trace_id": "a79e6dcf1b624692",
+  "created_at": "2026-11-22T11:50:41.661041+00:00",
+  "query": "Who won the All-Star MVP for the league that the team that has attended the competition where they give out the MLB MVP award after the most?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 27.01
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 27.07
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16226.0
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.87,
+      "bm25_ms": 21.53,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "dbcbda865eee9c7b:L0:000002",
+          "score": 4.830712795257568,
+          "fused": 0.9858994055026791,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.830712795257568
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000057",
+          "score": -1.2926042079925537,
+          "fused": 0.8215075905991367,
+          "dense_rank": 6,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -1.2926042079925537
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000022",
+          "score": -1.3280465602874756,
+          "fused": 0.4300936313770354,
+          "dense_rank": 23,
+          "bm25_rank": 12,
+          "fused_rank": 9,
+          "rerank": -1.3280465602874756
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000107",
+          "score": -2.072866916656494,
+          "fused": 0.6038433837290997,
+          "dense_rank": 19,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -2.072866916656494
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000074",
+          "score": -2.4268107414245605,
+          "fused": 0.41518214292532535,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 10,
+          "rerank": -2.4268107414245605
+        }
+      ],
+      "latency_ms": 26.97
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 788,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16198.83
+    }
+  },
+  "retrieved_ids": [
+    "dbcbda865eee9c7b:L0:000002",
+    "5a1a5bbda9db013e:L0:000057",
+    "8679484d23bfd3a0:L0:000022",
+    "ad11b6e85f908fb3:L0:000107",
+    "ad11b6e85f908fb3:L0:000074"
+  ],
+  "filtered_ids": [
+    "dbcbda865eee9c7b:L0:000002",
+    "5a1a5bbda9db013e:L0:000057",
+    "8679484d23bfd3a0:L0:000022",
+    "ad11b6e85f908fb3:L0:000107",
+    "ad11b6e85f908fb3:L0:000074"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:50:41.662043+00:00",
+      "call_id": "373a72e47826",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7ea27aafc4700d91",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a79e6dcf1b624692"
+    },
+    {
+      "ts": "2026-11-22T11:50:57.885414+00:00",
+      "call_id": "ac608dbbf19c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "55e6be134f08e700",
+      "prompt_tokens": 1460,
+      "completion_tokens": 68,
+      "latency_ms": 16197.53,
+      "server_ms": 16178.39,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a79e6dcf1b624692"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1460,
+    "generator_prompt_tokens": 1460,
+    "completion_tokens": 68,
+    "total_ms": 16227.59
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "Mike Trout of the Los Angeles Angels of Anaheim won the All-Star MVP for the league (American League) that gives out the MLB MVP award after the most."
+      ]
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "trace_id": "0c579a46c1fd4e8f",
+  "created_at": "2026-11-22T11:37:48.704970+00:00",
+  "query": "12 Years a Slave starred what British actor born 10 July 1977)",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5410.33
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5411.02
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19192.38
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.65,
+      "bm25_ms": 11.15,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5392.83
+      },
+      "hits": [
+        {
+          "id": "9794e842cc9565f0:L0:000132",
+          "score": 6.935042858123779,
+          "fused": 0.898014015368394,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 6.935042858123779
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000053",
+          "score": 3.9071695804595947,
+          "fused": 0.5151112969143183,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 3.9071695804595947
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000057",
+          "score": 1.8104546070098877,
+          "fused": 0.4125870978021345,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": 1.8104546070098877
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000129",
+          "score": 1.4588279724121094,
+          "fused": 0.3984126400189229,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": 1.4588279724121094
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000093",
+          "score": 0.3571503460407257,
+          "fused": 0.2710892370398187,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 12,
+          "rerank": 0.3571503460407257
+        }
+      ],
+      "latency_ms": 5410.28
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 341,
+      "latency_ms": 0.65
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13781.15
+    }
+  },
+  "retrieved_ids": [
+    "9794e842cc9565f0:L0:000132",
+    "bc1dba3471045f02:L0:000053",
+    "bc1dba3471045f02:L0:000057",
+    "9794e842cc9565f0:L0:000129",
+    "ec3410ef955c5c93:L0:000093"
+  ],
+  "filtered_ids": [
+    "9794e842cc9565f0:L0:000132",
+    "bc1dba3471045f02:L0:000053",
+    "bc1dba3471045f02:L0:000057",
+    "9794e842cc9565f0:L0:000129",
+    "ec3410ef955c5c93:L0:000093"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:37:48.706967+00:00",
+      "call_id": "7874cfa87967",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9021af2de7c2c2be",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0c579a46c1fd4e8f"
+    },
+    {
+      "ts": "2026-11-22T11:38:07.896124+00:00",
+      "call_id": "c2d3edd9f8c0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1b270746e1b7e9d0",
+      "prompt_tokens": 997,
+      "completion_tokens": 74,
+      "latency_ms": 13779.39,
+      "server_ms": 13758.23,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0c579a46c1fd4e8f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 997,
+    "generator_prompt_tokens": 997,
+    "completion_tokens": 74,
+    "total_ms": 19194.06
+  },
+  "config_hash": "00ac4473fd53",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

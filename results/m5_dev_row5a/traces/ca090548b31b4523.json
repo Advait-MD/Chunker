@@ -1,0 +1,228 @@
+{
+  "trace_id": "ca090548b31b4523",
+  "created_at": "2026-11-22T13:06:43.037186+00:00",
+  "query": "An Indy car race was held in the capital of the state where the performer of Mingus Plays Piano was born. Who won the race?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.6
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 31.44
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 6744.51
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.67,
+      "bm25_ms": 13.47,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "4fcce431f5d22d1d:L0:000010",
+          "score": 3.152225971221924,
+          "fused": 0.5649867507679239,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 3.152225971221924
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000002",
+          "score": -0.8295117616653442,
+          "fused": 0.6379776728443535,
+          "dense_rank": 33,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -0.8295117616653442
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000146",
+          "score": -3.9359216690063477,
+          "fused": 0.3055378165234839,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 12,
+          "rerank": -3.9359216690063477
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000114",
+          "score": -5.0334391593933105,
+          "fused": 0.23299338674502942,
+          "dense_rank": null,
+          "bm25_rank": 13,
+          "fused_rank": 18,
+          "rerank": -5.0334391593933105
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000074",
+          "score": -5.084484577178955,
+          "fused": 0.33306501045869824,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 11,
+          "rerank": -5.084484577178955
+        }
+      ],
+      "latency_ms": 18.55
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 381,
+      "dropped_threshold": [
+        "4fcce431f5d22d1d:L0:000114",
+        "5a1a5bbda9db013e:L0:000074"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 9,
+      "sentences_kept": 4,
+      "n_out": 3,
+      "tokens_out": 109,
+      "ms": 12.7,
+      "latency_ms": 12.78
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 3.152225971221924,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 6713.01
+    }
+  },
+  "retrieved_ids": [
+    "4fcce431f5d22d1d:L0:000010",
+    "4fcce431f5d22d1d:L0:000002",
+    "66f5caec1369ebaf:L0:000146",
+    "4fcce431f5d22d1d:L0:000114",
+    "5a1a5bbda9db013e:L0:000074"
+  ],
+  "filtered_ids": [
+    "4fcce431f5d22d1d:L0:000010",
+    "4fcce431f5d22d1d:L0:000002",
+    "66f5caec1369ebaf:L0:000146"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:06:43.039186+00:00",
+      "call_id": "0358d8058a71",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fbfdc8269832ebf4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ca090548b31b4523"
+    },
+    {
+      "ts": "2026-11-22T13:06:43.056546+00:00",
+      "call_id": "0d486baea254",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fbfdc8269832ebf4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ca090548b31b4523"
+    },
+    {
+      "ts": "2026-11-22T13:06:43.066758+00:00",
+      "call_id": "7f6ee2971189",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8277fc7e1f5143ce",
+      "n_inputs": 9,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ca090548b31b4523"
+    },
+    {
+      "ts": "2026-11-22T13:06:49.781407+00:00",
+      "call_id": "d496a994c1ac",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "fe4f948ab2bbf773",
+      "prompt_tokens": 589,
+      "completion_tokens": 45,
+      "latency_ms": 6712.36,
+      "server_ms": 6699.73,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ca090548b31b4523"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 589,
+    "generator_prompt_tokens": 589,
+    "completion_tokens": 45,
+    "total_ms": 6745.27
+  },
+  "config_hash": "1c92a20b0713",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "trace_id": "51256da0acb24012",
+  "created_at": "2026-11-22T13:03:13.489968+00:00",
+  "query": "Who is the father of the director of film The Thousand Faces Of Dunjia?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8.26
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 34.44
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 8942.61
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.2,
+      "bm25_ms": 3.83,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000052",
+          "score": 6.047888278961182,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.047888278961182
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000145",
+          "score": -1.3506200313568115,
+          "fused": 0.303520155415921,
+          "dense_rank": 1,
+          "bm25_rank": 45,
+          "fused_rank": 3,
+          "rerank": -1.3506200313568115
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000034",
+          "score": -2.701760768890381,
+          "fused": 0.12710558020145182,
+          "dense_rank": 12,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -2.701760768890381
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000040",
+          "score": -2.910973310470581,
+          "fused": 0.31115445096841876,
+          "dense_rank": 2,
+          "bm25_rank": 15,
+          "fused_rank": 2,
+          "rerank": -2.910973310470581
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000046",
+          "score": -3.2088687419891357,
+          "fused": 0.30189447890758914,
+          "dense_rank": 5,
+          "bm25_rank": 10,
+          "fused_rank": 4,
+          "rerank": -3.2088687419891357
+        }
+      ],
+      "latency_ms": 8.22
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 490,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 27,
+      "sentences_kept": 9,
+      "n_out": 5,
+      "tokens_out": 206,
+      "ms": 26.1,
+      "latency_ms": 26.14
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 6.047888278961182,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8908.12
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000052",
+    "6af2db6cb86d77e2:L0:000145",
+    "317e12ccd417c0d7:L0:000034",
+    "53c7288bdcd3837a:L0:000040",
+    "c73b757f0eb66f37:L0:000046"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000052",
+    "6af2db6cb86d77e2:L0:000145",
+    "317e12ccd417c0d7:L0:000034",
+    "53c7288bdcd3837a:L0:000040",
+    "c73b757f0eb66f37:L0:000046"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:03:13.490974+00:00",
+      "call_id": "eae44bb8bfeb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cfbbbd9c57c354fa",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "51256da0acb24012"
+    },
+    {
+      "ts": "2026-11-22T13:03:13.498310+00:00",
+      "call_id": "36013a0184ab",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cfbbbd9c57c354fa",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "51256da0acb24012"
+    },
+    {
+      "ts": "2026-11-22T13:03:13.522018+00:00",
+      "call_id": "b97d20ff936d",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d734be024fd6b616",
+      "n_inputs": 27,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "51256da0acb24012"
+    },
+    {
+      "ts": "2026-11-22T13:03:22.431433+00:00",
+      "call_id": "3c3ab79cb13a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a158f5fdc2f346d4",
+      "prompt_tokens": 809,
+      "completion_tokens": 56,
+      "latency_ms": 8907.6,
+      "server_ms": 8889.5,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "51256da0acb24012"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 809,
+    "generator_prompt_tokens": 809,
+    "completion_tokens": 56,
+    "total_ms": 8943.12
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The father of the director of film The Thousand Faces of Dunjia is not mentioned in the provided passages."
+      ]
+    }
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "trace_id": "8239e1f40f0e4250",
+  "created_at": "2026-11-22T12:49:31.721255+00:00",
+  "query": "Which head coach has led their team for a longer period of time, Tim Cluess or Steve Prohm?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8.7
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 25.02
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 17742.2
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18918.9
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.95,
+      "bm25_ms": 5.06,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "b120b09075017d08:L0:000017",
+          "score": -0.3081430196762085,
+          "fused": 0.6611461955111457,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.3081430196762085
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000017",
+          "score": -0.34337180852890015,
+          "fused": 0.6538244529044077,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -0.34337180852890015
+        },
+        {
+          "id": "b120b09075017d08:L0:000139",
+          "score": -0.3768380582332611,
+          "fused": 0.6130348581889845,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": -0.3768380582332611
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000174",
+          "score": -0.385436475276947,
+          "fused": 0.32199869086603317,
+          "dense_rank": null,
+          "bm25_rank": 18,
+          "fused_rank": 20,
+          "rerank": -0.385436475276947
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000132",
+          "score": -0.5793592929840088,
+          "fused": 0.676393308328648,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.5793592929840088
+        }
+      ],
+      "latency_ms": 8.68
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 612,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 23,
+      "sentences_kept": 5,
+      "n_out": 5,
+      "tokens_out": 149,
+      "ms": 16.3,
+      "latency_ms": 16.28
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": -0.3081430196762085,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 17717.17
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 1176.59
+    }
+  },
+  "retrieved_ids": [
+    "b120b09075017d08:L0:000017",
+    "ec3410ef955c5c93:L0:000017",
+    "b120b09075017d08:L0:000139",
+    "9794e842cc9565f0:L0:000174",
+    "81fc433d55d23b4c:L0:000132"
+  ],
+  "filtered_ids": [
+    "b120b09075017d08:L0:000017",
+    "ec3410ef955c5c93:L0:000017",
+    "b120b09075017d08:L0:000139",
+    "9794e842cc9565f0:L0:000174",
+    "81fc433d55d23b4c:L0:000132"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:49:31.722257+00:00",
+      "call_id": "cdfa09d10489",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "540bb3cf535c08e6",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8239e1f40f0e4250"
+    },
+    {
+      "ts": "2026-11-22T12:49:31.731524+00:00",
+      "call_id": "19542650d8bb",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "540bb3cf535c08e6",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8239e1f40f0e4250"
+    },
+    {
+      "ts": "2026-11-22T12:49:31.744961+00:00",
+      "call_id": "7c288e61fb0e",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b36f29033de0ef8b",
+      "n_inputs": 23,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8239e1f40f0e4250"
+    },
+    {
+      "ts": "2026-11-22T12:49:49.463078+00:00",
+      "call_id": "03d0aa9125da",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "644e0077c2075965",
+      "prompt_tokens": 746,
+      "completion_tokens": 141,
+      "latency_ms": 17716.54,
+      "server_ms": 17699.57,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8239e1f40f0e4250"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 746,
+    "generator_prompt_tokens": 746,
+    "completion_tokens": 141,
+    "total_ms": 18919.52
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

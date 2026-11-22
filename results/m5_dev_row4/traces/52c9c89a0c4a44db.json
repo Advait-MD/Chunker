@@ -1,0 +1,183 @@
+{
+  "trace_id": "52c9c89a0c4a44db",
+  "created_at": "2026-11-22T11:09:17.365962+00:00",
+  "query": "Which film has the director who died later, The Death Kiss or Her Luck In London?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17126.03
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 17127.4
+    },
+    {
+      "state": "DONE",
+      "t_ms": 51453.3
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 8.63,
+      "bm25_ms": 36.41,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 17065.33
+      },
+      "hits": [
+        {
+          "id": "6af2db6cb86d77e2:L0:000153",
+          "score": 8.661784172058105,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.661784172058105
+        },
+        {
+          "id": "99628090500247e3:L0:000070",
+          "score": 7.648602485656738,
+          "fused": 0.347307693286984,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 7.648602485656738
+        },
+        {
+          "id": "99628090500247e3:L0:000204",
+          "score": -4.238908290863037,
+          "fused": 0.22983472311102282,
+          "dense_rank": 21,
+          "bm25_rank": 15,
+          "fused_rank": 12,
+          "rerank": -4.238908290863037
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000019",
+          "score": -4.505490779876709,
+          "fused": 0.18752644653435266,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -4.505490779876709
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000144",
+          "score": -4.940969944000244,
+          "fused": 0.22983472311102282,
+          "dense_rank": 20,
+          "bm25_rank": 16,
+          "fused_rank": 13,
+          "rerank": -4.940969944000244
+        }
+      ],
+      "latency_ms": 17125.91
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 683,
+      "latency_ms": 1.29
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 34325.74
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000153",
+    "99628090500247e3:L0:000070",
+    "99628090500247e3:L0:000204",
+    "53c7288bdcd3837a:L0:000019",
+    "c73b757f0eb66f37:L0:000144"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000153",
+    "99628090500247e3:L0:000070",
+    "99628090500247e3:L0:000204",
+    "53c7288bdcd3837a:L0:000019",
+    "c73b757f0eb66f37:L0:000144"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:09:17.369607+00:00",
+      "call_id": "c90c3d69943f",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c7bb8a56f4963896",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "52c9c89a0c4a44db"
+    },
+    {
+      "ts": "2026-11-22T11:10:08.818023+00:00",
+      "call_id": "b6537e180284",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bb73dcfa063a7b53",
+      "prompt_tokens": 1341,
+      "completion_tokens": 107,
+      "latency_ms": 34323.02,
+      "server_ms": 34286.43,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "52c9c89a0c4a44db"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1341,
+    "generator_prompt_tokens": 1341,
+    "completion_tokens": 107,
+    "total_ms": 51456.57
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        3,
+        5
+      ],
+      "uncited_sentences": [
+        "Vernon Sewell, who directed 'The Death Kiss', died later than the director of 'Her Luck in London', as Vernon Sewell died on 21 June 2001, while the director of 'Her Luck in London', Maurice Elvey, is not mentioned to have died in the provided passages."
+      ]
+    }
+  }
+}

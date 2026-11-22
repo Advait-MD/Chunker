@@ -1,0 +1,249 @@
+{
+  "trace_id": "5a4ae802b42e4444",
+  "created_at": "2026-11-22T13:24:19.425748+00:00",
+  "query": "What is the McGurk effect?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.26
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 44.77
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 22720.89
+    },
+    {
+      "state": "DONE",
+      "t_ms": 28508.98
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.33,
+      "bm25_ms": 10.1,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 10
+      },
+      "n_fused": 17,
+      "rerank": {
+        "n": 17,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "e391d7db6ce14ddd:L0:000004",
+          "score": 2.868407964706421,
+          "fused": 0.8786357470504025,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": 2.868407964706421
+        },
+        {
+          "id": "e391d7db6ce14ddd:L0:000000",
+          "score": 2.6909351348876953,
+          "fused": 0.9113785614715675,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 2.6909351348876953
+        },
+        {
+          "id": "e391d7db6ce14ddd:L0:000010",
+          "score": 2.6761839389801025,
+          "fused": 0.9388702239251023,
+          "dense_rank": 6,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.6761839389801025
+        },
+        {
+          "id": "e391d7db6ce14ddd:L0:000001",
+          "score": 2.2407429218292236,
+          "fused": 0.4571871611044674,
+          "dense_rank": 5,
+          "bm25_rank": 9,
+          "fused_rank": 7,
+          "rerank": 2.2407429218292236
+        },
+        {
+          "id": "e391d7db6ce14ddd:L0:000016",
+          "score": 1.991681694984436,
+          "fused": 0.6541377323045876,
+          "dense_rank": 9,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": 1.991681694984436
+        }
+      ],
+      "latency_ms": 15.22
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 1352,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 48,
+      "sentences_kept": 13,
+      "n_out": 5,
+      "tokens_out": 499,
+      "ms": 29.4,
+      "latency_ms": 29.47
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 2.868407964706421,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22676.09
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 2,
+        "n_supported": 2
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 2,
+        "n_supported": 2
+      },
+      "latency_ms": 5787.78
+    }
+  },
+  "retrieved_ids": [
+    "e391d7db6ce14ddd:L0:000004",
+    "e391d7db6ce14ddd:L0:000000",
+    "e391d7db6ce14ddd:L0:000010",
+    "e391d7db6ce14ddd:L0:000001",
+    "e391d7db6ce14ddd:L0:000016"
+  ],
+  "filtered_ids": [
+    "e391d7db6ce14ddd:L0:000004",
+    "e391d7db6ce14ddd:L0:000000",
+    "e391d7db6ce14ddd:L0:000010",
+    "e391d7db6ce14ddd:L0:000001",
+    "e391d7db6ce14ddd:L0:000016"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:24:19.427539+00:00",
+      "call_id": "084ee6722a4b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "817dd4d1866b45aa",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5a4ae802b42e4444"
+    },
+    {
+      "ts": "2026-11-22T13:24:19.442012+00:00",
+      "call_id": "fe8f98bcdb92",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "817dd4d1866b45aa",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5a4ae802b42e4444"
+    },
+    {
+      "ts": "2026-11-22T13:24:19.468406+00:00",
+      "call_id": "027339662535",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ec4d01654d4ac22d",
+      "n_inputs": 48,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5a4ae802b42e4444"
+    },
+    {
+      "ts": "2026-11-22T13:24:42.145391+00:00",
+      "call_id": "d510f729fd79",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "76ed35dfdf22179f",
+      "prompt_tokens": 1052,
+      "completion_tokens": 177,
+      "latency_ms": 22674.44,
+      "server_ms": 22652.67,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "5a4ae802b42e4444"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1052,
+    "generator_prompt_tokens": 1052,
+    "completion_tokens": 177,
+    "total_ms": 28511.9
+  },
+  "config_hash": "c4b7d9811844",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        4,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

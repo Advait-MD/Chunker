@@ -1,0 +1,247 @@
+{
+  "trace_id": "aaf3b861dcac487b",
+  "created_at": "2026-11-22T12:52:41.994187+00:00",
+  "query": "Alexander Petrovich Nikolayev received the title Hero of the Soviet Union and the Order of Lenin for his actions during the   the final major offensive of the European theatre of what war?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.91
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 42.11
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 13239.84
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13240.58
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.72,
+      "bm25_ms": 16.03,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "ec3410ef955c5c93:L0:000040",
+          "score": 10.617426872253418,
+          "fused": 0.8452891895975689,
+          "dense_rank": 12,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 10.617426872253418
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000068",
+          "score": 8.751106262207031,
+          "fused": 0.6655282552740651,
+          "dense_rank": 1,
+          "bm25_rank": 5,
+          "fused_rank": 2,
+          "rerank": 8.751106262207031
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000198",
+          "score": -2.624990224838257,
+          "fused": 0.2838363733247438,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 10,
+          "rerank": -2.624990224838257
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000085",
+          "score": -2.9105851650238037,
+          "fused": 0.24246696774843443,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -2.9105851650238037
+        },
+        {
+          "id": "20496f59538deb41:L0:000194",
+          "score": -3.3044097423553467,
+          "fused": 0.2647274314591273,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": -3.3044097423553467
+        }
+      ],
+      "latency_ms": 19.86
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 474,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 15,
+      "sentences_kept": 10,
+      "n_out": 5,
+      "tokens_out": 349,
+      "ms": 22.1,
+      "latency_ms": 22.14
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 10.617426872253418,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13197.7
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 0.63
+    }
+  },
+  "retrieved_ids": [
+    "ec3410ef955c5c93:L0:000040",
+    "9794e842cc9565f0:L0:000068",
+    "8e50522b7cb636d8:L0:000198",
+    "90976421f3f2bea2:L0:000085",
+    "20496f59538deb41:L0:000194"
+  ],
+  "filtered_ids": [
+    "ec3410ef955c5c93:L0:000040",
+    "9794e842cc9565f0:L0:000068",
+    "8e50522b7cb636d8:L0:000198",
+    "90976421f3f2bea2:L0:000085",
+    "20496f59538deb41:L0:000194"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:52:41.995188+00:00",
+      "call_id": "ce397d3595fd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f302c8c142e55510",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "aaf3b861dcac487b"
+    },
+    {
+      "ts": "2026-11-22T12:52:42.015964+00:00",
+      "call_id": "b823b77ff461",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f302c8c142e55510",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "aaf3b861dcac487b"
+    },
+    {
+      "ts": "2026-11-22T12:52:42.034337+00:00",
+      "call_id": "5d0366266315",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4c0d14b6dc69d03c",
+      "n_inputs": 14,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "aaf3b861dcac487b"
+    },
+    {
+      "ts": "2026-11-22T12:52:55.233424+00:00",
+      "call_id": "8dd776a3f801",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7605158748bde79e",
+      "prompt_tokens": 963,
+      "completion_tokens": 86,
+      "latency_ms": 13196.73,
+      "server_ms": 13162.9,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "aaf3b861dcac487b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 963,
+    "generator_prompt_tokens": 963,
+    "completion_tokens": 86,
+    "total_ms": 13241.72
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

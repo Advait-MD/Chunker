@@ -1,0 +1,183 @@
+{
+  "trace_id": "6df8c742402a4b86",
+  "created_at": "2026-11-22T12:14:01.649442+00:00",
+  "query": "What is the improvement in performance for Estonian in the NER task?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.74
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18.79
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23564.0
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.83,
+      "bm25_ms": 12.18,
+      "n_candidates": {
+        "dense": 17,
+        "bm25": 13
+      },
+      "n_fused": 17,
+      "rerank": {
+        "n": 17,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "581e436007c6e252:L0:000016",
+          "score": -0.32949942350387573,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.32949942350387573
+        },
+        {
+          "id": "581e436007c6e252:L0:000000",
+          "score": -0.5745244026184082,
+          "fused": 0.9155445468488351,
+          "dense_rank": 5,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.5745244026184082
+        },
+        {
+          "id": "581e436007c6e252:L0:000012",
+          "score": -1.7346220016479492,
+          "fused": 0.70617470925274,
+          "dense_rank": 3,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": -1.7346220016479492
+        },
+        {
+          "id": "581e436007c6e252:L0:000014",
+          "score": -1.8640317916870117,
+          "fused": 0.7829343997573188,
+          "dense_rank": 13,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -1.8640317916870117
+        },
+        {
+          "id": "581e436007c6e252:L0:000011",
+          "score": -3.537986993789673,
+          "fused": 0.6691633051946195,
+          "dense_rank": 6,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -3.537986993789673
+        }
+      ],
+      "latency_ms": 18.69
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1349,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23545.12
+    }
+  },
+  "retrieved_ids": [
+    "581e436007c6e252:L0:000016",
+    "581e436007c6e252:L0:000000",
+    "581e436007c6e252:L0:000012",
+    "581e436007c6e252:L0:000014",
+    "581e436007c6e252:L0:000011"
+  ],
+  "filtered_ids": [
+    "581e436007c6e252:L0:000016",
+    "581e436007c6e252:L0:000000",
+    "581e436007c6e252:L0:000012",
+    "581e436007c6e252:L0:000014",
+    "581e436007c6e252:L0:000011"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:14:01.650451+00:00",
+      "call_id": "5d04bd4c0911",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f3118706b2c67239",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6df8c742402a4b86"
+    },
+    {
+      "ts": "2026-11-22T12:14:25.212879+00:00",
+      "call_id": "988b0fd7b965",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "67937fb209000315",
+      "prompt_tokens": 2064,
+      "completion_tokens": 79,
+      "latency_ms": 23544.16,
+      "server_ms": 23528.61,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "6df8c742402a4b86"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2064,
+    "generator_prompt_tokens": 2064,
+    "completion_tokens": 79,
+    "total_ms": 23564.65
+  },
+  "config_hash": "1cf51d8daba2",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        3,
+        4
+      ],
+      "uncited_sentences": [
+        "The improvement in performance for Estonian in the NER task is shown in Table 4, where the ELMo embeddings outperform the FastText baseline (∆(E − FT ))."
+      ]
+    }
+  }
+}

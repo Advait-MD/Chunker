@@ -1,0 +1,248 @@
+{
+  "trace_id": "6405196711594987",
+  "created_at": "2026-11-22T13:05:39.691132+00:00",
+  "query": "Who is the child of the actor who is a cast member of Love in Pawn?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.88
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 25.42
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 8963.31
+    },
+    {
+      "state": "DONE",
+      "t_ms": 9649.84
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.54,
+      "bm25_ms": 10.28,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "15abb5e49dced915:L0:000193",
+          "score": 5.082957744598389,
+          "fused": 0.5246656431820154,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 5.082957744598389
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000198",
+          "score": -2.6228153705596924,
+          "fused": 0.2548703692974771,
+          "dense_rank": 22,
+          "bm25_rank": 17,
+          "fused_rank": 11,
+          "rerank": -2.6228153705596924
+        },
+        {
+          "id": "dd498e0082847164:L0:000067",
+          "score": -6.2402729988098145,
+          "fused": 0.25320423475676246,
+          "dense_rank": 19,
+          "bm25_rank": 20,
+          "fused_rank": 12,
+          "rerank": -6.2402729988098145
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000038",
+          "score": -6.323678016662598,
+          "fused": 0.1870484923583115,
+          "dense_rank": 26,
+          "bm25_rank": 25,
+          "fused_rank": 20,
+          "rerank": -6.323678016662598
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000127",
+          "score": -6.324522495269775,
+          "fused": 0.4672743177120255,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -6.324522495269775
+        }
+      ],
+      "latency_ms": 17.81
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 306,
+      "dropped_threshold": [
+        "dd498e0082847164:L0:000067",
+        "f59bbbdacaf7ffe4:L0:000038",
+        "f3503d3d186f0f90:L0:000127"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 3,
+      "sentences_kept": 2,
+      "n_out": 2,
+      "tokens_out": 40,
+      "ms": 7.4,
+      "latency_ms": 7.46
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 5.082957744598389,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8937.83
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 686.25
+    }
+  },
+  "retrieved_ids": [
+    "15abb5e49dced915:L0:000193",
+    "ad11b6e85f908fb3:L0:000198",
+    "dd498e0082847164:L0:000067",
+    "f59bbbdacaf7ffe4:L0:000038",
+    "f3503d3d186f0f90:L0:000127"
+  ],
+  "filtered_ids": [
+    "15abb5e49dced915:L0:000193",
+    "ad11b6e85f908fb3:L0:000198"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:05:39.693426+00:00",
+      "call_id": "62101213f9ec",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "665c340b446948f9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6405196711594987"
+    },
+    {
+      "ts": "2026-11-22T13:05:39.709862+00:00",
+      "call_id": "355444740ac0",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "665c340b446948f9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6405196711594987"
+    },
+    {
+      "ts": "2026-11-22T13:05:39.715183+00:00",
+      "call_id": "6e0ea1e06e13",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "25bf181b4849bd6b",
+      "n_inputs": 2,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6405196711594987"
+    },
+    {
+      "ts": "2026-11-22T13:05:48.653808+00:00",
+      "call_id": "d91edeeec974",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ea2df52cfd1509db",
+      "prompt_tokens": 464,
+      "completion_tokens": 66,
+      "latency_ms": 8936.79,
+      "server_ms": 8918.97,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "6405196711594987"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 464,
+    "generator_prompt_tokens": 464,
+    "completion_tokens": 66,
+    "total_ms": 9653.01
+  },
+  "config_hash": "1c92a20b0713",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

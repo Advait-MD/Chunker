@@ -1,0 +1,247 @@
+{
+  "trace_id": "0f8d0e4a32804a9b",
+  "created_at": "2026-11-22T12:51:40.869779+00:00",
+  "query": "12 Years a Slave starred what British actor born 10 July 1977)",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.98
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 33.1
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 11152.42
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11740.19
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.75,
+      "bm25_ms": 8.08,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "9794e842cc9565f0:L0:000132",
+          "score": 6.935042858123779,
+          "fused": 0.898014015368394,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 6.935042858123779
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000053",
+          "score": 3.9071695804595947,
+          "fused": 0.5151112969143183,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 3.9071695804595947
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000057",
+          "score": 1.8104546070098877,
+          "fused": 0.4125870978021345,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": 1.8104546070098877
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000129",
+          "score": 1.4588279724121094,
+          "fused": 0.3984126400189229,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": 1.4588279724121094
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000093",
+          "score": 0.3571503460407257,
+          "fused": 0.2710892370398187,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 12,
+          "rerank": 0.3571503460407257
+        }
+      ],
+      "latency_ms": 14.93
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 341,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 12,
+      "sentences_kept": 6,
+      "n_out": 5,
+      "tokens_out": 207,
+      "ms": 18.0,
+      "latency_ms": 18.05
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 6.935042858123779,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11119.29
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 587.53
+    }
+  },
+  "retrieved_ids": [
+    "9794e842cc9565f0:L0:000132",
+    "bc1dba3471045f02:L0:000053",
+    "bc1dba3471045f02:L0:000057",
+    "9794e842cc9565f0:L0:000129",
+    "ec3410ef955c5c93:L0:000093"
+  ],
+  "filtered_ids": [
+    "9794e842cc9565f0:L0:000132",
+    "bc1dba3471045f02:L0:000053",
+    "bc1dba3471045f02:L0:000057",
+    "9794e842cc9565f0:L0:000129",
+    "ec3410ef955c5c93:L0:000093"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:51:40.871779+00:00",
+      "call_id": "775207374570",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9021af2de7c2c2be",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0f8d0e4a32804a9b"
+    },
+    {
+      "ts": "2026-11-22T12:51:40.886289+00:00",
+      "call_id": "f14c485905f2",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9021af2de7c2c2be",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0f8d0e4a32804a9b"
+    },
+    {
+      "ts": "2026-11-22T12:51:40.901039+00:00",
+      "call_id": "e003042ab457",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b7332fea7472eb53",
+      "n_inputs": 11,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0f8d0e4a32804a9b"
+    },
+    {
+      "ts": "2026-11-22T12:51:52.021421+00:00",
+      "call_id": "0d28c9a6e09a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "94e524c4a318385c",
+      "prompt_tokens": 847,
+      "completion_tokens": 74,
+      "latency_ms": 11118.42,
+      "server_ms": 11099.6,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0f8d0e4a32804a9b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 847,
+    "generator_prompt_tokens": 847,
+    "completion_tokens": 74,
+    "total_ms": 11742.17
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

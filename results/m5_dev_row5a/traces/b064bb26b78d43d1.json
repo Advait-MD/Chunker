@@ -1,0 +1,250 @@
+{
+  "trace_id": "b064bb26b78d43d1",
+  "created_at": "2026-11-22T12:54:16.281429+00:00",
+  "query": "Are director of film Susanna Whipped Cream and director of film Le Salamandre both from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.07
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 23.95
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 11190.9
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11934.0
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.35,
+      "bm25_ms": 8.7,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000058",
+          "score": 5.997057914733887,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.997057914733887
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000203",
+          "score": 5.590424537658691,
+          "fused": 0.5736748402178184,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 5.590424537658691
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": -4.1679158210754395,
+          "fused": 0.06932048426751039,
+          "dense_rank": 21,
+          "bm25_rank": 16,
+          "fused_rank": 16,
+          "rerank": -4.1679158210754395
+        },
+        {
+          "id": "0eac870d43736f51:L0:000159",
+          "score": -4.906214714050293,
+          "fused": 0.08151614517586776,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -4.906214714050293
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000053",
+          "score": -5.2742204666137695,
+          "fused": 0.07702826183842623,
+          "dense_rank": 8,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -5.2742204666137695
+        }
+      ],
+      "latency_ms": 19.03
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 757,
+      "dropped_threshold": [
+        "abe982d210232c3f:L0:000151",
+        "0eac870d43736f51:L0:000159",
+        "317e12ccd417c0d7:L0:000053"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 3,
+      "sentences_kept": 2,
+      "n_out": 2,
+      "tokens_out": 33,
+      "ms": 4.8,
+      "latency_ms": 4.83
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 5.997057914733887,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11166.92
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 2,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 2,
+        "n_supported": 0
+      },
+      "latency_ms": 742.84
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000058",
+    "c73b757f0eb66f37:L0:000203",
+    "abe982d210232c3f:L0:000151",
+    "0eac870d43736f51:L0:000159",
+    "317e12ccd417c0d7:L0:000053"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000058",
+    "c73b757f0eb66f37:L0:000203"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:54:16.283979+00:00",
+      "call_id": "bfb7b82f3b1a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "32c8206c3a4c62ab",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b064bb26b78d43d1"
+    },
+    {
+      "ts": "2026-11-22T12:54:16.301446+00:00",
+      "call_id": "f00de4a0137a",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "32c8206c3a4c62ab",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b064bb26b78d43d1"
+    },
+    {
+      "ts": "2026-11-22T12:54:16.303886+00:00",
+      "call_id": "baea8ea6b33d",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "49e3773e5d7dd451",
+      "n_inputs": 2,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b064bb26b78d43d1"
+    },
+    {
+      "ts": "2026-11-22T12:54:27.471563+00:00",
+      "call_id": "59711e1bf86b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "98c30fb42134144a",
+      "prompt_tokens": 478,
+      "completion_tokens": 88,
+      "latency_ms": 11166.05,
+      "server_ms": 11139.97,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b064bb26b78d43d1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 478,
+    "generator_prompt_tokens": 478,
+    "completion_tokens": 88,
+    "total_ms": 11936.43
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Both directors are from the same country, Italy."
+      ]
+    }
+  }
+}

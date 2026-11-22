@@ -1,0 +1,246 @@
+{
+  "trace_id": "06df1a02845e4342",
+  "created_at": "2026-11-22T13:06:57.932375+00:00",
+  "query": "What does the name of the topic that Eisenhower didn't discuss during the campaign stand for?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 20.15
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 63.86
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 13121.32
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13477.73
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.79,
+      "bm25_ms": 13.25,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "e182527d2b1ecac3:L0:000137",
+          "score": 2.5823445320129395,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.5823445320129395
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000068",
+          "score": 1.4066437482833862,
+          "fused": 0.5967178987248509,
+          "dense_rank": 2,
+          "bm25_rank": 6,
+          "fused_rank": 3,
+          "rerank": 1.4066437482833862
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000115",
+          "score": 0.7130869030952454,
+          "fused": 0.18829870141059654,
+          "dense_rank": 20,
+          "bm25_rank": 17,
+          "fused_rank": 13,
+          "rerank": 0.7130869030952454
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000105",
+          "score": -0.363871693611145,
+          "fused": 0.6217606665790953,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.363871693611145
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000195",
+          "score": -1.881142258644104,
+          "fused": 0.3284972340360224,
+          "dense_rank": 6,
+          "bm25_rank": 12,
+          "fused_rank": 11,
+          "rerank": -1.881142258644104
+        }
+      ],
+      "latency_ms": 20.11
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 803,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 39,
+      "sentences_kept": 30,
+      "n_out": 5,
+      "tokens_out": 744,
+      "ms": 43.5,
+      "latency_ms": 43.57
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 2.5823445320129395,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13057.43
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 356.23
+    }
+  },
+  "retrieved_ids": [
+    "e182527d2b1ecac3:L0:000137",
+    "f109b032e24ab27a:L0:000068",
+    "8b31d5859eb3d77a:L0:000115",
+    "ce290c1e5d5c6641:L0:000105",
+    "6bddce8aaad42fea:L0:000195"
+  ],
+  "filtered_ids": [
+    "e182527d2b1ecac3:L0:000137",
+    "f109b032e24ab27a:L0:000068",
+    "8b31d5859eb3d77a:L0:000115",
+    "ce290c1e5d5c6641:L0:000105",
+    "6bddce8aaad42fea:L0:000195"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:06:57.934373+00:00",
+      "call_id": "00d106c7a3d0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "71b9adbdd27caa1f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "06df1a02845e4342"
+    },
+    {
+      "ts": "2026-11-22T13:06:57.954098+00:00",
+      "call_id": "3679d9d0bda2",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "71b9adbdd27caa1f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "06df1a02845e4342"
+    },
+    {
+      "ts": "2026-11-22T13:06:57.991955+00:00",
+      "call_id": "85975b538174",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1780e40980d16218",
+      "n_inputs": 39,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "06df1a02845e4342"
+    },
+    {
+      "ts": "2026-11-22T13:07:11.052737+00:00",
+      "call_id": "c403c4f7d13b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d3e6306287a0add1",
+      "prompt_tokens": 1303,
+      "completion_tokens": 53,
+      "latency_ms": 13056.41,
+      "server_ms": 13033.85,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "06df1a02845e4342"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1303,
+    "generator_prompt_tokens": 1303,
+    "completion_tokens": 53,
+    "total_ms": 13479.66
+  },
+  "config_hash": "1c92a20b0713",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

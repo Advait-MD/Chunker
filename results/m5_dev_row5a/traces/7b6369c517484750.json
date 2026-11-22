@@ -1,0 +1,253 @@
+{
+  "trace_id": "7b6369c517484750",
+  "created_at": "2026-11-22T13:13:47.704652+00:00",
+  "query": "Did they experiment with this new dataset?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.71
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 46.19
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 27445.19
+    },
+    {
+      "state": "DONE",
+      "t_ms": 27445.35
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.85,
+      "bm25_ms": 5.96,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 7
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "4237cedee8e37285:L0:000021",
+          "score": -0.030269742012023926,
+          "fused": 0.9091916016562032,
+          "dense_rank": 9,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.030269742012023926
+        },
+        {
+          "id": "4237cedee8e37285:L0:000000",
+          "score": -0.10401632636785507,
+          "fused": 0.8035805249525002,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -0.10401632636785507
+        },
+        {
+          "id": "4237cedee8e37285:L0:000002",
+          "score": -1.3110194206237793,
+          "fused": 0.5593872228724542,
+          "dense_rank": 6,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -1.3110194206237793
+        },
+        {
+          "id": "4237cedee8e37285:L0:000004",
+          "score": -1.808797001838684,
+          "fused": 0.8067454308032163,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -1.808797001838684
+        },
+        {
+          "id": "4237cedee8e37285:L0:000008",
+          "score": -4.449079990386963,
+          "fused": 0.12027382277820939,
+          "dense_rank": 18,
+          "bm25_rank": 7,
+          "fused_rank": 18,
+          "rerank": -4.449079990386963
+        }
+      ],
+      "latency_ms": 13.68
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 948,
+      "dropped_threshold": [
+        "4237cedee8e37285:L0:000008"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 26,
+      "sentences_kept": 21,
+      "n_out": 4,
+      "tokens_out": 621,
+      "ms": 32.4,
+      "latency_ms": 32.43
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": -0.030269742012023926,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 27398.98
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 2,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 2,
+        "n_supported": 0
+      },
+      "latency_ms": 0.07
+    }
+  },
+  "retrieved_ids": [
+    "4237cedee8e37285:L0:000021",
+    "4237cedee8e37285:L0:000000",
+    "4237cedee8e37285:L0:000002",
+    "4237cedee8e37285:L0:000004",
+    "4237cedee8e37285:L0:000008"
+  ],
+  "filtered_ids": [
+    "4237cedee8e37285:L0:000021",
+    "4237cedee8e37285:L0:000000",
+    "4237cedee8e37285:L0:000002",
+    "4237cedee8e37285:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:13:47.706649+00:00",
+      "call_id": "c5b77ed3d926",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "df4a805be89fd246",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7b6369c517484750"
+    },
+    {
+      "ts": "2026-11-22T13:13:47.719836+00:00",
+      "call_id": "2d6e454b1433",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "df4a805be89fd246",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7b6369c517484750"
+    },
+    {
+      "ts": "2026-11-22T13:13:47.748717+00:00",
+      "call_id": "b7ed60905ab5",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e183cafe87d85053",
+      "n_inputs": 26,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7b6369c517484750"
+    },
+    {
+      "ts": "2026-11-22T13:14:15.144722+00:00",
+      "call_id": "e4f91f3315fd",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4e211de463f4cc11",
+      "prompt_tokens": 1157,
+      "completion_tokens": 77,
+      "latency_ms": 27388.73,
+      "server_ms": 27368.46,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7b6369c517484750"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1157,
+    "generator_prompt_tokens": 1157,
+    "completion_tokens": 77,
+    "total_ms": 27446.46
+  },
+  "config_hash": "c4b7d9811844",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "uncited_sentences": [
+        "Yes, they experimented with this new dataset.",
+        "The corpus contains recordings during natural reading and during annotation, allowing for the comparison between normal reading and task-specific reading during annotation."
+      ]
+    }
+  }
+}

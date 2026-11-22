@@ -1,0 +1,248 @@
+{
+  "trace_id": "e7c101abe37a4b3e",
+  "created_at": "2026-11-22T12:52:04.025983+00:00",
+  "query": "What river can a  large African bovine be seen bathing in in the Mwabvi Wildlife Reserve?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.86
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 31.4
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 9671.21
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10448.92
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.82,
+      "bm25_ms": 8.27,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "9794e842cc9565f0:L0:000097",
+          "score": 4.527808666229248,
+          "fused": 0.9773071963586031,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.527808666229248
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000135",
+          "score": 1.6734247207641602,
+          "fused": 0.5180538711193913,
+          "dense_rank": 4,
+          "bm25_rank": 9,
+          "fused_rank": 6,
+          "rerank": 1.6734247207641602
+        },
+        {
+          "id": "b120b09075017d08:L0:000022",
+          "score": -3.988156318664551,
+          "fused": 0.6685721716436795,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -3.988156318664551
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000123",
+          "score": -5.829014778137207,
+          "fused": 0.18644631285677138,
+          "dense_rank": 6,
+          "bm25_rank": 35,
+          "fused_rank": 14,
+          "rerank": -5.829014778137207
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000026",
+          "score": -6.889288425445557,
+          "fused": 0.6897786197855451,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -6.889288425445557
+        }
+      ],
+      "latency_ms": 12.83
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 489,
+      "dropped_threshold": [
+        "bc1dba3471045f02:L0:000123",
+        "81fc433d55d23b4c:L0:000026"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 13,
+      "sentences_kept": 10,
+      "n_out": 3,
+      "tokens_out": 297,
+      "ms": 18.5,
+      "latency_ms": 18.49
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 4.527808666229248,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9639.79
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 777.48
+    }
+  },
+  "retrieved_ids": [
+    "9794e842cc9565f0:L0:000097",
+    "8e50522b7cb636d8:L0:000135",
+    "b120b09075017d08:L0:000022",
+    "bc1dba3471045f02:L0:000123",
+    "81fc433d55d23b4c:L0:000026"
+  ],
+  "filtered_ids": [
+    "9794e842cc9565f0:L0:000097",
+    "8e50522b7cb636d8:L0:000135",
+    "b120b09075017d08:L0:000022"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:52:04.027982+00:00",
+      "call_id": "4c2882d2b569",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2109cfba7a5ac4b2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e7c101abe37a4b3e"
+    },
+    {
+      "ts": "2026-11-22T12:52:04.040489+00:00",
+      "call_id": "451fed6c5105",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2109cfba7a5ac4b2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e7c101abe37a4b3e"
+    },
+    {
+      "ts": "2026-11-22T12:52:04.054987+00:00",
+      "call_id": "c35ba366ec5f",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5d35b35fa7b918a5",
+      "n_inputs": 12,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e7c101abe37a4b3e"
+    },
+    {
+      "ts": "2026-11-22T12:52:13.696537+00:00",
+      "call_id": "c6208809a2b3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1faf359dc5b99382",
+      "prompt_tokens": 816,
+      "completion_tokens": 61,
+      "latency_ms": 9638.78,
+      "server_ms": 9620.25,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e7c101abe37a4b3e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 816,
+    "generator_prompt_tokens": 816,
+    "completion_tokens": 61,
+    "total_ms": 10450.54
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

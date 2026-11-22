@@ -1,0 +1,181 @@
+{
+  "trace_id": "30b09bb87b8542d1",
+  "created_at": "2026-11-22T11:18:23.890166+00:00",
+  "query": "Which film was released first, My Friend Pinto or Vindhyarani?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9584.79
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9586.89
+    },
+    {
+      "state": "DONE",
+      "t_ms": 35410.45
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 9.04,
+      "bm25_ms": 28.66,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 9534.69
+      },
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000050",
+          "score": 8.310970306396484,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.310970306396484
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000115",
+          "score": 7.091846466064453,
+          "fused": 0.5219536448865475,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 7.091846466064453
+        },
+        {
+          "id": "460e441179bec402:L0:000023",
+          "score": -6.738498687744141,
+          "fused": 0.5028983579389739,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -6.738498687744141
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000180",
+          "score": -7.798610687255859,
+          "fused": 0.41158012217818596,
+          "dense_rank": 25,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": -7.798610687255859
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000027",
+          "score": -8.221258163452148,
+          "fused": 0.1440091734717982,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 15,
+          "rerank": -8.221258163452148
+        }
+      ],
+      "latency_ms": 9584.67
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 800,
+      "latency_ms": 2.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25823.3
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000050",
+    "317e12ccd417c0d7:L0:000115",
+    "460e441179bec402:L0:000023",
+    "4a757779abfb4ba1:L0:000180",
+    "4a757779abfb4ba1:L0:000027"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000050",
+    "317e12ccd417c0d7:L0:000115",
+    "460e441179bec402:L0:000023",
+    "4a757779abfb4ba1:L0:000180",
+    "4a757779abfb4ba1:L0:000027"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:18:23.894173+00:00",
+      "call_id": "57d995a62cbc",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a58f8c342c90dd28",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "30b09bb87b8542d1"
+    },
+    {
+      "ts": "2026-11-22T11:18:59.299066+00:00",
+      "call_id": "c7a08da63e34",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "af8d1e3f96c0d3a2",
+      "prompt_tokens": 1540,
+      "completion_tokens": 74,
+      "latency_ms": 25820.82,
+      "server_ms": 25779.87,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "30b09bb87b8542d1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1540,
+    "generator_prompt_tokens": 1540,
+    "completion_tokens": 74,
+    "total_ms": 35415.07
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

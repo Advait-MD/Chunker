@@ -1,0 +1,180 @@
+{
+  "trace_id": "e393e2592a8a40a0",
+  "created_at": "2026-11-22T12:06:56.737032+00:00",
+  "query": "Does the author think that Brexit was a good thing?\n\nOptions:\n(A) Yes, it showed a strength of democracy\n(B) No, it showed a weakness of democracy\n(C) Yes, the majority of voters got what they wanted\n(D) The article is unclear\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 27.08
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 27.14
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23104.47
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.61,
+      "bm25_ms": 22.33,
+      "n_candidates": {
+        "dense": 10,
+        "bm25": 10
+      },
+      "n_fused": 10,
+      "rerank": {
+        "n": 10,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "02facda9aeb8e139:L0:000001",
+          "score": -2.3973350524902344,
+          "fused": 0.8118137401926331,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -2.3973350524902344
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000009",
+          "score": -2.5824053287506104,
+          "fused": 0.8880698043480796,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -2.5824053287506104
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000000",
+          "score": -2.9556450843811035,
+          "fused": 0.795553933598548,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -2.9556450843811035
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000003",
+          "score": -3.0087826251983643,
+          "fused": 0.5368435380914615,
+          "dense_rank": 9,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -3.0087826251983643
+        },
+        {
+          "id": "02facda9aeb8e139:L0:000004",
+          "score": -3.675342321395874,
+          "fused": 0.49280045026978103,
+          "dense_rank": 7,
+          "bm25_rank": 5,
+          "fused_rank": 7,
+          "rerank": -3.675342321395874
+        }
+      ],
+      "latency_ms": 27.03
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1934,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23077.2
+    }
+  },
+  "retrieved_ids": [
+    "02facda9aeb8e139:L0:000001",
+    "02facda9aeb8e139:L0:000009",
+    "02facda9aeb8e139:L0:000000",
+    "02facda9aeb8e139:L0:000003",
+    "02facda9aeb8e139:L0:000004"
+  ],
+  "filtered_ids": [
+    "02facda9aeb8e139:L0:000001",
+    "02facda9aeb8e139:L0:000009",
+    "02facda9aeb8e139:L0:000000",
+    "02facda9aeb8e139:L0:000003",
+    "02facda9aeb8e139:L0:000004"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:06:56.739034+00:00",
+      "call_id": "98a4ac60d175",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "81a363da6a9732b1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e393e2592a8a40a0"
+    },
+    {
+      "ts": "2026-11-22T12:07:19.840090+00:00",
+      "call_id": "8a9974ea440d",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a6d8b7ca05bca14c",
+      "prompt_tokens": 2498,
+      "completion_tokens": 55,
+      "latency_ms": 23075.65,
+      "server_ms": 23036.73,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e393e2592a8a40a0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2498,
+    "generator_prompt_tokens": 2498,
+    "completion_tokens": 55,
+    "total_ms": 23106.24
+  },
+  "config_hash": "403cb8f3227b",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

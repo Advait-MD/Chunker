@@ -1,0 +1,184 @@
+{
+  "trace_id": "be07236112244cfa",
+  "created_at": "2026-11-22T12:05:30.070793+00:00",
+  "query": "In which scenarios did OA increase subscription retention?\n\nOptions:\n(A) When the publication used a short embargo followed by OA\n(B) Only in hypothetical scenarios, not in actual data \n(C) When libraries decided to embrace the practice of embargo\n(D) When publishers decided to switch to Gold OA instead of Green\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 28.53
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 28.59
+    },
+    {
+      "state": "DONE",
+      "t_ms": 31653.0
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.68,
+      "bm25_ms": 24.73,
+      "n_candidates": {
+        "dense": 9,
+        "bm25": 9
+      },
+      "n_fused": 9,
+      "rerank": {
+        "n": 9,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000006",
+          "score": -0.22258175909519196,
+          "fused": 0.7013441146864685,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -0.22258175909519196
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000005",
+          "score": -0.44672274589538574,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.44672274589538574
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000003",
+          "score": -2.226048707962036,
+          "fused": 0.6921783878948339,
+          "dense_rank": 5,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -2.226048707962036
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000000",
+          "score": -2.3305256366729736,
+          "fused": 0.40830237767805155,
+          "dense_rank": 4,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": -2.3305256366729736
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000007",
+          "score": -2.464717388153076,
+          "fused": 0.3741462922019392,
+          "dense_rank": 3,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": -2.464717388153076
+        }
+      ],
+      "latency_ms": 28.49
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1947,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 31624.17
+    }
+  },
+  "retrieved_ids": [
+    "6a7f3433b6bd8dc9:L0:000006",
+    "6a7f3433b6bd8dc9:L0:000005",
+    "6a7f3433b6bd8dc9:L0:000003",
+    "6a7f3433b6bd8dc9:L0:000000",
+    "6a7f3433b6bd8dc9:L0:000007"
+  ],
+  "filtered_ids": [
+    "6a7f3433b6bd8dc9:L0:000006",
+    "6a7f3433b6bd8dc9:L0:000005",
+    "6a7f3433b6bd8dc9:L0:000003",
+    "6a7f3433b6bd8dc9:L0:000000",
+    "6a7f3433b6bd8dc9:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:05:30.072794+00:00",
+      "call_id": "dd9e3c1d8c7d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3f366f1856bbcfbb",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "be07236112244cfa"
+    },
+    {
+      "ts": "2026-11-22T12:06:01.722227+00:00",
+      "call_id": "928171fa7f33",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0ddf68b4131ad1bb",
+      "prompt_tokens": 2579,
+      "completion_tokens": 137,
+      "latency_ms": 31622.23,
+      "server_ms": 31575.52,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "be07236112244cfa"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2579,
+    "generator_prompt_tokens": 2579,
+    "completion_tokens": 137,
+    "total_ms": 31655.21
+  },
+  "config_hash": "403cb8f3227b",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Some subscription journals have found that OA after an embargo period, even a very short one like two months, actually increases submissions and subscriptions.",
+        "For example, the American Society for Cell Biology and its journal, Molecular Biology of the Cell, saw an increase in submissions and subscriptions when it began offering unembargoed full-text editions of its journals alongside its toll-access print journals."
+      ]
+    }
+  }
+}

@@ -1,0 +1,300 @@
+{
+  "trace_id": "55064692a2624bb8",
+  "created_at": "2026-11-22T13:25:30.061497+00:00",
+  "query": "Where do they get their ground truth quality judgments?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 41.98
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 21793.7
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 21793.74
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.19,
+      "bm25_ms": 34.82,
+      "n_candidates": {
+        "dense": 24,
+        "bm25": 18
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "20fbb354a59c3108:L0:000020",
+          "score": -7.449930191040039,
+          "fused": 0.5954310441653383,
+          "dense_rank": 3,
+          "bm25_rank": 6,
+          "fused_rank": 4,
+          "rerank": -7.449930191040039
+        },
+        {
+          "id": "20fbb354a59c3108:L0:000003",
+          "score": -7.4502105712890625,
+          "fused": 0.5787005996850976,
+          "dense_rank": 11,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": -7.4502105712890625
+        },
+        {
+          "id": "20fbb354a59c3108:L0:000004",
+          "score": -7.563348293304443,
+          "fused": 0.5594074460914726,
+          "dense_rank": 2,
+          "bm25_rank": 9,
+          "fused_rank": 8,
+          "rerank": -7.563348293304443
+        },
+        {
+          "id": "20fbb354a59c3108:L0:000023",
+          "score": -7.722289085388184,
+          "fused": 0.6089152705190467,
+          "dense_rank": 1,
+          "bm25_rank": 7,
+          "fused_rank": 3,
+          "rerank": -7.722289085388184
+        },
+        {
+          "id": "20fbb354a59c3108:L0:000005",
+          "score": -8.075916290283203,
+          "fused": 0.41429216431216914,
+          "dense_rank": 15,
+          "bm25_rank": 10,
+          "fused_rank": 11,
+          "rerank": -8.075916290283203
+        }
+      ],
+      "latency_ms": 41.93
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 1711,
+      "dropped_threshold": [
+        "20fbb354a59c3108:L0:000004",
+        "20fbb354a59c3108:L0:000023",
+        "20fbb354a59c3108:L0:000005"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 28,
+      "sentences_kept": 19,
+      "n_out": 2,
+      "tokens_out": 597,
+      "ms": 22.4,
+      "latency_ms": 22.47
+    },
+    "sufficiency": {
+      "verdict": "insufficient",
+      "by": "rerank",
+      "best": -7.449930191040039,
+      "latency_ms": 0.01
+    },
+    "rewrite_retry": {
+      "query": "where do they obtain ground truth quality judgments?",
+      "n_new": 1,
+      "filter": {
+        "n_in": 5,
+        "tokens_in": 1711,
+        "dropped_threshold": [
+          "20fbb354a59c3108:L0:000004",
+          "20fbb354a59c3108:L0:000023",
+          "20fbb354a59c3108:L0:000005"
+        ],
+        "dropped_dedup": [],
+        "sentences_in": 28,
+        "sentences_kept": 19,
+        "n_out": 2,
+        "tokens_out": 597,
+        "ms": 12.6
+      },
+      "sufficiency": {
+        "verdict": "insufficient",
+        "by": "rerank",
+        "best": -7.449930191040039
+      },
+      "latency_ms": 21729.16
+    }
+  },
+  "retrieved_ids": [
+    "20fbb354a59c3108:L0:000020",
+    "20fbb354a59c3108:L0:000003",
+    "20fbb354a59c3108:L0:000004",
+    "20fbb354a59c3108:L0:000023",
+    "20fbb354a59c3108:L0:000005"
+  ],
+  "filtered_ids": [
+    "20fbb354a59c3108:L0:000020",
+    "20fbb354a59c3108:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:25:30.062605+00:00",
+      "call_id": "643d2b0169ba",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f0a97b432c2f70bc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "55064692a2624bb8"
+    },
+    {
+      "ts": "2026-11-22T13:25:30.105134+00:00",
+      "call_id": "c58fcc597941",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f0a97b432c2f70bc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "55064692a2624bb8"
+    },
+    {
+      "ts": "2026-11-22T13:25:30.123347+00:00",
+      "call_id": "6b728c0ee778",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3392c36bcc25f674",
+      "n_inputs": 28,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "55064692a2624bb8"
+    },
+    {
+      "ts": "2026-11-22T13:25:39.409210+00:00",
+      "call_id": "5d152d35d9a2",
+      "kind": "generate",
+      "caller": "filter.rewrite",
+      "state": "FILTERING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "190dd0404d35c029",
+      "prompt_tokens": 110,
+      "completion_tokens": 15,
+      "latency_ms": 9282.74,
+      "server_ms": 9271.38,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "55064692a2624bb8"
+    },
+    {
+      "ts": "2026-11-22T13:25:39.471974+00:00",
+      "call_id": "479954e8ff4b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "05c2e5484dde03c3",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 15,
+      "completion_tokens": 0,
+      "latency_ms": 61.89,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "55064692a2624bb8"
+    },
+    {
+      "ts": "2026-11-22T13:25:51.844490+00:00",
+      "call_id": "502451846453",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f0a97b432c2f70bc",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "55064692a2624bb8"
+    },
+    {
+      "ts": "2026-11-22T13:25:51.852657+00:00",
+      "call_id": "4e7bc6e20f3d",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3392c36bcc25f674",
+      "n_inputs": 28,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "55064692a2624bb8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 6,
+    "prompt_tokens": 110,
+    "generator_prompt_tokens": 0,
+    "completion_tokens": 15,
+    "total_ms": 21796.68
+  },
+  "config_hash": "c4b7d9811844",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

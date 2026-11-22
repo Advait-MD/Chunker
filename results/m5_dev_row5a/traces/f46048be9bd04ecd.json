@@ -1,0 +1,228 @@
+{
+  "trace_id": "f46048be9bd04ecd",
+  "created_at": "2026-11-22T12:57:49.796935+00:00",
+  "query": "Where did the founder of Ford Australia die?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 4.23
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.52
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 7714.33
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.67,
+      "bm25_ms": 1.53,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "460e441179bec402:L0:000101",
+          "score": 2.0607810020446777,
+          "fused": 0.7395961767878445,
+          "dense_rank": 28,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.0607810020446777
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000009",
+          "score": -1.8809089660644531,
+          "fused": 0.6442000471857843,
+          "dense_rank": 1,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": -1.8809089660644531
+        },
+        {
+          "id": "99628090500247e3:L0:000005",
+          "score": -3.4744396209716797,
+          "fused": 0.6492911673121808,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": -3.4744396209716797
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000105",
+          "score": -4.313935279846191,
+          "fused": 0.11708872966775485,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -4.313935279846191
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000034",
+          "score": -4.480569839477539,
+          "fused": 0.2978337738019152,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": -4.480569839477539
+        }
+      ],
+      "latency_ms": 4.21
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 695,
+      "dropped_threshold": [
+        "b04ce6dd2d95fb80:L0:000105",
+        "c73b757f0eb66f37:L0:000034"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 18,
+      "sentences_kept": 18,
+      "n_out": 3,
+      "tokens_out": 490,
+      "ms": 11.2,
+      "latency_ms": 11.25
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 2.0607810020446777,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 7698.75
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000101",
+    "c73b757f0eb66f37:L0:000009",
+    "99628090500247e3:L0:000005",
+    "b04ce6dd2d95fb80:L0:000105",
+    "c73b757f0eb66f37:L0:000034"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000101",
+    "c73b757f0eb66f37:L0:000009",
+    "99628090500247e3:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:57:49.797930+00:00",
+      "call_id": "b0a23f49ba0d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "83aa6c2588816131",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f46048be9bd04ecd"
+    },
+    {
+      "ts": "2026-11-22T12:57:49.801932+00:00",
+      "call_id": "3cba4a02f34a",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "83aa6c2588816131",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f46048be9bd04ecd"
+    },
+    {
+      "ts": "2026-11-22T12:57:49.811167+00:00",
+      "call_id": "3c2f5540f397",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d672bd5f865eaebb",
+      "n_inputs": 18,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f46048be9bd04ecd"
+    },
+    {
+      "ts": "2026-11-22T12:57:57.511080+00:00",
+      "call_id": "913162284615",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "43d2f66e7a0a1c4b",
+      "prompt_tokens": 970,
+      "completion_tokens": 43,
+      "latency_ms": 7698.21,
+      "server_ms": 7677.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "f46048be9bd04ecd"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 970,
+    "generator_prompt_tokens": 970,
+    "completion_tokens": 43,
+    "total_ms": 7715.1
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "trace_id": "6eb595c3eea44e09",
+  "created_at": "2026-11-22T12:56:12.456442+00:00",
+  "query": "Who is Rostislav I Of Kiev's paternal grandfather?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8.05
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 39.97
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 13762.29
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13762.56
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.56,
+      "bm25_ms": 3.18,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000047",
+          "score": 3.6634435653686523,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.6634435653686523
+        },
+        {
+          "id": "460e441179bec402:L0:000135",
+          "score": 0.9536574482917786,
+          "fused": 0.5997103332556954,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 4,
+          "rerank": 0.9536574482917786
+        },
+        {
+          "id": "0eac870d43736f51:L0:000184",
+          "score": 0.9418410062789917,
+          "fused": 0.4764903599517789,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": 0.9418410062789917
+        },
+        {
+          "id": "460e441179bec402:L0:000126",
+          "score": -1.3275160789489746,
+          "fused": 0.5280287659662208,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": -1.3275160789489746
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000179",
+          "score": -1.6427370309829712,
+          "fused": 0.4736667270144681,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": -1.6427370309829712
+        }
+      ],
+      "latency_ms": 8.01
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 768,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 30,
+      "sentences_kept": 28,
+      "n_out": 5,
+      "tokens_out": 742,
+      "ms": 31.8,
+      "latency_ms": 31.86
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 3.6634435653686523,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13722.3
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 0.22
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000047",
+    "460e441179bec402:L0:000135",
+    "0eac870d43736f51:L0:000184",
+    "460e441179bec402:L0:000126",
+    "53c7288bdcd3837a:L0:000179"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000047",
+    "460e441179bec402:L0:000135",
+    "0eac870d43736f51:L0:000184",
+    "460e441179bec402:L0:000126",
+    "53c7288bdcd3837a:L0:000179"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:56:12.458441+00:00",
+      "call_id": "976c34d6066b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fdbe10a99d4f0d07",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6eb595c3eea44e09"
+    },
+    {
+      "ts": "2026-11-22T12:56:12.465628+00:00",
+      "call_id": "9173c3cfe5e6",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fdbe10a99d4f0d07",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6eb595c3eea44e09"
+    },
+    {
+      "ts": "2026-11-22T12:56:12.493219+00:00",
+      "call_id": "0e1458a4662e",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3a58bd82c3afc05b",
+      "n_inputs": 30,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6eb595c3eea44e09"
+    },
+    {
+      "ts": "2026-11-22T12:56:26.218199+00:00",
+      "call_id": "9e564034f9b2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "472f3e88b72b64e6",
+      "prompt_tokens": 1707,
+      "completion_tokens": 60,
+      "latency_ms": 13721.7,
+      "server_ms": 13701.23,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "6eb595c3eea44e09"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1707,
+    "generator_prompt_tokens": 1707,
+    "completion_tokens": 60,
+    "total_ms": 13763.06
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

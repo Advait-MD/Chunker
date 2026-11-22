@@ -1,0 +1,248 @@
+{
+  "trace_id": "b63d51c2d8214e45",
+  "created_at": "2026-11-22T12:52:14.555526+00:00",
+  "query": "The On Tour Forever album gave Blues Traveler the opportunity to display what musical trademark?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16.34
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 33.62
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 9753.65
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10315.23
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.68,
+      "bm25_ms": 10.45,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "b120b09075017d08:L0:000033",
+          "score": 2.8482422828674316,
+          "fused": 0.7699118141328499,
+          "dense_rank": 33,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 2.8482422828674316
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000038",
+          "score": 2.131018877029419,
+          "fused": 0.5342614582231228,
+          "dense_rank": 3,
+          "bm25_rank": 8,
+          "fused_rank": 3,
+          "rerank": 2.131018877029419
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000123",
+          "score": 0.9294780492782593,
+          "fused": 0.49743242094478024,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 0.9294780492782593
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000024",
+          "score": 0.18164372444152832,
+          "fused": 0.8469737690879922,
+          "dense_rank": 9,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 0.18164372444152832
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000132",
+          "score": -4.128305435180664,
+          "fused": 0.34692837616737854,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": -4.128305435180664
+        }
+      ],
+      "latency_ms": 16.3
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 330,
+      "dropped_threshold": [
+        "ec3410ef955c5c93:L0:000132"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 11,
+      "sentences_kept": 10,
+      "n_out": 4,
+      "tokens_out": 250,
+      "ms": 17.2,
+      "latency_ms": 17.21
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 2.8482422828674316,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9720.01
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 561.34
+    }
+  },
+  "retrieved_ids": [
+    "b120b09075017d08:L0:000033",
+    "838c0e0106e6f015:L0:000038",
+    "ba3cd068cf9ac2e4:L0:000123",
+    "cb96563b0747a6ba:L0:000024",
+    "ec3410ef955c5c93:L0:000132"
+  ],
+  "filtered_ids": [
+    "b120b09075017d08:L0:000033",
+    "838c0e0106e6f015:L0:000038",
+    "ba3cd068cf9ac2e4:L0:000123",
+    "cb96563b0747a6ba:L0:000024"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:52:14.557525+00:00",
+      "call_id": "a5f520471c45",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e1a9801f3dc6918f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b63d51c2d8214e45"
+    },
+    {
+      "ts": "2026-11-22T12:52:14.573045+00:00",
+      "call_id": "b6cb33cd21a1",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e1a9801f3dc6918f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b63d51c2d8214e45"
+    },
+    {
+      "ts": "2026-11-22T12:52:14.587222+00:00",
+      "call_id": "6726424c29d1",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f97a35b8b9762859",
+      "n_inputs": 11,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b63d51c2d8214e45"
+    },
+    {
+      "ts": "2026-11-22T12:52:24.308438+00:00",
+      "call_id": "aff295762f74",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6b0e7fa3423b53d8",
+      "prompt_tokens": 761,
+      "completion_tokens": 65,
+      "latency_ms": 9719.07,
+      "server_ms": 9700.3,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b63d51c2d8214e45"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 761,
+    "generator_prompt_tokens": 761,
+    "completion_tokens": 65,
+    "total_ms": 10317.0
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

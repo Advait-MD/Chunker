@@ -1,0 +1,250 @@
+{
+  "trace_id": "1bf1b2df6e1b4bd2",
+  "created_at": "2026-11-22T12:56:36.626918+00:00",
+  "query": "Which film whose director is younger, A Night'S Adventure or Insaciable?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.48
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.0
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 9543.06
+    },
+    {
+      "state": "DONE",
+      "t_ms": 9543.13
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.72,
+      "bm25_ms": 2.9,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000183",
+          "score": 8.77797794342041,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.77797794342041
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000013",
+          "score": 7.1245222091674805,
+          "fused": 0.30137830898802936,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 7.1245222091674805
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -4.240593433380127,
+          "fused": 0.16568287309332766,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -4.240593433380127
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000176",
+          "score": -5.410282135009766,
+          "fused": 0.141196716274976,
+          "dense_rank": 7,
+          "bm25_rank": null,
+          "fused_rank": 17,
+          "rerank": -5.410282135009766
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000053",
+          "score": -5.821958541870117,
+          "fused": 0.13676601244959133,
+          "dense_rank": 10,
+          "bm25_rank": null,
+          "fused_rank": 20,
+          "rerank": -5.821958541870117
+        }
+      ],
+      "latency_ms": 6.46
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 872,
+      "dropped_threshold": [
+        "b04ce6dd2d95fb80:L0:000152",
+        "4a757779abfb4ba1:L0:000176",
+        "317e12ccd417c0d7:L0:000053"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 6,
+      "sentences_kept": 2,
+      "n_out": 2,
+      "tokens_out": 55,
+      "ms": 4.5,
+      "latency_ms": 4.5
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 8.77797794342041,
+      "latency_ms": 0.0
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9532.05
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 0.03
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000183",
+    "53c7288bdcd3837a:L0:000013",
+    "b04ce6dd2d95fb80:L0:000152",
+    "4a757779abfb4ba1:L0:000176",
+    "317e12ccd417c0d7:L0:000053"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000183",
+    "53c7288bdcd3837a:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:56:36.627976+00:00",
+      "call_id": "df7e16f2904c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a76abd7cec9f67a7",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1bf1b2df6e1b4bd2"
+    },
+    {
+      "ts": "2026-11-22T12:56:36.633152+00:00",
+      "call_id": "a4de3584974f",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a76abd7cec9f67a7",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1bf1b2df6e1b4bd2"
+    },
+    {
+      "ts": "2026-11-22T12:56:36.637152+00:00",
+      "call_id": "dc44c32266ac",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c59d9a3ca297af4b",
+      "n_inputs": 6,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1bf1b2df6e1b4bd2"
+    },
+    {
+      "ts": "2026-11-22T12:56:46.169623+00:00",
+      "call_id": "80de74bc51e7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a452de0a342254f9",
+      "prompt_tokens": 488,
+      "completion_tokens": 81,
+      "latency_ms": 9531.57,
+      "server_ms": 9520.36,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1bf1b2df6e1b4bd2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 488,
+    "generator_prompt_tokens": 488,
+    "completion_tokens": 81,
+    "total_ms": 9543.63
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "A Night's Adventure was directed by Harry Piel in 1923, while Insaciable was directed by Armando Bo in 1976, making Insaciable's director younger."
+      ]
+    }
+  }
+}

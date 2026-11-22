@@ -1,0 +1,183 @@
+{
+  "trace_id": "125a93143a294feb",
+  "created_at": "2026-11-22T12:25:52.916784+00:00",
+  "query": "did they use a crowdsourcing platform for manual annotations?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.46
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18.52
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21304.41
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.2,
+      "bm25_ms": 11.34,
+      "n_candidates": {
+        "dense": 18,
+        "bm25": 6
+      },
+      "n_fused": 18,
+      "rerank": {
+        "n": 18,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "259f098f0b345ee9:L0:000007",
+          "score": -3.135758399963379,
+          "fused": 0.23088722128382466,
+          "dense_rank": 5,
+          "bm25_rank": 6,
+          "fused_rank": 9,
+          "rerank": -3.135758399963379
+        },
+        {
+          "id": "259f098f0b345ee9:L0:000002",
+          "score": -3.4971230030059814,
+          "fused": 0.9454687900801966,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -3.4971230030059814
+        },
+        {
+          "id": "259f098f0b345ee9:L0:000000",
+          "score": -3.9992241859436035,
+          "fused": 0.5655988400205476,
+          "dense_rank": 6,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -3.9992241859436035
+        },
+        {
+          "id": "259f098f0b345ee9:L0:000001",
+          "score": -4.2282538414001465,
+          "fused": 0.3992416769456239,
+          "dense_rank": 7,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": -4.2282538414001465
+        },
+        {
+          "id": "259f098f0b345ee9:L0:000006",
+          "score": -4.41620397567749,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 5,
+          "rerank": -4.41620397567749
+        }
+      ],
+      "latency_ms": 18.42
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1458,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21285.81
+    }
+  },
+  "retrieved_ids": [
+    "259f098f0b345ee9:L0:000007",
+    "259f098f0b345ee9:L0:000002",
+    "259f098f0b345ee9:L0:000000",
+    "259f098f0b345ee9:L0:000001",
+    "259f098f0b345ee9:L0:000006"
+  ],
+  "filtered_ids": [
+    "259f098f0b345ee9:L0:000007",
+    "259f098f0b345ee9:L0:000002",
+    "259f098f0b345ee9:L0:000000",
+    "259f098f0b345ee9:L0:000001",
+    "259f098f0b345ee9:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:25:52.917784+00:00",
+      "call_id": "56bc9814a084",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "724d6ef52f09c31d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "125a93143a294feb"
+    },
+    {
+      "ts": "2026-11-22T12:26:14.219951+00:00",
+      "call_id": "47fdb7f5801c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "648906d4d003ea7c",
+      "prompt_tokens": 2299,
+      "completion_tokens": 58,
+      "latency_ms": 21284.78,
+      "server_ms": 21259.58,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "125a93143a294feb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2299,
+    "generator_prompt_tokens": 2299,
+    "completion_tokens": 58,
+    "total_ms": 21305.48
+  },
+  "config_hash": "1cf51d8daba2",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "No, they did not use a crowdsourcing platform for manual annotations.",
+        "The dataset was manually annotated by the researchers."
+      ]
+    }
+  }
+}

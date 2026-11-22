@@ -1,0 +1,246 @@
+{
+  "trace_id": "8840b6e2cca84cda",
+  "created_at": "2026-11-22T13:11:54.635076+00:00",
+  "query": "Who won the All-Star MVP for the league that the team that has attended the competition where they give out the MLB MVP award after the most?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 38.67
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 70.41
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 14150.68
+    },
+    {
+      "state": "DONE",
+      "t_ms": 14712.21
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.38,
+      "bm25_ms": 29.43,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "dbcbda865eee9c7b:L0:000002",
+          "score": 4.830712795257568,
+          "fused": 0.9858994055026791,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.830712795257568
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000057",
+          "score": -1.2926042079925537,
+          "fused": 0.8215075905991367,
+          "dense_rank": 6,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -1.2926042079925537
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000022",
+          "score": -1.3280465602874756,
+          "fused": 0.4300936313770354,
+          "dense_rank": 23,
+          "bm25_rank": 12,
+          "fused_rank": 9,
+          "rerank": -1.3280465602874756
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000107",
+          "score": -2.072866916656494,
+          "fused": 0.6038433837290997,
+          "dense_rank": 19,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -2.072866916656494
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000074",
+          "score": -2.4268107414245605,
+          "fused": 0.41518214292532535,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 10,
+          "rerank": -2.4268107414245605
+        }
+      ],
+      "latency_ms": 38.63
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 788,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 27,
+      "sentences_kept": 24,
+      "n_out": 5,
+      "tokens_out": 742,
+      "ms": 31.6,
+      "latency_ms": 31.68
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 4.830712795257568,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14080.24
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 561.36
+    }
+  },
+  "retrieved_ids": [
+    "dbcbda865eee9c7b:L0:000002",
+    "5a1a5bbda9db013e:L0:000057",
+    "8679484d23bfd3a0:L0:000022",
+    "ad11b6e85f908fb3:L0:000107",
+    "ad11b6e85f908fb3:L0:000074"
+  ],
+  "filtered_ids": [
+    "dbcbda865eee9c7b:L0:000002",
+    "5a1a5bbda9db013e:L0:000057",
+    "8679484d23bfd3a0:L0:000022",
+    "ad11b6e85f908fb3:L0:000107",
+    "ad11b6e85f908fb3:L0:000074"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:11:54.637076+00:00",
+      "call_id": "c9f4819df2e5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7ea27aafc4700d91",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8840b6e2cca84cda"
+    },
+    {
+      "ts": "2026-11-22T13:11:54.674687+00:00",
+      "call_id": "a4a61f0320f8",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7ea27aafc4700d91",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8840b6e2cca84cda"
+    },
+    {
+      "ts": "2026-11-22T13:11:54.700943+00:00",
+      "call_id": "67fbdcce16f8",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c00ec8b13e036e05",
+      "n_inputs": 27,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8840b6e2cca84cda"
+    },
+    {
+      "ts": "2026-11-22T13:12:08.785405+00:00",
+      "call_id": "f95d83a25e9c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "17f68d74a5de038e",
+      "prompt_tokens": 1395,
+      "completion_tokens": 79,
+      "latency_ms": 14079.64,
+      "server_ms": 14064.31,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8840b6e2cca84cda"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1395,
+    "generator_prompt_tokens": 1395,
+    "completion_tokens": 79,
+    "total_ms": 14714.76
+  },
+  "config_hash": "1c92a20b0713",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

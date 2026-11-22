@@ -1,0 +1,184 @@
+{
+  "trace_id": "5aa4c2b654c94bd8",
+  "created_at": "2026-11-22T12:24:05.679834+00:00",
+  "query": "What evaluation metric is used?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.78
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13.84
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19452.85
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.4,
+      "bm25_ms": 8.24,
+      "n_candidates": {
+        "dense": 10,
+        "bm25": 7
+      },
+      "n_fused": 10,
+      "rerank": {
+        "n": 10,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "275dc183c43ce5d7:L0:000002",
+          "score": -4.489100933074951,
+          "fused": 0.8254621952890066,
+          "dense_rank": 5,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -4.489100933074951
+        },
+        {
+          "id": "275dc183c43ce5d7:L0:000000",
+          "score": -5.5201873779296875,
+          "fused": 0.04160951331041545,
+          "dense_rank": 8,
+          "bm25_rank": null,
+          "fused_rank": 9,
+          "rerank": -5.5201873779296875
+        },
+        {
+          "id": "275dc183c43ce5d7:L0:000006",
+          "score": -5.593139171600342,
+          "fused": 0.4604453714910721,
+          "dense_rank": 2,
+          "bm25_rank": 5,
+          "fused_rank": 2,
+          "rerank": -5.593139171600342
+        },
+        {
+          "id": "275dc183c43ce5d7:L0:000007",
+          "score": -5.839778900146484,
+          "fused": 0.23333272450929868,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -5.839778900146484
+        },
+        {
+          "id": "275dc183c43ce5d7:L0:000003",
+          "score": -6.092494964599609,
+          "fused": 0.17927102614280574,
+          "dense_rank": 10,
+          "bm25_rank": 4,
+          "fused_rank": 8,
+          "rerank": -6.092494964599609
+        }
+      ],
+      "latency_ms": 13.72
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1313,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 19438.9
+    }
+  },
+  "retrieved_ids": [
+    "275dc183c43ce5d7:L0:000002",
+    "275dc183c43ce5d7:L0:000000",
+    "275dc183c43ce5d7:L0:000006",
+    "275dc183c43ce5d7:L0:000007",
+    "275dc183c43ce5d7:L0:000003"
+  ],
+  "filtered_ids": [
+    "275dc183c43ce5d7:L0:000002",
+    "275dc183c43ce5d7:L0:000000",
+    "275dc183c43ce5d7:L0:000006",
+    "275dc183c43ce5d7:L0:000007",
+    "275dc183c43ce5d7:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:24:05.681835+00:00",
+      "call_id": "0d1c1f81b4c9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2a4b7da6495e7fc1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5aa4c2b654c94bd8"
+    },
+    {
+      "ts": "2026-11-22T12:24:25.131387+00:00",
+      "call_id": "1109b143177c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ee2642762da9e13b",
+      "prompt_tokens": 2181,
+      "completion_tokens": 70,
+      "latency_ms": 19437.77,
+      "server_ms": 19416.79,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "5aa4c2b654c94bd8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2181,
+    "generator_prompt_tokens": 2181,
+    "completion_tokens": 70,
+    "total_ms": 19456.95
+  },
+  "config_hash": "1cf51d8daba2",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        3,
+        4
+      ],
+      "uncited_sentences": [
+        "The average classification accuracy results are summarised in Table TABREF9.",
+        "The accuracies reported are for classifying a piece of text by its specific language label."
+      ]
+    }
+  }
+}

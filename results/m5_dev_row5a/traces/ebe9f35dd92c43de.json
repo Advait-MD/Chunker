@@ -1,0 +1,248 @@
+{
+  "trace_id": "ebe9f35dd92c43de",
+  "created_at": "2026-11-22T12:48:39.886998+00:00",
+  "query": "Pandikona and Berger Blanc Suisse are both what kinds of animals?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.0
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.59
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.06
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 7467.15
+    },
+    {
+      "state": "DONE",
+      "t_ms": 8232.73
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.48,
+      "bm25_ms": 3.37,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "b120b09075017d08:L0:000126",
+          "score": 7.482632160186768,
+          "fused": 0.7247397117448242,
+          "dense_rank": 33,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.482632160186768
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000057",
+          "score": 7.401064395904541,
+          "fused": 0.24434216084165608,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 11,
+          "rerank": 7.401064395904541
+        },
+        {
+          "id": "b120b09075017d08:L0:000073",
+          "score": -4.909298419952393,
+          "fused": 0.2995150295818918,
+          "dense_rank": 4,
+          "bm25_rank": 13,
+          "fused_rank": 6,
+          "rerank": -4.909298419952393
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000154",
+          "score": -6.6524553298950195,
+          "fused": 0.25355977633852056,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 8,
+          "rerank": -6.6524553298950195
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000135",
+          "score": -6.679802894592285,
+          "fused": 0.32409795745617287,
+          "dense_rank": 1,
+          "bm25_rank": 25,
+          "fused_rank": 4,
+          "rerank": -6.679802894592285
+        }
+      ],
+      "latency_ms": 6.57
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 507,
+      "dropped_threshold": [
+        "b120b09075017d08:L0:000073",
+        "ec3410ef955c5c93:L0:000154",
+        "8e50522b7cb636d8:L0:000135"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 6,
+      "sentences_kept": 4,
+      "n_out": 2,
+      "tokens_out": 92,
+      "ms": 5.4,
+      "latency_ms": 5.45
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 7.482632160186768,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 7455.07
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 765.42
+    }
+  },
+  "retrieved_ids": [
+    "b120b09075017d08:L0:000126",
+    "c8fd2b3ea47eb07f:L0:000057",
+    "b120b09075017d08:L0:000073",
+    "ec3410ef955c5c93:L0:000154",
+    "8e50522b7cb636d8:L0:000135"
+  ],
+  "filtered_ids": [
+    "b120b09075017d08:L0:000126",
+    "c8fd2b3ea47eb07f:L0:000057"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:48:39.887999+00:00",
+      "call_id": "d160c8d74376",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "60ce07cc0c26b9ee",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ebe9f35dd92c43de"
+    },
+    {
+      "ts": "2026-11-22T12:48:39.894329+00:00",
+      "call_id": "62e8acd95689",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "60ce07cc0c26b9ee",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ebe9f35dd92c43de"
+    },
+    {
+      "ts": "2026-11-22T12:48:39.899328+00:00",
+      "call_id": "9d2f597d5c1e",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fdb71d70ebadbf9f",
+      "n_inputs": 6,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ebe9f35dd92c43de"
+    },
+    {
+      "ts": "2026-11-22T12:48:47.353753+00:00",
+      "call_id": "bdc6259d08f8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4c07d55ab15fa71d",
+      "prompt_tokens": 541,
+      "completion_tokens": 55,
+      "latency_ms": 7454.61,
+      "server_ms": 7436.64,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ebe9f35dd92c43de"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 541,
+    "generator_prompt_tokens": 541,
+    "completion_tokens": 55,
+    "total_ms": 8233.86
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "trace_id": "cc66d1fd84a94702",
+  "created_at": "2026-11-22T13:06:13.098601+00:00",
+  "query": "Who sing \"Home Alone Tonight\" with the performer of \"country Man\"?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.48
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 34.32
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 9229.78
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10006.42
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.54,
+      "bm25_ms": 12.47,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "178c7e3e6ef6ae87:L0:000195",
+          "score": 7.350417137145996,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.350417137145996
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000137",
+          "score": 4.7569708824157715,
+          "fused": 0.23024151712390395,
+          "dense_rank": 16,
+          "bm25_rank": 15,
+          "fused_rank": 10,
+          "rerank": 4.7569708824157715
+        },
+        {
+          "id": "178c7e3e6ef6ae87:L0:000149",
+          "score": -3.7083234786987305,
+          "fused": 0.17405772713779197,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 14,
+          "rerank": -3.7083234786987305
+        },
+        {
+          "id": "a168352d83e925b5:L0:000029",
+          "score": -4.449732303619385,
+          "fused": 0.24661606171933426,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 9,
+          "rerank": -4.449732303619385
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000040",
+          "score": -4.9371018409729,
+          "fused": 0.15201989259297108,
+          "dense_rank": null,
+          "bm25_rank": 14,
+          "fused_rank": 19,
+          "rerank": -4.9371018409729
+        }
+      ],
+      "latency_ms": 19.43
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 526,
+      "dropped_threshold": [
+        "a168352d83e925b5:L0:000029",
+        "ad11b6e85f908fb3:L0:000040"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 11,
+      "sentences_kept": 3,
+      "n_out": 3,
+      "tokens_out": 87,
+      "ms": 14.7,
+      "latency_ms": 14.79
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 7.350417137145996,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9195.43
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 776.42
+    }
+  },
+  "retrieved_ids": [
+    "178c7e3e6ef6ae87:L0:000195",
+    "ce290c1e5d5c6641:L0:000137",
+    "178c7e3e6ef6ae87:L0:000149",
+    "a168352d83e925b5:L0:000029",
+    "ad11b6e85f908fb3:L0:000040"
+  ],
+  "filtered_ids": [
+    "178c7e3e6ef6ae87:L0:000195",
+    "ce290c1e5d5c6641:L0:000137",
+    "178c7e3e6ef6ae87:L0:000149"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:06:13.100524+00:00",
+      "call_id": "68145ad00fec",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bd89898c193ee53b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cc66d1fd84a94702"
+    },
+    {
+      "ts": "2026-11-22T13:06:13.119721+00:00",
+      "call_id": "2ea6023ea64e",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bd89898c193ee53b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cc66d1fd84a94702"
+    },
+    {
+      "ts": "2026-11-22T13:06:13.132144+00:00",
+      "call_id": "00dab5c95dd8",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bd78cf9b9ba5457c",
+      "n_inputs": 11,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cc66d1fd84a94702"
+    },
+    {
+      "ts": "2026-11-22T13:06:22.328226+00:00",
+      "call_id": "3695bbb46a77",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "39644f25ade401e2",
+      "prompt_tokens": 532,
+      "completion_tokens": 66,
+      "latency_ms": 9194.46,
+      "server_ms": 9177.08,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "cc66d1fd84a94702"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 532,
+    "generator_prompt_tokens": 532,
+    "completion_tokens": 66,
+    "total_ms": 10009.85
+  },
+  "config_hash": "1c92a20b0713",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

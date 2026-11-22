@@ -1,0 +1,246 @@
+{
+  "trace_id": "01b0c5a3f48d4629",
+  "created_at": "2026-11-22T12:51:52.621514+00:00",
+  "query": "What was the capital of India when the Taj Mahal was commissioned?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13.33
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 43.23
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 11010.74
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11335.31
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.67,
+      "bm25_ms": 7.69,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "bc1dba3471045f02:L0:000107",
+          "score": 5.395621299743652,
+          "fused": 0.7856729144709917,
+          "dense_rank": 3,
+          "bm25_rank": 5,
+          "fused_rank": 2,
+          "rerank": 5.395621299743652
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000112",
+          "score": 0.9434009790420532,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.9434009790420532
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000167",
+          "score": 0.7859779596328735,
+          "fused": 0.6773392201181012,
+          "dense_rank": 7,
+          "bm25_rank": 6,
+          "fused_rank": 3,
+          "rerank": 0.7859779596328735
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000147",
+          "score": -0.11008547991514206,
+          "fused": 0.6002465812268815,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": -0.11008547991514206
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000061",
+          "score": -0.7437724471092224,
+          "fused": 0.6129151836399271,
+          "dense_rank": 47,
+          "bm25_rank": 3,
+          "fused_rank": 5,
+          "rerank": -0.7437724471092224
+        }
+      ],
+      "latency_ms": 13.28
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 531,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 18,
+      "sentences_kept": 16,
+      "n_out": 5,
+      "tokens_out": 507,
+      "ms": 29.8,
+      "latency_ms": 29.81
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 5.395621299743652,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10967.47
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 324.38
+    }
+  },
+  "retrieved_ids": [
+    "bc1dba3471045f02:L0:000107",
+    "9794e842cc9565f0:L0:000112",
+    "8e50522b7cb636d8:L0:000167",
+    "ba3cd068cf9ac2e4:L0:000147",
+    "838c0e0106e6f015:L0:000061"
+  ],
+  "filtered_ids": [
+    "bc1dba3471045f02:L0:000107",
+    "9794e842cc9565f0:L0:000112",
+    "8e50522b7cb636d8:L0:000167",
+    "ba3cd068cf9ac2e4:L0:000147",
+    "838c0e0106e6f015:L0:000061"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:51:52.623757+00:00",
+      "call_id": "fca1e619b40a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fb97c0390e1afba5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "01b0c5a3f48d4629"
+    },
+    {
+      "ts": "2026-11-22T12:51:52.636753+00:00",
+      "call_id": "ccf8535f748c",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fb97c0390e1afba5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "01b0c5a3f48d4629"
+    },
+    {
+      "ts": "2026-11-22T12:51:52.661757+00:00",
+      "call_id": "eefea5512206",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f375ed52cccb03ad",
+      "n_inputs": 18,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "01b0c5a3f48d4629"
+    },
+    {
+      "ts": "2026-11-22T12:52:03.631446+00:00",
+      "call_id": "f0a9c4fec7e2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ebba14629445f24a",
+      "prompt_tokens": 1168,
+      "completion_tokens": 54,
+      "latency_ms": 10966.34,
+      "server_ms": 10934.49,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "01b0c5a3f48d4629"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1168,
+    "generator_prompt_tokens": 1168,
+    "completion_tokens": 54,
+    "total_ms": 11337.12
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

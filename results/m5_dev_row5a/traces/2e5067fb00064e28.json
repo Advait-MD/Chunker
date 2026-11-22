@@ -1,0 +1,232 @@
+{
+  "trace_id": "2e5067fb00064e28",
+  "created_at": "2026-11-22T12:56:56.579906+00:00",
+  "query": "Which film has the director born later, Battle Of Memories or The Wedding Of Lilli Marlene?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.59
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14.84
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11900.78
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.76,
+      "bm25_ms": 2.87,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000177",
+          "score": 9.067553520202637,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 9.067553520202637
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000088",
+          "score": 8.184168815612793,
+          "fused": 0.30419426421650836,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 8.184168815612793
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -1.7804439067840576,
+          "fused": 0.22993239045485586,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 6,
+          "rerank": -1.7804439067840576
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": -2.7770447731018066,
+          "fused": 0.12495786569253553,
+          "dense_rank": 14,
+          "bm25_rank": null,
+          "fused_rank": 17,
+          "rerank": -2.7770447731018066
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000176",
+          "score": -4.423694610595703,
+          "fused": 0.13253680973136236,
+          "dense_rank": 13,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -4.423694610595703
+        }
+      ],
+      "latency_ms": 6.56
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 1103,
+      "dropped_threshold": [
+        "4a757779abfb4ba1:L0:000176"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 26,
+      "sentences_kept": 4,
+      "n_out": 4,
+      "tokens_out": 119,
+      "ms": 8.2,
+      "latency_ms": 8.22
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 9.067553520202637,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11885.88
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000177",
+    "317e12ccd417c0d7:L0:000088",
+    "b04ce6dd2d95fb80:L0:000152",
+    "abe982d210232c3f:L0:000151",
+    "4a757779abfb4ba1:L0:000176"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000177",
+    "317e12ccd417c0d7:L0:000088",
+    "b04ce6dd2d95fb80:L0:000152",
+    "abe982d210232c3f:L0:000151"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:56:56.580903+00:00",
+      "call_id": "bd7d690bdc04",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c76ae0aa829794e8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2e5067fb00064e28"
+    },
+    {
+      "ts": "2026-11-22T12:56:56.587128+00:00",
+      "call_id": "0d7f32195514",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c76ae0aa829794e8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2e5067fb00064e28"
+    },
+    {
+      "ts": "2026-11-22T12:56:56.594325+00:00",
+      "call_id": "f6caa6bcf03e",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d9e7e51ee707f43a",
+      "n_inputs": 26,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2e5067fb00064e28"
+    },
+    {
+      "ts": "2026-11-22T12:57:08.480622+00:00",
+      "call_id": "28f97010f862",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8de785bd9180f05d",
+      "prompt_tokens": 649,
+      "completion_tokens": 92,
+      "latency_ms": 11885.37,
+      "server_ms": 11872.49,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2e5067fb00064e28"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 649,
+    "generator_prompt_tokens": 649,
+    "completion_tokens": 92,
+    "total_ms": 11901.69
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "The Wedding of Lilli Marlene was directed by Arthur Crabtree, while Battle of Memories was directed by Leste Chen.",
+        "The passage does not provide birth dates for the directors, so it is impossible to determine which director was born later based on the given information."
+      ]
+    }
+  }
+}

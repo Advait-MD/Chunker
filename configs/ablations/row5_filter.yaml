@@ -1,0 +1,27 @@
+# Ablation row 5 (spec §2.8): row 4 (M3: hybrid weighted fusion 0.3/0.7 + bge rerank, no RAPTOR tree) + the M5
+# evidence filter and citation verifier. Thresholds are tuned on dev only (docs/M5_NOTES.md):
+#   rel_threshold -4  results/m5_threshold_probe: keeps 96% of gold passages, drops 28% of the rest, 77% of tokens
+#   prune 0.55 / 0    results/m5_prune_probe: keeps 43-69% of tokens, the gold answer survives in 94-100%
+#   insufficient < -5 flags 12% of unanswerable and 0% of answerable-with-gold dev questions (QASPER's reranker
+#                     scores run low, so a higher bar would send many answerable QASPER questions to abstain)
+# First dev setting (22 Nov); the grid over these values is in results/m5_*_dev.
+run:
+  name: row5_filter
+retrieval:
+  mode: hybrid
+  fusion: weighted
+  weights: {dense: 0.3, bm25: 0.7}
+rerank:
+  enabled: true
+filter:
+  enabled: true
+  pool_k: 5
+  rel_threshold: -4.0
+  prune: {enabled: true, threshold: 0.55, neighbors: 0}
+  sufficiency:
+    sufficient_above: -5.0
+    insufficient_below: -5.0
+    ambiguous: sufficient
+verifier:
+  enabled: true
+  action: flag

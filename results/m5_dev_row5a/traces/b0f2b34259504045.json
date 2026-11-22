@@ -1,0 +1,249 @@
+{
+  "trace_id": "b0f2b34259504045",
+  "created_at": "2026-11-22T13:04:41.172638+00:00",
+  "query": "When did the first mosque in the place where Marshall Islands International Airport is located open?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 23.05
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 29.03
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 7808.41
+    },
+    {
+      "state": "DONE",
+      "t_ms": 7808.6
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.76,
+      "bm25_ms": 14.79,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "ad11b6e85f908fb3:L0:000054",
+          "score": 1.1279867887496948,
+          "fused": 0.3378010084271562,
+          "dense_rank": null,
+          "bm25_rank": 12,
+          "fused_rank": 18,
+          "rerank": 1.1279867887496948
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000110",
+          "score": -0.1986473649740219,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.1986473649740219
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000005",
+          "score": -5.576404571533203,
+          "fused": 0.6615432031839883,
+          "dense_rank": 3,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": -5.576404571533203
+        },
+        {
+          "id": "15abb5e49dced915:L0:000029",
+          "score": -6.581811428070068,
+          "fused": 0.5660619423615262,
+          "dense_rank": 19,
+          "bm25_rank": 2,
+          "fused_rank": 5,
+          "rerank": -6.581811428070068
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000145",
+          "score": -7.159149169921875,
+          "fused": 0.2603679278687366,
+          "dense_rank": 6,
+          "bm25_rank": 31,
+          "fused_rank": 20,
+          "rerank": -7.159149169921875
+        }
+      ],
+      "latency_ms": 23.0
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 481,
+      "dropped_threshold": [
+        "4fcce431f5d22d1d:L0:000005",
+        "15abb5e49dced915:L0:000029",
+        "e182527d2b1ecac3:L0:000145"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 3,
+      "sentences_kept": 3,
+      "n_out": 2,
+      "tokens_out": 201,
+      "ms": 5.9,
+      "latency_ms": 5.93
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 1.1279867887496948,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 7779.34
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 0.1
+    }
+  },
+  "retrieved_ids": [
+    "ad11b6e85f908fb3:L0:000054",
+    "cc1bdb3bf430bd0d:L0:000110",
+    "4fcce431f5d22d1d:L0:000005",
+    "15abb5e49dced915:L0:000029",
+    "e182527d2b1ecac3:L0:000145"
+  ],
+  "filtered_ids": [
+    "ad11b6e85f908fb3:L0:000054",
+    "cc1bdb3bf430bd0d:L0:000110"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:04:41.174638+00:00",
+      "call_id": "b6bb0ddcad4c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c34a962889c98f66",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b0f2b34259504045"
+    },
+    {
+      "ts": "2026-11-22T13:04:41.196532+00:00",
+      "call_id": "44d2cf608573",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c34a962889c98f66",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b0f2b34259504045"
+    },
+    {
+      "ts": "2026-11-22T13:04:41.200533+00:00",
+      "call_id": "3cbfed2e4fda",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "068d9093d26b2aed",
+      "n_inputs": 2,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b0f2b34259504045"
+    },
+    {
+      "ts": "2026-11-22T13:04:48.979784+00:00",
+      "call_id": "ec8d262aa5d1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bb625fb87b55a6e7",
+      "prompt_tokens": 636,
+      "completion_tokens": 52,
+      "latency_ms": 7778.07,
+      "server_ms": 7761.32,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b0f2b34259504045"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 636,
+    "generator_prompt_tokens": 636,
+    "completion_tokens": 52,
+    "total_ms": 7810.45
+  },
+  "config_hash": "1c92a20b0713",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "The first mosque in Majuro opened in September 2012."
+      ]
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "trace_id": "d2cc1b272b5446e5",
+  "created_at": "2026-11-22T11:34:55.672647+00:00",
+  "query": "During what war were the Russia-United Kingdom relations in a state of rivalry after the abdication of Emperor Nicholas II?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8520.08
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8520.81
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25045.47
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.92,
+      "bm25_ms": 19.63,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 8492.97
+      },
+      "hits": [
+        {
+          "id": "81fc433d55d23b4c:L0:000068",
+          "score": 6.601207256317139,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.601207256317139
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000155",
+          "score": 2.3751790523529053,
+          "fused": 0.7241152322463039,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 2.3751790523529053
+        },
+        {
+          "id": "20496f59538deb41:L0:000153",
+          "score": -1.2761236429214478,
+          "fused": 0.652068422597557,
+          "dense_rank": 3,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": -1.2761236429214478
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000027",
+          "score": -2.362330198287964,
+          "fused": 0.5556378252479903,
+          "dense_rank": 13,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -2.362330198287964
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000080",
+          "score": -3.6961331367492676,
+          "fused": 0.09964770090286615,
+          "dense_rank": null,
+          "bm25_rank": 15,
+          "fused_rank": 20,
+          "rerank": -3.6961331367492676
+        }
+      ],
+      "latency_ms": 8520.03
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 654,
+      "latency_ms": 0.69
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16523.83
+    }
+  },
+  "retrieved_ids": [
+    "81fc433d55d23b4c:L0:000068",
+    "90976421f3f2bea2:L0:000155",
+    "20496f59538deb41:L0:000153",
+    "838c0e0106e6f015:L0:000027",
+    "5d0f6cf59ee42566:L0:000080"
+  ],
+  "filtered_ids": [
+    "81fc433d55d23b4c:L0:000068",
+    "90976421f3f2bea2:L0:000155",
+    "20496f59538deb41:L0:000153",
+    "838c0e0106e6f015:L0:000027",
+    "5d0f6cf59ee42566:L0:000080"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:34:55.674645+00:00",
+      "call_id": "3993e91ae1ee",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "57198e5d30bc9be4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d2cc1b272b5446e5"
+    },
+    {
+      "ts": "2026-11-22T11:35:20.716186+00:00",
+      "call_id": "3154d34f8f9c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7fe9d9f89ff64b4a",
+      "prompt_tokens": 1336,
+      "completion_tokens": 80,
+      "latency_ms": 16522.09,
+      "server_ms": 16493.49,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d2cc1b272b5446e5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1336,
+    "generator_prompt_tokens": 1336,
+    "completion_tokens": 80,
+    "total_ms": 25049.19
+  },
+  "config_hash": "00ac4473fd53",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "trace_id": "68ab5aa0bd85444b",
+  "created_at": "2026-11-22T12:50:15.145427+00:00",
+  "query": "Baraki Barak District is situated in the western part of a province whose capital is what?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16.74
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 40.37
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 10383.12
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11061.01
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.63,
+      "bm25_ms": 10.87,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000081",
+          "score": 9.231654167175293,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 9.231654167175293
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000010",
+          "score": 6.611300945281982,
+          "fused": 0.641116349845458,
+          "dense_rank": 8,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 6.611300945281982
+        },
+        {
+          "id": "634431bb1e27714f:L0:000065",
+          "score": 3.1644949913024902,
+          "fused": 0.5616132738181113,
+          "dense_rank": 23,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 3.1644949913024902
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000112",
+          "score": 2.0817365646362305,
+          "fused": 0.38396908858495904,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 2.0817365646362305
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000154",
+          "score": 0.006362101994454861,
+          "fused": 0.15619255139371435,
+          "dense_rank": 30,
+          "bm25_rank": 11,
+          "fused_rank": 14,
+          "rerank": 0.006362101994454861
+        }
+      ],
+      "latency_ms": 16.68
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 535,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 22,
+      "sentences_kept": 17,
+      "n_out": 5,
+      "tokens_out": 439,
+      "ms": 23.5,
+      "latency_ms": 23.58
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 9.231654167175293,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10342.74
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 677.72
+    }
+  },
+  "retrieved_ids": [
+    "ba3cd068cf9ac2e4:L0:000081",
+    "c8fd2b3ea47eb07f:L0:000010",
+    "634431bb1e27714f:L0:000065",
+    "cc2399aca11eb631:L0:000112",
+    "cb96563b0747a6ba:L0:000154"
+  ],
+  "filtered_ids": [
+    "ba3cd068cf9ac2e4:L0:000081",
+    "c8fd2b3ea47eb07f:L0:000010",
+    "634431bb1e27714f:L0:000065",
+    "cc2399aca11eb631:L0:000112",
+    "cb96563b0747a6ba:L0:000154"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:50:15.147427+00:00",
+      "call_id": "aee68068533e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "99ff7e1c03dfd0e7",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "68ab5aa0bd85444b"
+    },
+    {
+      "ts": "2026-11-22T12:50:15.163795+00:00",
+      "call_id": "7d8d00de8a0b",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "99ff7e1c03dfd0e7",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "68ab5aa0bd85444b"
+    },
+    {
+      "ts": "2026-11-22T12:50:15.183674+00:00",
+      "call_id": "afbfc7d3b67a",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8369dae68bcf48dd",
+      "n_inputs": 22,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "68ab5aa0bd85444b"
+    },
+    {
+      "ts": "2026-11-22T12:50:25.528607+00:00",
+      "call_id": "38c7e5060914",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1eb36d9cdd50c665",
+      "prompt_tokens": 1088,
+      "completion_tokens": 61,
+      "latency_ms": 10342.16,
+      "server_ms": 10328.52,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "68ab5aa0bd85444b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1088,
+    "generator_prompt_tokens": 1088,
+    "completion_tokens": 61,
+    "total_ms": 11062.34
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

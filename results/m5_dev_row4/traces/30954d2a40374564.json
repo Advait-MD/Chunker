@@ -1,0 +1,180 @@
+{
+  "trace_id": "30954d2a40374564",
+  "created_at": "2026-11-22T11:44:15.703888+00:00",
+  "query": "Who is the child of the actor who is a cast member of Love in Pawn?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 23.45
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 23.5
+    },
+    {
+      "state": "DONE",
+      "t_ms": 9830.7
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 8.38,
+      "bm25_ms": 11.04,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "15abb5e49dced915:L0:000193",
+          "score": 5.082957744598389,
+          "fused": 0.5246656431820154,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 5.082957744598389
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000198",
+          "score": -2.6228153705596924,
+          "fused": 0.2548703692974771,
+          "dense_rank": 22,
+          "bm25_rank": 17,
+          "fused_rank": 11,
+          "rerank": -2.6228153705596924
+        },
+        {
+          "id": "dd498e0082847164:L0:000067",
+          "score": -6.2402729988098145,
+          "fused": 0.25320423475676246,
+          "dense_rank": 19,
+          "bm25_rank": 20,
+          "fused_rank": 12,
+          "rerank": -6.2402729988098145
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000038",
+          "score": -6.323678016662598,
+          "fused": 0.1870484923583115,
+          "dense_rank": 26,
+          "bm25_rank": 25,
+          "fused_rank": 20,
+          "rerank": -6.323678016662598
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000127",
+          "score": -6.324522495269775,
+          "fused": 0.4672743177120255,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -6.324522495269775
+        }
+      ],
+      "latency_ms": 23.4
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 306,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9806.98
+    }
+  },
+  "retrieved_ids": [
+    "15abb5e49dced915:L0:000193",
+    "ad11b6e85f908fb3:L0:000198",
+    "dd498e0082847164:L0:000067",
+    "f59bbbdacaf7ffe4:L0:000038",
+    "f3503d3d186f0f90:L0:000127"
+  ],
+  "filtered_ids": [
+    "15abb5e49dced915:L0:000193",
+    "ad11b6e85f908fb3:L0:000198",
+    "dd498e0082847164:L0:000067",
+    "f59bbbdacaf7ffe4:L0:000038",
+    "f3503d3d186f0f90:L0:000127"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:44:15.707241+00:00",
+      "call_id": "72ecb434052e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "665c340b446948f9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "30954d2a40374564"
+    },
+    {
+      "ts": "2026-11-22T11:44:25.532175+00:00",
+      "call_id": "f4f1d2fec0ff",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "208c21c1d1e74917",
+      "prompt_tokens": 870,
+      "completion_tokens": 53,
+      "latency_ms": 9804.07,
+      "server_ms": 9778.06,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "30954d2a40374564"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 870,
+    "generator_prompt_tokens": 870,
+    "completion_tokens": 53,
+    "total_ms": 9835.15
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

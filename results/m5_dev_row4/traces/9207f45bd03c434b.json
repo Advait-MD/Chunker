@@ -1,0 +1,183 @@
+{
+  "trace_id": "9207f45bd03c434b",
+  "created_at": "2026-11-22T11:58:27.894951+00:00",
+  "query": "What was the protaganists most recent profession?\n\nOptions:\n(A) A police officer\n(B) A creative at an advertising agency\n(C) A pilot in World War One\n(D) A psychiatrist \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 25.58
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 25.63
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21626.53
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.98,
+      "bm25_ms": 14.98,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 18
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000010",
+          "score": -4.583588123321533,
+          "fused": 0.7338689216773501,
+          "dense_rank": 11,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -4.583588123321533
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000011",
+          "score": -5.292359352111816,
+          "fused": 0.6469932134329628,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -5.292359352111816
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000009",
+          "score": -5.767306327819824,
+          "fused": 0.3218122761254514,
+          "dense_rank": 13,
+          "bm25_rank": 10,
+          "fused_rank": 10,
+          "rerank": -5.767306327819824
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000012",
+          "score": -5.914667129516602,
+          "fused": 0.41712815399407815,
+          "dense_rank": 5,
+          "bm25_rank": 9,
+          "fused_rank": 7,
+          "rerank": -5.914667129516602
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000007",
+          "score": -6.196310997009277,
+          "fused": 0.358676522838361,
+          "dense_rank": 17,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": -6.196310997009277
+        }
+      ],
+      "latency_ms": 25.53
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1953,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21600.79
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000010",
+    "2ecd3be7264ff150:L0:000011",
+    "2ecd3be7264ff150:L0:000009",
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000007"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000010",
+    "2ecd3be7264ff150:L0:000011",
+    "2ecd3be7264ff150:L0:000009",
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:58:27.895949+00:00",
+      "call_id": "8a5d2f0739ac",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1ad572e3652890e5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9207f45bd03c434b"
+    },
+    {
+      "ts": "2026-11-22T11:58:49.518800+00:00",
+      "call_id": "32dece727f73",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e01f544f14ab651d",
+      "prompt_tokens": 2509,
+      "completion_tokens": 46,
+      "latency_ms": 21598.6,
+      "server_ms": 21428.15,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9207f45bd03c434b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2509,
+    "generator_prompt_tokens": 2509,
+    "completion_tokens": 46,
+    "total_ms": 21628.81
+  },
+  "config_hash": "403cb8f3227b",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        3
+      ],
+      "uncited_sentences": [
+        "(B) A creative at an advertising agency."
+      ]
+    }
+  }
+}

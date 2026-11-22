@@ -1,0 +1,230 @@
+{
+  "trace_id": "fcf7c71b522646ba",
+  "created_at": "2026-11-22T12:57:08.488832+00:00",
+  "query": "Where was the director of film Aylwin (Film) born?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5.73
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.02
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 11029.79
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.81,
+      "bm25_ms": 2.02,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000147",
+          "score": 5.8073811531066895,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.8073811531066895
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": -2.562520980834961,
+          "fused": 0.1510500239047236,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 13,
+          "rerank": -2.562520980834961
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -2.91550350189209,
+          "fused": 0.12364700453595102,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -2.91550350189209
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000081",
+          "score": -3.5463688373565674,
+          "fused": 0.15283681279866038,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": -3.5463688373565674
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000034",
+          "score": -4.508213996887207,
+          "fused": 0.2374962834695863,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 3,
+          "rerank": -4.508213996887207
+        }
+      ],
+      "latency_ms": 5.71
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 1034,
+      "dropped_threshold": [
+        "317e12ccd417c0d7:L0:000034"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 29,
+      "sentences_kept": 12,
+      "n_out": 4,
+      "tokens_out": 511,
+      "ms": 9.2,
+      "latency_ms": 9.26
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 5.8073811531066895,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11014.7
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000147",
+    "abe982d210232c3f:L0:000151",
+    "b04ce6dd2d95fb80:L0:000152",
+    "53c7288bdcd3837a:L0:000081",
+    "317e12ccd417c0d7:L0:000034"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000147",
+    "abe982d210232c3f:L0:000151",
+    "b04ce6dd2d95fb80:L0:000152",
+    "53c7288bdcd3837a:L0:000081"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:57:08.489832+00:00",
+      "call_id": "8eaac47ab95a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5fc1872a38e5079d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fcf7c71b522646ba"
+    },
+    {
+      "ts": "2026-11-22T12:57:08.495147+00:00",
+      "call_id": "1610c1dc797e",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5fc1872a38e5079d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fcf7c71b522646ba"
+    },
+    {
+      "ts": "2026-11-22T12:57:08.502143+00:00",
+      "call_id": "0a956d6067b3",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b00604fd28cb9cc3",
+      "n_inputs": 29,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fcf7c71b522646ba"
+    },
+    {
+      "ts": "2026-11-22T12:57:19.517733+00:00",
+      "call_id": "4673ab58fd46",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "693abf0bb6e726a7",
+      "prompt_tokens": 1096,
+      "completion_tokens": 64,
+      "latency_ms": 11014.16,
+      "server_ms": 11000.01,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "fcf7c71b522646ba"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1096,
+    "generator_prompt_tokens": 1096,
+    "completion_tokens": 64,
+    "total_ms": 11030.36
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "The director of film Aylwin (Film), Henry Edwards, was not specified to be born in any particular place in the given passages."
+      ]
+    }
+  }
+}

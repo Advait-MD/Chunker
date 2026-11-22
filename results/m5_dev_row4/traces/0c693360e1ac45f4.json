@@ -1,0 +1,181 @@
+{
+  "trace_id": "0c693360e1ac45f4",
+  "created_at": "2026-11-22T11:33:45.250032+00:00",
+  "query": "From March 631 to April 631, Farrukhzad Khosrau V was the king of an empire that succeeded which empire?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 7199.88
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 7200.28
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21580.25
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.19,
+      "bm25_ms": 10.11,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 7181.35
+      },
+      "hits": [
+        {
+          "id": "8e50522b7cb636d8:L0:000162",
+          "score": 8.558175086975098,
+          "fused": 0.9596028777508161,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.558175086975098
+        },
+        {
+          "id": "634431bb1e27714f:L0:000011",
+          "score": 2.1201131343841553,
+          "fused": 0.4083421048683749,
+          "dense_rank": 5,
+          "bm25_rank": 9,
+          "fused_rank": 7,
+          "rerank": 2.1201131343841553
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000018",
+          "score": -0.30038881301879883,
+          "fused": 0.548462150167948,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": -0.30038881301879883
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000045",
+          "score": -2.057572841644287,
+          "fused": 0.5074290473006591,
+          "dense_rank": 2,
+          "bm25_rank": 7,
+          "fused_rank": 3,
+          "rerank": -2.057572841644287
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000023",
+          "score": -2.7345988750457764,
+          "fused": 0.37394355976495963,
+          "dense_rank": 15,
+          "bm25_rank": 3,
+          "fused_rank": 9,
+          "rerank": -2.7345988750457764
+        }
+      ],
+      "latency_ms": 7199.83
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 404,
+      "latency_ms": 0.36
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14379.82
+    }
+  },
+  "retrieved_ids": [
+    "8e50522b7cb636d8:L0:000162",
+    "634431bb1e27714f:L0:000011",
+    "81fc433d55d23b4c:L0:000018",
+    "cc2399aca11eb631:L0:000045",
+    "5d0f6cf59ee42566:L0:000023"
+  ],
+  "filtered_ids": [
+    "8e50522b7cb636d8:L0:000162",
+    "634431bb1e27714f:L0:000011",
+    "81fc433d55d23b4c:L0:000018",
+    "cc2399aca11eb631:L0:000045",
+    "5d0f6cf59ee42566:L0:000023"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:33:45.252034+00:00",
+      "call_id": "158dd6ac6d8d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fad31f3667b721b2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "0c693360e1ac45f4"
+    },
+    {
+      "ts": "2026-11-22T11:34:06.830006+00:00",
+      "call_id": "440b1b41cc9b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f585ea584bc05469",
+      "prompt_tokens": 1075,
+      "completion_tokens": 85,
+      "latency_ms": 14378.61,
+      "server_ms": 14352.38,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "0c693360e1ac45f4"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1075,
+    "generator_prompt_tokens": 1075,
+    "completion_tokens": 85,
+    "total_ms": 21581.47
+  },
+  "config_hash": "00ac4473fd53",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

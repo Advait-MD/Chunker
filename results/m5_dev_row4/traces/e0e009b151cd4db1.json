@@ -1,0 +1,181 @@
+{
+  "trace_id": "e0e009b151cd4db1",
+  "created_at": "2026-11-22T12:10:38.722558+00:00",
+  "query": "Why is the protagonist confused by his memories of fighting in WWI?\n\nOptions:\n(A) Because he stayed home instead of fighting during WWI\n(B) Because he should not have been born during WWI\n(C) Because WWI was happening currently\n(D) Because he was too old to fight during WWI \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.0
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.24
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12.27
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25078.28
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.72,
+      "bm25_ms": 9.85,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 19
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000009",
+          "score": -3.9376420974731445,
+          "fused": 0.8290914290481302,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -3.9376420974731445
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000003",
+          "score": -4.088761806488037,
+          "fused": 0.6087126906625135,
+          "dense_rank": 3,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": -4.088761806488037
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000006",
+          "score": -4.1218132972717285,
+          "fused": 0.38991197105676134,
+          "dense_rank": 1,
+          "bm25_rank": 12,
+          "fused_rank": 8,
+          "rerank": -4.1218132972717285
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000002",
+          "score": -4.607449531555176,
+          "fused": 0.2716251706076524,
+          "dense_rank": 20,
+          "bm25_rank": 8,
+          "fused_rank": 13,
+          "rerank": -4.607449531555176
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000019",
+          "score": -4.737018585205078,
+          "fused": 0.3128348135546784,
+          "dense_rank": 4,
+          "bm25_rank": 14,
+          "fused_rank": 12,
+          "rerank": -4.737018585205078
+        }
+      ],
+      "latency_ms": 12.22
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1780,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25065.87
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000009",
+    "2ecd3be7264ff150:L0:000003",
+    "2ecd3be7264ff150:L0:000006",
+    "2ecd3be7264ff150:L0:000002",
+    "2ecd3be7264ff150:L0:000019"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000009",
+    "2ecd3be7264ff150:L0:000003",
+    "2ecd3be7264ff150:L0:000006",
+    "2ecd3be7264ff150:L0:000002",
+    "2ecd3be7264ff150:L0:000019"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:10:38.724758+00:00",
+      "call_id": "cc5dc7c80a12",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8423136e31d1d97f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e0e009b151cd4db1"
+    },
+    {
+      "ts": "2026-11-22T12:11:03.800605+00:00",
+      "call_id": "dad7238eccab",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0a000f34513ac390",
+      "prompt_tokens": 2405,
+      "completion_tokens": 64,
+      "latency_ms": 25064.61,
+      "server_ms": 25031.13,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e0e009b151cd4db1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2405,
+    "generator_prompt_tokens": 2405,
+    "completion_tokens": 64,
+    "total_ms": 25080.85
+  },
+  "config_hash": "403cb8f3227b",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

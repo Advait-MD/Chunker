@@ -1,0 +1,246 @@
+{
+  "trace_id": "12f927864edf4588",
+  "created_at": "2026-11-22T12:54:34.369813+00:00",
+  "query": "Which country the director of film Hotel By The Hour is from?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.74
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 53.33
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 10035.83
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10298.77
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.87,
+      "bm25_ms": 4.4,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "99628090500247e3:L0:000099",
+          "score": 5.06637716293335,
+          "fused": 0.9664443640793854,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.06637716293335
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": -1.0007675886154175,
+          "fused": 0.16143898068992638,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -1.0007675886154175
+        },
+        {
+          "id": "0eac870d43736f51:L0:000089",
+          "score": -3.0590291023254395,
+          "fused": 0.14361067987464884,
+          "dense_rank": 10,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": -3.0590291023254395
+        },
+        {
+          "id": "460e441179bec402:L0:000130",
+          "score": -3.1124935150146484,
+          "fused": 0.17356767233099965,
+          "dense_rank": 9,
+          "bm25_rank": 30,
+          "fused_rank": 8,
+          "rerank": -3.1124935150146484
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000034",
+          "score": -3.538271188735962,
+          "fused": 0.16672914056903046,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 10,
+          "rerank": -3.538271188735962
+        }
+      ],
+      "latency_ms": 10.69
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 980,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 40,
+      "sentences_kept": 10,
+      "n_out": 5,
+      "tokens_out": 292,
+      "ms": 42.5,
+      "latency_ms": 42.52
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 5.06637716293335,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9982.45
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 262.7
+    }
+  },
+  "retrieved_ids": [
+    "99628090500247e3:L0:000099",
+    "abe982d210232c3f:L0:000151",
+    "0eac870d43736f51:L0:000089",
+    "460e441179bec402:L0:000130",
+    "317e12ccd417c0d7:L0:000034"
+  ],
+  "filtered_ids": [
+    "99628090500247e3:L0:000099",
+    "abe982d210232c3f:L0:000151",
+    "0eac870d43736f51:L0:000089",
+    "460e441179bec402:L0:000130",
+    "317e12ccd417c0d7:L0:000034"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:54:34.372129+00:00",
+      "call_id": "007999180035",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4c84d533b98b07ab",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "12f927864edf4588"
+    },
+    {
+      "ts": "2026-11-22T12:54:34.382128+00:00",
+      "call_id": "2abb3f72e18d",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4c84d533b98b07ab",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "12f927864edf4588"
+    },
+    {
+      "ts": "2026-11-22T12:54:34.419489+00:00",
+      "call_id": "e201361b0457",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2174ae3856018e44",
+      "n_inputs": 40,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "12f927864edf4588"
+    },
+    {
+      "ts": "2026-11-22T12:54:44.405175+00:00",
+      "call_id": "1e001ee3c527",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "af6a5007b5e1727c",
+      "prompt_tokens": 884,
+      "completion_tokens": 57,
+      "latency_ms": 9981.2,
+      "server_ms": 9959.75,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "12f927864edf4588"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 884,
+    "generator_prompt_tokens": 884,
+    "completion_tokens": 57,
+    "total_ms": 10301.3
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

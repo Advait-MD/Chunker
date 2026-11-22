@@ -1,0 +1,180 @@
+{
+  "trace_id": "002b3bbe66974e70",
+  "created_at": "2026-11-22T11:23:28.154295+00:00",
+  "query": "Which country Ronald Dewolf's father is from?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8362.7
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8363.21
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 18139.91
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.87,
+      "bm25_ms": 5.22,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 8346.94
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000192",
+          "score": 3.2212131023406982,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.2212131023406982
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000122",
+          "score": -4.196404457092285,
+          "fused": 0.15701428468195208,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": -4.196404457092285
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000090",
+          "score": -4.509611129760742,
+          "fused": 0.10918335840652736,
+          "dense_rank": 10,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": -4.509611129760742
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000071",
+          "score": -4.614595890045166,
+          "fused": 0.16717756832953837,
+          "dense_rank": 20,
+          "bm25_rank": 10,
+          "fused_rank": 8,
+          "rerank": -4.614595890045166
+        },
+        {
+          "id": "460e441179bec402:L0:000070",
+          "score": -4.6699323654174805,
+          "fused": 0.17309588408582632,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -4.6699323654174805
+        }
+      ],
+      "latency_ms": 8362.63
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 513,
+      "latency_ms": 0.46
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9776.63
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000192",
+    "317e12ccd417c0d7:L0:000122",
+    "6af2db6cb86d77e2:L0:000090",
+    "53c7288bdcd3837a:L0:000071",
+    "460e441179bec402:L0:000070"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000192",
+    "317e12ccd417c0d7:L0:000122",
+    "6af2db6cb86d77e2:L0:000090",
+    "53c7288bdcd3837a:L0:000071",
+    "460e441179bec402:L0:000070"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:23:28.156294+00:00",
+      "call_id": "fe60b8454701",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ba9e01c25d9c0625",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "002b3bbe66974e70"
+    },
+    {
+      "ts": "2026-11-22T11:23:46.293430+00:00",
+      "call_id": "a00c230c271c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "41eebd366b310cff",
+      "prompt_tokens": 1142,
+      "completion_tokens": 38,
+      "latency_ms": 9775.53,
+      "server_ms": 8462.0,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "002b3bbe66974e70"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1142,
+    "generator_prompt_tokens": 1142,
+    "completion_tokens": 38,
+    "total_ms": 18140.9
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Abstained"
+      ]
+    }
+  }
+}

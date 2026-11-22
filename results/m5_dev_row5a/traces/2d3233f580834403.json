@@ -1,0 +1,231 @@
+{
+  "trace_id": "2d3233f580834403",
+  "created_at": "2026-11-22T12:59:45.519654+00:00",
+  "query": "Where was the director of film He'S A Cockeyed Wonder born?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 10.63
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 44.45
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 17034.14
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.09,
+      "bm25_ms": 5.15,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "317e12ccd417c0d7:L0:000078",
+          "score": 8.43844985961914,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.43844985961914
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": -2.0407674312591553,
+          "fused": 0.20664324582446483,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -2.0407674312591553
+        },
+        {
+          "id": "460e441179bec402:L0:000130",
+          "score": -2.530327081680298,
+          "fused": 0.15274281633279757,
+          "dense_rank": 8,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": -2.530327081680298
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000013",
+          "score": -3.3948357105255127,
+          "fused": 0.30668423520320387,
+          "dense_rank": 2,
+          "bm25_rank": 14,
+          "fused_rank": 3,
+          "rerank": -3.3948357105255127
+        },
+        {
+          "id": "abe982d210232c3f:L0:000125",
+          "score": -3.405937910079956,
+          "fused": 0.1321052416577336,
+          "dense_rank": 12,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -3.405937910079956
+        }
+      ],
+      "latency_ms": 10.59
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 1105,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 44,
+      "sentences_kept": 24,
+      "n_out": 5,
+      "tokens_out": 747,
+      "ms": 33.7,
+      "latency_ms": 33.77
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 8.43844985961914,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16989.45
+    }
+  },
+  "retrieved_ids": [
+    "317e12ccd417c0d7:L0:000078",
+    "abe982d210232c3f:L0:000151",
+    "460e441179bec402:L0:000130",
+    "b04ce6dd2d95fb80:L0:000013",
+    "abe982d210232c3f:L0:000125"
+  ],
+  "filtered_ids": [
+    "317e12ccd417c0d7:L0:000078",
+    "abe982d210232c3f:L0:000151",
+    "460e441179bec402:L0:000130",
+    "b04ce6dd2d95fb80:L0:000013",
+    "abe982d210232c3f:L0:000125"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:59:45.520658+00:00",
+      "call_id": "03878a55504e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "42073d079b8169bf",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2d3233f580834403"
+    },
+    {
+      "ts": "2026-11-22T12:59:45.532167+00:00",
+      "call_id": "90b11b74f435",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "42073d079b8169bf",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2d3233f580834403"
+    },
+    {
+      "ts": "2026-11-22T12:59:45.560486+00:00",
+      "call_id": "aafe643eacec",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6ebce7d9ada7e582",
+      "n_inputs": 44,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2d3233f580834403"
+    },
+    {
+      "ts": "2026-11-22T13:00:02.552014+00:00",
+      "call_id": "a6e94d8dfbd2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4d845b3b1c36f775",
+      "prompt_tokens": 1464,
+      "completion_tokens": 89,
+      "latency_ms": 16988.25,
+      "server_ms": 16963.83,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2d3233f580834403"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1464,
+    "generator_prompt_tokens": 1464,
+    "completion_tokens": 89,
+    "total_ms": 17035.55
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

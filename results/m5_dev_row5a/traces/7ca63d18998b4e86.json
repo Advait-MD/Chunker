@@ -1,0 +1,247 @@
+{
+  "trace_id": "7ca63d18998b4e86",
+  "created_at": "2026-11-22T12:47:51.131068+00:00",
+  "query": "A Pair of Brown Eyes and Wild Mountain Thyme is based from what artists song?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.35
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 28.99
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 12312.28
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13117.18
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.95,
+      "bm25_ms": 4.63,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "bc1dba3471045f02:L0:000016",
+          "score": 7.93189001083374,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.93189001083374
+        },
+        {
+          "id": "634431bb1e27714f:L0:000051",
+          "score": 6.47531795501709,
+          "fused": 0.4328444013302439,
+          "dense_rank": 24,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 6.47531795501709
+        },
+        {
+          "id": "b120b09075017d08:L0:000038",
+          "score": 2.106248140335083,
+          "fused": 0.25496644872965885,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": 2.106248140335083
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000120",
+          "score": -0.3787815272808075,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 4,
+          "rerank": -0.3787815272808075
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000085",
+          "score": -1.3505319356918335,
+          "fused": 0.2940198970228639,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": -1.3505319356918335
+        }
+      ],
+      "latency_ms": 9.31
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 579,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 21,
+      "sentences_kept": 8,
+      "n_out": 5,
+      "tokens_out": 275,
+      "ms": 19.6,
+      "latency_ms": 19.6
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 7.93189001083374,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12283.28
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 804.8
+    }
+  },
+  "retrieved_ids": [
+    "bc1dba3471045f02:L0:000016",
+    "634431bb1e27714f:L0:000051",
+    "b120b09075017d08:L0:000038",
+    "ba3cd068cf9ac2e4:L0:000120",
+    "c8fd2b3ea47eb07f:L0:000085"
+  ],
+  "filtered_ids": [
+    "bc1dba3471045f02:L0:000016",
+    "634431bb1e27714f:L0:000051",
+    "b120b09075017d08:L0:000038",
+    "ba3cd068cf9ac2e4:L0:000120",
+    "c8fd2b3ea47eb07f:L0:000085"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:47:51.133326+00:00",
+      "call_id": "4e69ac513ea9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a9cc28d34c8a431b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7ca63d18998b4e86"
+    },
+    {
+      "ts": "2026-11-22T12:47:51.141326+00:00",
+      "call_id": "24bc19a3f531",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a9cc28d34c8a431b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7ca63d18998b4e86"
+    },
+    {
+      "ts": "2026-11-22T12:47:51.158606+00:00",
+      "call_id": "6a8345747b87",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "3fd71cff38d375ce",
+      "n_inputs": 21,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7ca63d18998b4e86"
+    },
+    {
+      "ts": "2026-11-22T12:48:03.442611+00:00",
+      "call_id": "42e6abb90a3a",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6d4f61b91377eb03",
+      "prompt_tokens": 834,
+      "completion_tokens": 88,
+      "latency_ms": 12282.72,
+      "server_ms": 12266.38,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7ca63d18998b4e86"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 834,
+    "generator_prompt_tokens": 834,
+    "completion_tokens": 88,
+    "total_ms": 13117.99
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

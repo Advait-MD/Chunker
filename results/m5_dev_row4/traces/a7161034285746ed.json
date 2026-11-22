@@ -1,0 +1,182 @@
+{
+  "trace_id": "a7161034285746ed",
+  "created_at": "2026-11-22T11:24:03.468005+00:00",
+  "query": "What is the place of birth of the director of film The Return Of Swamp Thing?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6713.1
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6713.83
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 22269.3
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.48,
+      "bm25_ms": 4.92,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6699.16
+      },
+      "hits": [
+        {
+          "id": "317e12ccd417c0d7:L0:000022",
+          "score": 8.600528717041016,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.600528717041016
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000082",
+          "score": 6.283155918121338,
+          "fused": 0.6181076049716533,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 6.283155918121338
+        },
+        {
+          "id": "460e441179bec402:L0:000138",
+          "score": 0.05769116431474686,
+          "fused": 0.6714929007408451,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 0.05769116431474686
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": -2.1261425018310547,
+          "fused": 0.1697631953301285,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 14,
+          "rerank": -2.1261425018310547
+        },
+        {
+          "id": "99628090500247e3:L0:000128",
+          "score": -3.729844093322754,
+          "fused": 0.20062959874423622,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 10,
+          "rerank": -3.729844093322754
+        }
+      ],
+      "latency_ms": 6713.06
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 775,
+      "latency_ms": 0.67
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15555.37
+    }
+  },
+  "retrieved_ids": [
+    "317e12ccd417c0d7:L0:000022",
+    "c73b757f0eb66f37:L0:000082",
+    "460e441179bec402:L0:000138",
+    "abe982d210232c3f:L0:000151",
+    "99628090500247e3:L0:000128"
+  ],
+  "filtered_ids": [
+    "317e12ccd417c0d7:L0:000022",
+    "c73b757f0eb66f37:L0:000082",
+    "460e441179bec402:L0:000138",
+    "abe982d210232c3f:L0:000151",
+    "99628090500247e3:L0:000128"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:24:03.469004+00:00",
+      "call_id": "fcc298ac8ff6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "621beb995f863ad6",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a7161034285746ed"
+    },
+    {
+      "ts": "2026-11-22T11:24:25.736290+00:00",
+      "call_id": "8db2e3ea532b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "69dd59d775ef1896",
+      "prompt_tokens": 1423,
+      "completion_tokens": 70,
+      "latency_ms": 15553.59,
+      "server_ms": 15526.26,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a7161034285746ed"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1423,
+    "generator_prompt_tokens": 1423,
+    "completion_tokens": 70,
+    "total_ms": 22278.54
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "The director of the film 'The Return of Swamp Thing' is Jim Wynorski, and there is no information provided about his place of birth in the given passages."
+      ]
+    }
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "trace_id": "75bde5c598c04dcf",
+  "created_at": "2026-11-22T12:49:21.153847+00:00",
+  "query": "Beer Wars covers the differences between large corporate breweries, and small breweries, such as what brewery that is headquartered in Escondido, california?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.54
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 32.24
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 10562.34
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10562.73
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.11,
+      "bm25_ms": 13.52,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "b120b09075017d08:L0:000010",
+          "score": 9.9531831741333,
+          "fused": 0.9547790245229549,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 9.9531831741333
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000191",
+          "score": 6.88944673538208,
+          "fused": 0.6356332616519259,
+          "dense_rank": 1,
+          "bm25_rank": 7,
+          "fused_rank": 3,
+          "rerank": 6.88944673538208
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000094",
+          "score": -1.73160982131958,
+          "fused": 0.8620885121242753,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -1.73160982131958
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000181",
+          "score": -2.97637939453125,
+          "fused": 0.6010285456830168,
+          "dense_rank": 7,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -2.97637939453125
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000155",
+          "score": -4.674779415130615,
+          "fused": 0.4494738520208823,
+          "dense_rank": 10,
+          "bm25_rank": 8,
+          "fused_rank": 10,
+          "rerank": -4.674779415130615
+        }
+      ],
+      "latency_ms": 18.51
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 452,
+      "dropped_threshold": [
+        "cb96563b0747a6ba:L0:000155"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 12,
+      "sentences_kept": 12,
+      "n_out": 4,
+      "tokens_out": 268,
+      "ms": 13.6,
+      "latency_ms": 13.64
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 9.9531831741333,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10530.08
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 0.33
+    }
+  },
+  "retrieved_ids": [
+    "b120b09075017d08:L0:000010",
+    "cc2399aca11eb631:L0:000191",
+    "c8fd2b3ea47eb07f:L0:000094",
+    "cb96563b0747a6ba:L0:000181",
+    "cb96563b0747a6ba:L0:000155"
+  ],
+  "filtered_ids": [
+    "b120b09075017d08:L0:000010",
+    "cc2399aca11eb631:L0:000191",
+    "c8fd2b3ea47eb07f:L0:000094",
+    "cb96563b0747a6ba:L0:000181"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:49:21.154847+00:00",
+      "call_id": "bb9fb83dd214",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cd8fbb397b911c99",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "75bde5c598c04dcf"
+    },
+    {
+      "ts": "2026-11-22T12:49:21.173296+00:00",
+      "call_id": "7f814fd4663d",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "cd8fbb397b911c99",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "75bde5c598c04dcf"
+    },
+    {
+      "ts": "2026-11-22T12:49:21.184485+00:00",
+      "call_id": "2cd7a978442f",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c5873438bcccb124",
+      "n_inputs": 12,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "75bde5c598c04dcf"
+    },
+    {
+      "ts": "2026-11-22T12:49:31.715260+00:00",
+      "call_id": "9671cfcc345f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "6674db39ebf4537b",
+      "prompt_tokens": 794,
+      "completion_tokens": 74,
+      "latency_ms": 10529.49,
+      "server_ms": 10506.89,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "75bde5c598c04dcf"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 794,
+    "generator_prompt_tokens": 794,
+    "completion_tokens": 74,
+    "total_ms": 10563.34
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

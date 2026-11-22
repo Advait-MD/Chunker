@@ -1,0 +1,250 @@
+{
+  "trace_id": "19d10284e8934cd7",
+  "created_at": "2026-11-22T12:46:19.554927+00:00",
+  "query": "which Mexican and American film actress is Ethel Houbiers  French voice of",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.82
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14.41
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 8708.17
+    },
+    {
+      "state": "DONE",
+      "t_ms": 8708.26
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.14,
+      "bm25_ms": 4.66,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "9794e842cc9565f0:L0:000163",
+          "score": 7.273365020751953,
+          "fused": 0.74650981697567,
+          "dense_rank": 35,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.273365020751953
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000098",
+          "score": 2.6792774200439453,
+          "fused": 0.392798645138098,
+          "dense_rank": 1,
+          "bm25_rank": 9,
+          "fused_rank": 3,
+          "rerank": 2.6792774200439453
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000053",
+          "score": -5.321346282958984,
+          "fused": 0.44103144229190194,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": -5.321346282958984
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000173",
+          "score": -5.423052787780762,
+          "fused": 0.1946390914586487,
+          "dense_rank": 30,
+          "bm25_rank": 6,
+          "fused_rank": 13,
+          "rerank": -5.423052787780762
+        },
+        {
+          "id": "b120b09075017d08:L0:000147",
+          "score": -5.579310417175293,
+          "fused": 0.13826102722568534,
+          "dense_rank": 15,
+          "bm25_rank": 23,
+          "fused_rank": 18,
+          "rerank": -5.579310417175293
+        }
+      ],
+      "latency_ms": 9.8
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 338,
+      "dropped_threshold": [
+        "81fc433d55d23b4c:L0:000053",
+        "cb96563b0747a6ba:L0:000173",
+        "b120b09075017d08:L0:000147"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 5,
+      "sentences_kept": 5,
+      "n_out": 2,
+      "tokens_out": 150,
+      "ms": 4.5,
+      "latency_ms": 4.55
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 7.273365020751953,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8693.75
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 0.04
+    }
+  },
+  "retrieved_ids": [
+    "9794e842cc9565f0:L0:000163",
+    "81fc433d55d23b4c:L0:000098",
+    "81fc433d55d23b4c:L0:000053",
+    "cb96563b0747a6ba:L0:000173",
+    "b120b09075017d08:L0:000147"
+  ],
+  "filtered_ids": [
+    "9794e842cc9565f0:L0:000163",
+    "81fc433d55d23b4c:L0:000098"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:46:19.555925+00:00",
+      "call_id": "86a288192bca",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0e25fe9dcfce6fdf",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "19d10284e8934cd7"
+    },
+    {
+      "ts": "2026-11-22T12:46:19.564917+00:00",
+      "call_id": "136034a2c7fc",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0e25fe9dcfce6fdf",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "19d10284e8934cd7"
+    },
+    {
+      "ts": "2026-11-22T12:46:19.568917+00:00",
+      "call_id": "ef014db76e9e",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0260be3c5278d404",
+      "n_inputs": 5,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "19d10284e8934cd7"
+    },
+    {
+      "ts": "2026-11-22T12:46:28.263121+00:00",
+      "call_id": "f52791881963",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8f4d6e99f2e2d156",
+      "prompt_tokens": 619,
+      "completion_tokens": 60,
+      "latency_ms": 8693.18,
+      "server_ms": 8678.01,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "19d10284e8934cd7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 619,
+    "generator_prompt_tokens": 619,
+    "completion_tokens": 60,
+    "total_ms": 8708.79
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "Ethel Houbiers is the French voice of Salma Hayek, a Mexican and American film actress."
+      ]
+    }
+  }
+}

@@ -1,0 +1,181 @@
+{
+  "trace_id": "6acb65a1f98f408c",
+  "created_at": "2026-11-22T11:29:50.939674+00:00",
+  "query": "Which \"Roseanne\" star is in Scream 2?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5747.13
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5747.37
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19300.58
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.02,
+      "bm25_ms": 6.16,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5729.99
+      },
+      "hits": [
+        {
+          "id": "838c0e0106e6f015:L0:000018",
+          "score": 5.44556188583374,
+          "fused": 0.767873252652716,
+          "dense_rank": 1,
+          "bm25_rank": 6,
+          "fused_rank": 1,
+          "rerank": 5.44556188583374
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000149",
+          "score": 3.7590177059173584,
+          "fused": 0.6877511616370388,
+          "dense_rank": 5,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": 3.7590177059173584
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000086",
+          "score": 3.0506298542022705,
+          "fused": 0.3653600508124399,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 11,
+          "rerank": 3.0506298542022705
+        },
+        {
+          "id": "20496f59538deb41:L0:000039",
+          "score": 0.050910584628582,
+          "fused": 0.44831504570824526,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": 0.050910584628582
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000075",
+          "score": -0.2115279585123062,
+          "fused": 0.4885759788023884,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": -0.2115279585123062
+        }
+      ],
+      "latency_ms": 5747.08
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 717,
+      "latency_ms": 0.21
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13553.08
+    }
+  },
+  "retrieved_ids": [
+    "838c0e0106e6f015:L0:000018",
+    "8e50522b7cb636d8:L0:000149",
+    "bc1dba3471045f02:L0:000086",
+    "20496f59538deb41:L0:000039",
+    "c8fd2b3ea47eb07f:L0:000075"
+  ],
+  "filtered_ids": [
+    "838c0e0106e6f015:L0:000018",
+    "8e50522b7cb636d8:L0:000149",
+    "bc1dba3471045f02:L0:000086",
+    "20496f59538deb41:L0:000039",
+    "c8fd2b3ea47eb07f:L0:000075"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:29:50.941667+00:00",
+      "call_id": "aa0333268d05",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7adb0129508dfb0f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6acb65a1f98f408c"
+    },
+    {
+      "ts": "2026-11-22T11:30:10.239460+00:00",
+      "call_id": "274f8e0144f5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1d4efb4e27c347e3",
+      "prompt_tokens": 1400,
+      "completion_tokens": 58,
+      "latency_ms": 13551.97,
+      "server_ms": 13525.05,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "6acb65a1f98f408c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1400,
+    "generator_prompt_tokens": 1400,
+    "completion_tokens": 58,
+    "total_ms": 19304.93
+  },
+  "config_hash": "00ac4473fd53",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

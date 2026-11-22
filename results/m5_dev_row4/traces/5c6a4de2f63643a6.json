@@ -1,0 +1,180 @@
+{
+  "trace_id": "5c6a4de2f63643a6",
+  "created_at": "2026-11-22T11:52:03.056493+00:00",
+  "query": "Who is the president of the newly declared independent country that is part of the Commission of Truth and Friendship with the country where Jenggawah is located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 24.29
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 24.8
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13638.31
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.72,
+      "bm25_ms": 18.37,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "6683bfc7dec06e2a:L0:000065",
+          "score": 2.351776361465454,
+          "fused": 0.1547072831357805,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 12,
+          "rerank": 2.351776361465454
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000055",
+          "score": 0.738095223903656,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.738095223903656
+        },
+        {
+          "id": "4b634e52029ddab4:L0:000012",
+          "score": -1.9987549781799316,
+          "fused": 0.2375387183335423,
+          "dense_rank": 12,
+          "bm25_rank": 11,
+          "fused_rank": 7,
+          "rerank": -1.9987549781799316
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000097",
+          "score": -4.436119556427002,
+          "fused": 0.2523847801688726,
+          "dense_rank": 17,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": -4.436119556427002
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000015",
+          "score": -4.539547443389893,
+          "fused": 0.15307792257915118,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 13,
+          "rerank": -4.539547443389893
+        }
+      ],
+      "latency_ms": 24.25
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 568,
+      "latency_ms": 0.48
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13613.39
+    }
+  },
+  "retrieved_ids": [
+    "6683bfc7dec06e2a:L0:000065",
+    "4fcce431f5d22d1d:L0:000055",
+    "4b634e52029ddab4:L0:000012",
+    "6683bfc7dec06e2a:L0:000097",
+    "f59bbbdacaf7ffe4:L0:000015"
+  ],
+  "filtered_ids": [
+    "6683bfc7dec06e2a:L0:000065",
+    "4fcce431f5d22d1d:L0:000055",
+    "4b634e52029ddab4:L0:000012",
+    "6683bfc7dec06e2a:L0:000097",
+    "f59bbbdacaf7ffe4:L0:000015"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:52:03.058896+00:00",
+      "call_id": "3fb177e2fe16",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "956fed990315269c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5c6a4de2f63643a6"
+    },
+    {
+      "ts": "2026-11-22T11:52:16.693300+00:00",
+      "call_id": "fdb44f08f930",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "fd1209cd670f4c72",
+      "prompt_tokens": 1196,
+      "completion_tokens": 84,
+      "latency_ms": 13612.08,
+      "server_ms": 13591.5,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "5c6a4de2f63643a6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1196,
+    "generator_prompt_tokens": 1196,
+    "completion_tokens": 84,
+    "total_ms": 13640.12
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

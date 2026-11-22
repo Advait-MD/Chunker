@@ -1,0 +1,247 @@
+{
+  "trace_id": "a8249b8bd6104306",
+  "created_at": "2026-11-22T13:23:05.432755+00:00",
+  "query": "How did the authors find ironic data on twitter?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 119.31
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 169.19
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 16676.87
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18587.19
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.48,
+      "bm25_ms": 104.36,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 21
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "b674e9583339e06c:L0:000003",
+          "score": 0.643498420715332,
+          "fused": 0.986475858497895,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 0.643498420715332
+        },
+        {
+          "id": "b674e9583339e06c:L0:000005",
+          "score": 0.3532239496707916,
+          "fused": 0.7408857724734448,
+          "dense_rank": 2,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": 0.3532239496707916
+        },
+        {
+          "id": "b674e9583339e06c:L0:000000",
+          "score": -0.9910032749176025,
+          "fused": 0.8544244484635228,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.9910032749176025
+        },
+        {
+          "id": "b674e9583339e06c:L0:000021",
+          "score": -1.2853127717971802,
+          "fused": 0.27544952504866005,
+          "dense_rank": 5,
+          "bm25_rank": 21,
+          "fused_rank": 18,
+          "rerank": -1.2853127717971802
+        },
+        {
+          "id": "b674e9583339e06c:L0:000006",
+          "score": -1.6589102745056152,
+          "fused": 0.7865355645067059,
+          "dense_rank": 4,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -1.6589102745056152
+        }
+      ],
+      "latency_ms": 119.21
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 1031,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 47,
+      "sentences_kept": 32,
+      "n_out": 5,
+      "tokens_out": 765,
+      "ms": 49.8,
+      "latency_ms": 49.82
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 0.643498420715332,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16507.65
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 1910.05
+    }
+  },
+  "retrieved_ids": [
+    "b674e9583339e06c:L0:000003",
+    "b674e9583339e06c:L0:000005",
+    "b674e9583339e06c:L0:000000",
+    "b674e9583339e06c:L0:000021",
+    "b674e9583339e06c:L0:000006"
+  ],
+  "filtered_ids": [
+    "b674e9583339e06c:L0:000003",
+    "b674e9583339e06c:L0:000005",
+    "b674e9583339e06c:L0:000000",
+    "b674e9583339e06c:L0:000021",
+    "b674e9583339e06c:L0:000006"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:23:05.435752+00:00",
+      "call_id": "c59ec18bf6f8",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fdaa46559b007ea5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a8249b8bd6104306"
+    },
+    {
+      "ts": "2026-11-22T13:23:05.554515+00:00",
+      "call_id": "dc96ebb6b8a1",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fdaa46559b007ea5",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a8249b8bd6104306"
+    },
+    {
+      "ts": "2026-11-22T13:23:05.596893+00:00",
+      "call_id": "5144721c6337",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "afb4e3b7987b3327",
+      "n_inputs": 47,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a8249b8bd6104306"
+    },
+    {
+      "ts": "2026-11-22T13:23:22.109018+00:00",
+      "call_id": "2e19a3f3ee16",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1a35e2bcd57ee3ba",
+      "prompt_tokens": 1351,
+      "completion_tokens": 92,
+      "latency_ms": 16506.69,
+      "server_ms": 16481.21,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a8249b8bd6104306"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1351,
+    "generator_prompt_tokens": 1351,
+    "completion_tokens": 92,
+    "total_ms": 18590.6
+  },
+  "config_hash": "c4b7d9811844",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

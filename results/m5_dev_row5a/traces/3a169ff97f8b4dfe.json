@@ -1,0 +1,228 @@
+{
+  "trace_id": "3a169ff97f8b4dfe",
+  "created_at": "2026-11-22T12:54:28.234465+00:00",
+  "query": "Who is Wisigard's father-in-law?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.76
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 30.48
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 6133.21
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.58,
+      "bm25_ms": 6.4,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "53c7288bdcd3837a:L0:000040",
+          "score": -3.517717123031616,
+          "fused": 0.670989912544446,
+          "dense_rank": 13,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -3.517717123031616
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000149",
+          "score": -3.759835958480835,
+          "fused": 0.7072584791860846,
+          "dense_rank": 11,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -3.759835958480835
+        },
+        {
+          "id": "abe982d210232c3f:L0:000081",
+          "score": -4.178084850311279,
+          "fused": 0.698697245080343,
+          "dense_rank": 5,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": -4.178084850311279
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000037",
+          "score": -4.236544609069824,
+          "fused": 0.5903493997435845,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 10,
+          "rerank": -4.236544609069824
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000136",
+          "score": -4.81114387512207,
+          "fused": 0.2512731788790949,
+          "dense_rank": 35,
+          "bm25_rank": 16,
+          "fused_rank": 17,
+          "rerank": -4.81114387512207
+        }
+      ],
+      "latency_ms": 17.69
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 568,
+      "dropped_threshold": [
+        "abe982d210232c3f:L0:000081",
+        "6af2db6cb86d77e2:L0:000037",
+        "c73b757f0eb66f37:L0:000136"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 4,
+      "sentences_kept": 2,
+      "n_out": 2,
+      "tokens_out": 35,
+      "ms": 12.6,
+      "latency_ms": 12.63
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": -3.517717123031616,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 6102.65
+    }
+  },
+  "retrieved_ids": [
+    "53c7288bdcd3837a:L0:000040",
+    "317e12ccd417c0d7:L0:000149",
+    "abe982d210232c3f:L0:000081",
+    "6af2db6cb86d77e2:L0:000037",
+    "c73b757f0eb66f37:L0:000136"
+  ],
+  "filtered_ids": [
+    "53c7288bdcd3837a:L0:000040",
+    "317e12ccd417c0d7:L0:000149"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:54:28.237463+00:00",
+      "call_id": "3b3cd39cd748",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "81322e78dca1c6c3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "3a169ff97f8b4dfe"
+    },
+    {
+      "ts": "2026-11-22T12:54:28.253163+00:00",
+      "call_id": "23abfff7a029",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "81322e78dca1c6c3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "3a169ff97f8b4dfe"
+    },
+    {
+      "ts": "2026-11-22T12:54:28.263157+00:00",
+      "call_id": "6557c8a4ee53",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b7d878faff2e259e",
+      "n_inputs": 4,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "3a169ff97f8b4dfe"
+    },
+    {
+      "ts": "2026-11-22T12:54:34.366811+00:00",
+      "call_id": "91caa8071056",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b78d09dfcd809208",
+      "prompt_tokens": 451,
+      "completion_tokens": 49,
+      "latency_ms": 6101.72,
+      "server_ms": 6084.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "3a169ff97f8b4dfe"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 451,
+    "generator_prompt_tokens": 451,
+    "completion_tokens": 49,
+    "total_ms": 6134.23
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Wisigard's father-in-law is not mentioned in the provided passages."
+      ]
+    }
+  }
+}

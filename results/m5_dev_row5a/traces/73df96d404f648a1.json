@@ -1,0 +1,248 @@
+{
+  "trace_id": "73df96d404f648a1",
+  "created_at": "2026-11-22T13:02:30.008781+00:00",
+  "query": "Which film was released more recently, Scandal At The Girls' School or One Dangerous Night?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 20.28
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 56.63
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 14256.63
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15305.96
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.38,
+      "bm25_ms": 11.88,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "0eac870d43736f51:L0:000091",
+          "score": 9.038434028625488,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 9.038434028625488
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000096",
+          "score": 7.587993144989014,
+          "fused": 0.4958172087324349,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 7.587993144989014
+        },
+        {
+          "id": "99628090500247e3:L0:000015",
+          "score": 3.81990122795105,
+          "fused": 0.4970920100672108,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 3.81990122795105
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000108",
+          "score": -3.2294628620147705,
+          "fused": 0.3562842675565048,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": -3.2294628620147705
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000186",
+          "score": -7.249948501586914,
+          "fused": 0.3666453786560488,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 6,
+          "rerank": -7.249948501586914
+        }
+      ],
+      "latency_ms": 20.22
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 421,
+      "dropped_threshold": [
+        "b04ce6dd2d95fb80:L0:000186"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 20,
+      "sentences_kept": 8,
+      "n_out": 4,
+      "tokens_out": 210,
+      "ms": 36.2,
+      "latency_ms": 36.23
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 9.038434028625488,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14199.97
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 1049.19
+    }
+  },
+  "retrieved_ids": [
+    "0eac870d43736f51:L0:000091",
+    "4a757779abfb4ba1:L0:000096",
+    "99628090500247e3:L0:000015",
+    "4a757779abfb4ba1:L0:000108",
+    "b04ce6dd2d95fb80:L0:000186"
+  ],
+  "filtered_ids": [
+    "0eac870d43736f51:L0:000091",
+    "4a757779abfb4ba1:L0:000096",
+    "99628090500247e3:L0:000015",
+    "4a757779abfb4ba1:L0:000108"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:02:30.011780+00:00",
+      "call_id": "9caebc8711c1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "499effce54147bb0",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "73df96d404f648a1"
+    },
+    {
+      "ts": "2026-11-22T13:02:30.031125+00:00",
+      "call_id": "6e0e405234a7",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "499effce54147bb0",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "73df96d404f648a1"
+    },
+    {
+      "ts": "2026-11-22T13:02:30.061838+00:00",
+      "call_id": "1faa49daaf4b",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "03520c8bed037c44",
+      "n_inputs": 20,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "73df96d404f648a1"
+    },
+    {
+      "ts": "2026-11-22T13:02:44.265223+00:00",
+      "call_id": "b86431cc8a7b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bdbf85b45617ee5c",
+      "prompt_tokens": 746,
+      "completion_tokens": 94,
+      "latency_ms": 14199.2,
+      "server_ms": 14185.86,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "73df96d404f648a1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 746,
+    "generator_prompt_tokens": 746,
+    "completion_tokens": 94,
+    "total_ms": 15307.48
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

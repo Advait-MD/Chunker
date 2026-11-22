@@ -1,0 +1,181 @@
+{
+  "trace_id": "7da061d9520b4ea0",
+  "created_at": "2026-11-22T11:31:26.161483+00:00",
+  "query": "Armageddon in Retrospect was written by the author who was best known for what 1969 satire novel?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6937.36
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6938.19
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23023.36
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.73,
+      "bm25_ms": 11.54,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6917.02
+      },
+      "hits": [
+        {
+          "id": "20496f59538deb41:L0:000007",
+          "score": 9.825857162475586,
+          "fused": 0.7671752506502736,
+          "dense_rank": 18,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 9.825857162475586
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000000",
+          "score": 4.758962154388428,
+          "fused": 0.4381840724514615,
+          "dense_rank": 1,
+          "bm25_rank": 12,
+          "fused_rank": 6,
+          "rerank": 4.758962154388428
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000062",
+          "score": -2.8177874088287354,
+          "fused": 0.10910494710549719,
+          "dense_rank": 8,
+          "bm25_rank": null,
+          "fused_rank": 20,
+          "rerank": -2.8177874088287354
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000042",
+          "score": -3.2536184787750244,
+          "fused": 0.4416549235738867,
+          "dense_rank": 3,
+          "bm25_rank": 7,
+          "fused_rank": 5,
+          "rerank": -3.2536184787750244
+        },
+        {
+          "id": "20496f59538deb41:L0:000140",
+          "score": -4.229004383087158,
+          "fused": 0.45509956672090063,
+          "dense_rank": 12,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": -4.229004383087158
+        }
+      ],
+      "latency_ms": 6937.3
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 528,
+      "latency_ms": 0.77
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16085.02
+    }
+  },
+  "retrieved_ids": [
+    "20496f59538deb41:L0:000007",
+    "ba3cd068cf9ac2e4:L0:000000",
+    "90976421f3f2bea2:L0:000062",
+    "8e50522b7cb636d8:L0:000042",
+    "20496f59538deb41:L0:000140"
+  ],
+  "filtered_ids": [
+    "20496f59538deb41:L0:000007",
+    "ba3cd068cf9ac2e4:L0:000000",
+    "90976421f3f2bea2:L0:000062",
+    "8e50522b7cb636d8:L0:000042",
+    "20496f59538deb41:L0:000140"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:31:26.163487+00:00",
+      "call_id": "c3d7d46dd268",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6890333078f48f40",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7da061d9520b4ea0"
+    },
+    {
+      "ts": "2026-11-22T11:31:49.183777+00:00",
+      "call_id": "8f1e09917fa2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8b32b10ba5118747",
+      "prompt_tokens": 1202,
+      "completion_tokens": 83,
+      "latency_ms": 16083.66,
+      "server_ms": 16060.29,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7da061d9520b4ea0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1202,
+    "generator_prompt_tokens": 1202,
+    "completion_tokens": 83,
+    "total_ms": 23027.85
+  },
+  "config_hash": "00ac4473fd53",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

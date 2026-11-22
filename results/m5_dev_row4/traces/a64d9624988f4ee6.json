@@ -1,0 +1,181 @@
+{
+  "trace_id": "a64d9624988f4ee6",
+  "created_at": "2026-11-22T11:18:59.344077+00:00",
+  "query": "Was Ausaf Ali or Steven Perry born first?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12261.14
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 12262.74
+    },
+    {
+      "state": "DONE",
+      "t_ms": 46798.54
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.98,
+      "bm25_ms": 12.5,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 12230.14
+      },
+      "hits": [
+        {
+          "id": "6af2db6cb86d77e2:L0:000084",
+          "score": 6.179369926452637,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.179369926452637
+        },
+        {
+          "id": "0eac870d43736f51:L0:000086",
+          "score": 3.974148988723755,
+          "fused": 0.5498649076980663,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 3.974148988723755
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -5.06760311126709,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 4,
+          "rerank": -5.06760311126709
+        },
+        {
+          "id": "0eac870d43736f51:L0:000159",
+          "score": -5.106015205383301,
+          "fused": 0.18179728817223784,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": -5.106015205383301
+        },
+        {
+          "id": "99628090500247e3:L0:000080",
+          "score": -5.438885688781738,
+          "fused": 0.19475486438196712,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 13,
+          "rerank": -5.438885688781738
+        }
+      ],
+      "latency_ms": 12261.04
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1206,
+      "latency_ms": 1.53
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 34535.52
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000084",
+    "0eac870d43736f51:L0:000086",
+    "b04ce6dd2d95fb80:L0:000152",
+    "0eac870d43736f51:L0:000159",
+    "99628090500247e3:L0:000080"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000084",
+    "0eac870d43736f51:L0:000086",
+    "b04ce6dd2d95fb80:L0:000152",
+    "0eac870d43736f51:L0:000159",
+    "99628090500247e3:L0:000080"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:18:59.347081+00:00",
+      "call_id": "48d9c0c80ea0",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "abebb55d3fd1e685",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a64d9624988f4ee6"
+    },
+    {
+      "ts": "2026-11-22T11:19:46.140788+00:00",
+      "call_id": "3cacf862171c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8668a88270ebb764",
+      "prompt_tokens": 1948,
+      "completion_tokens": 76,
+      "latency_ms": 34532.5,
+      "server_ms": 34489.29,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a64d9624988f4ee6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1948,
+    "generator_prompt_tokens": 1948,
+    "completion_tokens": 76,
+    "total_ms": 46803.15
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

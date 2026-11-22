@@ -1,0 +1,246 @@
+{
+  "trace_id": "1aaab424a5e8439f",
+  "created_at": "2026-11-22T13:26:38.385172+00:00",
+  "query": "How do they identify discussions of LGBTQ people in the New York Times?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 85.22
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 145.99
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 17125.89
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17787.78
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 7.42,
+      "bm25_ms": 67.58,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 45
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "6945a67c2ea6d6e5:L0:000000",
+          "score": 2.8207857608795166,
+          "fused": 0.7765381486467008,
+          "dense_rank": 30,
+          "bm25_rank": 2,
+          "fused_rank": 7,
+          "rerank": 2.8207857608795166
+        },
+        {
+          "id": "6945a67c2ea6d6e5:L0:000046",
+          "score": 1.8535089492797852,
+          "fused": 0.7290803105485801,
+          "dense_rank": 34,
+          "bm25_rank": 6,
+          "fused_rank": 10,
+          "rerank": 1.8535089492797852
+        },
+        {
+          "id": "6945a67c2ea6d6e5:L0:000003",
+          "score": 1.7682722806930542,
+          "fused": 0.683473968315387,
+          "dense_rank": 31,
+          "bm25_rank": 10,
+          "fused_rank": 13,
+          "rerank": 1.7682722806930542
+        },
+        {
+          "id": "6945a67c2ea6d6e5:L0:000021",
+          "score": 1.6176135540008545,
+          "fused": 0.9200795404385145,
+          "dense_rank": 1,
+          "bm25_rank": 9,
+          "fused_rank": 1,
+          "rerank": 1.6176135540008545
+        },
+        {
+          "id": "6945a67c2ea6d6e5:L0:000027",
+          "score": 1.3498045206069946,
+          "fused": 0.8044947574594032,
+          "dense_rank": 14,
+          "bm25_rank": 8,
+          "fused_rank": 5,
+          "rerank": 1.3498045206069946
+        }
+      ],
+      "latency_ms": 85.15
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 1507,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 51,
+      "sentences_kept": 35,
+      "n_out": 5,
+      "tokens_out": 1089,
+      "ms": 60.7,
+      "latency_ms": 60.7
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 2.8207857608795166,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16979.82
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 661.63
+    }
+  },
+  "retrieved_ids": [
+    "6945a67c2ea6d6e5:L0:000000",
+    "6945a67c2ea6d6e5:L0:000046",
+    "6945a67c2ea6d6e5:L0:000003",
+    "6945a67c2ea6d6e5:L0:000021",
+    "6945a67c2ea6d6e5:L0:000027"
+  ],
+  "filtered_ids": [
+    "6945a67c2ea6d6e5:L0:000000",
+    "6945a67c2ea6d6e5:L0:000046",
+    "6945a67c2ea6d6e5:L0:000003",
+    "6945a67c2ea6d6e5:L0:000021",
+    "6945a67c2ea6d6e5:L0:000027"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:26:38.388173+00:00",
+      "call_id": "2a15fb58cabd",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a6d715494c340cd3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1aaab424a5e8439f"
+    },
+    {
+      "ts": "2026-11-22T13:26:38.475701+00:00",
+      "call_id": "41c7eb8e6e9f",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a6d715494c340cd3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1aaab424a5e8439f"
+    },
+    {
+      "ts": "2026-11-22T13:26:38.527261+00:00",
+      "call_id": "b48f260e7dff",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1c3c653997429fce",
+      "n_inputs": 51,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "1aaab424a5e8439f"
+    },
+    {
+      "ts": "2026-11-22T13:26:55.509812+00:00",
+      "call_id": "e0b7c404e4ce",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bc00e6c9507a32a1",
+      "prompt_tokens": 1696,
+      "completion_tokens": 83,
+      "latency_ms": 16978.15,
+      "server_ms": 16949.5,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "1aaab424a5e8439f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1696,
+    "generator_prompt_tokens": 1696,
+    "completion_tokens": 83,
+    "total_ms": 17791.29
+  },
+  "config_hash": "c4b7d9811844",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

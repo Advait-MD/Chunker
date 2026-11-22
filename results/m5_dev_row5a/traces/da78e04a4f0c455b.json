@@ -1,0 +1,249 @@
+{
+  "trace_id": "da78e04a4f0c455b",
+  "created_at": "2026-11-22T13:09:37.297698+00:00",
+  "query": "Where is Sean Hampton's birth place in the state of Florida?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 51.41
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 73.47
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 7547.83
+    },
+    {
+      "state": "DONE",
+      "t_ms": 7548.53
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 10.03,
+      "bm25_ms": 31.05,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "c61175e20d09af4f:L0:000039",
+          "score": 6.219604969024658,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.219604969024658
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000161",
+          "score": -1.7132078409194946,
+          "fused": 0.2087811028682214,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 12,
+          "rerank": -1.7132078409194946
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000146",
+          "score": -3.077721118927002,
+          "fused": 0.35482252831192496,
+          "dense_rank": 12,
+          "bm25_rank": 15,
+          "fused_rank": 3,
+          "rerank": -3.077721118927002
+        },
+        {
+          "id": "6683bfc7dec06e2a:L0:000073",
+          "score": -4.93730354309082,
+          "fused": 0.33460878754754475,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 5,
+          "rerank": -4.93730354309082
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000070",
+          "score": -4.997622013092041,
+          "fused": 0.19203359771086267,
+          "dense_rank": null,
+          "bm25_rank": 14,
+          "fused_rank": 20,
+          "rerank": -4.997622013092041
+        }
+      ],
+      "latency_ms": 51.37
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 455,
+      "dropped_threshold": [
+        "6683bfc7dec06e2a:L0:000073",
+        "f59bbbdacaf7ffe4:L0:000070"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 16,
+      "sentences_kept": 5,
+      "n_out": 3,
+      "tokens_out": 119,
+      "ms": 21.9,
+      "latency_ms": 21.98
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 6.219604969024658,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 7474.32
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 0.1
+    }
+  },
+  "retrieved_ids": [
+    "c61175e20d09af4f:L0:000039",
+    "cc1bdb3bf430bd0d:L0:000161",
+    "ce290c1e5d5c6641:L0:000146",
+    "6683bfc7dec06e2a:L0:000073",
+    "f59bbbdacaf7ffe4:L0:000070"
+  ],
+  "filtered_ids": [
+    "c61175e20d09af4f:L0:000039",
+    "cc1bdb3bf430bd0d:L0:000161",
+    "ce290c1e5d5c6641:L0:000146"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:09:37.298706+00:00",
+      "call_id": "d5c1140f8d3b",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "35a1e687cf52355a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "da78e04a4f0c455b"
+    },
+    {
+      "ts": "2026-11-22T13:09:37.349875+00:00",
+      "call_id": "2a363725b1ff",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "35a1e687cf52355a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "da78e04a4f0c455b"
+    },
+    {
+      "ts": "2026-11-22T13:09:37.368195+00:00",
+      "call_id": "69f6f876849d",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "867c93259dcba018",
+      "n_inputs": 16,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "da78e04a4f0c455b"
+    },
+    {
+      "ts": "2026-11-22T13:09:44.844015+00:00",
+      "call_id": "86f0b5846d18",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "9f52961b9c2e8fc9",
+      "prompt_tokens": 581,
+      "completion_tokens": 47,
+      "latency_ms": 7473.35,
+      "server_ms": 7457.92,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "da78e04a4f0c455b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 581,
+    "generator_prompt_tokens": 581,
+    "completion_tokens": 47,
+    "total_ms": 7551.64
+  },
+  "config_hash": "1c92a20b0713",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "Sean Hampton's birth place in the state of Florida is Ocala."
+      ]
+    }
+  }
+}

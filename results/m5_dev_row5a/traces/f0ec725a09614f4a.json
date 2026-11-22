@@ -1,0 +1,253 @@
+{
+  "trace_id": "f0ec725a09614f4a",
+  "created_at": "2026-11-22T13:18:34.112071+00:00",
+  "query": "what algorithms did they use?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.17
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 73.19
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 25800.99
+    },
+    {
+      "state": "DONE",
+      "t_ms": 25801.2
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.87,
+      "bm25_ms": 5.49,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 15
+      },
+      "n_fused": 19,
+      "rerank": {
+        "n": 19,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "e34da0296b7e7e09:L0:000001",
+          "score": -0.4601138234138489,
+          "fused": 0.40578080445724896,
+          "dense_rank": 16,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -0.4601138234138489
+        },
+        {
+          "id": "e34da0296b7e7e09:L0:000002",
+          "score": -0.6116423010826111,
+          "fused": 0.7289904595340072,
+          "dense_rank": 9,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.6116423010826111
+        },
+        {
+          "id": "e34da0296b7e7e09:L0:000006",
+          "score": -1.6850889921188354,
+          "fused": 0.8770700245934293,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.6850889921188354
+        },
+        {
+          "id": "e34da0296b7e7e09:L0:000007",
+          "score": -1.6903609037399292,
+          "fused": 0.33547048733745105,
+          "dense_rank": 2,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -1.6903609037399292
+        },
+        {
+          "id": "e34da0296b7e7e09:L0:000014",
+          "score": -2.1190309524536133,
+          "fused": 0.7014193762430967,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -2.1190309524536133
+        }
+      ],
+      "latency_ms": 14.12
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 1678,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 60,
+      "sentences_kept": 52,
+      "n_out": 5,
+      "tokens_out": 1534,
+      "ms": 58.9,
+      "latency_ms": 58.95
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": -0.4601138234138489,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25727.78
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 4,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 4,
+        "n_supported": 0
+      },
+      "latency_ms": 0.11
+    }
+  },
+  "retrieved_ids": [
+    "e34da0296b7e7e09:L0:000001",
+    "e34da0296b7e7e09:L0:000002",
+    "e34da0296b7e7e09:L0:000006",
+    "e34da0296b7e7e09:L0:000007",
+    "e34da0296b7e7e09:L0:000014"
+  ],
+  "filtered_ids": [
+    "e34da0296b7e7e09:L0:000001",
+    "e34da0296b7e7e09:L0:000002",
+    "e34da0296b7e7e09:L0:000006",
+    "e34da0296b7e7e09:L0:000007",
+    "e34da0296b7e7e09:L0:000014"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:18:34.114081+00:00",
+      "call_id": "514a7d73b3bc",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "91b70af375f7befb",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f0ec725a09614f4a"
+    },
+    {
+      "ts": "2026-11-22T13:18:34.128350+00:00",
+      "call_id": "37510f2c29b0",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "91b70af375f7befb",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f0ec725a09614f4a"
+    },
+    {
+      "ts": "2026-11-22T13:18:34.178905+00:00",
+      "call_id": "e7d39748ddba",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "06425938488fced0",
+      "n_inputs": 60,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f0ec725a09614f4a"
+    },
+    {
+      "ts": "2026-11-22T13:18:59.912214+00:00",
+      "call_id": "e5acaaea4b9b",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c2a5f5b8355b15c4",
+      "prompt_tokens": 2107,
+      "completion_tokens": 117,
+      "latency_ms": 25726.77,
+      "server_ms": 25685.81,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "f0ec725a09614f4a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 2107,
+    "generator_prompt_tokens": 2107,
+    "completion_tokens": 117,
+    "total_ms": 25802.38
+  },
+  "config_hash": "c4b7d9811844",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        3,
+        4
+      ],
+      "uncited_sentences": [
+        "They used three types of tag recommendation approaches: popularity-based, similarity-based, and hybrid approaches.",
+        "Popularity-based approaches include the most popular approach for editor tags and the most popular approach for Amazon search terms.",
+        "Similarity-based approaches use content information from the e-book's description or title.",
+        "Hybrid approaches combine the best performing popularity-based and similarity-based approaches."
+      ]
+    }
+  }
+}

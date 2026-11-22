@@ -1,0 +1,247 @@
+{
+  "trace_id": "8bdc8c12a1104d0c",
+  "created_at": "2026-11-22T13:04:30.337860+00:00",
+  "query": "What century did the author of A Treatise Concerning the Principles of Human Knowledge live in?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.27
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 32.13
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 10815.3
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10815.8
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.01,
+      "bm25_ms": 12.79,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "6683bfc7dec06e2a:L0:000059",
+          "score": 9.99735164642334,
+          "fused": 0.8896328852793641,
+          "dense_rank": 5,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 9.99735164642334
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000196",
+          "score": -4.144607067108154,
+          "fused": 0.19459430646690076,
+          "dense_rank": 40,
+          "bm25_rank": 10,
+          "fused_rank": 11,
+          "rerank": -4.144607067108154
+        },
+        {
+          "id": "15abb5e49dced915:L0:000147",
+          "score": -4.985621929168701,
+          "fused": 0.4254645182044449,
+          "dense_rank": 7,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -4.985621929168701
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000033",
+          "score": -5.34588098526001,
+          "fused": 0.16737937358106164,
+          "dense_rank": 45,
+          "bm25_rank": 11,
+          "fused_rank": 18,
+          "rerank": -5.34588098526001
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000127",
+          "score": -5.835683822631836,
+          "fused": 0.1988876288145871,
+          "dense_rank": 18,
+          "bm25_rank": 15,
+          "fused_rank": 9,
+          "rerank": -5.835683822631836
+        }
+      ],
+      "latency_ms": 19.23
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 964,
+      "dropped_threshold": [
+        "15abb5e49dced915:L0:000147",
+        "73dfa6a9bfcab050:L0:000033",
+        "4fcce431f5d22d1d:L0:000127"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 10,
+      "sentences_kept": 10,
+      "n_out": 2,
+      "tokens_out": 352,
+      "ms": 12.8,
+      "latency_ms": 12.81
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 9.99735164642334,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10783.15
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 0.42
+    }
+  },
+  "retrieved_ids": [
+    "6683bfc7dec06e2a:L0:000059",
+    "f59bbbdacaf7ffe4:L0:000196",
+    "15abb5e49dced915:L0:000147",
+    "73dfa6a9bfcab050:L0:000033",
+    "4fcce431f5d22d1d:L0:000127"
+  ],
+  "filtered_ids": [
+    "6683bfc7dec06e2a:L0:000059",
+    "f59bbbdacaf7ffe4:L0:000196"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:04:30.339865+00:00",
+      "call_id": "ca56b8e9545d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d0671e8c2b0d7dd9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8bdc8c12a1104d0c"
+    },
+    {
+      "ts": "2026-11-22T13:04:30.358736+00:00",
+      "call_id": "69bcc767d02d",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d0671e8c2b0d7dd9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8bdc8c12a1104d0c"
+    },
+    {
+      "ts": "2026-11-22T13:04:30.369055+00:00",
+      "call_id": "0880806c28c9",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "39a9b4acc0efffd3",
+      "n_inputs": 10,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8bdc8c12a1104d0c"
+    },
+    {
+      "ts": "2026-11-22T13:04:41.152743+00:00",
+      "call_id": "e806943b4721",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "bfcfe112cc4e16ff",
+      "prompt_tokens": 814,
+      "completion_tokens": 67,
+      "latency_ms": 10782.18,
+      "server_ms": 10756.49,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8bdc8c12a1104d0c"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 814,
+    "generator_prompt_tokens": 814,
+    "completion_tokens": 67,
+    "total_ms": 10817.44
+  },
+  "config_hash": "1c92a20b0713",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

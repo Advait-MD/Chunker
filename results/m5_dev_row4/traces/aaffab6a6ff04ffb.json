@@ -1,0 +1,180 @@
+{
+  "trace_id": "aaffab6a6ff04ffb",
+  "created_at": "2026-11-22T12:19:31.710768+00:00",
+  "query": "What is the interannotator agreement for the human evaluation?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.69
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14.76
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 16753.68
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.61,
+      "bm25_ms": 8.16,
+      "n_candidates": {
+        "dense": 19,
+        "bm25": 9
+      },
+      "n_fused": 19,
+      "rerank": {
+        "n": 19,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "bd2251146b05b93b:L0:000014",
+          "score": -5.305163860321045,
+          "fused": 0.5958941584877082,
+          "dense_rank": 12,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -5.305163860321045
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000015",
+          "score": -5.392228126525879,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -5.392228126525879
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000000",
+          "score": -6.780376434326172,
+          "fused": 0.20314695293123902,
+          "dense_rank": 5,
+          "bm25_rank": 7,
+          "fused_rank": 5,
+          "rerank": -6.780376434326172
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000004",
+          "score": -7.325903415679932,
+          "fused": 0.08991469223656144,
+          "dense_rank": 15,
+          "bm25_rank": 8,
+          "fused_rank": 15,
+          "rerank": -7.325903415679932
+        },
+        {
+          "id": "bd2251146b05b93b:L0:000007",
+          "score": -7.550806522369385,
+          "fused": 0.426108733483885,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -7.550806522369385
+        }
+      ],
+      "latency_ms": 14.64
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1505,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16738.87
+    }
+  },
+  "retrieved_ids": [
+    "bd2251146b05b93b:L0:000014",
+    "bd2251146b05b93b:L0:000015",
+    "bd2251146b05b93b:L0:000000",
+    "bd2251146b05b93b:L0:000004",
+    "bd2251146b05b93b:L0:000007"
+  ],
+  "filtered_ids": [
+    "bd2251146b05b93b:L0:000014",
+    "bd2251146b05b93b:L0:000015",
+    "bd2251146b05b93b:L0:000000",
+    "bd2251146b05b93b:L0:000004",
+    "bd2251146b05b93b:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:19:31.713417+00:00",
+      "call_id": "1f103bec1cac",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c2e8eda67ff7e1e1",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "aaffab6a6ff04ffb"
+    },
+    {
+      "ts": "2026-11-22T12:19:48.464038+00:00",
+      "call_id": "4e0702b62a01",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "35cb4b233816fdb6",
+      "prompt_tokens": 2158,
+      "completion_tokens": 45,
+      "latency_ms": 16738.16,
+      "server_ms": 16718.52,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "aaffab6a6ff04ffb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2158,
+    "generator_prompt_tokens": 2158,
+    "completion_tokens": 45,
+    "total_ms": 16754.87
+  },
+  "config_hash": "1cf51d8daba2",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

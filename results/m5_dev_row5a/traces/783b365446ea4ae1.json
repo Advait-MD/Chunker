@@ -1,0 +1,250 @@
+{
+  "trace_id": "783b365446ea4ae1",
+  "created_at": "2026-11-22T12:55:57.165631+00:00",
+  "query": "Which film has the director born later, Brutti Di Notte or Bir Türk'E Gönül Verdim?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.82
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9.14
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 14556.67
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15282.35
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.63,
+      "bm25_ms": 3.88,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000178",
+          "score": 8.019879341125488,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.019879341125488
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000033",
+          "score": 7.707293510437012,
+          "fused": 0.554413902646271,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 7.707293510437012
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000086",
+          "score": -4.767368316650391,
+          "fused": 0.055697822468456344,
+          "dense_rank": 19,
+          "bm25_rank": 31,
+          "fused_rank": 15,
+          "rerank": -4.767368316650391
+        },
+        {
+          "id": "43d5059060d4defa:L0:000003",
+          "score": -6.918822765350342,
+          "fused": 0.08635584957293738,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -6.918822765350342
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000064",
+          "score": -7.646817684173584,
+          "fused": 0.5038290083222805,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -7.646817684173584
+        }
+      ],
+      "latency_ms": 6.8
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 395,
+      "dropped_threshold": [
+        "6af2db6cb86d77e2:L0:000086",
+        "43d5059060d4defa:L0:000003",
+        "53c7288bdcd3837a:L0:000064"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 3,
+      "sentences_kept": 2,
+      "n_out": 2,
+      "tokens_out": 71,
+      "ms": 2.3,
+      "latency_ms": 2.29
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 8.019879341125488,
+      "latency_ms": 0.0
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14547.52
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 2,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 2,
+        "n_supported": 1
+      },
+      "latency_ms": 725.5
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000178",
+    "53c7288bdcd3837a:L0:000033",
+    "6af2db6cb86d77e2:L0:000086",
+    "43d5059060d4defa:L0:000003",
+    "53c7288bdcd3837a:L0:000064"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000178",
+    "53c7288bdcd3837a:L0:000033"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:55:57.166631+00:00",
+      "call_id": "91939c68e65c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "94e2bd8ba2d03673",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "783b365446ea4ae1"
+    },
+    {
+      "ts": "2026-11-22T12:55:57.172826+00:00",
+      "call_id": "e3c58c9006d8",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "94e2bd8ba2d03673",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "783b365446ea4ae1"
+    },
+    {
+      "ts": "2026-11-22T12:55:57.174829+00:00",
+      "call_id": "7f26af0093b0",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "965ea8e91a251948",
+      "n_inputs": 2,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "783b365446ea4ae1"
+    },
+    {
+      "ts": "2026-11-22T12:56:11.722205+00:00",
+      "call_id": "bb2b56fd2dda",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "68e25f29b36a9809",
+      "prompt_tokens": 536,
+      "completion_tokens": 120,
+      "latency_ms": 14546.64,
+      "server_ms": 14531.54,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "783b365446ea4ae1"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 536,
+    "generator_prompt_tokens": 536,
+    "completion_tokens": 120,
+    "total_ms": 15283.67
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, the director of Bir Türk'e Gönül Verdim, Halit Refiğ, was born later than the director of Brutti di notte, Giovanni Grimaldi."
+      ]
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "trace_id": "7168d631a3304b11",
+  "created_at": "2026-11-22T11:45:02.870382+00:00",
+  "query": "Who was the spouse of the leading lady in Gone With the wind?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.76
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14.83
+    },
+    {
+      "state": "DONE",
+      "t_ms": 16831.47
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.53,
+      "bm25_ms": 7.94,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "6683bfc7dec06e2a:L0:000184",
+          "score": 7.000607967376709,
+          "fused": 0.8335324321018776,
+          "dense_rank": 14,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 7.000607967376709
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000143",
+          "score": 2.3853421211242676,
+          "fused": 0.5460350281059898,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 8,
+          "rerank": 2.3853421211242676
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000089",
+          "score": 2.0127182006835938,
+          "fused": 0.5814888480257119,
+          "dense_rank": 29,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": 2.0127182006835938
+        },
+        {
+          "id": "ce57fdde2baaba9c:L0:000041",
+          "score": 1.80663001537323,
+          "fused": 0.6435244135277789,
+          "dense_rank": 34,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 1.80663001537323
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000025",
+          "score": 1.404567837715149,
+          "fused": 0.3664526066040143,
+          "dense_rank": 35,
+          "bm25_rank": 17,
+          "fused_rank": 16,
+          "rerank": 1.404567837715149
+        }
+      ],
+      "latency_ms": 14.72
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 857,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16816.52
+    }
+  },
+  "retrieved_ids": [
+    "6683bfc7dec06e2a:L0:000184",
+    "ce290c1e5d5c6641:L0:000143",
+    "e182527d2b1ecac3:L0:000089",
+    "ce57fdde2baaba9c:L0:000041",
+    "f3503d3d186f0f90:L0:000025"
+  ],
+  "filtered_ids": [
+    "6683bfc7dec06e2a:L0:000184",
+    "ce290c1e5d5c6641:L0:000143",
+    "e182527d2b1ecac3:L0:000089",
+    "ce57fdde2baaba9c:L0:000041",
+    "f3503d3d186f0f90:L0:000025"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:45:02.871897+00:00",
+      "call_id": "9ae41591372d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "13d1de94b612e44d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "7168d631a3304b11"
+    },
+    {
+      "ts": "2026-11-22T11:45:19.700292+00:00",
+      "call_id": "7562445d12dc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "851bf44d00f38fd0",
+      "prompt_tokens": 1504,
+      "completion_tokens": 80,
+      "latency_ms": 16815.46,
+      "server_ms": 16792.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "7168d631a3304b11"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1504,
+    "generator_prompt_tokens": 1504,
+    "completion_tokens": 80,
+    "total_ms": 16833.39
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

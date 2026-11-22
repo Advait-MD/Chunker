@@ -1,0 +1,181 @@
+{
+  "trace_id": "dacc8163411c41ce",
+  "created_at": "2026-11-22T12:08:07.915532+00:00",
+  "query": "Why does Mr. Turner decide he needs a psychiatrist?\n\nOptions:\n(A) He wants to stop smoking, but can’t.\n(B) He has post traumatic stress disorder from the war. \n(C) He is addicted to pornography.\n(D) He does not know what is real because he has false memories.\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 25.05
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 25.1
+    },
+    {
+      "state": "DONE",
+      "t_ms": 26000.43
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.34,
+      "bm25_ms": 20.44,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 20
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000012",
+          "score": -2.925248622894287,
+          "fused": 0.9520631436196892,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -2.925248622894287
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000011",
+          "score": -3.171459913253784,
+          "fused": 0.7606221806118941,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -3.171459913253784
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000010",
+          "score": -3.4595789909362793,
+          "fused": 0.7905403890393339,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -3.4595789909362793
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000008",
+          "score": -4.701635360717773,
+          "fused": 0.684458067954973,
+          "dense_rank": 6,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -4.701635360717773
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000013",
+          "score": -5.163315296173096,
+          "fused": 0.4273399306358032,
+          "dense_rank": 9,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -5.163315296173096
+        }
+      ],
+      "latency_ms": 25.01
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1967,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25975.21
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000011",
+    "2ecd3be7264ff150:L0:000010",
+    "2ecd3be7264ff150:L0:000008",
+    "2ecd3be7264ff150:L0:000013"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000011",
+    "2ecd3be7264ff150:L0:000010",
+    "2ecd3be7264ff150:L0:000008",
+    "2ecd3be7264ff150:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:08:07.918074+00:00",
+      "call_id": "eb8640680e2d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "018401210e770f24",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "dacc8163411c41ce"
+    },
+    {
+      "ts": "2026-11-22T12:08:33.914429+00:00",
+      "call_id": "302f90d386b2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "92e6e9a6c66d504e",
+      "prompt_tokens": 2505,
+      "completion_tokens": 68,
+      "latency_ms": 25973.49,
+      "server_ms": 25946.93,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "dacc8163411c41ce"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2505,
+    "generator_prompt_tokens": 2505,
+    "completion_tokens": 68,
+    "total_ms": 26002.19
+  },
+  "config_hash": "403cb8f3227b",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "trace_id": "f0f5130b7213458a",
+  "created_at": "2026-11-22T12:00:18.350925+00:00",
+  "query": "Which answer does the quote from The Lancet best match up with?\n\nOptions:\n(A) 8\n(B) 3\n(C) 6\n(D) 10\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.38
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.43
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23944.27
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.16,
+      "bm25_ms": 12.68,
+      "n_candidates": {
+        "dense": 9,
+        "bm25": 8
+      },
+      "n_fused": 9,
+      "rerank": {
+        "n": 9,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000006",
+          "score": -3.552471399307251,
+          "fused": 0.4080272193515617,
+          "dense_rank": 8,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -3.552471399307251
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000001",
+          "score": -4.765377998352051,
+          "fused": 0.20465818772483782,
+          "dense_rank": 2,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": -4.765377998352051
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000007",
+          "score": -5.426164150238037,
+          "fused": 0.808757679027579,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -5.426164150238037
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000000",
+          "score": -5.664328575134277,
+          "fused": 0.8732919640779268,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -5.664328575134277
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000005",
+          "score": -5.728387832641602,
+          "fused": 0.14582200274803223,
+          "dense_rank": 6,
+          "bm25_rank": 8,
+          "fused_rank": 9,
+          "rerank": -5.728387832641602
+        }
+      ],
+      "latency_ms": 19.35
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1930,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23924.74
+    }
+  },
+  "retrieved_ids": [
+    "6a7f3433b6bd8dc9:L0:000006",
+    "6a7f3433b6bd8dc9:L0:000001",
+    "6a7f3433b6bd8dc9:L0:000007",
+    "6a7f3433b6bd8dc9:L0:000000",
+    "6a7f3433b6bd8dc9:L0:000005"
+  ],
+  "filtered_ids": [
+    "6a7f3433b6bd8dc9:L0:000006",
+    "6a7f3433b6bd8dc9:L0:000001",
+    "6a7f3433b6bd8dc9:L0:000007",
+    "6a7f3433b6bd8dc9:L0:000000",
+    "6a7f3433b6bd8dc9:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:00:18.353068+00:00",
+      "call_id": "39a6ed3c3118",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "543688391d1dc1b9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f0f5130b7213458a"
+    },
+    {
+      "ts": "2026-11-22T12:00:42.294918+00:00",
+      "call_id": "8a950279c8ca",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "18aa557d23f3c8db",
+      "prompt_tokens": 2531,
+      "completion_tokens": 73,
+      "latency_ms": 23923.71,
+      "server_ms": 23888.16,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "f0f5130b7213458a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2531,
+    "generator_prompt_tokens": 2531,
+    "completion_tokens": 73,
+    "total_ms": 23945.95
+  },
+  "config_hash": "403cb8f3227b",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "(A) 8.",
+        "OA may increase submissions and subscriptions.",
+        "Some subscription journals have found that OA after an embargo period, even a very short one like two months, actually increases submissions and subscriptions."
+      ]
+    }
+  }
+}

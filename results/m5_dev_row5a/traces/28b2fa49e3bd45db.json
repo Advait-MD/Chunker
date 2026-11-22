@@ -1,0 +1,229 @@
+{
+  "trace_id": "28b2fa49e3bd45db",
+  "created_at": "2026-11-22T12:45:56.669312+00:00",
+  "query": "Did John Updike and Tom Clancy both publish more than 15 bestselling novels?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 21.74
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 38.91
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10528.98
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.03,
+      "bm25_ms": 11.32,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "90976421f3f2bea2:L0:000193",
+          "score": 4.969944953918457,
+          "fused": 0.8157791613851237,
+          "dense_rank": 7,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 4.969944953918457
+        },
+        {
+          "id": "20496f59538deb41:L0:000110",
+          "score": 3.9248507022857666,
+          "fused": 0.8412971645045915,
+          "dense_rank": 1,
+          "bm25_rank": 8,
+          "fused_rank": 1,
+          "rerank": 3.9248507022857666
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000075",
+          "score": -3.582258462905884,
+          "fused": 0.12374189555394627,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -3.582258462905884
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000017",
+          "score": -5.263269424438477,
+          "fused": 0.4352481901204389,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 9,
+          "rerank": -5.263269424438477
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000062",
+          "score": -6.44022274017334,
+          "fused": 0.2596821362690232,
+          "dense_rank": 3,
+          "bm25_rank": 29,
+          "fused_rank": 13,
+          "rerank": -6.44022274017334
+        }
+      ],
+      "latency_ms": 21.69
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 549,
+      "dropped_threshold": [
+        "cb96563b0747a6ba:L0:000017",
+        "90976421f3f2bea2:L0:000062"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 12,
+      "sentences_kept": 5,
+      "n_out": 3,
+      "tokens_out": 151,
+      "ms": 17.1,
+      "latency_ms": 17.12
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 4.969944953918457,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10489.99
+    }
+  },
+  "retrieved_ids": [
+    "90976421f3f2bea2:L0:000193",
+    "20496f59538deb41:L0:000110",
+    "8e50522b7cb636d8:L0:000075",
+    "cb96563b0747a6ba:L0:000017",
+    "90976421f3f2bea2:L0:000062"
+  ],
+  "filtered_ids": [
+    "90976421f3f2bea2:L0:000193",
+    "20496f59538deb41:L0:000110",
+    "8e50522b7cb636d8:L0:000075"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:45:56.670297+00:00",
+      "call_id": "7853505e0b51",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c272784a3170ad77",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "28b2fa49e3bd45db"
+    },
+    {
+      "ts": "2026-11-22T12:45:56.691817+00:00",
+      "call_id": "40cded43047e",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c272784a3170ad77",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "28b2fa49e3bd45db"
+    },
+    {
+      "ts": "2026-11-22T12:45:56.705832+00:00",
+      "call_id": "40b7495fa091",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "83441a88b07d7df9",
+      "n_inputs": 12,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "28b2fa49e3bd45db"
+    },
+    {
+      "ts": "2026-11-22T12:46:07.197913+00:00",
+      "call_id": "ad667dc86f9f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1412ae9c0d9c384d",
+      "prompt_tokens": 635,
+      "completion_tokens": 75,
+      "latency_ms": 10489.41,
+      "server_ms": 10472.18,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "28b2fa49e3bd45db"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 635,
+    "generator_prompt_tokens": 635,
+    "completion_tokens": 75,
+    "total_ms": 10529.5
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

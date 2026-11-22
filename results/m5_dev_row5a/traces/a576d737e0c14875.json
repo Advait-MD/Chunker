@@ -1,0 +1,249 @@
+{
+  "trace_id": "a576d737e0c14875",
+  "created_at": "2026-11-22T12:58:10.238458+00:00",
+  "query": "Which film has the director born later, Best Of The Best 3: No Turning Back or Ven Mi Corazón Te Llama?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.74
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 35.27
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 16920.54
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17563.25
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.24,
+      "bm25_ms": 12.26,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "460e441179bec402:L0:000007",
+          "score": 9.052021980285645,
+          "fused": 0.2772220751226084,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 9.052021980285645
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000067",
+          "score": 7.609605312347412,
+          "fused": 0.8554486583810276,
+          "dense_rank": 12,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.609605312347412
+        },
+        {
+          "id": "99628090500247e3:L0:000012",
+          "score": 1.6712390184402466,
+          "fused": 0.39285988035574326,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.6712390184402466
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": -1.3456034660339355,
+          "fused": 0.21291094645400452,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -1.3456034660339355
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -1.4749304056167603,
+          "fused": 0.18937783366408803,
+          "dense_rank": 8,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": -1.4749304056167603
+        }
+      ],
+      "latency_ms": 19.68
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 961,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 31,
+      "sentences_kept": 6,
+      "n_out": 5,
+      "tokens_out": 291,
+      "ms": 15.4,
+      "latency_ms": 15.47
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 9.052021980285645,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16885.26
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 2,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 2,
+        "n_supported": 0
+      },
+      "latency_ms": 642.55
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000007",
+    "c73b757f0eb66f37:L0:000067",
+    "99628090500247e3:L0:000012",
+    "abe982d210232c3f:L0:000151",
+    "b04ce6dd2d95fb80:L0:000152"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000007",
+    "c73b757f0eb66f37:L0:000067",
+    "99628090500247e3:L0:000012",
+    "abe982d210232c3f:L0:000151",
+    "b04ce6dd2d95fb80:L0:000152"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:58:10.240457+00:00",
+      "call_id": "0c06cff400c9",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "35d9e973cc545014",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a576d737e0c14875"
+    },
+    {
+      "ts": "2026-11-22T12:58:10.259687+00:00",
+      "call_id": "adb9b3c2ceda",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "35d9e973cc545014",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a576d737e0c14875"
+    },
+    {
+      "ts": "2026-11-22T12:58:10.271407+00:00",
+      "call_id": "307fcd3c0d43",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "806892f55a5f1cbd",
+      "n_inputs": 30,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a576d737e0c14875"
+    },
+    {
+      "ts": "2026-11-22T12:58:27.158302+00:00",
+      "call_id": "f8c75137a722",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d37e18f2c8e65fa9",
+      "prompt_tokens": 893,
+      "completion_tokens": 131,
+      "latency_ms": 16884.75,
+      "server_ms": 16870.68,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a576d737e0c14875"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 893,
+    "generator_prompt_tokens": 893,
+    "completion_tokens": 131,
+    "total_ms": 17564.16
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Best of the Best 3: No Turning Back is a 1995 film directed by Phillip Rhee, while Ven mi corazón te llama is a 1942 Argentine film directed by Manuel Romero."
+      ]
+    }
+  }
+}

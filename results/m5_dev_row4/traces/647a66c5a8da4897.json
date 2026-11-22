@@ -1,0 +1,180 @@
+{
+  "trace_id": "647a66c5a8da4897",
+  "created_at": "2026-11-22T11:06:23.240173+00:00",
+  "query": "What is the date of death of Peter Dale Scott's mother?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.05
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 21282.56
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 21284.14
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 37399.82
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 252.04,
+      "bm25_ms": 32.62,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 20977.64
+      },
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000160",
+          "score": -2.4037489891052246,
+          "fused": 0.5694374888101429,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -2.4037489891052246
+        },
+        {
+          "id": "0eac870d43736f51:L0:000012",
+          "score": -2.982074737548828,
+          "fused": 0.4808751142905463,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -2.982074737548828
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000190",
+          "score": -3.5808355808258057,
+          "fused": 0.2896854440512869,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 9,
+          "rerank": -3.5808355808258057
+        },
+        {
+          "id": "0eac870d43736f51:L0:000095",
+          "score": -4.0757269859313965,
+          "fused": 0.33901364012793134,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 7,
+          "rerank": -4.0757269859313965
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000128",
+          "score": -4.824957370758057,
+          "fused": 0.5274690173353441,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -4.824957370758057
+        }
+      ],
+      "latency_ms": 21282.39
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 547,
+      "latency_ms": 1.5
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16115.44
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000160",
+    "0eac870d43736f51:L0:000012",
+    "b04ce6dd2d95fb80:L0:000190",
+    "0eac870d43736f51:L0:000095",
+    "53c7288bdcd3837a:L0:000128"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000160",
+    "0eac870d43736f51:L0:000012",
+    "b04ce6dd2d95fb80:L0:000190",
+    "0eac870d43736f51:L0:000095",
+    "53c7288bdcd3837a:L0:000128"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:06:23.485917+00:00",
+      "call_id": "7b3d37f393bc",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0e5a3c9be27d0ecb",
+      "n_inputs": 1,
+      "n_computed": 1,
+      "prompt_tokens": 20,
+      "completion_tokens": 0,
+      "latency_ms": 243.63,
+      "cache_hit": false,
+      "backend": "vulkan",
+      "trace_id": "647a66c5a8da4897"
+    },
+    {
+      "ts": "2026-11-22T11:07:00.638755+00:00",
+      "call_id": "80f8722820bb",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a815b509799a8026",
+      "prompt_tokens": 1171,
+      "completion_tokens": 45,
+      "latency_ms": 16113.34,
+      "server_ms": 16077.82,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "647a66c5a8da4897"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1171,
+    "generator_prompt_tokens": 1171,
+    "completion_tokens": 45,
+    "total_ms": 37402.48
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "trace_id": "668cf22cc9334ca5",
+  "created_at": "2026-11-22T13:05:49.359619+00:00",
+  "query": "In which county was James Finch born?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.9
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 62.63
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 7880.37
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.0,
+      "bm25_ms": 10.39,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "66f5caec1369ebaf:L0:000063",
+          "score": -1.066304087638855,
+          "fused": 0.2340447700994891,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": -1.066304087638855
+        },
+        {
+          "id": "f109b032e24ab27a:L0:000020",
+          "score": -3.226076126098633,
+          "fused": 0.5780152836139073,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -3.226076126098633
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000027",
+          "score": -3.4303979873657227,
+          "fused": 0.3161457123414504,
+          "dense_rank": 1,
+          "bm25_rank": 44,
+          "fused_rank": 11,
+          "rerank": -3.4303979873657227
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000141",
+          "score": -3.5989937782287598,
+          "fused": 0.2840499636632075,
+          "dense_rank": 2,
+          "bm25_rank": 43,
+          "fused_rank": 14,
+          "rerank": -3.5989937782287598
+        },
+        {
+          "id": "a168352d83e925b5:L0:000096",
+          "score": -3.704029083251953,
+          "fused": 0.34443632139943775,
+          "dense_rank": 18,
+          "bm25_rank": 13,
+          "fused_rank": 10,
+          "rerank": -3.704029083251953
+        }
+      ],
+      "latency_ms": 17.84
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 430,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 20,
+      "sentences_kept": 6,
+      "n_out": 5,
+      "tokens_out": 193,
+      "ms": 44.6,
+      "latency_ms": 44.62
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": -1.066304087638855,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 7817.63
+    }
+  },
+  "retrieved_ids": [
+    "66f5caec1369ebaf:L0:000063",
+    "f109b032e24ab27a:L0:000020",
+    "dbcbda865eee9c7b:L0:000027",
+    "ad11b6e85f908fb3:L0:000141",
+    "a168352d83e925b5:L0:000096"
+  ],
+  "filtered_ids": [
+    "66f5caec1369ebaf:L0:000063",
+    "f109b032e24ab27a:L0:000020",
+    "dbcbda865eee9c7b:L0:000027",
+    "ad11b6e85f908fb3:L0:000141",
+    "a168352d83e925b5:L0:000096"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:05:49.360620+00:00",
+      "call_id": "3d071e0dedca",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "aa78b739eb16f44b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "668cf22cc9334ca5"
+    },
+    {
+      "ts": "2026-11-22T13:05:49.379319+00:00",
+      "call_id": "ead1cc7a575f",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "aa78b739eb16f44b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "668cf22cc9334ca5"
+    },
+    {
+      "ts": "2026-11-22T13:05:49.416865+00:00",
+      "call_id": "5e06817f6af3",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "29710a5b614d1953",
+      "n_inputs": 19,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "668cf22cc9334ca5"
+    },
+    {
+      "ts": "2026-11-22T13:05:57.238919+00:00",
+      "call_id": "de6018125db1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "e49d043a9e0f6a28",
+      "prompt_tokens": 732,
+      "completion_tokens": 45,
+      "latency_ms": 7816.5,
+      "server_ms": 7797.9,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "668cf22cc9334ca5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 732,
+    "generator_prompt_tokens": 732,
+    "completion_tokens": 45,
+    "total_ms": 7882.37
+  },
+  "config_hash": "1c92a20b0713",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

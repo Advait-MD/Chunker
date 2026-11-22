@@ -1,0 +1,249 @@
+{
+  "trace_id": "97838238eb204a0b",
+  "created_at": "2026-11-22T13:18:18.615597+00:00",
+  "query": "What architecture does the encoder have?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.52
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 113.24
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 15463.97
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15464.12
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.77,
+      "bm25_ms": 7.42,
+      "n_candidates": {
+        "dense": 16,
+        "bm25": 7
+      },
+      "n_fused": 16,
+      "rerank": {
+        "n": 16,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "3340661ee02f71de:L0:000000",
+          "score": 0.21947968006134033,
+          "fused": 0.8674637563638725,
+          "dense_rank": 6,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.21947968006134033
+        },
+        {
+          "id": "3340661ee02f71de:L0:000015",
+          "score": -1.5920132398605347,
+          "fused": 0.6177044607755925,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -1.5920132398605347
+        },
+        {
+          "id": "3340661ee02f71de:L0:000004",
+          "score": -2.975464105606079,
+          "fused": 0.4922481412959067,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -2.975464105606079
+        },
+        {
+          "id": "3340661ee02f71de:L0:000013",
+          "score": -3.1051435470581055,
+          "fused": 0.2616377136655766,
+          "dense_rank": 2,
+          "bm25_rank": 7,
+          "fused_rank": 5,
+          "rerank": -3.1051435470581055
+        },
+        {
+          "id": "3340661ee02f71de:L0:000005",
+          "score": -3.156712055206299,
+          "fused": 0.2607149886521977,
+          "dense_rank": 3,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -3.156712055206299
+        }
+      ],
+      "latency_ms": 15.46
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 1282,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 47,
+      "sentences_kept": 20,
+      "n_out": 5,
+      "tokens_out": 774,
+      "ms": 97.6,
+      "latency_ms": 97.62
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 0.21947968006134033,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15350.69
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 0.07
+    }
+  },
+  "retrieved_ids": [
+    "3340661ee02f71de:L0:000000",
+    "3340661ee02f71de:L0:000015",
+    "3340661ee02f71de:L0:000004",
+    "3340661ee02f71de:L0:000013",
+    "3340661ee02f71de:L0:000005"
+  ],
+  "filtered_ids": [
+    "3340661ee02f71de:L0:000000",
+    "3340661ee02f71de:L0:000015",
+    "3340661ee02f71de:L0:000004",
+    "3340661ee02f71de:L0:000013",
+    "3340661ee02f71de:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:18:18.618593+00:00",
+      "call_id": "5b7343c94734",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e064924f4bfede26",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "97838238eb204a0b"
+    },
+    {
+      "ts": "2026-11-22T13:18:18.635198+00:00",
+      "call_id": "d5548fd0274b",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "e064924f4bfede26",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "97838238eb204a0b"
+    },
+    {
+      "ts": "2026-11-22T13:18:18.722067+00:00",
+      "call_id": "5d8039af8bab",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4fe4007f59958ce7",
+      "n_inputs": 47,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "97838238eb204a0b"
+    },
+    {
+      "ts": "2026-11-22T13:18:34.078782+00:00",
+      "call_id": "5b932404af21",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c8c5e8e34eb215b1",
+      "prompt_tokens": 1328,
+      "completion_tokens": 76,
+      "latency_ms": 15349.43,
+      "server_ms": 15323.38,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "97838238eb204a0b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1328,
+    "generator_prompt_tokens": 1328,
+    "completion_tokens": 76,
+    "total_ms": 15465.35
+  },
+  "config_hash": "c4b7d9811844",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        3,
+        5
+      ],
+      "uncited_sentences": [
+        "The encoder has a wide context window, encoding the entire available context, and uses a forward LSTM to represent the past context and a backwards LSTM to represent the future context."
+      ]
+    }
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "trace_id": "c40a0d0f78f04bfa",
+  "created_at": "2026-11-22T13:08:20.842236+00:00",
+  "query": "In what part of Florida is Tom Denney's birthplace located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 0.07
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 29.09
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 31.2
+    },
+    {
+      "state": "DONE",
+      "t_ms": 31.97
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.06,
+      "bm25_ms": 12.74,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "memo_hit": true,
+      "hits": [
+        {
+          "id": "6683bfc7dec06e2a:L0:000009",
+          "score": 4.949839115142822,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.949839115142822
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000146",
+          "score": -1.6491364240646362,
+          "fused": 0.3819267974608004,
+          "dense_rank": 1,
+          "bm25_rank": 14,
+          "fused_rank": 2,
+          "rerank": -1.6491364240646362
+        },
+        {
+          "id": "ce57fdde2baaba9c:L0:000084",
+          "score": -3.1949918270111084,
+          "fused": 0.11901524581008865,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 17,
+          "rerank": -3.1949918270111084
+        },
+        {
+          "id": "ad11b6e85f908fb3:L0:000141",
+          "score": -3.612043857574463,
+          "fused": 0.21127492470204898,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 8,
+          "rerank": -3.612043857574463
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000070",
+          "score": -3.6694252490997314,
+          "fused": 0.12744469556474472,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 13,
+          "rerank": -3.6694252490997314
+        }
+      ],
+      "latency_ms": 0.04
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 363,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 22,
+      "sentences_kept": 9,
+      "n_out": 5,
+      "tokens_out": 169,
+      "ms": 28.9,
+      "latency_ms": 28.97
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 4.949839115142822,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 2.08
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 0.62
+    }
+  },
+  "retrieved_ids": [
+    "6683bfc7dec06e2a:L0:000009",
+    "ce290c1e5d5c6641:L0:000146",
+    "ce57fdde2baaba9c:L0:000084",
+    "ad11b6e85f908fb3:L0:000141",
+    "f59bbbdacaf7ffe4:L0:000070"
+  ],
+  "filtered_ids": [
+    "6683bfc7dec06e2a:L0:000009",
+    "ce290c1e5d5c6641:L0:000146",
+    "ce57fdde2baaba9c:L0:000084",
+    "ad11b6e85f908fb3:L0:000141",
+    "f59bbbdacaf7ffe4:L0:000070"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:08:20.844493+00:00",
+      "call_id": "397eeb480105",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2c4fd11cb659c103",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c40a0d0f78f04bfa"
+    },
+    {
+      "ts": "2026-11-22T13:08:20.869284+00:00",
+      "call_id": "a6aac8526380",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6273297f366e50ab",
+      "n_inputs": 22,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c40a0d0f78f04bfa"
+    },
+    {
+      "ts": "2026-11-22T13:08:20.873633+00:00",
+      "call_id": "60633368b735",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "917985fcfe11becb",
+      "prompt_tokens": 698,
+      "completion_tokens": 63,
+      "latency_ms": 1.09,
+      "server_ms": 9205.49,
+      "cache_hit": true,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "c40a0d0f78f04bfa"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 0,
+    "embed_calls": 2,
+    "prompt_tokens": 698,
+    "generator_prompt_tokens": 698,
+    "completion_tokens": 63,
+    "total_ms": 33.46
+  },
+  "config_hash": "1c92a20b0713",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

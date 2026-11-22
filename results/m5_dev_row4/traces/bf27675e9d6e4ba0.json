@@ -1,0 +1,184 @@
+{
+  "trace_id": "bf27675e9d6e4ba0",
+  "created_at": "2026-11-22T11:48:20.932042+00:00",
+  "query": "Who does the performer of Don't Be Cruel play in the wire?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.95
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16.07
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13540.01
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.24,
+      "bm25_ms": 9.09,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000088",
+          "score": -0.8448328971862793,
+          "fused": 0.6699743598756445,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.8448328971862793
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000044",
+          "score": -4.2042646408081055,
+          "fused": 0.5827898634134021,
+          "dense_rank": 2,
+          "bm25_rank": 22,
+          "fused_rank": 5,
+          "rerank": -4.2042646408081055
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000003",
+          "score": -4.607832431793213,
+          "fused": 0.5903407339969099,
+          "dense_rank": 1,
+          "bm25_rank": 24,
+          "fused_rank": 4,
+          "rerank": -4.607832431793213
+        },
+        {
+          "id": "ad4ace752e719bab:L0:000167",
+          "score": -5.883279800415039,
+          "fused": 0.41563617093804595,
+          "dense_rank": null,
+          "bm25_rank": 13,
+          "fused_rank": 15,
+          "rerank": -5.883279800415039
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000143",
+          "score": -6.772180080413818,
+          "fused": 0.3441221944132591,
+          "dense_rank": null,
+          "bm25_rank": 18,
+          "fused_rank": 20,
+          "rerank": -6.772180080413818
+        }
+      ],
+      "latency_ms": 15.92
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 801,
+      "latency_ms": 0.1
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13523.82
+    }
+  },
+  "retrieved_ids": [
+    "f59bbbdacaf7ffe4:L0:000088",
+    "4fcce431f5d22d1d:L0:000044",
+    "f59bbbdacaf7ffe4:L0:000003",
+    "ad4ace752e719bab:L0:000167",
+    "ce290c1e5d5c6641:L0:000143"
+  ],
+  "filtered_ids": [
+    "f59bbbdacaf7ffe4:L0:000088",
+    "4fcce431f5d22d1d:L0:000044",
+    "f59bbbdacaf7ffe4:L0:000003",
+    "ad4ace752e719bab:L0:000167",
+    "ce290c1e5d5c6641:L0:000143"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:48:20.933045+00:00",
+      "call_id": "e1bf2c0f399c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2231e6e4a4961e2c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "bf27675e9d6e4ba0"
+    },
+    {
+      "ts": "2026-11-22T11:48:34.471241+00:00",
+      "call_id": "b60a6575fdbf",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b5778d058b017a72",
+      "prompt_tokens": 1407,
+      "completion_tokens": 67,
+      "latency_ms": 13522.74,
+      "server_ms": 13500.42,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "bf27675e9d6e4ba0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1407,
+    "generator_prompt_tokens": 1407,
+    "completion_tokens": 67,
+    "total_ms": 13542.05
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3
+      ],
+      "uncited_sentences": [
+        "Philippe Petit does not perform in the song 'Don't Be Cruel'; he is a French high-wire artist."
+      ]
+    }
+  }
+}

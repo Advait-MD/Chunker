@@ -1,0 +1,183 @@
+{
+  "trace_id": "42e17d6dd7b94744",
+  "created_at": "2026-11-22T11:51:08.288503+00:00",
+  "query": "Where did the author of A Lion's Tale: Around the World in Spandex win in 2008?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.59
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.63
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 16515.14
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.8,
+      "bm25_ms": 8.17,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "dd498e0082847164:L0:000194",
+          "score": 4.7723164558410645,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.7723164558410645
+        },
+        {
+          "id": "a168352d83e925b5:L0:000105",
+          "score": -4.640342712402344,
+          "fused": 0.1950513155122786,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 11,
+          "rerank": -4.640342712402344
+        },
+        {
+          "id": "4b634e52029ddab4:L0:000044",
+          "score": -5.480689525604248,
+          "fused": 0.14872155784014662,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": -5.480689525604248
+        },
+        {
+          "id": "cc1bdb3bf430bd0d:L0:000124",
+          "score": -5.756394386291504,
+          "fused": 0.1524354931708992,
+          "dense_rank": 7,
+          "bm25_rank": 31,
+          "fused_rank": 15,
+          "rerank": -5.756394386291504
+        },
+        {
+          "id": "ce290c1e5d5c6641:L0:000023",
+          "score": -6.262062072753906,
+          "fused": 0.23453014905645295,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 5,
+          "rerank": -6.262062072753906
+        }
+      ],
+      "latency_ms": 11.57
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 656,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 16503.28
+    }
+  },
+  "retrieved_ids": [
+    "dd498e0082847164:L0:000194",
+    "a168352d83e925b5:L0:000105",
+    "4b634e52029ddab4:L0:000044",
+    "cc1bdb3bf430bd0d:L0:000124",
+    "ce290c1e5d5c6641:L0:000023"
+  ],
+  "filtered_ids": [
+    "dd498e0082847164:L0:000194",
+    "a168352d83e925b5:L0:000105",
+    "4b634e52029ddab4:L0:000044",
+    "cc1bdb3bf430bd0d:L0:000124",
+    "ce290c1e5d5c6641:L0:000023"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:51:08.289503+00:00",
+      "call_id": "5660a17c4f75",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c3ee3cdf84ba4b7c",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "42e17d6dd7b94744"
+    },
+    {
+      "ts": "2026-11-22T11:51:24.801489+00:00",
+      "call_id": "162ca6231559",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "47025008620c924c",
+      "prompt_tokens": 1299,
+      "completion_tokens": 106,
+      "latency_ms": 16501.82,
+      "server_ms": 16481.91,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "42e17d6dd7b94744"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1299,
+    "generator_prompt_tokens": 1299,
+    "completion_tokens": 106,
+    "total_ms": 16518.6
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "The author of A Lion's Tale: Around the World in Spandex, Chris Jericho, did not win in 2008 as per the given evidence.",
+        "The evidence mentions that Manchester United won the 2008 FIFA Club World Cup, but there is no information about Chris Jericho winning anything in 2008."
+      ]
+    }
+  }
+}

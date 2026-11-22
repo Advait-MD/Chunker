@@ -1,0 +1,180 @@
+{
+  "trace_id": "91e47fb9b2af47e6",
+  "created_at": "2026-11-22T11:29:14.731426+00:00",
+  "query": "The facility where Robert Croft worked as a navy instructor was also known as?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5509.66
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5509.81
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15562.38
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.03,
+      "bm25_ms": 7.14,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5497.08
+      },
+      "hits": [
+        {
+          "id": "81fc433d55d23b4c:L0:000183",
+          "score": 2.0559134483337402,
+          "fused": 0.9228021676841754,
+          "dense_rank": 6,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.0559134483337402
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000053",
+          "score": -0.042693525552749634,
+          "fused": 0.3417107316891055,
+          "dense_rank": 7,
+          "bm25_rank": 7,
+          "fused_rank": 5,
+          "rerank": -0.042693525552749634
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000060",
+          "score": -0.44623419642448425,
+          "fused": 0.6951467909450171,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.44623419642448425
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000093",
+          "score": -1.291011095046997,
+          "fused": 0.29586776554945743,
+          "dense_rank": 4,
+          "bm25_rank": 23,
+          "fused_rank": 7,
+          "rerank": -1.291011095046997
+        },
+        {
+          "id": "634431bb1e27714f:L0:000128",
+          "score": -2.3474550247192383,
+          "fused": 0.23388349127505567,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 9,
+          "rerank": -2.3474550247192383
+        }
+      ],
+      "latency_ms": 5509.62
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 407,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10052.38
+    }
+  },
+  "retrieved_ids": [
+    "81fc433d55d23b4c:L0:000183",
+    "ba3cd068cf9ac2e4:L0:000053",
+    "ec3410ef955c5c93:L0:000060",
+    "5d0f6cf59ee42566:L0:000093",
+    "634431bb1e27714f:L0:000128"
+  ],
+  "filtered_ids": [
+    "81fc433d55d23b4c:L0:000183",
+    "ba3cd068cf9ac2e4:L0:000053",
+    "ec3410ef955c5c93:L0:000060",
+    "5d0f6cf59ee42566:L0:000093",
+    "634431bb1e27714f:L0:000128"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:29:14.732425+00:00",
+      "call_id": "8aa9a41f8320",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "ce4d47f17f1b35fd",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "91e47fb9b2af47e6"
+    },
+    {
+      "ts": "2026-11-22T11:29:30.292564+00:00",
+      "call_id": "ed14dc3fb515",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b8ec4150e7d67f33",
+      "prompt_tokens": 998,
+      "completion_tokens": 64,
+      "latency_ms": 10051.43,
+      "server_ms": 10017.49,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "91e47fb9b2af47e6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 998,
+    "generator_prompt_tokens": 998,
+    "completion_tokens": 64,
+    "total_ms": 15563.68
+  },
+  "config_hash": "00ac4473fd53",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

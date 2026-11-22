@@ -1,0 +1,180 @@
+{
+  "trace_id": "4c529d477f1a458f",
+  "created_at": "2026-11-22T11:42:56.071188+00:00",
+  "query": "What century did the author of A Treatise Concerning the Principles of Human Knowledge live in?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 22.75
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 22.81
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15743.01
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.05,
+      "bm25_ms": 13.58,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "6683bfc7dec06e2a:L0:000059",
+          "score": 9.99735164642334,
+          "fused": 0.8896328852793641,
+          "dense_rank": 5,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 9.99735164642334
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000196",
+          "score": -4.144607067108154,
+          "fused": 0.19459430646690076,
+          "dense_rank": 40,
+          "bm25_rank": 10,
+          "fused_rank": 11,
+          "rerank": -4.144607067108154
+        },
+        {
+          "id": "15abb5e49dced915:L0:000147",
+          "score": -4.985621929168701,
+          "fused": 0.4254645182044449,
+          "dense_rank": 7,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -4.985621929168701
+        },
+        {
+          "id": "73dfa6a9bfcab050:L0:000033",
+          "score": -5.34588098526001,
+          "fused": 0.16737937358106164,
+          "dense_rank": 45,
+          "bm25_rank": 11,
+          "fused_rank": 18,
+          "rerank": -5.34588098526001
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000127",
+          "score": -5.835683822631836,
+          "fused": 0.1988876288145871,
+          "dense_rank": 18,
+          "bm25_rank": 15,
+          "fused_rank": 9,
+          "rerank": -5.835683822631836
+        }
+      ],
+      "latency_ms": 22.71
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 964,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15720.12
+    }
+  },
+  "retrieved_ids": [
+    "6683bfc7dec06e2a:L0:000059",
+    "f59bbbdacaf7ffe4:L0:000196",
+    "15abb5e49dced915:L0:000147",
+    "73dfa6a9bfcab050:L0:000033",
+    "4fcce431f5d22d1d:L0:000127"
+  ],
+  "filtered_ids": [
+    "6683bfc7dec06e2a:L0:000059",
+    "f59bbbdacaf7ffe4:L0:000196",
+    "15abb5e49dced915:L0:000147",
+    "73dfa6a9bfcab050:L0:000033",
+    "4fcce431f5d22d1d:L0:000127"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:42:56.073188+00:00",
+      "call_id": "39e4b9aca666",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "d0671e8c2b0d7dd9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4c529d477f1a458f"
+    },
+    {
+      "ts": "2026-11-22T11:43:11.812920+00:00",
+      "call_id": "6518a9171caf",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c734019806200ee8",
+      "prompt_tokens": 1618,
+      "completion_tokens": 67,
+      "latency_ms": 15719.41,
+      "server_ms": 15698.29,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4c529d477f1a458f"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1618,
+    "generator_prompt_tokens": 1618,
+    "completion_tokens": 67,
+    "total_ms": 15743.59
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

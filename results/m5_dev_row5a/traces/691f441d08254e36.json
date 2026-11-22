@@ -1,0 +1,246 @@
+{
+  "trace_id": "691f441d08254e36",
+  "created_at": "2026-11-22T12:46:07.202914+00:00",
+  "query": "Who was hung for assisting the attempted surrender of a defector from the American Continental Army to the British Army?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.32
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 23.12
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 12344.62
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12345.13
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.89,
+      "bm25_ms": 4.87,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "90976421f3f2bea2:L0:000000",
+          "score": 4.835747718811035,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.835747718811035
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000139",
+          "score": 1.1467949151992798,
+          "fused": 0.538919864920032,
+          "dense_rank": 3,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": 1.1467949151992798
+        },
+        {
+          "id": "b120b09075017d08:L0:000063",
+          "score": -0.22301921248435974,
+          "fused": 0.626176108394891,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.22301921248435974
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000085",
+          "score": -0.45375415682792664,
+          "fused": 0.4037959060732738,
+          "dense_rank": 27,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -0.45375415682792664
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000128",
+          "score": -3.2929129600524902,
+          "fused": 0.11612457836114737,
+          "dense_rank": null,
+          "bm25_rank": 14,
+          "fused_rank": 17,
+          "rerank": -3.2929129600524902
+        }
+      ],
+      "latency_ms": 9.3
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 609,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 18,
+      "sentences_kept": 14,
+      "n_out": 5,
+      "tokens_out": 533,
+      "ms": 13.7,
+      "latency_ms": 13.76
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 4.835747718811035,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12321.49
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 0.45
+    }
+  },
+  "retrieved_ids": [
+    "90976421f3f2bea2:L0:000000",
+    "9794e842cc9565f0:L0:000139",
+    "b120b09075017d08:L0:000063",
+    "90976421f3f2bea2:L0:000085",
+    "90976421f3f2bea2:L0:000128"
+  ],
+  "filtered_ids": [
+    "90976421f3f2bea2:L0:000000",
+    "9794e842cc9565f0:L0:000139",
+    "b120b09075017d08:L0:000063",
+    "90976421f3f2bea2:L0:000085",
+    "90976421f3f2bea2:L0:000128"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:46:07.203913+00:00",
+      "call_id": "766681b3e028",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "785c9872373a9b88",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "691f441d08254e36"
+    },
+    {
+      "ts": "2026-11-22T12:46:07.212915+00:00",
+      "call_id": "17490069c32e",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "785c9872373a9b88",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "691f441d08254e36"
+    },
+    {
+      "ts": "2026-11-22T12:46:07.225220+00:00",
+      "call_id": "e1d80a66651c",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "2f8fc23a2324f8b8",
+      "n_inputs": 17,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "691f441d08254e36"
+    },
+    {
+      "ts": "2026-11-22T12:46:19.546700+00:00",
+      "call_id": "2b8467a28fa8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8cbf7785fa9e9fc7",
+      "prompt_tokens": 1123,
+      "completion_tokens": 73,
+      "latency_ms": 12320.87,
+      "server_ms": 12308.61,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "691f441d08254e36"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1123,
+    "generator_prompt_tokens": 1123,
+    "completion_tokens": 73,
+    "total_ms": 12345.69
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

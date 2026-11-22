@@ -1,0 +1,183 @@
+{
+  "trace_id": "9eb20aec4d6140ab",
+  "created_at": "2026-11-22T11:22:10.112382+00:00",
+  "query": "Which film whose director is younger, Outlaw King or Gunman'S Walk?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14832.72
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14833.47
+    },
+    {
+      "state": "DONE",
+      "t_ms": 42966.58
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 16.99,
+      "bm25_ms": 53.8,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 14747.62
+      },
+      "hits": [
+        {
+          "id": "43d5059060d4defa:L0:000016",
+          "score": 8.271788597106934,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.271788597106934
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000025",
+          "score": 8.21043872833252,
+          "fused": 0.5253591891577986,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 8.21043872833252
+        },
+        {
+          "id": "99628090500247e3:L0:000008",
+          "score": 1.9812984466552734,
+          "fused": 0.21366611251132447,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 9,
+          "rerank": 1.9812984466552734
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000037",
+          "score": 1.6048986911773682,
+          "fused": 0.4393381636383738,
+          "dense_rank": 33,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 1.6048986911773682
+        },
+        {
+          "id": "abe982d210232c3f:L0:000005",
+          "score": -2.490156888961792,
+          "fused": 0.25878338704508647,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": -2.490156888961792
+        }
+      ],
+      "latency_ms": 14832.61
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 481,
+      "latency_ms": 0.71
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 28131.3
+    }
+  },
+  "retrieved_ids": [
+    "43d5059060d4defa:L0:000016",
+    "c73b757f0eb66f37:L0:000025",
+    "99628090500247e3:L0:000008",
+    "b04ce6dd2d95fb80:L0:000037",
+    "abe982d210232c3f:L0:000005"
+  ],
+  "filtered_ids": [
+    "43d5059060d4defa:L0:000016",
+    "c73b757f0eb66f37:L0:000025",
+    "99628090500247e3:L0:000008",
+    "b04ce6dd2d95fb80:L0:000037",
+    "abe982d210232c3f:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:22:10.116383+00:00",
+      "call_id": "1edd88c4b7cb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9b265814442d8b95",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "9eb20aec4d6140ab"
+    },
+    {
+      "ts": "2026-11-22T11:22:53.074192+00:00",
+      "call_id": "9252c0d2397f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5031ae4c07a1a517",
+      "prompt_tokens": 1109,
+      "completion_tokens": 106,
+      "latency_ms": 28128.34,
+      "server_ms": 28086.92,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "9eb20aec4d6140ab"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1109,
+    "generator_prompt_tokens": 1109,
+    "completion_tokens": 106,
+    "total_ms": 42973.91
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Therefore, David Mackenzie is younger than Phil Karlson."
+      ]
+    }
+  }
+}

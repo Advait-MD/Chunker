@@ -1,0 +1,246 @@
+{
+  "trace_id": "31b6837bbc1a459e",
+  "created_at": "2026-11-22T12:47:41.455441+00:00",
+  "query": "What is the population of the city that Munsonville is in the northwest corner of?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9.71
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 29.65
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 9525.67
+    },
+    {
+      "state": "DONE",
+      "t_ms": 9668.01
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.52,
+      "bm25_ms": 3.76,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "cc2399aca11eb631:L0:000159",
+          "score": 6.315056324005127,
+          "fused": 0.7680925858740221,
+          "dense_rank": 20,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 6.315056324005127
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000029",
+          "score": -0.5040263533592224,
+          "fused": 0.4372652890600472,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 7,
+          "rerank": -0.5040263533592224
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000031",
+          "score": -1.8161343336105347,
+          "fused": 0.8908735886501524,
+          "dense_rank": 3,
+          "bm25_rank": 4,
+          "fused_rank": 2,
+          "rerank": -1.8161343336105347
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000069",
+          "score": -2.510270357131958,
+          "fused": 0.19644752476728844,
+          "dense_rank": 13,
+          "bm25_rank": 27,
+          "fused_rank": 19,
+          "rerank": -2.510270357131958
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000153",
+          "score": -2.523397445678711,
+          "fused": 0.2017635371347385,
+          "dense_rank": 12,
+          "bm25_rank": 29,
+          "fused_rank": 18,
+          "rerank": -2.523397445678711
+        }
+      ],
+      "latency_ms": 9.66
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 406,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 21,
+      "sentences_kept": 12,
+      "n_out": 5,
+      "tokens_out": 210,
+      "ms": 19.9,
+      "latency_ms": 19.91
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 6.315056324005127,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9496.0
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 142.23
+    }
+  },
+  "retrieved_ids": [
+    "cc2399aca11eb631:L0:000159",
+    "ba3cd068cf9ac2e4:L0:000029",
+    "8e50522b7cb636d8:L0:000031",
+    "81fc433d55d23b4c:L0:000069",
+    "90976421f3f2bea2:L0:000153"
+  ],
+  "filtered_ids": [
+    "cc2399aca11eb631:L0:000159",
+    "ba3cd068cf9ac2e4:L0:000029",
+    "8e50522b7cb636d8:L0:000031",
+    "81fc433d55d23b4c:L0:000069",
+    "90976421f3f2bea2:L0:000153"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:47:41.456441+00:00",
+      "call_id": "662112f1e5b6",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "592bec81a87dfd0d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "31b6837bbc1a459e"
+    },
+    {
+      "ts": "2026-11-22T12:47:41.465602+00:00",
+      "call_id": "4e95d9c9c3b3",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "592bec81a87dfd0d",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "31b6837bbc1a459e"
+    },
+    {
+      "ts": "2026-11-22T12:47:41.482921+00:00",
+      "call_id": "d73bc5dd21c4",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1af33968d968e469",
+      "n_inputs": 21,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "31b6837bbc1a459e"
+    },
+    {
+      "ts": "2026-11-22T12:47:50.978792+00:00",
+      "call_id": "4d121c6160f4",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8fa46671c7f60118",
+      "prompt_tokens": 781,
+      "completion_tokens": 68,
+      "latency_ms": 9495.13,
+      "server_ms": 9478.32,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "31b6837bbc1a459e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 781,
+    "generator_prompt_tokens": 781,
+    "completion_tokens": 68,
+    "total_ms": 9669.0
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

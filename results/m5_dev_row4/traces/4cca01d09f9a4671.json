@@ -1,0 +1,182 @@
+{
+  "trace_id": "4cca01d09f9a4671",
+  "created_at": "2026-11-22T12:05:03.684170+00:00",
+  "query": "What is the main concern of publishers about green OA policies?\n\nOptions:\n(A) Increased number of downloads of journals \n(B) A replacement of the standard Gold OA policies\n(C) Negatively affecting the relationship between publishers and academia \n(D) Decreased subscriptions to journals\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 32.25
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 32.32
+    },
+    {
+      "state": "DONE",
+      "t_ms": 26383.35
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.63,
+      "bm25_ms": 27.9,
+      "n_candidates": {
+        "dense": 9,
+        "bm25": 9
+      },
+      "n_fused": 9,
+      "rerank": {
+        "n": 9,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000006",
+          "score": 1.8113043308258057,
+          "fused": 0.8325114909722044,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 1.8113043308258057
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000000",
+          "score": 0.8578124642372131,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 0.8578124642372131
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000002",
+          "score": 0.7109689116477966,
+          "fused": 0.7773807241137078,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 0.7109689116477966
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000007",
+          "score": -0.230758935213089,
+          "fused": 0.7143096661744006,
+          "dense_rank": 2,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -0.230758935213089
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000001",
+          "score": -0.3453139066696167,
+          "fused": 0.09627765022788462,
+          "dense_rank": 9,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": -0.3453139066696167
+        }
+      ],
+      "latency_ms": 32.21
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1934,
+      "latency_ms": 0.05
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 26350.81
+    }
+  },
+  "retrieved_ids": [
+    "6a7f3433b6bd8dc9:L0:000006",
+    "6a7f3433b6bd8dc9:L0:000000",
+    "6a7f3433b6bd8dc9:L0:000002",
+    "6a7f3433b6bd8dc9:L0:000007",
+    "6a7f3433b6bd8dc9:L0:000001"
+  ],
+  "filtered_ids": [
+    "6a7f3433b6bd8dc9:L0:000006",
+    "6a7f3433b6bd8dc9:L0:000000",
+    "6a7f3433b6bd8dc9:L0:000002",
+    "6a7f3433b6bd8dc9:L0:000007",
+    "6a7f3433b6bd8dc9:L0:000001"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:05:03.685169+00:00",
+      "call_id": "dc5ba6dd6224",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "51a9bb1bb0c3bca2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "4cca01d09f9a4671"
+    },
+    {
+      "ts": "2026-11-22T12:05:30.065751+00:00",
+      "call_id": "fe4624a85a0f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1c1b2f0399e73503",
+      "prompt_tokens": 2545,
+      "completion_tokens": 59,
+      "latency_ms": 26349.36,
+      "server_ms": 26305.22,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "4cca01d09f9a4671"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2545,
+    "generator_prompt_tokens": 2545,
+    "completion_tokens": 59,
+    "total_ms": 26385.57
+  },
+  "config_hash": "403cb8f3227b",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

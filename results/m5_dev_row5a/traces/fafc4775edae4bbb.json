@@ -1,0 +1,231 @@
+{
+  "trace_id": "fafc4775edae4bbb",
+  "created_at": "2026-11-22T12:56:26.224451+00:00",
+  "query": "Which film has the director born later, Life Hits or It'S In The Air?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6.45
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 10.44
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10394.09
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.66,
+      "bm25_ms": 2.93,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "c73b757f0eb66f37:L0:000036",
+          "score": 8.535106658935547,
+          "fused": 0.3747142303996754,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 8.535106658935547
+        },
+        {
+          "id": "460e441179bec402:L0:000060",
+          "score": 7.849537372589111,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.849537372589111
+        },
+        {
+          "id": "99628090500247e3:L0:000080",
+          "score": -4.504438400268555,
+          "fused": 0.16882555177449696,
+          "dense_rank": 9,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -4.504438400268555
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000053",
+          "score": -5.0133256912231445,
+          "fused": 0.6238797553902277,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": -5.0133256912231445
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000153",
+          "score": -5.803874492645264,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 4,
+          "rerank": -5.803874492645264
+        }
+      ],
+      "latency_ms": 6.44
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 818,
+      "dropped_threshold": [
+        "99628090500247e3:L0:000080",
+        "317e12ccd417c0d7:L0:000053",
+        "b04ce6dd2d95fb80:L0:000153"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 5,
+      "sentences_kept": 2,
+      "n_out": 2,
+      "tokens_out": 50,
+      "ms": 3.9,
+      "latency_ms": 3.97
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 8.535106658935547,
+      "latency_ms": 0.0
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10383.51
+    }
+  },
+  "retrieved_ids": [
+    "c73b757f0eb66f37:L0:000036",
+    "460e441179bec402:L0:000060",
+    "99628090500247e3:L0:000080",
+    "317e12ccd417c0d7:L0:000053",
+    "b04ce6dd2d95fb80:L0:000153"
+  ],
+  "filtered_ids": [
+    "c73b757f0eb66f37:L0:000036",
+    "460e441179bec402:L0:000060"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:56:26.225449+00:00",
+      "call_id": "8143a70ba2fb",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1a1ce72dbafc053b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fafc4775edae4bbb"
+    },
+    {
+      "ts": "2026-11-22T12:56:26.231448+00:00",
+      "call_id": "9ab861edca5e",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1a1ce72dbafc053b",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fafc4775edae4bbb"
+    },
+    {
+      "ts": "2026-11-22T12:56:26.234573+00:00",
+      "call_id": "0297183ac318",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "df1237e277e5dc74",
+      "n_inputs": 5,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fafc4775edae4bbb"
+    },
+    {
+      "ts": "2026-11-22T12:56:36.617862+00:00",
+      "call_id": "d603bfa3caea",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "1865e4f1429c84db",
+      "prompt_tokens": 477,
+      "completion_tokens": 81,
+      "latency_ms": 10382.7,
+      "server_ms": 10314.01,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "fafc4775edae4bbb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 477,
+    "generator_prompt_tokens": 477,
+    "completion_tokens": 81,
+    "total_ms": 10395.57
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Life Hits was directed by Christian E., while It's in the Air was directed by Anthony Kimmins."
+      ]
+    }
+  }
+}

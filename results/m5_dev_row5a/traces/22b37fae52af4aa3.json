@@ -1,0 +1,248 @@
+{
+  "trace_id": "22b37fae52af4aa3",
+  "created_at": "2026-11-22T13:01:25.615419+00:00",
+  "query": "Was Ausaf Ali or Steven Perry born first?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 15.39
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 37.5
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 9815.74
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10547.43
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 5.96,
+      "bm25_ms": 6.47,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "6af2db6cb86d77e2:L0:000084",
+          "score": 6.179369926452637,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.179369926452637
+        },
+        {
+          "id": "0eac870d43736f51:L0:000086",
+          "score": 3.974148988723755,
+          "fused": 0.5498649076980663,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 3.974148988723755
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -5.06760311126709,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 4,
+          "rerank": -5.06760311126709
+        },
+        {
+          "id": "0eac870d43736f51:L0:000159",
+          "score": -5.106015205383301,
+          "fused": 0.18179728817223784,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": -5.106015205383301
+        },
+        {
+          "id": "99628090500247e3:L0:000080",
+          "score": -5.438885688781738,
+          "fused": 0.19475486438196712,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 13,
+          "rerank": -5.438885688781738
+        }
+      ],
+      "latency_ms": 15.32
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 1206,
+      "dropped_threshold": [
+        "b04ce6dd2d95fb80:L0:000152",
+        "0eac870d43736f51:L0:000159",
+        "99628090500247e3:L0:000080"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 10,
+      "sentences_kept": 2,
+      "n_out": 2,
+      "tokens_out": 50,
+      "ms": 22.0,
+      "latency_ms": 22.01
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 6.179369926452637,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9778.21
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 731.34
+    }
+  },
+  "retrieved_ids": [
+    "6af2db6cb86d77e2:L0:000084",
+    "0eac870d43736f51:L0:000086",
+    "b04ce6dd2d95fb80:L0:000152",
+    "0eac870d43736f51:L0:000159",
+    "99628090500247e3:L0:000080"
+  ],
+  "filtered_ids": [
+    "6af2db6cb86d77e2:L0:000084",
+    "0eac870d43736f51:L0:000086"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:01:25.618414+00:00",
+      "call_id": "7aa841ece4b2",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "abebb55d3fd1e685",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "22b37fae52af4aa3"
+    },
+    {
+      "ts": "2026-11-22T13:01:25.633253+00:00",
+      "call_id": "5c57c948adf9",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "abebb55d3fd1e685",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "22b37fae52af4aa3"
+    },
+    {
+      "ts": "2026-11-22T13:01:25.650564+00:00",
+      "call_id": "b176251a5a6c",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "36d2d8913b9da9c9",
+      "n_inputs": 9,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "22b37fae52af4aa3"
+    },
+    {
+      "ts": "2026-11-22T13:01:35.430549+00:00",
+      "call_id": "87045d9e08b6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "090e33dee92e8fcf",
+      "prompt_tokens": 482,
+      "completion_tokens": 77,
+      "latency_ms": 9776.95,
+      "server_ms": 9758.22,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "22b37fae52af4aa3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 482,
+    "generator_prompt_tokens": 482,
+    "completion_tokens": 77,
+    "total_ms": 10549.13
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

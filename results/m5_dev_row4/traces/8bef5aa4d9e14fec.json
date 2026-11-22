@@ -1,0 +1,181 @@
+{
+  "trace_id": "8bef5aa4d9e14fec",
+  "created_at": "2026-11-22T12:00:42.299417+00:00",
+  "query": "Why does the protagonist have more than one set of memories?\n\nOptions:\n(A) He has traveled back and forth through time \n(B) His memories are being moved in his brain to make room for new ones\n(C) He is not taking his medication for his mental illness\n(D) He has a portion of another persons brain\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 30.4
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 30.46
+    },
+    {
+      "state": "DONE",
+      "t_ms": 23664.04
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.85,
+      "bm25_ms": 23.09,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 20
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000018",
+          "score": -4.55753755569458,
+          "fused": 0.9653384184201942,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -4.55753755569458
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000012",
+          "score": -5.178924560546875,
+          "fused": 0.3294139617182653,
+          "dense_rank": 1,
+          "bm25_rank": 18,
+          "fused_rank": 6,
+          "rerank": -5.178924560546875
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000017",
+          "score": -5.4898858070373535,
+          "fused": 0.31584466708141534,
+          "dense_rank": 11,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": -5.4898858070373535
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000003",
+          "score": -6.003826141357422,
+          "fused": 0.2180917296397325,
+          "dense_rank": 7,
+          "bm25_rank": 13,
+          "fused_rank": 12,
+          "rerank": -6.003826141357422
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000000",
+          "score": -6.02657413482666,
+          "fused": 0.16957085339187158,
+          "dense_rank": 17,
+          "bm25_rank": 10,
+          "fused_rank": 15,
+          "rerank": -6.02657413482666
+        }
+      ],
+      "latency_ms": 30.37
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1974,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 23633.43
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000018",
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000017",
+    "2ecd3be7264ff150:L0:000003",
+    "2ecd3be7264ff150:L0:000000"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000018",
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000017",
+    "2ecd3be7264ff150:L0:000003",
+    "2ecd3be7264ff150:L0:000000"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:00:42.300414+00:00",
+      "call_id": "aee5fd6aa659",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f3f474983641bc95",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8bef5aa4d9e14fec"
+    },
+    {
+      "ts": "2026-11-22T12:01:05.961653+00:00",
+      "call_id": "4056b5386c35",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f216d12e9f44ac55",
+      "prompt_tokens": 2578,
+      "completion_tokens": 72,
+      "latency_ms": 23631.87,
+      "server_ms": 23592.26,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8bef5aa4d9e14fec"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2578,
+    "generator_prompt_tokens": 2578,
+    "completion_tokens": 72,
+    "total_ms": 23665.88
+  },
+  "config_hash": "403cb8f3227b",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

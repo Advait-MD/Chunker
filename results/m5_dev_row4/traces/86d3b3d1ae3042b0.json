@@ -1,0 +1,183 @@
+{
+  "trace_id": "86d3b3d1ae3042b0",
+  "created_at": "2026-11-22T11:45:19.714179+00:00",
+  "query": "An Indy car race was held in the capital of the state where the performer of Mingus Plays Piano was born. Who won the race?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 24.1
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 24.16
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13617.18
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.25,
+      "bm25_ms": 16.19,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "4fcce431f5d22d1d:L0:000010",
+          "score": 3.152225971221924,
+          "fused": 0.5649867507679239,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 3.152225971221924
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000002",
+          "score": -0.8295117616653442,
+          "fused": 0.6379776728443535,
+          "dense_rank": 33,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": -0.8295117616653442
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000146",
+          "score": -3.9359216690063477,
+          "fused": 0.3055378165234839,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 12,
+          "rerank": -3.9359216690063477
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000114",
+          "score": -5.0334391593933105,
+          "fused": 0.23299338674502942,
+          "dense_rank": null,
+          "bm25_rank": 13,
+          "fused_rank": 18,
+          "rerank": -5.0334391593933105
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000074",
+          "score": -5.084484577178955,
+          "fused": 0.33306501045869824,
+          "dense_rank": null,
+          "bm25_rank": 6,
+          "fused_rank": 11,
+          "rerank": -5.084484577178955
+        }
+      ],
+      "latency_ms": 24.06
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 381,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13592.96
+    }
+  },
+  "retrieved_ids": [
+    "4fcce431f5d22d1d:L0:000010",
+    "4fcce431f5d22d1d:L0:000002",
+    "66f5caec1369ebaf:L0:000146",
+    "4fcce431f5d22d1d:L0:000114",
+    "5a1a5bbda9db013e:L0:000074"
+  ],
+  "filtered_ids": [
+    "4fcce431f5d22d1d:L0:000010",
+    "4fcce431f5d22d1d:L0:000002",
+    "66f5caec1369ebaf:L0:000146",
+    "4fcce431f5d22d1d:L0:000114",
+    "5a1a5bbda9db013e:L0:000074"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:45:19.716516+00:00",
+      "call_id": "afa9479a7dee",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "fbfdc8269832ebf4",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "86d3b3d1ae3042b0"
+    },
+    {
+      "ts": "2026-11-22T11:45:33.331714+00:00",
+      "call_id": "b9c96f6ef6c6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7ee0cbf4ec4d615b",
+      "prompt_tokens": 1018,
+      "completion_tokens": 81,
+      "latency_ms": 13592.31,
+      "server_ms": 13576.96,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "86d3b3d1ae3042b0"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1018,
+    "generator_prompt_tokens": 1018,
+    "completion_tokens": 81,
+    "total_ms": 13618.47
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "The capital of the state where Charles Mingus was born is Phoenix, and the race held in Phoenix was the Desert Diamond West Valley Phoenix Grand Prix, which was won by Ralf Schumacher."
+      ]
+    }
+  }
+}

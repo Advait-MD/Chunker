@@ -1,0 +1,183 @@
+{
+  "trace_id": "29e8444253724660",
+  "created_at": "2026-11-22T11:52:16.717517+00:00",
+  "query": "In what region of the country containing A Lưới is the birthplace of John Phan located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 18.7
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 18.82
+    },
+    {
+      "state": "DONE",
+      "t_ms": 11861.5
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.27,
+      "bm25_ms": 12.64,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "8b31d5859eb3d77a:L0:000191",
+          "score": 3.5304644107818604,
+          "fused": 0.49003974420687796,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 3.5304644107818604
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000023",
+          "score": 3.492542028427124,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 3.492542028427124
+        },
+        {
+          "id": "f59bbbdacaf7ffe4:L0:000117",
+          "score": -2.865100860595703,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 6,
+          "rerank": -2.865100860595703
+        },
+        {
+          "id": "8b31d5859eb3d77a:L0:000095",
+          "score": -3.115769624710083,
+          "fused": 0.24726601484590893,
+          "dense_rank": 13,
+          "bm25_rank": 14,
+          "fused_rank": 10,
+          "rerank": -3.115769624710083
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000059",
+          "score": -4.102685928344727,
+          "fused": 0.176702699964987,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": -4.102685928344727
+        }
+      ],
+      "latency_ms": 18.64
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 570,
+      "latency_ms": 0.1
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11842.18
+    }
+  },
+  "retrieved_ids": [
+    "8b31d5859eb3d77a:L0:000191",
+    "4fcce431f5d22d1d:L0:000023",
+    "f59bbbdacaf7ffe4:L0:000117",
+    "8b31d5859eb3d77a:L0:000095",
+    "6bddce8aaad42fea:L0:000059"
+  ],
+  "filtered_ids": [
+    "8b31d5859eb3d77a:L0:000191",
+    "4fcce431f5d22d1d:L0:000023",
+    "f59bbbdacaf7ffe4:L0:000117",
+    "8b31d5859eb3d77a:L0:000095",
+    "6bddce8aaad42fea:L0:000059"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:52:16.719523+00:00",
+      "call_id": "ff26374d3f84",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b623d8ce8b4460c0",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "29e8444253724660"
+    },
+    {
+      "ts": "2026-11-22T11:52:28.577036+00:00",
+      "call_id": "42d3cefea3fc",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b8caf53f8bbc22c6",
+      "prompt_tokens": 1180,
+      "completion_tokens": 70,
+      "latency_ms": 11840.94,
+      "server_ms": 11817.08,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "29e8444253724660"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1180,
+    "generator_prompt_tokens": 1180,
+    "completion_tokens": 70,
+    "total_ms": 11863.88
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "The birthplace of John Phan, Da Nang, is located in the North Central Coast region of Vietnam, which contains A Lưới District."
+      ]
+    }
+  }
+}

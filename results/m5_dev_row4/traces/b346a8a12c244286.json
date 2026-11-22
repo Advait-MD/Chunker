@@ -1,0 +1,185 @@
+{
+  "trace_id": "b346a8a12c244286",
+  "created_at": "2026-11-22T12:08:33.919644+00:00",
+  "query": "What does the author use as a counterpoint to the concerns of the publishers about subscription cancelations?\n\nOptions:\n(A) The success of Gold OA policies for publishers \n(B) A lack of empirical evidence \n(C) The systematic requirement of waivers \n(D) The fact that green OA practices were the standard in the past \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 23.84
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 23.89
+    },
+    {
+      "state": "DONE",
+      "t_ms": 15255.65
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.01,
+      "bm25_ms": 19.99,
+      "n_candidates": {
+        "dense": 9,
+        "bm25": 9
+      },
+      "n_fused": 9,
+      "rerank": {
+        "n": 9,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000006",
+          "score": 0.15605615079402924,
+          "fused": 0.5506529628901039,
+          "dense_rank": 5,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.15605615079402924
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000007",
+          "score": -0.3217730224132538,
+          "fused": 0.7758058662805027,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.3217730224132538
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000000",
+          "score": -0.5164090991020203,
+          "fused": 0.9136617437027821,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.5164090991020203
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000008",
+          "score": -1.1539145708084106,
+          "fused": 0.15242484484193597,
+          "dense_rank": 4,
+          "bm25_rank": 9,
+          "fused_rank": 8,
+          "rerank": -1.1539145708084106
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000001",
+          "score": -1.2576162815093994,
+          "fused": 0.12279853491376436,
+          "dense_rank": 9,
+          "bm25_rank": 6,
+          "fused_rank": 9,
+          "rerank": -1.2576162815093994
+        }
+      ],
+      "latency_ms": 23.81
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1647,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 15231.67
+    }
+  },
+  "retrieved_ids": [
+    "6a7f3433b6bd8dc9:L0:000006",
+    "6a7f3433b6bd8dc9:L0:000007",
+    "6a7f3433b6bd8dc9:L0:000000",
+    "6a7f3433b6bd8dc9:L0:000008",
+    "6a7f3433b6bd8dc9:L0:000001"
+  ],
+  "filtered_ids": [
+    "6a7f3433b6bd8dc9:L0:000006",
+    "6a7f3433b6bd8dc9:L0:000007",
+    "6a7f3433b6bd8dc9:L0:000000",
+    "6a7f3433b6bd8dc9:L0:000008",
+    "6a7f3433b6bd8dc9:L0:000001"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:08:33.921258+00:00",
+      "call_id": "da730beeb3a3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6c885c546984d87e",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b346a8a12c244286"
+    },
+    {
+      "ts": "2026-11-22T12:08:49.174287+00:00",
+      "call_id": "4cb5ce0e14b7",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "0b47625f641a5048",
+      "prompt_tokens": 2247,
+      "completion_tokens": 51,
+      "latency_ms": 15230.76,
+      "server_ms": 15214.28,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b346a8a12c244286"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2247,
+    "generator_prompt_tokens": 2247,
+    "completion_tokens": 51,
+    "total_ms": 15256.81
+  },
+  "config_hash": "403cb8f3227b",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "uncited_sentences": [
+        "(B) A lack of empirical evidence"
+      ]
+    }
+  }
+}

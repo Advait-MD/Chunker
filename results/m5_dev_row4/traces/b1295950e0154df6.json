@@ -1,0 +1,180 @@
+{
+  "trace_id": "b1295950e0154df6",
+  "created_at": "2026-11-22T11:35:55.163454+00:00",
+  "query": "What was the 2010 population of the town where Black Crescent Mountain was located?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5685.05
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5686.15
+    },
+    {
+      "state": "DONE",
+      "t_ms": 17292.9
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.09,
+      "bm25_ms": 8.53,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5669.01
+      },
+      "hits": [
+        {
+          "id": "bc1dba3471045f02:L0:000036",
+          "score": 5.380470275878906,
+          "fused": 0.5360346508346158,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 5.380470275878906
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000013",
+          "score": 3.7837390899658203,
+          "fused": 0.5532087860219488,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 3.7837390899658203
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000067",
+          "score": 3.0939078330993652,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.0939078330993652
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000156",
+          "score": -1.3464467525482178,
+          "fused": 0.3005743760668467,
+          "dense_rank": 8,
+          "bm25_rank": 23,
+          "fused_rank": 15,
+          "rerank": -1.3464467525482178
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000013",
+          "score": -1.399605631828308,
+          "fused": 0.37466014827069966,
+          "dense_rank": 1,
+          "bm25_rank": 24,
+          "fused_rank": 13,
+          "rerank": -1.399605631828308
+        }
+      ],
+      "latency_ms": 5685.0
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 463,
+      "latency_ms": 1.06
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11606.62
+    }
+  },
+  "retrieved_ids": [
+    "bc1dba3471045f02:L0:000036",
+    "ec3410ef955c5c93:L0:000013",
+    "838c0e0106e6f015:L0:000067",
+    "838c0e0106e6f015:L0:000156",
+    "5d0f6cf59ee42566:L0:000013"
+  ],
+  "filtered_ids": [
+    "bc1dba3471045f02:L0:000036",
+    "ec3410ef955c5c93:L0:000013",
+    "838c0e0106e6f015:L0:000067",
+    "838c0e0106e6f015:L0:000156",
+    "5d0f6cf59ee42566:L0:000013"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:35:55.166454+00:00",
+      "call_id": "ce1def0bc942",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "a64f3195507ce1d3",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b1295950e0154df6"
+    },
+    {
+      "ts": "2026-11-22T11:36:12.455216+00:00",
+      "call_id": "2a49e77c1682",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "4d76f5fd29f895d3",
+      "prompt_tokens": 1052,
+      "completion_tokens": 66,
+      "latency_ms": 11605.27,
+      "server_ms": 11582.44,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b1295950e0154df6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1052,
+    "generator_prompt_tokens": 1052,
+    "completion_tokens": 66,
+    "total_ms": 17294.6
+  },
+  "config_hash": "00ac4473fd53",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

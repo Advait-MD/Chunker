@@ -1,0 +1,182 @@
+{
+  "trace_id": "d3a72b4f316e4e0e",
+  "created_at": "2026-11-22T11:48:58.988163+00:00",
+  "query": "Who is the mascot of the university related to Randy Conrads?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.87
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 15.11
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 9740.54
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.45,
+      "bm25_ms": 9.25,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "178c7e3e6ef6ae87:L0:000151",
+          "score": -0.583931565284729,
+          "fused": 0.7158756522486722,
+          "dense_rank": 41,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.583931565284729
+        },
+        {
+          "id": "4b634e52029ddab4:L0:000148",
+          "score": -1.6258764266967773,
+          "fused": 0.6350059261051415,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -1.6258764266967773
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000140",
+          "score": -1.7196004390716553,
+          "fused": 0.27357239205764805,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 7,
+          "rerank": -1.7196004390716553
+        },
+        {
+          "id": "4fcce431f5d22d1d:L0:000039",
+          "score": -2.0445034503936768,
+          "fused": 0.37468744076599947,
+          "dense_rank": 5,
+          "bm25_rank": 8,
+          "fused_rank": 5,
+          "rerank": -2.0445034503936768
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000072",
+          "score": -2.748687267303467,
+          "fused": 0.42433916066224586,
+          "dense_rank": 8,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -2.748687267303467
+        }
+      ],
+      "latency_ms": 14.83
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 393,
+      "latency_ms": 0.22
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9725.33
+    }
+  },
+  "retrieved_ids": [
+    "178c7e3e6ef6ae87:L0:000151",
+    "4b634e52029ddab4:L0:000148",
+    "8679484d23bfd3a0:L0:000140",
+    "4fcce431f5d22d1d:L0:000039",
+    "e182527d2b1ecac3:L0:000072"
+  ],
+  "filtered_ids": [
+    "178c7e3e6ef6ae87:L0:000151",
+    "4b634e52029ddab4:L0:000148",
+    "8679484d23bfd3a0:L0:000140",
+    "4fcce431f5d22d1d:L0:000039",
+    "e182527d2b1ecac3:L0:000072"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:48:58.990165+00:00",
+      "call_id": "4129eb64fcfe",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6b2808c548896a09",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d3a72b4f316e4e0e"
+    },
+    {
+      "ts": "2026-11-22T11:49:08.728469+00:00",
+      "call_id": "549ae9e06ac0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "42ebf8aa43a735eb",
+      "prompt_tokens": 982,
+      "completion_tokens": 53,
+      "latency_ms": 9723.97,
+      "server_ms": 9703.12,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d3a72b4f316e4e0e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 982,
+    "generator_prompt_tokens": 982,
+    "completion_tokens": 53,
+    "total_ms": 9742.31
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "Randy Conrads is not the mascot of any university mentioned in the passages."
+      ]
+    }
+  }
+}

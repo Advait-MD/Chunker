@@ -1,0 +1,184 @@
+{
+  "trace_id": "124b1752f3344f43",
+  "created_at": "2026-11-22T12:07:43.202984+00:00",
+  "query": "Which answer doesn't support the idea that green OA isn't likely to cause subscription cancellations?\n\nOptions:\n(A) 6\n(B) 4\n(C) 2\n(D) 10\n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 21.46
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 21.51
+    },
+    {
+      "state": "DONE",
+      "t_ms": 24709.14
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.27,
+      "bm25_ms": 18.33,
+      "n_candidates": {
+        "dense": 9,
+        "bm25": 9
+      },
+      "n_fused": 9,
+      "rerank": {
+        "n": 9,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000001",
+          "score": 0.21384291350841522,
+          "fused": 0.42884294571503034,
+          "dense_rank": 6,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.21384291350841522
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000000",
+          "score": -0.0739079937338829,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -0.0739079937338829
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000006",
+          "score": -0.13180950284004211,
+          "fused": 0.3191874290597038,
+          "dense_rank": 7,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -0.13180950284004211
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000002",
+          "score": -0.8725641369819641,
+          "fused": 0.20112800475421483,
+          "dense_rank": 8,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": -0.8725641369819641
+        },
+        {
+          "id": "6a7f3433b6bd8dc9:L0:000007",
+          "score": -1.1969060897827148,
+          "fused": 0.3777936524478774,
+          "dense_rank": 4,
+          "bm25_rank": 5,
+          "fused_rank": 4,
+          "rerank": -1.1969060897827148
+        }
+      ],
+      "latency_ms": 21.42
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1934,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24687.4
+    }
+  },
+  "retrieved_ids": [
+    "6a7f3433b6bd8dc9:L0:000001",
+    "6a7f3433b6bd8dc9:L0:000000",
+    "6a7f3433b6bd8dc9:L0:000006",
+    "6a7f3433b6bd8dc9:L0:000002",
+    "6a7f3433b6bd8dc9:L0:000007"
+  ],
+  "filtered_ids": [
+    "6a7f3433b6bd8dc9:L0:000001",
+    "6a7f3433b6bd8dc9:L0:000000",
+    "6a7f3433b6bd8dc9:L0:000006",
+    "6a7f3433b6bd8dc9:L0:000002",
+    "6a7f3433b6bd8dc9:L0:000007"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:07:43.204043+00:00",
+      "call_id": "219003bde7be",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "0d6c45ec619ed499",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "124b1752f3344f43"
+    },
+    {
+      "ts": "2026-11-22T12:08:07.910530+00:00",
+      "call_id": "aeb9b1978314",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "8cd79202b980d7f1",
+      "prompt_tokens": 2533,
+      "completion_tokens": 85,
+      "latency_ms": 24686.18,
+      "server_ms": 24651.31,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "124b1752f3344f43"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2533,
+    "generator_prompt_tokens": 2533,
+    "completion_tokens": 85,
+    "total_ms": 24711.04
+  },
+  "config_hash": "403cb8f3227b",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "(B) The evidence from physics is the most relevant.",
+        "Physics has the highest levels and longest history of green OA."
+      ]
+    }
+  }
+}

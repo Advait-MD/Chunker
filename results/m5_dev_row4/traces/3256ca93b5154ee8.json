@@ -1,0 +1,182 @@
+{
+  "trace_id": "3256ca93b5154ee8",
+  "created_at": "2026-11-22T11:50:30.778528+00:00",
+  "query": "Who is the spouse of the creator of Absolutely Fabulous?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 11.32
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 11.38
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 10872.13
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.85,
+      "bm25_ms": 5.95,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "ce57fdde2baaba9c:L0:000066",
+          "score": 3.6696505546569824,
+          "fused": 0.7165134231027923,
+          "dense_rank": 37,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 3.6696505546569824
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000141",
+          "score": -2.5763561725616455,
+          "fused": 0.24400568371633088,
+          "dense_rank": 2,
+          "bm25_rank": null,
+          "fused_rank": 6,
+          "rerank": -2.5763561725616455
+        },
+        {
+          "id": "a168352d83e925b5:L0:000109",
+          "score": -5.250629425048828,
+          "fused": 0.19818701260946978,
+          "dense_rank": 21,
+          "bm25_rank": 14,
+          "fused_rank": 12,
+          "rerank": -5.250629425048828
+        },
+        {
+          "id": "66f5caec1369ebaf:L0:000084",
+          "score": -5.400463581085205,
+          "fused": 0.16456764112409297,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": -5.400463581085205
+        },
+        {
+          "id": "15abb5e49dced915:L0:000165",
+          "score": -5.73910665512085,
+          "fused": 0.3,
+          "dense_rank": 1,
+          "bm25_rank": null,
+          "fused_rank": 3,
+          "rerank": -5.73910665512085
+        }
+      ],
+      "latency_ms": 11.28
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 271,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 10860.68
+    }
+  },
+  "retrieved_ids": [
+    "ce57fdde2baaba9c:L0:000066",
+    "f3503d3d186f0f90:L0:000141",
+    "a168352d83e925b5:L0:000109",
+    "66f5caec1369ebaf:L0:000084",
+    "15abb5e49dced915:L0:000165"
+  ],
+  "filtered_ids": [
+    "ce57fdde2baaba9c:L0:000066",
+    "f3503d3d186f0f90:L0:000141",
+    "a168352d83e925b5:L0:000109",
+    "66f5caec1369ebaf:L0:000084",
+    "15abb5e49dced915:L0:000165"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:50:30.780527+00:00",
+      "call_id": "1730272111c1",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "78b5310ca07a2f2a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "3256ca93b5154ee8"
+    },
+    {
+      "ts": "2026-11-22T11:50:41.649811+00:00",
+      "call_id": "1b546721941c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ebe65f23615fbbeb",
+      "prompt_tokens": 832,
+      "completion_tokens": 67,
+      "latency_ms": 10859.81,
+      "server_ms": 10841.52,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "3256ca93b5154ee8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 832,
+    "generator_prompt_tokens": 832,
+    "completion_tokens": 67,
+    "total_ms": 10873.64
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1
+      ],
+      "uncited_sentences": [
+        "The spouse of the creator of Absolutely Fabulous is Jennifer Saunders's husband, but the evidence does not provide this information."
+      ]
+    }
+  }
+}

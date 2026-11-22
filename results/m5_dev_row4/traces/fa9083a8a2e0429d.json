@@ -1,0 +1,180 @@
+{
+  "trace_id": "fa9083a8a2e0429d",
+  "created_at": "2026-11-22T11:25:44.646238+00:00",
+  "query": "In what year was the university where Sergei Aleksandrovich Tokarev was a professor founded?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19376.79
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19381.8
+    },
+    {
+      "state": "DONE",
+      "t_ms": 32868.72
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.56,
+      "bm25_ms": 4.4,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 19349.24
+      },
+      "hits": [
+        {
+          "id": "9794e842cc9565f0:L0:000071",
+          "score": 9.589103698730469,
+          "fused": 0.7076042440054743,
+          "dense_rank": 45,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 9.589103698730469
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000198",
+          "score": 1.6041754484176636,
+          "fused": 0.3022975146461913,
+          "dense_rank": 3,
+          "bm25_rank": 22,
+          "fused_rank": 5,
+          "rerank": 1.6041754484176636
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000187",
+          "score": 0.9994878172874451,
+          "fused": 0.28638157400910924,
+          "dense_rank": 4,
+          "bm25_rank": 27,
+          "fused_rank": 7,
+          "rerank": 0.9994878172874451
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000041",
+          "score": 0.8502159714698792,
+          "fused": 0.32722166218860693,
+          "dense_rank": 1,
+          "bm25_rank": 34,
+          "fused_rank": 3,
+          "rerank": 0.8502159714698792
+        },
+        {
+          "id": "634431bb1e27714f:L0:000034",
+          "score": -0.2985042333602905,
+          "fused": 0.3124021260209443,
+          "dense_rank": 2,
+          "bm25_rank": 37,
+          "fused_rank": 4,
+          "rerank": -0.2985042333602905
+        }
+      ],
+      "latency_ms": 19376.01
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 533,
+      "latency_ms": 3.77
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13484.36
+    }
+  },
+  "retrieved_ids": [
+    "9794e842cc9565f0:L0:000071",
+    "81fc433d55d23b4c:L0:000198",
+    "8e50522b7cb636d8:L0:000187",
+    "90976421f3f2bea2:L0:000041",
+    "634431bb1e27714f:L0:000034"
+  ],
+  "filtered_ids": [
+    "9794e842cc9565f0:L0:000071",
+    "81fc433d55d23b4c:L0:000198",
+    "8e50522b7cb636d8:L0:000187",
+    "90976421f3f2bea2:L0:000041",
+    "634431bb1e27714f:L0:000034"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:25:44.647246+00:00",
+      "call_id": "9507fb5d6663",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "4f8a3eb7ccc8b1b8",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fa9083a8a2e0429d"
+    },
+    {
+      "ts": "2026-11-22T11:26:17.507074+00:00",
+      "call_id": "1e8299197f01",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b529d631252ff505",
+      "prompt_tokens": 1189,
+      "completion_tokens": 70,
+      "latency_ms": 13396.67,
+      "server_ms": 13359.0,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "fa9083a8a2e0429d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1189,
+    "generator_prompt_tokens": 1189,
+    "completion_tokens": 70,
+    "total_ms": 32875.56
+  },
+  "config_hash": "00ac4473fd53",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

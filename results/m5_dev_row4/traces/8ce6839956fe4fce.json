@@ -1,0 +1,181 @@
+{
+  "trace_id": "8ce6839956fe4fce",
+  "created_at": "2026-11-22T10:50:29.800028+00:00",
+  "query": "Are director of film Susanna Whipped Cream and director of film Le Salamandre both from the same country?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14755.17
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14755.34
+    },
+    {
+      "state": "DONE",
+      "t_ms": 44837.16
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 58.91,
+      "bm25_ms": 48.05,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 14635.48
+      },
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000058",
+          "score": 5.997057914733887,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.997057914733887
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000203",
+          "score": 5.590424537658691,
+          "fused": 0.5736748402178184,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 5.590424537658691
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": -4.1679158210754395,
+          "fused": 0.06932048426751039,
+          "dense_rank": 21,
+          "bm25_rank": 16,
+          "fused_rank": 16,
+          "rerank": -4.1679158210754395
+        },
+        {
+          "id": "0eac870d43736f51:L0:000159",
+          "score": -4.906214714050293,
+          "fused": 0.08151614517586776,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 12,
+          "rerank": -4.906214714050293
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000053",
+          "score": -5.2742204666137695,
+          "fused": 0.07702826183842623,
+          "dense_rank": 8,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -5.2742204666137695
+        }
+      ],
+      "latency_ms": 14755.08
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 757,
+      "latency_ms": 0.12
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 30081.54
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000058",
+    "c73b757f0eb66f37:L0:000203",
+    "abe982d210232c3f:L0:000151",
+    "0eac870d43736f51:L0:000159",
+    "317e12ccd417c0d7:L0:000053"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000058",
+    "c73b757f0eb66f37:L0:000203",
+    "abe982d210232c3f:L0:000151",
+    "0eac870d43736f51:L0:000159",
+    "317e12ccd417c0d7:L0:000053"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T10:50:29.804290+00:00",
+      "call_id": "f91a2abf7ba7",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "32c8206c3a4c62ab",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "8ce6839956fe4fce"
+    },
+    {
+      "ts": "2026-11-22T10:51:14.634818+00:00",
+      "call_id": "b42753fcc35e",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "41a7fc718b6fa73c",
+      "prompt_tokens": 1435,
+      "completion_tokens": 79,
+      "latency_ms": 30077.74,
+      "server_ms": 30027.64,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "8ce6839956fe4fce"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1435,
+    "generator_prompt_tokens": 1435,
+    "completion_tokens": 79,
+    "total_ms": 44840.22
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

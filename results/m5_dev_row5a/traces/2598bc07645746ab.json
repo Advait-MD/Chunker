@@ -1,0 +1,227 @@
+{
+  "trace_id": "2598bc07645746ab",
+  "created_at": "2026-11-22T12:46:43.233149+00:00",
+  "query": "Isabella Kelly was born at a ruined castle characterized as one of the most isolated fortifications in Britain by who?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 26.48
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 62.13
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 8802.63
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 6.02,
+      "bm25_ms": 16.67,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "81fc433d55d23b4c:L0:000093",
+          "score": -1.4032074213027954,
+          "fused": 0.9479655633370605,
+          "dense_rank": 4,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": -1.4032074213027954
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000056",
+          "score": -1.689077377319336,
+          "fused": 0.5851914122282493,
+          "dense_rank": 3,
+          "bm25_rank": 8,
+          "fused_rank": 7,
+          "rerank": -1.689077377319336
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000105",
+          "score": -2.8399369716644287,
+          "fused": 0.5597284355690669,
+          "dense_rank": 15,
+          "bm25_rank": 4,
+          "fused_rank": 8,
+          "rerank": -2.8399369716644287
+        },
+        {
+          "id": "b120b09075017d08:L0:000176",
+          "score": -3.6252999305725098,
+          "fused": 0.7816284074893459,
+          "dense_rank": 1,
+          "bm25_rank": 5,
+          "fused_rank": 3,
+          "rerank": -3.6252999305725098
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000154",
+          "score": -3.965243101119995,
+          "fused": 0.679054051063916,
+          "dense_rank": 11,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -3.965243101119995
+        }
+      ],
+      "latency_ms": 26.43
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 444,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 18,
+      "sentences_kept": 9,
+      "n_out": 5,
+      "tokens_out": 249,
+      "ms": 35.5,
+      "latency_ms": 35.55
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": -1.4032074213027954,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 8740.4
+    }
+  },
+  "retrieved_ids": [
+    "81fc433d55d23b4c:L0:000093",
+    "ec3410ef955c5c93:L0:000056",
+    "cc2399aca11eb631:L0:000105",
+    "b120b09075017d08:L0:000176",
+    "8e50522b7cb636d8:L0:000154"
+  ],
+  "filtered_ids": [
+    "81fc433d55d23b4c:L0:000093",
+    "ec3410ef955c5c93:L0:000056",
+    "cc2399aca11eb631:L0:000105",
+    "b120b09075017d08:L0:000176",
+    "8e50522b7cb636d8:L0:000154"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:46:43.235149+00:00",
+      "call_id": "070ac2b5adf5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "28bbbe88be4be9fa",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2598bc07645746ab"
+    },
+    {
+      "ts": "2026-11-22T12:46:43.261038+00:00",
+      "call_id": "b57ba10f5515",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "28bbbe88be4be9fa",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2598bc07645746ab"
+    },
+    {
+      "ts": "2026-11-22T12:46:43.291254+00:00",
+      "call_id": "daaa777380ae",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "65229b89441a9272",
+      "n_inputs": 17,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2598bc07645746ab"
+    },
+    {
+      "ts": "2026-11-22T12:46:52.034551+00:00",
+      "call_id": "2e217b4ab122",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "ce9868dc49edbe20",
+      "prompt_tokens": 835,
+      "completion_tokens": 45,
+      "latency_ms": 8739.09,
+      "server_ms": 8716.26,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2598bc07645746ab"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 835,
+    "generator_prompt_tokens": 835,
+    "completion_tokens": 45,
+    "total_ms": 8803.91
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Insufficient evidence in the corpus to answer this question."
+      ]
+    }
+  }
+}

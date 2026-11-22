@@ -1,0 +1,181 @@
+{
+  "trace_id": "bfa2210b5f6f4aba",
+  "created_at": "2026-11-22T11:40:49.928734+00:00",
+  "query": "Which Istanbul mosque is unique for retaining a Baroque style of architecture, the Bayezid II Mosque or the Nusretiye Mosque?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5283.56
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5284.05
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18731.02
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.95,
+      "bm25_ms": 12.04,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5265.7
+      },
+      "hits": [
+        {
+          "id": "20496f59538deb41:L0:000161",
+          "score": 9.90765380859375,
+          "fused": 0.9238410410455289,
+          "dense_rank": 3,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 9.90765380859375
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000035",
+          "score": 9.169780731201172,
+          "fused": 0.4793947245193008,
+          "dense_rank": 25,
+          "bm25_rank": 2,
+          "fused_rank": 8,
+          "rerank": 9.169780731201172
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000045",
+          "score": 2.103510618209839,
+          "fused": 0.33717879136128576,
+          "dense_rank": 26,
+          "bm25_rank": 8,
+          "fused_rank": 14,
+          "rerank": 2.103510618209839
+        },
+        {
+          "id": "634431bb1e27714f:L0:000014",
+          "score": 1.4515599012374878,
+          "fused": 0.5858056843448861,
+          "dense_rank": 6,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 1.4515599012374878
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000120",
+          "score": 0.31018686294555664,
+          "fused": 0.2666939948387049,
+          "dense_rank": 50,
+          "bm25_rank": 12,
+          "fused_rank": 18,
+          "rerank": 0.31018686294555664
+        }
+      ],
+      "latency_ms": 5283.51
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 339,
+      "latency_ms": 0.42
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 13446.75
+    }
+  },
+  "retrieved_ids": [
+    "20496f59538deb41:L0:000161",
+    "81fc433d55d23b4c:L0:000035",
+    "ec3410ef955c5c93:L0:000045",
+    "634431bb1e27714f:L0:000014",
+    "838c0e0106e6f015:L0:000120"
+  ],
+  "filtered_ids": [
+    "20496f59538deb41:L0:000161",
+    "81fc433d55d23b4c:L0:000035",
+    "ec3410ef955c5c93:L0:000045",
+    "634431bb1e27714f:L0:000014",
+    "838c0e0106e6f015:L0:000120"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:40:49.930016+00:00",
+      "call_id": "775731d6dfcf",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bec86f8d7fb0ffe6",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "bfa2210b5f6f4aba"
+    },
+    {
+      "ts": "2026-11-22T11:41:08.653428+00:00",
+      "call_id": "a4a61afdf43f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a6bbead34c80e399",
+      "prompt_tokens": 1002,
+      "completion_tokens": 75,
+      "latency_ms": 13444.93,
+      "server_ms": 13416.8,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "bfa2210b5f6f4aba"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1002,
+    "generator_prompt_tokens": 1002,
+    "completion_tokens": 75,
+    "total_ms": 18732.99
+  },
+  "config_hash": "00ac4473fd53",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

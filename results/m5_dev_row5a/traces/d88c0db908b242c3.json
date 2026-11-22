@@ -1,0 +1,248 @@
+{
+  "trace_id": "d88c0db908b242c3",
+  "created_at": "2026-11-22T12:47:30.755118+00:00",
+  "query": "What is the name of the Australian specialist electronic music magazine that features avant-rock, experimental sound art, and experimental hip hop?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.54
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 28.69
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 9788.87
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10688.72
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.77,
+      "bm25_ms": 12.94,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "5d0f6cf59ee42566:L0:000060",
+          "score": 7.343347549438477,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.343347549438477
+        },
+        {
+          "id": "cc2399aca11eb631:L0:000033",
+          "score": -1.8705815076828003,
+          "fused": 0.4771774329217448,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -1.8705815076828003
+        },
+        {
+          "id": "634431bb1e27714f:L0:000003",
+          "score": -5.290876865386963,
+          "fused": 0.2914461201629056,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 9,
+          "rerank": -5.290876865386963
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000019",
+          "score": -5.39251184463501,
+          "fused": 0.3453300936955182,
+          "dense_rank": 31,
+          "bm25_rank": 3,
+          "fused_rank": 5,
+          "rerank": -5.39251184463501
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000021",
+          "score": -5.4683918952941895,
+          "fused": 0.3262315603892827,
+          "dense_rank": 7,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": -5.4683918952941895
+        }
+      ],
+      "latency_ms": 19.5
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 579,
+      "dropped_threshold": [
+        "634431bb1e27714f:L0:000003",
+        "838c0e0106e6f015:L0:000019",
+        "bc1dba3471045f02:L0:000021"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 6,
+      "sentences_kept": 6,
+      "n_out": 2,
+      "tokens_out": 133,
+      "ms": 9.1,
+      "latency_ms": 9.1
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 7.343347549438477,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9760.17
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 899.73
+    }
+  },
+  "retrieved_ids": [
+    "5d0f6cf59ee42566:L0:000060",
+    "cc2399aca11eb631:L0:000033",
+    "634431bb1e27714f:L0:000003",
+    "838c0e0106e6f015:L0:000019",
+    "bc1dba3471045f02:L0:000021"
+  ],
+  "filtered_ids": [
+    "5d0f6cf59ee42566:L0:000060",
+    "cc2399aca11eb631:L0:000033"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:47:30.757118+00:00",
+      "call_id": "1d98f2e61929",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1a25c9d040628be9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d88c0db908b242c3"
+    },
+    {
+      "ts": "2026-11-22T12:47:30.775645+00:00",
+      "call_id": "9e690bae2b3a",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "1a25c9d040628be9",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d88c0db908b242c3"
+    },
+    {
+      "ts": "2026-11-22T12:47:30.783103+00:00",
+      "call_id": "c348ef46346d",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "6e7126cc27409a42",
+      "n_inputs": 6,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d88c0db908b242c3"
+    },
+    {
+      "ts": "2026-11-22T12:47:40.543996+00:00",
+      "call_id": "e65ab455893f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "abf478b3196432c1",
+      "prompt_tokens": 571,
+      "completion_tokens": 77,
+      "latency_ms": 9759.6,
+      "server_ms": 9746.89,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d88c0db908b242c3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 571,
+    "generator_prompt_tokens": 571,
+    "completion_tokens": 77,
+    "total_ms": 10689.64
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

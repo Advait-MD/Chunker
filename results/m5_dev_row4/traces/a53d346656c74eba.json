@@ -1,0 +1,183 @@
+{
+  "trace_id": "a53d346656c74eba",
+  "created_at": "2026-11-22T11:27:37.483616+00:00",
+  "query": "Did John Updike and Tom Clancy both publish more than 15 bestselling novels?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5185.3
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5188.68
+    },
+    {
+      "state": "DONE",
+      "t_ms": 19777.12
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.89,
+      "bm25_ms": 18.21,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5156.89
+      },
+      "hits": [
+        {
+          "id": "90976421f3f2bea2:L0:000193",
+          "score": 4.969944953918457,
+          "fused": 0.8157791613851237,
+          "dense_rank": 7,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 4.969944953918457
+        },
+        {
+          "id": "20496f59538deb41:L0:000110",
+          "score": 3.9248507022857666,
+          "fused": 0.8412971645045915,
+          "dense_rank": 1,
+          "bm25_rank": 8,
+          "fused_rank": 1,
+          "rerank": 3.9248507022857666
+        },
+        {
+          "id": "8e50522b7cb636d8:L0:000075",
+          "score": -3.582258462905884,
+          "fused": 0.12374189555394627,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 19,
+          "rerank": -3.582258462905884
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000017",
+          "score": -5.263269424438477,
+          "fused": 0.4352481901204389,
+          "dense_rank": null,
+          "bm25_rank": 9,
+          "fused_rank": 9,
+          "rerank": -5.263269424438477
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000062",
+          "score": -6.44022274017334,
+          "fused": 0.2596821362690232,
+          "dense_rank": 3,
+          "bm25_rank": 29,
+          "fused_rank": 13,
+          "rerank": -6.44022274017334
+        }
+      ],
+      "latency_ms": 5185.25
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 549,
+      "latency_ms": 3.33
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 14588.23
+    }
+  },
+  "retrieved_ids": [
+    "90976421f3f2bea2:L0:000193",
+    "20496f59538deb41:L0:000110",
+    "8e50522b7cb636d8:L0:000075",
+    "cb96563b0747a6ba:L0:000017",
+    "90976421f3f2bea2:L0:000062"
+  ],
+  "filtered_ids": [
+    "90976421f3f2bea2:L0:000193",
+    "20496f59538deb41:L0:000110",
+    "8e50522b7cb636d8:L0:000075",
+    "cb96563b0747a6ba:L0:000017",
+    "90976421f3f2bea2:L0:000062"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:27:37.485620+00:00",
+      "call_id": "1865e0acaf64",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c272784a3170ad77",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a53d346656c74eba"
+    },
+    {
+      "ts": "2026-11-22T11:27:57.259333+00:00",
+      "call_id": "8949127ff7e2",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2ce1af17b0d8cad0",
+      "prompt_tokens": 1153,
+      "completion_tokens": 88,
+      "latency_ms": 14586.79,
+      "server_ms": 14559.69,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a53d346656c74eba"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1153,
+    "generator_prompt_tokens": 1153,
+    "completion_tokens": 88,
+    "total_ms": 19779.23
+  },
+  "config_hash": "00ac4473fd53",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Yes, both John Updike and Tom Clancy published more than 15 bestselling novels."
+      ]
+    }
+  }
+}

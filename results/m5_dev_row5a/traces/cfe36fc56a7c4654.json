@@ -1,0 +1,246 @@
+{
+  "trace_id": "cfe36fc56a7c4654",
+  "created_at": "2026-11-22T12:53:35.891490+00:00",
+  "query": "What university did the last Detroit Pistons player to wear the number retired in honor of a player nicknamed \"The Worm\" attend?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 20.13
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 44.32
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 9358.47
+    },
+    {
+      "state": "DONE",
+      "t_ms": 9697.63
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.18,
+      "bm25_ms": 12.89,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "cc2399aca11eb631:L0:000075",
+          "score": 7.70162296295166,
+          "fused": 0.9083274092690238,
+          "dense_rank": 3,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 7.70162296295166
+        },
+        {
+          "id": "ba3cd068cf9ac2e4:L0:000170",
+          "score": 4.8136396408081055,
+          "fused": 0.9557254902168899,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 4.8136396408081055
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000014",
+          "score": -0.7414911985397339,
+          "fused": 0.7260319377188988,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -0.7414911985397339
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000103",
+          "score": -1.0783432722091675,
+          "fused": 0.559539619967715,
+          "dense_rank": 14,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": -1.0783432722091675
+        },
+        {
+          "id": "c8fd2b3ea47eb07f:L0:000147",
+          "score": -3.6958816051483154,
+          "fused": 0.268664871602633,
+          "dense_rank": 6,
+          "bm25_rank": 12,
+          "fused_rank": 9,
+          "rerank": -3.6958816051483154
+        }
+      ],
+      "latency_ms": 20.08
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 541,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 19,
+      "sentences_kept": 15,
+      "n_out": 5,
+      "tokens_out": 487,
+      "ms": 24.1,
+      "latency_ms": 24.13
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 7.70162296295166,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9314.13
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 338.91
+    }
+  },
+  "retrieved_ids": [
+    "cc2399aca11eb631:L0:000075",
+    "ba3cd068cf9ac2e4:L0:000170",
+    "bc1dba3471045f02:L0:000014",
+    "90976421f3f2bea2:L0:000103",
+    "c8fd2b3ea47eb07f:L0:000147"
+  ],
+  "filtered_ids": [
+    "cc2399aca11eb631:L0:000075",
+    "ba3cd068cf9ac2e4:L0:000170",
+    "bc1dba3471045f02:L0:000014",
+    "90976421f3f2bea2:L0:000103",
+    "c8fd2b3ea47eb07f:L0:000147"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:53:35.894041+00:00",
+      "call_id": "6ffd3ffb757d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bbef5f13dc7b06f7",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cfe36fc56a7c4654"
+    },
+    {
+      "ts": "2026-11-22T12:53:35.913019+00:00",
+      "call_id": "97fc765986fd",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bbef5f13dc7b06f7",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cfe36fc56a7c4654"
+    },
+    {
+      "ts": "2026-11-22T12:53:35.933650+00:00",
+      "call_id": "48f7959feac8",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "dfe2aadfca3a13df",
+      "n_inputs": 19,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "cfe36fc56a7c4654"
+    },
+    {
+      "ts": "2026-11-22T12:53:45.249022+00:00",
+      "call_id": "ba9f693b9bf0",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c8107ba7d98cd1af",
+      "prompt_tokens": 1099,
+      "completion_tokens": 40,
+      "latency_ms": 9313.21,
+      "server_ms": 9292.94,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "cfe36fc56a7c4654"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1099,
+    "generator_prompt_tokens": 1099,
+    "completion_tokens": 40,
+    "total_ms": 9700.07
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

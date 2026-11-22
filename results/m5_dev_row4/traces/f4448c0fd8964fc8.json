@@ -1,0 +1,181 @@
+{
+  "trace_id": "f4448c0fd8964fc8",
+  "created_at": "2026-11-22T11:08:26.873871+00:00",
+  "query": "Which film has the director born later, Best Of The Best 3: No Turning Back or Ven Mi Corazón Te Llama?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 22069.85
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 22071.34
+    },
+    {
+      "state": "DONE",
+      "t_ms": 50396.68
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 8.54,
+      "bm25_ms": 35.26,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 22012.12
+      },
+      "hits": [
+        {
+          "id": "460e441179bec402:L0:000007",
+          "score": 9.052021980285645,
+          "fused": 0.2772220751226084,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 4,
+          "rerank": 9.052021980285645
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000067",
+          "score": 7.609605312347412,
+          "fused": 0.8554486583810276,
+          "dense_rank": 12,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 7.609605312347412
+        },
+        {
+          "id": "99628090500247e3:L0:000012",
+          "score": 1.6712390184402466,
+          "fused": 0.39285988035574326,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 1.6712390184402466
+        },
+        {
+          "id": "abe982d210232c3f:L0:000151",
+          "score": -1.3456034660339355,
+          "fused": 0.21291094645400452,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -1.3456034660339355
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -1.4749304056167603,
+          "fused": 0.18937783366408803,
+          "dense_rank": 8,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": -1.4749304056167603
+        }
+      ],
+      "latency_ms": 22069.73
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 961,
+      "latency_ms": 1.45
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 28324.89
+    }
+  },
+  "retrieved_ids": [
+    "460e441179bec402:L0:000007",
+    "c73b757f0eb66f37:L0:000067",
+    "99628090500247e3:L0:000012",
+    "abe982d210232c3f:L0:000151",
+    "b04ce6dd2d95fb80:L0:000152"
+  ],
+  "filtered_ids": [
+    "460e441179bec402:L0:000007",
+    "c73b757f0eb66f37:L0:000067",
+    "99628090500247e3:L0:000012",
+    "abe982d210232c3f:L0:000151",
+    "b04ce6dd2d95fb80:L0:000152"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:08:26.877867+00:00",
+      "call_id": "647f6105207a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "35d9e973cc545014",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "f4448c0fd8964fc8"
+    },
+    {
+      "ts": "2026-11-22T11:09:17.266856+00:00",
+      "call_id": "2ee34fac9b5f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "360e315ca8e31abf",
+      "prompt_tokens": 1682,
+      "completion_tokens": 96,
+      "latency_ms": 28321.06,
+      "server_ms": 28229.61,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "f4448c0fd8964fc8"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1682,
+    "generator_prompt_tokens": 1682,
+    "completion_tokens": 96,
+    "total_ms": 50402.82
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

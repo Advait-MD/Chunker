@@ -1,0 +1,230 @@
+{
+  "trace_id": "c9428535d2a24c2d",
+  "created_at": "2026-11-22T13:08:48.152172+00:00",
+  "query": "What was the percentage that the Dow Jones fell when the US had the highest unemployment rate?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 80.89
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 116.01
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 25289.35
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 20.07,
+      "bm25_ms": 44.66,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "5a1a5bbda9db013e:L0:000163",
+          "score": 0.5586168169975281,
+          "fused": 0.6360511748173421,
+          "dense_rank": 10,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": 0.5586168169975281
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000144",
+          "score": 0.5489159226417542,
+          "fused": 0.8614248955776604,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": 0.5489159226417542
+        },
+        {
+          "id": "a168352d83e925b5:L0:000123",
+          "score": 0.17882099747657776,
+          "fused": 0.8245456161388881,
+          "dense_rank": 3,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": 0.17882099747657776
+        },
+        {
+          "id": "15abb5e49dced915:L0:000138",
+          "score": -0.003586871549487114,
+          "fused": 0.683321341695559,
+          "dense_rank": 8,
+          "bm25_rank": 6,
+          "fused_rank": 7,
+          "rerank": -0.003586871549487114
+        },
+        {
+          "id": "dd498e0082847164:L0:000130",
+          "score": -1.4287241697311401,
+          "fused": 0.76327236203515,
+          "dense_rank": 2,
+          "bm25_rank": 10,
+          "fused_rank": 6,
+          "rerank": -1.4287241697311401
+        }
+      ],
+      "latency_ms": 80.73
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 759,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 29,
+      "sentences_kept": 22,
+      "n_out": 5,
+      "tokens_out": 635,
+      "ms": 35.0,
+      "latency_ms": 35.03
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 0.5586168169975281,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25172.77
+    }
+  },
+  "retrieved_ids": [
+    "5a1a5bbda9db013e:L0:000163",
+    "e182527d2b1ecac3:L0:000144",
+    "a168352d83e925b5:L0:000123",
+    "15abb5e49dced915:L0:000138",
+    "dd498e0082847164:L0:000130"
+  ],
+  "filtered_ids": [
+    "5a1a5bbda9db013e:L0:000163",
+    "e182527d2b1ecac3:L0:000144",
+    "a168352d83e925b5:L0:000123",
+    "15abb5e49dced915:L0:000138",
+    "dd498e0082847164:L0:000130"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:08:48.154283+00:00",
+      "call_id": "142cd127bbac",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "db01ab6b73306392",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c9428535d2a24c2d"
+    },
+    {
+      "ts": "2026-11-22T13:08:48.234172+00:00",
+      "call_id": "cd67dfcfba54",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "db01ab6b73306392",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c9428535d2a24c2d"
+    },
+    {
+      "ts": "2026-11-22T13:08:48.261565+00:00",
+      "call_id": "bf0e7e83e647",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b4db62f57715bc4b",
+      "n_inputs": 29,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "c9428535d2a24c2d"
+    },
+    {
+      "ts": "2026-11-22T13:09:13.440203+00:00",
+      "call_id": "d4be87c09c6c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "f6967c6e6a655ca9",
+      "prompt_tokens": 1267,
+      "completion_tokens": 109,
+      "latency_ms": 25171.12,
+      "server_ms": 25137.27,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "c9428535d2a24c2d"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1267,
+    "generator_prompt_tokens": 1267,
+    "completion_tokens": 109,
+    "total_ms": 25291.62
+  },
+  "config_hash": "1c92a20b0713",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The Dow Jones fell 22.61% on Black Monday (1987), but this was not when the US had the highest unemployment rate."
+      ]
+    }
+  }
+}

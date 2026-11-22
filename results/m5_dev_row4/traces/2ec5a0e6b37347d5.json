@@ -1,0 +1,183 @@
+{
+  "trace_id": "2ec5a0e6b37347d5",
+  "created_at": "2026-11-22T11:43:21.707577+00:00",
+  "query": "When is the date of birth of the creator of A Burial at Ornans?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 8.83
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 8.86
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12575.01
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 1.96,
+      "bm25_ms": 4.27,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "dd498e0082847164:L0:000076",
+          "score": 9.270174026489258,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 9.270174026489258
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000078",
+          "score": -1.8051326274871826,
+          "fused": 0.43834421754345604,
+          "dense_rank": 3,
+          "bm25_rank": 5,
+          "fused_rank": 2,
+          "rerank": -1.8051326274871826
+        },
+        {
+          "id": "dbcbda865eee9c7b:L0:000186",
+          "score": -2.0191826820373535,
+          "fused": 0.13160986214786802,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 20,
+          "rerank": -2.0191826820373535
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000186",
+          "score": -4.2227888107299805,
+          "fused": 0.17021015213674298,
+          "dense_rank": null,
+          "bm25_rank": 16,
+          "fused_rank": 19,
+          "rerank": -4.2227888107299805
+        },
+        {
+          "id": "6bddce8aaad42fea:L0:000160",
+          "score": -4.803172588348389,
+          "fused": 0.20292149642350574,
+          "dense_rank": null,
+          "bm25_rank": 11,
+          "fused_rank": 12,
+          "rerank": -4.803172588348389
+        }
+      ],
+      "latency_ms": 8.81
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 504,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12566.1
+    }
+  },
+  "retrieved_ids": [
+    "dd498e0082847164:L0:000076",
+    "e182527d2b1ecac3:L0:000078",
+    "dbcbda865eee9c7b:L0:000186",
+    "6bddce8aaad42fea:L0:000186",
+    "6bddce8aaad42fea:L0:000160"
+  ],
+  "filtered_ids": [
+    "dd498e0082847164:L0:000076",
+    "e182527d2b1ecac3:L0:000078",
+    "dbcbda865eee9c7b:L0:000186",
+    "6bddce8aaad42fea:L0:000186",
+    "6bddce8aaad42fea:L0:000160"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:43:21.708578+00:00",
+      "call_id": "ac6aca58569c",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c25879f6eb44768a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "2ec5a0e6b37347d5"
+    },
+    {
+      "ts": "2026-11-22T11:43:34.282387+00:00",
+      "call_id": "16d5971f4081",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "7ef7ca5790a6976e",
+      "prompt_tokens": 1127,
+      "completion_tokens": 87,
+      "latency_ms": 12565.55,
+      "server_ms": 12550.42,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "2ec5a0e6b37347d5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1127,
+    "generator_prompt_tokens": 1127,
+    "completion_tokens": 87,
+    "total_ms": 12575.53
+  },
+  "config_hash": "4651d06782ae",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "The date of birth of the creator of A Burial at Ornans, Gustave Courbet, is unknown, but his actual date of birth is traditionally observed on 23 April 1564."
+      ]
+    }
+  }
+}

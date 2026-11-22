@@ -1,0 +1,183 @@
+{
+  "trace_id": "13944be716484ac3",
+  "created_at": "2026-11-22T11:34:25.260734+00:00",
+  "query": "Which head coach has led their team for a longer period of time, Tim Cluess or Steve Prohm?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6041.18
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6042.25
+    },
+    {
+      "state": "DONE",
+      "t_ms": 30393.81
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.21,
+      "bm25_ms": 12.05,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6020.16
+      },
+      "hits": [
+        {
+          "id": "b120b09075017d08:L0:000017",
+          "score": -0.3081430196762085,
+          "fused": 0.6611461955111457,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -0.3081430196762085
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000017",
+          "score": -0.34337180852890015,
+          "fused": 0.6538244529044077,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -0.34337180852890015
+        },
+        {
+          "id": "b120b09075017d08:L0:000139",
+          "score": -0.3768380582332611,
+          "fused": 0.6130348581889845,
+          "dense_rank": null,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": -0.3768380582332611
+        },
+        {
+          "id": "9794e842cc9565f0:L0:000174",
+          "score": -0.385436475276947,
+          "fused": 0.32199869086603317,
+          "dense_rank": null,
+          "bm25_rank": 18,
+          "fused_rank": 20,
+          "rerank": -0.385436475276947
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000132",
+          "score": -0.5793592929840088,
+          "fused": 0.676393308328648,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -0.5793592929840088
+        }
+      ],
+      "latency_ms": 6041.13
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 612,
+      "latency_ms": 0.99
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 24351.39
+    }
+  },
+  "retrieved_ids": [
+    "b120b09075017d08:L0:000017",
+    "ec3410ef955c5c93:L0:000017",
+    "b120b09075017d08:L0:000139",
+    "9794e842cc9565f0:L0:000174",
+    "81fc433d55d23b4c:L0:000132"
+  ],
+  "filtered_ids": [
+    "b120b09075017d08:L0:000017",
+    "ec3410ef955c5c93:L0:000017",
+    "b120b09075017d08:L0:000139",
+    "9794e842cc9565f0:L0:000174",
+    "81fc433d55d23b4c:L0:000132"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:34:25.262735+00:00",
+      "call_id": "c14e1b8ef1f5",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "540bb3cf535c08e6",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "13944be716484ac3"
+    },
+    {
+      "ts": "2026-11-22T11:34:55.653077+00:00",
+      "call_id": "a16948d78422",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "b835124a511d3f12",
+      "prompt_tokens": 1326,
+      "completion_tokens": 166,
+      "latency_ms": 24349.78,
+      "server_ms": 24324.89,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "13944be716484ac3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1326,
+    "generator_prompt_tokens": 1326,
+    "completion_tokens": 166,
+    "total_ms": 30395.78
+  },
+  "config_hash": "00ac4473fd53",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3,
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

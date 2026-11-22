@@ -1,0 +1,247 @@
+{
+  "trace_id": "a661b24a8b9e40d3",
+  "created_at": "2026-11-22T13:07:39.815578+00:00",
+  "query": "Who is the wife of the man who produced the documentary of the pop star who sings I Want to Rock With You?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 21.16
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 42.68
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 9770.93
+    },
+    {
+      "state": "DONE",
+      "t_ms": 10148.28
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.45,
+      "bm25_ms": 13.91,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "ce57fdde2baaba9c:L0:000110",
+          "score": -0.7124471068382263,
+          "fused": 0.7415916803396223,
+          "dense_rank": 1,
+          "bm25_rank": 10,
+          "fused_rank": 1,
+          "rerank": -0.7124471068382263
+        },
+        {
+          "id": "f3503d3d186f0f90:L0:000178",
+          "score": -0.9752607345581055,
+          "fused": 0.4228943358919265,
+          "dense_rank": 2,
+          "bm25_rank": 18,
+          "fused_rank": 13,
+          "rerank": -0.9752607345581055
+        },
+        {
+          "id": "8679484d23bfd3a0:L0:000128",
+          "score": -2.4447128772735596,
+          "fused": 0.509603274089434,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 8,
+          "rerank": -2.4447128772735596
+        },
+        {
+          "id": "e182527d2b1ecac3:L0:000093",
+          "score": -4.878735065460205,
+          "fused": 0.2839173398649253,
+          "dense_rank": null,
+          "bm25_rank": 15,
+          "fused_rank": 17,
+          "rerank": -4.878735065460205
+        },
+        {
+          "id": "5a1a5bbda9db013e:L0:000024",
+          "score": -4.951941967010498,
+          "fused": 0.34794918809494435,
+          "dense_rank": 3,
+          "bm25_rank": 22,
+          "fused_rank": 15,
+          "rerank": -4.951941967010498
+        }
+      ],
+      "latency_ms": 21.11
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 667,
+      "dropped_threshold": [
+        "e182527d2b1ecac3:L0:000093",
+        "5a1a5bbda9db013e:L0:000024"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 13,
+      "sentences_kept": 4,
+      "n_out": 3,
+      "tokens_out": 145,
+      "ms": 21.4,
+      "latency_ms": 21.47
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": -0.7124471068382263,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 9728.22
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 377.12
+    }
+  },
+  "retrieved_ids": [
+    "ce57fdde2baaba9c:L0:000110",
+    "f3503d3d186f0f90:L0:000178",
+    "8679484d23bfd3a0:L0:000128",
+    "e182527d2b1ecac3:L0:000093",
+    "5a1a5bbda9db013e:L0:000024"
+  ],
+  "filtered_ids": [
+    "ce57fdde2baaba9c:L0:000110",
+    "f3503d3d186f0f90:L0:000178",
+    "8679484d23bfd3a0:L0:000128"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:07:39.817578+00:00",
+      "call_id": "4e142cd19169",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7958abbefa2f9e9f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a661b24a8b9e40d3"
+    },
+    {
+      "ts": "2026-11-22T13:07:39.837556+00:00",
+      "call_id": "568789aeeed5",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7958abbefa2f9e9f",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a661b24a8b9e40d3"
+    },
+    {
+      "ts": "2026-11-22T13:07:39.856477+00:00",
+      "call_id": "eeda0692c81c",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "da17c41a7def2c91",
+      "n_inputs": 13,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "a661b24a8b9e40d3"
+    },
+    {
+      "ts": "2026-11-22T13:07:49.585731+00:00",
+      "call_id": "f16637f5f883",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "172271715a8a7e2b",
+      "prompt_tokens": 612,
+      "completion_tokens": 68,
+      "latency_ms": 9727.29,
+      "server_ms": 9709.28,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "a661b24a8b9e40d3"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 612,
+    "generator_prompt_tokens": 612,
+    "completion_tokens": 68,
+    "total_ms": 10151.7
+  },
+  "config_hash": "1c92a20b0713",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

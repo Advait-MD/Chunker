@@ -1,0 +1,183 @@
+{
+  "trace_id": "136a43456e904ba5",
+  "created_at": "2026-11-22T11:14:35.961210+00:00",
+  "query": "Which film has the director died first, Köpekler Adası or Twisted Mistress?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.05
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13569.61
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13571.38
+    },
+    {
+      "state": "DONE",
+      "t_ms": 45121.39
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 101.73,
+      "bm25_ms": 128.82,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 13313.41
+      },
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000160",
+          "score": 8.381647109985352,
+          "fused": 0.45818996790859473,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 8.381647109985352
+        },
+        {
+          "id": "0eac870d43736f51:L0:000005",
+          "score": 5.651944637298584,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 5.651944637298584
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000137",
+          "score": -5.758188724517822,
+          "fused": 0.1708226600780263,
+          "dense_rank": 14,
+          "bm25_rank": null,
+          "fused_rank": 18,
+          "rerank": -5.758188724517822
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000176",
+          "score": -5.778229713439941,
+          "fused": 0.2658809024199801,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 6,
+          "rerank": -5.778229713439941
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000132",
+          "score": -5.961265563964844,
+          "fused": 0.25069885952335913,
+          "dense_rank": 6,
+          "bm25_rank": 29,
+          "fused_rank": 7,
+          "rerank": -5.961265563964844
+        }
+      ],
+      "latency_ms": 13568.87
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 704,
+      "latency_ms": 1.39
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 31546.96
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000160",
+    "0eac870d43736f51:L0:000005",
+    "317e12ccd417c0d7:L0:000137",
+    "4a757779abfb4ba1:L0:000176",
+    "317e12ccd417c0d7:L0:000132"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000160",
+    "0eac870d43736f51:L0:000005",
+    "317e12ccd417c0d7:L0:000137",
+    "4a757779abfb4ba1:L0:000176",
+    "317e12ccd417c0d7:L0:000132"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:14:35.986897+00:00",
+      "call_id": "877dcb8ae249",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "b3a7ee443eb91a60",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "136a43456e904ba5"
+    },
+    {
+      "ts": "2026-11-22T11:15:21.074483+00:00",
+      "call_id": "f7f15d0780e9",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "891ea77a5b4f67d9",
+      "prompt_tokens": 1381,
+      "completion_tokens": 108,
+      "latency_ms": 31528.04,
+      "server_ms": 31380.4,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "136a43456e904ba5"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1381,
+    "generator_prompt_tokens": 1381,
+    "completion_tokens": 108,
+    "total_ms": 45132.06
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Köpekler Adası has the director who died first."
+      ]
+    }
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "trace_id": "ceb8cac00e9c41ea",
+  "created_at": "2026-11-22T11:36:33.985397+00:00",
+  "query": "Which comic series involves characters such as Nick Fury and Baron von Strucker?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 5488.89
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 5490.21
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18202.89
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.17,
+      "bm25_ms": 13.43,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 5469.29
+      },
+      "hits": [
+        {
+          "id": "81fc433d55d23b4c:L0:000075",
+          "score": 3.133359432220459,
+          "fused": 0.5479790415932211,
+          "dense_rank": 18,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 3.133359432220459
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000092",
+          "score": 2.9904284477233887,
+          "fused": 0.49301329165396285,
+          "dense_rank": 13,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": 2.9904284477233887
+        },
+        {
+          "id": "81fc433d55d23b4c:L0:000001",
+          "score": 2.6094489097595215,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.6094489097595215
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000144",
+          "score": 2.3220462799072266,
+          "fused": 0.41262060445801363,
+          "dense_rank": 8,
+          "bm25_rank": 7,
+          "fused_rank": 5,
+          "rerank": 2.3220462799072266
+        },
+        {
+          "id": "bc1dba3471045f02:L0:000108",
+          "score": 1.574276089668274,
+          "fused": 0.3567546226052224,
+          "dense_rank": 9,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": 1.574276089668274
+        }
+      ],
+      "latency_ms": 5488.83
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 502,
+      "latency_ms": 1.26
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12712.54
+    }
+  },
+  "retrieved_ids": [
+    "81fc433d55d23b4c:L0:000075",
+    "90976421f3f2bea2:L0:000092",
+    "81fc433d55d23b4c:L0:000001",
+    "ec3410ef955c5c93:L0:000144",
+    "bc1dba3471045f02:L0:000108"
+  ],
+  "filtered_ids": [
+    "81fc433d55d23b4c:L0:000075",
+    "90976421f3f2bea2:L0:000092",
+    "81fc433d55d23b4c:L0:000001",
+    "ec3410ef955c5c93:L0:000144",
+    "bc1dba3471045f02:L0:000108"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:36:33.987394+00:00",
+      "call_id": "1fb1e27af24e",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5338deddeb31d125",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "ceb8cac00e9c41ea"
+    },
+    {
+      "ts": "2026-11-22T11:36:52.187489+00:00",
+      "call_id": "5050184c91e5",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "22ca1b9134cdd0bb",
+      "prompt_tokens": 1045,
+      "completion_tokens": 75,
+      "latency_ms": 12711.42,
+      "server_ms": 12690.48,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "ceb8cac00e9c41ea"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1045,
+    "generator_prompt_tokens": 1045,
+    "completion_tokens": 75,
+    "total_ms": 18204.72
+  },
+  "config_hash": "00ac4473fd53",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Nick Fury, Agent of S.H.I.E.L.D."
+      ]
+    }
+  }
+}

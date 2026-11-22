@@ -1,0 +1,249 @@
+{
+  "trace_id": "acfa157ed1c341d2",
+  "created_at": "2026-11-22T12:51:02.902032+00:00",
+  "query": "College Humor is a 1933 American pre-Code musical comedy film that starred what American singer and actor who has a trademark warm bass-baritone voice?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16.14
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 33.8
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 11241.66
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12235.44
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.07,
+      "bm25_ms": 10.58,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "cc2399aca11eb631:L0:000029",
+          "score": 10.354595184326172,
+          "fused": 0.9090623424365215,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 10.354595184326172
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000020",
+          "score": 8.677799224853516,
+          "fused": 0.9466421545381807,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 8.677799224853516
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000068",
+          "score": -3.807525634765625,
+          "fused": 0.7452916386651959,
+          "dense_rank": 9,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -3.807525634765625
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000097",
+          "score": -4.051886558532715,
+          "fused": 0.5899937002866491,
+          "dense_rank": 11,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": -4.051886558532715
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000149",
+          "score": -4.452126502990723,
+          "fused": 0.6296179763395104,
+          "dense_rank": 8,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": -4.452126502990723
+        }
+      ],
+      "latency_ms": 16.09
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 415,
+      "dropped_threshold": [
+        "cb96563b0747a6ba:L0:000097",
+        "ec3410ef955c5c93:L0:000149"
+      ],
+      "dropped_dedup": [],
+      "sentences_in": 16,
+      "sentences_kept": 4,
+      "n_out": 3,
+      "tokens_out": 123,
+      "ms": 17.6,
+      "latency_ms": 17.61
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 10.354595184326172,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11207.84
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 993.65
+    }
+  },
+  "retrieved_ids": [
+    "cc2399aca11eb631:L0:000029",
+    "5d0f6cf59ee42566:L0:000020",
+    "838c0e0106e6f015:L0:000068",
+    "cb96563b0747a6ba:L0:000097",
+    "ec3410ef955c5c93:L0:000149"
+  ],
+  "filtered_ids": [
+    "cc2399aca11eb631:L0:000029",
+    "5d0f6cf59ee42566:L0:000020",
+    "838c0e0106e6f015:L0:000068"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:51:02.904304+00:00",
+      "call_id": "3556fda37f38",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f3aeb4a92d0b4e7a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "acfa157ed1c341d2"
+    },
+    {
+      "ts": "2026-11-22T12:51:02.919508+00:00",
+      "call_id": "72634d3aac8a",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f3aeb4a92d0b4e7a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "acfa157ed1c341d2"
+    },
+    {
+      "ts": "2026-11-22T12:51:02.935022+00:00",
+      "call_id": "1d2946a44088",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c078893ea5afcd31",
+      "n_inputs": 16,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "acfa157ed1c341d2"
+    },
+    {
+      "ts": "2026-11-22T12:51:14.143194+00:00",
+      "call_id": "a16b89291e6f",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "fd4dfada752db3b7",
+      "prompt_tokens": 624,
+      "completion_tokens": 86,
+      "latency_ms": 11207.16,
+      "server_ms": 11183.57,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "acfa157ed1c341d2"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 624,
+    "generator_prompt_tokens": 624,
+    "completion_tokens": 86,
+    "total_ms": 12236.41
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        3,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

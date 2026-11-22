@@ -1,0 +1,180 @@
+{
+  "trace_id": "af0b2c2beca4422b",
+  "created_at": "2026-11-22T12:09:21.975588+00:00",
+  "query": "Why is Mr. Turner so observant of cars?\n\nOptions:\n(A) He is a car mechanic. \n(B) He was a car thief in a past life. \n(C) He loves cars.\n(D) The car models tell him what era he is in at the moment. \n\nStart your answer with the letter of the correct option, e.g. \"(B) ...\".",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 22.14
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 22.2
+    },
+    {
+      "state": "DONE",
+      "t_ms": 21897.1
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 2.84,
+      "bm25_ms": 17.34,
+      "n_candidates": {
+        "dense": 20,
+        "bm25": 19
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "2ecd3be7264ff150:L0:000012",
+          "score": -2.504079580307007,
+          "fused": 0.7048830188830693,
+          "dense_rank": 9,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -2.504079580307007
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000013",
+          "score": -3.9979910850524902,
+          "fused": 0.38876470244727046,
+          "dense_rank": 19,
+          "bm25_rank": 7,
+          "fused_rank": 11,
+          "rerank": -3.9979910850524902
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000008",
+          "score": -5.179562091827393,
+          "fused": 0.6622547412788394,
+          "dense_rank": 2,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -5.179562091827393
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000004",
+          "score": -5.380358695983887,
+          "fused": 0.2538209403708587,
+          "dense_rank": 13,
+          "bm25_rank": 16,
+          "fused_rank": 16,
+          "rerank": -5.380358695983887
+        },
+        {
+          "id": "2ecd3be7264ff150:L0:000017",
+          "score": -5.453770160675049,
+          "fused": 0.3791648277434519,
+          "dense_rank": 1,
+          "bm25_rank": 17,
+          "fused_rank": 13,
+          "rerank": -5.453770160675049
+        }
+      ],
+      "latency_ms": 22.1
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1986,
+      "latency_ms": 0.03
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 21874.79
+    }
+  },
+  "retrieved_ids": [
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000013",
+    "2ecd3be7264ff150:L0:000008",
+    "2ecd3be7264ff150:L0:000004",
+    "2ecd3be7264ff150:L0:000017"
+  ],
+  "filtered_ids": [
+    "2ecd3be7264ff150:L0:000012",
+    "2ecd3be7264ff150:L0:000013",
+    "2ecd3be7264ff150:L0:000008",
+    "2ecd3be7264ff150:L0:000004",
+    "2ecd3be7264ff150:L0:000017"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:09:21.976965+00:00",
+      "call_id": "cf346911563a",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "389a27d6d816f6d2",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "af0b2c2beca4422b"
+    },
+    {
+      "ts": "2026-11-22T12:09:43.871532+00:00",
+      "call_id": "b55bd09b24e1",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "2bb806338418358d",
+      "prompt_tokens": 2524,
+      "completion_tokens": 65,
+      "latency_ms": 21873.8,
+      "server_ms": 21838.51,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "af0b2c2beca4422b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2524,
+    "generator_prompt_tokens": 2524,
+    "completion_tokens": 65,
+    "total_ms": 21899.71
+  },
+  "config_hash": "403cb8f3227b",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

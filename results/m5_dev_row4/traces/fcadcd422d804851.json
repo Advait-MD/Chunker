@@ -1,0 +1,181 @@
+{
+  "trace_id": "fcadcd422d804851",
+  "created_at": "2026-11-22T11:11:45.083261+00:00",
+  "query": "Which film has the director who was born later, Así En El Cielo Como En La Tierra or Buck And The Preacher?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 13757.87
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 13758.5
+    },
+    {
+      "state": "DONE",
+      "t_ms": 45407.23
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 8.43,
+      "bm25_ms": 31.22,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 13708.13
+      },
+      "hits": [
+        {
+          "id": "4a757779abfb4ba1:L0:000004",
+          "score": 9.095213890075684,
+          "fused": 0.15355188876392045,
+          "dense_rank": 18,
+          "bm25_rank": 11,
+          "fused_rank": 8,
+          "rerank": 9.095213890075684
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000090",
+          "score": 6.7814860343933105,
+          "fused": 1.0,
+          "dense_rank": 1,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.7814860343933105
+        },
+        {
+          "id": "460e441179bec402:L0:000064",
+          "score": -2.0439934730529785,
+          "fused": 0.3746528222388078,
+          "dense_rank": 4,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -2.0439934730529785
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000101",
+          "score": -2.1555376052856445,
+          "fused": 0.27068324884704736,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 5,
+          "rerank": -2.1555376052856445
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000106",
+          "score": -5.813046455383301,
+          "fused": 0.07017890073426289,
+          "dense_rank": 5,
+          "bm25_rank": null,
+          "fused_rank": 15,
+          "rerank": -5.813046455383301
+        }
+      ],
+      "latency_ms": 13757.78
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1030,
+      "latency_ms": 0.57
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 31648.38
+    }
+  },
+  "retrieved_ids": [
+    "4a757779abfb4ba1:L0:000004",
+    "317e12ccd417c0d7:L0:000090",
+    "460e441179bec402:L0:000064",
+    "b04ce6dd2d95fb80:L0:000101",
+    "6af2db6cb86d77e2:L0:000106"
+  ],
+  "filtered_ids": [
+    "4a757779abfb4ba1:L0:000004",
+    "317e12ccd417c0d7:L0:000090",
+    "460e441179bec402:L0:000064",
+    "b04ce6dd2d95fb80:L0:000101",
+    "6af2db6cb86d77e2:L0:000106"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:11:45.086274+00:00",
+      "call_id": "998ec5c1f6fe",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "beaf935a59975709",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "fcadcd422d804851"
+    },
+    {
+      "ts": "2026-11-22T11:12:30.487683+00:00",
+      "call_id": "8d5d8d8fed8c",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "a8b67d3aaae5204e",
+      "prompt_tokens": 1803,
+      "completion_tokens": 91,
+      "latency_ms": 31645.92,
+      "server_ms": 31592.95,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "fcadcd422d804851"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1803,
+    "generator_prompt_tokens": 1803,
+    "completion_tokens": 91,
+    "total_ms": 45412.94
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

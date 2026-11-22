@@ -1,0 +1,181 @@
+{
+  "trace_id": "6d185b0d902e4bc9",
+  "created_at": "2026-11-22T10:55:53.181425+00:00",
+  "query": "Which film has the director died later, The Life And Loves Of Tschaikovsky or Dokuz Dağın Efesi?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.04
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 31094.3
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 31095.52
+    },
+    {
+      "state": "ABSTAIN",
+      "t_ms": 57074.35
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 14.63,
+      "bm25_ms": 57.37,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 30993.08
+      },
+      "hits": [
+        {
+          "id": "99628090500247e3:L0:000009",
+          "score": 9.344802856445312,
+          "fused": 0.36928201541280153,
+          "dense_rank": null,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 9.344802856445312
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000087",
+          "score": 6.34674072265625,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 6.34674072265625
+        },
+        {
+          "id": "99628090500247e3:L0:000165",
+          "score": -5.2464423179626465,
+          "fused": 0.12979007740119913,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 16,
+          "rerank": -5.2464423179626465
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000152",
+          "score": -5.885934829711914,
+          "fused": 0.13961587132713713,
+          "dense_rank": 11,
+          "bm25_rank": null,
+          "fused_rank": 14,
+          "rerank": -5.885934829711914
+        },
+        {
+          "id": "4a757779abfb4ba1:L0:000176",
+          "score": -5.964726448059082,
+          "fused": 0.21223224817368722,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 6,
+          "rerank": -5.964726448059082
+        }
+      ],
+      "latency_ms": 31094.12
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 841,
+      "latency_ms": 1.15
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25973.87
+    }
+  },
+  "retrieved_ids": [
+    "99628090500247e3:L0:000009",
+    "6af2db6cb86d77e2:L0:000087",
+    "99628090500247e3:L0:000165",
+    "b04ce6dd2d95fb80:L0:000152",
+    "4a757779abfb4ba1:L0:000176"
+  ],
+  "filtered_ids": [
+    "99628090500247e3:L0:000009",
+    "6af2db6cb86d77e2:L0:000087",
+    "99628090500247e3:L0:000165",
+    "b04ce6dd2d95fb80:L0:000152",
+    "4a757779abfb4ba1:L0:000176"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T10:55:53.186731+00:00",
+      "call_id": "e8646ae9b2ab",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "7f5e059ff98c3f9a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "6d185b0d902e4bc9"
+    },
+    {
+      "ts": "2026-11-22T10:56:50.241173+00:00",
+      "call_id": "2dfc01572443",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "62a14dc9c6af356b",
+      "prompt_tokens": 1583,
+      "completion_tokens": 88,
+      "latency_ms": 25962.03,
+      "server_ms": 25804.12,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "6d185b0d902e4bc9"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1583,
+    "generator_prompt_tokens": 1583,
+    "completion_tokens": 88,
+    "total_ms": 57091.95
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

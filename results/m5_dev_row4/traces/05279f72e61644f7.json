@@ -1,0 +1,183 @@
+{
+  "trace_id": "05279f72e61644f7",
+  "created_at": "2026-11-22T11:16:00.798938+00:00",
+  "query": "Which film came out earlier, Der Wixxer or The Butterfly Room?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 9978.7
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 9981.19
+    },
+    {
+      "state": "DONE",
+      "t_ms": 35272.98
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 14.75,
+      "bm25_ms": 37.82,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 9910.98
+      },
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000027",
+          "score": 9.086599349975586,
+          "fused": 0.739470800158055,
+          "dense_rank": 1,
+          "bm25_rank": 3,
+          "fused_rank": 1,
+          "rerank": 9.086599349975586
+        },
+        {
+          "id": "317e12ccd417c0d7:L0:000186",
+          "score": 8.277304649353027,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 8.277304649353027
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000077",
+          "score": -4.692354679107666,
+          "fused": 0.2611188054085339,
+          "dense_rank": null,
+          "bm25_rank": 7,
+          "fused_rank": 12,
+          "rerank": -4.692354679107666
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000168",
+          "score": -7.792016983032227,
+          "fused": 0.26267878070704426,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 11,
+          "rerank": -7.792016983032227
+        },
+        {
+          "id": "43d5059060d4defa:L0:000003",
+          "score": -8.217020988464355,
+          "fused": 0.2735498424112781,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 8,
+          "rerank": -8.217020988464355
+        }
+      ],
+      "latency_ms": 9978.59
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 493,
+      "latency_ms": 2.41
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 25290.45
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000027",
+    "317e12ccd417c0d7:L0:000186",
+    "b04ce6dd2d95fb80:L0:000077",
+    "53c7288bdcd3837a:L0:000168",
+    "43d5059060d4defa:L0:000003"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000027",
+    "317e12ccd417c0d7:L0:000186",
+    "b04ce6dd2d95fb80:L0:000077",
+    "53c7288bdcd3837a:L0:000168",
+    "43d5059060d4defa:L0:000003"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:16:00.802947+00:00",
+      "call_id": "dd3d782858a3",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "35ae96abb797e646",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "05279f72e61644f7"
+    },
+    {
+      "ts": "2026-11-22T11:16:36.069089+00:00",
+      "call_id": "9cc6780403c8",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "86fe508ee7dbcb0d",
+      "prompt_tokens": 1123,
+      "completion_tokens": 84,
+      "latency_ms": 25287.51,
+      "server_ms": 25239.73,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "05279f72e61644f7"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1123,
+    "generator_prompt_tokens": 1123,
+    "completion_tokens": 84,
+    "total_ms": 35279.34
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        1
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "Der Wixxer was released in 2004 while The Butterfly Room was released in 2012."
+      ]
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "trace_id": "487f79d74ec444eb",
+  "created_at": "2026-11-22T12:15:05.913250+00:00",
+  "query": "What baselines did they consider?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 14.83
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 14.88
+    },
+    {
+      "state": "DONE",
+      "t_ms": 22151.1
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.51,
+      "bm25_ms": 4.9,
+      "n_candidates": {
+        "dense": 23,
+        "bm25": 3
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "78a80b9567c95bc8:L0:000004",
+          "score": -1.55601167678833,
+          "fused": 0.1343332306382915,
+          "dense_rank": 16,
+          "bm25_rank": null,
+          "fused_rank": 16,
+          "rerank": -1.55601167678833
+        },
+        {
+          "id": "78a80b9567c95bc8:L0:000012",
+          "score": -2.340583324432373,
+          "fused": 0.24526437921915104,
+          "dense_rank": 6,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -2.340583324432373
+        },
+        {
+          "id": "78a80b9567c95bc8:L0:000005",
+          "score": -3.2679812908172607,
+          "fused": 0.15118735580201179,
+          "dense_rank": 14,
+          "bm25_rank": null,
+          "fused_rank": 14,
+          "rerank": -3.2679812908172607
+        },
+        {
+          "id": "78a80b9567c95bc8:L0:000015",
+          "score": -4.981461524963379,
+          "fused": 0.7517313636673759,
+          "dense_rank": 4,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": -4.981461524963379
+        },
+        {
+          "id": "78a80b9567c95bc8:L0:000017",
+          "score": -5.627756595611572,
+          "fused": 0.26578028564883954,
+          "dense_rank": 3,
+          "bm25_rank": null,
+          "fused_rank": 5,
+          "rerank": -5.627756595611572
+        }
+      ],
+      "latency_ms": 14.78
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1367,
+      "latency_ms": 0.04
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 22136.14
+    }
+  },
+  "retrieved_ids": [
+    "78a80b9567c95bc8:L0:000004",
+    "78a80b9567c95bc8:L0:000012",
+    "78a80b9567c95bc8:L0:000005",
+    "78a80b9567c95bc8:L0:000015",
+    "78a80b9567c95bc8:L0:000017"
+  ],
+  "filtered_ids": [
+    "78a80b9567c95bc8:L0:000004",
+    "78a80b9567c95bc8:L0:000012",
+    "78a80b9567c95bc8:L0:000005",
+    "78a80b9567c95bc8:L0:000015",
+    "78a80b9567c95bc8:L0:000017"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:15:05.916251+00:00",
+      "call_id": "69a909d7c1be",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "55ffdf097ef3be31",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "487f79d74ec444eb"
+    },
+    {
+      "ts": "2026-11-22T12:15:28.063402+00:00",
+      "call_id": "ff4011bd9d05",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "13ff3dce60d2164f",
+      "prompt_tokens": 2059,
+      "completion_tokens": 83,
+      "latency_ms": 22135.13,
+      "server_ms": 22099.97,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "487f79d74ec444eb"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2059,
+    "generator_prompt_tokens": 2059,
+    "completion_tokens": 83,
+    "total_ms": 22152.51
+  },
+  "config_hash": "1cf51d8daba2",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [],
+      "invalid": [],
+      "declared_not_inline": [
+        1,
+        2
+      ],
+      "uncited_sentences": [
+        "For the evaluation of the causality prediction of their models, they used state-of-the-art PDTB taggers as the baseline (BIBREF12, BIBREF13)."
+      ]
+    }
+  }
+}

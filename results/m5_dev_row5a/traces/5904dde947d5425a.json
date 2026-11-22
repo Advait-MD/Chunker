@@ -1,0 +1,248 @@
+{
+  "trace_id": "5904dde947d5425a",
+  "created_at": "2026-11-22T13:02:16.890502+00:00",
+  "query": "Which film whose director is younger, Outlaw King or Gunman'S Walk?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 12.66
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 39.24
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 12142.97
+    },
+    {
+      "state": "DONE",
+      "t_ms": 13091.69
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.97,
+      "bm25_ms": 6.34,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "43d5059060d4defa:L0:000016",
+          "score": 8.271788597106934,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.271788597106934
+        },
+        {
+          "id": "c73b757f0eb66f37:L0:000025",
+          "score": 8.21043872833252,
+          "fused": 0.5253591891577986,
+          "dense_rank": 4,
+          "bm25_rank": 3,
+          "fused_rank": 2,
+          "rerank": 8.21043872833252
+        },
+        {
+          "id": "99628090500247e3:L0:000008",
+          "score": 1.9812984466552734,
+          "fused": 0.21366611251132447,
+          "dense_rank": null,
+          "bm25_rank": 5,
+          "fused_rank": 9,
+          "rerank": 1.9812984466552734
+        },
+        {
+          "id": "b04ce6dd2d95fb80:L0:000037",
+          "score": 1.6048986911773682,
+          "fused": 0.4393381636383738,
+          "dense_rank": 33,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 1.6048986911773682
+        },
+        {
+          "id": "abe982d210232c3f:L0:000005",
+          "score": -2.490156888961792,
+          "fused": 0.25878338704508647,
+          "dense_rank": null,
+          "bm25_rank": 4,
+          "fused_rank": 6,
+          "rerank": -2.490156888961792
+        }
+      ],
+      "latency_ms": 12.62
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 481,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 17,
+      "sentences_kept": 6,
+      "n_out": 5,
+      "tokens_out": 189,
+      "ms": 26.4,
+      "latency_ms": 26.5
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 8.271788597106934,
+      "latency_ms": 0.02
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12103.7
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 0
+      },
+      "latency_ms": 948.37
+    }
+  },
+  "retrieved_ids": [
+    "43d5059060d4defa:L0:000016",
+    "c73b757f0eb66f37:L0:000025",
+    "99628090500247e3:L0:000008",
+    "b04ce6dd2d95fb80:L0:000037",
+    "abe982d210232c3f:L0:000005"
+  ],
+  "filtered_ids": [
+    "43d5059060d4defa:L0:000016",
+    "c73b757f0eb66f37:L0:000025",
+    "99628090500247e3:L0:000008",
+    "b04ce6dd2d95fb80:L0:000037",
+    "abe982d210232c3f:L0:000005"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T13:02:16.893010+00:00",
+      "call_id": "f147957e246d",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9b265814442d8b95",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5904dde947d5425a"
+    },
+    {
+      "ts": "2026-11-22T13:02:16.904438+00:00",
+      "call_id": "b93047eaf11b",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "9b265814442d8b95",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5904dde947d5425a"
+    },
+    {
+      "ts": "2026-11-22T13:02:16.926711+00:00",
+      "call_id": "6790f585ac18",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "bb68ae89c77a1f61",
+      "n_inputs": 15,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5904dde947d5425a"
+    },
+    {
+      "ts": "2026-11-22T13:02:29.032465+00:00",
+      "call_id": "d6635d62a046",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "c9c4f3d0e70a9302",
+      "prompt_tokens": 739,
+      "completion_tokens": 75,
+      "latency_ms": 12102.45,
+      "server_ms": 12086.13,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "5904dde947d5425a"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 739,
+    "generator_prompt_tokens": 739,
+    "completion_tokens": 75,
+    "total_ms": 13094.48
+  },
+  "config_hash": "d0f93e792e6e",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3,
+        4
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "trace_id": "e4a139c2e5db4d97",
+  "created_at": "2026-11-22T10:58:32.387906+00:00",
+  "query": "Which film has the director born later, Brutti Di Notte or Bir Türk'E Gönül Verdim?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.03
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 16386.87
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 16388.42
+    },
+    {
+      "state": "DONE",
+      "t_ms": 51776.49
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 12.86,
+      "bm25_ms": 62.37,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 16294.36
+      },
+      "hits": [
+        {
+          "id": "abe982d210232c3f:L0:000178",
+          "score": 8.019879341125488,
+          "fused": 0.7,
+          "dense_rank": null,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 8.019879341125488
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000033",
+          "score": 7.707293510437012,
+          "fused": 0.554413902646271,
+          "dense_rank": 2,
+          "bm25_rank": 2,
+          "fused_rank": 2,
+          "rerank": 7.707293510437012
+        },
+        {
+          "id": "6af2db6cb86d77e2:L0:000086",
+          "score": -4.767368316650391,
+          "fused": 0.055697822468456344,
+          "dense_rank": 19,
+          "bm25_rank": 31,
+          "fused_rank": 15,
+          "rerank": -4.767368316650391
+        },
+        {
+          "id": "43d5059060d4defa:L0:000003",
+          "score": -6.918822765350342,
+          "fused": 0.08635584957293738,
+          "dense_rank": 4,
+          "bm25_rank": null,
+          "fused_rank": 7,
+          "rerank": -6.918822765350342
+        },
+        {
+          "id": "53c7288bdcd3837a:L0:000064",
+          "score": -7.646817684173584,
+          "fused": 0.5038290083222805,
+          "dense_rank": 1,
+          "bm25_rank": 4,
+          "fused_rank": 3,
+          "rerank": -7.646817684173584
+        }
+      ],
+      "latency_ms": 16386.75
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 395,
+      "latency_ms": 1.49
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 35385.82
+    }
+  },
+  "retrieved_ids": [
+    "abe982d210232c3f:L0:000178",
+    "53c7288bdcd3837a:L0:000033",
+    "6af2db6cb86d77e2:L0:000086",
+    "43d5059060d4defa:L0:000003",
+    "53c7288bdcd3837a:L0:000064"
+  ],
+  "filtered_ids": [
+    "abe982d210232c3f:L0:000178",
+    "53c7288bdcd3837a:L0:000033",
+    "6af2db6cb86d77e2:L0:000086",
+    "43d5059060d4defa:L0:000003",
+    "53c7288bdcd3837a:L0:000064"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T10:58:32.391237+00:00",
+      "call_id": "234429b3bfaf",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "94e2bd8ba2d03673",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.01,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "e4a139c2e5db4d97"
+    },
+    {
+      "ts": "2026-11-22T10:59:24.157588+00:00",
+      "call_id": "aee22ecd51f6",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "5dcc3692b0ae7c5f",
+      "prompt_tokens": 1042,
+      "completion_tokens": 172,
+      "latency_ms": 35380.91,
+      "server_ms": 35347.27,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "e4a139c2e5db4d97"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1042,
+    "generator_prompt_tokens": 1042,
+    "completion_tokens": 172,
+    "total_ms": 51781.85
+  },
+  "config_hash": "825b8547b001",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2,
+        4,
+        3
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

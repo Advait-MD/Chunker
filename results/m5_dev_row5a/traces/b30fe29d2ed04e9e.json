@@ -1,0 +1,247 @@
+{
+  "trace_id": "b30fe29d2ed04e9e",
+  "created_at": "2026-11-22T12:50:37.831529+00:00",
+  "query": "In the NASA mission where Moon trees were taken into space, what was the nickname of the Command Module?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 17.6
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 43.58
+    },
+    {
+      "state": "VERIFYING",
+      "t_ms": 11547.31
+    },
+    {
+      "state": "DONE",
+      "t_ms": 12501.57
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.51,
+      "bm25_ms": 12.8,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "90976421f3f2bea2:L0:000118",
+          "score": 2.8178486824035645,
+          "fused": 0.9572333278693188,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 1,
+          "rerank": 2.8178486824035645
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000162",
+          "score": 2.726470708847046,
+          "fused": 0.7212466944180939,
+          "dense_rank": 7,
+          "bm25_rank": 2,
+          "fused_rank": 3,
+          "rerank": 2.726470708847046
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000155",
+          "score": 1.6142836809158325,
+          "fused": 0.7220012206089454,
+          "dense_rank": 3,
+          "bm25_rank": 5,
+          "fused_rank": 2,
+          "rerank": 1.6142836809158325
+        },
+        {
+          "id": "b120b09075017d08:L0:000012",
+          "score": 1.499853253364563,
+          "fused": 0.5134209564698421,
+          "dense_rank": null,
+          "bm25_rank": 3,
+          "fused_rank": 8,
+          "rerank": 1.499853253364563
+        },
+        {
+          "id": "90976421f3f2bea2:L0:000040",
+          "score": 1.373520851135254,
+          "fused": 0.7110449772068481,
+          "dense_rank": 4,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": 1.373520851135254
+        }
+      ],
+      "latency_ms": 17.56
+    },
+    "filter": {
+      "pool_k": 5,
+      "n_in": 5,
+      "tokens_in": 573,
+      "dropped_threshold": [],
+      "dropped_dedup": [],
+      "sentences_in": 17,
+      "sentences_kept": 14,
+      "n_out": 5,
+      "tokens_out": 516,
+      "ms": 25.9,
+      "latency_ms": 25.92
+    },
+    "sufficiency": {
+      "verdict": "sufficient",
+      "by": "rerank",
+      "best": 2.8178486824035645,
+      "latency_ms": 0.01
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 11503.7
+    },
+    "verify": {
+      "action": "flag",
+      "first": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "regenerated": false,
+      "removed": 0,
+      "all_unsupported": false,
+      "final": {
+        "n_sentences": 1,
+        "n_supported": 1
+      },
+      "latency_ms": 953.77
+    }
+  },
+  "retrieved_ids": [
+    "90976421f3f2bea2:L0:000118",
+    "ec3410ef955c5c93:L0:000162",
+    "ec3410ef955c5c93:L0:000155",
+    "b120b09075017d08:L0:000012",
+    "90976421f3f2bea2:L0:000040"
+  ],
+  "filtered_ids": [
+    "90976421f3f2bea2:L0:000118",
+    "ec3410ef955c5c93:L0:000162",
+    "ec3410ef955c5c93:L0:000155",
+    "b120b09075017d08:L0:000012",
+    "90976421f3f2bea2:L0:000040"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:50:37.832529+00:00",
+      "call_id": "ca027a095eae",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c71cdd4d8d112d26",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b30fe29d2ed04e9e"
+    },
+    {
+      "ts": "2026-11-22T12:50:37.849530+00:00",
+      "call_id": "98d0a6543257",
+      "kind": "embed",
+      "caller": "filter.prune_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "c71cdd4d8d112d26",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b30fe29d2ed04e9e"
+    },
+    {
+      "ts": "2026-11-22T12:50:37.871535+00:00",
+      "call_id": "6ea43b78fb6e",
+      "kind": "embed",
+      "caller": "filter.prune_sentences",
+      "state": "INGEST",
+      "model": "nomic-embed-text",
+      "prompt_hash": "8620fe9dc2f86cb9",
+      "n_inputs": 17,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "b30fe29d2ed04e9e"
+    },
+    {
+      "ts": "2026-11-22T12:50:49.377626+00:00",
+      "call_id": "14aed56910a3",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "d85b49e1f2dfb7dc",
+      "prompt_tokens": 1108,
+      "completion_tokens": 67,
+      "latency_ms": 11503.06,
+      "server_ms": 11485.15,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "b30fe29d2ed04e9e"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 3,
+    "prompt_tokens": 1108,
+    "generator_prompt_tokens": 1108,
+    "completion_tokens": 67,
+    "total_ms": 12507.22
+  },
+  "config_hash": "dfc6f588a352",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

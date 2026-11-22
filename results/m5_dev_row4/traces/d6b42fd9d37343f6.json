@@ -1,0 +1,181 @@
+{
+  "trace_id": "d6b42fd9d37343f6",
+  "created_at": "2026-11-22T11:36:52.205433+00:00",
+  "query": "College Humor is a 1933 American pre-Code musical comedy film that starred what American singer and actor who has a trademark warm bass-baritone voice?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.01
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 6083.06
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 6083.97
+    },
+    {
+      "state": "DONE",
+      "t_ms": 18631.66
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 4.62,
+      "bm25_ms": 19.11,
+      "n_candidates": {
+        "dense": 50,
+        "bm25": 50
+      },
+      "n_fused": 20,
+      "rerank": {
+        "n": 20,
+        "n_computed": 20,
+        "latency_ms": 6055.28
+      },
+      "hits": [
+        {
+          "id": "cc2399aca11eb631:L0:000029",
+          "score": 10.354595184326172,
+          "fused": 0.9090623424365215,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 10.354595184326172
+        },
+        {
+          "id": "5d0f6cf59ee42566:L0:000020",
+          "score": 8.677799224853516,
+          "fused": 0.9466421545381807,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": 8.677799224853516
+        },
+        {
+          "id": "838c0e0106e6f015:L0:000068",
+          "score": -3.807525634765625,
+          "fused": 0.7452916386651959,
+          "dense_rank": 9,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -3.807525634765625
+        },
+        {
+          "id": "cb96563b0747a6ba:L0:000097",
+          "score": -4.051886558532715,
+          "fused": 0.5899937002866491,
+          "dense_rank": 11,
+          "bm25_rank": 8,
+          "fused_rank": 8,
+          "rerank": -4.051886558532715
+        },
+        {
+          "id": "ec3410ef955c5c93:L0:000149",
+          "score": -4.452126502990723,
+          "fused": 0.6296179763395104,
+          "dense_rank": 8,
+          "bm25_rank": 6,
+          "fused_rank": 5,
+          "rerank": -4.452126502990723
+        }
+      ],
+      "latency_ms": 6082.92
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 415,
+      "latency_ms": 0.82
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 12547.49
+    }
+  },
+  "retrieved_ids": [
+    "cc2399aca11eb631:L0:000029",
+    "5d0f6cf59ee42566:L0:000020",
+    "838c0e0106e6f015:L0:000068",
+    "cb96563b0747a6ba:L0:000097",
+    "ec3410ef955c5c93:L0:000149"
+  ],
+  "filtered_ids": [
+    "cc2399aca11eb631:L0:000029",
+    "5d0f6cf59ee42566:L0:000020",
+    "838c0e0106e6f015:L0:000068",
+    "cb96563b0747a6ba:L0:000097",
+    "ec3410ef955c5c93:L0:000149"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T11:36:52.208434+00:00",
+      "call_id": "895488edd995",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "f3aeb4a92d0b4e7a",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "d6b42fd9d37343f6"
+    },
+    {
+      "ts": "2026-11-22T11:37:10.837461+00:00",
+      "call_id": "ad9219388d16",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "41b77ffd3cb64381",
+      "prompt_tokens": 1020,
+      "completion_tokens": 66,
+      "latency_ms": 12545.98,
+      "server_ms": 12521.79,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "d6b42fd9d37343f6"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 1020,
+    "generator_prompt_tokens": 1020,
+    "completion_tokens": 66,
+    "total_ms": 18634.63
+  },
+  "config_hash": "00ac4473fd53",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        1,
+        2
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": []
+    }
+  }
+}

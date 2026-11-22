@@ -1,0 +1,186 @@
+{
+  "trace_id": "5ab9a24d6e154a7b",
+  "created_at": "2026-11-22T12:29:39.644876+00:00",
+  "query": "What is the architecture of the span detector?",
+  "route": "SINGLE_HOP",
+  "routing_tier": "none",
+  "states": [
+    {
+      "state": "RECEIVED",
+      "t_ms": 0.0
+    },
+    {
+      "state": "RETRIEVING",
+      "t_ms": 0.02
+    },
+    {
+      "state": "FILTERING",
+      "t_ms": 19.22
+    },
+    {
+      "state": "GENERATING",
+      "t_ms": 19.49
+    },
+    {
+      "state": "DONE",
+      "t_ms": 38757.32
+    }
+  ],
+  "stages": {
+    "retrieve": {
+      "retriever": "bm25+dense_ivf|weighted|rerank",
+      "k": 5,
+      "n_hits": 5,
+      "dense_ms": 3.18,
+      "bm25_ms": 13.03,
+      "n_candidates": {
+        "dense": 11,
+        "bm25": 7
+      },
+      "n_fused": 11,
+      "rerank": {
+        "n": 11,
+        "n_computed": 0,
+        "latency_ms": 0.0
+      },
+      "hits": [
+        {
+          "id": "9b9c0c14cf389c1c:L0:000010",
+          "score": 2.5581700801849365,
+          "fused": 0.927316093115835,
+          "dense_rank": 2,
+          "bm25_rank": 1,
+          "fused_rank": 2,
+          "rerank": 2.5581700801849365
+        },
+        {
+          "id": "9b9c0c14cf389c1c:L0:000004",
+          "score": -0.2243867665529251,
+          "fused": 0.9630382661148362,
+          "dense_rank": 1,
+          "bm25_rank": 2,
+          "fused_rank": 1,
+          "rerank": -0.2243867665529251
+        },
+        {
+          "id": "9b9c0c14cf389c1c:L0:000007",
+          "score": -0.563362717628479,
+          "fused": 0.25357754557559264,
+          "dense_rank": 5,
+          "bm25_rank": 6,
+          "fused_rank": 6,
+          "rerank": -0.563362717628479
+        },
+        {
+          "id": "9b9c0c14cf389c1c:L0:000000",
+          "score": -1.3165512084960938,
+          "fused": 0.5762359878848883,
+          "dense_rank": 3,
+          "bm25_rank": 3,
+          "fused_rank": 3,
+          "rerank": -1.3165512084960938
+        },
+        {
+          "id": "9b9c0c14cf389c1c:L0:000001",
+          "score": -1.6893023252487183,
+          "fused": 0.47714537581774435,
+          "dense_rank": 6,
+          "bm25_rank": 4,
+          "fused_rank": 4,
+          "rerank": -1.6893023252487183
+        }
+      ],
+      "latency_ms": 19.17
+    },
+    "pack": {
+      "token_budget": 2500,
+      "n_items": 5,
+      "context_tokens": 1331,
+      "latency_ms": 0.25
+    },
+    "generate": {
+      "model": "qwen2.5:7b",
+      "latency_ms": 38737.37
+    }
+  },
+  "retrieved_ids": [
+    "9b9c0c14cf389c1c:L0:000010",
+    "9b9c0c14cf389c1c:L0:000004",
+    "9b9c0c14cf389c1c:L0:000007",
+    "9b9c0c14cf389c1c:L0:000000",
+    "9b9c0c14cf389c1c:L0:000001"
+  ],
+  "filtered_ids": [
+    "9b9c0c14cf389c1c:L0:000010",
+    "9b9c0c14cf389c1c:L0:000004",
+    "9b9c0c14cf389c1c:L0:000007",
+    "9b9c0c14cf389c1c:L0:000000",
+    "9b9c0c14cf389c1c:L0:000001"
+  ],
+  "llm_calls": [
+    {
+      "ts": "2026-11-22T12:29:39.646876+00:00",
+      "call_id": "06d24cbfa629",
+      "kind": "embed",
+      "caller": "retrieve.embed_query",
+      "state": "RETRIEVING",
+      "model": "nomic-embed-text",
+      "prompt_hash": "5257582233efbe73",
+      "n_inputs": 1,
+      "n_computed": 0,
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_ms": 0.0,
+      "cache_hit": true,
+      "backend": "vulkan",
+      "trace_id": "5ab9a24d6e154a7b"
+    },
+    {
+      "ts": "2026-11-22T12:30:18.401933+00:00",
+      "call_id": "c9ce754f4f16",
+      "kind": "generate",
+      "caller": "generate.answer",
+      "state": "GENERATING",
+      "model": "qwen2.5:7b",
+      "prompt_hash": "81d121ce42b79114",
+      "prompt_tokens": 2026,
+      "completion_tokens": 248,
+      "latency_ms": 38736.61,
+      "server_ms": 38719.29,
+      "cache_hit": false,
+      "temperature": 0.0,
+      "json_mode": true,
+      "backend": "vulkan",
+      "ollama_version": "0.40.16",
+      "done_reason": "stop",
+      "trace_id": "5ab9a24d6e154a7b"
+    }
+  ],
+  "totals": {
+    "llm_calls": 1,
+    "llm_calls_uncached": 1,
+    "embed_calls": 1,
+    "prompt_tokens": 2026,
+    "generator_prompt_tokens": 2026,
+    "completion_tokens": 248,
+    "total_ms": 38758.26
+  },
+  "config_hash": "1cf51d8daba2",
+  "git_sha": "4039b8c641e515dec0f20d445057143fa168b424-dirty",
+  "extra": {
+    "citation_check": {
+      "inline": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "invalid": [],
+      "declared_not_inline": [],
+      "uncited_sentences": [
+        "The span detector adopts a multi-turn answer module.",
+        "At time step $t$ in the range of $[1, T]$, the state is defined by $h_t = \text{SAN}(h_{t-1}, m_t)$, where $h_t$ is computed from the previous state $h_{t-1}$ and memory $m_t$: $h_t = \text{SAN}(h_{t-1}, m_t)$."
+      ]
+    }
+  }
+}
