@@ -4,6 +4,7 @@
   python -m apex.eval.suite index   <datasets...>        write corpus files and ingest them
   python -m apex.eval.suite run     [--config C] [--datasets a,b] [--split test] [--run-id R] [--limit N] [--no-judge]
   python -m apex.eval.suite judge   <run_dir> [--datasets a,b]
+  python -m apex.eval.suite nli     <run_dir> [--datasets a,b] [--force]   (M5 NLI faithfulness/citation metrics)
   python -m apex.eval.suite compare <run_dir_A> <run_dir_baseline>
   python -m apex.eval.suite retrieval --variants name=overlay.yaml,... [--datasets a,b] [--split dev] --out DIR
   python -m apex.eval.suite ivf-curve [--datasets musique,hotpotqa,2wiki] [--split dev] --out DIR
@@ -36,6 +37,8 @@ def main(argv=None):
     s.add_argument("--split", default="test", choices=["dev", "test"]); s.add_argument("--run-id")
     s.add_argument("--limit", type=int); s.add_argument("--no-judge", action="store_true")
     s = sub.add_parser("judge"); s.add_argument("run_dir"); s.add_argument("--datasets")
+    s = sub.add_parser("nli", help="NLI faithfulness and citation metrics for an existing run (M5)")
+    s.add_argument("run_dir"); s.add_argument("--datasets"); s.add_argument("--force", action="store_true")
     s = sub.add_parser("compare"); s.add_argument("run_a"); s.add_argument("run_b"); s.add_argument("--out")
     s = sub.add_parser("retrieval", help="retrieval-only metrics for several configs (no generation)")
     s.add_argument("--variants", required=True, help="name=overlay.yaml pairs; 'base' alone means configs/base.yaml")
@@ -70,6 +73,9 @@ def main(argv=None):
         d = run_eval(a.config, [x for x in a.datasets.split(",") if x], split=a.split, run_id=a.run_id,
                      limit=a.limit, judge=not a.no_judge)
         print(f"\nwrote {d / 'table.md'}")
+    elif a.cmd == "nli":
+        from apex.eval.nli_eval import nli_run
+        nli_run(Path(a.run_dir), a.datasets.split(",") if a.datasets else None, force=a.force)
     elif a.cmd == "judge":
         from apex.eval.run import judge_run
         judge_run(Path(a.run_dir), a.datasets.split(",") if a.datasets else None)

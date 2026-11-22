@@ -72,6 +72,8 @@ class Trace:
             "llm_calls_uncached": sum(1 for c in gen if not c.get("cache_hit")),
             "embed_calls": sum(1 for c in self.llm_calls if c.get("kind") == "embed"),
             "prompt_tokens": sum(c.get("prompt_tokens", 0) for c in gen),
+            # the answer call's input alone (spec §2.6 metric: tokens sent to the generator before vs after the filter)
+            "generator_prompt_tokens": next((c.get("prompt_tokens", 0) for c in gen if c.get("caller") == "generate.answer"), 0),
             "completion_tokens": sum(c.get("completion_tokens", 0) for c in gen),
             "total_ms": round((time.perf_counter() - self._t0) * 1000, 2),
         }

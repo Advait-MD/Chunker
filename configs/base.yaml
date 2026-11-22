@@ -95,6 +95,36 @@ rerank:
   threads: 0              # 0 = torch default
   cache_path: .apex_cache/rerank_cache.sqlite
 
+filter:                   # M5 evidence filter (spec §2.6), between the reranker and the generator; needs rerank.enabled
+  enabled: false
+  pool_k: 5               # reranked hits the filter sees (5 = row 4's top_k, so row 5 is budget-matched to row 4)
+  min_keep: 2             # the relevance threshold never leaves fewer passages (the sufficiency check decides)
+  rel_threshold: null     # θ_rel on bge-reranker-v2-m3 logits; null = stage off. Dev-tuned value in configs/ablations/row5_filter.yaml
+  dedup: {enabled: true, jaccard: 0.8, shingle: 5}   # word-shingle Jaccard; a leaf beats a summary
+  prune: {enabled: true, threshold: 0.5, neighbors: 1}  # θ_sent: cosine(query, sentence), nomic-embed-text
+  conflicts: {enabled: false, threshold: 0.9}         # optional NLI contradiction flag over passage pairs
+  sufficiency:
+    enabled: true
+    sufficient_above: 0.0     # best reranker logit in the filtered set: >= → sufficient
+    insufficient_below: -4.0  # < → insufficient (rewrite and retry once, then abstain); between → `ambiguous`
+    ambiguous: sufficient     # sufficient (the generator may still abstain) | llm (one temperature-0 call)
+    model: null               # null = models.generator
+    prompt: sufficiency_system.txt
+  rewrite: {enabled: true, model: null, max_tokens: 96, prompt: rewrite_system.txt}
+
+verifier:                 # M5 citation verifier (spec §2.7): every sentence cited and entailed by its cited passages
+  enabled: false
+  entail_threshold: 0.5   # P(entailment) from the NLI model
+  action: flag            # flag | remove | regenerate (once, then remove)
+
+nli:                      # M5 NLI model: verifier, optional contradiction flag, faithfulness metric (CPU, fp32)
+  model: MoritzLaurer/DeBERTa-v3-base-mnli-fever-anli
+  revision: 6f5cf0a2b59cabb106aca4c287eed12e357e90eb   # HF commit, 2024-04-11; MIT; 369 MB; fetch: scripts/fetch_nli.py
+  max_length: 512
+  batch_size: 1           # fp32 only: dynamic int8 quantization breaks this model (M5 probe)
+  threads: 0
+  cache_path: .apex_cache/nli_cache.sqlite
+
 generation:
   temperature: 0.0
   max_tokens: 512
@@ -123,3 +153,4 @@ eval:
   # gemma3:4b judge rejected for M2 on 8 real questions: 25% incomplete outputs, context recall 0 on correct
   # answers, 22-74 s/question. Owner decision: faithfulness/citation support move to M5's NLI model.
   judge_enabled: false
+  nli: {entail_threshold: 0.5}       # M5 NLI metrics (faithfulness, citation precision): apex/eval/nli_eval.py

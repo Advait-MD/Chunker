@@ -70,6 +70,32 @@ def markdown_table(meta: Dict[str, Any], allm: Dict[str, Dict[str, Any]]) -> str
                 lines.append(f"| {name} | {_fmt(j['faithfulness'])} | {_fmt(j['citation_precision'])} | "
                              f"{_fmt(j['citation_recall'])} | {_fmt(j['answer_relevance'])} | "
                              f"{_fmt(j['context_precision'])} | {_fmt(j['context_recall'])} | {_pct(j.get('overruled_rate'))} | {j.get('n_judge_errors', 0)}/{j['n_judged'] + j.get('n_judge_errors', 0)} |")
+    if any("nli" in m or "context_precision" in m for m in allm.values()):
+        lines += ["", "## Evidence and citations (M5, NLI)", "",
+                  "*Context precision*: share of the passages given to the generator that cover a gold evidence passage. "
+                  "NLI columns (answered questions only, local DeBERTa-v3 NLI): *faithfulness* = share of answer sentences "
+                  "entailed by some evidence passage; *citation precision* = share of cited sentences entailed by their "
+                  "cited passages; *citation recall* = share of sentences with a valid citation. *Gen. input tokens*: the "
+                  "answer call's prompt.", "",
+                  "| Dataset | Context precision | NLI n | Faithfulness | Citation precision | Citation recall | Gen. input tokens/q |",
+                  "| --- | --- | --- | --- | --- | --- | --- |"]
+        for name, m in allm.items():
+            nl = m.get("nli") or {}
+            lines.append(f"| {name} | {_fmt(m.get('context_precision'))} | {nl.get('n_scored', 0)} | "
+                         f"{_fmt(nl.get('faithfulness'))} | {_fmt(nl.get('citation_precision'))} | "
+                         f"{_fmt(nl.get('citation_recall'))} | {_num(m['cost'].get('generator_prompt_tokens_per_query'), 0)} |")
+    if any("filter" in m for m in allm.values()):
+        lines += ["", "## Evidence filter and verifier (M5)", "",
+                  "| Dataset | Tokens in → out | Passages out | Insufficient (1st check) | Rewritten | Abstained by sufficiency | "
+                  "Verifier: supported sentences 1st → final | Regenerated | Removal |",
+                  "| --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
+        for name, m in allm.items():
+            f, v = m.get("filter"), m.get("verifier") or {}
+            if f:
+                lines.append(f"| {name} | {_num(f['tokens_in'], 0)} → {_num(f['tokens_out'], 0)} | {_num(f['passages_out'], 1)} | "
+                             f"{_pct(f['insufficient_first'])} | {_pct(f['rewritten'])} | {_pct(f['abstained_by_sufficiency'])} | "
+                             f"{_pct(v.get('supported_first'))} → {_pct(v.get('supported_final'))} | {_pct(v.get('regenerated'))} | "
+                             f"{_pct(v.get('rows_with_removal'))} |")
     lines += ["", "## Abstention and cost", "",
               "| Dataset | Unanswerable | Abstain precision | Abstain recall | False-abstain rate | LLM calls/q | "
               "Tokens/q | Latency p50 | Latency p95 |", "| --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
@@ -98,7 +124,14 @@ PAIRED = {
     "faithfulness": lambda r: (r.get("judge") or {}).get("faithfulness"),
     "citation_recall": lambda r: (r.get("judge") or {}).get("citation_recall"),
     "prompt_tokens": lambda r: r["cost"]["prompt_tokens"],
+    # M5: context precision, NLI metrics (pairs exist only where both runs answered), generator input tokens
+    "context_precision": lambda r: r["scores"].get("context_precision"),
+    "nli_faithfulness": lambda r: (r.get("nli") or {}).get("faithfulness"),
+    "nli_citation_precision": lambda r: (r.get("nli") or {}).get("citation_precision"),
+    "nli_citation_recall": lambda r: (r.get("nli") or {}).get("citation_recall"),
+    "generator_prompt_tokens": lambda r: r["cost"].get("generator_prompt_tokens"),
 }
+TOKEN_METRICS = {"prompt_tokens", "generator_prompt_tokens"}
 
 
 def compare(run_a: Path, run_b: Path, datasets: Optional[List[str]] = None) -> str:
@@ -122,7 +155,7 @@ def compare(run_a: Path, run_b: Path, datasets: Optional[List[str]] = None) -> s
                 continue
             xs, ys = [p[0] for p in pairs], [p[1] for p in pairs]
             t = M.paired_test(xs, ys)
-            s = 1.0 if metric == "prompt_tokens" else 100.0
+            s = 1.0 if metric in TOKEN_METRICS else 100.0
             lines.append(f"| {name} | {metric} | {t['n']} | {s * sum(xs) / len(xs):.1f} | {s * sum(ys) / len(ys):.1f} | "
                          f"{s * t['mean_diff']:+.1f} ({s * t['lo']:+.1f}, {s * t['hi']:+.1f}) | "
                          f"{t['p_bootstrap']:.3f} | {t['p_wilcoxon']:.3f} |")

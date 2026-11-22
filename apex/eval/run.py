@@ -50,6 +50,15 @@ def retrieval_scores(texts: List[str], evidence_sets: List[List[str]], cfg: Dict
     return best
 
 
+def context_precision(evidence_texts: List[str], evidence_sets: List[List[str]], cfg: Dict[str, Any]) -> Optional[float]:
+    """Fraction of the passages given to the generator that cover a gold evidence passage (max over gold sets)."""
+    if not evidence_sets or not evidence_texts:
+        return None
+    e = cfg["eval"]["evidence_match"]
+    return max(sum(bool(h) for h in M.evidence_hits(evidence_texts, gold, n=int(e["shingle"]), min_overlap=float(e["min_overlap"])))
+               / len(evidence_texts) for gold in evidence_sets)
+
+
 def answer_scores(item: D.EvalItem, answer: str, short: Optional[str], abstained: bool,
                   evidence_texts: List[str]) -> Dict[str, Any]:
     """EM/F1 on the short answer (primary); F1 on the long cited answer kept for continuity with M1.
@@ -128,6 +137,38 @@ def aggregate(rows: List[Dict[str, Any]], cfg: Dict[str, Any]) -> Dict[str, Any]
         n_lab = sum(x["n_support_labels"] for x in js)
         jd["overruled_rate"] = sum(x["overruled"] for x in js) / n_lab if n_lab else None
         out["judge"] = jd
+    cp = [r["scores"]["context_precision"] for r in rows if r["scores"].get("context_precision") is not None]
+    if cp:
+        out["context_precision"] = _ci(cp, cfg)
+    nl = [r["nli"] for r in rows if r.get("nli")]
+    if nl:
+        out["nli"] = {"n_scored": len(nl), "threshold": rows[0].get("nli_threshold"),
+                      **{k: _ci([x[k] for x in nl if x.get(k) is not None], cfg)
+                         for k in ("faithfulness", "citation_precision", "citation_recall")}}
+    fl = [r["filter"] for r in rows if r.get("filter")]
+    if fl:
+        first = [f["sufficiency"][0] for f in fl]
+        out["filter"] = {
+            "n": len(fl),
+            "tokens_in": _ci([f["stats"]["tokens_in"] for f in fl if f.get("stats")], cfg)["mean"],
+            "tokens_out": _ci([f["stats"]["tokens_out"] for f in fl if f.get("stats")], cfg)["mean"],
+            "passages_out": _ci([f["stats"]["n_out"] for f in fl if f.get("stats")], cfg)["mean"],
+            "insufficient_first": sum(x["verdict"] == "insufficient" for x in first) / len(fl),
+            "rewritten": sum(bool(f.get("rewritten_query")) for f in fl) / len(fl),
+            "abstained_by_sufficiency": sum(f.get("abstained_by") == "sufficiency" for f in fl) / len(fl),
+            "by": {b: sum(x["by"] == b for x in first) for b in sorted({x["by"] for x in first})},
+        }
+    vf = [r["verification"] for r in rows if r.get("verification")]
+    if vf:
+        out["verifier"] = {
+            "n": len(vf),
+            "supported_first": sum(v["first"]["n_supported"] for v in vf) / max(1, sum(v["first"]["n_sentences"] for v in vf)),
+            "supported_final": sum(v["final"]["n_supported"] for v in vf) / max(1, sum(v["final"]["n_sentences"] for v in vf)),
+            "regenerated": sum(v["regenerated"] for v in vf) / len(vf),
+            "regeneration_kept": sum(bool(v.get("regeneration_kept")) for v in vf) / len(vf),
+            "rows_with_removal": sum(v["removed"] > 0 for v in vf) / len(vf),
+            "all_unsupported": sum(v["all_unsupported"] for v in vf) / len(vf),
+        }
     out["abstention"] = M.abstention_scores([r["abstained"] for r in rows], [r["answerable"] for r in rows])
     out["abstention"]["abstain_rate"] = sum(r["abstained"] for r in rows) / len(rows) if rows else None
     fresh = [r["cost"]["total_ms"] / 1000 for r in rows
@@ -136,6 +177,9 @@ def aggregate(rows: List[Dict[str, Any]], cfg: Dict[str, Any]) -> Dict[str, Any]
         "llm_calls_per_query": _ci([r["cost"]["llm_calls"] for r in rows], cfg)["mean"],
         "tokens_per_query": _ci([r["cost"]["prompt_tokens"] + r["cost"]["completion_tokens"] for r in rows], cfg)["mean"],
         "prompt_tokens_per_query": _ci([r["cost"]["prompt_tokens"] for r in rows], cfg)["mean"],
+        "generator_prompt_tokens_per_query": _ci([r["cost"].get("generator_prompt_tokens") or 0 for r in rows
+                                                  if r["cost"].get("generator_prompt_tokens") is not None], cfg)["mean"]
+        if any(r["cost"].get("generator_prompt_tokens") is not None for r in rows) else None,
         "latency_s_p50": M.percentile(fresh, 50), "latency_s_p95": M.percentile(fresh, 95),
         "n_latency": len(fresh),
         "pct_routed_without_llm": None,  # no router before M6
@@ -223,7 +267,7 @@ def run_eval(config_path: Optional[str], datasets: List[str], split: str = "test
                     res = _failed_result(str(e))
                     log(f"  !! {it.qid}: generation failed: {str(e)[:160]}")
                 hits = pipe.retrieve_ranked(q, k=max_k, source=it.scope)
-                gen_call = next((c for c in res["_trace"].llm_calls if c["kind"] == "generate"), {})
+                gen_call = next((c for c in res["_trace"].llm_calls if c.get("caller") == "generate.answer"), {})
                 row = {
                     "qid": it.qid, "dataset": name, "question": q, "answers": it.answers, "answerable": it.answerable,
                     "meta": it.meta, "answer": res["answer"], "short_answer": res.get("short_answer"),
@@ -240,6 +284,12 @@ def run_eval(config_path: Optional[str], datasets: List[str], split: str = "test
                     "cost": {**res["totals"], "gen_cache_hit": bool(gen_call.get("cache_hit"))},
                     "trace_id": res["trace_id"],
                 }
+                row["scores"]["context_precision"] = context_precision([e["text"] for e in res["evidence"]],
+                                                                       it.evidence_sets, cfg)
+                if res.get("filter"):
+                    row["filter"] = res["filter"]
+                if res.get("verification"):
+                    row["verification"] = res["verification"]
                 if res.get("generation_error"):
                     row["generation_error"] = res["generation_error"]
                 if jdg:

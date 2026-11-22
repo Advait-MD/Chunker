@@ -45,7 +45,7 @@ class EvidenceItem:
 
 @dataclass
 class EvidenceSet:
-    """Spec §2.6 output contract. M1 fills items only; filtering arrives in M5."""
+    """Spec §2.6 output contract. Without the M5 filter only `items` is filled."""
     items: List[EvidenceItem] = field(default_factory=list)
     sufficient: bool = True
     conflicts: List[Any] = field(default_factory=list)
@@ -66,9 +66,10 @@ def pack_evidence(hits: List[Hit], token_budget: int) -> EvidenceSet:
     return EvidenceSet(items=items)
 
 
-def build_user_prompt(query: str, evidence: EvidenceSet) -> str:
+def build_user_prompt(query: str, evidence: EvidenceSet, feedback: str = "") -> str:
     blocks = "\n\n".join(f"{it.label()}\n{it.text}" for it in evidence.items)
-    return f"Evidence passages:\n\n{blocks}\n\nQuestion: {query}\n\nAnswer in JSON:"
+    fb = f"{feedback}\n\n" if feedback else ""
+    return f"Evidence passages:\n\n{blocks}\n\nQuestion: {query}\n\n{fb}Answer in JSON:"
 
 
 class GenerationError(OllamaError):
@@ -85,8 +86,11 @@ class Generator:
         self.num_ctx = int(g["num_ctx"])
         self.system = (PROMPT_DIR / g["system_prompt"]).read_text(encoding="utf-8")
 
-    def generate(self, query: str, evidence: EvidenceSet) -> Dict[str, Any]:
-        res = self.client.generate(build_user_prompt(query, evidence), model=self.model, caller="generate.answer",
+    def generate(self, query: str, evidence: EvidenceSet, feedback: str = "") -> Dict[str, Any]:
+        """`feedback` (the citation verifier's regeneration note) goes between the question and the JSON cue.
+        Without it the prompt is byte-identical to M1-M4, so their LLM cache still applies."""
+        res = self.client.generate(build_user_prompt(query, evidence, feedback), model=self.model,
+                                   caller="generate.regenerate" if feedback else "generate.answer",
                                    system=self.system, temperature=self.temperature, max_tokens=self.max_tokens,
                                    num_ctx=self.num_ctx, json_schema=ANSWER_SCHEMA, state="GENERATING")
         if res.raw.get("done_reason") == "length":
